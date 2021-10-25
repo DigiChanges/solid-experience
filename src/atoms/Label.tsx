@@ -1,14 +1,13 @@
-import { Component } from 'solid-js';
-
+import { Component, JSX } from 'solid-js';
 
 interface LabelProps
 {
-    for?: string,
-    class?: string,
-    children?: any,
+    for?: string;
+    class?: string;
+    children?: JSX.Element;
 }
 
-const Label: Component<LabelProps> = ( props: any ) => (
+const Label: Component<LabelProps> = props => (
     <label for={props.for} class={props.class}>
         {props.children}
     </label>

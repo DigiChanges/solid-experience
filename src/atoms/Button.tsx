@@ -1,13 +1,13 @@
 import { Component, splitProps } from 'solid-js';
 
 interface ButtonProps {
-    type?: 'button' | 'submit' | 'reset',
-    props?: any,
-    onClick?: any,
+    type?: 'button' | 'submit' | 'reset';
+    name?: string;
+    onClick?: ( e: MouseEvent ) => void;
     class?: string
 }
 
-const Button: Component<ButtonProps> = ( props: any ) =>
+const Button: Component<ButtonProps> = ( props ) =>
 {
     const [ local, others ] = splitProps( props, [ 'children', 'type' ] );
 

@@ -1,6 +1,12 @@
 import { Component } from 'solid-js';
 
-const GeneralLoader: Component = ( props: any ) =>
+interface GeneralLoaderProps {
+    cssScreenContainer?: string;
+    cssSpinnerContainer?: string;
+    cssSpinner?: string;
+}
+
+const GeneralLoader: Component<GeneralLoaderProps> = props =>
     <div class={ props.cssScreenContainer }>
         <div class={ props.cssSpinnerContainer }>
             <svg

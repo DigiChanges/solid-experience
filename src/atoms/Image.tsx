@@ -6,7 +6,7 @@ interface ImageProps {
     alt?: string;
 }
 
-const Image: Component<ImageProps> = ( props: any ): any =>
+const Image: Component<ImageProps> = props =>
     <img src={props.src} alt={props.alt ?? ''} class={props.class} />;
 
 

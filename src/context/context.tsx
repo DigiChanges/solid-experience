@@ -1,8 +1,13 @@
-import { createSignal, createContext, useContext } from 'solid-js';
+import { createSignal, createContext, useContext, JSX } from 'solid-js';
+
+interface ApplicationProviderProps
+{
+    children: JSX.Element;
+}
 
 const ApplicationContext = createContext();
 
-export function ApplicationProvider ( props: any )
+export function ApplicationProvider ( props: ApplicationProviderProps )
 {
     const [ user, setUser ] = createSignal( null );
 

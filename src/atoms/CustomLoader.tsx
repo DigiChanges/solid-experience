@@ -1,8 +1,11 @@
 import { Component } from 'solid-js';
 
+interface CustomLoaderProps {
+    class?: string;
+}
 
-const CustomLoader: Component = ( props: any ): any => (
-    <div class={props.cssClassName}>
+const CustomLoader: Component<CustomLoaderProps> = ( props ) => (
+    <div class={props.class}>
         <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

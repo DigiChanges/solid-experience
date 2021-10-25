@@ -12,11 +12,10 @@ import AuthRepository from '../../repositories/AuthRepository';
 import { ILoginPayload } from '../../interfaces/auth';
 
 interface LoginFormProps {
-    props?: any;
-    onClick: any
+    onClick: ( event: MouseEvent ) => void;
 }
 
-const LoginForm: Component<LoginFormProps> = ( props ): any =>
+const LoginForm: Component<LoginFormProps> = props =>
 {
     const [ user, { addUser } ] = useApplicationContext();
     const authRepository = new AuthRepository();
@@ -58,10 +57,11 @@ const LoginForm: Component<LoginFormProps> = ( props ): any =>
                     />
                     <div class="flex items-center justify-between">
                         <Button
+                            name="forgotPassword"
                             onClick={props.onClick}
                             class="no-underline inline-block align-baseline font-bold text-sm text-blue hover:text-blue-dark "
                         >
-            Forgot Password?
+                            Forgot Password?
                         </Button>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ const LoginForm: Component<LoginFormProps> = ( props ): any =>
                         type="submit"
                         class="mx-auto text-white bg-primary-main border-0 py-2 focus:outline-none hover:bg-primary-hover rounded-full text-sm font-bold w-32 text-center"
                     >
-            Login
+                        Login
                     </Button>
                 </div>
             </Form>

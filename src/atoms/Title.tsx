@@ -1,13 +1,13 @@
-import { Component } from 'solid-js';
+import { Component, JSX } from 'solid-js';
 
 interface TitleProps
 {
-    titleType: 'h6' | 'h5' | 'h4'| 'h3'| 'h2'| 'h1',
-    class: string,
-    children: any
+    titleType: 'h6' | 'h5' | 'h4'| 'h3'| 'h2'| 'h1';
+    class: string;
+    children: JSX.Element;
 }
 
-const Title: Component<TitleProps> = ( props: any ) =>
+const Title: Component<TitleProps> = props =>
 
     props.titleType === 'h6' ? ( <h6 class={props.class}>{props.children}</h6> ) :
         props.titleType === 'h5' ? ( <h5 class={props.class}>{props.children}</h5> ) :

@@ -1,6 +1,11 @@
-import { Component } from 'solid-js';
+import { Component, JSX } from 'solid-js';
 
-const Description: Component = ( props: any ) =>
+interface DescriptionProps {
+    class?: string;
+    children: JSX.Element | JSX.Element[];
+}
+
+const Description: Component<DescriptionProps> = ( props ) =>
     <div class={props.class}>
         {props.children}
     </div>;

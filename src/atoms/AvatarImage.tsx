@@ -1,12 +1,20 @@
 import Image from '../atoms/Image';
 import { Component } from 'solid-js';
 
-const AvatarImage: Component = ( props: any ): any =>
-{
-    const url = props.image ? props.image : props.avatar;
+interface AvatarImageProps {
+    image?: string;
+    avatar?: string; // FIXME: image or avatar mast be defined. URL cant be empty
+    alt?: string;
+    class: string;
+}
 
+const AvatarImage: Component<AvatarImageProps> = ( props ) =>
+{
     return (
-        <Image src={url} alt={props.alt} class={props.class}/>
+        <Image
+            src={props.image ?? props.avatar}
+            alt={props.alt} class={props.class}
+        />
     );
 };
 
