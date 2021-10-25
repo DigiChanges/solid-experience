@@ -1,5 +1,4 @@
-// import React from 'react';
-//
+
 // const Space = ({className}) =>
 // {
 // 	const _className = className ?? 'm-8'

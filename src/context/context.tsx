@@ -1,25 +1,29 @@
-import { createSignal, createContext, useContext } from "solid-js";
+import { createSignal, createContext, useContext } from 'solid-js';
 
 const ApplicationContext = createContext();
 
-export function ApplicationProvider(props: any)
+export function ApplicationProvider ( props: any )
 {
-  const [user, setUser] = createSignal(null),
+    const [ user, setUser ] = createSignal( null );
 
-  store = [
-    user,
-    {
-      addUser(user: any) {
-        setUser(() => user);
-      }
-    }
-  ];
+    const store = [
+        user,
+        {
+            addUser ( user: any )
+            {
+                setUser( () => user );
+            }
+        }
+    ];
 
-  return (
-    <ApplicationContext.Provider value={store}>
-      {props.children}
-    </ApplicationContext.Provider>
-  );
+    return (
+        <ApplicationContext.Provider value={store}>
+            {props.children}
+        </ApplicationContext.Provider>
+    );
 }
 
-export function useApplicationContext() { return useContext(ApplicationContext); }
+export function useApplicationContext ()
+{
+    return useContext( ApplicationContext );
+}

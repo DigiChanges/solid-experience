@@ -1,22 +1,23 @@
-import "./assets/css/index.css";
-import { createEffect, lazy } from 'solid-js';
-import { useRoutes } from "solid-app-router";
+import './assets/css/index.css';
+import { lazy } from 'solid-js';
+import { useRoutes } from 'solid-app-router';
 
 const routes = [
-  {
-    path: "/",
-    component: lazy(() => import("./pages/login"))
-  }
+    {
+        path: '/',
+        component: lazy( () => import( './pages/login' ) )
+    }
 ];
 
-function App() {
-  const Routes = useRoutes(routes);
+function App ()
+{
+    const Routes = useRoutes( routes );
 
-  return (
-    <>
-      <Routes/>
-    </>
-  );
+    return (
+        <>
+            <Routes/>
+        </>
+    );
 }
 
 export default App;

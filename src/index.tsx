@@ -1,14 +1,14 @@
-import { render } from "solid-js/web";
-import { Router } from "solid-app-router";
-import { ApplicationProvider } from "./context/context";
+import { MountableElement, render } from 'solid-js/web';
+import { Router } from 'solid-app-router';
+import { ApplicationProvider } from './context/context';
 
-import App from "./App";
+import App from './App';
 
-render(() => (
+render( () => (
     <Router>
-      <ApplicationProvider>
-        <App />
-      </ApplicationProvider>
+        <ApplicationProvider>
+            <App />
+        </ApplicationProvider>
     </Router>
-  ), document.getElementById("root")
+), document.getElementById( 'root' ) as MountableElement
 );

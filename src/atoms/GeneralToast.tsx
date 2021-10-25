@@ -1,4 +1,3 @@
-// import {useEffect} from 'react'
 // import {showToast} from '../helpers/toasts'
 //
 // const GeneralToast = ({type, msg}) =>

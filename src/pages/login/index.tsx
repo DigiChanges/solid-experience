@@ -3,9 +3,9 @@ import { Component } from 'solid-js';
 
 const LoginPage: Component = () =>
 {
-	return (
-		<Login/>
-	)
-}
+    return (
+        <Login/>
+    );
+};
 
 export default LoginPage;

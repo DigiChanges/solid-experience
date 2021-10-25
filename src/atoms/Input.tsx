@@ -5,14 +5,14 @@ import ErrorForm from './ErrorForm';
 
 interface InputProps
 {
-  name: string,
-  type: string,
-  id: string,
-  className: string,
-  placeholder: string,
-  labelClassName: string,
-  labelName: string,
-  autocomplete?: 'off' | 'on'
+    name: string,
+    type: string,
+    id: string,
+    class: string,
+    placeholder: string,
+    labelClass: string,
+    labelName: string,
+    autocomplete?: 'off' | 'on'
 }
 
 const Input: Component<InputProps> = (props) => {
@@ -23,7 +23,7 @@ const Input: Component<InputProps> = (props) => {
     <>
       <Label
         for={props.id}
-        className={props.labelClassName}
+        class={props.labelClass}
       >
         {props.labelName}
         {/*{field.required() ? " *" : ""}*/}
@@ -32,7 +32,7 @@ const Input: Component<InputProps> = (props) => {
         value={field.value() as string}
         placeholder={props.placeholder}
         name={props.name}
-        className={props.className}
+        class={props.class}
         autocomplete={props.autocomplete ? props.autocomplete : 'on'}
         type={props.type ?? "button"}
         //@ts-ignore
