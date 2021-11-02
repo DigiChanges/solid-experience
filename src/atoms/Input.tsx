@@ -9,7 +9,7 @@ interface InputProps
     type: string,
     id: string,
     class: string,
-    placeholder: string,
+    placeholder?: string,
     labelClass: string,
     labelName: string,
     autocomplete?: 'off' | 'on'
