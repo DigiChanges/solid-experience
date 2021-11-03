@@ -1,14 +1,14 @@
 import { Component } from 'solid-js';
-import RoleCreate from '../../../templates/roles/RoleCreate';
 import PublicLayout from '../../../templates/layout/PublicLayout';
+import RoleUpdate from '../../../templates/roles/RoleUpdate';
 
 const IndexPage: Component = ( props ) =>
 {
 
     return <PublicLayout>
-        <RoleCreate
+        <RoleUpdate
         // permissionsList={Auth.permissionsList}
-        // createAction={createAction}
+        // updateAction={updateAction}
         />
     </PublicLayout>;
 

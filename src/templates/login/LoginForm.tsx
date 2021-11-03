@@ -10,6 +10,7 @@ import PasswordShowHide from './PasswordShowHide';
 import { useApplicationContext } from '../../context/context';
 import AuthRepository from '../../repositories/AuthRepository';
 import { ILoginPayload } from '../../interfaces/auth';
+import { useNavigate } from 'solid-app-router';
 
 interface LoginFormProps {
     onClick: ( event: MouseEvent ) => void;
@@ -19,7 +20,7 @@ const LoginForm: Component<LoginFormProps> = props =>
 {
     const [ user, { addUser } ] = useApplicationContext();
     const authRepository = new AuthRepository();
-
+    const navigate = useNavigate();
     return (
         <>
             <Form
@@ -32,6 +33,8 @@ const LoginForm: Component<LoginFormProps> = props =>
 
                     const data = await authRepository.signin( form.values as ILoginPayload );
                     addUser( data );
+                    navigate( '/roles/list', { replace : true } );
+
                 }}
             >
                 <Title titleType="h1" class="mb-2 text-left text-xs font-extrabold text-main-gray-250">

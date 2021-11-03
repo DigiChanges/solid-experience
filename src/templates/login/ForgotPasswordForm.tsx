@@ -26,7 +26,6 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
             validation={ForgetPasswordSchema}
             onSubmit={async ( forms ) =>
             {
-                console.log( forms.values );
                 // const { email } = forms.values
                 // dispatch(forgetPassword(email))
                 // props.onClick();

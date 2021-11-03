@@ -2,7 +2,7 @@
 const IconPlus = (): any => (
     <svg
         viewBox="0 0 20 20"
-        enableBackground="new 0 0 20 20"
+        enable-background="new 0 0 20 20"
         fill="currentColor"
     >
         <path

@@ -11,7 +11,8 @@ class AuthRepository
     public signin = ( body: ILoginPayload ) =>
     {
         const requestOptions = {
-            url: `${protocol}://${hostname}:${port}/${login}`,
+            // url: `${protocol}://${hostname}:${port}/${login}`,
+            url:`https://api.mictick.tech/api/auth/login?provider=local/${login}`,
             method: 'POST',
             body,
             headers: { 'Content-Type': 'application/json' }

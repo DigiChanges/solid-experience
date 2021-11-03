@@ -1,5 +1,4 @@
 // import Router from "next/router";
-import Title from '../../atoms/Title';
 // import ButtonClose from '../../molecules/ButtonClose';
 // import ButtonConfirm from '../../molecules/ButtonConfirm';
 // import MultiSelect from '../../atoms/MultiSelect';
@@ -7,6 +6,7 @@ import Title from '../../atoms/Title';
 // import SelectStyle from '../../assets/customStyles/SelectStyle';
 // import SimpleSelect from '../../atoms/SimpleSelect';
 // import { states } from "../../entities";
+import Title from '../../atoms/Title';
 import { Component } from 'solid-js';
 import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
@@ -31,17 +31,16 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
             <Form
 
                 initialValues={{
-                    name: "",
-                    slug: "",
+                    name: '',
+                    slug: '',
                     permissions: [],
-                    enable: "",
+                    enable: ''
                 }}
                 validation={RoleSchema}
-                onSubmit={async ( forms ) =>
+                onSubmit={async ( values ) =>
                 {
-                    // const { email } = forms.values
-                    // dispatch(forgetPassword(email))
-                    // props.onClick();
+                    // props.createAction(values);
+
                 }}
 
             >
@@ -84,17 +83,15 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 />
                             </div> */}
                     {/* <div class="dg-form-quarter-field-wrapper">
-                                <Label htmlFor="enable" class="dg-form-label">
-                                    Enable
-                                </Label>
-                                <Input
-                                    name="enable"
-                                    id="enable"
-                                    component={SimpleSelect}
-                                    selectStyle={SelectStyle}
-                                    options={states}
-                                />
-                            </div> */}
+
+                        <Input
+                            name="enable"
+                            id="enable"
+                            component={SimpleSelect}
+                            selectStyle={SelectStyle}
+                            options={states}
+                        />
+                    </div> */}
                     <div class="w-full mt-5 flex justify-end">
                         <Button type="button" onClick={() => window.open( '/roles' )}>
                             Close
