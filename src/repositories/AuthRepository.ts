@@ -2,23 +2,40 @@ import { config } from './config';
 // import {getHeader} from '../api/auth'
 import HttpRequest from '../services/HttpRequest';
 import { IChangeForgotPasswordPayload, ILoginPayload } from '../interfaces/auth';
+import { createResource } from 'solid-js';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { login, permissionsGetAll, forgotPassword, changeForgotPassword } = config.apiGateway.routes.auth;
 
+const fetchData = ( body: any ) =>
+{
+    console.log( 'body' );
+    console.log( body );
+
+    return fetch( `https://api.mictick.tech/api/auth/login?provider=local/${login}` )
+        .then( res => res.json() )
+        .then( response =>
+        {
+            return response.results;
+        } );
+};
+
 class AuthRepository
 {
-    public signin = ( body: ILoginPayload ) =>
+    public signIn = ( body: ILoginPayload ) =>
     {
-        const requestOptions = {
-            // url: `${protocol}://${hostname}:${port}/${login}`,
-            url:`https://api.mictick.tech/api/auth/login?provider=local/${login}`,
-            method: 'POST',
-            body,
-            headers: { 'Content-Type': 'application/json' }
-        };
+        // const requestOptions = {
+        //     // url: `${protocol}://${hostname}:${port}/${login}`,
+        //     url:`https://api.mictick.tech/api/auth/login?provider=local/${login}`,
+        //     method: 'POST',
+        //     body,
+        //     headers: { 'Content-Type': 'application/json' }
+        // };
+        //
+        // return  HttpRequest.request( requestOptions );
 
-        return HttpRequest.request( requestOptions );
+        const [ getData, { mutate, refetch } ] = createResource( body, fetchData  );
+        return getData;
     };
 
     public getAllPermissions = () =>

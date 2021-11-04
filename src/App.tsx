@@ -48,11 +48,11 @@ const routes = [
         component: lazy( () => import( './pages/roles/view' ) )
     },
     {
-        path: '/roles/list',
-        component: lazy( () => import( './pages/roles/list' ) )
+        path: '/roles',
+        component: lazy( () => import( './pages/roles' ) )
     }
-
 ];
+
 function App ()
 {
     const Routes = useRoutes( routes );

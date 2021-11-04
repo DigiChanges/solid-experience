@@ -1,9 +1,8 @@
 
-// import { loginUser } from '../../redux/auth/actions'
 import { Form } from 'solid-js-form';
 import Title from '../../atoms/Title';
 import Button from '../../atoms/Button';
-import { Component } from 'solid-js';
+import { Component, createResource } from 'solid-js';
 import SignUpSchema from '../../SchemaValidations/SignUpSchema';
 import Input from '../../atoms/Input';
 import PasswordShowHide from './PasswordShowHide';
@@ -28,17 +27,14 @@ const LoginForm: Component<LoginFormProps> = props =>
                 validation={SignUpSchema}
                 onSubmit={async ( form ) =>
                 {
-                    console.log( form.values );
-                    console.log( user() );
+                    const data = await authRepository.signIn( form.values as ILoginPayload );
 
-                    const data = await authRepository.signin( form.values as ILoginPayload );
                     addUser( data );
-                    navigate( '/roles/list', { replace : true } );
-
+                    navigate( '/roles', { replace : true } );
                 }}
             >
                 <Title titleType="h1" class="mb-2 text-left text-xs font-extrabold text-main-gray-250">
-          Login
+                    Login
                 </Title>
                 <div class="mb-4">
                     <Input
