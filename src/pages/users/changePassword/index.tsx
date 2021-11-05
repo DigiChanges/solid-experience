@@ -1,21 +1,26 @@
+import { useParams } from 'solid-app-router';
 import { Component } from 'solid-js';
+import AuthRepository from '../../../repositories/AuthRepository';
 import PublicLayout from '../../../templates/layout/PublicLayout';
 import UserChangePassword from '../../../templates/users/UserChangePassword';
-// import { changePasswordUser } from '../../../redux/users/actions';
-// import { IChangePasswordPayload } from '../../../interfaces/user';
-// import withAuth from '../../../providers/withAuth';
 
+// import withAuth from '../../../providers/withAuth';
 const IndexPage: Component = ( props ) =>
 {
-    // const changePasswordAction = (payload: IChangePasswordPayload) =>
-    // {
-    // 	dispatch(changePasswordUser(payload, query.userId));
-    // }
 
+    const { token } = useParams<{ token: string ; }> ();
+    const authorzation = new AuthRepository();
+
+    const changePasswordAction = ( body: any ) =>
+    {
+        authorzation.setChangeForgotPassword( body );
+
+    };
 
     return <PublicLayout>
         <UserChangePassword
-        // changePasswordAction={changePasswordAction}
+            confirmationToken={token}
+            changePasswordAction={changePasswordAction}
         />
     </PublicLayout>;
 };

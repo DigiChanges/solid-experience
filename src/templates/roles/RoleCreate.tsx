@@ -16,10 +16,12 @@ import RoleSchema from '../../SchemaValidations/RoleSchema';
 
 interface RoleCreateTemplateProps {
     permissionsList?: string[];
-    createAction?: never;
+    createAction: any;
 }
+
 const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
+
     return (
         <section class="px-4">
             <div class="mb-2 ">
@@ -34,12 +36,12 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                     name: '',
                     slug: '',
                     permissions: [],
-                    enable: ''
+                    enable: false
                 }}
                 validation={RoleSchema}
-                onSubmit={async ( values ) =>
+                onSubmit={( forms ) =>
                 {
-                    // props.createAction(values);
+                    props.createAction( forms.values );
 
                 }}
 
@@ -96,7 +98,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                         <Button type="button" onClick={() => window.open( '/roles' )}>
                             Close
                         </Button>
-                        <Button>Save</Button>
+                        <Button type="submit">Save</Button>
                     </div>
                 </div>
             </Form>

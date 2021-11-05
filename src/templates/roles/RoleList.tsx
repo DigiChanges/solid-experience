@@ -16,7 +16,7 @@ import Button from '../../atoms/Button';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import { For } from 'solid-js';
-import { useApplicationContext } from '../../context/context';
+import {  Link } from 'solid-app-router';
 
 interface roleListTemplateProps {
     rolesList?: IRoleApi[];
@@ -25,15 +25,12 @@ interface roleListTemplateProps {
 }
 const RoleList: Component<roleListTemplateProps> = ( props ) =>
 {
-   
-    // const [ user, { addUser } ] = useApplicationContext();
-    // console.log(user().token)
-
     // const router = useRouter();
     // solid have useRouter
     // const dispatch = useDispatch();
     const [getshowScroll, setShowScroll] = createSignal( false );
     const openConfirmDelete = ( id: string, name: string ): void =>
+
     {
         // const modalData = {
         //     idSelected: id,
@@ -92,18 +89,19 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
                 title="Roles"
                 labelButtonName="Create Role"
                 icon={IconPlus}
-                buttonAction={actionCreateButton()}
+                path="/roles/create"
+                // buttonAction={actionCreateButton()}
             />
             {/* <FilterSort actionFilter={onClickFilter} filterQuery={query} placeholder="Search roles..." /> */}
             <div class="dg-grid-3x3">
                 {/* {props.rolesList && */}
-                <For each={props.rolesList} fallback={<div>Loading...</div>}>
+                <For each={props.rolesList } fallback={<div>Loading...</div>}>
                     {( item ) =>
                         <MediaObject class="dg-media-object" >
                             <div class="flex-col w-10 h-10 bg-white text-black justify-center content-center rounded-full">{' '}</div>
                             <div class="flex-col justify-center content-center ml-3">
                                 <Title titleType="h6" class="hover:transform hover:scale-125"><a href={`/roles/view/${item.id}`}>{item.name}</a></Title>
-                                {item.name}
+                                { item.name }
                             </div>
                             <div class="flex flex-col ml-auto">
                                 <div class="h-6 w-6 my-1">

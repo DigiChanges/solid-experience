@@ -2,11 +2,11 @@
 // import { resetQueryPagination } from "../../../redux/general/actions";
 // import withAuth from "../../../providers/withAuth";
 // import { INIT_STATE } from '../../../redux/general/reducers';
-import UserList from '../../../templates/users/UserList';
-import PublicLayout from '../../../templates/layout/PublicLayout';
+import UserList from '../../templates/users/UserList';
+import PublicLayout from '../../templates/layout/PublicLayout';
 import { createResource } from 'solid-js';
 import { Component } from 'solid-js';
-import { useApplicationContext } from '../../../context/context';
+import { useApplicationContext } from '../../context/context';
 // urlUsers: `https://api.mictick.tech/api/users`
 //https://rickandmortyapi.com/api/character
 const datasList = [{
@@ -27,7 +27,8 @@ const datasList = [{
     enable: true
 }
 ];
-const IndexPage: Component = (props) => {
+const IndexPage: Component = ( props ) =>
+{
     //   const [loadPage, setLoadPage] = createSignal(true)
     //   useEffect(() => {
     //     if(loadPage)

@@ -6,10 +6,13 @@ import Input from '../../atoms/Input';
 import Title from '../../atoms/Title';
 import { Form } from 'solid-js-form';
 import ChangePasswordSchema from '../../SchemaValidations/ChangePasswordSchema';
+import AuthRepository from '../../repositories/AuthRepository';
 
 interface UserChangePasswordTemplateProps
 {
     changePasswordAction?: never;
+    confirmationToken :string;
+
 }
 const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props ) =>
 {
@@ -23,13 +26,14 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props 
 
             <Form
                 initialValues={{
-                    newPassword: '',
-                    newPasswordConfirmation: ''
+                    confirmationToken: props.confirmationToken,
+                    password: '',
+                    passwordConfirmation: ''
                 }}
                 validation={ChangePasswordSchema}
-                onSubmit={async ( values ) =>
+                onSubmit={async ( form ) =>
                 {
-                    // props.changePasswordAction(values );
+                    props.changePasswordAction( form.values );
                 }}
 
             >
@@ -38,9 +42,9 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props 
                     <div class="w-full px-2 mb-5">
 
                         <Input
-                            name="newPassword"
+                            name="password"
                             type="password"
-                            id="newPassword"
+                            id="password"
                             class="w-full bg-gray-800 border rounded-full border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base hover:border-grey px-2 py-3 h-10 shadow font-bold"
                             placeholder="Enter Password"
                             labelClass="dg-form-label"
@@ -50,9 +54,9 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props 
                     <div class="w-full px-2 mb-5">
 
                         <Input
-                            name="newPasswordConfirmation"
+                            name="passwordConfirmation"
                             type="password"
-                            id="newPasswordConfirmation"
+                            id="passwordConfirmation"
                             class="w-full bg-gray-800 border rounded-full border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base  hover:border-grey px-2 py-3 h-10 shadow font-bold"
                             placeholder="Repeat Password"
                             labelClass="dg-form-label"
@@ -60,10 +64,10 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props 
                         />
                     </div>
                     <div class="w-full mt-5 flex flex-row-reverse">
-                        <Button type="submit">
+                        <Button  class="dg-main-button" type="submit">
                           Save
                         </Button>
-                        <Button onClick={() => true}>
+                        <Button  class="dg-secondary-button" onClick={() => true}>
                           Close
                         </Button>
                     </div>

@@ -20,7 +20,7 @@ const routes = [
         component: lazy( () => import( './pages/users/update' ) )
     },
     {
-        path: '/users/UserChangePass',
+        path: '/users/UserChangePass/:token',
         component: lazy( () => import( './pages/users/changePassword' ) )
     },
     {
@@ -28,8 +28,8 @@ const routes = [
         component: lazy( () => import( './pages/users/view' ) )
     },
     {
-        path: '/users/list',
-        component: lazy( () => import( './pages/users/list' ) )
+        path: '/users',
+        component: lazy( () => import( './pages/users' ) )
     },
     {
         path: '/users/view',

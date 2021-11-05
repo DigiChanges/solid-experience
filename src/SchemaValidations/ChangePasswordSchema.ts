@@ -5,7 +5,7 @@ const ChangePasswordSchema = {
         .min( 2, 'Too Short!' )
         .max( 50, 'Too Long!' )
         .required( 'Required' ),
-    newPasswordConfirmation: Yup.string()
+    passwordConfirmation: Yup.string()
         .oneOf( [ Yup.ref( 'password' ), null ], 'Passwords must match' )
         .required( 'Required' )
 };

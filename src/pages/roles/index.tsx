@@ -8,24 +8,24 @@ import { Component } from 'solid-js';
 import PublicLayout from '../../templates/layout/PublicLayout';
 import { useApplicationContext } from '../../context/context';
 
-
-const fetchData = () =>
-{
-    return fetch( 'https://api.mictick.tech/api/roles?pagination[limit]=4&pagination[offset]=0&filter[enable]=true&filter[slug]=admin' )
-        .then( res => res.json() )
-        .then( response =>
-        {
-            return response.results;
-        } );
-};
-
-const IndexPage: Component = ( props ) =>
+// urlRoles: `https://api.mictick.tech/api/roles`
+// https://rickandmortyapi.com/api/character
+const IndexPage: Component = (props) =>
 {
     const [ user, { addUser } ] = useApplicationContext();
-    const res = user();
-    console.log( 'usuarios', res.token );
-    const [ getData, { mutate, refetch } ] = createResource( fetchData );
+    const dataUSer = user();
+    console.log('Token usuario', dataUSer.token );
 
+    const fetchData = () =>
+    {
+        return fetch('https://rickandmortyapi.com/api/character', { method:'GET', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${dataUSer.token}` } }
+        ).then( res => res.json() )
+            .then( response =>
+            {
+                return response.results;
+            } );
+    };
+    const [ getData, { mutate, refetch } ] = createResource( fetchData);
     //     const [getLoadPage, setLoadPage] = createSignal(true)
     //   useEffect(() => {
     //     if(getLoadPage())

@@ -8,6 +8,7 @@ interface TitleobjectProps
     labelButtonName?: string;
     buttonAction?: boolean;
     class: string;
+    path: string;
 }
 const TitleWithButton: Component<TitleobjectProps> = ( props ) =>
 
@@ -20,9 +21,11 @@ const TitleWithButton: Component<TitleobjectProps> = ( props ) =>
             icon={props.icon}
             // onClick={props.buttonAction}
             labelName={props.labelButtonName}
+            path={props.path}
+
         />
-    </section>
-//   );
+    </section>;
+    //   );
 // };
 
 export default TitleWithButton;

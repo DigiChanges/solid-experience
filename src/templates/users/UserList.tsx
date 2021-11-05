@@ -85,6 +85,7 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
                 labelButtonName="Create User"
                 icon={IconPlus}
                 buttonAction={actionCreateButton()}
+                path="/users/create"
             />
             {/* <FilterSort actionFilter={onClickFilter} filterQuery={props.query} placeholder="Search roles..." /> */}
             <div class="dg-grid-3x3">
@@ -95,7 +96,7 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
                             <div class="flex-col w-10 h-10 bg-white text-black justify-center content-center rounded-full">{' '}</div>
                             <div class="flex-col justify-center content-center ml-3">
                                 <Title titleType="h6" class="hover:transform hover:scale-125"><a href={`/users/view/${item.id}`}>{item.firstName}{' '}{item.lastName}</a></Title>
-                                {item.email}
+                                {item.name} {item.email}
                             </div>
                             <div class="flex flex-col ml-auto">
                                 <div class="h-6 w-6 my-1">
