@@ -30,7 +30,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                     const data = await authRepository.signIn( form.values as ILoginPayload );
 
                     addUser( data );
-                    navigate( '/users', { replace : true } );
+                    navigate( '/roles', { replace : true } );
                 }}
             >
                 <Title titleType="h1" class="mb-2 text-left text-xs font-extrabold text-main-gray-250">
