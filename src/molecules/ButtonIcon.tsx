@@ -1,32 +1,34 @@
-import { Component } from 'solid-js';
+import { Link } from 'solid-app-router';
+import { Component, splitProps } from 'solid-js';
 import Button from '../atoms/Button';
-import {  Link } from 'solid-app-router';
 
-interface ButtonIconobjectProps
+interface ButtonIconProps
 {
     icon?: string;
     labelName?: string;
-    buttonType?: string;
-    path?:string;
+    type?: 'button' | 'submit' | 'reset';
+    path: string;
 }
-const MediaObject: Component<ButtonIconobjectProps> = ( props ) =>
+const ButtonIcon: Component<ButtonIconProps> = ( props ) =>
+{
+    const [ local, others ] = splitProps( props, [ 'type', 'icon', 'labelName', 'path' ] );
 
-//   return (
-    <div class="mt-3 ">
-        <Button
-            buttonType={props.buttonType}
-            class="dg-main-button-w-icon"
-            {...props}
-        >
-            <Link href={props.path}>
-                <span class="hidden md:block font-bold pb-1">{props.labelName}</span>
-            </Link>
-            <i class="w-5 md:w-8 md:pl-2">
-                {props.icon}
-            </i>
-        </Button>
-    </div>;
-//   );
-// };
+    return (
+        <div class="mt-3 ">
+            <Button
+                type={props.type}
+                class="dg-main-button-w-icon"
+                {...others}
+            >
+                <Link href={props.path}>
+                    <span class="hidden md:block font-bold pb-1">{props.labelName}</span>
+                </Link>
+                <i class="w-5 md:w-8 md:pl-2">
+                    {props.icon}
+                </i>
+            </Button>
+        </div>
+    );
+};
 
-export default MediaObject;
+export default ButtonIcon;

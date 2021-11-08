@@ -16,19 +16,20 @@ import Button from '../../atoms/Button';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import { For } from 'solid-js';
-import {  Link } from 'solid-app-router';
 
 interface roleListTemplateProps {
     rolesList?: IRoleApi[];
     query?: never;
     viewMore?: never;
+    loading?: boolean;
 }
 const RoleList: Component<roleListTemplateProps> = ( props ) =>
 {
+
     // const router = useRouter();
     // solid have useRouter
     // const dispatch = useDispatch();
-    const [getshowScroll, setShowScroll] = createSignal( false );
+    const [ getshowScroll, setShowScroll ] = createSignal( false );
     const openConfirmDelete = ( id: string, name: string ): void =>
 
     {
@@ -42,11 +43,6 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
         // dispatch( openModal( modalData ) );
     };
 
-    const actionCreateButton = () =>
-    {
-        // return router.push("/roles/create");
-        return true;
-    };
 
     // const onClickFilter = ( search: string, filterBy: string, orderBy: string, sort: 'asc' | 'desc' ) =>
     // {
@@ -75,7 +71,8 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
         window.addEventListener( 'scroll', checkScrollTop );
     }
 
-    const scrollTop = () => {
+    const scrollTop = () =>
+    {
         if ( typeof window !== 'undefined' )
         {
             window.scrollTo( { top: 0, behavior: 'smooth' } );
@@ -95,36 +92,40 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
             {/* <FilterSort actionFilter={onClickFilter} filterQuery={query} placeholder="Search roles..." /> */}
             <div class="dg-grid-3x3">
                 {/* {props.rolesList && */}
-                <For each={props.rolesList } fallback={<div>Loading...</div>}>
-                    {( item ) =>
-                        <MediaObject class="dg-media-object" >
-                            <div class="flex-col w-10 h-10 bg-white text-black justify-center content-center rounded-full">{' '}</div>
-                            <div class="flex-col justify-center content-center ml-3">
-                                <Title titleType="h6" class="hover:transform hover:scale-125"><a href={`/roles/view/${item.id}`}>{item.name}</a></Title>
-                                { item.name }
-                            </div>
-                            <div class="flex flex-col ml-auto">
-                                <div class="h-6 w-6 my-1">
-                                    <button
-                                        class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                        onClick={() => window.open( `/roles/update/${item.id}` )}
-                                    >
-                                        <IconPencilAlt />
-                                    </button>
-                                </div>
-                                <div class="h-6 w-6 my-1">
-                                    <button
-                                        class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                        onClick={() => openConfirmDelete( item.id, item.name )}
-                                        type='button'
-                                    >
-                                        <IconTrash />
-                                    </button>
-                                </div>
-                            </div>
-                        </MediaObject>
-                    }
-                </For>
+                {
+                    props.loading ? <h1>Loading roles template</h1>
+                        :
+                        <For each={props.rolesList } fallback={<div>Sin roles...</div>}>
+                            {( item ) =>
+                                <MediaObject class="dg-media-object" >
+                                    <div class="flex-col w-10 h-10 bg-white text-black justify-center content-center rounded-full">{' '}</div>
+                                    <div class="flex-col justify-center content-center ml-3">
+                                        <Title titleType="h6" class="hover:transform hover:scale-125"><a href={`/roles/view/${item.id}`}>{item.name}</a></Title>
+                                        { item.name }
+                                    </div>
+                                    <div class="flex flex-col ml-auto">
+                                        <div class="h-6 w-6 my-1">
+                                            <button
+                                                class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
+                                                onClick={() => window.open( `/roles/update/${item.id}` )}
+                                            >
+                                                <IconPencilAlt />
+                                            </button>
+                                        </div>
+                                        <div class="h-6 w-6 my-1">
+                                            <button
+                                                class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
+                                                onClick={() => openConfirmDelete( item.id, item.name )}
+                                                type='button'
+                                            >
+                                                <IconTrash />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </MediaObject>
+                            }
+                        </For>
+                }
             </div>
 
             <div class="dg-full-center-flex mt-8">

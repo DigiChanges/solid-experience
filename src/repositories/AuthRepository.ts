@@ -10,7 +10,7 @@ const fetchData = ( body: any ) =>
 {
     console.log( 'body' );
     console.log( body );
-    return fetch(`https://api.mictick.tech/api/auth/login?provider=local/${login}`, { method:'POST' , body: JSON.stringify( body ), headers: { 'Content-Type': 'application/json' } } )
+    return fetch( `https://api.mictick.tech/api/auth/login?provider=local/${login}`, { method:'POST', body: JSON.stringify( body ), headers: { 'Content-Type': 'application/json' } } )
         .then( res => res.json() )
         .then( response =>
         {
@@ -23,8 +23,7 @@ class AuthRepository
     public signIn = ( body: ILoginPayload ) =>
     {
         const requestOptions = {
-            // url: `${protocol}://${hostname}:${port}/${login}`,
-            url:`https://api.mictick.tech/api/auth/login?provider=local/${login}`,
+            url:`${protocol}://${hostname}:${port}/${login}`,
             method: 'POST',
             body,
             headers: { 'Content-Type': 'application/json' }
@@ -61,13 +60,13 @@ class AuthRepository
 
     public setChangeForgotPassword = ( body: IChangeForgotPasswordPayload ) =>
     {
-        return fetch('https://api.mictick.tech/api/auth/changeForgotPassword', {
+        return fetch( 'https://api.mictick.tech/api/auth/changeForgotPassword', {
             method: 'POST',
             body: JSON.stringify( body ),
             headers: { 'Content-Type': 'application/json' }
         }
-        ).then(res => res.json() )
-            .then(response =>
+        ).then( res => res.json() )
+            .then( response =>
             {
                 return response.results;
             } );
