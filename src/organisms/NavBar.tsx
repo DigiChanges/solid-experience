@@ -10,7 +10,7 @@ interface NavbarTemplatePRops {
     email?: string,
     onClick?: ( event: MouseEvent ) => void;
     permissionsList?: string[];
-    // showSidebar
+    showSidebar:boolean;
 }
 const NavBar: Component<NavbarTemplatePRops> = props =>
 {
@@ -96,7 +96,7 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
                             {/* {showSidebar ? ( */}
                             <IconBurger/>
                             {/* ) : ( */}
-                            <IconCross />
+                            {/* <IconCross /> */}
                             {/* )} */}
                         </button>
                     </div>

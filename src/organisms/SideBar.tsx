@@ -1,11 +1,12 @@
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, JSX } from 'solid-js';
 import IconArrowCircleLeft from '../atoms/Icons/Stroke/IconArrowCircleLeft';
 
 interface SideBarProps {
     class?: string
+    children?: JSX.Element;
 }
 
-const SideBar: Component<SideBarProps> = props =>
+const SideBar: Component<SideBarProps> = ( props) =>
 {
     const [ getExpanded, setExpanded ] = createSignal( true );
 
@@ -19,16 +20,17 @@ const SideBar: Component<SideBarProps> = props =>
     //     );
     return (
         <div class={`${props.class} ${getExpanded() ? 'md:relative md:w-56' : ''}`}>
-            <div class={'flex flex-row md:flex-col h-full'}>
+            <div class={'flex flex-row md:flex-col h-full text-white'}>
+                {/* {props.children} */}
                 {/* TODO: Change image logic*/}
-                <div class={classUl}>
+                {/* <div class={classUl}>
                     {
                         getExpanded() ? (
                             <div class="hidden md:flex flex-row-reverse w-full">
                                 <button
                                     onClick={() => setExpanded( false)}
                                     type="button" class="right-0 w-5 text-main-gray-300 mr-3" >
-                                    {/* <IconArrowCircleLeft /> */}
+                                   <IconArrowCircleLeft />
                                 </button>
                             </div>
                         )
@@ -40,8 +42,10 @@ const SideBar: Component<SideBarProps> = props =>
                                 </button>
                             </div>
                     }
-                    {/* {getChildren()} */}
-                </div>
+                    {getChildren()}
+                </div> */}
+
+                {props.children}
             </div>
         </div >
     );
