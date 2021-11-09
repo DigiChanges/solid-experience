@@ -2,9 +2,9 @@
 // const AUTH_HOSTNAME = process.env.NEXT_PUBLIC_AUTH_HOSTNAME // 'localhost'
 // const AUTH_PORT = process.env.NEXT_PUBLIC_AUTH_PORT // '8089'
 
-const API_PROTOCOL  = 'http'; // process.env.PUBLIC_API_PROTOCOL // 'http'
-const API_HOSTNAME = 'localhost'; // process.env.PUBLIC_API_HOSTNAME //'localhost'
-const API_PORT = 8089; // +process.env.PUBLIC_API_PORT // '8089'
+const API_PROTOCOL  = 'https'; // process.env.PUBLIC_API_PROTOCOL // 'http'
+const API_HOSTNAME = 'dev.node.experience.digichanges.com'; // process.env.PUBLIC_API_HOSTNAME //'localhost'
+const API_PORT = 443; // +process.env.PUBLIC_API_PORT // '8089'
 
 const BACKEND_BASE_PATH = 'api';
 
@@ -19,9 +19,9 @@ export const config = {
             auth: {
                 login: `${BACKEND_BASE_PATH}/auth/login`,
                 permissionsGetAll: `${BACKEND_BASE_PATH}/auth/permissions`,
-                keepAlive: `${BACKEND_BASE_PATH}/auth/keepAlive`,
-                forgotPassword: `${BACKEND_BASE_PATH}/auth/forgotPassword`,
-                changeForgotPassword: `${BACKEND_BASE_PATH}/auth/changeForgotPassword`
+                keepAlive: `${BACKEND_BASE_PATH}/auth/keep-alive`,
+                forgotPassword: `${BACKEND_BASE_PATH}/auth/forgot-password`,
+                changeForgotPassword: `${BACKEND_BASE_PATH}/auth/change-forgot-password`
             },
             users: {
                 getAll: `${BACKEND_BASE_PATH}/users`,
@@ -29,8 +29,8 @@ export const config = {
                 create: `${BACKEND_BASE_PATH}/users`,
                 update: `${BACKEND_BASE_PATH}/users/:id`,
                 remove: `${BACKEND_BASE_PATH}/users/:id`,
-                editPassword: `${BACKEND_BASE_PATH}/users/changeUserPassword/:id`,
-                assignRole: `${BACKEND_BASE_PATH}/users/assignRole/:id`
+                editPassword: `${BACKEND_BASE_PATH}/users/change-user-password/:id`,
+                assignRole: `${BACKEND_BASE_PATH}/users/assign-role/:id`
             },
             roles: {
                 getAll: `${BACKEND_BASE_PATH}/roles`,
