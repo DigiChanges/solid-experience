@@ -7,16 +7,18 @@ import Title from '../../atoms/Title';
 import Button from '../../atoms/Button';
 import ForgetPasswordSchema from '../../SchemaValidations/ForgetPasswordSchema';
 import Input from '../../atoms/Input';
+import AuthRepository from '../../repositories/AuthRepository';
 
 interface ForgotPasswordFormProps
 {
     onClick: ( event: MouseEvent ) => void;
+    forgotPassword: never;
 }
 
 const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
 {
     // const dispatch = useDispatch()
-
+    const authRepository = new AuthRepository();
     return (
         <Form
             initialValues={{
@@ -26,9 +28,8 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
             validation={ForgetPasswordSchema}
             onSubmit={async ( forms ) =>
             {
-                console.log( forms.values );
                 // const { email } = forms.values
-                // dispatch(forgetPassword(email))
+                authRepository.getForgotPassword( forms.values.email )
                 // props.onClick();
             }}
         >
