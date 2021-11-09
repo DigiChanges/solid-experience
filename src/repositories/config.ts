@@ -1,10 +1,6 @@
-// const AUTH_PROTOCOL =  process.env.NEXT_PUBLIC_AUTH_PROTOCOL // 'http'
-// const AUTH_HOSTNAME = process.env.NEXT_PUBLIC_AUTH_HOSTNAME // 'localhost'
-// const AUTH_PORT = process.env.NEXT_PUBLIC_AUTH_PORT // '8089'
-
-const API_PROTOCOL  = 'https'; // process.env.PUBLIC_API_PROTOCOL // 'http'
-const API_HOSTNAME = 'dev.node.experience.digichanges.com'; // process.env.PUBLIC_API_HOSTNAME //'localhost'
-const API_PORT = 443; // +process.env.PUBLIC_API_PORT // '8089'
+const API_PROTOCOL  = import.meta.env.VITE_API_PROTOCOL as string || 'http';
+const API_HOSTNAME = import.meta.env.VITE_API_HOSTNAME as string || 'localhost';
+const API_PORT = import.meta.env.VITE_API_PORT as string || 8089;
 
 const BACKEND_BASE_PATH = 'api';
 

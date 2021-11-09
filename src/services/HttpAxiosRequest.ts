@@ -24,6 +24,14 @@ export const HttpAxiosRequest = ( config: AxiosRequestConfig ) => async () =>
         }
     };
 
+    if ( typeof config.data === 'object' && Object.keys( config.data ).length !== 0 )
+    {
+        config.data = JSON.stringify( config.data );
+    }
+    else
+    {
+        config.data = null;
+    }
 
     const response = await axios( { ...requestDefaultOptions, ...config } );
 

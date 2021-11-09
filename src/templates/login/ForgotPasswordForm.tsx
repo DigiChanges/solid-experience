@@ -12,7 +12,6 @@ import AuthRepository from '../../repositories/AuthRepository';
 interface ForgotPasswordFormProps
 {
     onClick: ( event: MouseEvent ) => void;
-    forgotPassword: never;
 }
 
 const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
@@ -29,7 +28,7 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
             onSubmit={async ( forms ) =>
             {
                 // const { email } = forms.values
-                authRepository.getForgotPassword( forms.values.email )
+                authRepository.getForgotPassword( forms.values.email );
                 // props.onClick();
             }}
         >

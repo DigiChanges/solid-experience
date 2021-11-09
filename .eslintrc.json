@@ -159,10 +159,10 @@
         "curly": "warn",
         "use-isnan": "error",
         "no-empty-function": "off",
+        "@typescript-eslint/indent": ["warn"],
         "@typescript-eslint/no-empty-function": [
             "warn",
             { "allow": ["arrowFunctions"] }
-        ],
-        "@typescript-eslint/indent": ["warn"]
+        ]
     }
 }

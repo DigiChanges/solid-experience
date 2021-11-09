@@ -1,5 +1,5 @@
 
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, Show } from 'solid-js';
 import Image from '../../atoms/Image';
 import LoginForm from './LoginForm';
 import ForgotPasswordForm from '../../templates/login/ForgotPasswordForm';
@@ -23,11 +23,12 @@ const Login: Component = () =>
                             <Image src={'/src/assets/logonav.png'} class="h-8"/>
                         </a>
                     </div>
-                    {
-                        getShowRecoverPassword()
-                            ? ( <ForgotPasswordForm onClick={togglePasswordRecovery} /> )
-                            : ( <LoginForm onClick={togglePasswordRecovery} /> )
-                    }
+                    <Show when={getShowRecoverPassword()}>
+                        <ForgotPasswordForm onClick={togglePasswordRecovery} />
+                    </Show>
+                    <Show when={!getShowRecoverPassword()}>
+                        <LoginForm onClick={togglePasswordRecovery} />
+                    </Show>
                 </div>
             </div>
         </section>

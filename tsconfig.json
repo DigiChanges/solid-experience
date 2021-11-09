@@ -10,7 +10,9 @@
     "jsxImportSource": "solid-js",
     "types": ["vite/client"],
     "lib": [
-      "es2015.proxy"
+      "es2015.proxy",
+      "es2021",
+      "dom",
     ]
   }
 }
