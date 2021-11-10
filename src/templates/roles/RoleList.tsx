@@ -88,6 +88,14 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
 
     return (
         <section class="mx-8">
+                        {showModal() &&
+                <ConfirmDelete
+                    open={showModal()}
+                    idSelected={idSelected()}
+                    text={text()}
+                    action={props.removeRole} 
+                />
+            } 
             <TitleWithButton
                 class="dg-section-title"
                 title="Roles"
@@ -96,14 +104,7 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
                 path="/roles/create"
                 // buttonAction={actionCreateButton()}
             />
-            {showModal() &&
-                <ConfirmDelete
-                    open={showModal()}
-                    idSelected={idSelected()}
-                    text={text()}
-                    action={props.removeRole} 
-                />
-            } 
+
             {/* <FilterSort actionFilter={onClickFilter} filterQuery={query} placeholder="Search roles..." /> */}
             <div class="dg-grid-3x3">
                 {/* {props.rolesList && */}

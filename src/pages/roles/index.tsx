@@ -1,13 +1,18 @@
 import { Component, createResource } from 'solid-js';
+import { useApplicationContext } from '../../context/context';
 import RoleRepository from '../../repositories/RoleRepository';
 import PublicLayout from '../../templates/layout/PublicLayout';
 import RoleList from '../../templates/roles/RoleList';
 
 const IndexPage: Component = ( props ) =>
 {
+    const [ user ] = useApplicationContext();
     const roleRepository = new RoleRepository();
     const [ getRoles ] = createResource( roleRepository.getRoles(), { initialValue: [] } );
-    // const [ removeRole ] = createResource( roleRepository.removeRole, { initialValue: [] } );
+    const removeAction = ( id: string,  ) =>
+    {
+        roleRepository.removeRole( id, user() );
+    };
 
     return (
         <PublicLayout>
@@ -16,7 +21,7 @@ const IndexPage: Component = ( props ) =>
             <RoleList
                 rolesList={getRoles()}
                 loading={getRoles.loading}
-                removeRole={null} //removeRole
+                removeRole={removeAction} //removeRole
             />
         </PublicLayout>
     );

@@ -24,11 +24,13 @@ const IndexPage: Component = ( props ) =>
     //         } );
 
     // };
+    const [ user ] = useApplicationContext();
+
     const authorzation = new RoleRepository();
 
-    const createAction = ( body: any ) =>
+    const createAction = ( body: any,  ) =>
     {
-        authorzation.createRole( body );
+        authorzation.createRole( body, user() );
 
     };
     return <PublicLayout>

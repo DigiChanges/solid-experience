@@ -13,9 +13,12 @@ const IndexPage: Component = ( props ) =>
 
     const authorzation = new RoleRepository();
     const { id } = useParams<{ id: string ; }> ();
+
     const updateAction = (id: string, body: any ) =>
     {
-        authorzation.updateRole(id, body , user());
+        // authorzation.updateRole(id, body);
+        const [ data ] = createResource( authorzation.updateRole(id, body) );
+
 
     };
     const [ role ] = createResource( authorzation.getOne(id) );
