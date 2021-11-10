@@ -20,7 +20,6 @@ class RoleRepository
 
     public getOne = (id: string) =>
     {
-      
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${getOne}/${id}`
         };
@@ -34,37 +33,25 @@ class RoleRepository
 
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${update}/${id}`,
-            method:"PUT",
-            data:body
+            method: "PUT",
+            data: body
         };
 
         return HttpAxiosRequest( config ) ;
-    // const requestOptions = {
-	// 	url: `${protocol}://${hostname}:${port}/${update}/${id}`,
-	// 	method: 'PUT',
-    //     body,
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Authorization': `Bearer ${dataUser.token}`
-    //     }
-	
-	// return HttpRequest.request(requestOptions);
+
     };
 
     
-    public createRole( body: any, dataUser:any)
+    public createRole( body: any)
     {
-    const requestOptions = {
-		url: `${protocol}://${hostname}:${port}/${create}`,
-		method: 'POST',
-        body,
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${dataUser.token}`
-        }
-	};
+         console.log("estoy en create role",body)
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${create}`,
+            method: "POST",
+            data: body
+    };
 
-	return HttpRequest.request(requestOptions);
+        return HttpAxiosRequest( config ) ;
     };
     public removeRole(id : string, dataUser:any)
     {

@@ -123,9 +123,7 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
                                         <div class="h-6 w-6 my-1">
                                             <Link
                                                 class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                                href={`/roles/${item.id}/update`}>
-                                                {/* onClick={() => navigate( `/roles/update/${item.id}`, { replace : true } )}
-                                            > */}
+                                                href={`/roles/${item.id}/update`}>                                                                                         
                                                 <IconPencilAlt />
                                             </Link>
                                         </div>

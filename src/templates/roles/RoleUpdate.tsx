@@ -6,7 +6,7 @@
 // import ButtonClose from '../../molecules/ButtonClose';
 // import ButtonConfirm from '../../molecules/ButtonConfirm';
 import Title from '../../atoms/Title';
-import { Component } from 'solid-js';
+import { Component, createEffect, createSignal, splitProps } from 'solid-js';
 import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
 import { Form } from 'solid-js-form';
@@ -18,12 +18,14 @@ interface RoleUpdateTemplateProps {
 
     permissionsList?: string[];
     updateAction?: never;
-    roleSelected?: IRoleApi;
+    roleSelected?: any; //IRoleApi
     idSelected:string;
 }
 
 const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
 {
+    console.log("Template",props.roleSelected)
+
     return (
         <section class="px-4">
             <div class="mb-2 ">
