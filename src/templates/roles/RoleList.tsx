@@ -1,46 +1,53 @@
 // import { useDispatch } from 'react-redux';
-// import { useRouter } from "next/router";
 // import FilterSort from "../../organisms/FilterSort";
 // import FilterFactory from "../../helpers/FilterFactory";
-// import { openModal, resetQueryPagination } from "../../redux/general/actions";
-// import RoleRemove from "./RoleRemove";
-// import { removeRole, resetRoles } from "../../redux/roles/actions";
+ import RoleRemove from "./RoleRemove";
 import { Component, createSignal } from 'solid-js';
 import { IRoleApi } from '../../interfaces/role';
 import Title from '../../atoms/Title';
 import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
-import IconPencilAlt from '../../atoms/Icons/Stroke/IconPlus';
+import IconPencilAlt from '../../atoms/Icons/Stroke/IconPencilAlt';
 import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconViewMediaObject';
-import IconTrash from '../../atoms/Icons/Stroke/IconPlus';
+import IconTrash from '../../atoms/Icons/Stroke/IconTrash';
 import Button from '../../atoms/Button';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import { For } from 'solid-js';
+import { useNavigate, Link } from 'solid-app-router';
+import ConfirmDelete from "../modal/ConfirmDelete";
 
 interface roleListTemplateProps {
     rolesList?: IRoleApi[];
     query?: never;
     viewMore?: never;
     loading?: boolean;
+    removeRole:never;
+    openModal:never,
 }
 const RoleList: Component<roleListTemplateProps> = ( props ) =>
 {
-
     // const router = useRouter();
     // solid have useRouter
     // const dispatch = useDispatch();
     const [ getshowScroll, setShowScroll ] = createSignal( false );
+    const navigate = useNavigate();
+    const [ showModal, setShowModal ] = createSignal( false );
+    const [ idSelected, setIdSelected ] = createSignal( "" );
+    const [ text, setText ] = createSignal( "" );
+    
     const openConfirmDelete = ( id: string, name: string ): void =>
-
     {
+        setShowModal( !showModal() );
+        setIdSelected( id );
+        setText( <RoleRemove name={name} /> );
         // const modalData = {
         //     idSelected: id,
         //     open: true,
         //     text: <RoleRemove name={name} />,
-        //     action: removeRole
+        //     action: props.removeRole
         // };
 
-        // dispatch( openModal( modalData ) );
+        // ConfirmDelete( modalData ) ;
     };
 
 
@@ -89,6 +96,14 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
                 path="/roles/create"
                 // buttonAction={actionCreateButton()}
             />
+            {showModal() &&
+                <ConfirmDelete
+                    open={showModal()}
+                    idSelected={idSelected()}
+                    text={text()}
+                    action={props.removeRole} 
+                />
+            } 
             {/* <FilterSort actionFilter={onClickFilter} filterQuery={query} placeholder="Search roles..." /> */}
             <div class="dg-grid-3x3">
                 {/* {props.rolesList && */}
@@ -105,12 +120,13 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
                                     </div>
                                     <div class="flex flex-col ml-auto">
                                         <div class="h-6 w-6 my-1">
-                                            <button
+                                            <Link
                                                 class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                                onClick={() => window.open( `/roles/update/${item.id}` )}
-                                            >
+                                                href={`/roles/${item.id}/update`}>
+                                                {/* onClick={() => navigate( `/roles/update/${item.id}`, { replace : true } )}
+                                            > */}
                                                 <IconPencilAlt />
-                                            </button>
+                                            </Link>
                                         </div>
                                         <div class="h-6 w-6 my-1">
                                             <button

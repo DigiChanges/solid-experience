@@ -19,7 +19,6 @@ const PrivateLayout: Component = (props) => {    // const dispatch = useDispatch
         setShowSideBar(!showSidebar());
     };
     const getDashItems = () =>
-    // dashRoutes.map((route, rKey) =>
         <For each={dashRoutes} fallback={<div>Loading...</div>}>
             {(item) =>
             // <HasPermission
@@ -84,8 +83,8 @@ const PrivateLayout: Component = (props) => {    // const dispatch = useDispatch
       open={modalData?.open}
       idSelected={modalData?.idSelected}
       text={modalData?.text}
-      action={modalData?.action}
-    /> */}
+      action={modalData?.action} 
+    />*/}
         </div>
     );
 };

@@ -28,7 +28,7 @@ export const dashRoutes = [
         permission: 'Dashboard',
 
         // permission: permissions.USERS.LIST,
-        levels: [
+        children: [
             {
                 path: '/users/create',
                 name: 'Create',

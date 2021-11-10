@@ -30,9 +30,9 @@ export const config = {
             },
             roles: {
                 getAll: `${BACKEND_BASE_PATH}/roles`,
-                getOne: `${BACKEND_BASE_PATH}/roles/:id`,
+                getOne: `${BACKEND_BASE_PATH}/roles`,
                 create: `${BACKEND_BASE_PATH}/roles`,
-                update: `${BACKEND_BASE_PATH}/roles/:id`,
+                update: `${BACKEND_BASE_PATH}/roles`,
                 remove: `${BACKEND_BASE_PATH}/roles/:id`
             }
         }

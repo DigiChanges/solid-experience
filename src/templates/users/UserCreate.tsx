@@ -1,6 +1,5 @@
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
-
 // import MultiSelect from '../../atoms/MultiSelect';
 // import SimpleSelect from '../../atoms/SimpleSelect';
 import Title from '../../atoms/Title';
@@ -10,11 +9,13 @@ import Label from '../../atoms/Label';
 // import { IRoleApi } from '../../interfaces/role';
 // import DGDatePicker from '../../atoms/DGDatePicker';
 // import { documentTypeOptions, country, states } from '../../entities';
-// import Router from 'next/router';
 // import SelectStyle from '../../assets/customStyles/SelectStyle';
 import UserCreateSchema from '../../SchemaValidations/UserCreateSchema';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
+import ButtonClose from '../../molecules/ButtonClose';
+import ButtonConfirm from '../../molecules/ButtonConfirm';
+import { useNavigate } from 'solid-app-router';
 // import { Multiselect } from '@digichanges/solid-components';
 
 interface UserCreateTemplateProps
@@ -26,6 +27,7 @@ interface UserCreateTemplateProps
 
 const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
 {
+    const navigate = useNavigate();
     return (
         <section class="px-4">
             <div class="mb-2 ">
@@ -265,12 +267,12 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                     {/*      />*/}
                     {/*  </div>*/}
                     <div class="w-full mt-5 flex justify-end">
-                        <Button onClick={() => true}>
+                        <ButtonClose onClick={() => navigate( '/users', { replace : true } )}>
                             Close
-                        </Button>
-                        <Button type="submit">
+                        </ButtonClose>
+                        <ButtonConfirm type="submit">
                           Save
-                        </Button>
+                        </ButtonConfirm>
                     </div>
                 </div>
             </Form>

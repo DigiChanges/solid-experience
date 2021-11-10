@@ -7,6 +7,7 @@ const IndexPage: Component = ( props ) =>
 {
     const roleRepository = new RoleRepository();
     const [ getRoles ] = createResource( roleRepository.getRoles(), { initialValue: [] } );
+    // const [ removeRole ] = createResource( roleRepository.removeRole, { initialValue: [] } );
 
     return (
         <PublicLayout>
@@ -15,6 +16,7 @@ const IndexPage: Component = ( props ) =>
             <RoleList
                 rolesList={getRoles()}
                 loading={getRoles.loading}
+                removeRole={null} //removeRole
             />
         </PublicLayout>
     );

@@ -12,16 +12,17 @@ import Input from '../../atoms/Input';
 import { Form } from 'solid-js-form';
 import RoleSchema from '../../SchemaValidations/RoleSchema';
 import { IRoleApi } from '../../interfaces/role';
+import { Link } from 'solid-app-router';
 
 interface RoleUpdateTemplateProps {
 
     permissionsList?: string[];
     updateAction?: never;
     roleSelected?: IRoleApi;
-    // props?: never;
+    idSelected:string;
 }
 
-const RoleUpdate: Component<RoleUpdateTemplateProps> = props =>
+const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
 {
     return (
         <section class="px-4">
@@ -31,19 +32,20 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = props =>
                 </Title>
             </div>
 
-            {props.roleSelected ? (
+            {/* {props.roleSelected ? ( */}
                 <Form
 
                     initialValues={{
                         name: props.roleSelected?.name,
                         slug: props.roleSelected?.slug,
-                        permissions: props.roleSelected?.permissions,
+                        permissions: [],
                         enable: props.roleSelected?.enable
                     }}
-                    validation={RoleSchema}
-                    onSubmit={async ( values ) =>
+                    // validation={RoleSchema}
+                    onSubmit={async ( form ) =>
                     {
-                        // props.updateAction( values, props.roleSelected.id );
+
+                       props.updateAction(  props.idSelected,form.values );
 
                     }}
 
@@ -96,15 +98,17 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = props =>
                         />
                     </div> */}
                         <div class="w-full mt-5 flex justify-end">
-                            <Button type="button" onClick={() => window.open( '/roles' )}>
+
+                            <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
                                 Close
-                            </Button>
-                            <Button>Save</Button>
+                             </Link>
+                          
+                            <Button class="px-10 py-2 items-center dg-secondary-button" type="submit">Save</Button>
                         </div>
                     </div>
                 </Form>
 
-            ) : <p>No role selected</p> }
+             {/* ) : <p>No role selected</p> } */}
         </section>
     );
 };

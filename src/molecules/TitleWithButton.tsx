@@ -12,7 +12,7 @@ interface TitleWithButtonProps
 }
 const TitleWithButton: Component<TitleWithButtonProps> = ( props ) =>
 
-    <section class="flex flex-row justify-between">
+    <section class="flex flex-row justify-between mb-2">
         <Title class={props.class} titleType="h4">
             {props.title}
         </Title>

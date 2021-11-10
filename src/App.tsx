@@ -5,15 +5,11 @@ import { useRoutes } from 'solid-app-router';
 const routes = [
     {
         path: '/',
-        component: lazy( () => import( './pages/dashboard' ) )
+        component: lazy( () => import( './pages/login' ) )
     },
     {
         path: '/login',
         component: lazy( () => import( './pages/login' ) )
-    },
-    {
-        path: '/users/create',
-        component: lazy( () => import( './pages/users/create' ) )
     },
     {
         path: '/users/update',
@@ -29,7 +25,17 @@ const routes = [
     },
     {
         path: '/users',
-        component: lazy( () => import( './pages/users' ) )
+        children:
+        [
+            {
+                path: '/',
+                component: lazy( () => import( './pages/users' ) )
+            },
+            {
+            path: '/create',
+            component: lazy( () => import( './pages/users/create' ) )
+        }
+    ]
     },
     {
         path: '/users/view',
@@ -39,17 +45,30 @@ const routes = [
         path: '/roles/create',
         component: lazy( () => import( './pages/roles/create' ) )
     },
-    {
-        path: '/roles/update',
-        component: lazy( () => import( './pages/roles/update' ) )
-    },
+ 
     {
         path: '/roles/view',
         component: lazy( () => import( './pages/roles/view' ) )
     },
     {
         path: '/roles',
-        component: lazy( () => import( './pages/roles' ) )
+        children:
+        [
+        {
+            path: '/',
+            component: lazy( () => import( './pages/roles' ) )
+        },
+            {
+            path: '/create',
+            component: lazy( () => import( './pages/roles/create' ) )
+        }
+        ,
+            {
+            path: '/:id/update',
+            component: lazy( () => import( './pages/roles/update/[id]' ) )
+        }
+
+    ]
     }
 ];
 
