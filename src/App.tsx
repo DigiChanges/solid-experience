@@ -12,18 +12,6 @@ const routes = [
         component: lazy( () => import( './pages/login' ) )
     },
     {
-        path: '/users/update',
-        component: lazy( () => import( './pages/users/update' ) )
-    },
-    {
-        path: '/users/UserChangePass/:token',
-        component: lazy( () => import( './pages/users/changePassword' ) )
-    },
-    {
-        path: '/users/view',
-        component: lazy( () => import( './pages/users/view' ) )
-    },
-    {
         path: '/users',
         children:
         [
@@ -34,21 +22,20 @@ const routes = [
             {
             path: '/create',
             component: lazy( () => import( './pages/users/create' ) )
-        }
-    ]
-    },
-    {
-        path: '/users/view',
-        component: lazy( () => import( './pages/users/view' ) )
-    },
-    {
-        path: '/roles/create',
-        component: lazy( () => import( './pages/roles/create' ) )
-    },
- 
-    {
-        path: '/roles/view',
-        component: lazy( () => import( './pages/roles/view' ) )
+            },
+            {
+                path: '/view',
+                component: lazy( () => import( './pages/users/view' ) )
+            },
+            {
+                path: '/:id/update',
+                component: lazy( () => import( './pages/users/update/[id]' ) )
+            },
+            {
+                path: '/UserChangePass/:token',
+                component: lazy( () => import( './pages/users/changePassword' ) )
+            },
+        ]
     },
     {
         path: '/roles',
@@ -58,17 +45,16 @@ const routes = [
             path: '/',
             component: lazy( () => import( './pages/roles' ) )
         },
-            {
+        {
             path: '/create',
             component: lazy( () => import( './pages/roles/create' ) )
         }
         ,
-            {
+        {
             path: '/:id/update',
             component: lazy( () => import( './pages/roles/update/[id]' ) )
         }
-
-    ]
+        ]
     }
 ];
 

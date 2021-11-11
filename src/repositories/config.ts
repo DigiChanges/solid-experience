@@ -21,10 +21,10 @@ export const config = {
             },
             users: {
                 getAll: `${BACKEND_BASE_PATH}/users`,
-                getOne: `${BACKEND_BASE_PATH}/users/:id`,
+                getOne: `${BACKEND_BASE_PATH}/users`,
                 create: `${BACKEND_BASE_PATH}/users`,
-                update: `${BACKEND_BASE_PATH}/users/:id`,
-                remove: `${BACKEND_BASE_PATH}/users/:id`,
+                update: `${BACKEND_BASE_PATH}/users`,
+                remove: `${BACKEND_BASE_PATH}/users`,
                 editPassword: `${BACKEND_BASE_PATH}/users/change-user-password/:id`,
                 assignRole: `${BACKEND_BASE_PATH}/users/assign-role/:id`
             },

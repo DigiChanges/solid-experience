@@ -10,6 +10,7 @@ import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
 import { Form } from 'solid-js-form';
 import { IRoleApi } from '../../interfaces/role';
+import { Link } from 'solid-app-router';
 
 interface RoleViewTemplateProps {
 
@@ -94,9 +95,9 @@ const RoleView: Component<RoleViewTemplateProps> = props =>
 
 
                         <div class="w-full mt-5 flex justify-end">
-                            <Button type="button" onClick={() => window.open( '/roles' )}>
+                            <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
                                 Close
-                            </Button>
+                             </Link>
                             <Button>Save</Button>
                         </div>
                     </div>

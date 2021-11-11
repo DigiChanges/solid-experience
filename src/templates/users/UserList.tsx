@@ -10,30 +10,37 @@ import { Component, createSignal } from 'solid-js';
 import { IUserApi } from '../../interfaces/user';
 import Title from '../../atoms/Title';
 import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
-import IconPencilAlt from '../../atoms/Icons/Stroke/IconPlus';
-import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconPlus';
-import IconTrash from '../../atoms/Icons/Stroke/IconPlus';
+import IconPencilAlt from '../../atoms/Icons/Stroke/IconPencilAlt';
+import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconArrowCircleLeft';
+import IconTrash from '../../atoms/Icons/Stroke/IconTrash';
 import IconViewMediaObject from '../../atoms/Icons/Stroke/IconViewMediaObject';
 import Button from '../../atoms/Button';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import { For } from 'solid-js';
-
-// import UserRemove from '../users/UserRemove';
+import { Link } from 'solid-app-router';
+import UserRemove from '../users/UserRemove';
+import ConfirmDelete from "../modal/ConfirmDelete";
 interface userListTemplateProps {
     usersList: IUserApi[];
     query?: never;
     viewMore?: never;
+    removeAction?:any
 }
 const UserList: Component<userListTemplateProps> = ( props ) =>
 {
-
+    const [ showModal, setShowModal ] = createSignal( false );
+    const [ idSelected, setIdSelected ] = createSignal( "" );
+    const [ text, setText ] = createSignal( "" );
 
     // const router = useRouter();
     // const dispatch = useDispatch();
     const [ getshowScroll, setShowScroll ] = createSignal( false );
 
     const openConfirmDelete = (id: string, lastName: string, firstName: string): void => {
+        setShowModal( !showModal() );
+        setIdSelected( id );
+        setText( <UserRemove lastName={lastName}  firstName={firstName}  /> );
         // const modalData = {
         //     idSelected: id,
         //     open: true,
@@ -79,6 +86,15 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
 
     return (
         <section class="mx-8">
+            {showModal() &&
+                <ConfirmDelete
+                    open={true}
+                    idSelected={idSelected()}
+                    text={text()}
+                    action={props.removeAction} 
+                    setShowModal={setShowModal}
+                />
+            } 
             <TitleWithButton
                 class="dg-section-title"
                 title="Users List"
@@ -100,23 +116,19 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
                             </div>
                             <div class="flex flex-col ml-auto">
                                 <div class="h-6 w-6 my-1">
-                                    <button
+                                    <Link
                                         class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                        onClick={() => window.open(`/users/update/${item.id}`)}
-                                    // onClick={() => true}
-                                    >
+                                        href={`/users/${item.id}/update`}>                                                                                         
                                         <IconPencilAlt />
-                                    </button>
+                                    </Link>
                                 </div>
-                                <div class="h-6 w-6 my-1">
-                                    <button
-                                        class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                        // onClick={() => router.push(`/users/changePassword/${user.id}`)}
-                                        onClick={() => true}
-                                    >
+                                {/* <div class="h-6 w-6 my-1">
+                                    <Link
+                                        class="w-6 hover:text-gray-700 mr-1 focus:outline-none"                                        
+                                        href={`/users/view/${item.id}`}>  
                                         <IconViewMediaObject />
-                                    </button>
-                                </div>
+                                    </Link>
+                                </div> */}
                                 <div class="h-6 w-6 my-1">
                                     <button
                                         class="w-6 hover:text-gray-700 mr-1 focus:outline-none"

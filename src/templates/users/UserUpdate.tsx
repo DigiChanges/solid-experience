@@ -15,14 +15,16 @@ import Button from '../../atoms/Button';
 import UserUpdateSchema from '../../SchemaValidations/UserUpdateSchema';
 import { Form } from 'solid-js-form';
 import Label from '../../atoms/Label';
+import { Link } from 'solid-app-router';
 
 
 interface UserUpdateTemplateProps
 {
     permissionsList?: string[];
     // rolesList: IRoleApi[];
-    updateAction?: never;
+    updateAction?: any;
     userSelected?: IUserApi;
+    idSelected:string;
     // props?: any;
 
 }
@@ -54,7 +56,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         birthday: props.userSelected?.birthday,
                         documentType: props.userSelected?.documentType,
                         documentNumber: props.userSelected?.documentNumber,
-                        gender: props.userSelected?.gender,
+                        gender: "female",
                         phone: props.userSelected?.phone,
                         country: props.userSelected?.country,
                         address: props.userSelected?.address,
@@ -63,9 +65,9 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         enable: props.userSelected?.enable
                     }}
                     validation={UserUpdateSchema}
-                    onSubmit={async ( values) =>
+                    onSubmit={async ( form) =>
                     {
-                        // props.updateAction(values, props.userSelected.id);
+                        props.updateAction(props.idSelected, form.values);
 
                     }}
                 >
@@ -94,9 +96,9 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
                         <div class="dg-form-quarter-field-wrapper">
-                            <Label for="documentType" class="dg-form-label">
+                            {/* <Label for="documentType" class="dg-form-label">
                             ID number
-                            </Label>
+                            </Label> */}
                             <div class="flex w-full">
                                 {/* <Multiselect*/}
                                 {/*    options={[ 'yellow', 'blue', 'pink', 'white' ]}*/}
@@ -121,7 +123,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             </div>
                         </div>
 
-                        <div class="dg-form-quarter-field-wrapper text-center">
+                        {/* <div class="dg-form-quarter-field-wrapper text-center">
                             <Label for="gender" class="dg-form-label text-left">
                           Gender
                             </Label>
@@ -152,7 +154,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 labelClass="text-gray-400 text-xs font-bold mr-1"
                                 labelName="Other"
                             />
-                        </div>
+                        </div> */}
 
                         {/* <div class="dg-form-quarter-field-wrapper"> */}
                         {/*    <Label for="birthdate" class="dg-form-label">*/}
@@ -275,9 +277,10 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         {/*          selectStyle={SelectStyle}*/}
                         {/*      />*/}
                         {/*  </div>*/}
-                        <Button onClick={() => true}>
-                            Close
-                        </Button>
+                        <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
+                                Close
+                             </Link>
+                          
                         <Button type="submit">
                           Save
                         </Button>

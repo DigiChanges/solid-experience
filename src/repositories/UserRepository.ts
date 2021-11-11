@@ -3,13 +3,12 @@ import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
 import { config } from './config';
 import HttpRequest from '../services/HttpRequest';
 
-
 const { protocol, hostname, port } = config.apiGateway.server;
-const { getAll, remove, update, create, getOne } = config.apiGateway.routes.roles;
+const { getAll, remove, update, create, getOne } = config.apiGateway.routes.users;
 
-class RoleRepository {
+class UserRepository {
 
-    public getRoles = () => {
+    public getUsers = () => {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${getAll}`
         };
@@ -26,7 +25,7 @@ class RoleRepository {
     };
 
 
-    public updateRole(id: string, body: any) {
+    public updateUser(id: string, body: any) {
 
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${update}/${id}`,
@@ -39,35 +38,26 @@ class RoleRepository {
     };
 
 
-    public createRole(body: any) {
+    public createUser(body: any) {
+        console.log('estoy en role reository create',JSON.stringify(body))
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${create}`,
             method: "POST",
-            data: body
+            data: JSON.stringify(body)
         };
 
         return HttpAxiosRequest(config);
     };
-    public removeRole(id : string, dataUser:any)
-    {
-    // const deleteRole = (role, roles) => (
-    //     roles && roles.length > 0
-    //         ? roles.filter(r => r.id !== role.id)
-    //         : INIT_STATE.rolesList
-    // )
-    const requestOptions = {
-		url: `${protocol}://${hostname}:${port}/${remove}/${id}`,
-		method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${dataUser.token}`
-        }
-	};
+    public removeUser(id: string) {
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${remove}/${id}`,
+            method: "DELETE"
+        };
 
-	return HttpRequest.request(requestOptions);
-    };  
+        return HttpAxiosRequest(config);
+    }
 
 }
 
 
-export default RoleRepository;
+export default UserRepository;

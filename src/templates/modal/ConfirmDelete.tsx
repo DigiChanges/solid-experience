@@ -11,14 +11,15 @@ interface ConfirmDeleteTemplateProps {
 	text: string;
 	action: any;
 	idSelected: string;
+	setShowModal:any
 }
 const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = (props) => 
 {
 
-	const [ openModal, setOpenModal ] = createSignal(true);
+	// const [ openModal, setOpenModal ] = createSignal(true);
 
 	const closeModal = () => {
-		setOpenModal( !openModal() )
+		props.setShowModal(false)
 	};
 	const onHandleCloseModal = () => {
 		closeModal()
@@ -31,8 +32,8 @@ const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = (props) =>
 
 	return (
 		<>
-			{ openModal() &&
-				<Modal open={ openModal() }>
+			{/* { openModal() && */}
+				<Modal open={props.open }>
 					<div class=" dg-full-center-flex">
 						<div class="dg-rounded-small-box flex flex-col justify-between">
 							<div class="w-full flex justify-end">
@@ -68,7 +69,7 @@ const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = (props) =>
 					</div>
 				</Modal>
 
-			}
+			{/* } */}
 		</>
 	);
 };

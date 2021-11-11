@@ -88,14 +88,15 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
 
     return (
         <section class="mx-8">
-                        {showModal() &&
-                <ConfirmDelete
-                    open={showModal()}
-                    idSelected={idSelected()}
-                    text={text()}
-                    action={props.removeRole} 
-                />
-            } 
+                {showModal() &&
+                    <ConfirmDelete
+                        open={true}
+                        idSelected={idSelected()}
+                        text={text()}
+                        action={props.removeRole} 
+                        setShowModal={setShowModal}
+                    />
+                } 
             <TitleWithButton
                 class="dg-section-title"
                 title="Roles"

@@ -3,54 +3,63 @@
 // import SelectStyle from '../../assets/customStyles/SelectStyle';
 // import SimpleSelect from '../../atoms/SimpleSelect';
 // import { states } from '../../entities';
-// import ButtonClose from '../../molecules/ButtonClose';
-// import ButtonConfirm from '../../molecules/ButtonConfirm';
+
 import Title from '../../atoms/Title';
-import { Component, createEffect, createSignal, splitProps } from 'solid-js';
-import Button from '../../atoms/Button';
+import { Component } from 'solid-js';
 import Input from '../../atoms/Input';
+import Button from '../../atoms/Button';
+// import RoleUpdateSchema from '../../SchemaValidations/RoleUpdateSchema';
 import { Form } from 'solid-js-form';
-import RoleSchema from '../../SchemaValidations/RoleSchema';
-import { IRoleApi } from '../../interfaces/role';
+import Label from '../../atoms/Label';
 import { Link } from 'solid-app-router';
+import { IRoleApi } from '../../interfaces/role';
 
-interface RoleUpdateTemplateProps {
 
+interface RoleUpdateTemplateProps
+{
     permissionsList?: string[];
-    updateAction?: never;
-    roleSelected?: any; //IRoleApi
+    // rolesList: IRoleApi[];
+    updateAction?: any;
+    roleSelected?: IRoleApi;
     idSelected:string;
+    // props?: any;
+
 }
 
-const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
-{
-    console.log("Template",props.roleSelected)
+// const flatPermissionsList = (permissionsList) => {
+//    const newPermissionsList = [];
+//   permissionsList && permissionsList.forEach(permission => {
+//       newPermissionsList.push(...permission.permissions);
+//   });
+//   return newPermissionsList;
+// }
 
+const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
+{
+    console.log("idSelected TEMPLATE->",props.idSelected)
     return (
         <section class="px-4">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold" titleType="h1">
-          Modificar Role
+          Update Role
                 </Title>
             </div>
-
-            {/* {props.roleSelected ? ( */}
+            {props.roleSelected ? (
                 <Form
-
+                    // enableReinitialize={true}
                     initialValues={{
                         name: props.roleSelected?.name,
                         slug: props.roleSelected?.slug,
-                        permissions: [],
+                        permissions: props.roleSelected?.permissions,
                         enable: props.roleSelected?.enable
+                       
                     }}
-                    // validation={RoleSchema}
-                    onSubmit={async ( form ) =>
+                    // validation={RoleUpdateSchema}
+                    onSubmit={async ( form) =>
                     {
-
-                       props.updateAction(  props.idSelected,form.values );
+                        props.updateAction(props.idSelected, form.values);
 
                     }}
-
                 >
                     <div class="flex flex-wrap text-sm">
                         <div class="dg-form-full-field-wrapper">
@@ -110,7 +119,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
                     </div>
                 </Form>
 
-             {/* ) : <p>No role selected</p> } */}
+             ) : <p>No role selected</p> }
         </section>
     );
 };

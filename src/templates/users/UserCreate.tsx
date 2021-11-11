@@ -84,11 +84,11 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             labelName="Last name"
                         />
                     </div>
-                    <div class="dg-form-quarter-field-wrapper">
-                        <Label for="documentType" class="dg-form-label">
-                            ID number
-                        </Label>
-                        <div class="flex w-full">
+                    {/* <div class="dg-form-quarter-field-wrapper"> */}
+                        {/* <Label for="documentType" class="dg-form-label"> */}
+                            {/* ID number */}
+                        {/* </Label> */}
+                        {/* <div class="flex w-full"> */}
                             {/*<Multiselect*/}
                             {/*    options={[ 'yellow', 'blue', 'pink', 'white' ]}*/}
                             {/*    onSelect={console.log}*/}
@@ -109,11 +109,11 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             {/*    class="flex-1 dg-form-field-quarter rounded-l-none"*/}
                             {/*    placeholder="Enter ID"*/}
                             {/* />*/}
-                        </div>
-                    </div>
+                        {/* </div> */}
+                    {/* </div> */}
 
                     <div class="dg-form-quarter-field-wrapper text-center">
-                        <Label for="gender" class="dg-form-label text-left">
+                        <Label for="gender" class="dg-form-label text-left w-full">
                           Gender
                         </Label>
                         <Input

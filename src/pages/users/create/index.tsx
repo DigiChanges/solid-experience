@@ -1,6 +1,7 @@
 import UserCreate from '../../../templates/users/UserCreate';
 import { Component } from 'solid-js';
 import PublicLayout from '../../../templates/layout/PublicLayout';
+import UserRepository from '../../../repositories/UserRepository';
 // import { getRoles } from '../../../redux/roles/actions';
 // import { getPermissions } from '../../../redux/auth/actions';
 // import { createUser } from '../../../redux/users/actions';
@@ -10,22 +11,17 @@ import PublicLayout from '../../../templates/layout/PublicLayout';
 
 const IndexPage: Component = ( props ) =>
 {
-    // const createAction = ( payload: IUserPayload ) =>
-    // {
-    // dispatch( createUser( payload ) );
-    // };
-
-    // useEffect( () =>
-    // {
-    //     dispatch( getRoles() );
-    //     dispatch( getPermissions() );
-    // }, [] );
+    const roleRepository = new UserRepository();
+    const createAction = async (body: any ) =>
+    {
+        const create = await roleRepository.createUser(body);
+    };
 
     return <PublicLayout>
         <UserCreate
             // permissionsList={Auth.permissionsList}
             // rolesList={Roles.rolesList}
-            // createAction={createAction}
+            createAction={createAction}
         />
     </PublicLayout>;
 };

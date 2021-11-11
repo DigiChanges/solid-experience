@@ -3,7 +3,7 @@ import { Component } from 'solid-js';
 import PrivateLayout from '../../templates/layout/PrivateLayout';
 
 const LoginPage: Component = () =>
-{    console.log("estoy en dashboard")
+{    
 
     return (
         <PrivateLayout></PrivateLayout>
