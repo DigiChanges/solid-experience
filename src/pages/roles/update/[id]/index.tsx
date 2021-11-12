@@ -4,14 +4,15 @@ import RoleUpdate from '../../../../templates/roles/RoleUpdate';
 import { useParams } from 'solid-app-router';
 import RoleRepository from '../../../../repositories/RoleRepository';
 
-const IndexPage: Component = (props) => {
-
+const IndexPage: Component = ( props ) =>
+{
     const roleRepository = new RoleRepository();
     const { id } = useParams<{ id: string; }>();
-    const [role] = createResource(roleRepository.getOne(id));
+    const [ role ] = createResource( roleRepository.getOne( id ) );
 
-    const updateAction = async (id: string, body: any) => {
-        const update = await roleRepository.updateRole(id, body);
+    const updateAction = async ( id: string, body: any ) =>
+    {
+        void await roleRepository.updateRole( id, body );
     };
 
     return <PublicLayout>

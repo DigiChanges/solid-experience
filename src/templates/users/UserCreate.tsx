@@ -12,7 +12,7 @@ import Label from '../../atoms/Label';
 // import SelectStyle from '../../assets/customStyles/SelectStyle';
 import UserCreateSchema from '../../SchemaValidations/UserCreateSchema';
 import Input from '../../atoms/Input';
-import Button from '../../atoms/Button';
+// import Button from '../../atoms/Button';
 import ButtonClose from '../../molecules/ButtonClose';
 import ButtonConfirm from '../../molecules/ButtonConfirm';
 import { useNavigate } from 'solid-app-router';
@@ -22,12 +22,13 @@ interface UserCreateTemplateProps
 {
     permissionsList?: string[];
     // rolesList: IRoleApi[];
-    createAction?: never;
+    createAction?: any;
 }
 
-const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
+const UserCreate: Component<UserCreateTemplateProps> = () =>
 {
     const navigate = useNavigate();
+
     return (
         <section class="px-4">
             <div class="mb-2 ">
@@ -85,31 +86,31 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         />
                     </div>
                     {/* <div class="dg-form-quarter-field-wrapper"> */}
-                        {/* <Label for="documentType" class="dg-form-label"> */}
-                            {/* ID number */}
-                        {/* </Label> */}
-                        {/* <div class="flex w-full"> */}
-                            {/*<Multiselect*/}
-                            {/*    options={[ 'yellow', 'blue', 'pink', 'white' ]}*/}
-                            {/*    onSelect={console.log}*/}
-                            {/*    onRemove={console.log}*/}
-                            {/*    selectedValues={[ 'yellow', 'pink' ]}*/}
-                            {/*/>*/}
-                            {/* <Input*/}
-                            {/*    name="documentType"*/}
-                            {/*    id="documentType"*/}
-                            {/*    component={SimpleSelect}*/}
-                            {/*    options={documentTypeOptions}*/}
-                            {/*    selectStyle={SelectStyle}*/}
-                            {/* />*/}
-                            {/* <Input*/}
-                            {/*    name="documentNumber"*/}
-                            {/*    type="text"*/}
-                            {/*    id="documentNumber"*/}
-                            {/*    class="flex-1 dg-form-field-quarter rounded-l-none"*/}
-                            {/*    placeholder="Enter ID"*/}
-                            {/* />*/}
-                        {/* </div> */}
+                    {/* <Label for="documentType" class="dg-form-label"> */}
+                    {/* ID number */}
+                    {/* </Label> */}
+                    {/* <div class="flex w-full"> */}
+                    {/* <Multiselect*/}
+                    {/*    options={[ 'yellow', 'blue', 'pink', 'white' ]}*/}
+                    {/*    onSelect={console.log}*/}
+                    {/*    onRemove={console.log}*/}
+                    {/*    selectedValues={[ 'yellow', 'pink' ]}*/}
+                    {/* />*/}
+                    {/* <Input*/}
+                    {/*    name="documentType"*/}
+                    {/*    id="documentType"*/}
+                    {/*    component={SimpleSelect}*/}
+                    {/*    options={documentTypeOptions}*/}
+                    {/*    selectStyle={SelectStyle}*/}
+                    {/* />*/}
+                    {/* <Input*/}
+                    {/*    name="documentNumber"*/}
+                    {/*    type="text"*/}
+                    {/*    id="documentNumber"*/}
+                    {/*    class="flex-1 dg-form-field-quarter rounded-l-none"*/}
+                    {/*    placeholder="Enter ID"*/}
+                    {/* />*/}
+                    {/* </div> */}
                     {/* </div> */}
 
                     <div class="dg-form-quarter-field-wrapper text-center">

@@ -7,18 +7,19 @@ const IndexPage: Component = ( props ) =>
 {
     const roleRepository = new RoleRepository();
 
-    const createAction = async (body: any ) =>
+    const createAction = async ( body: any ) =>
     {
-        const update = await roleRepository.createRole(body);
+        void await roleRepository.createRole( body );
     };
-    return <PublicLayout>
-        <RoleCreate
-        // permissionsList={Auth.permissionsList}
-            createAction={createAction}
-        />
-    </PublicLayout>;
 
-
+    return (
+        <PublicLayout>
+            <RoleCreate
+                // permissionsList={Auth.permissionsList}
+                createAction={createAction}
+            />
+        </PublicLayout>
+    );
 };
 
 export default IndexPage;

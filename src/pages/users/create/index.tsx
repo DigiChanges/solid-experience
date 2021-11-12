@@ -8,13 +8,12 @@ import UserRepository from '../../../repositories/UserRepository';
 // import { IUserPayload } from '../../../interfaces/user';
 // import withAuth from '../../../providers/withAuth';
 
-
-const IndexPage: Component = ( props ) =>
+const IndexPage: Component = () =>
 {
     const roleRepository = new UserRepository();
-    const createAction = async (body: any ) =>
+    const createAction = async ( body: any ) =>
     {
-        const create = await roleRepository.createUser(body);
+        void await roleRepository.createUser( body );
     };
 
     return <PublicLayout>

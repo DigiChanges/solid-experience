@@ -1,5 +1,5 @@
 import IconBurger from '../atoms/Icons/Stroke/IconBurger';
-import IconCross from '../atoms/Icons/Stroke/IconCross';
+// import IconCross from '../atoms/Icons/Stroke/IconCross';
 import IconBell from '../atoms/Icons/Stroke/IconCross';
 import IconChevronDown from '../atoms/Icons/Stroke/IconCross';
 
@@ -48,8 +48,7 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
                                         class="inline-flex bg-gray-800 flex rounded-full font-bold"
                                         id="user-menu"
                                         aria-expanded="false"
-                                        arias-haspopup="true"
-                                        onClick={() => setToggleDrop(false)}>
+                                        onClick={() => setToggleDrop( false )}>
                                         <span class="sr-only">Open user menu</span>
                                         <span>{props.email ?? ''}</span><span class="flex flex-row justify-end w-6"><IconChevronDown /></span>
                                     </button>
@@ -59,7 +58,6 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
                                         class="inline-flex bg-gray-800 flex rounded-full font-bold"
                                         id="user-menu"
                                         aria-expanded="false"
-                                        arias-haspopup="true"
                                         onClick={() => setToggleDrop( true )}>
                                         <span class="sr-only">Open user menu</span>
                                         {/* <span>{email ?? ''}</span><span class="text-gray flex flex-row justify-end w-6"><IconChevronDown /></span> */}
@@ -70,7 +68,7 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
 
 
                         {/* TODO: corregir dropdown, atomizar, etc */}
-                        <div class={`${getToggledDrop() ? null : ('hidden')} origin-top-right absolute right-0 w-48 py-1 mt-5 shadow-md bg-main-gray-500 text-white`}
+                        <div class={`${getToggledDrop() ? null : ( 'hidden' )} origin-top-right absolute right-0 w-48 py-1 mt-5 shadow-md bg-main-gray-500 text-white`}
                             role="menu"
                             aria-orientation="vertical"
                             aria-labelledby="user-menu">

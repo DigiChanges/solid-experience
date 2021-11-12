@@ -6,17 +6,16 @@ import UserList from '../../templates/users/UserList';
 import PublicLayout from '../../templates/layout/PublicLayout';
 import { createResource } from 'solid-js';
 import { Component } from 'solid-js';
-import { useApplicationContext } from '../../context/context';
 import UserRepository from '../../repositories/UserRepository';
 
-const IndexPage: Component = ( props ) =>
+const IndexPage: Component = () =>
 {
-    const [ user ] = useApplicationContext();
     const userRepository = new UserRepository();
     const [ data ] = createResource( userRepository.getUsers(), { initialValue: [] } );
-    const removeAction = ( id: string,  ) =>
+
+    const removeAction = ( id: string  ) =>
     {
-        userRepository.removeUser( id, user() );
+        userRepository.removeUser( id );
     };
 
     return <PublicLayout>

@@ -1,7 +1,4 @@
-// import { useDispatch } from 'react-redux';
-// import FilterSort from "../../organisms/FilterSort";
-// import FilterFactory from "../../helpers/FilterFactory";
- import RoleRemove from "./RoleRemove";
+import RoleRemove from './RoleRemove';
 import { Component, createSignal } from 'solid-js';
 import { IRoleApi } from '../../interfaces/role';
 import Title from '../../atoms/Title';
@@ -14,27 +11,29 @@ import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import { For } from 'solid-js';
 import { useNavigate, Link } from 'solid-app-router';
-import ConfirmDelete from "../modal/ConfirmDelete";
+import ConfirmDelete from '../modal/ConfirmDelete';
 
-interface roleListTemplateProps {
+interface RoleListTemplateProps
+{
     rolesList?: IRoleApi[];
     query?: never;
     viewMore?: never;
     loading?: boolean;
-    removeRole:never;
-    openModal:never,
+    removeRole: any;
+    openModal?: any,
 }
-const RoleList: Component<roleListTemplateProps> = ( props ) =>
+
+const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 {
     // const router = useRouter();
     // solid have useRouter
     // const dispatch = useDispatch();
-    const [ getshowScroll, setShowScroll ] = createSignal( false );
+    const [ getShowScroll, setShowScroll ] = createSignal( false );
     const navigate = useNavigate();
     const [ showModal, setShowModal ] = createSignal( false );
-    const [ idSelected, setIdSelected ] = createSignal( "" );
-    const [ text, setText ] = createSignal( "" );
-    
+    const [ idSelected, setIdSelected ] = createSignal( '' );
+    const [ text, setText ] = createSignal();
+
     const openConfirmDelete = ( id: string, name: string ): void =>
     {
         setShowModal( !showModal() );
@@ -63,11 +62,11 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
 
     const checkScrollTop = () =>
     {
-        if ( !getshowScroll() && window.pageYOffset > 300 )
+        if ( !getShowScroll() && window.pageYOffset > 300 )
         {
             setShowScroll( true );
         }
-        else if ( getshowScroll() && window.pageYOffset <= 300 )
+        else if ( getShowScroll() && window.pageYOffset <= 300 )
         {
             setShowScroll( false );
         }
@@ -88,15 +87,15 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
 
     return (
         <section class="mx-8">
-                {showModal() &&
+            {showModal() &&
                     <ConfirmDelete
                         open={true}
                         idSelected={idSelected()}
                         text={text()}
-                        action={props.removeRole} 
+                        action={props.removeRole}
                         setShowModal={setShowModal}
                     />
-                } 
+            }
             <TitleWithButton
                 class="dg-section-title"
                 title="Roles"
@@ -124,7 +123,7 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
                                         <div class="h-6 w-6 my-1">
                                             <Link
                                                 class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                                href={`/roles/${item.id}/update`}>                                                                                         
+                                                href={`/roles/${item.id}/update`}>
                                                 <IconPencilAlt />
                                             </Link>
                                         </div>
@@ -148,7 +147,7 @@ const RoleList: Component<roleListTemplateProps> = ( props ) =>
                 <Button onClick={props.viewMore} class="dg-secondary-button">
                     View More
                 </Button>
-                <Button onClick={scrollTop} class={`h-10 w-10 transform rotate-90 text-main-gray-250 ${getshowScroll() ? 'flex' : 'hidden'}`} >
+                <Button onClick={scrollTop} class={`h-10 w-10 transform rotate-90 text-main-gray-250 ${getShowScroll() ? 'flex' : 'hidden'}`} >
                     <IconArrowCircleLeft />
                 </Button>
             </div>

@@ -264,14 +264,13 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
-"@digichanges/solid-components@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@digichanges/solid-components/-/solid-components-0.0.5.tgz#e7a424b95240720ceba0ac1e3138831fa0103cb0"
-  integrity sha512-frE7rtoeY0hI0FKUNLzgpYtnS1m3t4lIu/TPRe++xJP6wIk1ZUjGdwR0zUxWqggMbPbSuQXuI4+ct45lWZ35Nw==
+"@digichanges/solid-components@^0.0.93":
+  version "0.0.93"
+  resolved "https://registry.yarnpkg.com/@digichanges/solid-components/-/solid-components-0.0.93.tgz#bd86fbf4957daf2a0b579988a2090200d24b91ce"
+  integrity sha512-jM44JoW+6xMeGmrDbwTK/2GgCjPLuz9wjk9C0wbCBuNx/ENduG1MTs6oEU4gGLYiqQbmNjA77j7Nn4EFUU89yw==
   dependencies:
     classnames "^2.3.1"
     solid-js "^1.1.3"
-    typescript "^4.4.4"
 
 "@eslint/eslintrc@^1.0.3":
   version "1.0.3"
@@ -2276,7 +2275,7 @@ type-fest@^0.20.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.20.2.tgz#1bf207f4b28f91583666cb5fbd327887301cd5f4"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
 
-typescript@^4.4.3, typescript@^4.4.4:
+typescript@^4.4.3:
   version "4.4.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.4.tgz#2cd01a1a1f160704d3101fd5a58ff0f9fcb8030c"
   integrity sha512-DqGhF5IKoBl8WNf8C1gu8q0xZSInh9j1kJJMqT3a94w1JzVaBU4EXOSMrz9yDqMT0xt3selp83fuFMQ0uzv6qA==

@@ -163,6 +163,7 @@
         "@typescript-eslint/no-empty-function": [
             "warn",
             { "allow": ["arrowFunctions"] }
-        ]
+        ],
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }

@@ -6,7 +6,7 @@ interface SideBarProps {
     children?: JSX.Element;
 }
 
-const SideBar: Component<SideBarProps> = ( props) =>
+const SideBar: Component<SideBarProps> = ( props ) =>
 {
     const [ getExpanded, setExpanded ] = createSignal( true );
 

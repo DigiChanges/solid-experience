@@ -9,22 +9,22 @@ import UserRepository from '../../../../repositories/UserRepository';
 import PublicLayout from '../../../../templates/layout/PublicLayout';
 import UserUpdate from '../../../../templates/users/UserUpdate';
 
-
-const IndexPage: Component = ( props ) =>
+const IndexPage: Component = () =>
 {
     const userRepository = new UserRepository();
     const { id } = useParams<{ id: string ; }> ();
-    const [ user ] = createResource( userRepository.getOne (id ) );
+    const [ user ] = createResource( userRepository.getOne ( id ) );
 
-    const updateAction = async (id: string, body: any ) =>
+    const updateAction = async ( id: string, body: any ) =>
     {
-        const update = await userRepository.updateUser( id,body );
-     }; 
+        void await userRepository.updateUser( id, body );
+    };
+
     return <PublicLayout>
         <UserUpdate
-             updateAction={updateAction}
-             userSelected={user()}
-             idSelected={id}
+            updateAction={updateAction}
+            userSelected={user()}
+            idSelected={id}
             // permissionsList={Auth.permissionsList}
         />
     </PublicLayout>;
