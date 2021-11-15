@@ -1,8 +1,8 @@
 import { Component, createResource } from 'solid-js';
-import PublicLayout from '../../../../templates/layout/PublicLayout';
 import RoleUpdate from '../../../../templates/roles/RoleUpdate';
 import { useParams } from 'solid-app-router';
 import RoleRepository from '../../../../repositories/RoleRepository';
+import PrivateLayout from '../../../../templates/layout/PrivateLayout';
 
 const IndexPage: Component = ( props ) =>
 {
@@ -15,14 +15,14 @@ const IndexPage: Component = ( props ) =>
         void await roleRepository.updateRole( id, body );
     };
 
-    return <PublicLayout>
+    return <PrivateLayout>
         <RoleUpdate
             // permissionsList={Auth.permissionsList}
             updateAction={updateAction}
             roleSelected={role()}
             idSelected={id}
         />
-    </PublicLayout>;
+    </PrivateLayout>;
 };
 
 export default IndexPage;

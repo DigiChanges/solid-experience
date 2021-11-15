@@ -5,8 +5,8 @@ import PrivateLayout from '../../templates/layout/PrivateLayout';
 const LoginPage: Component = () =>
 {
     return (
-        <PrivateLayout/>
-        // <Dashboard/>
+        <PrivateLayout>
+        </PrivateLayout>
     );
 };
 

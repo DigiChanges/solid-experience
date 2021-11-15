@@ -1,4 +1,6 @@
 import { lazy } from 'solid-js';
+import IconHome from '../atoms/Icons/Stroke/IconHome';
+import { permissions } from './persmissions';
 // import IconCog from '../atoms/Icons/Stroke/IconCog';
 // import IconHome from '../atoms/Icons/Stroke/IconHome';
 // import IconLogout from '../atoms/Icons/Stroke/IconLogout';
@@ -10,53 +12,96 @@ import { lazy } from 'solid-js';
 export const dashRoutes = [
     {
         path: '/',
-        component: lazy( () => import( '../pages/login' ) )
+        component: lazy( () => import( '../pages/login' ) ),
+        name: 'Home',
+        icon: IconHome,
+        permission: 'Dashboard'
     },
     {
         path: '/login',
-        component: lazy( () => import( '../pages/login' ) )
+        component: lazy( () => import( '../pages/login' ) ),
+        name: 'Login',
+        icon: IconHome,
+        permission: 'Dashboard'
+    },
+    {
+        path: '/dashboard',
+        component: lazy( () => import( '../pages/dashboard' ) ),
+        name: 'Dashboard',
+        icon: IconHome,
+        permission: 'Dashboard'
     },
     {
         path: '/users',
+        name: 'Users',
+        icon: IconHome,
+        permission: permissions.USERS.SHOW,
         children:
         [
             {
                 path: '/',
-                component: lazy( () => import( '../pages/users' ) )
+                component: lazy( () => import( '../pages/users' ) ),
+                name: 'Home users',
+                icon: IconHome,
+                permission: 'Dashboard'
             },
             {
                 path: '/create',
-                component: lazy( () => import( '../pages/users/create' ) )
+                component: lazy( () => import( '../pages/users/create' ) ),
+                name: 'Create User',
+                icon: IconHome,
+                permission: 'Dashboard'
             },
             {
                 path: '/view',
-                component: lazy( () => import( '../pages/users/view' ) )
+                component: lazy( () => import( '../pages/users/view' ) ),
+                name: 'View User',
+                icon: IconHome,
+                permission:  permissions.USERS.SHOW
             },
             {
                 path: '/:id/update',
-                component: lazy( () => import( '../pages/users/update/[id]' ) )
+                component: lazy( () => import( '../pages/users/update/[id]' ) ),
+                name: 'Update',
+                icon: IconHome,
+                permission: 'Dashboard'
             },
             {
                 path: '/UserChangePass/:token',
-                component: lazy( () => import( '../pages/users/changePassword' ) )
+                component: lazy( () => import( '../pages/users/changePassword' ) ),
+                name: 'Change Password',
+                icon: IconHome,
+                permission: 'Dashboard'
             }
         ]
     },
     {
         path: '/roles',
+        name: 'Roles',
+        icon: IconHome,
+        permission: 'Dashboard',
         children:
         [
             {
                 path: '/',
-                component: lazy( () => import( '../pages/roles' ) )
+                component: lazy( () => import( '../pages/roles' ) ),
+                name: 'Home Roles',
+                icon: IconHome,
+                permission: 'Dashboard'
             },
             {
                 path: '/create',
-                component: lazy( () => import( '../pages/roles/create' ) )
+                component: lazy( () => import( '../pages/roles/create' ) ),
+                name: 'Create Roles',
+                icon: IconHome,
+                permission: 'Dashboard'
             },
             {
                 path: '/:id/update',
-                component: lazy( () => import( '../pages/roles/update/[id]' ) )
+                component: lazy( () => import( '../pages/roles/update/[id]' ) ),
+                name: 'Update Roles',
+                icon: IconHome,
+                permission: 'Dashboard'
             }
         ]
     }

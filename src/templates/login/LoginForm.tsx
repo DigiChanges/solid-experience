@@ -2,7 +2,7 @@
 import { Form } from 'solid-js-form';
 import Title from '../../atoms/Title';
 import Button from '../../atoms/Button';
-import { Component, createResource } from 'solid-js';
+import { Component } from 'solid-js';
 import SignUpSchema from '../../SchemaValidations/SignUpSchema';
 import Input from '../../atoms/Input';
 import PasswordShowHide from './PasswordShowHide';
@@ -30,7 +30,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                     const data = await authRepository.signIn( form.values as ILoginPayload );
 
                     addUser( data );
-                    navigate( '/users', { replace : true } );
+                    navigate( '/dashboard', { replace : true } );
                 }}
             >
                 <Title titleType="h1" class="mb-2 text-left text-xs font-extrabold text-main-gray-250">

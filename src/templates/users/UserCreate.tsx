@@ -20,12 +20,12 @@ import { useNavigate } from 'solid-app-router';
 
 interface UserCreateTemplateProps
 {
-    permissionsList?: string[];
+    // permissionsList?: string[];
     // rolesList: IRoleApi[];
     createAction?: any;
 }
 
-const UserCreate: Component<UserCreateTemplateProps> = () =>
+const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
 {
     const navigate = useNavigate();
 
@@ -55,10 +55,10 @@ const UserCreate: Component<UserCreateTemplateProps> = () =>
                     roles: [],
                     enable: ''
                 }}
-                validation={UserCreateSchema}
-                onSubmit={async ( values ) =>
+                // validation={UserCreateSchema}
+                onSubmit={async ( form ) =>
                 {
-                    // createAction( values );
+                    props.createAction( form.values );
                 }}
             >
                 <div class="flex flex-wrap text-sm">

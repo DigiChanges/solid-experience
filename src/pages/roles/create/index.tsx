@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
 import RoleCreate from '../../../templates/roles/RoleCreate';
-import PublicLayout from '../../../templates/layout/PublicLayout';
+import PrivateLayout from '../../../templates/layout/PrivateLayout';
 import RoleRepository from '../../../repositories/RoleRepository';
 
 const IndexPage: Component = ( props ) =>
@@ -9,17 +9,15 @@ const IndexPage: Component = ( props ) =>
 
     const createAction = async ( body: any ) =>
     {
-        void await roleRepository.createRole( body );
+        void await roleRepository.createRole ( body );
     };
 
-    return (
-        <PublicLayout>
-            <RoleCreate
-                // permissionsList={Auth.permissionsList}
-                createAction={createAction}
-            />
-        </PublicLayout>
-    );
+    return <PrivateLayout>
+        <RoleCreate
+            // permissionsList={Auth.permissionsList}
+            createAction={createAction}
+        />
+    </PrivateLayout>;
 };
 
 export default IndexPage;

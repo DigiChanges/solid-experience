@@ -1,6 +1,8 @@
 import { config } from './config';
 import HttpRequest from '../services/HttpRequest';
 import { IChangeForgotPasswordPayload, ILoginPayload } from '../interfaces/auth';
+import { AxiosRequestConfig } from 'axios';
+import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { login, permissionsGetAll, forgotPassword, changeForgotPassword } = config.apiGateway.routes.auth;
@@ -18,15 +20,24 @@ class AuthRepository
         return  HttpRequest.request( requestOptions );
     };
 
+    // public getAllPermissions = () =>
+    // {
+    //     const requestOptions = {
+    //         url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`,
+    //         method: 'GET'
+    //         // headers: getHeader()
+    //     };
+
+    //     return HttpRequest.request( requestOptions );
+    // };
+    
     public getAllPermissions = () =>
     {
-        const requestOptions = {
-            url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`,
-            method: 'GET'
-            // headers: getHeader()
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`
         };
 
-        return HttpRequest.request( requestOptions );
+        return HttpAxiosRequest( config );
     };
 
     public getForgotPassword = ( email: string ) =>

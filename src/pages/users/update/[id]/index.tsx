@@ -6,7 +6,7 @@
 import { useParams } from 'solid-app-router';
 import { Component, createResource } from 'solid-js';
 import UserRepository from '../../../../repositories/UserRepository';
-import PublicLayout from '../../../../templates/layout/PublicLayout';
+import PrivateLayout from '../../../../templates/layout/PrivateLayout';
 import UserUpdate from '../../../../templates/users/UserUpdate';
 
 const IndexPage: Component = () =>
@@ -20,14 +20,14 @@ const IndexPage: Component = () =>
         void await userRepository.updateUser( id, body );
     };
 
-    return <PublicLayout>
+    return <PrivateLayout>
         <UserUpdate
             updateAction={updateAction}
             userSelected={user()}
             idSelected={id}
             // permissionsList={Auth.permissionsList}
         />
-    </PublicLayout>;
+    </PrivateLayout>;
 };
 
 export default IndexPage;
