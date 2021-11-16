@@ -1,4 +1,4 @@
-export const ADMIN = 'admin';
+export const ADMIN = 'superadmin';
 
 export const permissions = {
     USERS: {

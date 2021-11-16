@@ -279,9 +279,8 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         {/*  </div>*/}
                         <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
                                 Close
-                             </Link>
-                          
-                        <Button type="submit">
+                        </Link>
+                        <Button class="dg-main-button" type="submit">
                           Save
                         </Button>
                     </div>

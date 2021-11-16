@@ -98,7 +98,7 @@ const RoleView: Component<RoleViewTemplateProps> = props =>
                             <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
                                 Close
                              </Link>
-                            <Button>Save</Button>
+                            <Button class="dg-main-button">Save</Button>
                         </div>
                     </div>
                 </Form>

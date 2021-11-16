@@ -26,7 +26,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                     : 'text-gray-500 border-gray-800'
                 }`}
             > */}
-                        <a class="border-r-2 border-gray-800 hover:border-blue-500 hover:text-blue-500 flex flex-row items-center justify-start h-8 text-blue-700">
+                        <a class="border-r-2 border-gray-800  hover:text-blue-500 flex flex-row items-center justify-start h-8 text-blue-700">
                             {props.icon ? (
                                 <span class={`${props.isToggled ? 'hidden' : ''} inline-flex w-6 items-center md:justify-start h-6 text-lg`}>
                                     <Icon />

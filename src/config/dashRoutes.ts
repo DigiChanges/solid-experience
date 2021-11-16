@@ -50,7 +50,7 @@ export const dashRoutes = [
                 component: lazy( () => import( '../pages/users/create' ) ),
                 name: 'Create User',
                 icon: IconHome,
-                permission: 'Dashboard'
+                permission:  permissions.USERS.SAVE
             },
             {
                 path: '/view',
@@ -64,7 +64,7 @@ export const dashRoutes = [
                 component: lazy( () => import( '../pages/users/update/[id]' ) ),
                 name: 'Update',
                 icon: IconHome,
-                permission: 'Dashboard'
+                permission:  permissions.USERS.UPDATE
             },
             {
                 path: '/UserChangePass/:token',
@@ -79,7 +79,7 @@ export const dashRoutes = [
         path: '/roles',
         name: 'Roles',
         icon: IconHome,
-        permission: 'Dashboard',
+        permission:  permissions.ROLES.SHOW,
         children:
         [
             {
@@ -94,14 +94,14 @@ export const dashRoutes = [
                 component: lazy( () => import( '../pages/roles/create' ) ),
                 name: 'Create Roles',
                 icon: IconHome,
-                permission: 'Dashboard'
+                permission:  permissions.ROLES.SAVE
             },
             {
                 path: '/:id/update',
                 component: lazy( () => import( '../pages/roles/update/[id]' ) ),
                 name: 'Update Roles',
                 icon: IconHome,
-                permission: 'Dashboard'
+                permission:  permissions.ROLES.UPDATE
             }
         ]
     }

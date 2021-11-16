@@ -12,12 +12,13 @@ import SideBar from '../../organisms/SideBar';
 interface privateTemplateProps {
     children: JSX.Element | JSX.Element[];
 }
-const PrivateLayout: Component<privateTemplateProps> = (props) => {
-    const [showSidebar, setShowSideBar] = createSignal(false);
-    const [getShowSubitems, setShowSubitems] = createSignal(false);
-    const [sectionSelected, setSectionSelected] = createSignal('');
+const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
+{
+    const [ showSidebar, setShowSideBar ] = createSignal( false );
+    const [ getShowSubitems, setShowSubitems ] = createSignal( false );
+    const [ sectionSelected, setSectionSelected ] = createSignal( '' );
     // const { user, userPermissions } = useSelector((state : any) => state.Auth);
-    const [user]: any = useApplicationContext();
+    const [ user ]: any = useApplicationContext();
     console.log("mostrar user para ver permisos", user());
 
     const onToggled = ( path: string ) =>
@@ -33,45 +34,45 @@ const PrivateLayout: Component<privateTemplateProps> = (props) => {
     const getDashItems = () =>
 
         <For each={dashRoutes} fallback={<div>Loading...</div>}>
-            {(item) =>
-                // <HasPermission
-                // //   key={index}
-                //     permission={item.permission}
-                //     user={user()}
-                //     userPermissions={user().user.permissions}
-                // >
-                <SideBarItem
-                    name={item.name}
-                    icon={item.icon}
-                    isLoading={true}
-                    onClick={() => ( onToggled( item.path ) )}
-                    getShowSubitems={getShowSubitems()}
-                    routes={item}
+            {( item ) =>
+                <HasPermission
+                //   key={index}
+                    permission={item.permission}
+                    user={user()}
+                    userPermissions={user().user.permissions}
                 >
-                    {
+                    <SideBarItem
+                        name={item.name}
+                        icon={item.icon}
+                        isLoading={true}
+                        onClick={() => ( onToggled( item.path ) )}
+                        getShowSubitems={getShowSubitems()}
+                        routes={item}
+                    >
+                        {
 
-                        getShowSubitems() && sectionSelected() === item.path &&
+                            getShowSubitems() && sectionSelected() === item.path &&
                         <div class=" flex flex-row">
                             <a class=" ">
                                 {item.children &&
 
                                     <For each={item.children} fallback={<div>Loading...</div>}>
                                         {( item ) =>
-                                            // <HasPermission
-                                            //     //   key={index}
-                                            //     permission={item.permission}
-                                            //     user={user()}
-                                            //     userPermissions={user().user.permissions}
-                                            // >
-                                            <SideBarSubItem
-                                                name={item.name}
-                                                path={sectionSelected().concat( item.path )}
-                                                icon={item.icon}
-                                                isToggled={true}
-
+                                            <HasPermission
+                                                //   key={index}
+                                                permission={item.permission}
+                                                user={user()}
+                                                userPermissions={user().user.permissions}
                                             >
-                                            </SideBarSubItem>
-                                            // // </HasPermission>
+                                                <SideBarSubItem
+                                                    name={item.name}
+                                                    path={sectionSelected().concat( item.path )}
+                                                    icon={item.icon}
+                                                    isToggled={true}
+
+                                                >
+                                                </SideBarSubItem>
+                                            </HasPermission>
                                         }
                                     </For>
                                 }
@@ -79,9 +80,9 @@ const PrivateLayout: Component<privateTemplateProps> = (props) => {
                             </a>
                         </div>
 
-                    }
-                </SideBarItem>
-                // </HasPermission>
+                        }
+                    </SideBarItem>
+                </HasPermission>
             }
 
         </For>;
