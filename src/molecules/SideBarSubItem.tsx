@@ -18,7 +18,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
         <>
 
             <div class=" flex flex-row">
-                <a class=" " >
+                <a class="pl-9  h-8 " >
                     <Link href={props.path}>
                         {/* <a
                 class={` border-r-2 border-gray-800 hover:border-blue-500 hover:text-blue-500 flex flex-row items-center justify-start h-8 ${equal
@@ -28,14 +28,14 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
             > */}
                         <a class="border-r-2 border-gray-800  hover:text-blue-500 flex flex-row items-center justify-start h-8 text-blue-700">
                             {props.icon ? (
-                                <span class={`${props.isToggled ? 'hidden' : ''} inline-flex w-6 items-center md:justify-start h-6 text-lg`}>
+                                <span class={'inline-flex w-6 items-center md:justify-start h-6 text-lg'}>
                                     <Icon />
                                 </span>
                             ) : (
                                 <span class="inline-flex w-6 items-center justify-center h-6 text-lg " />
                             )}
 
-                            <span class={`${!props.isToggled ? 'px-4' : 'pl-10'} text-sm font-bold justify-start md:justify-center pl-2 `}>
+                            <span class={`${!props.isToggled ? 'px-4' : 'pl-1'} text-sm font-bold justify-start md:justify-center pl-2 `}>
                                 {props.name}
                             </span>
                         </a>
