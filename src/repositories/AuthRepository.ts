@@ -30,7 +30,7 @@ class AuthRepository
 
     //     return HttpRequest.request( requestOptions );
     // };
-    
+
     public getAllPermissions = () =>
     {
         const config: AxiosRequestConfig = {

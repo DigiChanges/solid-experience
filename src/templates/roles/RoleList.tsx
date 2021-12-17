@@ -1,17 +1,16 @@
-import RoleRemove from './RoleRemove';
-import { Component, createSignal } from 'solid-js';
-import { IRoleApi } from '../../interfaces/role';
-import Title from '../../atoms/Title';
-import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
-import IconPencilAlt from '../../atoms/Icons/Stroke/IconPencilAlt';
-import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconViewMediaObject';
-import IconTrash from '../../atoms/Icons/Stroke/IconTrash';
+import { Link } from 'solid-app-router';
+import { Component, createSignal, For } from 'solid-js';
 import Button from '../../atoms/Button';
+import IconPencilAlt from '../../atoms/Icons/Stroke/IconPencilAlt';
+import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
+import IconTrash from '../../atoms/Icons/Stroke/IconTrash';
+import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconViewMediaObject';
+import Title from '../../atoms/Title';
+import { IRoleApi } from '../../interfaces/role';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
-import { For } from 'solid-js';
-import { useNavigate, Link } from 'solid-app-router';
 import ConfirmDelete from '../modal/ConfirmDelete';
+import RoleRemove from './RoleRemove';
 
 interface RoleListTemplateProps
 {
@@ -25,11 +24,7 @@ interface RoleListTemplateProps
 
 const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 {
-    // const router = useRouter();
-    // solid have useRouter
-    // const dispatch = useDispatch();
     const [ getShowScroll, setShowScroll ] = createSignal( false );
-    const navigate = useNavigate();
     const [ showModal, setShowModal ] = createSignal( false );
     const [ idSelected, setIdSelected ] = createSignal( '' );
     const [ text, setText ] = createSignal();

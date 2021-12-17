@@ -7,6 +7,9 @@ const { getAll, remove, update, create, getOne } = config.apiGateway.routes.role
 
 class RoleRepository
 {
+    constructor ( private user?: any )
+    {}
+
     public getRoles = () =>
     {
         const config: AxiosRequestConfig = {
@@ -34,7 +37,7 @@ class RoleRepository
             data: body
         };
 
-        return HttpAxiosRequest( config );
+        return HttpAxiosRequest( config, this.user );
     }
 
     public createRole ( body: any )
@@ -45,7 +48,7 @@ class RoleRepository
             data: body
         };
 
-        return HttpAxiosRequest( config );
+        return HttpAxiosRequest( config, this.user );
     }
 
     public removeRole ( id : string )
@@ -55,7 +58,7 @@ class RoleRepository
             method: 'DELETE'
         };
 
-        return HttpAxiosRequest( config );
+        return HttpAxiosRequest( config, this.user );
     }
 }
 

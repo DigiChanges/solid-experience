@@ -47,7 +47,7 @@ export const dashRoutes = [
             {
                 path: '/',
                 component: lazy( () => import( '../pages/users' ) ),
-                name: 'Home users',
+                name: 'Home Users',
                 icon: IconHome,
                 permission:  permissions.USERS.LIST
             },
@@ -68,7 +68,7 @@ export const dashRoutes = [
             {
                 path: '/:id/update',
                 component: lazy( () => import( '../pages/users/update/[id]' ) ),
-                name: 'Update',
+                name: 'Update User',
                 icon: IconPencilAlt,
                 permission:  permissions.USERS.UPDATE
             },
@@ -98,14 +98,14 @@ export const dashRoutes = [
             {
                 path: '/create',
                 component: lazy( () => import( '../pages/roles/create' ) ),
-                name: 'Create Roles',
+                name: 'Create Role',
                 icon: IconPlus,
                 permission:  permissions.ROLES.SAVE
             },
             {
                 path: '/:id/update',
                 component: lazy( () => import( '../pages/roles/update/[id]' ) ),
-                name: 'Update Roles',
+                name: 'Update Role',
                 icon: IconPencilAlt,
                 permission:  permissions.ROLES.UPDATE
             }

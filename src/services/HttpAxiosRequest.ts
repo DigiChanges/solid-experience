@@ -4,10 +4,13 @@ import { useApplicationContext } from '../context/context';
 const HTTP_SUCCESS_STATUS = [ 200, 201, 204, 300, 302, 304 ];
 const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
 
-export const HttpAxiosRequest = ( config: AxiosRequestConfig ) => async () =>
+export const HttpAxiosRequest = ( config: AxiosRequestConfig, dataUser?: any ) => async () =>
 {
-    const [ user ]: any = useApplicationContext();
-    const dataUser = user();
+    if ( !dataUser )
+    {
+        const [ user ]: any = useApplicationContext();
+        dataUser = user();
+    }
 
     if ( dataUser?.token == null )
     {
@@ -29,7 +32,7 @@ export const HttpAxiosRequest = ( config: AxiosRequestConfig ) => async () =>
     }
     else
     {
-        config.data = null;
+        config.data = {};
     }
 
     const response = await axios( { ...requestDefaultOptions, ...config } );
