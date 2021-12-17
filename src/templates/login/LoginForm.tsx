@@ -49,10 +49,12 @@ const LoginForm: Component<LoginFormProps> = props =>
                 </div>
                 <div>
                     <PasswordShowHide
+                        name="password"
+                        id="password"
                         class="dg-form-field-full font-extrabold pl-5"
+                        placeholder="Your Password"
                         labelClass="text-main-gray-200 block my-3"
                         labelName="Password"
-                        placeholder="Your Password"
                     />
                     <div class="flex items-center justify-between">
                         <Button
