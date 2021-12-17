@@ -26,6 +26,20 @@ export const HttpAxiosRequest = ( config: AxiosRequestConfig, dataUser?: any ) =
         }
     };
 
+    return await HttpAxiosRequestWithoutToken( { ...requestDefaultOptions, ...config } )();
+};
+
+export const HttpAxiosRequestWithoutToken = ( config: AxiosRequestConfig ) => async () =>
+{
+    const requestDefaultOptions: AxiosRequestConfig =
+    {
+        method: 'GET',
+        headers: {
+            ...config.headers,
+            'Content-Type': 'application/json'
+        }
+    };
+
     if ( typeof config.data === 'object' && Object.keys( config.data ).length !== 0 )
     {
         config.data = JSON.stringify( config.data );

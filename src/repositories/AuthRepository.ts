@@ -1,35 +1,25 @@
-import { config } from './config';
-import HttpRequest from '../services/HttpRequest';
-import { IChangeForgotPasswordPayload, ILoginPayload } from '../interfaces/auth';
 import { AxiosRequestConfig } from 'axios';
-import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
+import { IChangeForgotPasswordPayload, ILoginPayload } from '../interfaces/auth';
+import { HttpAxiosRequest, HttpAxiosRequestWithoutToken } from '../services/HttpAxiosRequest';
+import { config } from './config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { login, permissionsGetAll, forgotPassword, changeForgotPassword } = config.apiGateway.routes.auth;
 
 class AuthRepository
 {
-    public signIn = ( body: ILoginPayload ) =>
+    constructor ( private user?: any )
+    {}
+
+    public signIn = ( data: ILoginPayload ) =>
     {
-        const requestOptions = {
+        const config: AxiosRequestConfig = {
             url:`${protocol}://${hostname}:${port}/${login}`,
             method: 'POST',
-            body,
-            headers: { 'Content-Type': 'application/json' }
+            data
         };
-        return  HttpRequest.request( requestOptions );
+        return HttpAxiosRequestWithoutToken( config );
     };
-
-    // public getAllPermissions = () =>
-    // {
-    //     const requestOptions = {
-    //         url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`,
-    //         method: 'GET'
-    //         // headers: getHeader()
-    //     };
-
-    //     return HttpRequest.request( requestOptions );
-    // };
 
     public getAllPermissions = () =>
     {
@@ -37,36 +27,30 @@ class AuthRepository
             url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`
         };
 
-        return HttpAxiosRequest( config );
+        return HttpAxiosRequest( config, this.user );
     };
 
     public getForgotPassword = ( email: string ) =>
     {
-        const requestOptions = {
-            // url: `${protocol}://${hostname}:${port}/${forgotPassword}`,
-            url:`https://api.mictick.tech/api/auth/forgotPassword?provider=local/${forgotPassword}`,
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${forgotPassword}`,
             method: 'POST',
-            body: { email },
-            headers: { 'Content-Type': 'application/json' }
+            data: { email }
         };
 
-        return HttpRequest.request( requestOptions );
+        return HttpAxiosRequestWithoutToken( config );
     };
 
-    public setChangeForgotPassword = ( body: IChangeForgotPasswordPayload ) =>
+    public setChangeForgotPassword = ( data: IChangeForgotPasswordPayload ) =>
     {
-        return fetch( 'https://api.mictick.tech/api/auth/changeForgotPassword', {
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${changeForgotPassword}`,
             method: 'POST',
-            body: JSON.stringify( body ),
-            headers: { 'Content-Type': 'application/json' }
-        }
-        ).then( res => res.json() )
-            .then( response =>
-            {
-                return response.results;
-            } );
-    };
+            data
+        };
 
+        return HttpAxiosRequestWithoutToken( config );
+    };
 }
 
 export default AuthRepository;

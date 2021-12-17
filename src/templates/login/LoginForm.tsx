@@ -27,8 +27,8 @@ const LoginForm: Component<LoginFormProps> = props =>
                 validation={SignUpSchema}
                 onSubmit={async ( form ) =>
                 {
-                    const data = await authRepository.signIn( form.values as ILoginPayload );
-
+                    const signIn = authRepository.signIn( form.values as ILoginPayload );
+                    const data = await signIn();
                     addUser( data );
                     navigate( '/dashboard', { replace : true } );
                 }}

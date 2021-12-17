@@ -7,6 +7,8 @@ const { getAll, remove, update, create, getOne } = config.apiGateway.routes.user
 
 class UserRepository
 {
+    constructor ( private user?: any )
+    {}
 
     public getUsers = () =>
     {
@@ -36,7 +38,7 @@ class UserRepository
             data: body
         };
 
-        return HttpAxiosRequest( config );
+        return HttpAxiosRequest( config, this.user );
     }
 
     public createUser ( body: any )
@@ -47,7 +49,7 @@ class UserRepository
             data: JSON.stringify( body )
         };
 
-        return HttpAxiosRequest( config );
+        return HttpAxiosRequest( config, this.user );
     }
 
     public removeUser ( id: string )
@@ -57,7 +59,7 @@ class UserRepository
             method: 'DELETE'
         };
 
-        return HttpAxiosRequest( config );
+        return HttpAxiosRequest( config, this.user );
     }
 }
 
