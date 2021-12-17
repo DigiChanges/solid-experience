@@ -35,9 +35,7 @@ interface RoleUpdateTemplateProps
 // }
 
 const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
-{
-    console.log("idSelected TEMPLATE->",props.idSelected)
-    return (
+    (
         <section class="px-4">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold" titleType="h1">
@@ -52,12 +50,12 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         slug: props.roleSelected?.slug,
                         permissions: props.roleSelected?.permissions,
                         enable: props.roleSelected?.enable
-                       
+
                     }}
                     // validation={RoleUpdateSchema}
-                    onSubmit={async ( form) =>
+                    onSubmit={async ( form ) =>
                     {
-                        props.updateAction(props.idSelected, form.values);
+                        props.updateAction( props.idSelected, form.values );
 
                     }}
                 >
@@ -112,16 +110,15 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
 
                             <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
                                 Close
-                             </Link>
-                          
+                            </Link>
+
                             <Button class="px-10 py-2 items-center dg-secondary-button" type="submit">Save</Button>
                         </div>
                     </div>
                 </Form>
 
-             ) : <p>No role selected</p> }
+            ) : <p>No role selected</p> }
         </section>
     );
-};
 
 export default RoleUpdate;

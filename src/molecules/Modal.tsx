@@ -8,15 +8,14 @@ interface ModalTemplateProps
 
 const Modal: Component<ModalTemplateProps> = ( props ) =>
 {
-    return (
-        <>
-            {props.open && <div
-                class="fixed h-screen w-screen items-center z-20 bg-transparent-black"
-            >
+    if ( props.open )
+    {
+        return (
+            <div class="fixed h-screen w-screen items-center z-20 bg-transparent-black" >
                 {props.children}
-            </div>}
-        </>
-    );
+            </div>
+        );
+    }
 };
 
 export default Modal;

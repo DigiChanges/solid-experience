@@ -19,7 +19,6 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
     const [ sectionSelected, setSectionSelected ] = createSignal( '' );
     // const { user, userPermissions } = useSelector((state : any) => state.Auth);
     const [ user ]: any = useApplicationContext();
-    console.log("mostrar user para ver permisos", user());
 
     const onToggled = ( path: string ) =>
     {
