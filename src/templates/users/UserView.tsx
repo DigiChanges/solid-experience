@@ -300,7 +300,7 @@ const UserView: Component<UserViewTemplateProps> = ( props ) =>
                             <Button onClick={() => true}>
                                 Close
                             </Button>
-                            <Button type="submit">
+                            <Button class="dg-main-button" type="submit">
                                 Save
                             </Button>
                         </div>

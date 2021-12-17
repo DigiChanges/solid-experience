@@ -1,51 +1,20 @@
-import { Component, createSignal } from 'solid-js';
-import Button from '../../atoms/Button';
-import IconEye from '../../atoms/Icons/Stroke/IconEye';
-import IconEyeCrossed from '../../atoms/Icons/Stroke/IconEyeCrossed';
-import Input from '../../atoms/Input';
+import type { InputFormProps } from '@digichanges/solid-components';
+import { InputPassword } from '@digichanges/solid-components';
+import { Component } from 'solid-js';
+import { useField } from 'solid-js-form';
 
-interface PasswordShowHideProps
+const PasswordShowHide: Component<InputFormProps> = props =>
 {
-    class: string,
-    labelClass: string,
-    labelName: string,
-    placeholder: string
-}
-
-const PasswordShowHide: Component<PasswordShowHideProps> = props =>
-{
-    const [ getIsShowingPassword, setIsShowingPassword ] = createSignal( false );
-
-    const showPasswordClick = () =>
-    {
-        setIsShowingPassword( !getIsShowingPassword() );
-    };
+    const { field, form } = useField( props.name );
+    const formHandler = form.formHandler;
 
     return (
-        <div class="relative mr-1 my-2 flex-grow">
-            <Input
-                name="password"
-                id="password"
-                type={getIsShowingPassword() ? 'text' : 'password'}
-                class={props.class}
-                labelClass={props.labelClass}
-                labelName={props.labelName}
-                placeholder={props.placeholder}
-                autocomplete="off"
-            />
-            <span class="absolute bottom-0 right-0 flex items-center pl-2">
-                <Button
-                    class="w-8 h-8 mt-2 mb-1 mx-3 p-1 text-main-gray-100"
-                    type="button"
-                    onClick={showPasswordClick}>
-                    {
-                        getIsShowingPassword()
-                            ? <IconEye />
-                            : <IconEyeCrossed />
-                    }
-                </Button>
-            </span>
-        </div>
+        <InputPassword
+            {...props}
+            value={field.value() as string}
+            useHandler={formHandler}
+            errorChildren={field.error()}
+        />
     );
 };
 

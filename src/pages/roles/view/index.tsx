@@ -17,15 +17,12 @@ const IndexPage: Component = ( props ) =>
     //       }
     //   }, []);
 
-
     return <PublicLayout>
         <RoleView
-        //  roleSelected={Roles.roleSelected} 
+        //  roleSelected={Roles.roleSelected}
         //  permissionsList={Auth.permissionsList}
         />
     </PublicLayout>;
 };
 
 export default IndexPage;
-
-

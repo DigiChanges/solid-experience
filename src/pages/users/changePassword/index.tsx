@@ -3,17 +3,17 @@ import { Component } from 'solid-js';
 import AuthRepository from '../../../repositories/AuthRepository';
 import PublicLayout from '../../../templates/layout/PublicLayout';
 import UserChangePassword from '../../../templates/users/UserChangePassword';
-
 // import withAuth from '../../../providers/withAuth';
-const IndexPage: Component = ( props ) =>
+
+const IndexPage: Component = () =>
 {
 
     const { token } = useParams<{ token: string ; }> ();
-    const authorzation = new AuthRepository();
+    const repository = new AuthRepository();
 
-    const changePasswordAction = ( body: any ) =>
+    const changePasswordAction = async ( body: any ) =>
     {
-        authorzation.setChangeForgotPassword( body );
+        void await repository.setChangeForgotPassword( body );
 
     };
 

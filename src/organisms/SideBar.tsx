@@ -6,7 +6,7 @@ interface SideBarProps {
     children?: JSX.Element;
 }
 
-const SideBar: Component<SideBarProps> = ( props) =>
+const SideBar: Component<SideBarProps> = ( props ) =>
 {
     const [ getExpanded, setExpanded ] = createSignal( true );
 
@@ -20,7 +20,7 @@ const SideBar: Component<SideBarProps> = ( props) =>
     //     );
     return (
         <div class={`${props.class} ${getExpanded() ? 'md:relative md:w-56' : ''}`}>
-            <div class={'flex flex-row md:flex-col h-full text-white'}>
+            <div class={'text-white'}>
                 {/* {props.children} */}
                 {/* TODO: Change image logic*/}
                 {/* <div class={classUl}>

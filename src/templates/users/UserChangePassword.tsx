@@ -10,10 +10,10 @@ import AuthRepository from '../../repositories/AuthRepository';
 
 interface UserChangePasswordTemplateProps
 {
-    changePasswordAction?: never;
+    changePasswordAction?: any;
     confirmationToken :string;
-
 }
+
 const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props ) =>
 {
     return (

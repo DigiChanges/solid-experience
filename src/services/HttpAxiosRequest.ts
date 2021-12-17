@@ -6,8 +6,7 @@ const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
 
 export const HttpAxiosRequest = ( config: AxiosRequestConfig ) => async () =>
 {
-
-    const [ user ] = useApplicationContext();
+    const [ user ]: any = useApplicationContext();
     const dataUser = user();
 
     if ( dataUser?.token == null )
@@ -34,14 +33,15 @@ export const HttpAxiosRequest = ( config: AxiosRequestConfig ) => async () =>
     }
 
     const response = await axios( { ...requestDefaultOptions, ...config } );
+    const data: any = response.data;
 
     if ( HTTP_SUCCESS_STATUS.includes( response.status ) )
     {
-        return response.data?.data ?? response.data;
+        return data?.data ?? response.data;
     }
     else if ( HTTP_ERROR_STATUS.includes( response.status ) )
     {
-        const error = data.message || 'Internal Server Error';
+        const error = data?.message || 'Internal Server Error';
         throw new Error( error );
     }
     else

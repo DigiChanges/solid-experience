@@ -9,10 +9,11 @@ interface TitleWithButtonProps
     labelButtonName?: string;
     class: string;
     path: string;
+    buttonAction?: any;
 }
-const TitleWithButton: Component<TitleWithButtonProps> = ( props ) =>
 
-    <section class="flex flex-row justify-between">
+const TitleWithButton: Component<TitleWithButtonProps> = ( props ) =>
+    <section class="flex flex-row justify-between mb-2">
         <Title class={props.class} titleType="h4">
             {props.title}
         </Title>

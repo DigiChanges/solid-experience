@@ -1,22 +1,11 @@
 import { config } from './config';
-// import {getHeader} from '../api/auth'
 import HttpRequest from '../services/HttpRequest';
 import { IChangeForgotPasswordPayload, ILoginPayload } from '../interfaces/auth';
-import { createResource } from 'solid-js';
+import { AxiosRequestConfig } from 'axios';
+import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { login, permissionsGetAll, forgotPassword, changeForgotPassword } = config.apiGateway.routes.auth;
-const fetchData = ( body: any ) =>
-{
-    console.log( 'body' );
-    console.log( body );
-    return fetch( `https://api.mictick.tech/api/auth/login?provider=local/${login}`, { method:'POST', body: JSON.stringify( body ), headers: { 'Content-Type': 'application/json' } } )
-        .then( res => res.json() )
-        .then( response =>
-        {
-            return response.results;
-        } );
-};
 
 class AuthRepository
 {
@@ -29,20 +18,26 @@ class AuthRepository
             headers: { 'Content-Type': 'application/json' }
         };
         return  HttpRequest.request( requestOptions );
-
-        // const [ getData, { mutate, refetch } ] = createResource( body, fetchData  );
-        // return getData;
     };
 
+    // public getAllPermissions = () =>
+    // {
+    //     const requestOptions = {
+    //         url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`,
+    //         method: 'GET'
+    //         // headers: getHeader()
+    //     };
+
+    //     return HttpRequest.request( requestOptions );
+    // };
+    
     public getAllPermissions = () =>
     {
-        const requestOptions = {
-            url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`,
-            method: 'GET'
-            // headers: getHeader()
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`
         };
 
-        return HttpRequest.request( requestOptions );
+        return HttpAxiosRequest( config );
     };
 
     public getForgotPassword = ( email: string ) =>

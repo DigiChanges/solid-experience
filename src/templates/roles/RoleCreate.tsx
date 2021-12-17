@@ -12,7 +12,9 @@ import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
 import { Form } from 'solid-js-form';
 import RoleSchema from '../../SchemaValidations/RoleSchema';
-
+import ButtonClose from '../../molecules/ButtonClose';
+import ButtonConfirm from '../../molecules/ButtonConfirm';
+import { useNavigate } from 'solid-app-router';
 
 interface RoleCreateTemplateProps {
     permissionsList?: string[];
@@ -21,7 +23,7 @@ interface RoleCreateTemplateProps {
 
 const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
-
+    const navigate = useNavigate();
     return (
         <section class="px-4">
             <div class="mb-2 ">
@@ -95,10 +97,10 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                         />
                     </div> */}
                     <div class="w-full mt-5 flex justify-end">
-                        <Button type="button" onClick={() => window.open( '/roles' )}>
+                        <ButtonClose onClick={() => navigate( '/roles', { replace : true } )}>
                             Close
-                        </Button>
-                        <Button type="submit">Save</Button>
+                        </ButtonClose>
+                        <ButtonConfirm type="submit">Save</ButtonConfirm>
                     </div>
                 </div>
             </Form>

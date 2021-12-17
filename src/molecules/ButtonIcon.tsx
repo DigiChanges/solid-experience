@@ -9,6 +9,7 @@ interface ButtonIconProps
     type?: 'button' | 'submit' | 'reset';
     path: string;
 }
+
 const ButtonIcon: Component<ButtonIconProps> = ( props ) =>
 {
     const [ local, others ] = splitProps( props, [ 'type', 'icon', 'labelName', 'path' ] );
@@ -16,15 +17,15 @@ const ButtonIcon: Component<ButtonIconProps> = ( props ) =>
     return (
         <div class="mt-3 ">
             <Button
-                type={props.type}
+                type={local.type}
                 class="dg-main-button-w-icon"
                 {...others}
             >
-                <Link href={props.path}>
-                    <span class="hidden md:block font-bold pb-1">{props.labelName}</span>
+                <Link href={local.path}>
+                    <span class="hidden md:block font-bold pb-1">{local.labelName}</span>
                 </Link>
                 <i class="w-5 md:w-8 md:pl-2">
-                    {props.icon}
+                    {local.icon}
                 </i>
             </Button>
         </div>

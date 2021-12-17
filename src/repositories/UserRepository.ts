@@ -3,11 +3,12 @@ import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
 import { config } from './config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
-const { getAll, remove, update, create, getOne } = config.apiGateway.routes.roles;
+const { getAll, remove, update, create, getOne } = config.apiGateway.routes.users;
 
-class RoleRepository
+class UserRepository
 {
-    public getRoles = () =>
+
+    public getUsers = () =>
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${getAll}`
@@ -25,7 +26,8 @@ class RoleRepository
         return HttpAxiosRequest( config );
     };
 
-    public updateRole ( id: string, body: any )
+
+    public updateUser ( id: string, body: any )
     {
 
         const config: AxiosRequestConfig = {
@@ -37,18 +39,18 @@ class RoleRepository
         return HttpAxiosRequest( config );
     }
 
-    public createRole ( body: any )
+    public createUser ( body: any )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${create}`,
             method: 'POST',
-            data: body
+            data: JSON.stringify( body )
         };
 
         return HttpAxiosRequest( config );
     }
 
-    public removeRole ( id : string )
+    public removeUser ( id: string )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${remove}/${id}`,
@@ -59,4 +61,5 @@ class RoleRepository
     }
 }
 
-export default RoleRepository;
+
+export default UserRepository;
