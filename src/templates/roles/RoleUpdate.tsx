@@ -4,14 +4,13 @@
 // import SimpleSelect from '../../atoms/SimpleSelect';
 // import { states } from '../../entities';
 
-import Title from '../../atoms/Title';
-import { Component } from 'solid-js';
-import Input from '../../atoms/Input';
-import Button from '../../atoms/Button';
+import { Link } from 'solid-app-router';
+import { Component, Show } from 'solid-js';
 // import RoleUpdateSchema from '../../SchemaValidations/RoleUpdateSchema';
 import { Form } from 'solid-js-form';
-import Label from '../../atoms/Label';
-import { Link } from 'solid-app-router';
+import Button from '../../atoms/Button';
+import Input from '../../atoms/Input';
+import Title from '../../atoms/Title';
 import { IRoleApi } from '../../interfaces/role';
 
 
@@ -42,7 +41,11 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
           Update Role
                 </Title>
             </div>
-            {props.roleSelected ? (
+
+            <Show
+                when={props.roleSelected}
+                fallback={<div>Loading...</div>}
+            >
                 <Form
                     // enableReinitialize={true}
                     initialValues={{
@@ -116,8 +119,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         </div>
                     </div>
                 </Form>
-
-            ) : <p>No role selected</p> }
+            </Show>
         </section>
     );
 
