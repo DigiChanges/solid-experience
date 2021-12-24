@@ -19,8 +19,8 @@ import { useNavigate } from 'solid-app-router';
 import { Label } from '@digichanges/solid-components';
 import Multiselect from '../../molecules/Multiselect';
 import PasswordShowHide from '../login/PasswordShowHide';
-import SingleSelect from '../../molecules/SingleSselect';
-import { country } from '../../entities';
+import SingleSelect from '../../molecules/SingleSelect';
+import { country, documentTypeOptions } from '../../entities';
 import { IRoleApi } from '../../interfaces/role';
 import { SelectTransform } from '../../transforms/default';
 // import { Multiselect } from '@digichanges/solid-components';
@@ -54,7 +54,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         lastName: '',
                         email: '',
                         birthday: '',
-                        documentType: 'DNI',
+                        documentType: null,
                         documentNumber: '',
                         gender: '',
                         phone: '',
@@ -101,7 +101,9 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             <SingleSelect
                                 id="documentType"
                                 name="documentType"
-                                options={[ 'DNI', 'CUIL' ]}
+                                options={documentTypeOptions}
+                                isObject
+                                displayValue="label"
                                 class="dg-form-field-full"
                                 placeholder="Select Document Type"
                                 labelClass="dg-form-label"
@@ -181,7 +183,6 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 name="country"
                                 options={country}
                                 isObject
-                                propertyToSet="value"
                                 displayValue="label"
                                 class="dg-form-field-full"
                                 placeholder="Select Country"

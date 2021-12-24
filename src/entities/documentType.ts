@@ -1,5 +1,5 @@
 
 export const documentTypeOptions = [
-    { label: 'DNI', value: 'dni' },
-    { label: 'CC', value: 'cc' }
+    { value: 'dni', label: 'DNI' },
+    { value: 'cuil', label: 'CC' }
 ];

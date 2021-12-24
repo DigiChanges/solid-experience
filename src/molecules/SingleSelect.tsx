@@ -2,10 +2,16 @@ import { Multiselect, Option } from '@digichanges/solid-components';
 import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
 
-const handleSelect = ( { setValue, name }: {setValue: any, name: string} ) => ( data: Option[] ) =>
+const handleSelect = ( { setValue, name }: {setValue: any, name: string} ) => ( data: Option[], item: Option ) =>
 {
-    const [ value ] = data;
-    setValue( name, value );
+    if ( typeof item === 'object' )
+    {
+        setValue( name, { ...item } );
+    }
+    else
+    {
+        setValue( name, item );
+    }
 };
 
 const SingleSelect: Component<any> = ( props ) =>
@@ -18,7 +24,6 @@ const SingleSelect: Component<any> = ( props ) =>
             singleSelect
             selectedValues={ field.value() ? [ field.value() ] : null }
             onSelect={handleSelect( { setValue: form.setValue, name: props.name } )}
-            onRemove={handleSelect( { setValue: form.setValue, name: props.name } )}
         />
     );
 };
