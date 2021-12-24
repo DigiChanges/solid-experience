@@ -1,9 +1,11 @@
+import type { InputFormProps } from '@digichanges/solid-components';
+import { InputForm } from '@digichanges/solid-components';
 import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
-import { InputForm } from '@digichanges/solid-components';
-import type { InputFormProps } from '@digichanges/solid-components';
 
-const Input: Component<InputFormProps> = ( props ) =>
+type InputProps = Omit<InputFormProps, 'value'>
+
+const Input: Component<InputProps> = ( props ) =>
 {
     const { field, form } = useField( props.name );
     const formHandler = form.formHandler;

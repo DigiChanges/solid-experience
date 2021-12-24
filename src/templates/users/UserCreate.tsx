@@ -18,13 +18,17 @@ import ButtonConfirm from '../../molecules/ButtonConfirm';
 import { useNavigate } from 'solid-app-router';
 import { Label } from '@digichanges/solid-components';
 import Multiselect from '../../molecules/Multiselect';
+import PasswordShowHide from '../login/PasswordShowHide';
+import SingleSelect from '../../molecules/SingleSselect';
+import { country } from '../../entities';
+import { IRoleApi } from '../../interfaces/role';
+import { SelectTransform } from '../../transforms/default';
 // import { Multiselect } from '@digichanges/solid-components';
 
 interface UserCreateTemplateProps
 {
-    // permissionsList?: string[];
-    rolesList: any[];
-    // rolesList: IRoleApi[];
+    permissionsList: string[];
+    rolesList: IRoleApi[];
     createAction?: any;
 }
 
@@ -50,11 +54,11 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         lastName: '',
                         email: '',
                         birthday: '',
-                        documentType: '',
+                        documentType: 'DNI',
                         documentNumber: '',
                         gender: '',
                         phone: '',
-                        country: '',
+                        country: null,
                         address: '',
                         password: '',
                         passwordConfirmation: '',
@@ -92,42 +96,36 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 labelName="Last name"
                             />
                         </div>
-                        {/* <div class="dg-form-quarter-field-wrapper"> */}
-                        {/* <Label for="documentType" class="dg-form-label"> */}
-                        {/* ID number */}
-                        {/* </Label> */}
-                        {/* <div class="flex w-full"> */}
-                        {/* <Multiselect*/}
-                        {/*    options={[ 'yellow', 'blue', 'pink', 'white' ]}*/}
-                        {/*    onSelect={console.log}*/}
-                        {/*    onRemove={console.log}*/}
-                        {/*    selectedValues={[ 'yellow', 'pink' ]}*/}
-                        {/* />*/}
-                        {/* <Input*/}
-                        {/*    name="documentType"*/}
-                        {/*    id="documentType"*/}
-                        {/*    component={SimpleSelect}*/}
-                        {/*    options={documentTypeOptions}*/}
-                        {/*    selectStyle={SelectStyle}*/}
-                        {/* />*/}
-                        {/* <Input*/}
-                        {/*    name="documentNumber"*/}
-                        {/*    type="text"*/}
-                        {/*    id="documentNumber"*/}
-                        {/*    class="flex-1 dg-form-field-quarter rounded-l-none"*/}
-                        {/*    placeholder="Enter ID"*/}
-                        {/* />*/}
-                        {/* </div> */}
-                        {/* </div> */}
+                        <div class="dg-form-quarter-field-wrapper">
+                            <Label for="documentType">Document Type</Label>
+                            <SingleSelect
+                                id="documentType"
+                                name="documentType"
+                                options={[ 'DNI', 'CUIL' ]}
+                                class="dg-form-field-full"
+                                placeholder="Select Document Type"
+                                labelClass="dg-form-label"
+                            />
+                        </div>
+                        <div class="dg-form-quarter-field-wrapper">
+                            <Input
+                                labelName='Document Number'
+                                name="documentNumber"
+                                type="text"
+                                id="documentNumber"
+                                class="flex-1 dg-form-field-quarter rounded-l-none"
+                                placeholder="Enter ID"
+                            />
+                        </div>
 
                         <div class="dg-form-quarter-field-wrapper text-center">
                             <Label for="gender" class="dg-form-label text-left w-full">
-                          Gender
+                                Gender
                             </Label>
                             <Input
                                 name="gender"
                                 type="radio"
-                                id="gender"
+                                id="gender-f"
                                 // value="female"
                                 class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
                                 labelClass="text-gray-400 text-xs font-bold mr-1"
@@ -136,7 +134,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             <Input
                                 name="gender"
                                 type="radio"
-                                id="gender"
+                                id="gender-m"
                                 // value="male"
                                 class="border-1 border-main-gray-500 bg-gray-800 p-3 focus:bg-indigo-300 focus:border-white m-1"
                                 labelClass="text-gray-400 text-xs font-bold mr-1"
@@ -145,7 +143,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             <Input
                                 name="gender"
                                 type="radio"
-                                id="gender"
+                                id="gender-o"
                                 // value="other"
                                 class="border-1 border-main-gray-500 bg-gray-800 p-3 focus:bg-indigo-300 focus:border-white m-1"
                                 labelClass="text-gray-400 text-xs font-bold mr-1"
@@ -153,20 +151,16 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             />
                         </div>
 
-                        {/* <div class="dg-form-quarter-field-wrapper"> */}
-                        {/*    <Label for="birthdate" class="dg-form-label">*/}
-                        {/*      Birthday*/}
-                        {/*    </Label>*/}
-                        {/*    <Input*/}
-                        {/*        name="birthday"*/}
-                        {/*        component={DGDatePicker}*/}
-                        {/*        id="birthday"*/}
-                        {/*        class="dg-form-field-full"*/}
-                        {/*        dateFormatUI="d/MM/yyyy"*/}
-                        {/*        dateFormatValue="D/MM/YYYY"*/}
-                        {/*        placeholder="Choose your birthday..."*/}
-                        {/*    />*/}
-                        {/* </div> */}
+                        <div class="dg-form-quarter-field-wrapper">
+                            <Input
+                                name="birthday"
+                                labelName='Birthday'
+                                type="date"
+                                id="birthday"
+                                class="dg-form-field-full"
+                                placeholder="Choose the birthday..."
+                            />
+                        </div>
                         {/* <div class="dg-form-quarter-field-wrapper"> */}
                         {/*    <Label for="enable" class="dg-form-label">*/}
                         {/*      Enable*/}
@@ -179,18 +173,21 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         {/*        options={states}*/}
                         {/*    />*/}
                         {/* </div> */}
-                        {/*  <div class="dg-form-full-field-wrapper">*/}
-                        {/*      <Label for="country" class="dg-form-label">*/}
-                        {/* Country*/}
-                        {/*      </Label>*/}
-                        {/*      <Input*/}
-                        {/*          name="country"*/}
-                        {/*          id="country"*/}
-                        {/*          options={country}*/}
-                        {/*          component={SimpleSelect}*/}
-                        {/*          selectStyle={SelectStyle}*/}
-                        {/*      />*/}
-                        {/*  </div>*/}
+
+                        <div class="dg-form-full-field-wrapper">
+                            <Label for="country">Country</Label>
+                            <SingleSelect
+                                id="country"
+                                name="country"
+                                options={country}
+                                isObject
+                                propertyToSet="value"
+                                displayValue="label"
+                                class="dg-form-field-full"
+                                placeholder="Select Country"
+                                labelClass="dg-form-label"
+                            />
+                        </div>
                         <div class="dg-form-full-field-wrapper">
                             <Input
                                 name="address"
@@ -226,9 +223,8 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             />
                         </div>
                         <div class="w-full mb-5 pr-2">
-                            <Input
+                            <PasswordShowHide
                                 name="password"
-                                type="password"
                                 id="password"
                                 class="dg-form-field-full"
                                 placeholder="Enter Password"
@@ -237,9 +233,8 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             />
                         </div>
                         <div class="w-full mb-5 pr-2">
-                            <Input
+                            <PasswordShowHide
                                 name="passwordConfirmation"
-                                type="password"
                                 id="passwordConfirmation"
                                 class="dg-form-field-full"
                                 placeholder="Repeat Password"
@@ -263,23 +258,23 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         {/*  </div>*/}
                         {/*  <div class="dg-form-full-field-wrapper">*/}
                         {/*      <Label for="roles" class="dg-form-label">*/}
-                        {/* Roles */}
-                        {/*      </Label>*/}
-                        {/*      <Input*/}
-                        {/*          name="roles"*/}
-                        {/*          id="roles"*/}
-                        {/*          component={MultiSelect}*/}
-                        {/*          options={SelectTransform.getOptionsObjectArray( rolesList, 'name', 'id' )}*/}
-                        {/*          isMulti*/}
-                        {/*          selectStyle={SelectStyle}*/}
-                        {/*      />*/}
-                        {/*  </div>*/}
-                        <div class="">
-                            <Label
-                                for="roles"
-                            >
-                            Roles
-                            </Label>
+                        <div class="dg-form-full-field-wrapper">
+                            <Label for="permissions">Permissions</Label>
+                            <Multiselect
+                                name="permissions"
+                                options={SelectTransform.getPermissionsGroupedToSelectArray( props.permissionsList )}
+                                isObject
+                                displayValue="value"
+                                groupBy='group'
+                                id="permissions"
+                                class="dg-form-field-full"
+                                placeholder="Select Permissions"
+                                labelClass="dg-form-label"
+                            />
+                        </div>
+
+                        <div class="dg-form-full-field-wrapper">
+                            <Label for="roles">Roles</Label>
                             <Multiselect
                                 name="roles"
                                 options={props.rolesList}

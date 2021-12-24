@@ -27,12 +27,15 @@ const IndexPage: Component = () =>
 
     const createAction = async ( payload: any ) =>
     {
-        const create = userRepository.createUser( payload );
-        const data = await create();
+        const permissions = payload.permissions.map( ( permission: any ) => permission.value );
+        const data = { ...payload, country: payload.country?.value, permissions };
+        const create = userRepository.createUser( data );
+        const response = await create();
+
         // // assign roles
         // if ( payload.roles && payload.roles.length > 0 )
         // {
-        //     const { id } = data;
+        //     const { id } = response;
         //     // const rolesRes = await  assignUserRole( id, payload.roles );
 
         // }
@@ -41,8 +44,8 @@ const IndexPage: Component = () =>
     return (
         <PrivateLayout>
             <UserCreate
-            // permissionsList={getPermissions()}
                 createAction={createAction}
+                permissionsList={getPermissions()}
                 rolesList={getRoles()}
             />
         </PrivateLayout>

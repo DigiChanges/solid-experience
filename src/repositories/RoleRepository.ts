@@ -28,24 +28,24 @@ class RoleRepository
         return HttpAxiosRequest( config );
     };
 
-    public updateRole ( id: string, body: any )
+    public updateRole ( id: string, data: any )
     {
 
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${update}/${id}`,
             method: 'PUT',
-            data: body
+            data
         };
 
         return HttpAxiosRequest( config, this.user );
     }
 
-    public createRole ( body: any )
+    public createRole ( data: any )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${create}`,
             method: 'POST',
-            data: body
+            data
         };
 
         return HttpAxiosRequest( config, this.user );

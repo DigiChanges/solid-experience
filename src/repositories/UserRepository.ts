@@ -29,24 +29,24 @@ class UserRepository
     };
 
 
-    public updateUser ( id: string, body: any )
+    public updateUser ( id: string, data: any )
     {
 
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${update}/${id}`,
             method: 'PUT',
-            data: body
+            data
         };
 
         return HttpAxiosRequest( config, this.user );
     }
 
-    public createUser ( body: any )
+    public createUser ( data: any )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${create}`,
             method: 'POST',
-            data: JSON.stringify( body )
+            data
         };
 
         return HttpAxiosRequest( config, this.user );
