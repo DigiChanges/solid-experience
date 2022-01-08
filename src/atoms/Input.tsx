@@ -3,19 +3,31 @@ import { InputForm } from '@digichanges/solid-components';
 import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
 
-type InputProps = Omit<InputFormProps, 'value'>
+type InputFormPropsWithoutValue = Omit<InputFormProps, 'value'>
+type InputProps = InputFormPropsWithoutValue & {
+    value?: any
+}
+
+type setValue = ( name: string, value: any ) => void;
+
+const handleSelect = ( { setValue }: { setValue: setValue } ) => ( event: any ) =>
+{
+    const { name, value } = event.target;
+    setValue( name, value );
+};
+
 
 const Input: Component<InputProps> = ( props ) =>
 {
     const { field, form } = useField( props.name );
-    const formHandler = form.formHandler;
 
     return (
         <InputForm
-            {...props}
             value={field.value() as string}
             errorChildren={field.error()}
-            useHandler={formHandler}
+            checked={props.type === 'radio' && props.value === field.value()}
+            onChange={handleSelect( { setValue: form.setValue } )}
+            {...props}
         />
     );
 };
