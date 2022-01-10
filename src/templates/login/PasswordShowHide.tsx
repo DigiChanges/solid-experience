@@ -3,17 +3,25 @@ import { InputPassword } from '@digichanges/solid-components';
 import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
 
-const PasswordShowHide: Component<InputFormProps> = props =>
+type PasswordShowHideProps = Omit<InputFormProps, 'value'>
+type setValue = ( name: string, value: any ) => void;
+
+const handleSelect = ( { setValue }: { setValue: setValue } ) => ( event: any ) =>
+{
+    const { name, value } = event.target;
+    setValue( name, value );
+};
+
+const PasswordShowHide: Component<PasswordShowHideProps> = props =>
 {
     const { field, form } = useField( props.name );
-    const formHandler = form.formHandler;
 
     return (
         <InputPassword
-            {...props}
             value={field.value() as string}
-            useHandler={formHandler}
             errorChildren={field.error()}
+            onChange={handleSelect( { setValue: form.setValue } )}
+            {...props}
         />
     );
 };

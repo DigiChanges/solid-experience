@@ -17,7 +17,7 @@ interface LoginFormProps {
 
 const LoginForm: Component<LoginFormProps> = props =>
 {
-    const [ user, { addUser } ] = useApplicationContext();
+    const [ , { addUser } ]: any = useApplicationContext();
     const authRepository = new AuthRepository();
     const navigate = useNavigate();
     return (
