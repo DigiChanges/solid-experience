@@ -5,6 +5,7 @@ import PrivateLayout from '../../../templates/layout/PrivateLayout';
 import AuthRepository from '../../../repositories/AuthRepository';
 import { useApplicationContext } from '../../../context/context';
 import RoleRepository from '../../../repositories/RoleRepository';
+import { useNavigate } from 'solid-app-router';
 // import { getRoles } from '../../../redux/roles/actions';
 // import { getPermissions } from '../../../redux/auth/actions';
 // import { createUser } from '../../../redux/users/actions';
@@ -19,18 +20,18 @@ const IndexPage: Component = () =>
     const roleRepository = new RoleRepository( user() );
     const [ getRoles ] = createResource( roleRepository.getRoles() );
     const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
-
-    // const assignUserRole = async ( userId: string, roleIds: any[] ) =>
-    // {
-    //     await userRepository.assignUserRole( userId, roleIds );
-    // };
+    const navigate = useNavigate();
 
     const createAction = async ( payload: any ) =>
     {
         const permissions = payload.permissions.map( ( permission: any ) => permission.value );
-        const data = { ...payload, country: payload.country?.value, permissions };
+        const documentType = payload.documentType?.value;
+        const country = payload.country?.value;
+        const enable = payload.enable?.value;
+        const data = { ...payload, country, documentType, enable, permissions };
         const create = userRepository.createUser( data );
         const response = await create();
+        navigate( '/users', { replace : true } );
 
         // // assign roles
         // if ( payload.roles && payload.roles.length > 0 )

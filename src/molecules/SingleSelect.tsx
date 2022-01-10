@@ -20,10 +20,10 @@ const SingleSelect: Component<any> = ( props ) =>
 
     return (
         <Multiselect
-            {...props}
             singleSelect
             selectedValues={ field.value() ? [ field.value() ] : null }
             onSelect={handleSelect( { setValue: form.setValue, name: props.name } )}
+            {...props}
         />
     );
 };
