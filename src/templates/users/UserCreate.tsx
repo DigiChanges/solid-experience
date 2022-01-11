@@ -100,7 +100,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         roles: [],
                         enable: { label: 'Enabled', value: true }
                     }}
-                    // validation={UserCreateSchema}
+                    validation={UserCreateSchema}
                     onSubmit={async ( form ) =>
                     {
                         props.createAction( form.values );
