@@ -1,31 +1,57 @@
-// import RoleUpdate from "../../../templates/roles/RoleUpdate";
-// import { IRolePayload } from '../../../interfaces/role';
-// import withAuth from '../../../providers/withAuth';
-// import { getPermissions } from '../../../redux/auth/actions';
-// import { getRole, resetRoleSelected, updateRole } from '../../../redux/roles/actions';
-import { useParams } from 'solid-app-router';
+import { useNavigate, useParams } from 'solid-app-router';
 import { Component, createResource } from 'solid-js';
+import { useApplicationContext } from '../../../../context/context';
+import AuthRepository from '../../../../repositories/AuthRepository';
+import RoleRepository from '../../../../repositories/RoleRepository';
 import UserRepository from '../../../../repositories/UserRepository';
 import PrivateLayout from '../../../../templates/layout/PrivateLayout';
 import UserUpdate from '../../../../templates/users/UserUpdate';
 
 const IndexPage: Component = () =>
 {
-    const userRepository = new UserRepository();
-    const { id } = useParams<{ id: string ; }> ();
-    const [ user ] = createResource( userRepository.getOne ( id ) );
 
-    const updateAction = async ( id: string, body: any ) =>
+    const { id } = useParams<{ id: string ; }> ();
+    const [ user ]: any = useApplicationContext();
+    const authRepository = new AuthRepository( user() );
+    const roleRepository = new RoleRepository( user() );
+    const userRepository = new UserRepository( user() );
+    const [ userSelected ] = createResource( userRepository.getOne ( id ) );
+
+    const [ getRoles ] = createResource( roleRepository.getRoles() );
+
+    const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
+    const navigate = useNavigate();
+    // const updateAction = async ( id: string, body: any ) =>
+    // {
+    //     void await userRepository.updateUser( id, body );
+    // };
+    const updateAction = async ( payload: any ) =>
     {
-        void await userRepository.updateUser( id, body );
+        const permissions = payload.permissions.map( ( permission: any ) => permission.value );
+        const documentType = payload.documentType?.value;
+        const country = payload.country?.value;
+        const enable = payload.enable?.value;
+        const data = { ...payload, country, documentType, enable, permissions };
+        const update = userRepository.updateUser( id, data );
+        const response = await update();
+        navigate( '/users', { replace : true } );
+
+        // // assign roles
+        // if ( payload.roles && payload.roles.length > 0 )
+        // {
+        //     const { id } = response;
+        //     // const rolesRes = await  assignUserRole( id, payload.roles );
+
+        // }
     };
 
     return <PrivateLayout>
         <UserUpdate
             updateAction={updateAction}
-            userSelected={user()}
+            userSelected={userSelected()}
             idSelected={id}
-            // permissionsList={Auth.permissionsList}
+            permissionsList={getPermissions()}
+            rolesList={getRoles()}
         />
     </PrivateLayout>;
 };

@@ -1,12 +1,3 @@
-
-// import MultiSelect from '../../atoms/MultiSelect';
-// import ButtonConfirm from '../../molecules/ButtonConfirm';
-// import ButtonClose from '../../molecules/ButtonClose';
-// import { SelectTransform } from '../../transforms/default';
-// import DGDatePicker from '../../atoms/DGDatePicker';
-// import SimpleSelect from '../../atoms/SimpleSelect';
-// import { country, documentTypeOptions, states } from '../../entities';
-// import SelectStyle from '../../assets/customStyles/SelectStyle';
 import Title from '../../atoms/Title';
 import { IUserApi } from '../../interfaces/user';
 import { Component } from 'solid-js';
@@ -16,26 +7,39 @@ import UserUpdateSchema from '../../SchemaValidations/UserUpdateSchema';
 import { Form } from 'solid-js-form';
 import Label from '../../atoms/Label';
 import { Link } from 'solid-app-router';
+import SingleSelect from '../../molecules/SingleSelect';
+import { country, documentTypeOptions, states } from '../../entities';
+import PasswordShowHide from '../login/PasswordShowHide';
+import Multiselect from '../../molecules/Multiselect';
+import { SelectTransform } from '../../transforms/default';
+import { IRoleApi } from '../../interfaces/role';
 
 
 interface UserUpdateTemplateProps
 {
-    permissionsList?: string[];
-    // rolesList: IRoleApi[];
-    updateAction?: any;
-    userSelected?: IUserApi;
+    permissionsList: any;
+    updateAction: any;
+    userSelected: IUserApi;
     idSelected:string;
-    // props?: any;
-
+    rolesList: IRoleApi[];
 }
+const singleSelectStyle = {
+    // eslint-disable-next-line solid/style-prop
+    searchBox: { 'max-height': '40px' },
+    // eslint-disable-next-line solid/style-prop
+    inputField: { 'max-height': '40px', 'padding': '0 10px' }
+};
 
-// const flatPermissionsList = (permissionsList) => {
-//    const newPermissionsList = [];
-//   permissionsList && permissionsList.forEach(permission => {
-//       newPermissionsList.push(...permission.permissions);
-//   });
-//   return newPermissionsList;
-// }
+const documentTypeMultiSelectStyle = {
+    ...singleSelectStyle,
+    // eslint-disable-next-line solid/style-prop
+    multiselectContainer: { 'max-width': '100px' },
+    // eslint-disable-next-line solid/style-prop
+    searchBox: { ...singleSelectStyle.searchBox,
+        'min-width': '80px',
+        'border-radius': '20px 0 0 20px'
+    }
+};
 
 const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
 {
@@ -56,18 +60,19 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         birthday: props.userSelected?.birthday,
                         documentType: props.userSelected?.documentType,
                         documentNumber: props.userSelected?.documentNumber,
-                        gender: "female",
+                        gender: 'female',
                         phone: props.userSelected?.phone,
                         country: props.userSelected?.country,
                         address: props.userSelected?.address,
                         roles: props.userSelected?.roles.map( role => role.id ),
-                        permissions: props.userSelected?.permissions,
+                        permissions: SelectTransform.getOptionsSimpleArray( props.userSelected?.permissions ?? []  ),
                         enable: props.userSelected?.enable
                     }}
-                    validation={UserUpdateSchema}
-                    onSubmit={async ( form) =>
+                    // validation={UserUpdateSchema}
+                    onSubmit={async ( form ) =>
                     {
-                        props.updateAction(props.idSelected, form.values);
+
+                        props.updateAction( form.values );
 
                     }}
                 >
@@ -75,6 +80,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         <span class="w-full text-xs text-bold">PERSONAL INFORMATION</span>
                         <div class="dg-form-full-field-wrapper">
                             <Input
+                                style={{ display: 'block' }}
                                 name="firstName"
                                 type="text"
                                 id="firstName"
@@ -96,104 +102,105 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
                         <div class="dg-form-quarter-field-wrapper">
-                            {/* <Label for="documentType" class="dg-form-label">
-                            ID number
-                            </Label> */}
+                            <Label for="documentType" class="dg-form-label">ID number</Label>
                             <div class="flex w-full">
-                                {/* <Multiselect*/}
-                                {/*    options={[ 'yellow', 'blue', 'pink', 'white' ]}*/}
-                                {/*    onSelect={console.log}*/}
-                                {/*    onRemove={console.log}*/}
-                                {/*    selectedValues={[ 'yellow', 'pink' ]}*/}
-                                {/* /> */}
-                                {/* <Input*/}
-                                {/*    name="documentType"*/}
-                                {/*    id="documentType"*/}
-                                {/*    component={SimpleSelect}*/}
-                                {/*    options={documentTypeOptions}*/}
-                                {/*    selectStyle={SelectStyle}*/}
-                                {/* />*/}
-                                {/* <Input*/}
-                                {/*    name="documentNumber"*/}
-                                {/*    type="text"*/}
-                                {/*    id="documentNumber"*/}
-                                {/*    class="flex-1 dg-form-field-quarter rounded-l-none"*/}
-                                {/*    placeholder="Enter ID"*/}
-                                {/* />*/}
+                                <SingleSelect
+                                    id="documentType"
+                                    name="documentType"
+                                    options={documentTypeOptions}
+                                    isObject
+                                    displayValue="label"
+                                    style={documentTypeMultiSelectStyle}
+                                    // class="dg-form-field-full"
+                                    // style={{ 'border-radius': '100', 'height': '10px' }}
+                                    placeholder="Type"
+                                    labelClass="dg-form-label"
+                                />
+                                <Input
+                                    labelName=''
+                                    name="documentNumber"
+                                    type="text"
+                                    id="documentNumber"
+                                    class="flex-1 dg-form-field-quarter rounded-l-none"
+                                    placeholder="Enter ID"
+                                />
                             </div>
                         </div>
 
-                        {/* <div class="dg-form-quarter-field-wrapper text-center">
+                        <div class="dg-form-quarter-field-wrapper text-center">
                             <Label for="gender" class="dg-form-label text-left">
-                          Gender
+                                Gender
                             </Label>
-                            <Input
-                                name="gender"
-                                type="radio"
-                                id="gender"
-                                // value="female"
-                                class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
-                                labelClass="text-gray-400 text-xs font-bold mr-1"
-                                labelName="F"
-                            />
-                            <Input
-                                name="gender"
-                                type="radio"
-                                id="gender"
-                                // value="male"
-                                class="border-1 border-main-gray-500 bg-gray-800 p-3 focus:bg-indigo-300 focus:border-white m-1"
-                                labelClass="text-gray-400 text-xs font-bold mr-1"
-                                labelName="M"
-                            />
-                            <Input
-                                name="gender"
-                                type="radio"
-                                id="gender"
-                                // value="other"
-                                class="border-1 border-main-gray-500 bg-gray-800 p-3 focus:bg-indigo-300 focus:border-white m-1"
-                                labelClass="text-gray-400 text-xs font-bold mr-1"
-                                labelName="Other"
-                            />
-                        </div> */}
+                            <div class='flex'>
 
-                        {/* <div class="dg-form-quarter-field-wrapper"> */}
-                        {/*    <Label for="birthdate" class="dg-form-label">*/}
-                        {/*      Birthday*/}
-                        {/*    </Label>*/}
-                        {/*    <Input*/}
-                        {/*        name="birthday"*/}
-                        {/*        component={DGDatePicker}*/}
-                        {/*        id="birthday"*/}
-                        {/*        class="dg-form-field-full"*/}
-                        {/*        dateFormatUI="d/MM/yyyy"*/}
-                        {/*        dateFormatValue="D/MM/YYYY"*/}
-                        {/*        placeholder="Choose your birthday..."*/}
-                        {/*    />*/}
-                        {/* </div> */}
-                        {/* <div class="dg-form-quarter-field-wrapper"> */}
-                        {/*    <Label for="enable" class="dg-form-label">*/}
-                        {/*      Enable*/}
-                        {/*    </Label>*/}
-                        {/*    <Input*/}
-                        {/*        name="enable"*/}
-                        {/*        id="enable"*/}
-                        {/*        component={SimpleSelect}*/}
-                        {/*        selectStyle={SelectStyle}*/}
-                        {/*        options={states}*/}
-                        {/*    />*/}
-                        {/* </div> */}
-                        {/*  <div class="dg-form-full-field-wrapper">*/}
-                        {/*      <Label for="country" class="dg-form-label">*/}
-                        {/* Country*/}
-                        {/*      </Label>*/}
-                        {/*      <Input*/}
-                        {/*          name="country"*/}
-                        {/*          id="country"*/}
-                        {/*          options={country}*/}
-                        {/*          component={SimpleSelect}*/}
-                        {/*          selectStyle={SelectStyle}*/}
-                        {/*      />*/}
-                        {/*  </div>*/}
+                                <Input
+                                    name="gender"
+                                    type="radio"
+                                    id="gender-f"
+                                    value="fame"
+                                    class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
+                                    labelClass="text-gray-400 text-xs font-bold mr-1"
+                                    labelName="F"
+                                />
+                                <Input
+                                    name="gender"
+                                    type="radio"
+                                    id="gender-m"
+                                    value="male"
+                                    class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
+                                    labelClass="text-gray-400 text-xs font-bold mr-1"
+                                    labelName="M"
+                                />
+                                <Input
+                                    name="gender"
+                                    type="radio"
+                                    id="gender-o"
+                                    value="other"
+                                    class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
+                                    labelClass="text-gray-400 text-xs font-bold mr-1"
+                                    labelName="Other"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="dg-form-quarter-field-wrapper">
+                            <Input
+                                name="birthday"
+                                labelName='Birthday'
+                                type="date"
+                                id="birthday"
+                                class="dg-form-field-full"
+                                placeholder="Choose the birthday..."
+                            />
+                        </div>
+                        <div class="dg-form-quarter-field-wrapper">
+                            <Label for="enable" class="dg-form-label">Enable</Label>
+                            <SingleSelect
+                                id="enable"
+                                name="enable"
+                                options={states}
+                                isObject
+                                displayValue="label"
+                                style={singleSelectStyle}
+                                placeholder="Type"
+                                labelClass="dg-form-label"
+                            />
+                        </div>
+
+
+                        <div class="dg-form-full-field-wrapper">
+                            <Label for="country">Country</Label>
+                            <SingleSelect
+                                id="country"
+                                name="country"
+                                options={country}
+                                isObject
+                                displayValue="label"
+                                class="dg-form-field-full"
+                                placeholder="Select Country"
+                                labelClass="dg-form-label"
+                            />
+                        </div>
                         <div class="dg-form-full-field-wrapper">
                             <Input
                                 name="address"
@@ -229,9 +236,8 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
                         <div class="w-full mb-5 pr-2">
-                            <Input
+                            <PasswordShowHide
                                 name="password"
-                                type="password"
                                 id="password"
                                 class="dg-form-field-full"
                                 placeholder="Enter Password"
@@ -240,9 +246,8 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
                         <div class="w-full mb-5 pr-2">
-                            <Input
+                            <PasswordShowHide
                                 name="passwordConfirmation"
-                                type="password"
                                 id="passwordConfirmation"
                                 class="dg-form-field-full"
                                 placeholder="Repeat Password"
@@ -250,33 +255,35 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 labelName="Confirm Password"
                             />
                         </div>
-                        {/*  <div class="dg-form-full-field-wrapper">*/}
-                        {/*      <Label for="permissions" class="dg-form-label">*/}
-                        {/* Permissions*/}
-                        {/*      </Label>*/}
-                        {/*      <Input*/}
-                        {/*          name="permissions"*/}
-                        {/*          id="permissions"*/}
-                        {/*          component={MultiSelect}*/}
-                        {/*          options={SelectTransform.getOptionsSimpleArray( permissionsList )}*/}
-                        {/*          isMulti*/}
-                        {/*          placeholder="Select permissions"*/}
-                        {/*          selectStyle={SelectStyle}*/}
-                        {/*      />*/}
-                        {/*  </div>*/}
-                        {/*  <div class="dg-form-full-field-wrapper">*/}
-                        {/*      <Label for="roles" class="dg-form-label">*/}
-                        {/* Roles */}
-                        {/*      </Label>*/}
-                        {/*      <Input*/}
-                        {/*          name="roles"*/}
-                        {/*          id="roles"*/}
-                        {/*          component={MultiSelect}*/}
-                        {/*          options={SelectTransform.getOptionsObjectArray( rolesList, 'name', 'id' )}*/}
-                        {/*          isMulti*/}
-                        {/*          selectStyle={SelectStyle}*/}
-                        {/*      />*/}
-                        {/*  </div>*/}
+                        <div class="dg-form-full-field-wrapper">
+                            <Label for="permissions">Permissions</Label>
+                            <Multiselect
+                                name="permissions"
+                                options={SelectTransform.getPermissionsGroupedToSelectArray( props.permissionsList )}
+                                isObject
+                                displayValue="value"
+                                groupBy='group'
+                                id="permissions"
+                                class="dg-form-field-full"
+                                placeholder="Select Permissions"
+                                labelClass="dg-form-label"
+                            />
+                        </div>
+
+                        <div class="dg-form-full-field-wrapper">
+                            <Label for="roles">Roles</Label>
+                            <Multiselect
+                                name="roles"
+                                options={props.rolesList}
+                                isObject
+                                displayValue="name"
+                                id="roles"
+                                class="dg-form-field-full"
+                                placeholder="Select Roles"
+                                labelClass="dg-form-label"
+                            />
+                        </div>
+
                         <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
                                 Close
                         </Link>
