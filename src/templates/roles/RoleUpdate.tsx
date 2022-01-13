@@ -1,40 +1,37 @@
-// import MultiSelect from '../../atoms/MultiSelect';
-// import { SelectTransform } from '../../transforms/default';
-// import SelectStyle from '../../assets/customStyles/SelectStyle';
-// import SimpleSelect from '../../atoms/SimpleSelect';
-// import { states } from '../../entities';
-
 import { Link } from 'solid-app-router';
 import { Component, Show } from 'solid-js';
-// import RoleUpdateSchema from '../../SchemaValidations/RoleUpdateSchema';
 import { Form } from 'solid-js-form';
 import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
 import Title from '../../atoms/Title';
 import { IRoleApi } from '../../interfaces/role';
-
-
+import Multiselect from '../../molecules/Multiselect';
+import { Label } from '@digichanges/solid-components';
+import { SelectTransform } from '../../transforms/default';
+import SingleSelect from '../../molecules/SingleSelect';
+import RoleSchema from '../../SchemaValidations/RoleSchema';
+import { states } from '../../entities';
 interface RoleUpdateTemplateProps
 {
-    permissionsList?: string[];
+    permissionsList: any;
     // rolesList: IRoleApi[];
-    updateAction?: any;
-    roleSelected?: IRoleApi;
+    updateAction: any;
+    roleSelected: IRoleApi;
     idSelected:string;
     // props?: any;
 
 }
-
-// const flatPermissionsList = (permissionsList) => {
-//    const newPermissionsList = [];
-//   permissionsList && permissionsList.forEach(permission => {
-//       newPermissionsList.push(...permission.permissions);
-//   });
-//   return newPermissionsList;
-// }
+const singleSelectStyle = {
+    // eslint-disable-next-line solid/style-prop
+    searchBox: { 'max-height': '40px' },
+    // eslint-disable-next-line solid/style-prop
+    inputField: { 'max-height': '40px', 'padding': '0 10px' }
+};
 
 const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
-    (
+{
+    return (
+
         <section class="px-4">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold" titleType="h1">
@@ -51,16 +48,18 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                     initialValues={{
                         name: props.roleSelected?.name,
                         slug: props.roleSelected?.slug,
-                        permissions: props.roleSelected?.permissions,
+                        permissions: SelectTransform.getOptionsSimpleArray( props.roleSelected?.permissions ?? []  ),
                         enable: props.roleSelected?.enable
 
                     }}
-                    // validation={RoleUpdateSchema}
+                    validation={RoleSchema}
                     onSubmit={async ( form ) =>
                     {
-                        props.updateAction( props.idSelected, form.values );
+
+                        props.updateAction( form.values );
 
                     }}
+
                 >
                     <div class="flex flex-wrap text-sm">
                         <div class="dg-form-full-field-wrapper">
@@ -85,30 +84,33 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 labelName="Slug"
                             />
                         </div>
-                        {/* <div class="dg-form-full-field-wrapper">
-                                <Label htmlFor="permissions" class="dg-form-label">
-                                    Permissions
-                                </Label>
-                                <Input
-                                    name="permissions"
-                                    id="permissions"
-                                    component={MultiSelect}
-                                    options={SelectTransform.getOptionsSimpleArray(permissionsList)}
-                                    isMulti
-                                    placeholder="Select permissions"
-                                    selectStyle={SelectStyle}
-                                />
-                            </div> */}
-                        {/* <div class="dg-form-quarter-field-wrapper">
-
-                        <Input
-                            name="enable"
-                            id="enable"
-                            component={SimpleSelect}
-                            selectStyle={SelectStyle}
-                            options={states}
-                        />
-                    </div> */}
+                        <div class="dg-form-full-field-wrapper">
+                            <Label for="permissions">Permissions</Label>
+                            <Multiselect
+                                name="permissions"
+                                options={SelectTransform.getPermissionsGroupedToSelectArray( props.permissionsList )}
+                                isObject
+                                displayValue="value"
+                                groupBy='group'
+                                id="permissions"
+                                class="dg-form-field-full"
+                                placeholder="Select Permissions"
+                                labelClass="dg-form-label"
+                            />
+                        </div>
+                        <div class="dg-form-quarter-field-wrapper">
+                            <Label for="enable" class="dg-form-label">Enable</Label>
+                            <SingleSelect
+                                id="enable"
+                                name="enable"
+                                options={states}
+                                isObject
+                                displayValue="label"
+                                style={singleSelectStyle}
+                                placeholder="Type"
+                                labelClass="dg-form-label"
+                            />
+                        </div>
                         <div class="w-full mt-5 flex justify-end">
 
                             <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
@@ -122,5 +124,5 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
             </Show>
         </section>
     );
-
+};
 export default RoleUpdate;

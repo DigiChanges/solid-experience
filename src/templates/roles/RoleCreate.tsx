@@ -9,12 +9,19 @@ import { useNavigate } from 'solid-app-router';
 import Multiselect from '../../molecules/Multiselect';
 import { Label } from '@digichanges/solid-components';
 import { SelectTransform } from '../../transforms/default';
+import SingleSelect from '../../molecules/SingleSelect';
+import { states } from '../../entities';
 
 interface RoleCreateTemplateProps {
     permissionsList: string[];
     createAction: any;
 }
-
+const singleSelectStyle = {
+    // eslint-disable-next-line solid/style-prop
+    searchBox: { 'max-height': '40px' },
+    // eslint-disable-next-line solid/style-prop
+    inputField: { 'max-height': '40px', 'padding': '0 10px' }
+};
 const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
     const navigate = useNavigate();
@@ -32,7 +39,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                     name: '',
                     slug: '',
                     permissions: [],
-                    enable: false
+                    enable: { label: 'Enabled', value: true }
                 }}
                 validation={RoleSchema}
 
@@ -78,6 +85,19 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                             id="permissions"
                             class="dg-form-field-full"
                             placeholder="Select Permissions"
+                            labelClass="dg-form-label"
+                        />
+                    </div>
+                    <div class="dg-form-quarter-field-wrapper">
+                        <Label for="enable" class="dg-form-label">Enable</Label>
+                        <SingleSelect
+                            id="enable"
+                            name="enable"
+                            options={states}
+                            isObject
+                            displayValue="label"
+                            style={singleSelectStyle}
+                            placeholder="Type"
                             labelClass="dg-form-label"
                         />
                     </div>

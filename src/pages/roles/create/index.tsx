@@ -19,8 +19,8 @@ const IndexPage: Component = () =>
     const createAction = async ( payload: any ) =>
     {
         const permissions = payload.permissions.map( ( permission: any ) => permission.value );
-
-        const data = { ...payload, permissions };
+        const enable = payload.enable?.value;
+        const data = { ...payload, enable, permissions };
         const create = roleRepository.createRole( data );
         const response = await create();
         navigate( '/roles', { replace : true } );
