@@ -6,11 +6,6 @@ import AuthRepository from '../../../repositories/AuthRepository';
 import { useApplicationContext } from '../../../context/context';
 import RoleRepository from '../../../repositories/RoleRepository';
 import { useNavigate } from 'solid-app-router';
-// import { getRoles } from '../../../redux/roles/actions';
-// import { getPermissions } from '../../../redux/auth/actions';
-// import { createUser } from '../../../redux/users/actions';
-// import { IUserPayload } from '../../../interfaces/user';
-// import withAuth from '../../../providers/withAuth';
 
 const IndexPage: Component = () =>
 {
@@ -28,18 +23,20 @@ const IndexPage: Component = () =>
         const documentType = payload.documentType?.value;
         const country = payload.country?.value;
         const enable = payload.enable?.value;
+        const rolesId = payload.roles.map( ( role: any ) => role.id );
         const data = { ...payload, country, documentType, enable, permissions };
         const create = userRepository.createUser( data );
         const response = await create();
+        // assign roles
+        if ( payload.roles && payload.roles.length > 0 )
+        {
+            const { id } = response;
+            const rolesRes = userRepository.assignUserRole( id, rolesId );
+            const res = await rolesRes();
+
+        }
         navigate( '/users', { replace : true } );
 
-        // // assign roles
-        // if ( payload.roles && payload.roles.length > 0 )
-        // {
-        //     const { id } = response;
-        //     // const rolesRes = await  assignUserRole( id, payload.roles );
-
-        // }
     };
 
     return (
