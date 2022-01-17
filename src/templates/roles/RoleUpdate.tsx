@@ -9,7 +9,7 @@ import Multiselect from '../../molecules/Multiselect';
 import { Label } from '@digichanges/solid-components';
 import { SelectTransform } from '../../transforms/default';
 import SingleSelect from '../../molecules/SingleSelect';
-import RoleSchema from '../../SchemaValidations/RoleSchema';
+// import RoleSchema from '../../SchemaValidations/RoleSchema';
 import { states } from '../../entities';
 interface RoleUpdateTemplateProps
 {
@@ -49,10 +49,9 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         name: props.roleSelected?.name,
                         slug: props.roleSelected?.slug,
                         permissions: SelectTransform.getOptionsSimpleArray( props.roleSelected?.permissions ?? []  ),
-                        enable: props.roleSelected?.enable
-
+                        enable: states.find( enableOption => enableOption.value === props.roleSelected?.enable )
                     }}
-                    validation={RoleSchema}
+                    // validation={RoleSchema}
                     onSubmit={async ( form ) =>
                     {
 

@@ -3,7 +3,7 @@ import { IUserApi } from '../../interfaces/user';
 import { Component } from 'solid-js';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
-import UserUpdateSchema from '../../SchemaValidations/UserUpdateSchema';
+// import UserUpdateSchema from '../../SchemaValidations/UserUpdateSchema';
 import { Form } from 'solid-js-form';
 import Label from '../../atoms/Label';
 import { Link } from 'solid-app-router';
@@ -43,6 +43,7 @@ const documentTypeMultiSelectStyle = {
 
 const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
 {
+
     return (
         <section class="px-4">
             <div class="mb-2 ">
@@ -58,21 +59,22 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         lastName: props.userSelected?.lastName,
                         email: props.userSelected?.email,
                         birthday: props.userSelected?.birthday,
-                        documentType: props.userSelected?.documentType,
+                        documentType: documentTypeOptions.find( dniOption => dniOption.value === props.userSelected?.documentType ),
                         documentNumber: props.userSelected?.documentNumber,
-                        gender: 'female',
+                        gender: props.userSelected?.gender,
                         phone: props.userSelected?.phone,
-                        country: props.userSelected?.country,
+                        country: country.find( countryOption => countryOption.value === props.userSelected?.country ),
                         address: props.userSelected?.address,
-                        roles: props.userSelected?.roles.map( role => role.id ),
+                        roles:SelectTransform.getOptionsObjectArray( props.userSelected?.roles, 'name', 'id' ),
                         permissions: SelectTransform.getOptionsSimpleArray( props.userSelected?.permissions ?? []  ),
-                        enable: props.userSelected?.enable
+                        enable: states.find( enableOption => enableOption.value === props.userSelected?.enable )
                     }}
                     // validation={UserUpdateSchema}
                     onSubmit={async ( form ) =>
                     {
 
                         props.updateAction( form.values );
+
 
                     }}
                 >
@@ -274,9 +276,9 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             <Label for="roles">Roles</Label>
                             <Multiselect
                                 name="roles"
-                                options={props.rolesList}
+                                options={SelectTransform.getOptionsObjectArray( props.rolesList, 'name', 'id' )}
                                 isObject
-                                displayValue="name"
+                                displayValue="label"
                                 id="roles"
                                 class="dg-form-field-full"
                                 placeholder="Select Roles"
@@ -293,7 +295,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                     </div>
                 </Form>
 
-            ) : <p>No role selected</p> }
+            ) : <p>No user selected</p> }
         </section>
     );
 };
