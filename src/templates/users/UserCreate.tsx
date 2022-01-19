@@ -1,18 +1,8 @@
 import { Component, /* DEV, */ Show } from 'solid-js';
 import { Form } from 'solid-js-form';
-// import MultiSelect from '../../atoms/MultiSelect';
-// import SimpleSelect from '../../atoms/SimpleSelect';
 import Title from '../../atoms/Title';
-// import Label from '../../atoms/Label';
-// import { SelectTransform } from '../../transforms/default';
-// import UserCreateSchema from '../../SchemaValidations/UserCreateSchema';
-// import { IRoleApi } from '../../interfaces/role';
-// import DGDatePicker from '../../atoms/DGDatePicker';
-// import { documentTypeOptions, country, states } from '../../entities';
-// import SelectStyle from '../../assets/customStyles/SelectStyle';
 import UserCreateSchema from '../../SchemaValidations/UserCreateSchema';
 import Input from '../../atoms/Input';
-// import Button from '../../atoms/Button';
 import ButtonClose from '../../molecules/ButtonClose';
 import ButtonConfirm from '../../molecules/ButtonConfirm';
 import { useNavigate } from 'solid-app-router';
@@ -23,8 +13,6 @@ import SingleSelect from '../../molecules/SingleSelect';
 import { country, documentTypeOptions, states } from '../../entities';
 import { IRoleApi } from '../../interfaces/role';
 import { SelectTransform } from '../../transforms/default';
-// import { getOwner } from 'solid-js/web';
-// import { Multiselect } from '@digichanges/solid-components';
 
 interface UserCreateTemplateProps
 {
@@ -88,11 +76,11 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         lastName: '',
                         email: '',
                         birthday: '',
-                        documentType: null,
+                        documentType: undefined,
                         documentNumber: '',
                         gender: '',
                         phone: '',
-                        country: null,
+                        country: undefined,
                         address: '',
                         password: '',
                         passwordConfirmation: '',
@@ -100,7 +88,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         roles: [],
                         enable: { label: 'Enabled', value: true }
                     }}
-                    // validation={UserCreateSchema}
+                    validation={UserCreateSchema}
                     onSubmit={async ( form ) =>
                     {
                         props.createAction( form.values );
@@ -118,6 +106,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder="Enter First Name"
                                 labelClass="dg-form-label"
                                 labelName="First name"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
@@ -129,31 +118,39 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder="Enter Last Name"
                                 labelClass="dg-form-label"
                                 labelName="Last name"
+                                errorClass="ml-1"
                             />
                         </div>
-                        <div class="dg-form-quarter-field-wrapper">
+                        {/* dg-form-quarter-field-wrapper */}
+                        <div class="dg-form-quarter-field-wrapper ">
                             <Label for="documentType" class="dg-form-label">ID number</Label>
                             <div class="flex w-full">
-                                <SingleSelect
-                                    id="documentType"
-                                    name="documentType"
-                                    options={documentTypeOptions}
-                                    isObject
-                                    displayValue="label"
-                                    style={documentTypeMultiSelectStyle}
-                                    // class="dg-form-field-full"
-                                    // style={{ 'border-radius': '100', 'height': '10px' }}
-                                    placeholder="Type"
-                                    labelClass="dg-form-label"
-                                />
-                                <Input
-                                    labelName=''
-                                    name="documentNumber"
-                                    type="text"
-                                    id="documentNumber"
-                                    class="flex-1 dg-form-field-quarter rounded-l-none"
-                                    placeholder="Enter ID"
-                                />
+                                <div>
+                                    <SingleSelect
+                                        id="documentType"
+                                        name="documentType"
+                                        options={documentTypeOptions}
+                                        isObject
+                                        displayValue="label"
+                                        style={documentTypeMultiSelectStyle}
+                                        // class="dg-form-field-full"
+                                        // style={{ 'border-radius': '100', 'height': '10px' }}
+                                        placeholder="Type"
+                                        errorClass="ml-1"
+                                    />
+
+                                </div>
+                                <div>
+                                    <Input
+                                        labelName=''
+                                        name="documentNumber"
+                                        type="text"
+                                        id="documentNumber"
+                                        class="flex-1 dg-form-field-quarter rounded-l-none flex w-full mr-2"
+                                        placeholder="Enter ID"
+                                        errorClass="ml-1"
+                                    />
+                                </div>
                             </div>
                         </div>
 
@@ -171,6 +168,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
                                     labelClass="text-gray-400 text-xs font-bold mr-1"
                                     labelName="F"
+                                    errorChildren={false}
                                 />
                                 <Input
                                     name="gender"
@@ -180,15 +178,17 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
                                     labelClass="text-gray-400 text-xs font-bold mr-1"
                                     labelName="M"
+                                    errorChildren={false}
                                 />
                                 <Input
                                     name="gender"
                                     type="radio"
                                     id="gender-o"
                                     value="other"
-                                    class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
+                                    class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1 mr-2"
                                     labelClass="text-gray-400 text-xs font-bold mr-1"
                                     labelName="Other"
+                                    errorClass="ml-1"
                                 />
                             </div>
                         </div>
@@ -201,6 +201,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 id="birthday"
                                 class="dg-form-field-full"
                                 placeholder="Choose the birthday..."
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-quarter-field-wrapper">
@@ -214,21 +215,9 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 style={singleSelectStyle}
                                 placeholder="Type"
                                 labelClass="dg-form-label"
+                                errorClass="ml-1"
                             />
                         </div>
-                        {/* <div class="dg-form-quarter-field-wrapper"> */}
-                        {/*    <Label for="enable" class="dg-form-label">*/}
-                        {/*      Enable*/}
-                        {/*    </Label>*/}
-                        {/*    <Input*/}
-                        {/*        name="enable"*/}
-                        {/*        id="enable"*/}
-                        {/*        component={SimpleSelect}*/}
-                        {/*        selectStyle={SelectStyle}*/}
-                        {/*        options={states}*/}
-                        {/*    />*/}
-                        {/* </div> */}
-
                         <div class="dg-form-full-field-wrapper">
                             <Label for="country">Country</Label>
                             <SingleSelect
@@ -240,6 +229,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder="Select Country"
                                 labelClass="dg-form-label"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
@@ -251,6 +241,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder="Your address..."
                                 labelClass="dg-form-label"
                                 labelName="Address"
+                                errorClass="ml-1"
                             />
                         </div>
                         <span class="w-full mt-5"> CONTACT INFORMATION </span>
@@ -263,6 +254,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder="Enter Email"
                                 labelClass="dg-form-label"
                                 labelName="Email"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
@@ -274,6 +266,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder="Enter number"
                                 labelClass="dg-form-label"
                                 labelName="Phone"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="w-full mb-5 pr-2">
@@ -284,6 +277,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder="Enter Password"
                                 labelClass="dg-form-label"
                                 labelName="Password"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="w-full mb-5 pr-2">
@@ -294,6 +288,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder="Repeat Password"
                                 labelClass="dg-form-label"
                                 labelName="Confirm Password"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
@@ -308,6 +303,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder="Select Permissions"
                                 labelClass="dg-form-label"
+                                errorClass="ml-1"
                             />
                         </div>
 
@@ -322,6 +318,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder="Select Roles"
                                 labelClass="dg-form-label"
+                                errorClass="ml-1"
                             />
                         </div>
 

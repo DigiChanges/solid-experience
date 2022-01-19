@@ -60,6 +60,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                             placeholder="Enter name"
                             labelClass="text-main-gray-200 block mb-2"
                             labelName="Name"
+                            errorClass="ml-1"
                         />
                     </div>
                     <div class="dg-form-full-field-wrapper">
@@ -71,6 +72,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                             placeholder="Enter slug"
                             labelClass="text-main-gray-200 block mb-2"
                             labelName="Slug"
+                            errorClass="ml-1"
                         />
                     </div>
 
@@ -86,6 +88,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                             class="dg-form-field-full"
                             placeholder="Select Permissions"
                             labelClass="dg-form-label"
+                            errorClass="ml-1"
                         />
                     </div>
                     <div class="dg-form-quarter-field-wrapper">
@@ -99,6 +102,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                             style={singleSelectStyle}
                             placeholder="Type"
                             labelClass="dg-form-label"
+                            errorClass="ml-1"
                         />
                     </div>
                     <div class="w-full mt-5 flex justify-end">
