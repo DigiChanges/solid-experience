@@ -9,8 +9,8 @@ import Multiselect from '../../molecules/Multiselect';
 import { Label } from '@digichanges/solid-components';
 import { SelectTransform } from '../../transforms/default';
 import SingleSelect from '../../molecules/SingleSelect';
-// import RoleSchema from '../../SchemaValidations/RoleSchema';
 import { states } from '../../entities';
+import RoleSchema from '../../SchemaValidations/RoleSchema';
 interface RoleUpdateTemplateProps
 {
     permissionsList: any;
@@ -51,7 +51,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         permissions: SelectTransform.getOptionsSimpleArray( props.roleSelected?.permissions ?? []  ),
                         enable: states.find( enableOption => enableOption.value === props.roleSelected?.enable )
                     }}
-                    // validation={RoleSchema}
+                    validation={RoleSchema}
                     onSubmit={async ( form ) =>
                     {
 
@@ -70,6 +70,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 placeholder="Enter name"
                                 labelClass="text-main-gray-200 block mb-2"
                                 labelName="Name"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
@@ -81,6 +82,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 placeholder="Enter slug"
                                 labelClass="text-main-gray-200 block mb-2"
                                 labelName="Slug"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
@@ -95,6 +97,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder="Select Permissions"
                                 labelClass="dg-form-label"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-quarter-field-wrapper">
@@ -108,6 +111,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 style={singleSelectStyle}
                                 placeholder="Type"
                                 labelClass="dg-form-label"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="w-full mt-5 flex justify-end">
