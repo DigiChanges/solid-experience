@@ -27,7 +27,7 @@ interface userListTemplateProps
     usersList: IUserApi[];
     query?: never;
     viewMore?: never;
-    removeAction?: any
+    removeAction: any
 }
 
 const UserList: Component<userListTemplateProps> = ( props ) =>

@@ -1,3 +1,4 @@
+import { useNavigate } from 'solid-app-router';
 import { Component } from 'solid-js';
 import Button from '../../atoms/Button';
 import IconCross from '../../atoms/Icons/Stroke/IconCross';
