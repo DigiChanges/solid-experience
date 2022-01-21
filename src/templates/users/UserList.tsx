@@ -21,13 +21,14 @@ import { For } from 'solid-js';
 import { Link } from 'solid-app-router';
 import UserRemove from '../users/UserRemove';
 import ConfirmDelete from '../modal/ConfirmDelete';
+import IconLockOpen from '../../atoms/Icons/Stroke/IconLockOpen';
 
 interface userListTemplateProps
 {
     usersList: IUserApi[];
     query?: never;
     viewMore?: never;
-    removeAction?: any
+    removeAction: any;
 }
 
 const UserList: Component<userListTemplateProps> = ( props ) =>
@@ -131,13 +132,13 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
                                         <IconPencilAlt />
                                     </Link>
                                 </div>
-                                {/* <div class="h-6 w-6 my-1">
+                                <div class="h-6 w-6 my-1">
                                     <Link
                                         class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                        href={`/users/view/${item.id}`}>
-                                        <IconViewMediaObject />
+                                        href={`/users/editPassword/${item.id}`}>
+                                        <IconLockOpen />
                                     </Link>
-                                </div> */}
+                                </div>
                                 <div class="h-6 w-6 my-1">
                                     <button
                                         class="w-6 hover:text-gray-700 mr-1 focus:outline-none"

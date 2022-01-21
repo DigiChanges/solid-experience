@@ -1,3 +1,4 @@
+import { useNavigate } from 'solid-app-router';
 import { Component } from 'solid-js';
 import Button from '../../atoms/Button';
 import IconCross from '../../atoms/Icons/Stroke/IconCross';
@@ -17,6 +18,7 @@ interface ConfirmDeleteTemplateProps
 
 const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
 {
+    const navigate = useNavigate();
     const closeModal = () =>
     {
         props.setShowModal( false );
@@ -31,6 +33,7 @@ const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
     {
         ( props.action( props.idSelected ) );
         closeModal();
+        navigate( '/users', { replace : false } );
     };
 
     return (

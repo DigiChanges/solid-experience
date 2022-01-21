@@ -47,6 +47,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                         onClick={() => ( onToggled( item.path ) )}
                         getShowSubitems={getShowSubitems()}
                         routes={item}
+                        showItem={item.showItem}
                     >
                         {
 
@@ -68,6 +69,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                                                     path={sectionSelected().concat( item.path )}
                                                     icon={item.icon}
                                                     isToggled={true}
+                                                    showItem={item.showItem}
 
                                                 >
                                                 </SideBarSubItem>
