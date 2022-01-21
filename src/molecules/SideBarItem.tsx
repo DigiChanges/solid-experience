@@ -21,24 +21,22 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) =>
     {
 
         return (
-            props.showItem &&
-            <Button class=" text-white text-sm font-bold md:block pr-3 pl-4" onClick={props.onClick}>
+            props.showItem && (
+                <Button class=" text-white text-sm font-bold md:block pr-3 pl-4" onClick={props.onClick}>
 
-                {props.icon ? (
-                    <span class={'mr-1 inline-flex items-center justify-center h-8 w-6 text-lg '}>
-                        <Icon />
-                    </span>
-                ) : (
-                    <span class="mr-1 inline-flex items-center justify-center h-8 w-6 text-lg " />
-                )}
+                    {props.icon ? (
+                        <span class={'mr-1 inline-flex items-center justify-center h-8 w-6 text-lg '}>
+                            <Icon />
+                        </span>
+                    ) : (
+                        <span class="mr-1 inline-flex items-center justify-center h-8 w-6 text-lg " />
+                    )}
 
-                {name}
+                    {name}
 
-            </Button>
-
+                </Button>
+            )
         );
-
-
     };
 
     return (
