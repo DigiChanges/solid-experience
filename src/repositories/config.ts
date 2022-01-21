@@ -25,7 +25,7 @@ export const config = {
                 create: `${BACKEND_BASE_PATH}/users`,
                 update: `${BACKEND_BASE_PATH}/users`,
                 remove: `${BACKEND_BASE_PATH}/users`,
-                editPassword: `${BACKEND_BASE_PATH}/users/change-user-password/:id`,
+                editPassword: `${BACKEND_BASE_PATH}/users/change-user-password`,
                 assignRole: `${BACKEND_BASE_PATH}/users/assign-role`
             },
             roles: {

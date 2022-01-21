@@ -6,7 +6,8 @@ interface SideBarSubItemProps {
     path: string,
     icon?: any,
     isToggled?: boolean,
-    equalPath?: any
+    equalPath?: any,
+    showItem:boolean
 }
 
 const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
@@ -14,6 +15,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
     const Icon: any = props.icon;
 
     return (
+        props.showItem &&
         <div class=" flex flex-row">
             <a class="pl-9  h-8 " >
                 <Link href={props.path}>
@@ -39,6 +41,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                 </Link>
             </a>
         </div>
+
     );
 };
 

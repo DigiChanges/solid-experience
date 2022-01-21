@@ -7,7 +7,7 @@ interface SideBarItemProps {
     onClick: ( event: MouseEvent ) => void;
     getShowSubitems: any;
     routes: any;
-
+    showItem:boolean;
 }
 
 
@@ -21,6 +21,7 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) =>
     {
 
         return (
+            props.showItem &&
             <Button class=" text-white text-sm font-bold md:block pr-3 pl-4" onClick={props.onClick}>
 
                 {props.icon ? (
@@ -34,6 +35,7 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) =>
                 {name}
 
             </Button>
+
         );
 
 
