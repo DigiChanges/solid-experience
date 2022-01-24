@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'solid-app-router';
-import { Component, createResource } from 'solid-js';
+import { Component, createResource, Show } from 'solid-js';
 import { useApplicationContext } from '../../../../context/context';
 import AuthRepository from '../../../../repositories/AuthRepository';
 import RoleRepository from '../../../../repositories/RoleRepository';
@@ -42,13 +42,15 @@ const IndexPage: Component = () =>
     };
 
     return <PrivateLayout>
-        <UserUpdate
-            updateAction={updateAction}
-            userSelected={userSelected()}
-            idSelected={id}
-            permissionsList={getPermissions()}
-            rolesList={getRoles()}
-        />
+        <Show when={!userSelected.loading} fallback={() => <p>Is Loading....</p>}>
+            <UserUpdate
+                updateAction={updateAction}
+                userSelected={userSelected()}
+                idSelected={id}
+                permissionsList={getPermissions()}
+                rolesList={getRoles()}
+            />
+        </Show>
     </PrivateLayout>;
 };
 
