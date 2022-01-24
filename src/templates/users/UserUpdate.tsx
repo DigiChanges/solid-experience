@@ -59,17 +59,17 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         lastName: props.userSelected?.lastName,
                         email: props.userSelected?.email,
                         birthday: props.userSelected?.birthday,
-                        documentType: documentTypeOptions.find( dniOption => dniOption.value === props.userSelected?.documentType ),
+                        documentType: { ...documentTypeOptions.find( dniOption => dniOption.value === props.userSelected?.documentType ) },
                         documentNumber: props.userSelected?.documentNumber,
                         gender: props.userSelected?.gender,
                         phone: props.userSelected?.phone,
-                        country: country.find( countryOption => countryOption.value === props.userSelected?.country ),
+                        country: { ...country.find( countryOption => countryOption.value === props.userSelected?.country ) },
                         address: props.userSelected?.address,
                         roles:SelectTransform.getOptionsObjectArray( props.userSelected?.roles, 'name', 'id' ),
                         permissions: SelectTransform.getOptionsSimpleArray( props.userSelected?.permissions ?? []  ),
-                        enable: states.find( enableOption => enableOption.value === props.userSelected?.enable ),
-                        password:undefined,
-                        passwordConfirmation:undefined
+                        enable: { ...states.find( enableOption => enableOption.value === props.userSelected?.enable ) },
+                        password: undefined,
+                        passwordConfirmation: undefined
                     }}
                     validation={UserUpdateSchema}
                     onSubmit={async ( form ) =>
