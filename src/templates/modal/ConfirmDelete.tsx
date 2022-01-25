@@ -33,7 +33,7 @@ const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
     {
         ( props.action( props.idSelected ) );
         closeModal();
-        navigate( '/users', { replace : false } );
+        // navigate( '/users', { replace : false } );
     };
 
     return (
