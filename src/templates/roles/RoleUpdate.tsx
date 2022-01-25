@@ -49,7 +49,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         name: props.roleSelected?.name,
                         slug: props.roleSelected?.slug,
                         permissions: SelectTransform.getOptionsSimpleArray( props.roleSelected?.permissions ?? []  ),
-                        enable: states.find( enableOption => enableOption.value === props.roleSelected?.enable )
+                        enable: { ...states.find( enableOption => enableOption.value === props.roleSelected?.enable ) }
                     }}
                     validation={RoleSchema}
                     onSubmit={async ( form ) =>
