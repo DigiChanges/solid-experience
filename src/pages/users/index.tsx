@@ -1,31 +1,34 @@
-import UserList from '../../templates/users/UserList';
-import { createResource, createSignal } from 'solid-js';
-import { Component } from 'solid-js';
+import { useSearchParams } from 'solid-app-router';
+import { Component, createMemo, createResource } from 'solid-js';
+import FilterFactory from '../../helpers/FilterFactory';
 import UserRepository from '../../repositories/UserRepository';
 import PrivateLayout from '../../templates/layout/PrivateLayout';
-import { useApplicationContext } from '../../context/context';
+import UserList from '../../templates/users/UserList';
 
 const IndexPage: Component = () =>
 {
-    const [ user ]: any = useApplicationContext();
-    const userRepository = new UserRepository( user() );
-    const fetchDataOriginal = userRepository.getUsers() ;
-    const [ sourceSignal, setSourceSignal ] = createSignal( '' );
-    const [ data ] = createResource( sourceSignal, fetchDataOriginal );
+    const [ searchParams ] = useSearchParams<any>();
+    const userRepository = new UserRepository();
+    const uriParams = createMemo( () => FilterFactory.getUriParam( searchParams ) );
+    const [ data, { refetch } ] = createResource( uriParams, userRepository.getUsers(), { initialValue: [] } );
+
 
     const removeAction = async ( id: string  ) =>
     {
-        const fetchData = userRepository.removeUser( id );
-        void await fetchData();
-        setSourceSignal( id );
+        const remove = userRepository.removeUser( id );
+        void await remove();
+        refetch();
     };
 
-    return <PrivateLayout>
-        <UserList
-            usersList={data()}
-            removeAction={removeAction}
-        />
-    </PrivateLayout>;
+    return (
+        <PrivateLayout>
+            <UserList
+                usersList={data()}
+                removeAction={removeAction}
+                loading={data.loading}
+            />
+        </PrivateLayout>
+    );
 };
-export default IndexPage;
 
+export default IndexPage;

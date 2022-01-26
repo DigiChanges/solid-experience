@@ -4,7 +4,7 @@ import { useApplicationContext } from '../context/context';
 const HTTP_SUCCESS_STATUS = [ 200, 201, 204, 300, 302, 304 ];
 const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
 
-export const HttpAxiosRequest = ( config: AxiosRequestConfig, dataUser?: any ) => async () =>
+export const HttpAxiosRequest = ( config: AxiosRequestConfig, dataUser?: any ) => async ( query?: string ) =>
 {
     if ( !dataUser )
     {
@@ -26,10 +26,10 @@ export const HttpAxiosRequest = ( config: AxiosRequestConfig, dataUser?: any ) =
         }
     };
 
-    return await HttpAxiosRequestWithoutToken( { ...requestDefaultOptions, ...config } )();
+    return await HttpAxiosRequestWithoutToken( { ...requestDefaultOptions, ...config } )( query );
 };
 
-export const HttpAxiosRequestWithoutToken = ( config: AxiosRequestConfig ) => async () =>
+export const HttpAxiosRequestWithoutToken = ( config: AxiosRequestConfig ) => async ( query?: string ) =>
 {
     const requestDefaultOptions: AxiosRequestConfig =
     {
@@ -47,6 +47,11 @@ export const HttpAxiosRequestWithoutToken = ( config: AxiosRequestConfig ) => as
     else
     {
         config.data = {};
+    }
+
+    if ( query )
+    {
+        config.url = `${config.url}?${query}`;
     }
 
     const response = await axios( { ...requestDefaultOptions, ...config } );
