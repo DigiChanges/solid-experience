@@ -1,13 +1,11 @@
-import * as queryString from 'querystring';
-import { ParsedUrlQuery } from 'querystring';
-
-interface IFilter
+export interface IFilter
 {
     search: string;
     filterBy: string;
     orderBy: string;
     sort: 'asc' | 'desc';
 }
+
 interface ISecondFilter
 {
     search: string;
@@ -19,7 +17,7 @@ class FilterFactory
     static getUriParam ( filter: IFilter ): string
     {
         const { search, filterBy, orderBy, sort } = filter;
-        const order =  orderBy.length <= 0 ? filterBy : orderBy;
+        const order =  orderBy?.length == 0 ? filterBy : orderBy;
 
         return `filter[${filterBy}]=${search}&sort[${order}]=${sort}`;
     }
@@ -34,15 +32,6 @@ class FilterFactory
         const optionalFilter = secondFilter ? `&filter[${secondFilter.filterBy}]=${secondFilter.search}` : '';
 
         return `filter[${filterBy}]=${search}${optionalFilter}${querySort}`;
-    }
-
-    static getPath ( userFilterQueryParam: ParsedUrlQuery, nextQueryParamsPagination: string ): string
-    {
-        const filterSort = userFilterQueryParam ? queryString.stringify( userFilterQueryParam ) : '';
-
-        return filterSort && nextQueryParamsPagination && !nextQueryParamsPagination.includes( filterSort )
-            ? `${nextQueryParamsPagination}&${filterSort}`
-            : nextQueryParamsPagination;
     }
 }
 

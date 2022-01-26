@@ -1,21 +1,13 @@
-// import { Field, Form, Formik } from 'formik';
-// import React, {  useState } from 'react';
-// import Button from '../atoms/Button';
-import Label from '../atoms/Label';
-import SearchInput from '../atoms/SearchInput';
-// import IconButtonActive from '../molecules/IconButtonActive';
-// import IconSortAscending from '../atoms/Icons/Stroke/IconSortAscending';
-// import IconSortDescending from '../atoms/Icons/Stroke/IconSortDescending';
-// import FilterSortSchema from '../SchemaValidations/FilterSortSchema';
+import { useSearchParams } from 'solid-app-router';
+import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
-import { Component, createSignal } from 'solid-js';
+import Button from '../atoms/Button';
 import Input from '../atoms/Input';
-import SingleSelect from '../molecules/SingleSelect';
-import { states } from '../entities';
+import Label from '../atoms/Label';
 import { filterBy } from '../entities/filterBy';
+import SingleSelect from '../molecules/SingleSelect';
 import { orderBy } from './orderBy';
 
-// import _ from 'lodash';
 const singleSelectStyle = {
     // eslint-disable-next-line solid/style-prop
     searchBox: { 'max-height': '40px' },
@@ -23,12 +15,13 @@ const singleSelectStyle = {
     inputField: { 'max-height': '40px', 'padding': '0 10px' }
 };
 interface FilterSortProps{
-    actionFilter:any;
-    // filterQuery:any;
+    placeholder:string;
 }
 // const FilterSort = ( { actionFilter, filterButtonName = 'Filter', filterQuery = null, placeholder } ): any =>
 const FilterSort:Component<FilterSortProps> = ( props ) =>
 {
+
+    const [ searchParams, setSearchParams ] = useSearchParams();
     // const [ filterFields, setFilterField ] = useState( { search: '', filterBy: '' } );
     // const [ sortFields, setSortField ] = useState( { orderBy: '', sort: 'asc', isSort: true } );
 
@@ -68,44 +61,23 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
     // }, [ filterQuery ] );
 
 
-    const getSort = ( isSortAsc: boolean ) => ( isSortAsc ? 'asc' : 'desc' );
+    // const getSort = ( isSortAsc: boolean ) => ( isSortAsc ? 'asc' : 'desc' );
 
     return (
         <Form
-
             initialValues={{
-                search: '',
-                filterBy: '',
-                orderBy: ''
+                search: searchParams.search,
+                filterBy: { ...filterBy.find( filterOption => filterOption.value === searchParams.filterBy ) },
+                orderBy: { ...orderBy.find( orderByOption => orderByOption.value === searchParams.orderBy ) },
+                sort: 'asc'
             }}
-            // validation={FilterSortSchema}
-
-            // onSubmit={async ( form ) =>
-            // {
-            //     props.actionFilter( form.values.search, form.values.filterBy.value, form.values.orderBy.value, 'asc' );
-            // }}
-            // initialValues={{
-            // search: filterFields.search,
-            // filterBy: filterFields.filterBy,
-            // orderBy: sortFields.orderBy,
-            // sort: sortFields.sort
-            // }}
-            // enableReinitialize={true}
-            // validationSchema={FilterSortSchema}
             onSubmit={async ( form ) =>
             {
-                const { search, filterBy, orderBy } = form.values;
-                props.actionFilter( search, filterBy.value, orderBy.value, 'asc' );
+                const { search, filterBy, orderBy, sort } = form.values;
 
+                setSearchParams( { search, filterBy: filterBy.value, orderBy: orderBy.value, sort } );
             }}
-        // onSubmit={async ( form.values ) =>
-        // {
-        //     const { search, filterBy, orderBy } = values;
-        //     actionFilter( search, filterBy, orderBy, getSort( sortFields.isSort ) );
-        // }}
         >
-            {/* {( { errors, touched } ) => ( */}
-            {/* <Form class="flex flex-col justify-between w-full text-main-gray-300 my-2"> */}
             <div class="dg-form-full-field-wrapper">
                 <Input
                     style={{ display: 'block' }}
@@ -113,32 +85,16 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
                     type="text"
                     id="search"
                     class="dg-form-field-full"
-                    placeholder="search"
+                    placeholder={props.placeholder}
                     labelClass="dg-form-label"
                     labelName="First name"
                 />
             </div>
-            {/* <Field
-                name="search"
-                type="search"
-                id="search"
-                placeholder={placeholder}
-                component={SearchInput}
-                 class={`dg-form-field-full ${errors.search && touched.search ? 'border-red-500' : ''}`}
-            /> */}
-            {/* todo add DROPDOWN to filter/sort opts */}
             <div class="flex flex-wrap justify-between my-6">
                 <div class="flex-col w-full md:w-5/12">
-                    <Label for="roles" class="font-bold text-gray-400 block md:inline-block mr-2 w-16">
-                Filter By
+                    <Label for="filterBy" class="font-bold text-gray-400 block md:inline-block mr-2 w-16">
+                        Filter By
                     </Label>
-                    {/* <Field
-                        name="filterBy"
-                        type="text"
-                        id="filterBy"
-                        placeholder={'Filter by... '}
-                         class={`dg-form-field-quarter md:min-w-max  ${errors.filterBy && touched.filterBy ? 'border-red-500' : ''}`}
-                    /> */}
                     <SingleSelect
                         id="filterBy"
                         name="filterBy"
@@ -152,27 +108,21 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
                     />
                 </div>
                 <div class="flex-col w-full md:w-5/12">
-                    <Label for="roles" class="font-bold text-gray-400 block md:inline-block mr-2 w-16">
-                Sort By
+                    <Label for="orderBy" class="font-bold text-gray-400 block md:inline-block mr-2 w-16">
+                        Sort By
                     </Label>
                     <SingleSelect
+                        // class={`dg-form-field-quarter md:min-w-max ${errors.orderBy && touched.orderBy ? 'border-red-500' : ''}`}
                         id="orderBy"
                         name="orderBy"
                         options={orderBy}
                         isObject
                         displayValue="label"
                         style={singleSelectStyle}
-                        placeholder="Type"
+                        placeholder="Sort by..."
                         labelClass="dg-form-label"
                         errorClass="ml-1"
                     />
-                    {/* <Field
-                        name="orderBy"
-                        type="text"
-                        id="orderBy"
-                        placeholder={'Sort by... '}
-                         class={`dg-form-field-quarter md:min-w-max ${errors.orderBy && touched.orderBy ? 'border-red-500' : ''}`}
-                    /> */}
                 </div>
 
                 <div class="flex-col self-end md:self-center w-6 h-6 my-3 md:my-2 lg:my-0">
@@ -185,18 +135,15 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
                             /> */}
                 </div>
                 <div class="flex-col self-center my-3 lg:my-0 mx-auto">
-                    {/* <Button
-                                class="dg-main-button"
-                                buttonType="submit"
-                            >
-                                {filterButtonName}
-                            </Button> */}
-                    <button type="submit">Filter</button>
+                    <Button
+                        class="dg-main-button"
+                        type="submit"
+                    >
+                        Filter
+                    </Button>
                 </div>
             </div>
         </Form>
-
-
     );
 };
 

@@ -1,4 +1,4 @@
-import { Component, createResource, createSignal } from 'solid-js';
+import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
 import RoleRepository from '../../repositories/RoleRepository';
 import PrivateLayout from '../../templates/layout/PrivateLayout';
@@ -8,15 +8,13 @@ const IndexPage: Component = () =>
 {
     const [ user ]: any = useApplicationContext();
     const roleRepository = new RoleRepository( user() );
-    const fetchDataOriginal = roleRepository.getRoles() ;
-    const [ sourceSignal, setSourceSignal ] = createSignal( '' );
-    const [ data ] = createResource( sourceSignal, fetchDataOriginal );
+    const [ data, { refetch } ] = createResource( roleRepository.getRoles(), { initialValue: [] } );
 
     const removeAction = async ( id: string  ) =>
     {
         const remove = roleRepository.removeRole( id );
         void await remove();
-        setSourceSignal( id );
+        refetch();
     };
 
     return (
