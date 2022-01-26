@@ -264,10 +264,10 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
-"@digichanges/solid-components@^0.0.99":
-  version "0.0.99"
-  resolved "https://registry.yarnpkg.com/@digichanges/solid-components/-/solid-components-0.0.99.tgz#6cd29d39928349d9cd042684672542009316c3dd"
-  integrity sha512-TVHx+jNpq6d2cRqoFICCsXGgY3REdrhi6nttbT0rTv50Go4G3FN1O/8jSKsuMmMrVTjF3BBS0XsbUu5qc1pRuQ==
+"@digichanges/solid-components@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@digichanges/solid-components/-/solid-components-0.1.0.tgz#62d28d6451b5ccd691e50bbe1e22b8e2984f45d4"
+  integrity sha512-NxDaf7BOeGI4X/9cuKyldR+lkNJWVtIP10qn3Iipnp6OSfakiJ/EIVgTNQ/pTmLvq6aj7ujJPAk2U3Td224WYA==
   dependencies:
     solid-js "^1.1.3"
 
@@ -2087,9 +2087,9 @@ slash@^3.0.0:
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
 solid-app-router@^0.1.7:
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/solid-app-router/-/solid-app-router-0.1.11.tgz#43228fda5325936f102d4a3a037e30a3ac289607"
-  integrity sha512-O0Gp2MhsqMJCDFzMNEH1rjpKFIFXO+0pX12AwTDYXQVnGwscbjD0ysAtyvjgXZAcj2udbYEL4uR5IgnJfI3YKw==
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/solid-app-router/-/solid-app-router-0.1.14.tgz#2ffb1bfbb7db7d9d1cd81be5aec1eb786b961573"
+  integrity sha512-fnX+jCB5sDMbjq3od9qGtQNdlvHP2c6DG5STvMHVXyNuSEN+MdO7WJtZ58OpVpq6zWS4FYeYAh7NMEa7C2CcOA==
 
 solid-js-form@^0.1.5:
   version "0.1.5"
