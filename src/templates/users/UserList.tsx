@@ -24,6 +24,8 @@ import ConfirmDelete from '../modal/ConfirmDelete';
 import IconLockOpen from '../../atoms/Icons/Stroke/IconLockOpen';
 import FilterFactory from '../../helpers/FilterFactory';
 import FilterSort from '../../organisms/FilterSort';
+import { filterBy } from '../../entities/filterBy';
+import { orderBy } from '../../organisms/orderBy';
 
 interface userListTemplateProps
 {
@@ -106,7 +108,7 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
                 path="/users/create"
             />
 
-            <FilterSort placeholder="Search users..." />
+            <FilterSort placeholder="Search users..." filterBy={filterBy} orderBy={orderBy}/>
 
             <Show when={!props.loading} fallback={() => <div>Loading users...</div>}>
                 <div class="dg-grid-3x3">
