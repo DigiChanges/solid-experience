@@ -1,12 +1,14 @@
 import { useSearchParams } from 'solid-app-router';
-import { Component } from 'solid-js';
+import { Component, createSignal } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../atoms/Button';
+import IconSortAscending from '../atoms/Icons/Stroke/IconSortAscending';
+import IconSortDescending from '../atoms/Icons/Stroke/IconSortDescending';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';
-import { filterBy } from '../entities/filterBy';
+import IconButtonActive from '../molecules/IconButtonActive';
 import SingleSelect from '../molecules/SingleSelect';
-import { orderBy } from './orderBy';
+import FilterSortSchema from '../SchemaValidations/FilterSortSchema';
 
 const singleSelectStyle = {
     // eslint-disable-next-line solid/style-prop
@@ -14,8 +16,21 @@ const singleSelectStyle = {
     // eslint-disable-next-line solid/style-prop
     inputField: { 'max-height': '40px', 'padding': '0 10px' }
 };
+interface IFilterByProp
+{
+    value: string;
+    label: string
+}
+interface IorderByByProp
+{
+    value: string;
+    label: string
+}
 interface FilterSortProps{
     placeholder:string;
+    filterBy: IFilterByProp[];
+    orderBy:IorderByByProp[];
+
 }
 // const FilterSort = ( { actionFilter, filterButtonName = 'Filter', filterQuery = null, placeholder } ): any =>
 const FilterSort:Component<FilterSortProps> = ( props ) =>
@@ -23,62 +38,31 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
 
     const [ searchParams, setSearchParams ] = useSearchParams();
     // const [ filterFields, setFilterField ] = useState( { search: '', filterBy: '' } );
-    // const [ sortFields, setSortField ] = useState( { orderBy: '', sort: 'asc', isSort: true } );
+    const [ sortFields, setSortField ] = createSignal( { orderBy: '', sort: 'asc', isSort: true } );
 
-    // const onClickIsSortAsc = () =>
-    // {
-    //     setSortField( { ...sortFields, isSort: !sortFields.isSort } );
-    // };
+    const onClickIsSortAsc = () =>
+    {
+        setSortField( { ...sortFields(), isSort: !sortFields().isSort } );
+    };
 
-    // useEffect( () =>
-    // {
-    //     for ( const key in filterQuery )
-    //     {
-    //         if ( Object.prototype.hasOwnProperty.call( filterQuery, key ) )
-    //         {
-    //             const re = /(?<=\[).+?(?=\])/;
-    //             const value = key.match( re );
-
-    //             if ( key.includes( 'filter' ) )
-    //             {
-    //                 setFilterField( {
-    //                     ...filterFields,
-    //                     search: filterQuery[key],
-    //                     filterBy: _.last( value )
-    //                 } );
-    //             }
-    //             else if ( key.includes( 'sort' ) )
-    //             {
-    //                 setSortField( {
-    //                     ...sortFields,
-    //                     orderBy: _.last( value ),
-    //                     sort: filterQuery[key],
-    //                     isSort: filterQuery[key] === 'asc'
-    //                 } );
-    //             }
-    //         }
-    //     }
-    // }, [ filterQuery ] );
-
-
-    // const getSort = ( isSortAsc: boolean ) => ( isSortAsc ? 'asc' : 'desc' );
+    const getSort = ( isSortAsc: boolean ) => ( isSortAsc ?  'asc' :  'desc' );
 
     return (
         <Form
             initialValues={{
                 search: searchParams.search,
-                filterBy: { ...filterBy.find( filterOption => filterOption.value === searchParams.filterBy ) },
-                orderBy: { ...orderBy.find( orderByOption => orderByOption.value === searchParams.orderBy ) },
+                filterBy: { ...props.filterBy.find( filterOption => filterOption.value === searchParams.filterBy ) },
+                orderBy: { ...props.orderBy.find( orderByOption => orderByOption.value === searchParams.orderBy ) },
                 sort: 'asc'
             }}
+            validation={FilterSortSchema}
             onSubmit={async ( form ) =>
             {
-                const { search, filterBy, orderBy, sort } = form.values;
-
-                setSearchParams( { search, filterBy: filterBy.value, orderBy: orderBy.value, sort } );
+                const { search, filterBy, orderBy } = form.values;
+                setSearchParams( { search, filterBy: filterBy.value, orderBy: orderBy.value, sort: getSort( sortFields().isSort ) } );
             }}
         >
-            <div class="dg-form-full-field-wrapper">
+            <div class="w-full mb-5 pr-3">
                 <Input
                     style={{ display: 'block' }}
                     name="search"
@@ -87,18 +71,20 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
                     class="dg-form-field-full"
                     placeholder={props.placeholder}
                     labelClass="dg-form-label"
-                    labelName="First name"
+                    labelName=""
+                    errorClass="ml-1"
                 />
             </div>
-            <div class="flex flex-wrap justify-between my-6">
-                <div class="flex-col w-full md:w-5/12">
-                    <Label for="filterBy" class="font-bold text-gray-400 block md:inline-block mr-2 w-16">
+            <div class="flex flex-wrap justify-between my-6 md:items-center ">
+                <Label for="filterBy" class="font-bold text-gray-400 block md:pb-5  mr-2 w-16">
                         Filter By
-                    </Label>
+                </Label>
+                <div class="flex-col w-full md:w-2/6 md:mr-5 md:ml-5  self-center md:my-3 ">
+
                     <SingleSelect
                         id="filterBy"
                         name="filterBy"
-                        options={filterBy}
+                        options={props.filterBy}
                         isObject
                         displayValue="label"
                         style={singleSelectStyle}
@@ -107,15 +93,16 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
                         errorClass="ml-1"
                     />
                 </div>
-                <div class="flex-col w-full md:w-5/12">
-                    <Label for="orderBy" class="font-bold text-gray-400 block md:inline-block mr-2 w-16">
+                <Label for="orderBy" class="font-bold text-gray-400 block  md:pb-5 mr-2 w-16">
                         Sort By
-                    </Label>
+                </Label>
+                <div class="flex-col w-full md:w-2/6 md:mr-5 md:ml-5  self-center md:my-3 ">
+
                     <SingleSelect
                         // class={`dg-form-field-quarter md:min-w-max ${errors.orderBy && touched.orderBy ? 'border-red-500' : ''}`}
                         id="orderBy"
                         name="orderBy"
-                        options={orderBy}
+                        options={props.orderBy}
                         isObject
                         displayValue="label"
                         style={singleSelectStyle}
@@ -125,16 +112,16 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
                     />
                 </div>
 
-                <div class="flex-col self-end md:self-center w-6 h-6 my-3 md:my-2 lg:my-0">
-                    {/* <IconButtonActive
-                                classNameOnActive="text-white"
-                                onClick={onClickIsSortAsc}
-                                isActive={sortFields.isSort}
-                                iconEnable={IconSortAscending}
-                                iconDisable={IconSortDescending}
-                            /> */}
+                <div class="flex-col self-center w-6 h-6  md:mb-5 xs:ml-15 md:mx-auto   ">
+                    <IconButtonActive
+                        classNameOnActive="text-white"
+                        onClick={onClickIsSortAsc}
+                        isActive={sortFields().isSort}
+                        iconEnable={IconSortAscending}
+                        iconDisable={IconSortDescending}
+                    />
                 </div>
-                <div class="flex-col self-center my-3 lg:my-0 mx-auto">
+                <div class="md:flex-col self-center 3 md:mb-5 mx-auto  ">
                     <Button
                         class="dg-main-button"
                         type="submit"

@@ -6,9 +6,12 @@ import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../atoms/Icons/Stroke/IconTrash';
 import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconViewMediaObject';
 import Title from '../../atoms/Title';
+import { filterByRole } from '../../entities/filterByRole';
 import { IRoleApi } from '../../interfaces/role';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
+import FilterSort from '../../organisms/FilterSort';
+import { orderByRole } from '../../organisms/orderByRole';
 import ConfirmDelete from '../modal/ConfirmDelete';
 import RoleRemove from './RoleRemove';
 
@@ -99,7 +102,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 path="/roles/create"
                 // buttonAction={actionCreateButton()}
             />
-
+            <FilterSort placeholder="Search roles..." filterBy={filterByRole} orderBy={orderByRole}/>
             {/* <FilterSort actionFilter={onClickFilter} filterQuery={query} placeholder="Search roles..." /> */}
             <div class="dg-grid-3x3">
                 {/* {props.rolesList && */}
