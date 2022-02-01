@@ -6,7 +6,7 @@ export interface IChangePasswordPayload
     newPasswordConfirmation: string;
 }
 
-export interface IUserPayload
+export type IUserPayload =
 {
     email: string;
     firstName: string;
@@ -25,20 +25,10 @@ export interface IUserPayload
     enable: boolean;
 }
 
-export interface IUserApi
+export type IUserApi = Omit<IUserPayload, 'roles'> &
 {
     id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    birthday: string;
-    documentType: string;
-    documentNumber: string;
-    gender: 'male | female | other';
-    phone: string;
-    country: string;
-    address: string;
-    permissions: string[];
     roles: IRoleApi[];
-    enable: boolean;
+    createdAt: number;
+    updatedAt: number;
 }

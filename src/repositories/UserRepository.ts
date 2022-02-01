@@ -1,32 +1,43 @@
 import { AxiosRequestConfig } from 'axios';
+import { IBodyApi } from '../interfaces/response/IBodyApi';
+import { IUserApi } from '../interfaces/user';
 import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
 import { config } from './config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne, editPassword, assignRole } = config.apiGateway.routes.users;
 
+type UserListResponse = IBodyApi & {
+    data: IUserApi[];
+};
+
+type UserResponse = IBodyApi & {
+    data: IUserApi;
+};
+
 class UserRepository
 {
     constructor ( private user?: any )
     {}
 
-    public getUsers = () =>
+    public getUsers ()
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${getAll}`
         };
 
-        return HttpAxiosRequest( config );
-    };
+        return HttpAxiosRequest<UserListResponse>( config );
+    }
 
-    public getOne = ( id: string ) =>
+    public getOne ( id: string )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${getOne}/${id}`
         };
 
-        return HttpAxiosRequest( config );
-    };
+        return HttpAxiosRequest<UserResponse>( config );
+    }
+
     public assignUserRole ( id: string, rolesId: any )
     {
         const config: AxiosRequestConfig = {
@@ -35,7 +46,7 @@ class UserRepository
             data:{ rolesId }
         };
 
-        return HttpAxiosRequest( config, this.user );
+        return HttpAxiosRequest<UserResponse>( config, this.user );
     }
 
     public updateUser ( id: string, data: any )
@@ -47,7 +58,7 @@ class UserRepository
             data
         };
 
-        return HttpAxiosRequest( config, this.user );
+        return HttpAxiosRequest<UserResponse>( config, this.user );
     }
 
     public createUser ( data: any )

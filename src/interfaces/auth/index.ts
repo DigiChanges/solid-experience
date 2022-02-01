@@ -1,3 +1,11 @@
+import { IUserApi } from '../user';
+
+export interface ILoginApi
+{
+    user: IUserApi;
+    expires: string;
+    token: string;
+}
 
 export interface ILoginPayload
 {

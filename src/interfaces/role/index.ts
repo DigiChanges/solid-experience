@@ -9,6 +9,7 @@ export interface IRolePayload
 
 export interface IRoleApi extends IRolePayload
 {
-    id: string
+    id: string;
+    createdAt: number;
+    updatedAt: number;
 }
-

@@ -1,6 +1,6 @@
 import Title from '../../atoms/Title';
 import { IUserApi } from '../../interfaces/user';
-import { Component } from 'solid-js';
+import { Component, Show } from 'solid-js';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
 import UserUpdateSchema from '../../SchemaValidations/UserUpdateSchema';
@@ -19,9 +19,10 @@ interface UserUpdateTemplateProps
 {
     permissionsList: any;
     updateAction: any;
-    userSelected: IUserApi;
+    userSelected: IUserApi | undefined;
     idSelected:string;
-    rolesList: IRoleApi[];
+    rolesList: IRoleApi[] | undefined;
+    loading: boolean;
 }
 const singleSelectStyle = {
     // eslint-disable-next-line solid/style-prop
@@ -48,10 +49,14 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
         <section class="px-4">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold" titleType="h1">
-          Update User
+                    Update User
                 </Title>
             </div>
-            {props.userSelected ? (
+
+            <Show
+                when={!props.loading}
+                fallback={<div>Loading...</div>}
+            >
                 <Form
                     // enableReinitialize={true}
                     initialValues={{
@@ -65,20 +70,14 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         phone: props.userSelected?.phone,
                         country: { ...country.find( countryOption => countryOption.value === props.userSelected?.country ) },
                         address: props.userSelected?.address,
-                        roles:SelectTransform.getOptionsObjectArray( props.userSelected?.roles, 'name', 'id' ),
+                        roles: props.userSelected?.roles && SelectTransform.getOptionsObjectArray( props.userSelected.roles, 'name', 'id' ),
                         permissions: SelectTransform.getOptionsSimpleArray( props.userSelected?.permissions ?? []  ),
                         enable: { ...states.find( enableOption => enableOption.value === props.userSelected?.enable ) },
                         password: undefined,
                         passwordConfirmation: undefined
                     }}
                     validation={UserUpdateSchema}
-                    onSubmit={async ( form ) =>
-                    {
-
-                        props.updateAction( form.values );
-
-
-                    }}
+                    onSubmit={async ( form ) => props.updateAction( form.values )}
                 >
                     <div class="flex flex-wrap text-sm">
                         <span class="w-full text-xs text-bold">PERSONAL INFORMATION</span>
@@ -318,8 +317,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         </Button>
                     </div>
                 </Form>
-
-            ) : <p>No user selected</p> }
+            </Show>
         </section>
     );
 };

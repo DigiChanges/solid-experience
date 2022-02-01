@@ -1,10 +1,11 @@
-import { Component, createResource } from 'solid-js';
-import RoleUpdate from '../../../../templates/roles/RoleUpdate';
 import { useNavigate, useParams } from 'solid-app-router';
+import { Component, createResource } from 'solid-js';
+import { useApplicationContext } from '../../../../context/context';
+import { IRolePayload } from '../../../../interfaces/role';
+import AuthRepository from '../../../../repositories/AuthRepository';
 import RoleRepository from '../../../../repositories/RoleRepository';
 import PrivateLayout from '../../../../templates/layout/PrivateLayout';
-import { useApplicationContext } from '../../../../context/context';
-import AuthRepository from '../../../../repositories/AuthRepository';
+import RoleUpdate from '../../../../templates/roles/RoleUpdate';
 
 const IndexPage: Component = () =>
 {
@@ -18,22 +19,29 @@ const IndexPage: Component = () =>
 
     const updateAction = async ( payload: any )  =>
     {
-        const permissions = payload.permissions.map( ( permission: any ) => permission.value );
-        const enable = payload.enable?.value;
-        const data = { ...payload, enable, permissions };
+        const data: IRolePayload = {
+            name: payload.name,
+            slug: payload.slug,
+            permissions: payload.permissions.map( ( permission: any ) => permission.value ),
+            enable: payload.enable?.value
+        };
         const update = roleRepository.updateRole( id, data );
-        const response = await update();
-        navigate( '/roles', { replace : true } );
+        void await update();
 
+        navigate( '/roles', { replace : true } );
     };
-    return <PrivateLayout>
-        <RoleUpdate
-            permissionsList={getPermissions()}
-            updateAction={updateAction}
-            roleSelected={role()}
-            idSelected={id}
-        />
-    </PrivateLayout>;
+
+    return (
+        <PrivateLayout>
+            <RoleUpdate
+                permissionsList={getPermissions()}
+                updateAction={updateAction}
+                roleSelected={role()?.data}
+                idSelected={id}
+                loading={role.loading}
+            />
+        </PrivateLayout>
+    );
 };
 
 export default IndexPage;

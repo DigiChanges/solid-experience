@@ -10,7 +10,7 @@ const ApplicationContext = createContext();
 
 export function ApplicationProvider ( props: ApplicationProviderProps )
 {
-    const [ user, setUser ] = createSignal();
+    const [ user, setUser ] = createSignal<IUserApi>();
 
     const store = [
         user,

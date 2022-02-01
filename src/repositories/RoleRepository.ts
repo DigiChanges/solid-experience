@@ -1,34 +1,44 @@
 import { AxiosRequestConfig } from 'axios';
+import { IBodyApi } from '../interfaces/response/IBodyApi';
+import { IRoleApi, IRolePayload } from '../interfaces/role';
 import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
 import { config } from './config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne } = config.apiGateway.routes.roles;
 
+type RoleListResponse = IBodyApi & {
+    data: IRoleApi[];
+};
+
+type RoleResponse = IBodyApi & {
+    data: IRoleApi;
+};
+
 class RoleRepository
 {
     constructor ( private user?: any )
     {}
 
-    public getRoles = () =>
+    public getRoles ()
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${getAll}`
         };
 
-        return HttpAxiosRequest( config );
-    };
+        return HttpAxiosRequest<RoleListResponse>( config );
+    }
 
-    public getOne = ( id: string ) =>
+    public getOne ( id: string )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${getOne}/${id}`
         };
 
-        return HttpAxiosRequest( config );
-    };
+        return HttpAxiosRequest<RoleResponse>( config );
+    }
 
-    public updateRole ( id: string, data: any )
+    public updateRole ( id: string, data: IRolePayload )
     {
 
         const config: AxiosRequestConfig = {
@@ -48,7 +58,7 @@ class RoleRepository
             data
         };
 
-        return HttpAxiosRequest( config, this.user );
+        return HttpAxiosRequest<RoleResponse>( config, this.user );
     }
 
     public removeRole ( id : string )

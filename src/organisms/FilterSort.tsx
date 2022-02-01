@@ -21,7 +21,7 @@ interface IFilterByProp
     value: string;
     label: string
 }
-interface IorderByByProp
+interface IOrderByByProp
 {
     value: string;
     label: string
@@ -29,7 +29,7 @@ interface IorderByByProp
 interface FilterSortProps{
     placeholder:string;
     filterBy: IFilterByProp[];
-    orderBy:IorderByByProp[];
+    orderBy: IOrderByByProp[];
 
 }
 // const FilterSort = ( { actionFilter, filterButtonName = 'Filter', filterQuery = null, placeholder } ): any =>
@@ -37,7 +37,6 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
 {
 
     const [ searchParams, setSearchParams ] = useSearchParams();
-    // const [ filterFields, setFilterField ] = useState( { search: '', filterBy: '' } );
     const [ sortFields, setSortField ] = createSignal( { orderBy: '', sort: 'asc', isSort: true } );
 
     const onClickIsSortAsc = () =>

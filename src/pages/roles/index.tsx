@@ -11,9 +11,8 @@ const IndexPage: Component = () =>
     const [ user ]: any = useApplicationContext();
     const roleRepository = new RoleRepository( user() );
     const [ searchParams ] = useSearchParams<any>();
-    // const [ data, { refetch } ] = createResource( roleRepository.getRoles(), { initialValue: [] } );
     const uriParams = createMemo( () => FilterFactory.getUriParam( searchParams ) );
-    const [ data, { refetch } ] = createResource( uriParams, roleRepository.getRoles(), { initialValue: [] } );
+    const [ roles, { refetch } ] = createResource( uriParams, roleRepository.getRoles() );
     const removeAction = async ( id: string  ) =>
     {
         const remove = roleRepository.removeRole( id );
@@ -23,11 +22,10 @@ const IndexPage: Component = () =>
 
     return (
         <PrivateLayout>
-            <h1>lista de roles</h1>
-            {data.error && <h1>Error: {data?.error?.message}</h1>}
+            {roles.error && <h1>Error: {roles?.error?.message}</h1>}
             <RoleList
-                rolesList={data()}
-                loading={data.loading}
+                rolesList={roles()?.data}
+                loading={roles.loading}
                 removeRole={removeAction}
             />
         </PrivateLayout>

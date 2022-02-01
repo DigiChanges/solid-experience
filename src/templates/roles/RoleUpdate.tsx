@@ -11,16 +11,16 @@ import { SelectTransform } from '../../transforms/default';
 import SingleSelect from '../../molecules/SingleSelect';
 import { states } from '../../entities';
 import RoleSchema from '../../SchemaValidations/RoleSchema';
+
 interface RoleUpdateTemplateProps
 {
     permissionsList: any;
-    // rolesList: IRoleApi[];
     updateAction: any;
-    roleSelected: IRoleApi;
+    roleSelected: IRoleApi | undefined;
     idSelected:string;
-    // props?: any;
-
+    loading: boolean;
 }
+
 const singleSelectStyle = {
     // eslint-disable-next-line solid/style-prop
     searchBox: { 'max-height': '40px' },
@@ -31,16 +31,15 @@ const singleSelectStyle = {
 const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
 {
     return (
-
         <section class="px-4">
-            <div class="mb-2 ">
+            <div class="mb-2">
                 <Title class="text-3xl font-bold" titleType="h1">
-          Update Role
+                    Update Role
                 </Title>
             </div>
 
             <Show
-                when={props.roleSelected}
+                when={!props.loading}
                 fallback={<div>Loading...</div>}
             >
                 <Form
