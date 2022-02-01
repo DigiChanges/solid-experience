@@ -87,17 +87,15 @@ export const dashRoutes = [
                 icon: IconPencilAlt,
                 showItem: false,
                 permission: 'Dashboard'
-            },
-            {
-                path: '/UserChangePass/:token',
-                component: lazy( () => import( '../pages/users/changePassword' ) ),
-                name: 'Change Password',
-                icon: IconPencilAlt,
-                showItem: false,
-                permission: 'Dashboard'
             }
-
         ]
+    },
+    {
+        path: '/UserChangePass/:token',
+        component: lazy( () => import( '../pages/users/changePassword' ) ),
+        name: 'Change Password',
+        icon: IconPencilAlt,
+        showItem: false
     },
     {
         path: '/roles',

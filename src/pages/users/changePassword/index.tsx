@@ -1,9 +1,9 @@
 import { useParams } from 'solid-app-router';
 import { Component } from 'solid-js';
+import { showErrorNotification, showSuccessNotification } from '../../../helpers/showNotification';
 import AuthRepository from '../../../repositories/AuthRepository';
-import PublicLayout from '../../../templates/layout/PublicLayout';
+import GeneralLayout from '../../../templates/layout/GeneralLayout';
 import UserChangePassword from '../../../templates/users/UserChangePassword';
-// import withAuth from '../../../providers/withAuth';
 
 const IndexPage: Component = () =>
 {
@@ -13,16 +13,24 @@ const IndexPage: Component = () =>
 
     const changePasswordAction = async ( body: any ) =>
     {
-        void await repository.setChangeForgotPassword( body );
-
+        const change = repository.setChangeForgotPassword( body );
+        const res = await change().then( () =>
+        {
+            showSuccessNotification( 'Contraseña actualizada' );
+        } )
+            .catch( () =>
+            {
+                showErrorNotification( 'Error interno del servidor' );
+            } );
     };
 
-    return <PublicLayout>
+    return ( <GeneralLayout>
         <UserChangePassword
             confirmationToken={token}
             changePasswordAction={changePasswordAction}
         />
-    </PublicLayout>;
+    </GeneralLayout>
+    );
 };
 
 export default IndexPage;

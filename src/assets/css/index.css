@@ -91,3 +91,128 @@
     @apply text-main-gray-300 hover:text-white;
   }
 }
+/* alert notification*/
+.containerNotification {
+  position: fixed;
+  max-height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* max-width: 14rem; */
+}
+
+.containerNotification::-webkit-scrollbar {
+  display: none;
+}
+
+.row {
+  position: relative;
+  max-height: 8rem;
+  margin: .5rem auto;
+  padding: 2vh;
+  border-radius: 10px;
+  text-shadow: #3c3c3c 0 1px 1px;
+  color: #f2f2f2;
+  width: 60vw;
+  overflow-wrap: break-word;
+  background: #3c3c3c;
+}
+
+.intro {
+  animation: fadein 2s;
+  transition: all 1s;
+}
+
+.outro {
+  animation: fadeout 1s;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.notif-progress-bar {
+  position: absolute;
+  /* top: 2vw; */
+  background: yellow;
+  border-radius: 10px;
+  box-shadow: black 0 2px 6px;
+  margin-top: 15px;
+  height: 2px;
+  transition: width .2s;
+}
+
+.clearbtn {
+  background: #3c3c3c;
+  border-radius: 10px;
+
+}
+
+.success {
+  background: linear-gradient(128deg, #b6ff40 0%, #3fff47 100%);
+}
+
+.error {
+  background: rgb(227, 75, 75); color: rgb(255, 255, 255);
+}
+
+.alert {
+  background: linear-gradient(128deg, #ff9a3fff 0%, #ff4b40 100%);
+}
+
+.info {
+  background: linear-gradient(128deg, #40afff 0%, #3f57ffff 100%);
+}
+
+.custom {
+  background: linear-gradient(128deg, #404cff 0%, #ae3fff 100%);
+}
+
+
+.trigger {
+  margin: 20vh;
+}
+
+.trigger button {
+  background: #3c3c3c;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0 10px;
+  height: 40px;
+  width: 180px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 20px;
+  transition: background 35s;
+}
+
+.trigger button:hover {
+  background: rgb(0, 120, 255);
+  border: rgba(0, 253, 198, 0.6) solid;
+}
+
+.trigger button:last-of-type {
+  margin-bottom: 0
+}
