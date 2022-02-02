@@ -1,10 +1,4 @@
-export interface IFilter
-{
-    search: string;
-    filterBy: string;
-    orderBy: string;
-    sort: 'asc' | 'desc';
-}
+import { Filter } from '../features/shared/hooks/useFilter';
 
 interface ISecondFilter
 {
@@ -14,18 +8,33 @@ interface ISecondFilter
 
 class FilterFactory
 {
-    static getUriParam ( filter: IFilter ): string
+    static getUriParam ( filter: Filter ): string | undefined
     {
         const { search, filterBy, orderBy, sort } = filter;
-        const order =  orderBy?.length == 0 ? filterBy : orderBy;
 
-        return `filter[${filterBy}]=${search}&sort[${order}]=${sort}`;
+        let query = '';
+
+        const order = orderBy?.length == 0 ? filterBy : orderBy;
+
+        if ( search && filterBy )
+        {
+            query = `filter[${filterBy}]=${search}`;
+
+        }
+
+        if ( orderBy && sort )
+        {
+            const sortQuery = `sort[${order}]=${sort}`;
+            query = query.length == 0 ? sortQuery : `${query}&${sortQuery}`;
+        }
+
+        return query;
     }
 
-    static getUriParamCustom ( filter: IFilter, secondFilter: ISecondFilter | null = null ): string
+    static getUriParamCustom ( filter: Filter, secondFilter: ISecondFilter | null = null ): string
     {
         const { search, filterBy, orderBy, sort } = filter;
-        const order =  orderBy.length <= 0 ? null : orderBy;
+        const order = orderBy?.length == 0 ? null : orderBy;
 
         const querySort = order ? `&sort[${order}]=${sort}` : '';
 

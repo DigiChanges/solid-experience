@@ -4,7 +4,12 @@ import { useApplicationContext } from '../context/context';
 const HTTP_SUCCESS_STATUS = [ 200, 201, 204, 300, 302, 304 ];
 const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
 
-export const HttpAxiosRequest = ( config: AxiosRequestConfig, dataUser?: any ) => async ( query?: string ) =>
+type queryParams = {
+    filter?: string,
+    pagination?: string
+};
+
+export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any ) => async ( queryParams?: queryParams ) =>
 {
     if ( !dataUser )
     {
@@ -26,10 +31,10 @@ export const HttpAxiosRequest = ( config: AxiosRequestConfig, dataUser?: any ) =
         }
     };
 
-    return await HttpAxiosRequestWithoutToken( { ...requestDefaultOptions, ...config } )( query );
+    return await HttpAxiosRequestWithoutToken<T>( { ...requestDefaultOptions, ...config } )( queryParams );
 };
 
-export const HttpAxiosRequestWithoutToken = ( config: AxiosRequestConfig ) => async ( query?: string ) =>
+export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) => async ( queryParams?: queryParams ) =>
 {
     const requestDefaultOptions: AxiosRequestConfig =
     {
@@ -49,21 +54,32 @@ export const HttpAxiosRequestWithoutToken = ( config: AxiosRequestConfig ) => as
         config.data = {};
     }
 
-    if ( query )
+    if ( queryParams?.filter )
     {
-        config.url = `${config.url}?${query}`;
+        config.url = `${config.url}?${queryParams.filter}`;
     }
 
-    const response = await axios( { ...requestDefaultOptions, ...config } );
-    const data: any = response.data;
+    if ( queryParams?.pagination )
+    {
+        if ( queryParams?.filter )
+        {
+            config.url = `${config.url}&${queryParams.pagination}`;
+        }
+        else
+        {
+            config.url = `${config.url}?${queryParams.pagination}`;
+        }
+    }
+
+    const response = await axios.request<T>( { ...requestDefaultOptions, ...config } );
 
     if ( HTTP_SUCCESS_STATUS.includes( response.status ) )
     {
-        return data?.data ?? response.data;
+        return response.data;
     }
     else if ( HTTP_ERROR_STATUS.includes( response.status ) )
     {
-        const error = data?.message || 'Internal Server Error';
+        const error = response?.data?.message || 'Internal Server Error';
         throw new Error( error );
     }
     else

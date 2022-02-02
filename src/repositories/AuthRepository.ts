@@ -1,25 +1,30 @@
 import { AxiosRequestConfig } from 'axios';
-import { IChangeForgotPasswordPayload, ILoginPayload } from '../interfaces/auth';
+import { IChangeForgotPasswordPayload, ILoginApi, ILoginPayload } from '../interfaces/auth';
+import { IBodyApi } from '../interfaces/response/IBodyApi';
 import { HttpAxiosRequest, HttpAxiosRequestWithoutToken } from '../services/HttpAxiosRequest';
 import { config } from './config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { login, permissionsGetAll, forgotPassword, changeForgotPassword } = config.apiGateway.routes.auth;
 
+type LoginResponse = IBodyApi & {
+    data: ILoginApi;
+};
+
 class AuthRepository
 {
     constructor ( private user?: any )
     {}
 
-    public signIn = ( data: ILoginPayload ) =>
+    public signIn ( data: ILoginPayload )
     {
         const config: AxiosRequestConfig = {
             url:`${protocol}://${hostname}:${port}/${login}`,
             method: 'POST',
             data
         };
-        return HttpAxiosRequestWithoutToken( config );
-    };
+        return HttpAxiosRequestWithoutToken<LoginResponse>( config );
+    }
 
     public getAllPermissions = () =>
     {

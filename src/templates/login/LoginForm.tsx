@@ -28,8 +28,8 @@ const LoginForm: Component<LoginFormProps> = props =>
                 onSubmit={async ( form ) =>
                 {
                     const signIn = authRepository.signIn( form.values as ILoginPayload );
-                    const data = await signIn();
-                    addUser( data );
+                    const response = await signIn();
+                    addUser( response.data );
                     navigate( '/dashboard', { replace : true } );
                 }}
             >
