@@ -23,6 +23,7 @@ interface userListTemplateProps
     removeAction: any;
     loading: boolean;
     viewMoreAction: any;
+    nextPage: string | undefined;
 }
 
 const UserList: Component<userListTemplateProps> = ( props ) =>
@@ -37,14 +38,6 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
         setShowModal( !showModal() );
         setIdSelected( id );
         setText( <UserRemove lastName={lastName}  firstName={firstName}  /> );
-        // const modalData = {
-        //     idSelected: id,
-        //     open: true,
-        // text: <UserRemove lastName={lastName} firstName={firstName} />,
-        //     action: removeUser
-        // };
-
-        // dispatch( openModal( modalData ) );
     };
 
     const actionCreateButton = () =>
@@ -143,9 +136,12 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
                 </div>
 
                 <div class="dg-full-center-flex mt-8">
-                    <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
-                        View More
-                    </Button>
+                    <Show when={!!props.nextPage}>
+                        <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
+                            View More
+                        </Button>
+                    </Show>
+
                     <Button onClick={scrollTop} class={`h-10 w-10 transform rotate-90 text-main-gray-250 ${getShowScroll() ? 'flex' : 'hidden'}`} >
                         <IconArrowCircleLeft />
                     </Button>

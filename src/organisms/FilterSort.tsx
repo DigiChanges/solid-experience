@@ -5,10 +5,10 @@ import IconSortAscending from '../atoms/Icons/Stroke/IconSortAscending';
 import IconSortDescending from '../atoms/Icons/Stroke/IconSortDescending';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';
+import useFilter from '../features/shared/hooks/useFilter';
 import IconButtonActive from '../molecules/IconButtonActive';
 import SingleSelect from '../molecules/SingleSelect';
 import FilterSortSchema from '../SchemaValidations/FilterSortSchema';
-import useFilter from './useFilter';
 
 const singleSelectStyle = {
     // eslint-disable-next-line solid/style-prop

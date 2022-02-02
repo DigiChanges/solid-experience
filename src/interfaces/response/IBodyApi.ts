@@ -8,7 +8,7 @@ export type IBodyApi =
     metadata: {
         refreshToken: string;
     };
-    pagination: IPaginationApi;
+    pagination?: IPaginationApi;
     message?: string;
     errors?: IErrorResponse[];
 }

@@ -4,11 +4,10 @@ import { useApplicationContext } from '../context/context';
 const HTTP_SUCCESS_STATUS = [ 200, 201, 204, 300, 302, 304 ];
 const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
 
-type queryParams = string | undefined;
-// type queryParams = {
-//     query?: string,
-//     pagination?: string
-// };
+type queryParams = {
+    filter?: string,
+    pagination?: string
+};
 
 export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any ) => async ( queryParams?: queryParams ) =>
 {
@@ -55,27 +54,22 @@ export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) =>
         config.data = {};
     }
 
-    if ( queryParams )
+    if ( queryParams?.filter )
     {
-        config.url = `${config.url}?${queryParams}`;
+        config.url = `${config.url}?${queryParams.filter}`;
     }
 
-    // if ( queryParams?.query )
-    // {
-    //     config.url = `${config.url}?${queryParams.query}`;
-    // }
-
-    // if ( queryParams?.pagination )
-    // {
-    //     if ( queryParams?.query )
-    //     {
-    //         config.url = `${config.url}&${queryParams.pagination}`;
-    //     }
-    //     else
-    //     {
-    //         config.url = `${config.url}?${queryParams.pagination}`;
-    //     }
-    // }
+    if ( queryParams?.pagination )
+    {
+        if ( queryParams?.filter )
+        {
+            config.url = `${config.url}&${queryParams.pagination}`;
+        }
+        else
+        {
+            config.url = `${config.url}?${queryParams.pagination}`;
+        }
+    }
 
     const response = await axios.request<T>( { ...requestDefaultOptions, ...config } );
 
