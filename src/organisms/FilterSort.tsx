@@ -1,5 +1,4 @@
-import { useSearchParams } from 'solid-app-router';
-import { Component, createSignal } from 'solid-js';
+import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../atoms/Button';
 import IconSortAscending from '../atoms/Icons/Stroke/IconSortAscending';
@@ -9,6 +8,7 @@ import Label from '../atoms/Label';
 import IconButtonActive from '../molecules/IconButtonActive';
 import SingleSelect from '../molecules/SingleSelect';
 import FilterSortSchema from '../SchemaValidations/FilterSortSchema';
+import useFilter from './useFilter';
 
 const singleSelectStyle = {
     // eslint-disable-next-line solid/style-prop
@@ -35,30 +35,21 @@ interface FilterSortProps{
 // const FilterSort = ( { actionFilter, filterButtonName = 'Filter', filterQuery = null, placeholder } ): any =>
 const FilterSort:Component<FilterSortProps> = ( props ) =>
 {
-
-    const [ searchParams, setSearchParams ] = useSearchParams();
-    const [ sortFields, setSortField ] = createSignal( { orderBy: '', sort: 'asc', isSort: true } );
-
-    const onClickIsSortAsc = () =>
-    {
-        setSortField( { ...sortFields(), isSort: !sortFields().isSort } );
-    };
-
-    const getSort = ( isSortAsc: boolean ) => ( isSortAsc ?  'asc' :  'desc' );
+    const { filter, setFilter, toggleSort } = useFilter();
 
     return (
         <Form
             initialValues={{
-                search: searchParams.search,
-                filterBy: { ...props.filterBy.find( filterOption => filterOption.value === searchParams.filterBy ) },
-                orderBy: { ...props.orderBy.find( orderByOption => orderByOption.value === searchParams.orderBy ) },
+                search: filter.search,
+                filterBy: { ...props.filterBy.find( filterOption => filterOption.value === filter.filterBy ) },
+                orderBy: { ...props.orderBy.find( orderByOption => orderByOption.value === filter.orderBy ) },
                 sort: 'asc'
             }}
             validation={FilterSortSchema}
             onSubmit={async ( form ) =>
             {
                 const { search, filterBy, orderBy } = form.values;
-                setSearchParams( { search, filterBy: filterBy.value, orderBy: orderBy.value, sort: getSort( sortFields().isSort ) } );
+                setFilter( { search, filterBy: filterBy.value, orderBy: orderBy.value } );
             }}
         >
             <div class="w-full mb-5 pr-3">
@@ -114,8 +105,8 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
                 <div class="flex-col self-center w-6 h-6  md:mb-5 xs:ml-15 md:mx-auto   ">
                     <IconButtonActive
                         classNameOnActive="text-white"
-                        onClick={onClickIsSortAsc}
-                        isActive={sortFields().isSort}
+                        onClick={toggleSort}
+                        isActive={filter.sort === 'desc'}
                         iconEnable={IconSortAscending}
                         iconDisable={IconSortDescending}
                     />
