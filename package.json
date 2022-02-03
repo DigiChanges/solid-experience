@@ -33,7 +33,7 @@
     "tailwindcss": "^2.2.16",
     "yup": "^0.32.9"
   },
-  "engine": {
+  "engines": {
     "node": "16.*"
   }
 }
