@@ -32,5 +32,8 @@
     "solid-js-form": "^0.1.5",
     "tailwindcss": "^2.2.16",
     "yup": "^0.32.9"
+  },
+  "engine": {
+    "node": ">=14.0.0"
   }
 }
