@@ -67,10 +67,11 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                     <For each={props.userList} fallback={<div>No users...</div>}>
                         {( user ) =>
                             <MediaObject class="dg-media-object" >
-                                <div class="flex-col w-10 h-10 bg-white text-black justify-center content-center rounded-full">{' '}</div>
-                                <div class="flex-col justify-center content-center ml-3">
+                                <div class="flex-col justify-center content-center ml-3 text-gray-400">
                                     <Title titleType="h6" class="hover:transform hover:scale-125">
-                                        <Link href={`/users/${user.id}/update`}>
+                                        <Link href={`/users/${user.id}/update`}
+                                            class="w-6 hover:text-white mr-1 focus:outline-none"
+                                        >
                                             {`${user.firstName} ${user.lastName}`}
                                         </Link>
                                     </Title>
@@ -79,21 +80,21 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                                 <div class="flex flex-col ml-auto">
                                     <div class="h-6 w-6 my-1">
                                         <Link
-                                            class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
+                                            class="w-6 hover:text-white mr-1 focus:outline-none"
                                             href={`/users/${user.id}/update`}>
                                             <IconPencilAlt />
                                         </Link>
                                     </div>
                                     <div class="h-6 w-6 my-1">
                                         <Link
-                                            class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
+                                            class="w-6 hover:text-white mr-1 focus:outline-none"
                                             href={`/users/editPassword/${user.id}`}>
                                             <IconLockOpen />
                                         </Link>
                                     </div>
                                     <div class="h-6 w-6 my-1">
                                         <button
-                                            class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
+                                            class="w-6 hover:text-white mr-1 focus:outline-none"
                                             onClick={ openModal( {
                                                 id: user.id,
                                                 text: `${user.firstName} ${user.lastName}`
