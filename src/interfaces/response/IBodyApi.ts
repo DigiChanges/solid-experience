@@ -1,5 +1,4 @@
 import { IErrorResponse } from './IErrorResponse';
-import { IPaginationApi } from './IPaginationApi';
 
 export type IBodyApi =
 {
@@ -8,7 +7,6 @@ export type IBodyApi =
     metadata: {
         refreshToken: string;
     };
-    pagination?: IPaginationApi;
     message?: string;
     errors?: IErrorResponse[];
 }

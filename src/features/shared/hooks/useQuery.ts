@@ -7,17 +7,18 @@ import usePagination from './usePagination';
 function useQuery ( initialPagination?: string )
 {
     const { filter } = useFilter();
-    const { page, goToPage } = usePagination( initialPagination );
+    const { page, goToPage, goFirstPage } = usePagination( initialPagination );
 
     const uriParams = createMemo<QueryParams>( ( prev ) =>
     {
         const newFilter = FilterFactory.getUriParam( filter );
-        const prevFilter = prev?.filter;
-        const nextPage: string | undefined = page();
-        const pagination = prevFilter === newFilter ?  nextPage : initialPagination;
+        if ( newFilter !== prev?.filter )
+        {
+            goFirstPage();
+        }
         return ( {
             filter: newFilter,
-            pagination
+            pagination: page()
         } );
     } );
 
