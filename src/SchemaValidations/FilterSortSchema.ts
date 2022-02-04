@@ -1,12 +1,11 @@
 import * as Yup from 'yup';
 
 const FilterSortSchema = {
-    search: Yup.string()
-        .required( 'Required' ),
-    filterBy: Yup.object().when( 'search', {
+    search: Yup.string().when( 'filterBy', {
         is: true,
         then: Yup.string().required( 'Required' )
     } ),
+    filterBy: Yup.object(),
     orderBy: Yup.object()
         .optional(),
     sort: Yup.string()

@@ -1,28 +1,27 @@
 import { Link } from 'solid-app-router';
-import { Component, createSignal, For } from 'solid-js';
+import { Component, createSignal, For, Show } from 'solid-js';
 import Button from '../../atoms/Button';
 import IconPencilAlt from '../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../atoms/Icons/Stroke/IconTrash';
 import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconViewMediaObject';
 import Title from '../../atoms/Title';
-import { filterByRole } from '../../entities/filterByRole';
+import { filterBy } from '../../features/role/constants/filterBy';
+import { orderBy } from '../../features/role/constants/orderBy';
 import { IRoleApi } from '../../interfaces/role';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import FilterSort from '../../organisms/FilterSort';
-import { orderByRole } from '../../organisms/orderByRole';
 import ConfirmDelete from '../modal/ConfirmDelete';
 import RoleRemove from './RoleRemove';
 
 interface RoleListTemplateProps
 {
-    rolesList?: IRoleApi[];
-    query?: never;
-    viewMore?: never;
-    loading?: boolean;
-    removeRole: any;
-    openModal?: any,
+    roleList: IRoleApi[] | undefined;
+    removeAction: any;
+    loading: boolean;
+    viewMoreAction: any;
+    nextPage: string | undefined;
 }
 
 const RoleList: Component<RoleListTemplateProps> = ( props ) =>
@@ -37,26 +36,8 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
         setShowModal( !showModal() );
         setIdSelected( id );
         setText( <RoleRemove name={name} /> );
-        // const modalData = {
-        //     idSelected: id,
-        //     open: true,
-        //     text: <RoleRemove name={name} />,
-        //     action: props.removeRole
-        // };
-
-        // ConfirmDelete( modalData ) ;
     };
 
-
-    // const onClickFilter = ( search: string, filterBy: string, orderBy: string, sort: 'asc' | 'desc' ) =>
-    // {
-    //     dispatch(resetRoles());
-    //     dispatch(resetQueryPagination());
-
-    //     const uriParam = FilterFactory.getUriParam({ search, filterBy, orderBy, sort });
-
-    //     router.push(`/roles/list?${uriParam}`, undefined, { shallow: false });
-    // };
 
     const checkScrollTop = () =>
     {
@@ -90,7 +71,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                         open={true}
                         idSelected={idSelected()}
                         text={text()}
-                        action={props.removeRole}
+                        action={props.removeAction}
                         setShowModal={setShowModal}
                     />
             }
@@ -102,49 +83,56 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 path="/roles/create"
                 // buttonAction={actionCreateButton()}
             />
-            <FilterSort placeholder="Search roles..." filterBy={filterByRole} orderBy={orderByRole}/>
-            {/* <FilterSort actionFilter={onClickFilter} filterQuery={query} placeholder="Search roles..." /> */}
+
+            <FilterSort placeholder="Search roles..." filterBy={filterBy} orderBy={orderBy}/>
+
             <div class="dg-grid-3x3">
-                {/* {props.rolesList && */}
-                {
-                    props.loading ? <h1>Loading roles template</h1>
-                        :
-                        <For each={props.rolesList } fallback={<div>Sin roles...</div>}>
-                            {( item ) =>
-                                <MediaObject class="dg-media-object" >
-                                    <div class="flex-col w-10 h-10 bg-white text-black justify-center content-center rounded-full">{' '}</div>
-                                    <div class="flex-col justify-center content-center ml-3">
-                                        <Title titleType="h6" class="hover:transform hover:scale-125"><a href={`/roles/view/${item.id}`}>{item.name}</a></Title>
-                                        { item.name }
+                <Show when={props.roleList?.length}>
+                    <For each={props.roleList} fallback={<div>No roles...</div>}>
+                        {( role ) =>
+                            <MediaObject class="dg-media-object" >
+                                <div class="flex-col w-10 h-10 bg-white text-black justify-center content-center rounded-full">{' '}</div>
+                                <div class="flex-col justify-center content-center ml-3">
+                                    <Title titleType="h6" class="hover:transform hover:scale-125">
+                                        <Link href={`/roles/${role.id}/update`}>
+                                            {role.name}
+                                        </Link>
+                                    </Title>
+                                    { role.slug }
+                                </div>
+                                <div class="flex flex-col ml-auto">
+                                    <div class="h-6 w-6 my-1">
+                                        <Link
+                                            class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
+                                            href={`/roles/${role.id}/update`}>
+                                            <IconPencilAlt />
+                                        </Link>
                                     </div>
-                                    <div class="flex flex-col ml-auto">
-                                        <div class="h-6 w-6 my-1">
-                                            <Link
-                                                class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                                href={`/roles/${item.id}/update`}>
-                                                <IconPencilAlt />
-                                            </Link>
-                                        </div>
-                                        <div class="h-6 w-6 my-1">
-                                            <button
-                                                class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                                onClick={() => openConfirmDelete( item.id, item.name )}
-                                                type='button'
-                                            >
-                                                <IconTrash />
-                                            </button>
-                                        </div>
+                                    <div class="h-6 w-6 my-1">
+                                        <button
+                                            class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
+                                            onClick={() => openConfirmDelete( role.id, role.name )}
+                                            type='button'
+                                        >
+                                            <IconTrash />
+                                        </button>
                                     </div>
-                                </MediaObject>
-                            }
-                        </For>
-                }
+                                </div>
+                            </MediaObject>
+                        }
+                    </For>
+                </Show>
             </div>
 
             <div class="dg-full-center-flex mt-8">
-                <Button onClick={props.viewMore} class="dg-secondary-button">
-                    View More
-                </Button>
+                <Show when={!!props.nextPage}>
+                    <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
+                        <Show when={!props.loading} fallback="Loading">
+                            View More
+                        </Show>
+                    </Button>
+                </Show>
+
                 <Button onClick={scrollTop} class={`h-10 w-10 transform rotate-90 text-main-gray-250 ${getShowScroll() ? 'flex' : 'hidden'}`} >
                     <IconArrowCircleLeft />
                 </Button>

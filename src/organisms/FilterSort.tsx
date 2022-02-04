@@ -32,7 +32,7 @@ interface FilterSortProps{
     orderBy: IOrderByByProp[];
 
 }
-// const FilterSort = ( { actionFilter, filterButtonName = 'Filter', filterQuery = null, placeholder } ): any =>
+
 const FilterSort:Component<FilterSortProps> = ( props ) =>
 {
     const { filter, setFilter, toggleSort } = useFilter();
@@ -42,8 +42,7 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
             initialValues={{
                 search: filter.search,
                 filterBy: { ...props.filterBy.find( filterOption => filterOption.value === filter.filterBy ) },
-                orderBy: { ...props.orderBy.find( orderByOption => orderByOption.value === filter.orderBy ) },
-                sort: 'asc'
+                orderBy: { ...props.orderBy.find( orderByOption => orderByOption.value === filter.orderBy ) }
             }}
             validation={FilterSortSchema}
             onSubmit={async ( form ) =>

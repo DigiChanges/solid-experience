@@ -57,6 +57,7 @@
                 ]
             }
         ],
+        "key-spacing": ["warn", { "beforeColon": false, "afterColon": true}],
         "array-bracket-spacing": [
             "warn",
             "always"
@@ -65,6 +66,7 @@
             "warn",
             "always"
         ],
+        "padded-blocks": ["error", "never"],
         "block-spacing": "warn",
         "arrow-spacing": "warn",
         "space-before-function-paren": "warn",
@@ -159,6 +161,7 @@
         "curly": "warn",
         "use-isnan": "error",
         "no-empty-function": "off",
+        "@typescript-eslint/type-annotation-spacing": "warn",
         "@typescript-eslint/indent": ["warn"],
         "@typescript-eslint/no-empty-function": [
             "warn",

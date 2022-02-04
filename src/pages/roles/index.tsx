@@ -1,7 +1,9 @@
-import { useSearchParams } from 'solid-app-router';
-import { Component, createMemo, createResource } from 'solid-js';
+import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
-import FilterFactory from '../../helpers/FilterFactory';
+import { INIT_STATE } from '../../features/shared/constants';
+import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
+import useQuery from '../../features/shared/hooks/useQuery';
+import { IRoleApi, RoleListResponse } from '../../interfaces/role';
 import RoleRepository from '../../repositories/RoleRepository';
 import PrivateLayout from '../../templates/layout/PrivateLayout';
 import RoleList from '../../templates/roles/RoleList';
@@ -10,9 +12,18 @@ const IndexPage: Component = () =>
 {
     const [ user ]: any = useApplicationContext();
     const roleRepository = new RoleRepository( user() );
-    const [ searchParams ] = useSearchParams<any>();
-    const uriParams = createMemo( () => FilterFactory.getUriParam( searchParams ) );
+
+    const { goToPage, uriParams } = useQuery( INIT_STATE.nextQueryParamsPagination );
+
     const [ roles, { refetch } ] = createResource( uriParams, roleRepository.getRoles() );
+    const { resourceList: roleList, setViewMore } = usePaginatedState<IRoleApi, RoleListResponse>( roles );
+
+    const viewMoreAction = () => () =>
+    {
+        goToPage( roles()?.pagination?.nextUrl );
+        setViewMore();
+    };
+
     const removeAction = async ( id: string  ) =>
     {
         const remove = roleRepository.removeRole( id );
@@ -24,9 +35,11 @@ const IndexPage: Component = () =>
         <PrivateLayout>
             {roles.error && <h1>Error: {roles?.error?.message}</h1>}
             <RoleList
-                rolesList={roles()?.data}
+                roleList={roleList()}
+                removeAction={removeAction}
                 loading={roles.loading}
-                removeRole={removeAction}
+                viewMoreAction={viewMoreAction}
+                nextPage={roles()?.pagination?.nextUrl}
             />
         </PrivateLayout>
     );

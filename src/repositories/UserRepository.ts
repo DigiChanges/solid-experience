@@ -1,19 +1,10 @@
 import { AxiosRequestConfig } from 'axios';
-import { IBodyApi } from '../interfaces/response/IBodyApi';
-import { IUserApi } from '../interfaces/user';
+import { UserListResponse, UserResponse } from '../interfaces/user';
 import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
 import { config } from './config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne, editPassword, assignRole } = config.apiGateway.routes.users;
-
-type UserListResponse = IBodyApi & {
-    data: IUserApi[];
-};
-
-type UserResponse = IBodyApi & {
-    data: IUserApi;
-};
 
 class UserRepository
 {
@@ -43,7 +34,7 @@ class UserRepository
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${assignRole}/${id}`,
             method: 'PUT',
-            data:{ rolesId }
+            data: { rolesId }
         };
 
         return HttpAxiosRequest<UserResponse>( config, this.user );
@@ -51,7 +42,6 @@ class UserRepository
 
     public updateUser ( id: string, data: any )
     {
-
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${update}/${id}`,
             method: 'PUT',
@@ -69,7 +59,7 @@ class UserRepository
             data
         };
 
-        return HttpAxiosRequest( config, this.user );
+        return HttpAxiosRequest<UserResponse>( config, this.user );
     }
 
     public removeUser ( id: string )
@@ -79,11 +69,10 @@ class UserRepository
             method: 'DELETE'
         };
 
-        return HttpAxiosRequest( config, this.user );
+        return HttpAxiosRequest<UserResponse>( config, this.user );
     }
     public editPassword ( id: string, data: any )
     {
-
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${editPassword}/${id}`,
             method: 'PUT',
@@ -93,6 +82,5 @@ class UserRepository
         return HttpAxiosRequest( config, this.user );
     }
 }
-
 
 export default UserRepository;
