@@ -1,20 +1,10 @@
 import { AxiosRequestConfig } from 'axios';
-import { IBodyApi } from '../interfaces/response/IBodyApi';
-import { IPaginatedBodyApi } from '../interfaces/response/IPaginatedBodyApi';
-import { IUserApi } from '../interfaces/user';
+import { UserListResponse, UserResponse } from '../interfaces/user';
 import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
 import { config } from './config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne, editPassword, assignRole } = config.apiGateway.routes.users;
-
-export type UserListResponse = IPaginatedBodyApi & {
-    data: IUserApi[];
-};
-
-type UserResponse = IBodyApi & {
-    data: IUserApi;
-};
 
 class UserRepository
 {
@@ -69,7 +59,7 @@ class UserRepository
             data
         };
 
-        return HttpAxiosRequest( config, this.user );
+        return HttpAxiosRequest<UserResponse>( config, this.user );
     }
 
     public removeUser ( id: string )
@@ -79,7 +69,7 @@ class UserRepository
             method: 'DELETE'
         };
 
-        return HttpAxiosRequest( config, this.user );
+        return HttpAxiosRequest<UserResponse>( config, this.user );
     }
     public editPassword ( id: string, data: any )
     {
@@ -92,6 +82,5 @@ class UserRepository
         return HttpAxiosRequest( config, this.user );
     }
 }
-
 
 export default UserRepository;

@@ -1,3 +1,5 @@
+import { IBodyApi } from '../response/IBodyApi';
+import { IPaginatedBodyApi } from '../response/IPaginatedBodyApi';
 
 export interface IRolePayload
 {
@@ -13,3 +15,11 @@ export interface IRoleApi extends IRolePayload
     createdAt: number;
     updatedAt: number;
 }
+
+export type RoleResponse = IBodyApi & {
+    data: IRoleApi;
+};
+
+export type RoleListResponse = IPaginatedBodyApi & {
+    data: IRoleApi[];
+};

@@ -3,8 +3,8 @@ import { useApplicationContext } from '../../context/context';
 import { INIT_STATE } from '../../features/shared/constants';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import useQuery from '../../features/shared/hooks/useQuery';
-import { IUserApi } from '../../interfaces/user';
-import UserRepository, { UserListResponse } from '../../repositories/UserRepository';
+import { IUserApi, UserListResponse } from '../../interfaces/user';
+import UserRepository from '../../repositories/UserRepository';
 import PrivateLayout from '../../templates/layout/PrivateLayout';
 import UserList from '../../templates/users/UserList';
 
@@ -34,7 +34,7 @@ const IndexPage: Component = () =>
     return (
         <PrivateLayout>
             <UserList
-                usersList={userList()}
+                userList={userList()}
                 removeAction={removeAction}
                 loading={users.loading}
                 viewMoreAction={viewMoreAction}

@@ -1,3 +1,5 @@
+import { IBodyApi } from '../response/IBodyApi';
+import { IPaginatedBodyApi } from '../response/IPaginatedBodyApi';
 import { IRoleApi } from '../role';
 
 export interface IChangePasswordPayload
@@ -32,3 +34,11 @@ export type IUserApi = Omit<IUserPayload, 'roles'> &
     createdAt: number;
     updatedAt: number;
 }
+
+export type UserResponse = IBodyApi & {
+    data: IUserApi;
+};
+
+export type UserListResponse = IPaginatedBodyApi & {
+    data: IUserApi[];
+};
