@@ -13,7 +13,7 @@ const IndexPage: Component = () =>
     const [ user ]: any = useApplicationContext();
     const userRepository = new UserRepository( user() );
 
-    const { goToPage, uriParams } = useQuery( INIT_STATE.nextQueryParamsPagination );
+    const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
 
     const [ users, { refetch } ] = createResource( uriParams, userRepository.getUsers() );
     const { resourceList: userList, setViewMore } = usePaginatedState<IUserApi, UserListResponse>( users );
@@ -28,7 +28,12 @@ const IndexPage: Component = () =>
     {
         const remove = userRepository.removeUser( id );
         void await remove();
-        refetch();
+        if ( page() === INIT_STATE.nextQueryParamsPagination )
+        {
+            return refetch();
+        }
+
+        goFirstPage();
     };
 
     return (

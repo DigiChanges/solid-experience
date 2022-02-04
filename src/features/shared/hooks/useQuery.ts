@@ -16,13 +16,14 @@ function useQuery ( initialPagination?: string )
         {
             goFirstPage();
         }
+
         return ( {
             filter: newFilter,
             pagination: page()
         } );
     } );
 
-    return { page, goToPage, uriParams };
+    return { page, goToPage, goFirstPage, uriParams };
 }
 
 export default useQuery;

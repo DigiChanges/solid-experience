@@ -13,7 +13,7 @@ const IndexPage: Component = () =>
     const [ user ]: any = useApplicationContext();
     const roleRepository = new RoleRepository( user() );
 
-    const { goToPage, uriParams } = useQuery( INIT_STATE.nextQueryParamsPagination );
+    const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
 
     const [ roles, { refetch } ] = createResource( uriParams, roleRepository.getRoles() );
     const { resourceList: roleList, setViewMore } = usePaginatedState<IRoleApi, RoleListResponse>( roles );
@@ -28,7 +28,12 @@ const IndexPage: Component = () =>
     {
         const remove = roleRepository.removeRole( id );
         void await remove();
-        refetch();
+        if ( page() === INIT_STATE.nextQueryParamsPagination )
+        {
+            return refetch();
+        }
+
+        goFirstPage();
     };
 
     return (

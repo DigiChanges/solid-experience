@@ -1,11 +1,13 @@
 import { Link } from 'solid-app-router';
-import { Component, createSignal, For, Show } from 'solid-js';
+import { Component, For, Show } from 'solid-js';
 import Button from '../../atoms/Button';
 import IconLockOpen from '../../atoms/Icons/Stroke/IconLockOpen';
 import IconPencilAlt from '../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../atoms/Title';
+import useModal from '../../features/shared/hooks/useModal';
+import { BasicConfirmationModalData } from '../../features/shared/types/Modal';
 import { filterBy } from '../../features/user/constants/filterBy';
 import { orderBy } from '../../features/user/constants/orderBy';
 import { IUserApi } from '../../interfaces/user';
@@ -14,7 +16,7 @@ import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import FilterSort from '../../organisms/FilterSort';
 import ConfirmDelete from '../modal/ConfirmDelete';
-import UserRemove from '../users/UserRemove';
+import RemoveModalContent from '../../features/shared/modals/RemoveModalContent';
 
 interface UserListTemplateProps
 {
@@ -24,19 +26,9 @@ interface UserListTemplateProps
     viewMoreAction: any;
     nextPage: string | undefined;
 }
-
 const UserList: Component<UserListTemplateProps> = ( props ) =>
 {
-    const [ showModal, setShowModal ] = createSignal( false );
-    const [ idSelected, setIdSelected ] = createSignal( '' );
-    const [ text, setText ] = createSignal( { firstName: '', lastName: '' } );
-
-    const openConfirmDelete = ( id: string, lastName: string, firstName: string ): void =>
-    {
-        setShowModal( !showModal() );
-        setIdSelected( id );
-        setText( { firstName, lastName } );
-    };
+    const { isShowModal, modalData, openModal, closeModal } = useModal<BasicConfirmationModalData>( { id: undefined, text: '' } );
 
     const actionCreateButton = () =>
     {
@@ -46,16 +38,19 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
     return (
         <section class="mx-8">
-            {showModal() &&
+
+            <Show when={isShowModal()}>
                 <ConfirmDelete
-                    open={true}
-                    idSelected={idSelected()}
-                    action={props.removeAction}
-                    setShowModal={setShowModal}
+                    cbAction={() => props.removeAction( modalData()?.id )}
+                    onClose={closeModal()}
                 >
-                    <UserRemove lastName={text().lastName}  firstName={text().firstName}  />
+                    <RemoveModalContent
+                        title="Are you sure delete user:"
+                        content={modalData().text}
+                    />
                 </ConfirmDelete>
-            }
+            </Show>
+
             <TitleWithButton
                 class="dg-section-title"
                 title={props.loading ? 'Users List ...' : 'Users List'}
@@ -99,7 +94,10 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                                     <div class="h-6 w-6 my-1">
                                         <button
                                             class="w-6 hover:text-gray-700 mr-1 focus:outline-none"
-                                            onClick={() => openConfirmDelete( user.id, user.lastName, user.firstName )}
+                                            onClick={ openModal( {
+                                                id: user.id,
+                                                text: `${user.firstName} ${user.lastName}`
+                                            } )}
                                             type='button'
                                         >
                                             <IconTrash />
