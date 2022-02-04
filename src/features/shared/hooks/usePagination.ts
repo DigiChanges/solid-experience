@@ -2,7 +2,7 @@ import { createSignal } from 'solid-js';
 
 function usePagination ( initialPagination?: string )
 {
-    const [ nextPage, setNextPage ] = createSignal( initialPagination );
+    const [ page, sePage ] = createSignal( initialPagination );
 
     const goToPage = ( nextUrl?: string ) =>
     {
@@ -17,11 +17,11 @@ function usePagination ( initialPagination?: string )
             };
 
             const nextPageParams = `pagination[limit]=${nextPage.limit}&pagination[offset]=${nextPage.offset}`;
-            setNextPage( nextPageParams );
+            sePage( nextPageParams );
         }
     };
 
-    return { goToPage, nextPage };
+    return { goToPage, page };
 }
 
 export default usePagination;

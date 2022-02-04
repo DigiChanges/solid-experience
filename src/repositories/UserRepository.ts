@@ -7,7 +7,7 @@ import { config } from './config';
 const { protocol, hostname, port } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne, editPassword, assignRole } = config.apiGateway.routes.users;
 
-type UserListResponse = IBodyApi & {
+export type UserListResponse = IBodyApi & {
     data: IUserApi[];
 };
 

@@ -85,7 +85,7 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
             }
             <TitleWithButton
                 class="dg-section-title"
-                title="Users List"
+                title={props.loading ? 'Users List ...' : 'Users List'}
                 labelButtonName="Create User"
                 icon={IconPlus}
                 buttonAction={actionCreateButton()}
@@ -94,9 +94,8 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
 
             <FilterSort placeholder="Search users..." filterBy={filterBy} orderBy={orderBy}/>
 
-            <Show when={!props.loading} fallback={() => <div>Loading users...</div>}>
-                <div class="dg-grid-3x3">
-
+            <div class="dg-grid-3x3">
+                <Show when={props.usersList?.length}>
                     <For each={props.usersList} fallback={<div>No users...</div>}>
                         {( user ) =>
                             <MediaObject class="dg-media-object" >
@@ -133,20 +132,22 @@ const UserList: Component<userListTemplateProps> = ( props ) =>
                             </MediaObject>
                         }
                     </For>
-                </div>
+                </Show>
+            </div>
 
-                <div class="dg-full-center-flex mt-8">
-                    <Show when={!!props.nextPage}>
-                        <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
+            <div class="dg-full-center-flex mt-8">
+                <Show when={!!props.nextPage}>
+                    <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
+                        <Show when={!props.loading} fallback="Loading">
                             View More
-                        </Button>
-                    </Show>
-
-                    <Button onClick={scrollTop} class={`h-10 w-10 transform rotate-90 text-main-gray-250 ${getShowScroll() ? 'flex' : 'hidden'}`} >
-                        <IconArrowCircleLeft />
+                        </Show>
                     </Button>
-                </div>
-            </Show>
+                </Show>
+
+                <Button onClick={scrollTop} class={`h-10 w-10 transform rotate-90 text-main-gray-250 ${getShowScroll() ? 'flex' : 'hidden'}`} >
+                    <IconArrowCircleLeft />
+                </Button>
+            </div>
         </section>
     );
 };

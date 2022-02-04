@@ -28,7 +28,7 @@ class FilterFactory
             query = query.length == 0 ? sortQuery : `${query}&${sortQuery}`;
         }
 
-        return query;
+        return query || undefined;
     }
 
     static getUriParamCustom ( filter: Filter, secondFilter: ISecondFilter | null = null ): string

@@ -4,12 +4,12 @@ import { useApplicationContext } from '../context/context';
 const HTTP_SUCCESS_STATUS = [ 200, 201, 204, 300, 302, 304 ];
 const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
 
-type queryParams = {
+export type QueryParams = {
     filter?: string,
     pagination?: string
 };
 
-export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any ) => async ( queryParams?: queryParams ) =>
+export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any ) => async ( queryParams?: QueryParams ) =>
 {
     if ( !dataUser )
     {
@@ -34,7 +34,7 @@ export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any 
     return await HttpAxiosRequestWithoutToken<T>( { ...requestDefaultOptions, ...config } )( queryParams );
 };
 
-export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) => async ( queryParams?: queryParams ) =>
+export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) => async ( queryParams?: QueryParams ) =>
 {
     const requestDefaultOptions: AxiosRequestConfig =
     {

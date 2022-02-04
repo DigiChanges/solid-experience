@@ -1,29 +1,27 @@
-import { Component, createMemo, createResource } from 'solid-js';
+import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
 import { INIT_STATE } from '../../features/shared/constants';
-import useFilter from '../../features/shared/hooks/useFilter';
-import usePagination from '../../features/shared/hooks/usePagination';
-import FilterFactory from '../../helpers/FilterFactory';
-import UserRepository from '../../repositories/UserRepository';
+import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
+import useQuery from '../../features/shared/hooks/useQuery';
+import { IUserApi } from '../../interfaces/user';
+import UserRepository, { UserListResponse } from '../../repositories/UserRepository';
 import PrivateLayout from '../../templates/layout/PrivateLayout';
 import UserList from '../../templates/users/UserList';
 
 const IndexPage: Component = () =>
 {
     const [ user ]: any = useApplicationContext();
-    const { filter } = useFilter();
     const userRepository = new UserRepository( user() );
 
-    const { nextPage, goToPage } = usePagination( INIT_STATE.nextQueryParamsPagination );
-    const uriParams = createMemo( () => ( {
-        filter: FilterFactory.getUriParam( filter ),
-        pagination: nextPage()
-    } ) );
+    const { goToPage, uriParams } = useQuery( INIT_STATE.nextQueryParamsPagination );
+
     const [ users, { refetch } ] = createResource( uriParams, userRepository.getUsers() );
+    const { resourceList: userList, setViewMore } = usePaginatedState<IUserApi, UserListResponse>( users );
 
     const viewMoreAction = () => () =>
     {
         goToPage( users()?.pagination?.nextUrl );
+        setViewMore();
     };
 
     const removeAction = async ( id: string  ) =>
@@ -36,7 +34,7 @@ const IndexPage: Component = () =>
     return (
         <PrivateLayout>
             <UserList
-                usersList={users()?.data}
+                usersList={userList()}
                 removeAction={removeAction}
                 loading={users.loading}
                 viewMoreAction={viewMoreAction}

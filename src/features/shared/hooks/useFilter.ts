@@ -17,7 +17,7 @@ function useFilter ( initialSort: 'asc' | 'desc' = 'asc' )
             search: newFilter.search,
             filterBy: newFilter.filterBy,
             orderBy: newFilter.orderBy,
-            sort:  newFilter.sort || searchParams.sort || newFilter.orderBy ? initialSort : undefined
+            sort:  searchParams.sort || initialSort
         } );
     };
 
@@ -26,7 +26,13 @@ function useFilter ( initialSort: 'asc' | 'desc' = 'asc' )
         setSearchParams( { ...searchParams, sort: newSort } );
     };
 
-    const toggleSort = () => setSort( searchParams.sort === 'desc' ? 'asc' : 'desc' );
+    const toggleSort = () =>
+    {
+        if ( searchParams.orderBy )
+        {
+            setSort( searchParams.sort === 'desc' ? 'asc' : 'desc' );
+        }
+    };
 
 
     return { filter: searchParams, setFilter, toggleSort, setSort };
