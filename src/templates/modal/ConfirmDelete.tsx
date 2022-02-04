@@ -1,4 +1,3 @@
-import { useNavigate } from 'solid-app-router';
 import { Component } from 'solid-js';
 import Button from '../../atoms/Button';
 import IconCross from '../../atoms/Icons/Stroke/IconCross';
@@ -10,15 +9,14 @@ import Modal from '../../molecules/Modal';
 interface ConfirmDeleteTemplateProps
 {
     open: boolean;
-    text: any;
-    action: any;
-    idSelected: string;
-    setShowModal:any
+    action?: any;
+    idSelected?: string;
+    setShowModal?: any;
+    children?: any;
 }
 
 const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
 {
-    const navigate = useNavigate();
     const closeModal = () =>
     {
         props.setShowModal( false );
@@ -33,7 +31,6 @@ const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
     {
         ( props.action( props.idSelected ) );
         closeModal();
-        // navigate( '/users', { replace : false } );
     };
 
     return (
@@ -51,7 +48,7 @@ const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
                         </span>
                     </div>
                     <div class="flex w-full justify-center align-middle">
-                        {props.text}
+                        {props.children}
                     </div>
                     <div class="flex justify-around ">
                         <ButtonClose onClick={onHandleCloseModal}>

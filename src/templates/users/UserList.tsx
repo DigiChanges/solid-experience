@@ -1,8 +1,6 @@
-
 import { Link } from 'solid-app-router';
 import { Component, createSignal, For, Show } from 'solid-js';
 import Button from '../../atoms/Button';
-import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconArrowCircleLeft';
 import IconLockOpen from '../../atoms/Icons/Stroke/IconLockOpen';
 import IconPencilAlt from '../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
@@ -11,6 +9,7 @@ import Title from '../../atoms/Title';
 import { filterBy } from '../../features/user/constants/filterBy';
 import { orderBy } from '../../features/user/constants/orderBy';
 import { IUserApi } from '../../interfaces/user';
+import ButtonScrollUp from '../../molecules/ButtonScrollUp';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import FilterSort from '../../organisms/FilterSort';
@@ -30,14 +29,13 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 {
     const [ showModal, setShowModal ] = createSignal( false );
     const [ idSelected, setIdSelected ] = createSignal( '' );
-    const [ text, setText ] = createSignal();
-    const [ getShowScroll, setShowScroll ] = createSignal( false );
+    const [ text, setText ] = createSignal( { firstName: '', lastName: '' } );
 
     const openConfirmDelete = ( id: string, lastName: string, firstName: string ): void =>
     {
         setShowModal( !showModal() );
         setIdSelected( id );
-        setText( <UserRemove lastName={lastName}  firstName={firstName}  /> );
+        setText( { firstName, lastName } );
     };
 
     const actionCreateButton = () =>
@@ -46,42 +44,17 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
         return true;
     };
 
-
-    const checkScrollTop = () =>
-    {
-        if ( !getShowScroll() && window.pageYOffset > 300 )
-        {
-            setShowScroll( true );
-        }
-        else if ( getShowScroll() && window.pageYOffset <= 300 )
-        {
-            setShowScroll( false );
-        }
-    };
-
-    if ( typeof window !== 'undefined' )
-    {
-        window.addEventListener( 'scroll', checkScrollTop );
-    }
-
-    const scrollTop = () =>
-    {
-        if ( typeof window !== 'undefined' )
-        {
-            window.scrollTo( { top: 0, behavior: 'smooth' } );
-        }
-    };
-
     return (
         <section class="mx-8">
             {showModal() &&
                 <ConfirmDelete
                     open={true}
                     idSelected={idSelected()}
-                    text={text()}
                     action={props.removeAction}
                     setShowModal={setShowModal}
-                />
+                >
+                    <UserRemove lastName={text().lastName}  firstName={text().firstName}  />
+                </ConfirmDelete>
             }
             <TitleWithButton
                 class="dg-section-title"
@@ -148,9 +121,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                     </Button>
                 </Show>
 
-                <Button onClick={scrollTop} class={`h-10 w-10 transform rotate-90 text-main-gray-250 ${getShowScroll() ? 'flex' : 'hidden'}`} >
-                    <IconArrowCircleLeft />
-                </Button>
+                <ButtonScrollUp />
             </div>
         </section>
     );

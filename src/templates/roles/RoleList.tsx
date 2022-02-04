@@ -4,11 +4,11 @@ import Button from '../../atoms/Button';
 import IconPencilAlt from '../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../atoms/Icons/Stroke/IconTrash';
-import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconViewMediaObject';
 import Title from '../../atoms/Title';
 import { filterBy } from '../../features/role/constants/filterBy';
 import { orderBy } from '../../features/role/constants/orderBy';
 import { IRoleApi } from '../../interfaces/role';
+import ButtonScrollUp from '../../molecules/ButtonScrollUp';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import FilterSort from '../../organisms/FilterSort';
@@ -26,54 +26,28 @@ interface RoleListTemplateProps
 
 const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 {
-    const [ getShowScroll, setShowScroll ] = createSignal( false );
     const [ showModal, setShowModal ] = createSignal( false );
     const [ idSelected, setIdSelected ] = createSignal( '' );
-    const [ text, setText ] = createSignal();
+    const [ text, setText ] = createSignal( '' );
 
     const openConfirmDelete = ( id: string, name: string ): void =>
     {
         setShowModal( !showModal() );
         setIdSelected( id );
-        setText( <RoleRemove name={name} /> );
-    };
-
-
-    const checkScrollTop = () =>
-    {
-        if ( !getShowScroll() && window.pageYOffset > 300 )
-        {
-            setShowScroll( true );
-        }
-        else if ( getShowScroll() && window.pageYOffset <= 300 )
-        {
-            setShowScroll( false );
-        }
-    };
-
-    if ( typeof window !== 'undefined' )
-    {
-        window.addEventListener( 'scroll', checkScrollTop );
-    }
-
-    const scrollTop = () =>
-    {
-        if ( typeof window !== 'undefined' )
-        {
-            window.scrollTo( { top: 0, behavior: 'smooth' } );
-        }
+        setText( name );
     };
 
     return (
         <section class="mx-8">
             {showModal() &&
-                    <ConfirmDelete
-                        open={true}
-                        idSelected={idSelected()}
-                        text={text()}
-                        action={props.removeAction}
-                        setShowModal={setShowModal}
-                    />
+                <ConfirmDelete
+                    open={true}
+                    idSelected={idSelected()}
+                    action={props.removeAction}
+                    setShowModal={setShowModal}
+                >
+                    <RoleRemove name={text()} />
+                </ConfirmDelete>
             }
             <TitleWithButton
                 class="dg-section-title"
@@ -133,9 +107,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                     </Button>
                 </Show>
 
-                <Button onClick={scrollTop} class={`h-10 w-10 transform rotate-90 text-main-gray-250 ${getShowScroll() ? 'flex' : 'hidden'}`} >
-                    <IconArrowCircleLeft />
-                </Button>
+                <ButtonScrollUp />
             </div>
         </section>
     );
