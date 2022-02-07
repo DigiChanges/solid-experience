@@ -20,7 +20,7 @@ const Login: Component = () =>
                 <div class="dg-rounded-small-box">
                     <div class="flex w-full justify-center mb-6 h-8 -mt-4">
                         <a href="/">
-                            <Image src={'/src/assets/logonav.png'} class="h-8"/>
+                            <Image src={'/src/images/logonav.png'} class="h-8"/>
                         </a>
                     </div>
                     <Show when={getShowRecoverPassword()}>
