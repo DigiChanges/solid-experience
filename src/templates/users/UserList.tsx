@@ -7,6 +7,7 @@ import IconPlus from '../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../atoms/Title';
 import useModal from '../../features/shared/hooks/useModal';
+import RemoveModalContent from '../../features/shared/modals/RemoveModalContent';
 import { BasicConfirmationModalData } from '../../features/shared/types/Modal';
 import { filterBy } from '../../features/user/constants/filterBy';
 import { orderBy } from '../../features/user/constants/orderBy';
@@ -15,8 +16,8 @@ import ButtonScrollUp from '../../molecules/ButtonScrollUp';
 import MediaObject from '../../molecules/MediaObject';
 import TitleWithButton from '../../molecules/TitleWithButton';
 import FilterSort from '../../organisms/FilterSort';
+import AuthRepository from '../../repositories/AuthRepository';
 import ConfirmDelete from '../modal/ConfirmDelete';
-import RemoveModalContent from '../../features/shared/modals/RemoveModalContent';
 
 interface UserListTemplateProps
 {
@@ -26,6 +27,14 @@ interface UserListTemplateProps
     viewMoreAction: any;
     nextPage: string | undefined;
 }
+
+const refresh = () => async () =>
+{
+    const authRepository = new AuthRepository();
+    const refreshToken = authRepository.refreshToken();
+    await refreshToken();
+};
+
 const UserList: Component<UserListTemplateProps> = ( props ) =>
 {
     const { isShowModal, modalData, openModal, closeModal } = useModal<BasicConfirmationModalData>( { id: undefined, text: '' } );
@@ -38,6 +47,9 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
     return (
         <section class="mx-8">
+            <button onClick={refresh()}>
+                TEST REFRESH TOKEN
+            </button>
 
             <Show when={isShowModal()}>
                 <ConfirmDelete

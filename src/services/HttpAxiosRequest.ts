@@ -24,14 +24,14 @@ export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any 
 
     const requestDefaultOptions: AxiosRequestConfig =
     {
-        method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${dataUser.token}`
-        }
+            Authorization: `Bearer ${dataUser.token}`,
+            ...config.headers
+        },
+        ...config
     };
 
-    return await HttpAxiosRequestWithoutToken<T>( { ...requestDefaultOptions, ...config } )( queryParams );
+    return await HttpAxiosRequestWithoutToken<T>( requestDefaultOptions )( queryParams );
 };
 
 export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) => async ( queryParams?: QueryParams ) =>
@@ -40,9 +40,10 @@ export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) =>
     {
         method: 'GET',
         headers: {
-            ...config.headers,
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+            ...config.headers
+        },
+        ...config
     };
 
     if ( typeof config.data === 'object' && Object.keys( config.data ).length !== 0 )

@@ -5,7 +5,7 @@ import { HttpAxiosRequest, HttpAxiosRequestWithoutToken } from '../services/Http
 import { config } from './config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
-const { login, permissionsGetAll, forgotPassword, changeForgotPassword } = config.apiGateway.routes.auth;
+const { login, refreshToken, permissionsGetAll, forgotPassword, changeForgotPassword } = config.apiGateway.routes.auth;
 
 type LoginResponse = IBodyApi & {
     data: ILoginApi;
@@ -19,9 +19,20 @@ class AuthRepository
     public signIn ( data: ILoginPayload )
     {
         const config: AxiosRequestConfig = {
-            url:`${protocol}://${hostname}:${port}/${login}`,
+            url: `${protocol}://${hostname}:${port}/${login}`,
             method: 'POST',
             data
+        };
+        return HttpAxiosRequestWithoutToken<LoginResponse>( config );
+    }
+
+    public refreshToken ()
+    {
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${refreshToken}`,
+            withCredentials: true,
+            method: 'POST',
+            data: {}
         };
         return HttpAxiosRequestWithoutToken<LoginResponse>( config );
     }

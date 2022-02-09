@@ -14,6 +14,7 @@ export const config = {
         routes: {
             auth: {
                 login: `${BACKEND_BASE_PATH}/auth/login`,
+                refreshToken: `${BACKEND_BASE_PATH}/auth/refresh-token`,
                 permissionsGetAll: `${BACKEND_BASE_PATH}/auth/permissions`,
                 keepAlive: `${BACKEND_BASE_PATH}/auth/keep-alive`,
                 forgotPassword: `${BACKEND_BASE_PATH}/auth/forgot-password`,
