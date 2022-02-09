@@ -29,7 +29,7 @@ export function ApplicationProvider ( props: ApplicationProviderProps )
     );
 }
 
-export function useApplicationContext ()
+export function useApplicationContext (): any[]
 {
-    return useContext( ApplicationContext );
+    return useContext<any>( ApplicationContext );
 }

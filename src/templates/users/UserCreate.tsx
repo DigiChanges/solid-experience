@@ -8,7 +8,7 @@ import ButtonConfirm from '../../molecules/ButtonConfirm';
 import { useNavigate } from 'solid-app-router';
 import { Label } from '@digichanges/solid-components';
 import Multiselect from '../../molecules/Multiselect';
-import PasswordShowHide from '../login/PasswordShowHide';
+import PasswordShowHide from '../../atoms/PasswordShowHide/PasswordShowHide';
 import SingleSelect from '../../molecules/SingleSelect';
 import { country, documentTypeOptions, states } from '../../entities';
 import { IRoleApi } from '../../interfaces/role';
@@ -323,7 +323,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         </div>
 
                         <div class="w-full mt-5 flex justify-end">
-                            <ButtonClose onClick={() => navigate( '/users', { replace : true } )}>
+                            <ButtonClose onClick={() => navigate( '/users', { replace: true } )}>
                             Close
                             </ButtonClose>
                             <ButtonConfirm type="submit">

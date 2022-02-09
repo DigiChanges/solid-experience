@@ -1,15 +1,14 @@
 
-import { Form } from 'solid-js-form';
-import Title from '../../atoms/Title';
-import Button from '../../atoms/Button';
-import { Component } from 'solid-js';
-import SignUpSchema from '../../SchemaValidations/SignUpSchema';
-import Input from '../../atoms/Input';
-import PasswordShowHide from './PasswordShowHide';
-import { useApplicationContext } from '../../context/context';
-import AuthRepository from '../../repositories/AuthRepository';
-import { ILoginPayload } from '../../interfaces/auth';
 import { useNavigate } from 'solid-app-router';
+import { Component } from 'solid-js';
+import { Form } from 'solid-js-form';
+import Button from '../../../../atoms/Button';
+import Input from '../../../../atoms/Input';
+import PasswordShowHide from '../../../../atoms/PasswordShowHide/PasswordShowHide';
+import Title from '../../../../atoms/Title';
+import { useApplicationContext } from '../../../../context/context';
+import SignUpSchema from '../../../../SchemaValidations/SignUpSchema';
+import { handleSubmit } from './handlers';
 
 interface LoginFormProps {
     onClick: ( event: MouseEvent ) => void;
@@ -17,21 +16,14 @@ interface LoginFormProps {
 
 const LoginForm: Component<LoginFormProps> = props =>
 {
-    const [ , { addUser } ]: any = useApplicationContext();
-    const authRepository = new AuthRepository();
+    const [ , { addUser } ] = useApplicationContext();
     const navigate = useNavigate();
     return (
         <>
             <Form
                 initialValues={{ email: '', password: '' }}
                 validation={SignUpSchema}
-                onSubmit={async ( form ) =>
-                {
-                    const signIn = authRepository.signIn( form.values as ILoginPayload );
-                    const response = await signIn();
-                    addUser( response.data );
-                    navigate( '/dashboard', { replace : true } );
-                }}
+                onSubmit={handleSubmit( { addUser, navigate } )}
             >
                 <Title titleType="h1" class="mb-2 text-left text-xs font-extrabold text-main-gray-250">
                     Login
