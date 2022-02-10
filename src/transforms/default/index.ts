@@ -1,3 +1,4 @@
+import { GroupedPermission, IPermissionApi } from '../../interfaces/auth';
 
 export class SelectTransform
 {
@@ -15,21 +16,19 @@ export class SelectTransform
             : [];
     }
 
-    static getPermissionsGroupedToSelectArray ( items: any[] )
+    static getPermissionsGroupedToSelectArray ( items: IPermissionApi[] ): GroupedPermission[]
     {
         if ( items && items.length > 0 )
         {
-
-            return items.reduce( ( acc, item ) =>
+            return items.reduce<GroupedPermission[]>( ( acc, item ) =>
             {
-                const permissions = item.permissions.map( ( permission ) => ( {
+                const permissions = item.permissions.map( ( permission: string ) => ( {
                     value: permission,
                     group: item.group }
                 ) );
                 return [ ...acc, ...permissions ];
             }, [] );
         }
-
+        return [];
     }
-
 }

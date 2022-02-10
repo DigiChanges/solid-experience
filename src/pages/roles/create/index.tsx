@@ -1,6 +1,8 @@
 import { useNavigate } from 'solid-app-router';
 import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
+import { GroupedPermission } from '../../../interfaces/auth';
+import { IRolePayload } from '../../../interfaces/role';
 import AuthRepository from '../../../repositories/AuthRepository';
 import RoleRepository from '../../../repositories/RoleRepository';
 import PrivateLayout from '../../../templates/layout/PrivateLayout';
@@ -18,19 +20,21 @@ const IndexPage: Component = () =>
 
     const createAction = async ( payload: any ) =>
     {
-        const permissions = payload.permissions.map( ( permission: any ) => permission.value );
+        const permissions = ( payload.permissions as GroupedPermission[] ).map( ( permission ) => permission.value );
         const enable = payload.enable?.value;
-        const data = { ...payload, enable, permissions };
-        const create = roleRepository.createRole( data );
-        const response = await create();
-        navigate( '/roles', { replace : true } );
 
+        const data: IRolePayload = { ...payload, enable, permissions };
+        const create = roleRepository.createRole( data );
+        void await create();
+
+        navigate( '/roles', { replace: true } );
     };
 
     return <PrivateLayout>
         <RoleCreate
             createAction={createAction}
-            permissionsList={getPermissions()}
+            permissionsList={getPermissions()?.data}
+            loading={getPermissions.loading}
         />
     </PrivateLayout>;
 };

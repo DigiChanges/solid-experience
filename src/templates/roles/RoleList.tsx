@@ -47,7 +47,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 
             <TitleWithButton
                 class="dg-section-title"
-                title="Roles"
+                title={props.loading ? 'Roles List ...' : 'Roles List'}
                 labelButtonName="Create Role"
                 icon={IconPlus}
                 path="/roles/create"
@@ -57,7 +57,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
             <FilterSort placeholder="Search roles..." filterBy={filterBy} orderBy={orderBy}/>
 
             <div class="dg-grid-3x3">
-                <Show when={props.roleList?.length}>
+                <Show when={!props.loading || props.roleList?.length} fallback={() => <div>Loading...</div>}>
                     <For each={props.roleList} fallback={<div>No roles...</div>}>
                         {( role ) =>
                             <MediaObject class="dg-media-object" >

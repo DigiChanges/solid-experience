@@ -41,7 +41,7 @@ class RoleRepository
         return HttpAxiosRequest<RoleResponse>( config, this.user );
     }
 
-    public createRole ( data: any )
+    public createRole ( data: IRolePayload )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${create}`,

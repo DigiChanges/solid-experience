@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { IChangeForgotPasswordPayload, ILoginApi, ILoginPayload } from '../interfaces/auth';
+import { IChangeForgotPasswordPayload, ILoginApi, ILoginPayload, PermissionListResponse } from '../interfaces/auth';
 import { IBodyApi } from '../interfaces/response/IBodyApi';
 import { HttpAxiosRequest, HttpAxiosRequestWithoutToken } from '../services/HttpAxiosRequest';
 import { config } from './config';
@@ -43,7 +43,7 @@ class AuthRepository
             url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`
         };
 
-        return HttpAxiosRequest( config, this.user );
+        return HttpAxiosRequest<PermissionListResponse>( config, this.user );
     };
 
     public getForgotPassword = ( email: string ) =>

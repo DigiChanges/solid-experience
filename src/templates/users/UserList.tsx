@@ -75,7 +75,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             <FilterSort placeholder="Search users..." filterBy={filterBy} orderBy={orderBy}/>
 
             <div class="dg-grid-3x3">
-                <Show when={props.userList?.length}>
+                <Show when={!props.loading || props.userList?.length} fallback={() => <div>Loading...</div>}>
                     <For each={props.userList} fallback={<div>No users...</div>}>
                         {( user ) =>
                             <MediaObject class="dg-media-object" >
