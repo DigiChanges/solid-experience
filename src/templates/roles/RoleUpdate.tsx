@@ -1,23 +1,24 @@
+import { Label } from '@digichanges/solid-components';
 import { Link } from 'solid-app-router';
-import { Component, Show } from 'solid-js';
+import { Component, createMemo, Show } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
 import Title from '../../atoms/Title';
+import { states } from '../../entities';
+import { IPermissionApi } from '../../interfaces/auth';
 import { IRoleApi } from '../../interfaces/role';
 import Multiselect from '../../molecules/Multiselect';
-import { Label } from '@digichanges/solid-components';
-import { SelectTransform } from '../../transforms/default';
 import SingleSelect from '../../molecules/SingleSelect';
-import { states } from '../../entities';
 import RoleSchema from '../../SchemaValidations/RoleSchema';
+import { SelectTransform } from '../../transforms/default';
 
 interface RoleUpdateTemplateProps
 {
-    permissionsList: any;
-    updateAction: any;
+    permissionsList?: IPermissionApi[];
+    updateAction: ( data: any ) => void;
     roleSelected: IRoleApi | undefined;
-    idSelected:string;
+    idSelected: string;
     loading: boolean;
 }
 
@@ -30,6 +31,8 @@ const singleSelectStyle = {
 
 const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
 {
+    const groupedPermissions = createMemo( () =>  props?.permissionsList ? SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) : [] );
+
     return (
         <section class="px-4">
             <div class="mb-2">
@@ -38,10 +41,8 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                 </Title>
             </div>
 
-            <Show
-                when={!props.loading}
-                fallback={<div>Loading...</div>}
-            >
+            <Show when={!props.loading} fallback={() => <div>Loading...</div>}>
+
                 <Form
                     // enableReinitialize={true}
                     initialValues={{
@@ -53,9 +54,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                     validation={RoleSchema}
                     onSubmit={async ( form ) =>
                     {
-
                         props.updateAction( form.values );
-
                     }}
 
                 >
@@ -88,7 +87,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                             <Label for="permissions">Permissions</Label>
                             <Multiselect
                                 name="permissions"
-                                options={SelectTransform.getPermissionsGroupedToSelectArray( props.permissionsList )}
+                                options={groupedPermissions()}
                                 isObject
                                 displayValue="value"
                                 groupBy='group'

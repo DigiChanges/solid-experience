@@ -20,10 +20,16 @@ const IndexPage: Component = () =>
 
     const createAction = async ( payload: any ) =>
     {
+        const { name, slug } = payload;
         const permissions = ( payload.permissions as GroupedPermission[] ).map( ( permission ) => permission.value );
         const enable = payload.enable?.value;
 
-        const data: IRolePayload = { ...payload, enable, permissions };
+        const data: IRolePayload = {
+            name,
+            slug,
+            enable,
+            permissions
+        };
         const create = roleRepository.createRole( data );
         void await create();
 

@@ -1,21 +1,20 @@
-import Title from '../../atoms/Title';
-import { Component, createMemo, Show } from 'solid-js';
-import Input from '../../atoms/Input';
-import { Form } from 'solid-js-form';
-import RoleSchema from '../../SchemaValidations/RoleSchema';
-import ButtonClose from '../../molecules/ButtonClose';
-import ButtonConfirm from '../../molecules/ButtonConfirm';
-import { useNavigate } from 'solid-app-router';
-import Multiselect from '../../molecules/Multiselect';
 import { Label } from '@digichanges/solid-components';
-import { SelectTransform } from '../../transforms/default';
-import SingleSelect from '../../molecules/SingleSelect';
+import { Link } from 'solid-app-router';
+import { Component, createMemo, Show } from 'solid-js';
+import { Form } from 'solid-js-form';
+import Input from '../../atoms/Input';
+import Title from '../../atoms/Title';
 import { states } from '../../entities';
 import { IPermissionApi } from '../../interfaces/auth';
+import ButtonConfirm from '../../molecules/ButtonConfirm';
+import Multiselect from '../../molecules/Multiselect';
+import SingleSelect from '../../molecules/SingleSelect';
+import RoleSchema from '../../SchemaValidations/RoleSchema';
+import { SelectTransform } from '../../transforms/default';
 
 interface RoleCreateTemplateProps {
     permissionsList?: IPermissionApi[];
-    createAction: any;
+    createAction: ( data: any ) => void;
     loading: boolean;
 }
 const singleSelectStyle = {
@@ -26,7 +25,6 @@ const singleSelectStyle = {
 };
 const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
-    const navigate = useNavigate();
     const groupedPermissions = createMemo( () =>  props?.permissionsList ? SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) : [] );
 
     return (
@@ -111,9 +109,9 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                             />
                         </div>
                         <div class="w-full mt-5 flex justify-end">
-                            <ButtonClose onClick={() => navigate( '/roles', { replace: true } )}>
+                            <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
                                 Close
-                            </ButtonClose>
+                            </Link>
                             <ButtonConfirm type="submit">Save</ButtonConfirm>
                         </div>
                     </div>

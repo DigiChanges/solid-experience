@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'solid-app-router';
 import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../../context/context';
+import { GroupedPermission } from '../../../../interfaces/auth';
 import { IRolePayload } from '../../../../interfaces/role';
 import AuthRepository from '../../../../repositories/AuthRepository';
 import RoleRepository from '../../../../repositories/RoleRepository';
@@ -19,26 +20,30 @@ const IndexPage: Component = () =>
 
     const updateAction = async ( payload: any )  =>
     {
+        const { name, slug } = payload;
+        const permissions = ( payload.permissions as GroupedPermission[] ).map( ( permission ) => permission.value ) ;
+        const enable = payload.enable?.value;
+
         const data: IRolePayload = {
-            name: payload.name,
-            slug: payload.slug,
-            permissions: payload.permissions.map( ( permission: any ) => permission.value ),
-            enable: payload.enable?.value
+            name,
+            slug,
+            enable,
+            permissions
         };
         const update = roleRepository.updateRole( id, data );
         void await update();
 
-        navigate( '/roles', { replace : true } );
+        navigate( '/roles', { replace: true } );
     };
 
     return (
         <PrivateLayout>
             <RoleUpdate
-                permissionsList={getPermissions()}
+                permissionsList={getPermissions()?.data}
                 updateAction={updateAction}
                 roleSelected={role()?.data}
                 idSelected={id}
-                loading={role.loading}
+                loading={role.loading || getPermissions.loading}
             />
         </PrivateLayout>
     );
