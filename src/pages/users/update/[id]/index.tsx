@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'solid-app-router';
-import { Component, createResource, Show } from 'solid-js';
+import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../../context/context';
 import AuthRepository from '../../../../repositories/AuthRepository';
 import RoleRepository from '../../../../repositories/RoleRepository';
@@ -9,7 +9,6 @@ import UserUpdate from '../../../../templates/users/UserUpdate';
 
 const IndexPage: Component = () =>
 {
-
     const { id } = useParams<{ id: string ; }> ();
     const [ user ]: any = useApplicationContext();
     const authRepository = new AuthRepository( user() );
@@ -39,16 +38,16 @@ const IndexPage: Component = () =>
             void await rolesRes();
         }
 
-        navigate( '/users', { replace : true } );
+        navigate( '/users', { replace: true } );
     };
 
     return (
         <PrivateLayout>
             <UserUpdate
-                updateAction={updateAction}
-                userSelected={userSelected()?.data}
+                permissionsList={getPermissions()?.data}
                 idSelected={id}
-                permissionsList={getPermissions()}
+                userSelected={userSelected()?.data}
+                updateAction={updateAction}
                 rolesList={getRoles()?.data}
                 loading={userSelected.loading || getRoles.loading || getPermissions.loading}
             />

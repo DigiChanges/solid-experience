@@ -1,22 +1,33 @@
 import { GroupedPermission, IPermissionApi } from '../../interfaces/auth';
 
+type OptionValueLabel = {
+    value: string;
+    label: string;
+}
+
 export class SelectTransform
 {
-    static getOptionsSimpleArray ( items: string[] )
+    static getOptionsSimpleArray ( items: string[] | undefined ): OptionValueLabel[]
     {
-        return  items && items.length > 0
-            ? items.map( ( value ) => ( { label: value, value } ) )
-            : [];
+        if ( items && items.length > 0 )
+        {
+            items.map( ( value ) => ( { label: value, value } ) );
+        }
+
+        return [];
     }
 
-    static getOptionsObjectArray ( items: any[], label: string, value: string )
+    static getOptionsObjectArray ( items: any[] | undefined, label: string, value: string ): OptionValueLabel[]
     {
-        return items && items.length > 0
-            ? items.map( ( item ) => ( { label: item[label], value: item[value] } ) )
-            : [];
+        if ( items && items.length > 0 )
+        {
+            return  items.map( ( item ) => ( { label: item[label], value: item[value] } ) );
+        }
+
+        return [];
     }
 
-    static getPermissionsGroupedToSelectArray ( items: IPermissionApi[] ): GroupedPermission[]
+    static getPermissionsGroupedToSelectArray ( items: IPermissionApi[] | undefined ): GroupedPermission[]
     {
         if ( items && items.length > 0 )
         {
@@ -29,6 +40,7 @@ export class SelectTransform
                 return [ ...acc, ...permissions ];
             }, [] );
         }
+
         return [];
     }
 }

@@ -25,7 +25,7 @@ const singleSelectStyle = {
 };
 const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
-    const groupedPermissions = createMemo( () =>  props?.permissionsList ? SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) : [] );
+    const groupedPermissions = createMemo( () =>  SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
 
     return (
         <section class="px-4">
