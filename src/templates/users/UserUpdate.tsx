@@ -51,6 +51,8 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
     const currentUserPermissions = createMemo( () =>  SelectTransform.getOptionsSimpleArray( props.userSelected?.permissions ) );
     const currentUserRoles = createMemo( () => SelectTransform.getOptionsObjectArray( props.userSelected?.roles, 'name', 'id' ) );
 
+    const getCurrentCountry = createMemo( () => ( { ...country.find( countryOption => countryOption.value === props.userSelected?.country ) } ) );
+
 
     return (
         <section class="px-4">
@@ -63,7 +65,6 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
             <Show when={!props.loading} fallback={() => <div>Loading...</div>}>
 
                 <Form
-                // enableReinitialize={true}
                     initialValues={{
                         firstName: props.userSelected?.firstName,
                         lastName: props.userSelected?.lastName,
@@ -73,7 +74,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         documentNumber: props.userSelected?.documentNumber,
                         gender: props.userSelected?.gender,
                         phone: props.userSelected?.phone,
-                        country: { ...country.find( countryOption => countryOption.value === props.userSelected?.country ) },
+                        country: getCurrentCountry(),
                         address: props.userSelected?.address,
                         roles: currentUserRoles(),
                         permissions: currentUserPermissions(),

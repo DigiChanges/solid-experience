@@ -33,6 +33,8 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
 {
     const groupedPermissions = createMemo( () => SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
 
+    const roleCurrentPermissions = createMemo( () => SelectTransform.getOptionsSimpleArray( props.roleSelected?.permissions ) );
+
     return (
         <section class="px-4">
             <div class="mb-2">
@@ -44,11 +46,10 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
             <Show when={!props.loading} fallback={() => <div>Loading...</div>}>
 
                 <Form
-                    // enableReinitialize={true}
                     initialValues={{
                         name: props.roleSelected?.name,
                         slug: props.roleSelected?.slug,
-                        permissions: SelectTransform.getOptionsSimpleArray( props.roleSelected?.permissions ?? []  ),
+                        permissions: roleCurrentPermissions(),
                         enable: { ...states.find( enableOption => enableOption.value === props.roleSelected?.enable ) }
                     }}
                     validation={RoleSchema}
