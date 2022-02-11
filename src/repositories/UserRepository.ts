@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { UserListResponse, UserResponse } from '../interfaces/user';
+import { IUserPayload, UserListResponse, UserResponse } from '../interfaces/user';
 import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
 import { config } from './config';
 
@@ -51,7 +51,7 @@ class UserRepository
         return HttpAxiosRequest<UserResponse>( config, this.user );
     }
 
-    public createUser ( data: any )
+    public createUser ( data: IUserPayload )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${create}`,

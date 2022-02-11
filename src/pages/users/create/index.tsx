@@ -6,6 +6,7 @@ import AuthRepository from '../../../repositories/AuthRepository';
 import { useApplicationContext } from '../../../context/context';
 import RoleRepository from '../../../repositories/RoleRepository';
 import { useNavigate } from 'solid-app-router';
+import { IUserPayload } from '../../../interfaces/user';
 
 const IndexPage: Component = () =>
 {
@@ -24,27 +25,32 @@ const IndexPage: Component = () =>
         const country = payload.country?.value;
         const enable = payload.enable?.value;
         const rolesId = payload.roles.map( ( role: any ) => role.id );
-        const data = { ...payload, country, documentType, enable, permissions };
+        const data: IUserPayload = {
+            ...payload,
+            country,
+            documentType,
+            enable,
+            permissions
+        };
         const create = userRepository.createUser( data );
         const response = await create();
         // assign roles
         if ( payload.roles && payload.roles.length > 0 )
         {
-            const { id } = response;
-            const rolesRes = userRepository.assignUserRole( id, rolesId );
-            const res = await rolesRes();
-
+            const { id } = response.data;
+            const assignRoles = userRepository.assignUserRole( id, rolesId );
+            void await assignRoles();
         }
-        navigate( '/users', { replace : true } );
-
+        navigate( '/users', { replace: true } );
     };
 
     return (
         <PrivateLayout>
             <UserCreate
                 createAction={createAction}
-                permissionsList={getPermissions()}
-                rolesList={getRoles()}
+                permissionsList={getPermissions()?.data}
+                rolesList={getRoles()?.data}
+                loading={getPermissions.loading || getRoles.loading}
             />
         </PrivateLayout>
     );

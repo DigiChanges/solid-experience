@@ -1,24 +1,25 @@
-import { Component, /* DEV, */ Show } from 'solid-js';
-import { Form } from 'solid-js-form';
-import Title from '../../atoms/Title';
-import UserCreateSchema from '../../SchemaValidations/UserCreateSchema';
-import Input from '../../atoms/Input';
-import ButtonClose from '../../molecules/ButtonClose';
-import ButtonConfirm from '../../molecules/ButtonConfirm';
-import { useNavigate } from 'solid-app-router';
 import { Label } from '@digichanges/solid-components';
-import Multiselect from '../../molecules/Multiselect';
+import { Link } from 'solid-app-router';
+import { Component, createMemo, /* DEV, */ Show } from 'solid-js';
+import { Form } from 'solid-js-form';
+import Input from '../../atoms/Input';
 import PasswordShowHide from '../../atoms/PasswordShowHide/PasswordShowHide';
-import SingleSelect from '../../molecules/SingleSelect';
+import Title from '../../atoms/Title';
 import { country, documentTypeOptions, states } from '../../entities';
+import { IPermissionApi } from '../../interfaces/auth';
 import { IRoleApi } from '../../interfaces/role';
+import ButtonConfirm from '../../molecules/ButtonConfirm';
+import Multiselect from '../../molecules/Multiselect';
+import SingleSelect from '../../molecules/SingleSelect';
+import UserCreateSchema from '../../SchemaValidations/UserCreateSchema';
 import { SelectTransform } from '../../transforms/default';
 
 interface UserCreateTemplateProps
 {
-    permissionsList: string[];
-    rolesList: IRoleApi[];
-    createAction?: any;
+    permissionsList?: IPermissionApi[];
+    rolesList?: IRoleApi[];
+    createAction: ( data: any ) => void;
+    loading: boolean;
 }
 
 const singleSelectStyle = {
@@ -41,8 +42,6 @@ const documentTypeMultiSelectStyle = {
 
 const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
 {
-    const navigate = useNavigate();
-
     /**
      *
      * show dev tools
@@ -57,6 +56,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
      * };
      *
      */
+    const groupedPermissions = createMemo( () =>  props?.permissionsList ? SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) : [] );
 
     return (
         <section class="px-4">
@@ -66,10 +66,8 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                 </Title>
             </div>
 
-            <Show
-                when={props.rolesList}
-                fallback={<div>Loading...</div>}
-            >
+            <Show when={!props.loading} fallback={() => <div>Loading...</div>}>
+
                 <Form
                     initialValues={{
                         firstName: '',
@@ -295,7 +293,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             <Label for="permissions">Permissions</Label>
                             <Multiselect
                                 name="permissions"
-                                options={SelectTransform.getPermissionsGroupedToSelectArray( props.permissionsList )}
+                                options={groupedPermissions()}
                                 isObject
                                 displayValue="value"
                                 groupBy='group'
@@ -323,11 +321,11 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         </div>
 
                         <div class="w-full mt-5 flex justify-end">
-                            <ButtonClose onClick={() => navigate( '/users', { replace: true } )}>
-                            Close
-                            </ButtonClose>
+                            <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
+                                Close
+                            </Link>
                             <ButtonConfirm type="submit">
-                          Save
+                                Save
                             </ButtonConfirm>
                         </div>
                     </div>
