@@ -30,7 +30,7 @@ const IndexPage: Component = () =>
             country,
             documentType,
             enable,
-            permissions
+            permissions,
         };
         const create = userRepository.createUser( data );
         const response = await create();

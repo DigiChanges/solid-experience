@@ -33,7 +33,7 @@ const RoleView: Component<RoleViewTemplateProps> = props =>
                         name: props.roleSelected?.name,
                         slug: props.roleSelected?.slug,
                         permissions: props.roleSelected?.permissions,
-                        enable: props.roleSelected?.enable
+                        enable: props.roleSelected?.enable,
                     }}
                     onSubmit={async ( values ) =>
                     {
@@ -97,7 +97,7 @@ const RoleView: Component<RoleViewTemplateProps> = props =>
                         <div class="w-full mt-5 flex justify-end">
                             <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
                                 Close
-                             </Link>
+                            </Link>
                             <Button class="dg-main-button">Save</Button>
                         </div>
                     </div>

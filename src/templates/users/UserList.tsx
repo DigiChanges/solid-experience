@@ -109,7 +109,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                                             class="w-6 hover:text-white mr-1 focus:outline-none"
                                             onClick={ openModal( {
                                                 id: user.id,
-                                                text: `${user.firstName} ${user.lastName}`
+                                                text: `${user.firstName} ${user.lastName}`,
                                             } )}
                                             type='button'
                                         >

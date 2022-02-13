@@ -6,7 +6,7 @@ import AuthRepository from '../../../../repositories/AuthRepository';
 type FormSubmit = Store<FormType.Context<{
     email: string;
     password: string;
-}>>
+}>>;
 
 export const handleSubmit = ( { addUser, navigate }: any ) => async ( form: FormSubmit ) =>
 {

@@ -22,7 +22,7 @@ export const dashRoutes = [
         name: 'Home',
         icon: IconHome,
         showItem: true,
-        permission: 'Dashboard'
+        permission: 'Dashboard',
     },
     {
         path: '/login',
@@ -30,7 +30,7 @@ export const dashRoutes = [
         name: 'Login',
         icon: IconHome,
         showItem: false,
-        permission: 'Dashboard'
+        permission: 'Dashboard',
     },
     {
         path: '/dashboard',
@@ -38,7 +38,7 @@ export const dashRoutes = [
         name: 'Dashboard',
         icon: IconDashboard,
         showItem: true,
-        permission: 'Dashboard'
+        permission: 'Dashboard',
     },
     {
         path: '/users',
@@ -54,7 +54,7 @@ export const dashRoutes = [
                 name: 'Home Users',
                 icon: IconHome,
                 showItem: true,
-                permission: permissions.USERS.LIST
+                permission: permissions.USERS.LIST,
             },
             {
                 path: '/create',
@@ -62,7 +62,7 @@ export const dashRoutes = [
                 name: 'Create User',
                 icon: IconPlus,
                 showItem: true,
-                permission: permissions.USERS.SAVE
+                permission: permissions.USERS.SAVE,
             },
             {
                 path: '/view',
@@ -70,7 +70,7 @@ export const dashRoutes = [
                 name: 'View User',
                 icon: IconViewList,
                 showItem: false,
-                permission: permissions.USERS.SHOW
+                permission: permissions.USERS.SHOW,
             },
             {
                 path: '/:id/update',
@@ -78,7 +78,7 @@ export const dashRoutes = [
                 name: 'Update User',
                 icon: IconPencilAlt,
                 showItem: false,
-                permission: permissions.USERS.UPDATE
+                permission: permissions.USERS.UPDATE,
             },
             {
                 path: '/editPassword/:id',
@@ -86,16 +86,16 @@ export const dashRoutes = [
                 name: 'edit Password',
                 icon: IconPencilAlt,
                 showItem: false,
-                permission: 'Dashboard'
-            }
-        ]
+                permission: 'Dashboard',
+            },
+        ],
     },
     {
         path: '/UserChangePass/:token',
         component: lazy( () => import( '../pages/users/changePassword' ) ),
         name: 'Change Password',
         icon: IconPencilAlt,
-        showItem: false
+        showItem: false,
     },
     {
         path: '/roles',
@@ -111,7 +111,7 @@ export const dashRoutes = [
                 name: 'Home Roles',
                 icon: IconHome,
                 showItem: true,
-                permission: permissions.ROLES.LIST
+                permission: permissions.ROLES.LIST,
             },
             {
                 path: '/create',
@@ -119,7 +119,7 @@ export const dashRoutes = [
                 name: 'Create Role',
                 icon: IconPlus,
                 showItem: true,
-                permission: permissions.ROLES.SAVE
+                permission: permissions.ROLES.SAVE,
             },
             {
                 path: '/:id/update',
@@ -127,10 +127,10 @@ export const dashRoutes = [
                 name: 'Update Role',
                 showItem: false,
                 icon: IconPencilAlt,
-                permission: permissions.ROLES.UPDATE
-            }
-        ]
-    }
+                permission: permissions.ROLES.UPDATE,
+            },
+        ],
+    },
 ];
 
 // export const dashRoutes = [

@@ -3,7 +3,7 @@ import { Component, splitProps } from 'solid-js';
 import { useField } from 'solid-js-form';
 import ErrorForm from '../atoms/ErrorForm';
 
-const handleSelect = ( { setValue, name }: {setValue: any, name: string} ) => ( data: Option[], item: Option ) =>
+const handleSelect = ( { setValue, name }: {setValue: any; name: string} ) => ( data: Option[], item: Option ) =>
 {
     if ( typeof item === 'object' )
     {

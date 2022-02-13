@@ -11,29 +11,27 @@ import SingleSelect from '../molecules/SingleSelect';
 import FilterSortSchema from '../SchemaValidations/FilterSortSchema';
 
 const singleSelectStyle = {
-    // eslint-disable-next-line solid/style-prop
     searchBox: { 'max-height': '40px' },
-    // eslint-disable-next-line solid/style-prop
-    inputField: { 'max-height': '40px', 'padding': '0 10px' }
+    inputField: { 'max-height': '40px', 'padding': '0 10px' },
 };
 interface IFilterByProp
 {
     value: string;
-    label: string
+    label: string;
 }
 interface IOrderByByProp
 {
     value: string;
-    label: string
+    label: string;
 }
 interface FilterSortProps{
-    placeholder:string;
+    placeholder: string;
     filterBy: IFilterByProp[];
     orderBy: IOrderByByProp[];
 
 }
 
-const FilterSort:Component<FilterSortProps> = ( props ) =>
+const FilterSort: Component<FilterSortProps> = ( props ) =>
 {
     const { filter, setFilter, toggleSort } = useFilter();
 
@@ -42,7 +40,7 @@ const FilterSort:Component<FilterSortProps> = ( props ) =>
             initialValues={{
                 search: filter.search,
                 filterBy: { ...props.filterBy.find( filterOption => filterOption.value === filter.filterBy ) },
-                orderBy: { ...props.orderBy.find( orderByOption => orderByOption.value === filter.orderBy ) }
+                orderBy: { ...props.orderBy.find( orderByOption => orderByOption.value === filter.orderBy ) },
             }}
             validation={FilterSortSchema}
             onSubmit={async ( form ) =>

@@ -19,7 +19,6 @@ class FilterFactory
         if ( search && filterBy )
         {
             query = `filter[${filterBy}]=${search}`;
-
         }
 
         if ( orderBy && sort )

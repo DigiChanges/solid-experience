@@ -8,15 +8,15 @@ import UserEditPassword from '../../../templates/users/UserEditPassword';
 const IndexPage: Component = () =>
 {
     const navigate = useNavigate();
-    const { id } = useParams<{ id: string ; }> ();
+    const { id } = useParams<{ id: string  }> ();
     const [ user ]: any = useApplicationContext();
     const userRepository = new UserRepository( user() );
 
-    const editPassword = async ( data:any ) =>
+    const editPassword = async ( data: any ) =>
     {
         const remove = userRepository.editPassword( id, data );
         void await remove();
-        navigate( '/users', { replace : true } );
+        navigate( '/users', { replace: true } );
     };
     return <PrivateLayout>
         <UserEditPassword

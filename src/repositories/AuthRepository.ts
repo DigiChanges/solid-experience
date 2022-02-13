@@ -13,15 +13,14 @@ type LoginResponse = IBodyApi & {
 
 class AuthRepository
 {
-    constructor ( private user?: any )
-    {}
+    constructor ( private user?: any ) {}
 
     public signIn ( data: ILoginPayload )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${login}`,
             method: 'POST',
-            data
+            data,
         };
         return HttpAxiosRequestWithoutToken<LoginResponse>( config );
     }
@@ -32,7 +31,7 @@ class AuthRepository
             url: `${protocol}://${hostname}:${port}/${refreshToken}`,
             withCredentials: true,
             method: 'POST',
-            data: {}
+            data: {},
         };
         return HttpAxiosRequestWithoutToken<LoginResponse>( config );
     }
@@ -40,7 +39,7 @@ class AuthRepository
     public getAllPermissions = () =>
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`
+            url: `${protocol}://${hostname}:${port}/${permissionsGetAll}`,
         };
 
         return HttpAxiosRequest<PermissionListResponse>( config, this.user );
@@ -51,7 +50,7 @@ class AuthRepository
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${forgotPassword}`,
             method: 'POST',
-            data: { email }
+            data: { email },
         };
 
         return HttpAxiosRequestWithoutToken( config );
@@ -62,7 +61,7 @@ class AuthRepository
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${changeForgotPassword}`,
             method: 'POST',
-            data
+            data,
         };
 
         return HttpAxiosRequestWithoutToken( config );

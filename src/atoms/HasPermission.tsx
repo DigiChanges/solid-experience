@@ -1,8 +1,8 @@
 import { Component, For, JSX } from 'solid-js';
 import { ADMIN } from '../config/persmissions';
 interface HasPermissionProps{
-    permission: string,
-    user: any,
+    permission: string;
+    user: any;
     userPermissions: string[];
     children: JSX.Element | JSX.Element[];
 }
@@ -10,7 +10,7 @@ interface HasPermissionProps{
 const HasPermission: Component<HasPermissionProps> = ( props ) =>
 {
     const shouldRender = () =>
-        ( props.userPermissions && props.userPermissions.includes( props.permission ) )    
+        ( props.userPermissions && props.userPermissions.includes( props.permission ) )
         ||
         ( props.user.user.roles[0]?.slug === 'superadmin' );
     //   (userPermissions && user?.roles && userPermissions.includes(permission))   ||

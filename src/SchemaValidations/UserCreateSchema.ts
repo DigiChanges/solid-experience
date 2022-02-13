@@ -41,7 +41,7 @@ const UserCreateSchema = {
         .required( 'Required' ),
     passwordConfirmation: Yup.string()
         .oneOf( [ Yup.ref( 'password' ), null ], 'Passwords must match' )
-        .required( 'Required' )
+        .required( 'Required' ),
 };
 
 export default UserCreateSchema;

@@ -1,25 +1,23 @@
 import { Component } from 'solid-js';
 import Button from '../atoms/Button';
 interface SideBarItemProps {
-    name: string,
-    icon?: any,
-    isLoading?: boolean
+    name: string;
+    icon?: any;
+    isLoading?: boolean;
     onClick: ( event: MouseEvent ) => void;
     getShowSubitems: any;
     routes: any;
-    showItem:boolean;
+    showItem: boolean;
 }
 
 
 const SideBarItem: Component<SideBarItemProps> = ( props ) =>
 {
-
     const Icon: any = props.icon;
 
 
     const getLabelOrItem = ( name: string ) =>
     {
-
         return (
             props.showItem && (
                 <Button class="text-white text-sm font-bold md:flex pr-3 pl-4 items-center" onClick={props.onClick}>

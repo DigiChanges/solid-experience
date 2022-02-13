@@ -10,7 +10,7 @@ const RoleSchema = {
         .min( 2, 'Too Short!' )
         .max( 50, 'Too Long!' ),
     permissions: Yup.array()
-        .min( 1 )
+        .min( 1 ),
 };
 
 export default RoleSchema;

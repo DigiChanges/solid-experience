@@ -36,10 +36,6 @@
             "warn",
             "single"
         ],
-        "semi": [
-            "warn",
-            "always"
-        ],
         "comma-spacing": [
             "warn",
             {
@@ -89,9 +85,9 @@
             "always"
         ],
         "brace-style": [
-            "error",
-            "allman"
-            // { "allowSingleLine": true }
+            "warn",
+            "allman",
+            { "allowSingleLine": true }
         ],
         "prefer-const": [
             "warn"
@@ -132,8 +128,8 @@
         "comma-dangle": [
             "error",
             {
-                "arrays": "never",
-                "objects": "never",
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
                 "imports": "never",
                 "exports": "never",
                 "functions": "never"
@@ -161,6 +157,22 @@
         "curly": "warn",
         "use-isnan": "error",
         "no-empty-function": "off",
+        "semi": "off",
+        "@typescript-eslint/semi": ["error"],
+        "@typescript-eslint/member-delimiter-style": [
+            "warn",
+            {
+                "multiline": {
+                  "delimiter": "semi",
+                  "requireLast": true
+                },
+                "singleline": {
+                  "delimiter": "semi",
+                  "requireLast": false
+                },
+                "multilineDetection": "brackets"
+              }
+        ],
         "@typescript-eslint/type-annotation-spacing": "warn",
         "@typescript-eslint/indent": ["warn"],
         "@typescript-eslint/no-empty-function": [

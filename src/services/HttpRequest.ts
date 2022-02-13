@@ -24,7 +24,7 @@ class HttpRequest
         method = 'POST',
         headers = {},
         path = '',
-        body = {}
+        body = {},
     } )
     {
         if ( headers === null )
@@ -36,7 +36,7 @@ class HttpRequest
             method,
             url: `${url}${path}`,
             mode: 'cors',
-            headers: { ...headers }
+            headers: { ...headers },
         };
 
         if ( typeof body === 'object' && Object.keys( body ).length !== 0 )

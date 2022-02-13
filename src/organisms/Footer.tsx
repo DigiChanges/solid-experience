@@ -2,7 +2,7 @@ import { Component } from 'solid-js';
 
 interface FooterProps
 {
-    class: string
+    class: string;
 }
 
 const Footer: Component<FooterProps> = ( props ) =>

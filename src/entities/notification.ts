@@ -9,6 +9,4 @@ export enum notificationTypes
 export const notification = (
     type: notificationTypes,
     message: string
-) => ( {
-    type, message
-} );
+) => ( { type, message } );

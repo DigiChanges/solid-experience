@@ -3,10 +3,10 @@ import { InputForm } from '@digichanges/solid-components';
 import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
 
-type InputFormPropsWithoutValue = Omit<InputFormProps, 'value'>
+type InputFormPropsWithoutValue = Omit<InputFormProps, 'value'>;
 type InputProps = InputFormPropsWithoutValue & {
-    value?: any
-}
+    value?: any;
+};
 
 type setValue = ( name: string, value: any ) => void;
 

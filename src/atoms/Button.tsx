@@ -4,7 +4,7 @@ interface ButtonProps {
     type?: 'button' | 'submit' | 'reset';
     name?: string;
     onClick?: ( e: MouseEvent ) => void;
-    class?: string
+    class?: string;
 }
 
 const Button: Component<ButtonProps> = ( props ) =>

@@ -1,3 +1,3 @@
 export const orderBy = [
-    { value: 'email', label: 'email' }
+    { value: 'email', label: 'email' },
 ];

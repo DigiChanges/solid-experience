@@ -19,7 +19,7 @@ function useQuery ( initialPagination?: string )
 
         return ( {
             filter: newFilter,
-            pagination: page()
+            pagination: page(),
         } );
     } );
 

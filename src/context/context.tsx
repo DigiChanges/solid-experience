@@ -18,8 +18,8 @@ export function ApplicationProvider ( props: ApplicationProviderProps )
             addUser ( user: IUserApi )
             {
                 setUser( () => user );
-            }
-        }
+            },
+        },
     ];
 
     return (

@@ -18,8 +18,7 @@ const onHandleCloseModal = ( { onClose }: {onClose: () => void} ) => () =>
     onClose();
 };
 
-const handleDeleteUser = ( { onClose, cbAction = () =>
-{} }: {onClose: () => void, cbAction: () => void} ) => () =>
+const handleDeleteUser = ( { onClose, cbAction = () => {} }: {onClose: () => void; cbAction: () => void} ) => () =>
 {
     cbAction();
     onClose();

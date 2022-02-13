@@ -4,7 +4,7 @@ import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
 import { handleSelect } from './handlers';
 
-type PasswordShowHideProps = Omit<InputFormProps, 'value'>
+type PasswordShowHideProps = Omit<InputFormProps, 'value'>;
 
 const PasswordShowHide: Component<PasswordShowHideProps> = props =>
 {

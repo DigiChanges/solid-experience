@@ -24,14 +24,14 @@ export interface IChangeForgotPasswordPayload
 export type GroupedPermission = {
     value: string;
     group: string;
-}
+};
 
 
 export type IPermissionApi =
 {
     group: string;
     permissions: string[];
-}
+};
 
 export type PermissionListResponse = IBodyApi & {
     data: IPermissionApi[];

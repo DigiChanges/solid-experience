@@ -10,7 +10,7 @@ import RoleUpdate from '../../../../templates/roles/RoleUpdate';
 
 const IndexPage: Component = () =>
 {
-    const { id } = useParams<{ id: string; }>();
+    const { id } = useParams<{ id: string }>();
     const [ user ]: any = useApplicationContext();
     const roleRepository = new RoleRepository( user() );
     const authRepository = new AuthRepository( user() );
@@ -28,7 +28,7 @@ const IndexPage: Component = () =>
             name,
             slug,
             enable,
-            permissions
+            permissions,
         };
         const update = roleRepository.updateRole( id, data );
         void await update();

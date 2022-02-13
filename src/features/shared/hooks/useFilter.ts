@@ -5,7 +5,7 @@ export type Filter = {
     filterBy?: string;
     orderBy?: string;
     sort?: 'asc' | 'desc';
-}
+};
 
 function useFilter ( initialSort: 'asc' | 'desc' = 'asc' )
 {
@@ -17,7 +17,7 @@ function useFilter ( initialSort: 'asc' | 'desc' = 'asc' )
             search: newFilter.search,
             filterBy: newFilter.filterBy,
             orderBy: newFilter.orderBy,
-            sort:  searchParams.sort || initialSort
+            sort: searchParams.sort || initialSort,
         } );
     };
 

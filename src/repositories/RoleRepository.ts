@@ -15,7 +15,7 @@ class RoleRepository
     public getRoles ()
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${getAll}`
+            url: `${protocol}://${hostname}:${port}/${getAll}`,
         };
 
         return HttpAxiosRequest<RoleListResponse>( config );
@@ -24,7 +24,7 @@ class RoleRepository
     public getOne ( id: string )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${getOne}/${id}`
+            url: `${protocol}://${hostname}:${port}/${getOne}/${id}`,
         };
 
         return HttpAxiosRequest<RoleResponse>( config );
@@ -35,7 +35,7 @@ class RoleRepository
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${update}/${id}`,
             method: 'PUT',
-            data
+            data,
         };
 
         return HttpAxiosRequest<RoleResponse>( config, this.user );
@@ -46,7 +46,7 @@ class RoleRepository
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${create}`,
             method: 'POST',
-            data
+            data,
         };
 
         return HttpAxiosRequest<RoleResponse>( config, this.user );
@@ -56,7 +56,7 @@ class RoleRepository
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${remove}/${id}`,
-            method: 'DELETE'
+            method: 'DELETE',
         };
 
         return HttpAxiosRequest<RoleResponse>( config, this.user );

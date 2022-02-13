@@ -14,4 +14,4 @@ export type IPaginationApi =
     prevUrl: number | null;
     to: number;
     total: number;
-}
+};

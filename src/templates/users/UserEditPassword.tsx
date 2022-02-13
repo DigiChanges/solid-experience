@@ -9,7 +9,7 @@ import { Link } from 'solid-app-router';
 interface UserChangePasswordTemplateProps
 {
     editPasswordAction?: any;
-    confirmationToken :string;
+    confirmationToken: string;
 }
 
 const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) =>
@@ -25,8 +25,8 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
             <Form
                 initialValues={{
 
-                    password:undefined,
-                    passwordConfirmation: undefined
+                    password: undefined,
+                    passwordConfirmation: undefined,
                 }}
                 validation={ChangePasswordSchema}
                 onSubmit={async ( form ) =>

@@ -3,7 +3,7 @@ import { GroupedPermission, IPermissionApi } from '../../interfaces/auth';
 type OptionValueLabel = {
     value: string;
     label: string;
-}
+};
 
 export class SelectTransform
 {

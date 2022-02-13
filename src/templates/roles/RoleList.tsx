@@ -84,7 +84,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                                             class="w-6 hover:text-white mr-1 focus:outline-none"
                                             onClick={ openModal( {
                                                 id: role.id,
-                                                text: role.name
+                                                text: role.name,
                                             } )}
                                             type='button'
                                         >

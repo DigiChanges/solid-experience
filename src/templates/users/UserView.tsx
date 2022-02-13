@@ -44,9 +44,9 @@ const UserView: Component<UserViewTemplateProps> = ( props ) =>
                         phone: props.userSelected?.phone,
                         country: props.userSelected?.country,
                         address: props.userSelected?.address,
-                        roles: props.userSelected?.roles.map(role => role.id),
+                        roles: props.userSelected?.roles.map( role => role.id ),
                         permissions: props.userSelected?.permissions,
-                        enable: props.userSelected?.enable
+                        enable: props.userSelected?.enable,
                     }}
                     onSubmit={async ( values ) =>
                     {

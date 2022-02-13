@@ -23,10 +23,8 @@ interface RoleUpdateTemplateProps
 }
 
 const singleSelectStyle = {
-    // eslint-disable-next-line solid/style-prop
     searchBox: { 'max-height': '40px' },
-    // eslint-disable-next-line solid/style-prop
-    inputField: { 'max-height': '40px', 'padding': '0 10px' }
+    inputField: { 'max-height': '40px', 'padding': '0 10px' },
 };
 
 const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
@@ -50,7 +48,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         name: props.roleSelected?.name,
                         slug: props.roleSelected?.slug,
                         permissions: roleCurrentPermissions(),
-                        enable: { ...states.find( enableOption => enableOption.value === props.roleSelected?.enable ) }
+                        enable: { ...states.find( enableOption => enableOption.value === props.roleSelected?.enable ) },
                     }}
                     validation={RoleSchema}
                     onSubmit={async ( form ) =>

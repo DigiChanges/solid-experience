@@ -23,21 +23,17 @@ interface UserCreateTemplateProps
 }
 
 const singleSelectStyle = {
-    // eslint-disable-next-line solid/style-prop
     searchBox: { 'max-height': '40px' },
-    // eslint-disable-next-line solid/style-prop
-    inputField: { 'max-height': '40px', 'padding': '0 10px' }
+    inputField: { 'max-height': '40px', 'padding': '0 10px' },
 };
 
 const documentTypeMultiSelectStyle = {
     ...singleSelectStyle,
-    // eslint-disable-next-line solid/style-prop
     multiselectContainer: { 'max-width': '100px' },
-    // eslint-disable-next-line solid/style-prop
     searchBox: { ...singleSelectStyle.searchBox,
         'min-width': '80px',
-        'border-radius': '20px 0 0 20px'
-    }
+        'border-radius': '20px 0 0 20px',
+    },
 };
 
 const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
@@ -84,7 +80,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         passwordConfirmation: '',
                         permissions: [],
                         roles: [],
-                        enable: { label: 'Enabled', value: true }
+                        enable: { label: 'Enabled', value: true },
                     }}
                     validation={UserCreateSchema}
                     onSubmit={async ( form ) =>

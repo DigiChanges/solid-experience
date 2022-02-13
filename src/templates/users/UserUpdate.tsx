@@ -26,21 +26,17 @@ interface UserUpdateTemplateProps
     loading: boolean;
 }
 const singleSelectStyle = {
-    // eslint-disable-next-line solid/style-prop
     searchBox: { 'max-height': '40px' },
-    // eslint-disable-next-line solid/style-prop
-    inputField: { 'max-height': '40px', 'padding': '0 10px' }
+    inputField: { 'max-height': '40px', 'padding': '0 10px' },
 };
 
 const documentTypeMultiSelectStyle = {
     ...singleSelectStyle,
-    // eslint-disable-next-line solid/style-prop
     multiselectContainer: { 'max-width': '100px' },
-    // eslint-disable-next-line solid/style-prop
     searchBox: { ...singleSelectStyle.searchBox,
         'min-width': '80px',
-        'border-radius': '20px 0 0 20px'
-    }
+        'border-radius': '20px 0 0 20px',
+    },
 };
 
 const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
@@ -80,7 +76,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         permissions: currentUserPermissions(),
                         enable: { ...states.find( enableOption => enableOption.value === props.userSelected?.enable ) },
                         password: undefined,
-                        passwordConfirmation: undefined
+                        passwordConfirmation: undefined,
                     }}
                     validation={UserUpdateSchema}
                     onSubmit={async ( form ) => props.updateAction( form.values )}

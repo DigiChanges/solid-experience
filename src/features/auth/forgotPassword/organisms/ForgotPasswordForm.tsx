@@ -13,9 +13,7 @@ interface ForgotPasswordFormProps
 
 const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) => (
     <Form
-        initialValues={{
-            email: ''
-        }}
+        initialValues={{ email: '' }}
         // class="flex flex-col h-4/5"
         validation={ForgetPasswordSchema}
         onSubmit={handleSubmit()}

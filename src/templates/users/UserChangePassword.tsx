@@ -8,7 +8,7 @@ import ChangePasswordSchema from '../../SchemaValidations/ChangePasswordSchema';
 interface UserChangePasswordTemplateProps
 {
     changePasswordAction?: any;
-    confirmationToken :string;
+    confirmationToken: string;
 }
 
 const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props ) =>
@@ -28,7 +28,7 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props 
                             initialValues={{
                                 confirmationToken: props.confirmationToken,
                                 password: '',
-                                passwordConfirmation: ''
+                                passwordConfirmation: '',
                             }}
                             validation={ChangePasswordSchema}
                             onSubmit={async ( form ) =>

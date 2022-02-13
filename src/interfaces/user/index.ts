@@ -25,7 +25,7 @@ export type IUserPayload =
     permissions: string[];
     roles: string[];
     enable: boolean;
-}
+};
 
 export type IUserApi = Omit<IUserPayload, 'roles'> &
 {
@@ -33,7 +33,7 @@ export type IUserApi = Omit<IUserPayload, 'roles'> &
     roles: IRoleApi[];
     createdAt: number;
     updatedAt: number;
-}
+};
 
 export type UserResponse = IBodyApi & {
     data: IUserApi;

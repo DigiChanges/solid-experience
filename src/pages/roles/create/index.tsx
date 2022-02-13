@@ -28,7 +28,7 @@ const IndexPage: Component = () =>
             name,
             slug,
             enable,
-            permissions
+            permissions,
         };
         const create = roleRepository.createRole( data );
         void await create();

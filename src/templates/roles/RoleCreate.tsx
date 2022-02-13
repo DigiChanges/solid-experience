@@ -17,12 +17,12 @@ interface RoleCreateTemplateProps {
     createAction: ( data: any ) => void;
     loading: boolean;
 }
+
 const singleSelectStyle = {
-    // eslint-disable-next-line solid/style-prop
     searchBox: { 'max-height': '40px' },
-    // eslint-disable-next-line solid/style-prop
-    inputField: { 'max-height': '40px', 'padding': '0 10px' }
+    inputField: { 'max-height': '40px', 'padding': '0 10px' },
 };
+
 const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
     const groupedPermissions = createMemo( () =>  SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
@@ -42,7 +42,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                         name: '',
                         slug: '',
                         permissions: [],
-                        enable: { label: 'Enabled', value: true }
+                        enable: { label: 'Enabled', value: true },
                     }}
                     validation={RoleSchema}
 

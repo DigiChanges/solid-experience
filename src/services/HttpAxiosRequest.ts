@@ -5,8 +5,8 @@ const HTTP_SUCCESS_STATUS = [ 200, 201, 204, 300, 302, 304 ];
 const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
 
 export type QueryParams = {
-    filter?: string,
-    pagination?: string
+    filter?: string;
+    pagination?: string;
 };
 
 export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any ) => async ( queryParams?: QueryParams ) =>
@@ -28,8 +28,8 @@ export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any 
         headers: {
             'Authorization': `Bearer ${dataUser.token}`,
             'Content-Type': 'application/json',
-            ...config.headers
-        }
+            ...config.headers,
+        },
     };
 
     return await HttpAxiosRequestWithoutToken<T>( requestDefaultOptions )( queryParams );
@@ -43,8 +43,8 @@ export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) =>
         ...config,
         headers: {
             'Content-Type': 'application/json',
-            ...config.headers
-        }
+            ...config.headers,
+        },
     };
 
     if ( typeof config.data === 'object' && Object.keys( config.data ).length !== 0 )

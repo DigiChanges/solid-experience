@@ -68,6 +68,4 @@ export default function notify ( o = {} )
         }
         s += 4;
     } );
-
-
 }

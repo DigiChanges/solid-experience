@@ -9,4 +9,4 @@ export type IBodyApi =
     };
     message?: string;
     errors?: IErrorResponse[];
-}
+};

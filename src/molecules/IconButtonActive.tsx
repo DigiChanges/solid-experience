@@ -1,12 +1,12 @@
 import { Component } from 'solid-js';
 interface IconButtonProps
-{   isActive:boolean;
-    iconEnable:any;
-    iconDisable:any;
+{   isActive: boolean;
+    iconEnable: any;
+    iconDisable: any;
     classNameOnActive: string;
     onClick?: ( e: MouseEvent ) => void;
 }
-const IconButtonActive:Component<IconButtonProps> = ( props ): any =>
+const IconButtonActive: Component<IconButtonProps> = ( props ): any =>
 {
     const _iconEnable = props.iconEnable;
     const _iconDisable = props.iconDisable;

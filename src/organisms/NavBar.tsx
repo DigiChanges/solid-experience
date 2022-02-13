@@ -7,14 +7,13 @@ import IconChevronDown from '../atoms/Icons/Stroke/IconCross';
 
 import { Component, createSignal } from 'solid-js';
 interface NavbarTemplatePRops {
-    email?: string,
+    email?: string;
     onClick?: ( event: MouseEvent ) => void;
     permissionsList?: string[];
-    showSidebar:boolean;
+    showSidebar: boolean;
 }
 const NavBar: Component<NavbarTemplatePRops> = props =>
 {
-
     const [ getToggledDrop, setToggleDrop ] = createSignal( false );
 
     return (

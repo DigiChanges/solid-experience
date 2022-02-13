@@ -4,7 +4,7 @@ import IconArrowCircleLeft from '../atoms/Icons/Stroke/IconArrowCircleLeft';
 
 interface ButtonGoUpProps {
     onGoUp?: ( e: MouseEvent ) => void;
-    class?: string
+    class?: string;
 }
 
 const handleClick = ( { scrollTop }: { scrollTop: () => void } ) =>  () => scrollTop();

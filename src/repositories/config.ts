@@ -9,7 +9,7 @@ export const config = {
         server: {
             protocol: API_PROTOCOL,
             hostname: API_HOSTNAME,
-            port: API_PORT
+            port: API_PORT,
         },
         routes: {
             auth: {
@@ -18,7 +18,7 @@ export const config = {
                 permissionsGetAll: `${BACKEND_BASE_PATH}/auth/permissions`,
                 keepAlive: `${BACKEND_BASE_PATH}/auth/keep-alive`,
                 forgotPassword: `${BACKEND_BASE_PATH}/auth/forgot-password`,
-                changeForgotPassword: `${BACKEND_BASE_PATH}/auth/change-forgot-password`
+                changeForgotPassword: `${BACKEND_BASE_PATH}/auth/change-forgot-password`,
             },
             users: {
                 getAll: `${BACKEND_BASE_PATH}/users`,
@@ -27,15 +27,15 @@ export const config = {
                 update: `${BACKEND_BASE_PATH}/users`,
                 remove: `${BACKEND_BASE_PATH}/users`,
                 editPassword: `${BACKEND_BASE_PATH}/users/change-user-password`,
-                assignRole: `${BACKEND_BASE_PATH}/users/assign-role`
+                assignRole: `${BACKEND_BASE_PATH}/users/assign-role`,
             },
             roles: {
                 getAll: `${BACKEND_BASE_PATH}/roles`,
                 getOne: `${BACKEND_BASE_PATH}/roles`,
                 create: `${BACKEND_BASE_PATH}/roles`,
                 update: `${BACKEND_BASE_PATH}/roles`,
-                remove: `${BACKEND_BASE_PATH}/roles`
-            }
-        }
-    }
+                remove: `${BACKEND_BASE_PATH}/roles`,
+            },
+        },
+    },
 };

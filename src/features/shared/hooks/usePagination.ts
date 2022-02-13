@@ -13,7 +13,7 @@ function usePagination ( initialPagination?: string )
 
             const nextPage = {
                 limit: params.get( 'pagination[limit]' ),
-                offset: params.get( 'pagination[offset]' )
+                offset: params.get( 'pagination[offset]' ),
             };
 
             const nextPageParams = `pagination[limit]=${nextPage.limit}&pagination[offset]=${nextPage.offset}`;

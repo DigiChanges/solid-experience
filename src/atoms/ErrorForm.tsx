@@ -2,7 +2,7 @@ import { Component, JSX } from 'solid-js';
 
 interface ErrorFormProps
 {
-    class?: string,
+    class?: string;
     children: JSX.Element;
 }
 

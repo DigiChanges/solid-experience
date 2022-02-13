@@ -2,7 +2,7 @@ import { Component, createSignal, JSX } from 'solid-js';
 import IconArrowCircleLeft from '../atoms/Icons/Stroke/IconArrowCircleLeft';
 
 interface SideBarProps {
-    class?: string
+    class?: string;
     children?: JSX.Element;
 }
 

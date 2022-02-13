@@ -4,7 +4,7 @@ import { Component } from 'solid-js';
 const Dashboard: Component = () =>
 {
     const navigate = useNavigate();
-    navigate( '/login', { replace : true } );
+    navigate( '/login', { replace: true } );
 
     return (
         <section class="dg-main-bg h-screen">

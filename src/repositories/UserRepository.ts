@@ -14,7 +14,7 @@ class UserRepository
     public getUsers ()
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${getAll}`
+            url: `${protocol}://${hostname}:${port}/${getAll}`,
         };
 
         return HttpAxiosRequest<UserListResponse>( config );
@@ -23,7 +23,7 @@ class UserRepository
     public getOne ( id: string )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${getOne}/${id}`
+            url: `${protocol}://${hostname}:${port}/${getOne}/${id}`,
         };
 
         return HttpAxiosRequest<UserResponse>( config );
@@ -34,7 +34,7 @@ class UserRepository
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${assignRole}/${id}`,
             method: 'PUT',
-            data: { rolesId }
+            data: { rolesId },
         };
 
         return HttpAxiosRequest<UserResponse>( config, this.user );
@@ -45,7 +45,7 @@ class UserRepository
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${update}/${id}`,
             method: 'PUT',
-            data
+            data,
         };
 
         return HttpAxiosRequest<UserResponse>( config, this.user );
@@ -56,7 +56,7 @@ class UserRepository
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${create}`,
             method: 'POST',
-            data
+            data,
         };
 
         return HttpAxiosRequest<UserResponse>( config, this.user );
@@ -66,7 +66,7 @@ class UserRepository
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${remove}/${id}`,
-            method: 'DELETE'
+            method: 'DELETE',
         };
 
         return HttpAxiosRequest<UserResponse>( config, this.user );
@@ -76,7 +76,7 @@ class UserRepository
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${editPassword}/${id}`,
             method: 'PUT',
-            data
+            data,
         };
 
         return HttpAxiosRequest( config, this.user );

@@ -2,12 +2,12 @@ import { Component } from 'solid-js';
 import { Link } from 'solid-app-router';
 
 interface SideBarSubItemProps {
-    name: string,
-    path: string,
-    icon?: any,
-    isToggled?: boolean,
-    equalPath?: any,
-    showItem:boolean
+    name: string;
+    path: string;
+    icon?: any;
+    isToggled?: boolean;
+    equalPath?: any;
+    showItem: boolean;
 }
 
 const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
