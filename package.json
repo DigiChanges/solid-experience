@@ -21,7 +21,7 @@
     "vite-plugin-solid": "^2.1.0"
   },
   "dependencies": {
-    "@digichanges/solid-components": "^0.1.0",
+    "@digichanges/solid-components": "^0.2.0",
     "@digichanges/solid-multiselect": "^0.0.8",
     "@savvywombat/tailwindcss-grid-areas": "^1.3.2",
     "@tailwindcss/aspect-ratio": "^0.3.0",
