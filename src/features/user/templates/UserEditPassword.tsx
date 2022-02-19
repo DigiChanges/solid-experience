@@ -1,10 +1,10 @@
-import Button from '../../atoms/Button';
-import { Component } from 'solid-js';
-import Input from '../../atoms/Input';
-import Title from '../../atoms/Title';
-import { Form } from 'solid-js-form';
-import ChangePasswordSchema from '../../SchemaValidations/ChangePasswordSchema';
 import { Link } from 'solid-app-router';
+import { Component } from 'solid-js';
+import { Form } from 'solid-js-form';
+import Button from '../../../atoms/Button';
+import Input from '../../../atoms/Input';
+import Title from '../../../atoms/Title';
+import ChangePasswordSchema from '../../../SchemaValidations/ChangePasswordSchema';
 
 interface UserChangePasswordTemplateProps
 {

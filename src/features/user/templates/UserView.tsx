@@ -6,13 +6,13 @@
 // import {country, documentTypeOptions, states} from "../../entities";
 // import SimpleSelect from "../../atoms/SimpleSelect";
 // import DGDatePicker from "../../atoms/DGDatePicker";
-import Title from '../../atoms/Title';
-import Button from '../../atoms/Button';
+import { Label } from '@digichanges/solid-components';
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
-import { IUserApi } from '../../interfaces/user';
-import Input from '../../atoms/Input';
-import Label from '../../atoms/Label';
+import Button from '../../../atoms/Button';
+import Input from '../../../atoms/Input';
+import Title from '../../../atoms/Title';
+import { IUserApi } from '../../../interfaces/user';
 
 interface UserViewTemplateProps {
     permissionsList?: string[];

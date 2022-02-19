@@ -2,8 +2,8 @@
 // import { getRoles } from "../../../redux/roles/actions";
 // import { getPermissions } from "../../../redux/auth/actions";
 // import withAuth from '../../../providers/withAuth';
-import UserView from '../../../templates/users/UserView';
 import { Component } from 'solid-js';
+import UserView from '../../../features/user/templates/UserView';
 import PublicLayout from '../../../templates/layout/PublicLayout';
 
 const IndexPage: Component = () =>

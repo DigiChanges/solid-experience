@@ -1,12 +1,12 @@
-import UserCreate from '../../../templates/users/UserCreate';
+import { useNavigate } from 'solid-app-router';
 import { Component, createResource } from 'solid-js';
+import { useApplicationContext } from '../../../context/context';
+import UserCreate from '../../../features/user/templates/UserCreate';
+import { IUserPayload } from '../../../interfaces/user';
+import AuthRepository from '../../../repositories/AuthRepository';
+import RoleRepository from '../../../repositories/RoleRepository';
 import UserRepository from '../../../repositories/UserRepository';
 import PrivateLayout from '../../../templates/layout/PrivateLayout';
-import AuthRepository from '../../../repositories/AuthRepository';
-import { useApplicationContext } from '../../../context/context';
-import RoleRepository from '../../../repositories/RoleRepository';
-import { useNavigate } from 'solid-app-router';
-import { IUserPayload } from '../../../interfaces/user';
 
 const IndexPage: Component = () =>
 {

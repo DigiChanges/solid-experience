@@ -3,7 +3,7 @@ import { Component } from 'solid-js';
 import { showErrorNotification, showSuccessNotification } from '../../../helpers/showNotification';
 import AuthRepository from '../../../repositories/AuthRepository';
 import GeneralLayout from '../../../templates/layout/GeneralLayout';
-import UserChangePassword from '../../../templates/users/UserChangePassword';
+import UserChangePassword from '../../../features/user/templates/UserChangePassword';
 
 const IndexPage: Component = () =>
 {

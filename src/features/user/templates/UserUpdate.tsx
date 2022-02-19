@@ -1,27 +1,29 @@
 import { Label } from '@digichanges/solid-components';
 import { Link } from 'solid-app-router';
-import { Component, createMemo, /* DEV, */ Show } from 'solid-js';
+import { Component, createMemo, Show } from 'solid-js';
 import { Form } from 'solid-js-form';
-import Input from '../../atoms/Input';
-import PasswordShowHide from '../../atoms/PasswordShowHide/PasswordShowHide';
-import Title from '../../atoms/Title';
-import { country, documentTypeOptions, states } from '../../entities';
-import { IPermissionApi } from '../../interfaces/auth';
-import { IRoleApi } from '../../interfaces/role';
-import ButtonConfirm from '../../molecules/ButtonConfirm';
-import MultiSelect from '../../molecules/MultiSelect';
-import SingleSelect from '../../molecules/SingleSelect';
-import UserCreateSchema from '../../SchemaValidations/UserCreateSchema';
-import { SelectTransform } from '../../transforms/default';
+import Button from '../../../atoms/Button';
+import Input from '../../../atoms/Input';
+import PasswordShowHide from '../../../atoms/PasswordShowHide/PasswordShowHide';
+import Title from '../../../atoms/Title';
+import { country, documentTypeOptions, states } from '../../../entities';
+import { IPermissionApi } from '../../../interfaces/auth';
+import { IRoleApi } from '../../../interfaces/role';
+import { IUserApi } from '../../../interfaces/user';
+import MultiSelect from '../../../molecules/MultiSelect';
+import SingleSelect from '../../../molecules/SingleSelect';
+import UserUpdateSchema from '../../../SchemaValidations/UserUpdateSchema';
+import { SelectTransform } from '../../../transforms/default';
 
-interface UserCreateTemplateProps
+interface UserUpdateTemplateProps
 {
-    permissionsList?: IPermissionApi[];
-    rolesList?: IRoleApi[];
-    createAction: ( data: any ) => void;
+    permissionsList: IPermissionApi[] | undefined;
+    rolesList: IRoleApi[] | undefined;
+    idSelected: string;
+    userSelected?: IUserApi;
+    updateAction: ( data: any ) =>  void;
     loading: boolean;
 }
-
 const singleSelectStyle = {
     searchBox: { 'max-height': '40px' },
     inputField: { 'max-height': '40px', 'padding': '0 10px' },
@@ -36,29 +38,22 @@ const documentTypeMultiSelectStyle = {
     },
 };
 
-const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
+const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
 {
-    /**
-     *
-     * show dev tools
-     * const owner: any = getOwner();
-     * window._$afterUpdate = () =>
-     * {
-     *     document.body.getElementsByTagName( 'pre' )[0].textContent = JSON.stringify(
-     *         DEV.serializeGraph( owner ),
-     *         null,
-     *         2
-     *     );
-     * };
-     *
-     */
-    const groupedPermissions = createMemo( () =>  SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
+    const groupedPermissions = createMemo( () => SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
+    const roleOptions = createMemo( () =>  SelectTransform.getOptionsObjectArray( props.rolesList, 'name', 'id' ) );
+
+    const currentUserPermissions = createMemo( () =>  SelectTransform.getOptionsSimpleArray( props.userSelected?.permissions ) );
+    const currentUserRoles = createMemo( () => SelectTransform.getOptionsObjectArray( props.userSelected?.roles, 'name', 'id' ) );
+
+    const getCurrentCountry = createMemo( () => ( { ...country.find( countryOption => countryOption.value === props.userSelected?.country ) } ) );
+
 
     return (
         <section class="px-4">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold" titleType="h1">
-                    Create User
+                    Update User
                 </Title>
             </div>
 
@@ -66,27 +61,24 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
 
                 <Form
                     initialValues={{
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        birthday: '',
-                        documentType: undefined,
-                        documentNumber: '',
-                        gender: '',
-                        phone: '',
-                        country: undefined,
-                        address: '',
-                        password: '',
-                        passwordConfirmation: '',
-                        permissions: [],
-                        roles: [],
-                        enable: { label: 'Enabled', value: true },
+                        firstName: props.userSelected?.firstName,
+                        lastName: props.userSelected?.lastName,
+                        email: props.userSelected?.email,
+                        birthday: props.userSelected?.birthday,
+                        documentType: { ...documentTypeOptions.find( dniOption => dniOption.value === props.userSelected?.documentType ) },
+                        documentNumber: props.userSelected?.documentNumber,
+                        gender: props.userSelected?.gender,
+                        phone: props.userSelected?.phone,
+                        country: getCurrentCountry(),
+                        address: props.userSelected?.address,
+                        roles: currentUserRoles(),
+                        permissions: currentUserPermissions(),
+                        enable: { ...states.find( enableOption => enableOption.value === props.userSelected?.enable ) },
+                        password: undefined,
+                        passwordConfirmation: undefined,
                     }}
-                    validation={UserCreateSchema}
-                    onSubmit={async ( form ) =>
-                    {
-                        props.createAction( form.values );
-                    }}
+                    validation={UserUpdateSchema}
+                    onSubmit={async ( form ) => props.updateAction( form.values )}
                 >
                     <div class="flex flex-wrap text-sm">
                         <span class="w-full text-xs text-bold">PERSONAL INFORMATION</span>
@@ -130,9 +122,9 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                         // class="dg-form-field-full"
                                         // style={{ 'border-radius': '100', 'height': '10px' }}
                                         placeholder="Type"
+                                        labelClass="dg-form-label"
                                         errorClass="ml-1"
                                     />
-
                                 </div>
                                 <div>
                                     <Input
@@ -150,7 +142,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
 
                         <div class="dg-form-quarter-field-wrapper text-center">
                             <Label for="gender" class="dg-form-label text-left">
-                                Gender
+                            Gender
                             </Label>
                             <div class='flex'>
 
@@ -212,6 +204,8 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 errorClass="ml-1"
                             />
                         </div>
+
+
                         <div class="dg-form-full-field-wrapper">
                             <Label for="country">Country</Label>
                             <SingleSelect
@@ -305,9 +299,9 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             <Label for="roles">Roles</Label>
                             <MultiSelect
                                 name="roles"
-                                options={props.rolesList}
+                                options={roleOptions()}
                                 isObject
-                                displayValue="name"
+                                displayValue="label"
                                 id="roles"
                                 class="dg-form-field-full"
                                 placeholder="Select Roles"
@@ -316,20 +310,17 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             />
                         </div>
 
-                        <div class="w-full mt-5 flex justify-end">
-                            <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
-                                Close
-                            </Link>
-                            <ButtonConfirm type="submit">
-                                Save
-                            </ButtonConfirm>
-                        </div>
+                        <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
+                            Close
+                        </Link>
+                        <Button class="dg-main-button" type="submit">
+                            Save
+                        </Button>
                     </div>
                 </Form>
             </Show>
-            {/* <pre/> */}
         </section>
     );
 };
 
-export default UserCreate;
+export default UserUpdate;
