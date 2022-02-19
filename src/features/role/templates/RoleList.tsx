@@ -10,11 +10,11 @@ import { orderBy } from '../constants/orderBy';
 import useModal from '../../shared/hooks/useModal';
 import RemoveModalContent from '../../shared/modals/RemoveModalContent';
 import { BasicConfirmationModalData } from '../../shared/types/Modal';
-import { IRoleApi } from '../../../interfaces/role';
+import { IRoleApi } from '../interfaces';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
 import TitleWithButton from '../../../molecules/TitleWithButton';
-import FilterSort from '../../../organisms/FilterSort';
+import FilterSort from '../../filterSort/organisms/FilterSort';
 import ConfirmDelete from '../../../templates/modal/ConfirmDelete';
 
 interface RoleListTemplateProps

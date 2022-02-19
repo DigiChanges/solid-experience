@@ -1,4 +1,4 @@
-import { Filter } from '../features/shared/hooks/useFilter';
+import { Filter } from '../hooks/useFilter';
 
 interface ISecondFilter
 {

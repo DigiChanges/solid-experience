@@ -3,7 +3,7 @@ import { Form } from 'solid-js-form';
 import Button from '../../../../atoms/Button';
 import Input from '../../../../atoms/Input';
 import Title from '../../../../atoms/Title';
-import ForgetPasswordSchema from '../../../../SchemaValidations/ForgetPasswordSchema';
+import ForgetPasswordSchema from '../../validations/schemas/ForgetPasswordSchema';
 import { handleSubmit } from './handlers';
 
 interface ForgotPasswordFormProps

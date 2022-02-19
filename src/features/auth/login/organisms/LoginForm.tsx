@@ -7,7 +7,7 @@ import Input from '../../../../atoms/Input';
 import PasswordShowHide from '../../../../atoms/PasswordShowHide/PasswordShowHide';
 import Title from '../../../../atoms/Title';
 import { useApplicationContext } from '../../../../context/context';
-import SignUpSchema from '../../../../SchemaValidations/SignUpSchema';
+import SignUpSchema from '../../validations/schemas/SignUpSchema';
 import { handleSubmit } from './handlers';
 
 interface LoginFormProps {

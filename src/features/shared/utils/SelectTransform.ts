@@ -1,4 +1,4 @@
-import { GroupedPermission, IPermissionApi } from '../../interfaces/auth';
+import { GroupedPermission, IPermissionApi } from '../../auth/interfaces';
 
 type OptionValueLabel = {
     value: string;

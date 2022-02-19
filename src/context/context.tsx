@@ -1,5 +1,5 @@
 import { createSignal, createContext, useContext, JSX } from 'solid-js';
-import { IUserApi } from '../interfaces/user';
+import { IUserApi } from '../features/user/interfaces';
 
 interface ApplicationProviderProps
 {

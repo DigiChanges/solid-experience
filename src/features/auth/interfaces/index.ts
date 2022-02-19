@@ -1,5 +1,5 @@
-import { IBodyApi } from '../response/IBodyApi';
-import { IUserApi } from '../user';
+import { IBodyApi } from '../../shared/interfaces/response/IBodyApi';
+import { IUserApi } from '../../user/interfaces';
 
 export interface ILoginApi
 {

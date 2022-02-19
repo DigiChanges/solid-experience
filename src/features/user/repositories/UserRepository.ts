@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
-import { IUserPayload, UserListResponse, UserResponse } from '../interfaces/user';
-import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
-import { config } from './config';
+import { IUserPayload, UserListResponse, UserResponse } from '../interfaces';
+import { HttpAxiosRequest } from '../../../services/HttpAxiosRequest';
+import { config } from '../../shared/repositories/config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne, editPassword, assignRole } = config.apiGateway.routes.users;

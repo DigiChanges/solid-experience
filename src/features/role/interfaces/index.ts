@@ -1,5 +1,5 @@
-import { IBodyApi } from '../response/IBodyApi';
-import { IPaginatedBodyApi } from '../response/IPaginatedBodyApi';
+import { IBodyApi } from '../../shared/interfaces/response/IBodyApi';
+import { IPaginatedBodyApi } from '../../shared/interfaces/response/IPaginatedBodyApi';
 
 export interface IRolePayload
 {

@@ -4,7 +4,7 @@ import { Form } from 'solid-js-form';
 import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
-import ChangePasswordSchema from '../../../SchemaValidations/ChangePasswordSchema';
+import ChangePasswordSchema from '../../auth/validations/schemas/ChangePasswordSchema';
 
 interface UserChangePasswordTemplateProps
 {

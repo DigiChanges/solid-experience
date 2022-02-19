@@ -3,9 +3,9 @@ import { useApplicationContext } from '../../context/context';
 import { INIT_STATE } from '../../features/shared/constants';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import useQuery from '../../features/shared/hooks/useQuery';
-import { IRoleApi, RoleListResponse } from '../../interfaces/role';
-import RoleRepository from '../../repositories/RoleRepository';
-import PrivateLayout from '../../templates/layout/PrivateLayout';
+import { IRoleApi, RoleListResponse } from '../../features/role/interfaces';
+import RoleRepository from '../../features/role/repositories/RoleRepository';
+import PrivateLayout from '../../features/shared/layout/PrivateLayout';
 import RoleList from '../../features/role/templates/RoleList';
 
 const IndexPage: Component = () =>

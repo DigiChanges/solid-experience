@@ -4,9 +4,9 @@ import { INIT_STATE } from '../../features/shared/constants';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import useQuery from '../../features/shared/hooks/useQuery';
 import UserList from '../../features/user/templates/UserList';
-import { IUserApi, UserListResponse } from '../../interfaces/user';
-import UserRepository from '../../repositories/UserRepository';
-import PrivateLayout from '../../templates/layout/PrivateLayout';
+import { IUserApi, UserListResponse } from '../../features/user/interfaces';
+import UserRepository from '../../features/user/repositories/UserRepository';
+import PrivateLayout from '../../features/shared/layout/PrivateLayout';
 
 const IndexPage: Component = () =>
 {

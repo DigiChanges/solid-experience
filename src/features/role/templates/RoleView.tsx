@@ -9,7 +9,7 @@ import { Component } from 'solid-js';
 import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import { Form } from 'solid-js-form';
-import { IRoleApi } from '../../../interfaces/role';
+import { IRoleApi } from '../interfaces';
 import { Link } from 'solid-app-router';
 
 interface RoleViewTemplateProps {

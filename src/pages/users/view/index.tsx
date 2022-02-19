@@ -4,7 +4,7 @@
 // import withAuth from '../../../providers/withAuth';
 import { Component } from 'solid-js';
 import UserView from '../../../features/user/templates/UserView';
-import PublicLayout from '../../../templates/layout/PublicLayout';
+import PublicLayout from '../../../features/shared/layout/PublicLayout';
 
 const IndexPage: Component = () =>
 {

@@ -4,6 +4,7 @@ import Image from '../../../../atoms/Image';
 import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm';
 import LoginForm from '../organisms/LoginForm';
 import { togglePasswordRecovery } from './handlers';
+import logoNav from '../../../../assets/img/logo-nav.png';
 
 const LoginTemplate: Component = () =>
 {
@@ -15,7 +16,7 @@ const LoginTemplate: Component = () =>
                 <div class="dg-rounded-small-box">
                     <div class="flex w-full justify-center mb-6 h-8 -mt-4">
                         <a href="/">
-                            <Image src="/src/images/logonav.png" class="h-8"/>
+                            <Image src={logoNav} class="h-8"/>
                         </a>
                     </div>
                     <Show when={getShowRecoverPassword()}>

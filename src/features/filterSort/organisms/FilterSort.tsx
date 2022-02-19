@@ -1,14 +1,14 @@
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
-import Button from '../atoms/Button';
-import IconSortAscending from '../atoms/Icons/Stroke/IconSortAscending';
-import IconSortDescending from '../atoms/Icons/Stroke/IconSortDescending';
-import Input from '../atoms/Input';
-import Label from '../atoms/Label';
-import useFilter from '../features/shared/hooks/useFilter';
-import SingleSelect from '../features/shared/molecules/SingleSelect';
-import IconButtonActive from '../molecules/IconButtonActive';
-import FilterSortSchema from '../SchemaValidations/FilterSortSchema';
+import Button from '../../../atoms/Button';
+import IconSortAscending from '../../../atoms/Icons/Stroke/IconSortAscending';
+import IconSortDescending from '../../../atoms/Icons/Stroke/IconSortDescending';
+import Input from '../../../atoms/Input';
+import Label from '../../../atoms/Label';
+import useFilter from '../../shared/hooks/useFilter';
+import SingleSelect from '../../shared/molecules/SingleSelect';
+import IconButtonActive from '../../../molecules/IconButtonActive';
+import FilterSortSchema from '../validations/schemas/FilterSortSchema';
 
 const singleSelectStyle = {
     searchBox: { 'max-height': '40px' },

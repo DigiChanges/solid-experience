@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from 'axios';
-import { IChangeForgotPasswordPayload, ILoginApi, ILoginPayload, PermissionListResponse } from '../interfaces/auth';
-import { IBodyApi } from '../interfaces/response/IBodyApi';
-import { HttpAxiosRequest, HttpAxiosRequestWithoutToken } from '../services/HttpAxiosRequest';
-import { config } from './config';
+import { IChangeForgotPasswordPayload, ILoginApi, ILoginPayload, PermissionListResponse } from '../interfaces';
+import { IBodyApi } from '../../shared/interfaces/response/IBodyApi';
+import { HttpAxiosRequest, HttpAxiosRequestWithoutToken } from '../../../services/HttpAxiosRequest';
+import { config } from '../../shared/repositories/config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { login, refreshToken, permissionsGetAll, forgotPassword, changeForgotPassword } = config.apiGateway.routes.auth;

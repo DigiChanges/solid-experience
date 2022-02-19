@@ -2,8 +2,8 @@ import { useNavigate, useParams } from 'solid-app-router';
 import { Component } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import UserEditPassword from '../../../features/user/templates/UserEditPassword';
-import UserRepository from '../../../repositories/UserRepository';
-import PrivateLayout from '../../../templates/layout/PrivateLayout';
+import UserRepository from '../../../features/user/repositories/UserRepository';
+import PrivateLayout from '../../../features/shared/layout/PrivateLayout';
 
 const IndexPage: Component = () =>
 {

@@ -1,6 +1,6 @@
-import { IBodyApi } from '../response/IBodyApi';
-import { IPaginatedBodyApi } from '../response/IPaginatedBodyApi';
-import { IRoleApi } from '../role';
+import { IBodyApi } from '../../shared/interfaces/response/IBodyApi';
+import { IPaginatedBodyApi } from '../../shared/interfaces/response/IPaginatedBodyApi';
+import { IRoleApi } from '../../role/interfaces';
 
 export interface IChangePasswordPayload
 {

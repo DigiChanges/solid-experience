@@ -1,7 +1,7 @@
 import { FormType } from 'solid-js-form';
 import { Store } from 'solid-js/store';
-import { ILoginPayload } from '../../../../interfaces/auth';
-import AuthRepository from '../../../../repositories/AuthRepository';
+import { ILoginPayload } from '../../interfaces';
+import AuthRepository from '../../repositories/AuthRepository';
 
 type FormSubmit = Store<FormType.Context<{
     email: string;

@@ -7,11 +7,11 @@ import Input from '../../../atoms/Input';
 import PasswordShowHide from '../../../atoms/PasswordShowHide/PasswordShowHide';
 import Title from '../../../atoms/Title';
 import { country, documentTypeOptions, states } from '../../../entities';
-import { IPermissionApi } from '../../../interfaces/auth';
-import { IRoleApi } from '../../../interfaces/role';
-import { IUserApi } from '../../../interfaces/user';
-import UserUpdateSchema from '../../../SchemaValidations/UserUpdateSchema';
-import { SelectTransform } from '../../../transforms/default';
+import { IPermissionApi } from '../../auth/interfaces';
+import { IRoleApi } from '../../role/interfaces';
+import { IUserApi } from '../interfaces';
+import UserUpdateSchema from '../validations/schemas/UserUpdateSchema';
+import { SelectTransform } from '../../shared/utils/SelectTransform';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 

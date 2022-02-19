@@ -1,6 +1,6 @@
 // import Dashboard from '../../templates/dashboard/index';
 import { Component } from 'solid-js';
-import PrivateLayout from '../../templates/layout/PrivateLayout';
+import PrivateLayout from '../../features/shared/layout/PrivateLayout';
 
 const LoginPage: Component = () =>
 {

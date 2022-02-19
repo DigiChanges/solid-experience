@@ -1,5 +1,5 @@
 import { Component } from 'solid-js';
-import Footer from '../../organisms/Footer';
+import Footer from '../../footer/organisms/Footer';
 
 const PublicLayout: Component = ( props ) =>
 {

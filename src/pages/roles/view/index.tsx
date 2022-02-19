@@ -1,6 +1,6 @@
 import RoleView from '../../../features/role/templates/RoleView';
 import { Component } from 'solid-js';
-import PublicLayout from '../../../templates/layout/PublicLayout';
+import PublicLayout from '../../../features/shared/layout/PublicLayout';
 
 const IndexPage: Component = () =>
 {

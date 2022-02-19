@@ -6,11 +6,11 @@ import Input from '../../../atoms/Input';
 import PasswordShowHide from '../../../atoms/PasswordShowHide/PasswordShowHide';
 import Title from '../../../atoms/Title';
 import { country, documentTypeOptions, states } from '../../../entities';
-import { IPermissionApi } from '../../../interfaces/auth';
-import { IRoleApi } from '../../../interfaces/role';
+import { IPermissionApi } from '../../auth/interfaces';
+import { IRoleApi } from '../../role/interfaces';
 import ButtonConfirm from '../../../molecules/ButtonConfirm';
-import UserCreateSchema from '../../../SchemaValidations/UserCreateSchema';
-import { SelectTransform } from '../../../transforms/default';
+import UserCreateSchema from '../validations/schemas/UserCreateSchema';
+import { SelectTransform } from '../../shared/utils/SelectTransform';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 

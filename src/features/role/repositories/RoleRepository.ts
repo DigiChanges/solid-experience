@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
-import { IRolePayload, RoleListResponse, RoleResponse } from '../interfaces/role';
-import { HttpAxiosRequest } from '../services/HttpAxiosRequest';
-import { config } from './config';
+import { IRolePayload, RoleListResponse, RoleResponse } from '../interfaces';
+import { HttpAxiosRequest } from '../../../services/HttpAxiosRequest';
+import { config } from '../../shared/repositories/config';
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne } = config.apiGateway.routes.roles;

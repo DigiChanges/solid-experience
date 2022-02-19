@@ -1,11 +1,11 @@
 import { useNavigate } from 'solid-app-router';
 import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
-import { GroupedPermission } from '../../../interfaces/auth';
-import { IRolePayload } from '../../../interfaces/role';
-import AuthRepository from '../../../repositories/AuthRepository';
-import RoleRepository from '../../../repositories/RoleRepository';
-import PrivateLayout from '../../../templates/layout/PrivateLayout';
+import { GroupedPermission } from '../../../features/auth/interfaces';
+import { IRolePayload } from '../../../features/role/interfaces';
+import AuthRepository from '../../../features/auth/repositories/AuthRepository';
+import RoleRepository from '../../../features/role/repositories/RoleRepository';
+import PrivateLayout from '../../../features/shared/layout/PrivateLayout';
 import RoleCreate from '../../../features/role/templates/RoleCreate';
 
 const IndexPage: Component = () =>

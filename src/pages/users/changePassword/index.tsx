@@ -1,8 +1,8 @@
 import { useParams } from 'solid-app-router';
 import { Component } from 'solid-js';
-import { showErrorNotification, showSuccessNotification } from '../../../helpers/showNotification';
-import AuthRepository from '../../../repositories/AuthRepository';
-import GeneralLayout from '../../../templates/layout/GeneralLayout';
+import { showErrorNotification, showSuccessNotification } from '../../../features/shared/utils/showNotification';
+import AuthRepository from '../../../features/auth/repositories/AuthRepository';
+import GeneralLayout from '../../../features/shared/layout/GeneralLayout';
 import UserChangePassword from '../../../features/user/templates/UserChangePassword';
 
 const IndexPage: Component = () =>

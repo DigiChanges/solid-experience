@@ -1,13 +1,13 @@
 
 import { Component, createSignal, For, JSX } from 'solid-js';
-import HasPermission from '../../atoms/HasPermission';
-import { dashRoutes } from '../../config/dashRoutes';
-import { useApplicationContext } from '../../context/context';
-import SideBarItem from '../../molecules/SideBarItem';
-import SideBarSubItem from '../../molecules/SideBarSubItem';
-import Footer from '../../organisms/Footer';
-import NavBar from '../../organisms/NavBar';
-import SideBar from '../../organisms/SideBar';
+import HasPermission from '../../../atoms/HasPermission';
+import { dashRoutes } from '../../../config/dashRoutes';
+import { useApplicationContext } from '../../../context/context';
+import SideBarItem from '../../../molecules/SideBarItem';
+import SideBarSubItem from '../../../molecules/SideBarSubItem';
+import Footer from '../../footer/organisms/Footer';
+import NavBar from '../../navBar/organisms/NavBar';
+import SideBar from '../../sideBar/organisms/SideBar';
 
 interface privateTemplateProps {
     children: JSX.Element | JSX.Element[];

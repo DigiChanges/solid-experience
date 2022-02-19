@@ -1,7 +1,7 @@
-import IconBurger from '../atoms/Icons/Stroke/IconBurger';
+import IconBurger from '../../../atoms/Icons/Stroke/IconBurger';
 // import IconCross from '../atoms/Icons/Stroke/IconCross';
-import IconBell from '../atoms/Icons/Stroke/IconCross';
-import IconChevronDown from '../atoms/Icons/Stroke/IconCross';
+import IconBell from '../../../atoms/Icons/Stroke/IconCross';
+import IconChevronDown from '../../../atoms/Icons/Stroke/IconCross';
 
 // import Image from "../atoms/Image";
 

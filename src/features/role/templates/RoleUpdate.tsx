@@ -6,10 +6,10 @@ import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
 import { states } from '../../../entities';
-import { IPermissionApi } from '../../../interfaces/auth';
-import { IRoleApi } from '../../../interfaces/role';
-import RoleSchema from '../../../SchemaValidations/RoleSchema';
-import { SelectTransform } from '../../../transforms/default';
+import { IPermissionApi } from '../../auth/interfaces';
+import { IRoleApi } from '../interfaces';
+import RoleSchema from '../validations/schemas/RoleSchema';
+import { SelectTransform } from '../../shared/utils/SelectTransform';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 

@@ -12,7 +12,7 @@ import { Form } from 'solid-js-form';
 import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
-import { IUserApi } from '../../../interfaces/user';
+import { IUserApi } from '../interfaces';
 
 interface UserViewTemplateProps {
     permissionsList?: string[];
