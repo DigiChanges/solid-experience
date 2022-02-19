@@ -1,4 +1,5 @@
-import { MultiSelect, Option } from '@digichanges/solid-multiselect';
+import MultiSelect from '@digichanges/solid-multiselect';
+import { Option } from '@digichanges/solid-multiselect/dist/Option';
 import { Component, splitProps } from 'solid-js';
 import { useField } from 'solid-js-form';
 import ErrorForm from '../atoms/ErrorForm';
