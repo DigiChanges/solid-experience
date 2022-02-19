@@ -4,7 +4,7 @@ import Image from '../../../../atoms/Image';
 import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm';
 import LoginForm from '../organisms/LoginForm';
 import { togglePasswordRecovery } from './handlers';
-import logoNav from '../../../../assets/img/logo-nav.png';
+import logoNav from '../../../../assets/images/logo-nav.png';
 
 const LoginTemplate: Component = () =>
 {

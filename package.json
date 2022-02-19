@@ -6,7 +6,7 @@
     "start": "vite",
     "dev": "vite",
     "pre-build": "cpy 'src/images/**/*.{png,jpeg,jpg}' 'dist/src/images'",
-    "build": "vite build && yarn pre-build",
+    "build": "vite build",
     "lint": "eslint src --fix",
     "serve": "vite preview"
   },
@@ -14,6 +14,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
+    "cpy-cli": "^3.1.1",
     "eslint": "^8.1.0",
     "eslint-plugin-solid": "^0.1.2",
     "typescript": "^4.4.3",
@@ -29,7 +30,6 @@
     "@tailwindcss/line-clamp": "^0.2.2",
     "autoprefixer": "^10.3.7",
     "axios": "^0.22.0",
-    "cpy-cli": "^3.1.1",
     "postcss": "^8.3.9",
     "solid-app-router": "^0.1.7",
     "solid-js": "^1.1.6",
