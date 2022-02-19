@@ -4,12 +4,12 @@
 // import SelectStyle from '../../assets/customStyles/SelectStyle';
 // import SimpleSelect from '../../atoms/SimpleSelect';
 // import { states } from '../../entities';
-import Title from '../../atoms/Title';
+import Title from '../../../atoms/Title';
 import { Component } from 'solid-js';
-import Button from '../../atoms/Button';
-import Input from '../../atoms/Input';
+import Button from '../../../atoms/Button';
+import Input from '../../../atoms/Input';
 import { Form } from 'solid-js-form';
-import { IRoleApi } from '../../interfaces/role';
+import { IRoleApi } from '../../../interfaces/role';
 import { Link } from 'solid-app-router';
 
 interface RoleViewTemplateProps {

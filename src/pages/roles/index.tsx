@@ -6,7 +6,7 @@ import useQuery from '../../features/shared/hooks/useQuery';
 import { IRoleApi, RoleListResponse } from '../../interfaces/role';
 import RoleRepository from '../../repositories/RoleRepository';
 import PrivateLayout from '../../templates/layout/PrivateLayout';
-import RoleList from '../../templates/roles/RoleList';
+import RoleList from '../../features/role/templates/RoleList';
 
 const IndexPage: Component = () =>
 {

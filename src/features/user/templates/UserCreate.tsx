@@ -9,10 +9,10 @@ import { country, documentTypeOptions, states } from '../../../entities';
 import { IPermissionApi } from '../../../interfaces/auth';
 import { IRoleApi } from '../../../interfaces/role';
 import ButtonConfirm from '../../../molecules/ButtonConfirm';
-import MultiSelect from '../../../molecules/MultiSelect';
-import SingleSelect from '../../../molecules/SingleSelect';
 import UserCreateSchema from '../../../SchemaValidations/UserCreateSchema';
 import { SelectTransform } from '../../../transforms/default';
+import MultiSelect from '../../shared/molecules/MultiSelect';
+import SingleSelect from '../../shared/molecules/SingleSelect';
 
 interface UserCreateTemplateProps
 {

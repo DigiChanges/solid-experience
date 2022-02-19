@@ -2,15 +2,15 @@ import { Label } from '@digichanges/solid-components';
 import { Link } from 'solid-app-router';
 import { Component, createMemo, Show } from 'solid-js';
 import { Form } from 'solid-js-form';
-import Input from '../../atoms/Input';
-import Title from '../../atoms/Title';
-import { states } from '../../entities';
-import { IPermissionApi } from '../../interfaces/auth';
-import ButtonConfirm from '../../molecules/ButtonConfirm';
-import MultiSelect from '../../molecules/MultiSelect';
-import SingleSelect from '../../molecules/SingleSelect';
-import RoleSchema from '../../SchemaValidations/RoleSchema';
-import { SelectTransform } from '../../transforms/default';
+import Input from '../../../atoms/Input';
+import Title from '../../../atoms/Title';
+import { states } from '../../../entities';
+import { IPermissionApi } from '../../../interfaces/auth';
+import ButtonConfirm from '../../../molecules/ButtonConfirm';
+import RoleSchema from '../../../SchemaValidations/RoleSchema';
+import { SelectTransform } from '../../../transforms/default';
+import MultiSelect from '../../shared/molecules/MultiSelect';
+import SingleSelect from '../../shared/molecules/SingleSelect';
 
 interface RoleCreateTemplateProps {
     permissionsList?: IPermissionApi[];

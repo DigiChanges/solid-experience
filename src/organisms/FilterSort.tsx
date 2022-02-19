@@ -6,8 +6,8 @@ import IconSortDescending from '../atoms/Icons/Stroke/IconSortDescending';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';
 import useFilter from '../features/shared/hooks/useFilter';
+import SingleSelect from '../features/shared/molecules/SingleSelect';
 import IconButtonActive from '../molecules/IconButtonActive';
-import SingleSelect from '../molecules/SingleSelect';
 import FilterSortSchema from '../SchemaValidations/FilterSortSchema';
 
 const singleSelectStyle = {

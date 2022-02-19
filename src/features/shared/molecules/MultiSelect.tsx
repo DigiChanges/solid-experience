@@ -1,7 +1,7 @@
 import MultiselectForm from '@digichanges/solid-multiselect';
 import { Component, splitProps } from 'solid-js';
 import { useField } from 'solid-js-form';
-import ErrorForm from '../atoms/ErrorForm';
+import ErrorForm from '../../../atoms/ErrorForm';
 
 const MultiSelect: Component<any> = ( props ) =>
 {

@@ -6,7 +6,7 @@ import { IRolePayload } from '../../../interfaces/role';
 import AuthRepository from '../../../repositories/AuthRepository';
 import RoleRepository from '../../../repositories/RoleRepository';
 import PrivateLayout from '../../../templates/layout/PrivateLayout';
-import RoleCreate from '../../../templates/roles/RoleCreate';
+import RoleCreate from '../../../features/role/templates/RoleCreate';
 
 const IndexPage: Component = () =>
 {
