@@ -8,7 +8,7 @@ import Title from '../../atoms/Title';
 import { states } from '../../entities';
 import { IPermissionApi } from '../../interfaces/auth';
 import { IRoleApi } from '../../interfaces/role';
-import Multiselect from '../../molecules/Multiselect';
+import MultiSelect from '../../molecules/MultiSelect';
 import SingleSelect from '../../molecules/SingleSelect';
 import RoleSchema from '../../SchemaValidations/RoleSchema';
 import { SelectTransform } from '../../transforms/default';
@@ -84,7 +84,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         </div>
                         <div class="dg-form-full-field-wrapper">
                             <Label for="permissions">Permissions</Label>
-                            <Multiselect
+                            <MultiSelect
                                 name="permissions"
                                 options={groupedPermissions()}
                                 isObject

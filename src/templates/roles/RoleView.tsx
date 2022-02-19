@@ -35,7 +35,7 @@ const RoleView: Component<RoleViewTemplateProps> = props =>
                         permissions: props.roleSelected?.permissions,
                         enable: props.roleSelected?.enable,
                     }}
-                    onSubmit={async ( values ) =>
+                    onSubmit={async () =>
                     {
                         // return null;
                     }}

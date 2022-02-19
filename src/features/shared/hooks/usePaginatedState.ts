@@ -9,14 +9,18 @@ function usePaginatedState<T, U> ( resource: Resource<U | undefined> )
 
     createEffect( () =>
     {
+        // @ts-ignore
         if ( viewMore && resource()?.data )
         {
-            setUserList( ( state ) => [ ...state, ...resource()?.data ] );
+            // @ts-ignore
+            setUserList( ( state ) => [ ...state, ...resource().data ] );
             viewMore = false;
         }
+        // @ts-ignore
         else if ( resource()?.data )
         {
-            setUserList( () => [ ...resource()?.data ] );
+            // @ts-ignore
+            setUserList( () => [ ...resource().data ] );
         }
         else
         {

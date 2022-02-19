@@ -10,7 +10,7 @@ import { Link } from 'solid-app-router';
 import SingleSelect from '../../molecules/SingleSelect';
 import { country, documentTypeOptions, states } from '../../entities';
 import PasswordShowHide from '../../atoms/PasswordShowHide/PasswordShowHide';
-import Multiselect from '../../molecules/Multiselect';
+import MultiSelect from '../../molecules/MultiSelect';
 import { SelectTransform } from '../../transforms/default';
 import { IRoleApi } from '../../interfaces/role';
 import { IPermissionApi } from '../../interfaces/auth';
@@ -282,7 +282,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         </div>
                         <div class="dg-form-full-field-wrapper">
                             <Label for="permissions">Permissions</Label>
-                            <Multiselect
+                            <MultiSelect
                                 name="permissions"
                                 options={groupedPermissions()}
                                 isObject
@@ -298,7 +298,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
 
                         <div class="dg-form-full-field-wrapper">
                             <Label for="roles">Roles</Label>
-                            <Multiselect
+                            <MultiSelect
                                 name="roles"
                                 options={roleOptions()}
                                 isObject

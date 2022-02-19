@@ -9,7 +9,7 @@ import { country, documentTypeOptions, states } from '../../entities';
 import { IPermissionApi } from '../../interfaces/auth';
 import { IRoleApi } from '../../interfaces/role';
 import ButtonConfirm from '../../molecules/ButtonConfirm';
-import Multiselect from '../../molecules/Multiselect';
+import MultiSelect from '../../molecules/MultiSelect';
 import SingleSelect from '../../molecules/SingleSelect';
 import UserCreateSchema from '../../SchemaValidations/UserCreateSchema';
 import { SelectTransform } from '../../transforms/default';
@@ -287,7 +287,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         </div>
                         <div class="dg-form-full-field-wrapper">
                             <Label for="permissions">Permissions</Label>
-                            <Multiselect
+                            <MultiSelect
                                 name="permissions"
                                 options={groupedPermissions()}
                                 isObject
@@ -303,7 +303,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
 
                         <div class="dg-form-full-field-wrapper">
                             <Label for="roles">Roles</Label>
-                            <Multiselect
+                            <MultiSelect
                                 name="roles"
                                 options={props.rolesList}
                                 isObject

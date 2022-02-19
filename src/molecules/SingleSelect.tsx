@@ -1,4 +1,4 @@
-import { Multiselect, Option } from '@digichanges/solid-components';
+import { MultiSelect, Option } from '@digichanges/solid-multiselect';
 import { Component, splitProps } from 'solid-js';
 import { useField } from 'solid-js-form';
 import ErrorForm from '../atoms/ErrorForm';
@@ -17,12 +17,12 @@ const handleSelect = ( { setValue, name }: {setValue: any; name: string} ) => ( 
 
 const SingleSelect: Component<any> = ( props ) =>
 {
-    const [ local, restOfProps ] = splitProps( props, [ 'errorClass' ] );
+    const [ local ] = splitProps( props, [ 'errorClass' ] );
     const { field, form } = useField( props.name );
 
     return (
         <>
-            <Multiselect
+            <MultiSelect
                 singleSelect
                 selectedValues={ field.value() ? [ field.value() ] : [] }
                 onSelect={handleSelect( { setValue: form.setValue, name: props.name } )}

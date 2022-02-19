@@ -1,11 +1,11 @@
-import { Multiselect as MultiselectForm } from '@digichanges/solid-components';
+import { MultiSelect as MultiselectForm } from '@digichanges/solid-multiselect';
 import { Component, splitProps } from 'solid-js';
 import { useField } from 'solid-js-form';
 import ErrorForm from '../atoms/ErrorForm';
 
-const Multiselect: Component<any> = ( props ) =>
+const MultiSelect: Component<any> = ( props ) =>
 {
-    const [ local, restOfProps ] = splitProps( props, [ 'errorClass' ] );
+    const [ local ] = splitProps( props, [ 'errorClass' ] );
     const { field, form } = useField( props.name );
 
     return (
@@ -25,4 +25,4 @@ const Multiselect: Component<any> = ( props ) =>
     );
 };
 
-export default Multiselect;
+export default MultiSelect;

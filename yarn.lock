@@ -271,6 +271,13 @@
   dependencies:
     solid-js "^1.1.3"
 
+"@digichanges/solid-multiselect@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@digichanges/solid-multiselect/-/solid-multiselect-0.0.8.tgz#2524d03bfe6c1bd772548f92965fe8a76d8259fe"
+  integrity sha512-dA+5M1eEtx4aF4Mu4MFgeGRUStzEz3n3coC7iXEFplstboSaavRILh0PjowTiOgHRh+UY3CtyoAekonI+xouEw==
+  dependencies:
+    solid-js "^1.1.3"
+
 "@eslint/eslintrc@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-1.0.3.tgz#41f08c597025605f672251dcc4e8be66b5ed7366"

@@ -48,7 +48,7 @@ const UserView: Component<UserViewTemplateProps> = ( props ) =>
                         permissions: props.userSelected?.permissions,
                         enable: props.userSelected?.enable,
                     }}
-                    onSubmit={async ( values ) =>
+                    onSubmit={async () =>
                     {
                         // return null;
                     }}
