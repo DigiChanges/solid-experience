@@ -16,18 +16,20 @@ const ButtonIcon: Component<ButtonIconProps> = ( props ) =>
 
     return (
         <div class="mt-3 ">
-            <Button
-                type={local.type}
-                class="dg-main-button-w-icon"
-                {...others}
-            >
-                <Link href={local.path}>
+            <Link href={local.path}>
+                <Button
+                    type={local.type}
+                    class="dg-main-button-w-icon"
+                    {...others}
+                >
+
                     <span class="hidden md:block font-bold pb-1">{local.labelName}</span>
-                </Link>
-                <i class="w-5 md:w-8 md:pl-2">
-                    {local.icon}
-                </i>
-            </Button>
+
+                    <i class="w-5 md:w-8 md:pl-2">
+                        {local.icon}
+                    </i>
+                </Button>
+            </Link>
         </div>
     );
 };
