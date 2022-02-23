@@ -29,7 +29,6 @@ class AuthRepository
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${refreshToken}`,
-            withCredentials: true,
             method: 'POST',
             data: {},
         };
