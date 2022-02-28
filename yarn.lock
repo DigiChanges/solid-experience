@@ -3107,6 +3107,10 @@ solid-refresh@^0.2.2:
   resolved "https://registry.yarnpkg.com/solid-refresh/-/solid-refresh-0.2.2.tgz#c4200cab2fb7e55dc6b2ec5df510b9428646ff59"
   integrity sha512-oQN3pUJ8fBd4ldMxZVqK7S4PGzAn1yx1B5bRRfANoxoqmHyY2QLfzrOzXsYnAkhh272K+W24oKgFWlmdUZ6HtQ==
 
+"solidjs-eslint-config@https://github.com/DigiChanges/solidjs-eslint-config":
+  version "1.0.0"
+  resolved "https://github.com/DigiChanges/solidjs-eslint-config#0f9cdbdbe7befe5ae8bb5f5d833e00ef3ad79748"
+
 source-map-js@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-0.6.2.tgz#0bb5de631b41cfbda6cfba8bd05a80efdfd2385e"

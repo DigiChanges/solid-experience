@@ -6,7 +6,7 @@ function App ()
 {
     const Routes = useRoutes( dashRoutes );
 
-    return <Routes/>;
+    return <Routes />;
 }
 
 export default App;
