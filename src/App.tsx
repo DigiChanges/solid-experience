@@ -7,17 +7,19 @@ import Spinner from './pages/spinner/Spinner';
 
 function App ()
 {
+    const { loading } = createRefreshToken();
     const Routes = useRoutes( dashRoutes );
-    const { auth } = createRefreshToken();
 
     return (
-        <Show when={!auth.loading}
-            fallback={(
-                <Spinner />
-            )}
-        >
-            <Routes />
-        </Show>
+        <div style={{ 'background-color': 'rgb(7, 11, 20)', 'min-height': '100vh' }}>
+            <Show when={!loading()}
+                fallback={(
+                    <Spinner />
+                )}
+            >
+                <Routes />
+            </Show>
+        </div>
     );
 }
 

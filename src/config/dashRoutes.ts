@@ -6,7 +6,7 @@ import IconPencilAlt from '../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../atoms/Icons/Stroke/IconPlus';
 import IconUsers from '../atoms/Icons/Stroke/IconUsers';
 import IconViewList from '../atoms/Icons/Stroke/IconViewList';
-import { permissions } from './persmissions';
+import { permissions } from './permissions';
 // import IconCog from '../atoms/Icons/Stroke/IconCog';
 // import IconHome from '../atoms/Icons/Stroke/IconHome';
 // import IconLogout from '../atoms/Icons/Stroke/IconLogout';
@@ -130,6 +130,10 @@ export const dashRoutes = [
                 permission: permissions.ROLES.UPDATE,
             },
         ],
+    },
+    {
+        path: '/*all',
+        component: lazy( () => import( '../pages/dashboard' ) ),
     },
 ];
 

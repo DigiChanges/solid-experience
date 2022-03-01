@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'solid-app-router';
-import { createEffect, createResource } from 'solid-js';
+import { createEffect, createResource, createSignal } from 'solid-js';
 import { useApplicationContext } from '../../../../context/context';
 import AuthRepository from '../../repositories/AuthRepository';
 
@@ -10,24 +10,33 @@ const createRefreshToken = () =>
     const navigate = useNavigate();
     const location = useLocation();
     const [ , { addUser } ] = useApplicationContext();
+    const [ loading, setLoading ] = createSignal( true );
 
     createEffect( () =>
     {
-        if ( auth.error )
+        if ( !auth.loading )
         {
-            navigate( '/login', { replace: true } );
-        }
-        else
-        {
-            addUser( auth()?.data );
-            if ( location.pathname === '/login' )
+            const login = async () =>
             {
-                navigate( '/', { replace: true } );
-            }
+                if ( auth.error )
+                {
+                    navigate( '/login', { replace: true } );
+                }
+                else
+                {
+                    addUser( auth()?.data );
+                    if ( location.pathname === '/login' )
+                    {
+                        navigate( '/', { replace: true } );
+                    }
+                }
+                setLoading( false );
+            };
+            login();
         }
     } );
 
-    return { auth };
+    return { loading };
 };
 
 export default createRefreshToken;

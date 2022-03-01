@@ -1,5 +1,5 @@
 import { Component, For, JSX } from 'solid-js';
-import { ADMIN } from '../config/persmissions';
+import { ADMIN } from '../config/permissions';
 interface HasPermissionProps{
     permission: string;
     user: any;
