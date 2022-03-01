@@ -1,7 +1,7 @@
 import Dashboard from '../../templates/dashboard/index';
 import { Component } from 'solid-js';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout';
-const LoginPage: Component = () =>
+const DashboardPage: Component = () =>
 {
     return (
         <PrivateLayout>
@@ -10,4 +10,4 @@ const LoginPage: Component = () =>
     );
 };
 
-export default LoginPage;
+export default DashboardPage;
