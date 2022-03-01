@@ -1,11 +1,15 @@
-import { useNavigate } from 'solid-app-router';
 import { Component } from 'solid-js';
+import AuthRepository from '../../features/auth/repositories/AuthRepository';
+
+const refresh = () => async () =>
+{
+    const authRepository = new AuthRepository();
+    const refreshToken = authRepository.refreshToken();
+    await refreshToken();
+};
 
 const Dashboard: Component = () =>
 {
-    const navigate = useNavigate();
-    navigate( '/login', { replace: true } );
-
     return (
         <section class="dg-main-bg h-screen">
             <div class="dg-full-center-flex">
@@ -13,7 +17,11 @@ const Dashboard: Component = () =>
                     <div class="flex w-full justify-center mb-6 h-8 -mt-4">
 
                     </div>
-                    <p>esto es template dashboaad</p>
+
+                    <button onClick={refresh()}>
+                        TEST REFRESH TOKEN
+                    </button>
+                    <p>esto es template dashboard</p>
 
                 </div>
             </div>

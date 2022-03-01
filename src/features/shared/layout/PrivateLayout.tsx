@@ -1,5 +1,5 @@
 
-import { Component, createSignal, For, JSX } from 'solid-js';
+import { Component, createSignal, For, JSX, Show } from 'solid-js';
 import HasPermission from '../../../atoms/HasPermission';
 import { dashRoutes } from '../../../config/dashRoutes';
 import { useApplicationContext } from '../../../context/context';
@@ -35,7 +35,6 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
         <For each={dashRoutes} fallback={<div>Loading...</div>}>
             {( item ) =>
                 <HasPermission
-                //   key={index}
                     permission={item.permission}
                     user={user()}
                     userPermissions={user().user.permissions}
@@ -48,18 +47,15 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                         getShowSubitems={getShowSubitems()}
                         routes={item}
                         showItem={item.showItem}
+                        isLink={!item.children}
+                        path={ item.path }
                     >
-                        {
-
-                            getShowSubitems() && sectionSelected() === item.path &&
-                        <div class=" flex flex-row">
-                            <a class=" ">
-                                {item.children &&
-
-                                    <For each={item.children} fallback={<div>Loading...</div>}>
+                        <Show when={getShowSubitems() && sectionSelected() === item.path}>
+                            <div class=" flex flex-row">
+                                <a class=" ">
+                                    <For each={item.children}>
                                         {( item ) =>
                                             <HasPermission
-                                                //   key={index}
                                                 permission={item.permission}
                                                 user={user()}
                                                 userPermissions={user().user.permissions}
@@ -76,12 +72,10 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                                             </HasPermission>
                                         }
                                     </For>
-                                }
 
-                            </a>
-                        </div>
-
-                        }
+                                </a>
+                            </div>
+                        </Show>
                     </SideBarItem>
                 </HasPermission>
             }
