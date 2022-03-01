@@ -18,7 +18,7 @@ import { permissions } from './persmissions';
 export const dashRoutes = [
     {
         path: '/',
-        component: lazy( () => import( '../pages/login' ) ),
+        component: lazy( () => import( '../pages/dashboard' ) ),
         name: 'Home',
         icon: IconHome,
         showItem: true,
