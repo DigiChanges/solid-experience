@@ -3,4 +3,6 @@ module.exports = {
     extends: [
         require.resolve( 'solidjs-eslint-config' ),
     ],
+    rules: {
+    },
 } ;

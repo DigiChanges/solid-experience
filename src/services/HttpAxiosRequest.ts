@@ -47,13 +47,16 @@ export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) =>
         },
     };
 
-    if ( typeof config.data === 'object' && Object.keys( config.data ).length !== 0 )
+    if ( ! ( config.data instanceof FormData ) )
     {
-        config.data = JSON.stringify( config.data );
-    }
-    else
-    {
-        config.data = {};
+        if ( typeof config.data === 'object' && Object.keys( config.data ).length !== 0 )
+        {
+            config.data = JSON.stringify( config.data );
+        }
+        else
+        {
+            config.data = {};
+        }
     }
 
     if ( queryParams?.filter )
@@ -75,7 +78,7 @@ export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) =>
 
     // axios.defaults.withCredentials = true;
     const http = axios.create( {
-        // withCredentials: true,
+        withCredentials: true,
     } );
 
     const response = await http.request<T>( { ...requestDefaultOptions, ...config } );

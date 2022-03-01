@@ -1,14 +1,18 @@
-
+import { useNavigate } from 'solid-app-router';
 import { Component, createSignal, Show } from 'solid-js';
+import logoNav from '../../../../assets/images/logo-nav.png';
 import Image from '../../../../atoms/Image';
+import { useApplicationContext } from '../../../../context/context';
 import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm';
 import LoginForm from '../organisms/LoginForm';
-import { togglePasswordRecovery } from './handlers';
-import logoNav from '../../../../assets/images/logo-nav.png';
+import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 
 const LoginTemplate: Component = () =>
 {
     const [ getShowRecoverPassword, setShowRecoverPassword ] = createSignal( false );
+
+    const [ , { addUser } ] = useApplicationContext();
+    const navigate = useNavigate();
 
     return (
         <section class="dg-main-bg h-screen">
@@ -23,7 +27,10 @@ const LoginTemplate: Component = () =>
                         <ForgotPasswordForm onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )} />
                     </Show>
                     <Show when={!getShowRecoverPassword()}>
-                        <LoginForm onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )} />
+                        <LoginForm
+                            onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
+                            onSubmit={handleLoginFormSubmit( { addUser, navigate } )}
+                        />
                     </Show>
                 </div>
             </div>

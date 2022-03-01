@@ -11,7 +11,6 @@ import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
 import TitleWithButton from '../../../molecules/TitleWithButton';
 import FilterSort from '../../filterSort/organisms/FilterSort';
-import AuthRepository from '../../auth/repositories/AuthRepository';
 import ConfirmDelete from '../../../templates/modal/ConfirmDelete';
 import useModal from '../../shared/hooks/useModal';
 import RemoveModalContent from '../../shared/modals/RemoveModalContent';
@@ -28,13 +27,6 @@ interface UserListTemplateProps
     nextPage: string | undefined;
 }
 
-const refresh = () => async () =>
-{
-    const authRepository = new AuthRepository();
-    const refreshToken = authRepository.refreshToken();
-    await refreshToken();
-};
-
 const UserList: Component<UserListTemplateProps> = ( props ) =>
 {
     const { isShowModal, modalData, openModal, closeModal } = useModal<BasicConfirmationModalData>( { id: undefined, text: '' } );
@@ -47,10 +39,6 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
     return (
         <section class="mx-8">
-            <button onClick={refresh()}>
-                TEST REFRESH TOKEN
-            </button>
-
             <Show when={isShowModal()}>
                 <ConfirmDelete
                     cbAction={() => props.removeAction( modalData()?.id )}
