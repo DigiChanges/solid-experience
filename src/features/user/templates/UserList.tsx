@@ -17,7 +17,6 @@ import RemoveModalContent from '../../shared/modals/RemoveModalContent';
 import { BasicConfirmationModalData } from '../../shared/types/Modal';
 import { filterBy } from '../constants/filterBy';
 import { orderBy } from '../constants/orderBy';
-import Loader from '../../../assets/customStyles/Loader';
 import { Portal } from 'solid-js/web';
 
 interface UserListTemplateProps
@@ -65,7 +64,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             <FilterSort placeholder="Search users..." filterBy={filterBy} orderBy={orderBy}/>
 
             <div class="dg-grid-3x3 justify-center">
-                <Show when={!props.loading || props.userList?.length} fallback={() => <div class=' text-center grid z-10 text-center'><Loader/></div>}>
+                <Show when={!props.loading || props.userList?.length} fallback={() => <div class=' text-center grid z-10 text-center'>...Loading</div>}>
                     <For each={props.userList} fallback={<div>No users...</div>}>
                         {( user ) =>
                             <MediaObject class="dg-media-object" >
