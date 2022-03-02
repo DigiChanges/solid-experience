@@ -74,8 +74,6 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         roles: currentUserRoles(),
                         permissions: currentUserPermissions(),
                         enable: { ...states.find( enableOption => enableOption.value === props.userSelected?.enable ) },
-                        password: undefined,
-                        passwordConfirmation: undefined,
                     }}
                     validation={UserUpdateSchema}
                     onSubmit={async ( form ) => props.updateAction( form.values )}
@@ -139,13 +137,11 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 </div>
                             </div>
                         </div>
-
                         <div class="dg-form-quarter-field-wrapper text-center">
                             <Label for="gender" class="dg-form-label text-left">
                             Gender
                             </Label>
                             <div class='flex'>
-
                                 <Input
                                     name="gender"
                                     type="radio"
@@ -204,8 +200,6 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 errorClass="ml-1"
                             />
                         </div>
-
-
                         <div class="dg-form-full-field-wrapper">
                             <Label for="country">Country</Label>
                             <SingleSelect
@@ -257,28 +251,6 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 errorClass="ml-1"
                             />
                         </div>
-                        <div class="w-full mb-5 pr-2">
-                            <PasswordShowHide
-                                name="password"
-                                id="password"
-                                class="dg-form-field-full"
-                                placeholder="Enter Password"
-                                labelClass="dg-form-label"
-                                labelName="Password"
-                                errorClass="ml-1"
-                            />
-                        </div>
-                        <div class="w-full mb-5 pr-2">
-                            <PasswordShowHide
-                                name="passwordConfirmation"
-                                id="passwordConfirmation"
-                                class="dg-form-field-full"
-                                placeholder="Repeat Password"
-                                labelClass="dg-form-label"
-                                labelName="Confirm Password"
-                                errorClass="ml-1"
-                            />
-                        </div>
                         <div class="dg-form-full-field-wrapper">
                             <Label for="permissions">Permissions</Label>
                             <MultiSelect
@@ -294,7 +266,6 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 errorClass="ml-1"
                             />
                         </div>
-
                         <div class="dg-form-full-field-wrapper">
                             <Label for="roles">Roles</Label>
                             <MultiSelect
