@@ -39,12 +39,12 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
 
             <Show when={props.isLink}
                 fallback={() =>
-                    <Button class="text-white text-sm font-bold md:flex pr-3 pl-4 items-center" onClick={props.onClick}>
+                    <Button class="flex text-white text-sm font-bold md:flex pr-3 pl-4 items-center" onClick={props.onClick}>
                         <SideBarItemContent {...props} />
                     </Button>
                 }
             >
-                <Link class="text-white text-sm font-bold md:flex pr-3 pl-4 items-center" href={props.path}>
+                <Link class="flex text-white text-sm font-bold md:flex pr-3 pl-4 items-center" href={props.path}>
                     <SideBarItemContent {...props} />
                 </Link>
             </Show>
