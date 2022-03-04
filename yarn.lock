@@ -3079,10 +3079,10 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-solid-app-router@^0.1.7:
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/solid-app-router/-/solid-app-router-0.1.14.tgz#2ffb1bfbb7db7d9d1cd81be5aec1eb786b961573"
-  integrity sha512-fnX+jCB5sDMbjq3od9qGtQNdlvHP2c6DG5STvMHVXyNuSEN+MdO7WJtZ58OpVpq6zWS4FYeYAh7NMEa7C2CcOA==
+solid-app-router@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/solid-app-router/-/solid-app-router-0.3.0.tgz#c06aba1c170649a65b3511210769020d973e3bc9"
+  integrity sha512-427qO9W90HH3coVq3a25xlL0B8dv+FKQcGQE3v5z5Z+8+u00svhOEQoM3Yj8W0C0xhGKSh2mKSIhpjUGQ7C68g==
 
 solid-js-form@^0.1.5:
   version "0.1.5"
@@ -3101,6 +3101,11 @@ solid-js@^1.1.3:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.3.2.tgz#bdc99e0e33f3e8d0749f9317c337b1954be9c976"
   integrity sha512-BIY63BeKO4vCRqoj/PRcVkt90gnbIg4HhCYqZwsQdwsrFXiqhCycvyqZ1YDBIO8INJdxX5XNLZprmyrt9Mn5IA==
+
+solid-js@^1.3.9:
+  version "1.3.9"
+  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.3.9.tgz#a4247ce6a72c82b5abcbeaaf8fe2273784daa396"
+  integrity sha512-BZyDen2oj3XA8g8xe0hhVIzGP2d+TV2dn3w90lXjNYLxveAXeN4aA5pxdO4vn7FKd0e0p4nqWtbWtG7NyaPs2A==
 
 solid-refresh@^0.2.2:
   version "0.2.2"
