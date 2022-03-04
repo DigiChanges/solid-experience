@@ -216,3 +216,12 @@
 .trigger button:last-of-type {
   margin-bottom: 0
 }
+
+.search-wrapper {
+  border: 1px solid transparent !important;
+  @apply w-full dg-subelement-bg text-white dg-border-main  focus:border-indigo-500 text-base py-3 font-bold;
+}
+
+.search-wrapper:hover {
+  @apply border-indigo-400 !important;
+}

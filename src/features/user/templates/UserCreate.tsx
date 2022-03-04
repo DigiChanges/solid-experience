@@ -6,13 +6,14 @@ import Input from '../../../atoms/Input';
 import PasswordShowHide from '../../../atoms/PasswordShowHide/PasswordShowHide';
 import Title from '../../../atoms/Title';
 import { country, documentTypeOptions, states } from '../../../entities';
+import ButtonConfirm from '../../../molecules/ButtonConfirm';
 import { IPermissionApi } from '../../auth/interfaces';
 import { IRoleApi } from '../../role/interfaces';
-import ButtonConfirm from '../../../molecules/ButtonConfirm';
-import UserCreateSchema from '../validations/schemas/UserCreateSchema';
-import { SelectTransform } from '../../shared/utils/SelectTransform';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
+import { SelectTransform } from '../../shared/utils/SelectTransform';
+import { countryMultiSelectStyle, documentTypeMultiSelectStyle, enableMultiSelectStyle } from '../constants/selectStyles';
+import UserCreateSchema from '../validations/schemas/UserCreateSchema';
 
 interface UserCreateTemplateProps
 {
@@ -21,20 +22,6 @@ interface UserCreateTemplateProps
     createAction: ( data: any ) => void;
     loading: boolean;
 }
-
-const singleSelectStyle = {
-    searchBox: { 'max-height': '40px' },
-    inputField: { 'max-height': '40px', 'padding': '0 10px' },
-};
-
-const documentTypeMultiSelectStyle = {
-    ...singleSelectStyle,
-    multiselectContainer: { 'max-width': '100px' },
-    searchBox: { ...singleSelectStyle.searchBox,
-        'min-width': '80px',
-        'border-radius': '20px 0 0 20px',
-    },
-};
 
 const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
 {
@@ -195,6 +182,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 id="birthday"
                                 class="dg-form-field-full"
                                 placeholder="Choose the birthday..."
+                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
@@ -206,14 +194,14 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 options={states}
                                 isObject
                                 displayValue="label"
-                                style={singleSelectStyle}
+                                style={enableMultiSelectStyle}
                                 placeholder="Type"
                                 labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="country">Country</Label>
+                            <Label for="country" class="dg-form-label">Country</Label>
                             <SingleSelect
                                 id="country"
                                 name="country"
@@ -223,6 +211,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder="Select Country"
                                 labelClass="dg-form-label"
+                                style={countryMultiSelectStyle}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -286,7 +275,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="permissions">Permissions</Label>
+                            <Label for="permissions" class="dg-form-label">Permissions</Label>
                             <MultiSelect
                                 name="permissions"
                                 options={groupedPermissions()}
@@ -302,7 +291,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         </div>
 
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="roles">Roles</Label>
+                            <Label for="roles" class="dg-form-label">Roles</Label>
                             <MultiSelect
                                 name="roles"
                                 options={props.rolesList}

@@ -10,10 +10,15 @@ import SingleSelect from '../../shared/molecules/SingleSelect';
 import IconButtonActive from '../../../molecules/IconButtonActive';
 import FilterSortSchema from '../validations/schemas/FilterSortSchema';
 
-const singleSelectStyle = {
-    searchBox: { 'max-height': '40px' },
-    inputField: { 'max-height': '40px', 'padding': '0 10px' },
+const singleSelectRoundedStyle = {
+    multiselectContainer: { 'max-width': '100px' },
+    searchBox: {
+        'max-height': '40px',
+        'min-width': '80px',
+        'border-radius': '20px',
+    },
 };
+
 interface IFilterByProp
 {
     value: string;
@@ -49,7 +54,8 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                 setFilter( { search, filterBy: filterBy.value, orderBy: orderBy.value } );
             }}
         >
-            <div class="w-full mb-5 pr-3">
+
+            <div class="w-full mb-5">
                 <Input
                     style={{ display: 'block' }}
                     name="search"
@@ -62,60 +68,60 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                     errorClass="ml-1"
                 />
             </div>
-            <div class="flex flex-wrap justify-between my-6 md:items-center ">
-                <Label for="filterBy" class="font-bold text-gray-400 block md:pb-5  mr-2 w-16">
-                        Filter By
-                </Label>
-                <div class="flex-col w-full md:w-2/6 md:mr-5 md:ml-5  self-center md:my-3 ">
 
+            <div class="flex w-full content-center items-center md:mb-5">
+                <div class="md:flex md:items-center w-full">
+                    <Label for="documentType" class="md:dg-form-label whitespace-nowrap md:mr-5">Filter By</Label>
                     <SingleSelect
                         id="filterBy"
                         name="filterBy"
                         options={props.filterBy}
                         isObject
                         displayValue="label"
-                        style={singleSelectStyle}
+                        style={singleSelectRoundedStyle}
                         placeholder="Type"
                         labelClass="dg-form-label"
                         errorClass="ml-1"
                     />
                 </div>
-                <Label for="orderBy" class="font-bold text-gray-400 block  md:pb-5 mr-2 w-16">
-                        Sort By
-                </Label>
-                <div class="flex-col w-full md:w-2/6 md:mr-5 md:ml-5  self-center md:my-3 ">
 
-                    <SingleSelect
-                        // class={`dg-form-field-quarter md:min-w-max ${errors.orderBy && touched.orderBy ? 'border-red-500' : ''}`}
-                        id="orderBy"
-                        name="orderBy"
-                        options={props.orderBy}
-                        isObject
-                        displayValue="label"
-                        style={singleSelectStyle}
-                        placeholder="Sort by..."
-                        labelClass="dg-form-label"
-                        errorClass="ml-1"
-                    />
+                <div class="flex w-full content-center items-center">
+                    <div class="md:flex md:items-center w-full">
+                        <Label for="orderBy" class="md:dg-form-label whitespace-nowrap md:mr-5">Sort By</Label>
+                        <SingleSelect
+                            id="orderBy"
+                            name="orderBy"
+                            options={props.orderBy}
+                            isObject
+                            displayValue="label"
+                            style={singleSelectRoundedStyle}
+                            placeholder="Sort by..."
+                            labelClass="dg-form-label"
+                            errorClass="ml-1"
+                        />
+                    </div>
                 </div>
 
-                <div class="flex-col self-center w-6 h-6  md:mb-5 xs:ml-15 md:mx-auto   ">
-                    <IconButtonActive
-                        classNameOnActive="text-white"
-                        onClick={toggleSort}
-                        isActive={filter.sort === 'desc'}
-                        iconEnable={IconSortAscending}
-                        iconDisable={IconSortDescending}
-                    />
+                <div>
+                    <div class="w-6 h-6 md:mx-auto">
+                        <IconButtonActive
+                            classNameOnActive="text-white"
+                            onClick={toggleSort}
+                            isActive={filter.sort === 'desc'}
+                            iconEnable={IconSortAscending}
+                            iconDisable={IconSortDescending}
+                        />
+                    </div>
                 </div>
-                <div class="md:flex-col self-center 3 md:mb-5 mx-auto  ">
-                    <Button
-                        class="dg-main-button"
-                        type="submit"
-                    >
+            </div>
+
+            <div class="flex self-center 3 md:mb-5 mx-auto">
+                <Button
+                    class="dg-main-button"
+                    type="submit"
+                >
                         Filter
-                    </Button>
-                </div>
+                </Button>
             </div>
         </Form>
     );

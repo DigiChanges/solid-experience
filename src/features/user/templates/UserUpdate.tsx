@@ -4,16 +4,16 @@ import { Component, createMemo, Show } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
-import PasswordShowHide from '../../../atoms/PasswordShowHide/PasswordShowHide';
 import Title from '../../../atoms/Title';
 import { country, documentTypeOptions, states } from '../../../entities';
 import { IPermissionApi } from '../../auth/interfaces';
 import { IRoleApi } from '../../role/interfaces';
-import { IUserApi } from '../interfaces';
-import UserUpdateSchema from '../validations/schemas/UserUpdateSchema';
-import { SelectTransform } from '../../shared/utils/SelectTransform';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
+import { SelectTransform } from '../../shared/utils/SelectTransform';
+import { IUserApi } from '../interfaces';
+import { countryMultiSelectStyle, documentTypeMultiSelectStyle, enableMultiSelectStyle, singleSelectStyle } from '../constants/selectStyles';
+import UserUpdateSchema from '../validations/schemas/UserUpdateSchema';
 
 interface UserUpdateTemplateProps
 {
@@ -24,19 +24,6 @@ interface UserUpdateTemplateProps
     updateAction: ( data: any ) =>  void;
     loading: boolean;
 }
-const singleSelectStyle = {
-    searchBox: { 'max-height': '40px' },
-    inputField: { 'max-height': '40px', 'padding': '0 10px' },
-};
-
-const documentTypeMultiSelectStyle = {
-    ...singleSelectStyle,
-    multiselectContainer: { 'max-width': '100px' },
-    searchBox: { ...singleSelectStyle.searchBox,
-        'min-width': '80px',
-        'border-radius': '20px 0 0 20px',
-    },
-};
 
 const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
 {
@@ -139,7 +126,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         </div>
                         <div class="dg-form-quarter-field-wrapper text-center">
                             <Label for="gender" class="dg-form-label text-left">
-                            Gender
+                                Gender
                             </Label>
                             <div class='flex'>
                                 <Input
@@ -183,6 +170,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 id="birthday"
                                 class="dg-form-field-full"
                                 placeholder="Choose the birthday..."
+                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
@@ -196,21 +184,19 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 displayValue="label"
                                 style={singleSelectStyle}
                                 placeholder="Type"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="country">Country</Label>
+                            <Label for="country" class="dg-form-label">Country</Label>
                             <SingleSelect
                                 id="country"
                                 name="country"
                                 options={country}
                                 isObject
                                 displayValue="label"
-                                class="dg-form-field-full"
+                                style={countryMultiSelectStyle}
                                 placeholder="Select Country"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
@@ -252,7 +238,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="permissions">Permissions</Label>
+                            <Label for="permissions" class="dg-form-label">Permissions</Label>
                             <MultiSelect
                                 name="permissions"
                                 options={groupedPermissions()}
@@ -267,7 +253,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="roles">Roles</Label>
+                            <Label for="roles" class="dg-form-label">Roles</Label>
                             <MultiSelect
                                 name="roles"
                                 options={roleOptions()}
