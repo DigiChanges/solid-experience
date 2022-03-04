@@ -1,4 +1,4 @@
-import { Link } from 'solid-app-router';
+import { NavLink } from 'solid-app-router';
 import { Component, Show } from 'solid-js';
 import Button from '../atoms/Button';
 
@@ -39,14 +39,20 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
 
             <Show when={props.isLink}
                 fallback={() =>
-                    <Button class="flex text-white text-sm font-bold md:flex pr-3 pl-4 items-center" onClick={props.onClick}>
+                    <Button
+                        class="flex text-white text-sm font-bold md:flex pr-3 pl-4 items-center"
+                        onClick={props.onClick}
+                    >
                         <SideBarItemContent {...props} />
                     </Button>
                 }
             >
-                <Link class="flex text-white text-sm font-bold md:flex pr-3 pl-4 items-center" href={props.path}>
+                <NavLink
+                    class="flex text-white text-sm font-bold md:flex pr-3 pl-4 items-center"
+                    href={props.path}
+                >
                     <SideBarItemContent {...props} />
-                </Link>
+                </NavLink>
             </Show>
 
         </Show>

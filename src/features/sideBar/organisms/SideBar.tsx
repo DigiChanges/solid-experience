@@ -1,5 +1,4 @@
 import { Component, createSignal, JSX } from 'solid-js';
-import IconArrowCircleLeft from '../../../atoms/Icons/Stroke/IconArrowCircleLeft';
 
 interface SideBarProps {
     class?: string;
@@ -19,7 +18,10 @@ const SideBar: Component<SideBarProps> = ( props ) =>
     //         React.cloneElement( child, { isToggled: getExpanded() } )
     //     );
     return (
-        <div class={`${props.class} ${getExpanded() ? 'md:relative md:w-56' : ''}`}>
+        <div
+            class={props.class}
+            classList={{ 'md:relative md:w-56': getExpanded() }}
+        >
             <div class={'text-white'}>
                 {/* {props.children} */}
                 {/* TODO: Change image logic*/}
