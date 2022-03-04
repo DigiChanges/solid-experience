@@ -1,4 +1,5 @@
 
+import { useLocation } from 'solid-app-router';
 import { Component, createSignal, For, JSX, Show } from 'solid-js';
 import HasPermission from '../../../atoms/HasPermission';
 import { dashRoutes } from '../../../config/dashRoutes';
@@ -12,6 +13,12 @@ import SideBar from '../../sideBar/organisms/SideBar';
 interface privateTemplateProps {
     children: JSX.Element | JSX.Element[];
 }
+
+const isEqualPath = ( { locationPath, itemPath }: {locationPath: string; itemPath: string} ) =>
+{
+    return locationPath.replace( /\//g, '' ) === itemPath.replace( /\//g, '' );
+};
+
 const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
 {
     const [ showSidebar, setShowSideBar ] = createSignal( false );
@@ -19,6 +26,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
     const [ sectionSelected, setSectionSelected ] = createSignal( '' );
     // const { user, userPermissions } = useSelector((state : any) => state.Auth);
     const [ user ]: any = useApplicationContext();
+    const location = useLocation();
 
     const onToggled = ( path: string ) =>
     {
@@ -66,9 +74,11 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                                                     icon={item.icon}
                                                     isToggled={true}
                                                     showItem={item.showItem}
-
-                                                >
-                                                </SideBarSubItem>
+                                                    equalPath={isEqualPath( {
+                                                        locationPath: location.pathname,
+                                                        itemPath: sectionSelected().concat( item.path ),
+                                                    } )}
+                                                />
                                             </HasPermission>
                                         }
                                     </For>

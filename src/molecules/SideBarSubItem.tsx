@@ -20,7 +20,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                 <NavLink href={props.path} class="pl-9  h-8 ">
                     <div
                         class="border-r-2 border-gray-800  hover:text-blue-500 flex flex-row items-center justify-start h-8 text-blue-700"
-                        classList={{ 'text-blue-700 border-blue-700': true }}
+                        classList={{ 'text-blue-700 border-blue-700': props.equalPath }}
                     >
                         <Show when={props.icon}
                             fallback={() => <span class="inline-flex w-6 items-center justify-center h-6 text-lg " />}>
