@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn ts-check
-yarn lint
+yarn ts:check
+yarn lint:fix
