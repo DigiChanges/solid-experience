@@ -63,15 +63,14 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                     id="search"
                     class="dg-form-field-full"
                     placeholder={props.placeholder}
-                    labelClass="dg-form-label"
                     labelName=""
                     errorClass="ml-1"
                 />
             </div>
 
-            <div class="flex w-full content-center items-center md:mb-5">
+            <div class="flex flex-wrap md:flex-nowrap w-full content-center items-center md:mb-5">
                 <div class="md:flex md:items-center w-full">
-                    <Label for="documentType" class="md:dg-form-label whitespace-nowrap md:mr-5">Filter By</Label>
+                    <Label for="documentType" class="dg-form-label whitespace-nowrap md:mr-5">Filter By</Label>
                     <SingleSelect
                         id="filterBy"
                         name="filterBy"
@@ -80,14 +79,13 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                         displayValue="label"
                         style={singleSelectRoundedStyle}
                         placeholder="Type"
-                        labelClass="dg-form-label"
                         errorClass="ml-1"
                     />
                 </div>
 
                 <div class="flex w-full content-center items-center">
                     <div class="md:flex md:items-center w-full">
-                        <Label for="orderBy" class="md:dg-form-label whitespace-nowrap md:mr-5">Sort By</Label>
+                        <Label for="orderBy" class="dg-form-label whitespace-nowrap md:mr-5">Sort By</Label>
                         <SingleSelect
                             id="orderBy"
                             name="orderBy"
@@ -102,8 +100,8 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                     </div>
                 </div>
 
-                <div>
-                    <div class="w-6 h-6 md:mx-auto">
+                <div class="mb-5 md:mb-0 mx-auto">
+                    <div class="w-6 h-6">
                         <IconButtonActive
                             classNameOnActive="text-white"
                             onClick={toggleSort}
@@ -115,9 +113,9 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                 </div>
             </div>
 
-            <div class="flex self-center 3 md:mb-5 mx-auto">
+            <div class="flex mb-5 mx-auto">
                 <Button
-                    class="dg-main-button"
+                    class="w-full md:w-32 dg-main-button"
                     type="submit"
                 >
                         Filter
