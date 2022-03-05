@@ -12,7 +12,7 @@ const AvatarImage: Component<AvatarImageProps> = ( props ) =>
 {
     return (
         <Image
-            src={props.image ?? props.avatar}
+            src={( props.image ?? props.avatar ) as string}
             alt={props.alt} class={props.class}
         />
     );

@@ -8,6 +8,9 @@
     "pre-build": "cpy 'src/images/**/*.{png,jpeg,jpg}' 'dist/src/images'",
     "build": "vite build",
     "lint": "eslint src --fix",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged",
+    "ts-check": "tsc -p tsconfig.json --noEmit",
     "serve": "vite preview"
   },
   "license": "MIT",
@@ -17,6 +20,8 @@
     "cpy-cli": "^3.1.1",
     "eslint": "^8.1.0",
     "eslint-plugin-solid": "^0.1.2",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
     "solidjs-eslint-config": "https://github.com/DigiChanges/solidjs-eslint-config",
     "typescript": "^4.4.3",
     "vite": "^2.6.5",

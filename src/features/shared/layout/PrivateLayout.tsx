@@ -43,18 +43,18 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
         <For each={dashRoutes} fallback={<div>Loading...</div>}>
             {( item ) =>
                 <HasPermission
-                    permission={item.permission}
+                    permission={item.permission as string}
                     user={user()}
                     userPermissions={user().user.permissions}
                 >
                     <SideBarItem
-                        name={item.name}
+                        name={item.name as string}
                         icon={item.icon}
                         isLoading={true}
                         onClick={() => ( onToggled( item.path ) )}
                         getShowSubitems={getShowSubitems()}
                         routes={item}
-                        showItem={item.showItem}
+                        showItem={item.showItem as boolean}
                         isLink={!item.children}
                         path={ item.path }
                     >

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+// @ts-nocheck
 const container = document.createElement( 'div' );
 container.id = 'container';
 export default function notify ( o = {} )

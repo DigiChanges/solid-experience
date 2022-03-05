@@ -1,5 +1,5 @@
 
-const SelectStyle = ( theme ) =>
+const SelectStyle = ( theme: any ) =>
 {
     return {
         ...theme,

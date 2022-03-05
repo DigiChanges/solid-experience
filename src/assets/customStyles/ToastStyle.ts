@@ -5,7 +5,9 @@ const colors = {
     error: '#E34B4B',
 };
 
-export const ToastStyle = type => ( {
+type ColorType = keyof typeof colors;
+
+export const ToastStyle = ( type: ColorType ) => ( {
     background: colors[type],
     color: '#ffffff',
     borderRadius: '4px',

@@ -8,6 +8,7 @@ function useModal<T> ( initialValue: T )
     const openModal = (  newModalData: T ) =>  () =>
     {
         setIsShowModal( true );
+        // @ts-ignore
         setModalData( newModalData );
     };
 

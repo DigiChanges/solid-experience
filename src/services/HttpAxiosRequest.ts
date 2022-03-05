@@ -89,6 +89,7 @@ export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) =>
     }
     else if ( HTTP_ERROR_STATUS.includes( response.status ) )
     {
+        // @ts-ignore
         const error = response?.data?.message || 'Internal Server Error';
         throw new Error( error );
     }
