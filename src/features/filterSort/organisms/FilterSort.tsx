@@ -1,3 +1,4 @@
+import { Icon, StrokeIcons } from '@digichanges/solid-components';
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../../../atoms/Button';
@@ -5,9 +6,9 @@ import IconSortAscending from '../../../atoms/Icons/Stroke/IconSortAscending';
 import IconSortDescending from '../../../atoms/Icons/Stroke/IconSortDescending';
 import Input from '../../../atoms/Input';
 import Label from '../../../atoms/Label';
+import IconButtonActive from '../../../molecules/IconButtonActive';
 import useFilter from '../../shared/hooks/useFilter';
 import SingleSelect from '../../shared/molecules/SingleSelect';
-import IconButtonActive from '../../../molecules/IconButtonActive';
 import FilterSortSchema from '../validations/schemas/FilterSortSchema';
 
 const singleSelectRoundedStyle = {
@@ -65,6 +66,9 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                     placeholder={props.placeholder}
                     labelName=""
                     errorClass="ml-1"
+                    addon={{
+                        prepend: <Icon render={StrokeIcons.IconSearch} />,
+                    }}
                 />
             </div>
 
