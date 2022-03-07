@@ -12,7 +12,7 @@ const HasPermission: Component<HasPermissionProps> = ( props ) =>
     const shouldRender = () =>
         ( props.userPermissions && props.userPermissions.includes( props.permission ) )
         ||
-        ( props.user.user.roles[0]?.slug === 'superadmin' );
+        ( props.user.user.isSumerAdmin === true );
     //   (userPermissions && user?.roles && userPermissions.includes(permission))   ||
     //   user?.roles.find((role) => role.slug === ADMIN);
 

@@ -14,7 +14,7 @@ interface LoginFormProps {
 
 const LoginForm: Component<LoginFormProps> = props => (
     <Form
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: '', password: '', tenant: 'public' }}
         validation={SignUpSchema}
         onSubmit={async ( form ) =>
         {
