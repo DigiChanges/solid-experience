@@ -110,16 +110,17 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                 <div class="absolute md:hidden mt-20 md:m-4 z-50 ">
                     <SideBar class="relative ml-5 dg-rounded min-h-80vh  py-5 w-48 pb-20">
                         {getDashItems()}
+                        <LogoutSideBarItem user={user()} />
 
                     </SideBar>
                 </div>
             </Show>
-            <main class="grid-in-main min-h-screen w-full">
+            <main class="grid-in-main w-full">
                 {/* <Breadcrumb class="pt-5 text-gray-500 lg:text-base ml-2 md:ml-4" /> */}
                 {props.children}
             </main>
             <Footer class="flex grid-in-footer border m-4 w-auto p-4 text-sm text-gray-200 rounded justify-center">
-                2021 © DigiChanges
+                {new Date().getFullYear()} © DigiChanges
             </Footer>
 
         </div>
