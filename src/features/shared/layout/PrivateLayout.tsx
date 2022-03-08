@@ -6,6 +6,7 @@ import { dashRoutes } from '../../../config/dashRoutes';
 import { useApplicationContext } from '../../../context/context';
 import SideBarItem from '../../../molecules/SideBarItem';
 import SideBarSubItem from '../../../molecules/SideBarSubItem';
+import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import Footer from '../../footer/organisms/Footer';
 import NavBar from '../../navBar/organisms/NavBar';
 import SideBar from '../../sideBar/organisms/SideBar';
@@ -25,7 +26,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
     const [ getShowSubitems, setShowSubitems ] = createSignal( false );
     const [ sectionSelected, setSectionSelected ] = createSignal( '' );
     // const { user, userPermissions } = useSelector((state : any) => state.Auth);
-    const [ user ]: any = useApplicationContext();
+    const [ user ] = useApplicationContext();
     const location = useLocation();
 
     const onToggled = ( path: string ) =>
@@ -40,7 +41,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
 
     const getDashItems = () =>
 
-        <For each={dashRoutes} fallback={<div>Loading...</div>}>
+        <For each={dashRoutes}>
             {( item ) =>
                 <HasPermission
                     permission={item.permission as string}
@@ -102,17 +103,17 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
             <div class="hidden md:block mt-6 ml-4 z-10 w-max grid-in-sidebar text-white">
                 <SideBar class="dg-rounded ml-1 h-89 py-5">
                     {getDashItems()}
-
+                    <LogoutSideBarItem user={user()} />
                 </SideBar>
             </div>
-            {showSidebar() && (
+            <Show when={showSidebar()} >
                 <div class="absolute md:hidden mt-20 md:m-4 z-50 ">
                     <SideBar class="relative ml-5 dg-rounded min-h-80vh  py-5 w-48 pb-20">
                         {getDashItems()}
 
                     </SideBar>
                 </div>
-            )}
+            </Show>
             <main class="grid-in-main min-h-screen w-full">
                 {/* <Breadcrumb class="pt-5 text-gray-500 lg:text-base ml-2 md:ml-4" /> */}
                 {props.children}
