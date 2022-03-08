@@ -1,4 +1,5 @@
 import { Component, JSX } from 'solid-js';
+import { Portal } from 'solid-js/web';
 
 interface ModalTemplateProps
 {
@@ -6,9 +7,11 @@ interface ModalTemplateProps
 }
 
 const Modal: Component<ModalTemplateProps> = ( props ) => (
-    <div class="fixed h-screen w-screen items-center z-20 bg-transparent-black" >
-        {props.children}
-    </div>
+    <Portal>
+        <div class="absolute top-0 h-screen w-screen items-center z-20 bg-transparent-black" >
+            {props.children}
+        </div>
+    </Portal>
 );
 
 export default Modal;
