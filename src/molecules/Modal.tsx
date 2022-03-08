@@ -8,7 +8,7 @@ interface ModalTemplateProps
 
 const Modal: Component<ModalTemplateProps> = ( props ) => (
     <Portal>
-        <div class="absolute top-0 h-screen w-screen items-center z-20 bg-transparent-black" >
+        <div class="absolute top-0 h-screen w-full items-center z-20 bg-transparent-black" >
             {props.children}
         </div>
     </Portal>
