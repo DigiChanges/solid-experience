@@ -7,11 +7,12 @@ import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
 import { states } from '../../../entities';
 import { IPermissionApi } from '../../auth/interfaces';
-import { IRoleApi } from '../interfaces';
-import RoleSchema from '../validations/schemas/RoleSchema';
-import { SelectTransform } from '../../shared/utils/SelectTransform';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
+import GeneralLoader from '../../shared/templates/GeneralLoader';
+import { SelectTransform } from '../../shared/utils/SelectTransform';
+import { IRoleApi } from '../interfaces';
+import RoleSchema from '../validations/schemas/RoleSchema';
 
 interface RoleUpdateTemplateProps
 {
@@ -41,7 +42,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                 </Title>
             </div>
 
-            <Show when={!props.loading} fallback={() => <div>Loading...</div>}>
+            <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
 
                 <Form
                     initialValues={{

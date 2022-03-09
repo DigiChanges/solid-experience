@@ -11,6 +11,7 @@ import RoleSchema from '../validations/schemas/RoleSchema';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
+import GeneralLoader from '../../shared/templates/GeneralLoader';
 
 interface RoleCreateTemplateProps {
     permissionsList?: IPermissionApi[];
@@ -35,7 +36,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                 </Title>
             </div>
 
-            <Show when={!props.loading} fallback={() => <div>Loading...</div>}>
+            <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
 
                 <Form
                     initialValues={{

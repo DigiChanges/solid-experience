@@ -6,18 +6,18 @@ import IconPencilAlt from '../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../../atoms/Title';
-import { IUserApi } from '../interfaces';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
 import TitleWithButton from '../../../molecules/TitleWithButton';
-import FilterSort from '../../filterSort/organisms/FilterSort';
 import ConfirmDelete from '../../../templates/modal/ConfirmDelete';
+import FilterSort from '../../filterSort/organisms/FilterSort';
 import useModal from '../../shared/hooks/useModal';
 import RemoveModalContent from '../../shared/modals/RemoveModalContent';
+import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { BasicConfirmationModalData } from '../../shared/types/Modal';
 import { filterBy } from '../constants/filterBy';
 import { orderBy } from '../constants/orderBy';
-import { Portal } from 'solid-js/web';
+import { IUserApi } from '../interfaces';
 
 interface UserListTemplateProps
 {
@@ -64,7 +64,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             <FilterSort placeholder="Search users..." filterBy={filterBy} orderBy={orderBy}/>
 
             <div class="dg-grid-3x3 justify-center">
-                <Show when={!props.loading || props.userList?.length} fallback={() => <div class=' text-center grid z-10 text-center'>...Loading</div>}>
+                <Show when={!props.loading || props.userList?.length} fallback={() => <GeneralLoader/>}>
                     <For each={props.userList} fallback={<div>No users...</div>}>
                         {( user ) =>
                             <MediaObject class="dg-media-object" >

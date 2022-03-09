@@ -5,17 +5,18 @@ import IconPencilAlt from '../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../../atoms/Title';
-import { filterBy } from '../constants/filterBy';
-import { orderBy } from '../constants/orderBy';
-import useModal from '../../shared/hooks/useModal';
-import RemoveModalContent from '../../shared/modals/RemoveModalContent';
-import { BasicConfirmationModalData } from '../../shared/types/Modal';
-import { IRoleApi } from '../interfaces';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
 import TitleWithButton from '../../../molecules/TitleWithButton';
-import FilterSort from '../../filterSort/organisms/FilterSort';
 import ConfirmDelete from '../../../templates/modal/ConfirmDelete';
+import FilterSort from '../../filterSort/organisms/FilterSort';
+import useModal from '../../shared/hooks/useModal';
+import RemoveModalContent from '../../shared/modals/RemoveModalContent';
+import GeneralLoader from '../../shared/templates/GeneralLoader';
+import { BasicConfirmationModalData } from '../../shared/types/Modal';
+import { filterBy } from '../constants/filterBy';
+import { orderBy } from '../constants/orderBy';
+import { IRoleApi } from '../interfaces';
 
 interface RoleListTemplateProps
 {
@@ -57,7 +58,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
             <FilterSort placeholder="Search roles..." filterBy={filterBy} orderBy={orderBy}/>
 
             <div class="dg-grid-3x3">
-                <Show when={!props.loading || props.roleList?.length} fallback={() => <div>Loading...</div>}>
+                <Show when={!props.loading || props.roleList?.length} fallback={() => <GeneralLoader/>}>
                     <For each={props.roleList} fallback={<div>No roles...</div>}>
                         {( role ) =>
                             <MediaObject class="dg-media-object" >

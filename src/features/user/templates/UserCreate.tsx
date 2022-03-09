@@ -11,6 +11,7 @@ import { IPermissionApi } from '../../auth/interfaces';
 import { IRoleApi } from '../../role/interfaces';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
+import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
 import { countryMultiSelectStyle, documentTypeMultiSelectStyle, enableMultiSelectStyle } from '../constants/selectStyles';
 import UserCreateSchema from '../validations/schemas/UserCreateSchema';
@@ -49,7 +50,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                 </Title>
             </div>
 
-            <Show when={!props.loading} fallback={() => <div>Loading...</div>}>
+            <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
 
                 <Form
                     initialValues={{

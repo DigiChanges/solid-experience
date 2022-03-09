@@ -10,9 +10,10 @@ import { IPermissionApi } from '../../auth/interfaces';
 import { IRoleApi } from '../../role/interfaces';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
+import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
+import { countryMultiSelectStyle, documentTypeMultiSelectStyle, singleSelectStyle } from '../constants/selectStyles';
 import { IUserApi } from '../interfaces';
-import { countryMultiSelectStyle, documentTypeMultiSelectStyle, enableMultiSelectStyle, singleSelectStyle } from '../constants/selectStyles';
 import UserUpdateSchema from '../validations/schemas/UserUpdateSchema';
 
 interface UserUpdateTemplateProps
@@ -44,7 +45,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                 </Title>
             </div>
 
-            <Show when={!props.loading} fallback={() => <div>Loading...</div>}>
+            <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
 
                 <Form
                     initialValues={{
