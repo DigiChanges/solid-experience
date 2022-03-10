@@ -1,40 +1,34 @@
 import * as Yup from 'yup';
 import { FilterBy, OrderBy } from '../../types/FilterSortTypes';
 
+type FilterFields = {
+    filterBy: FilterBy;
+    orderBy: OrderBy;
+    search: string;
+};
+
 const filterSortValidationSchema = {
     search: Yup.string()
-        .when( [ 'orderBy' ], {
-            is: ( orderBy: OrderBy ) => !orderBy?.value,
-            then: Yup.string().required( 'Required' ),
-            otherwise: Yup.string(),
+        .test( 'required', 'Required', function ( value )
+        {
+            const { orderBy } = this.parent as FilterFields;
+            return !!orderBy?.value || !!value;
         } ),
 
-
-    // filterBy: Yup.object()
-    //     .nullable()
-    //     .when( [ 'search', 'orderBy' ], {
-    //         is: ( search: string, orderBy: OrderBy ) =>
-    //         {
-    //             return !!search && !orderBy?.value;
-    //         },
-    //         then: Yup.object( {
-    //             value: Yup.string().required( 'Required' ),
-    //         } )
-    //             .nullable()
-    //             .required( 'Required' ),
-    //     } ),
+    filterBy: Yup.object()
+        .nullable()
+        .test( 'required', 'Required', function ( value )
+        {
+            const { search } = this.parent as FilterFields;
+            return !search || !!value?.value;
+        } ),
 
     orderBy: Yup.object()
         .nullable()
-        .when( [ 'filterBy' ], {
-            is: ( filterBy: FilterBy ) =>
-            {
-                return !filterBy?.value;
-            },
-            then: Yup.object()
-                .nullable()
-                .required( 'Required' ),
-            otherwise: Yup.object().nullable(),
+        .test( 'required', 'Required', function ( orderBy )
+        {
+            const { filterBy, search } = this.parent as FilterFields;
+            return ( !!filterBy?.value || !!search ) || !!orderBy?.value;
         } ),
     sort: Yup.string()
         .optional(),
