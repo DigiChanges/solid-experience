@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const UserCreateSchema = {
+const userCreateValidationSchema = {
     firstName: Yup.string()
         .required( 'Required' )
         .min( 2, 'Too Short!' )
@@ -44,4 +44,4 @@ const UserCreateSchema = {
         .required( 'Required' ),
 };
 
-export default UserCreateSchema;
+export default userCreateValidationSchema;

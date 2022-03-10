@@ -1,8 +1,7 @@
-import MultiSelect from '@digichanges/solid-multiselect';
 import { Option } from '@digichanges/solid-multiselect/dist/Option';
-import { Component, splitProps } from 'solid-js';
+import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
-import ErrorForm from '../../../atoms/ErrorForm';
+import MultiSelectForm, { MultiselectFormProps } from './MultiSelectForm';
 
 const handleSelect = ( { setValue, name }: {setValue: any; name: string} ) => ( data: Option[], item: Option ) =>
 {
@@ -16,25 +15,18 @@ const handleSelect = ( { setValue, name }: {setValue: any; name: string} ) => ( 
     }
 };
 
-const SingleSelect: Component<any> = ( props ) =>
+const SingleSelect: Component<MultiselectFormProps> = ( props ) =>
 {
-    const [ local ] = splitProps( props, [ 'errorClass' ] );
     const { field, form } = useField( props.name );
 
     return (
-        <>
-            <MultiSelect
-                singleSelect
-                selectedValues={ field.value() ? [ field.value() ] : [] }
-                onSelect={handleSelect( { setValue: form.setValue, name: props.name } )}
-                {...props}
-            />
-            <ErrorForm
-                class={local.errorClass}
-            >
-                {field.error()}
-            </ErrorForm>
-        </>
+        <MultiSelectForm
+            singleSelect
+            selectedValues={ ( field.value() ? [ field.value() ] : [] ) as Option[] }
+            onSelect={handleSelect( { setValue: form.setValue, name: props.name } )}
+            error={field.error()}
+            {...props}
+        />
     );
 };
 

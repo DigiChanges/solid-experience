@@ -92,9 +92,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                class="dg-form-field-full"
                                 placeholder="Select Permissions"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
@@ -108,7 +106,6 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 displayValue="label"
                                 style={singleSelectStyle}
                                 placeholder="Type"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>

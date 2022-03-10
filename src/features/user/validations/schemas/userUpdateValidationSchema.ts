@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const UserUpdateSchema = {
+const userUpdateValidationSchema = {
     firstName: Yup.string()
         .required( 'Required' )
         .min( 2, 'Too Short!' )
@@ -44,4 +44,4 @@ const UserUpdateSchema = {
         .required( 'Required' ),
 };
 
-export default UserUpdateSchema;
+export default userUpdateValidationSchema;

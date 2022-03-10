@@ -61,7 +61,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 path="/users/create"
             />
 
-            <FilterSort placeholder="Search users..." filterBy={filterBy} orderBy={orderBy}/>
+            <FilterSort searchPlaceholder="Search users..." filterBy={filterBy} orderBy={orderBy}/>
 
             <div class="dg-grid-3x3 justify-center">
                 <Show when={!props.loading || props.userList?.length} fallback={() => <GeneralLoader/>}>

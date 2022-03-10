@@ -89,9 +89,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                class="dg-form-field-full"
                                 placeholder="Select Permissions"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
@@ -105,7 +103,6 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 displayValue="label"
                                 style={singleSelectStyle}
                                 placeholder="Type"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>

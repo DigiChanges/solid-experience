@@ -1,27 +1,22 @@
-import MultiselectForm from '@digichanges/solid-multiselect';
+import { Option } from '@digichanges/solid-multiselect/dist/Option';
 import { Component, splitProps } from 'solid-js';
 import { useField } from 'solid-js-form';
-import ErrorForm from '../../../atoms/ErrorForm';
+import MultiSelectForm, { MultiselectFormProps } from './MultiSelectForm';
 
-const MultiSelect: Component<any> = ( props ) =>
+const MultiSelect: Component<MultiselectFormProps> = ( props ) =>
 {
     const [ local ] = splitProps( props, [ 'errorClass' ] );
     const { field, form } = useField( props.name );
 
     return (
-        <>
-            <MultiselectForm
-                {...props}
-                selectedValues={Array.from(  field.value() )}
-                onSelect={( values ) => form.setValue( props.name, values )}
-                onRemove={( values ) => form.setValue( props.name, values )}
-            />
-            <ErrorForm
-                class={local.errorClass}
-            >
-                {field.error()}
-            </ErrorForm>
-        </>
+        <MultiSelectForm
+            {...props}
+            error={field.error()}
+            errorClass={local.errorClass}
+            selectedValues={Array.from(  field.value() as Option[] )}
+            onSelect={( values ) => form.setValue( props.name, values )}
+            onRemove={( values ) => form.setValue( props.name, values )}
+        />
     );
 };
 

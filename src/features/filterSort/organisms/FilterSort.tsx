@@ -9,7 +9,8 @@ import Label from '../../../atoms/Label';
 import IconButtonActive from '../../../molecules/IconButtonActive';
 import useFilter from '../../shared/hooks/useFilter';
 import SingleSelect from '../../shared/molecules/SingleSelect';
-import FilterSortSchema from '../validations/schemas/FilterSortSchema';
+import { FilterBy, OrderBy } from '../types/FilterSortTypes';
+import filterSortValidationSchema from '../validations/schemas/filterSortValidationSchema';
 
 const singleSelectRoundedStyle = {
     multiselectContainer: { 'max-width': '100px' },
@@ -20,20 +21,10 @@ const singleSelectRoundedStyle = {
     },
 };
 
-interface IFilterByProp
-{
-    value: string;
-    label: string;
-}
-interface IOrderByByProp
-{
-    value: string;
-    label: string;
-}
 interface FilterSortProps{
-    placeholder: string;
-    filterBy: IFilterByProp[];
-    orderBy: IOrderByByProp[];
+    searchPlaceholder: string;
+    filterBy: FilterBy[];
+    orderBy: OrderBy[];
 
 }
 
@@ -44,15 +35,15 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
     return (
         <Form
             initialValues={{
-                search: filter.search,
-                filterBy: { ...props.filterBy.find( filterOption => filterOption.value === filter.filterBy ) },
-                orderBy: { ...props.orderBy.find( orderByOption => orderByOption.value === filter.orderBy ) },
+                search: filter.search || '',
+                filterBy: filter?.filterBy ? { ...props.filterBy.find( filterOption => filterOption.value === filter.filterBy ) } : null,
+                orderBy: filter?.filterBy ? { ...props.orderBy.find( orderByOption => orderByOption.value === filter.orderBy ) } : null,
             }}
-            validation={FilterSortSchema}
+            validation={filterSortValidationSchema}
             onSubmit={async ( form ) =>
             {
                 const { search, filterBy, orderBy } = form.values;
-                setFilter( { search, filterBy: filterBy.value, orderBy: orderBy.value } );
+                setFilter( { search, filterBy: filterBy?.value, orderBy: orderBy?.value } );
             }}
         >
 
@@ -60,10 +51,10 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                 <Input
                     style={{ display: 'block' }}
                     name="search"
-                    type="text"
+                    type="search"
                     id="search"
                     class="dg-form-field-full"
-                    placeholder={props.placeholder}
+                    placeholder={props.searchPlaceholder}
                     labelName=""
                     errorClass="ml-1"
                     addon={{
@@ -74,7 +65,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
 
             <div class="flex flex-wrap md:flex-nowrap w-full content-center items-center md:mb-5">
                 <div class="md:flex md:items-center w-full">
-                    <Label for="documentType" class="dg-form-label whitespace-nowrap md:mr-5">Filter By</Label>
+                    <Label for="filterBy" class="dg-form-label whitespace-nowrap md:mr-5">Filter By</Label>
                     <SingleSelect
                         id="filterBy"
                         name="filterBy"
@@ -82,7 +73,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                         isObject
                         displayValue="label"
                         style={singleSelectRoundedStyle}
-                        placeholder="Type"
+                        placeholder="Filter field..."
                         errorClass="ml-1"
                     />
                 </div>
@@ -97,8 +88,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                             isObject
                             displayValue="label"
                             style={singleSelectRoundedStyle}
-                            placeholder="Sort by..."
-                            labelClass="dg-form-label"
+                            placeholder="Order field..."
                             errorClass="ml-1"
                         />
                     </div>

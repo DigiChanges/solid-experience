@@ -55,7 +55,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 // buttonAction={actionCreateButton()}
             />
 
-            <FilterSort placeholder="Search roles..." filterBy={filterBy} orderBy={orderBy}/>
+            <FilterSort searchPlaceholder="Search roles..." filterBy={filterBy} orderBy={orderBy}/>
 
             <div class="dg-grid-3x3">
                 <Show when={!props.loading || props.roleList?.length} fallback={() => <GeneralLoader/>}>

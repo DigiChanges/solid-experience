@@ -14,7 +14,7 @@ import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
 import { countryMultiSelectStyle, documentTypeMultiSelectStyle, enableMultiSelectStyle } from '../constants/selectStyles';
-import UserCreateSchema from '../validations/schemas/UserCreateSchema';
+import userCreateValidationSchema from '../validations/schemas/userCreateValidationSchema';
 
 interface UserCreateTemplateProps
 {
@@ -40,6 +40,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
      * };
      *
      */
+    const roleOptions = createMemo( () =>  SelectTransform.getOptionsObjectArray( props.rolesList, 'name', 'id' ) );
     const groupedPermissions = createMemo( () =>  SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
 
     return (
@@ -70,7 +71,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         roles: [],
                         enable: { label: 'Enabled', value: true },
                     }}
-                    validation={UserCreateSchema}
+                    validation={userCreateValidationSchema}
                     onSubmit={async ( form ) =>
                     {
                         props.createAction( form.values );
@@ -120,7 +121,6 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                         placeholder="Type"
                                         errorClass="ml-1"
                                     />
-
                                 </div>
                                 <div>
                                     <Input
@@ -197,7 +197,6 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 displayValue="label"
                                 style={enableMultiSelectStyle}
                                 placeholder="Type"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
@@ -209,9 +208,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 options={country}
                                 isObject
                                 displayValue="label"
-                                class="dg-form-field-full"
                                 placeholder="Select Country"
-                                labelClass="dg-form-label"
                                 style={countryMultiSelectStyle}
                                 errorClass="ml-1"
                             />
@@ -284,9 +281,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                class="dg-form-field-full"
                                 placeholder="Select Permissions"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
@@ -295,13 +290,11 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             <Label for="roles" class="dg-form-label">Roles</Label>
                             <MultiSelect
                                 name="roles"
-                                options={props.rolesList}
+                                options={roleOptions()}
                                 isObject
-                                displayValue="name"
+                                displayValue="label"
                                 id="roles"
-                                class="dg-form-field-full"
                                 placeholder="Select Roles"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>

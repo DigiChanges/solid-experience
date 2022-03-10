@@ -14,7 +14,7 @@ import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
 import { countryMultiSelectStyle, documentTypeMultiSelectStyle, singleSelectStyle } from '../constants/selectStyles';
 import { IUserApi } from '../interfaces';
-import UserUpdateSchema from '../validations/schemas/UserUpdateSchema';
+import userUpdateValidationSchema from '../validations/schemas/userUpdateValidationSchema';
 
 interface UserUpdateTemplateProps
 {
@@ -63,7 +63,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         permissions: currentUserPermissions(),
                         enable: { ...states.find( enableOption => enableOption.value === props.userSelected?.enable ) },
                     }}
-                    validation={UserUpdateSchema}
+                    validation={userUpdateValidationSchema}
                     onSubmit={async ( form ) => props.updateAction( form.values )}
                 >
                     <div class="flex flex-wrap text-sm">
@@ -105,10 +105,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                         isObject
                                         displayValue="label"
                                         style={documentTypeMultiSelectStyle}
-                                        // class="dg-form-field-full"
-                                        // style={{ 'border-radius': '100', 'height': '10px' }}
                                         placeholder="Type"
-                                        labelClass="dg-form-label"
                                         errorClass="ml-1"
                                     />
                                 </div>
@@ -247,9 +244,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                class="dg-form-field-full"
                                 placeholder="Select Permissions"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
@@ -261,9 +256,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 isObject
                                 displayValue="label"
                                 id="roles"
-                                class="dg-form-field-full"
                                 placeholder="Select Roles"
-                                labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
