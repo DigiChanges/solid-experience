@@ -46,75 +46,92 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                 setFilter( { search, filterBy: filterBy?.value, orderBy: orderBy?.value } );
             }}
         >
+            {( form ) =>
+            {
+                const reset = () => () =>
+                {
+                    form.setValues( { search: '', filterBy: null, orderBy: null } );
+                };
 
-            <div class="w-full mb-5">
-                <Input
-                    style={{ display: 'block' }}
-                    name="search"
-                    type="search"
-                    id="search"
-                    class="dg-form-field-full"
-                    placeholder={props.searchPlaceholder}
-                    labelName=""
-                    errorClass="ml-1"
-                    addon={{
-                        prepend: <Icon render={StrokeIcons.IconSearch} />,
-                    }}
-                />
-            </div>
+                return (
+                    <>
+                        <div class="w-full mb-5">
+                            <Input
+                                style={{ display: 'block' }}
+                                name="search"
+                                type="search"
+                                id="search"
+                                class="dg-form-field-full"
+                                placeholder={props.searchPlaceholder}
+                                labelName=""
+                                errorClass="ml-1"
+                                addon={{
+                                    prepend: <Icon render={StrokeIcons.IconSearch} />,
+                                }}
+                            />
+                        </div>
 
-            <div class="flex flex-wrap md:flex-nowrap w-full content-center items-center md:mb-5">
-                <div class="md:flex md:items-center w-full">
-                    <Label for="filterBy" class="dg-form-label whitespace-nowrap md:mr-5">Filter By</Label>
-                    <SingleSelect
-                        id="filterBy"
-                        name="filterBy"
-                        options={props.filterBy}
-                        isObject
-                        displayValue="label"
-                        style={singleSelectRoundedStyle}
-                        placeholder="Filter field..."
-                        errorClass="ml-1"
-                    />
-                </div>
+                        <div class="flex flex-wrap md:flex-nowrap w-full content-center items-center md:mb-5">
+                            <div class="md:flex md:items-center w-full">
+                                <Label for="filterBy" class="dg-form-label whitespace-nowrap md:mr-5">Filter By</Label>
+                                <SingleSelect
+                                    id="filterBy"
+                                    name="filterBy"
+                                    options={props.filterBy}
+                                    isObject
+                                    displayValue="label"
+                                    style={singleSelectRoundedStyle}
+                                    placeholder="Filter field..."
+                                    errorClass="ml-1"
+                                />
+                            </div>
 
-                <div class="flex w-full content-center items-center">
-                    <div class="md:flex md:items-center w-full">
-                        <Label for="orderBy" class="dg-form-label whitespace-nowrap md:mr-5">Sort By</Label>
-                        <SingleSelect
-                            id="orderBy"
-                            name="orderBy"
-                            options={props.orderBy}
-                            isObject
-                            displayValue="label"
-                            style={singleSelectRoundedStyle}
-                            placeholder="Order field..."
-                            errorClass="ml-1"
-                        />
-                    </div>
-                </div>
+                            <div class="flex w-full content-center items-center">
+                                <div class="md:flex md:items-center w-full">
+                                    <Label for="orderBy" class="dg-form-label whitespace-nowrap md:mr-5">Sort By</Label>
+                                    <SingleSelect
+                                        id="orderBy"
+                                        name="orderBy"
+                                        options={props.orderBy}
+                                        isObject
+                                        displayValue="label"
+                                        style={singleSelectRoundedStyle}
+                                        placeholder="Order field..."
+                                        errorClass="ml-1"
+                                    />
+                                </div>
+                            </div>
 
-                <div class="mb-5 md:mb-0 mx-auto">
-                    <div class="w-6 h-6">
-                        <IconButtonActive
-                            classNameOnActive="text-white"
-                            onClick={toggleSort}
-                            isActive={filter.sort === 'desc'}
-                            iconEnable={IconSortAscending}
-                            iconDisable={IconSortDescending}
-                        />
-                    </div>
-                </div>
-            </div>
+                            <div class="mb-5 md:mb-0 mx-auto">
+                                <div class="w-6 h-6">
+                                    <IconButtonActive
+                                        classNameOnActive="text-white"
+                                        onClick={toggleSort}
+                                        isActive={filter.sort === 'desc'}
+                                        iconEnable={IconSortAscending}
+                                        iconDisable={IconSortDescending}
+                                    />
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="flex mb-5 mx-auto">
-                <Button
-                    class="w-full md:w-32 dg-main-button"
-                    type="submit"
-                >
-                        Filter
-                </Button>
-            </div>
+                        <div class="flex flex-col gap-4 md:flex-row mb-5 mx-auto">
+                            <Button
+                                class="w-full md:w-32 dg-secondary-button"
+                                type="button"
+                                onClick={reset()}
+                            >
+                                Reset
+                            </Button>
+                            <Button
+                                class="w-full md:w-32 dg-main-button"
+                                type="submit"
+                            >
+                                Filter
+                            </Button>
+                        </div>
+                    </> );
+            }}
         </Form>
     );
 };
