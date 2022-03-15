@@ -1,6 +1,3 @@
-// import { showGeneralNotification } from './actions';
-// import { notification, notificationTypes } from '../../entities';
-
 import { createSignal } from 'solid-js';
 import notify from './notif';
 const [ showNotification, setShowNotification ] = createSignal();

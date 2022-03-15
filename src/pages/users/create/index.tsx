@@ -7,6 +7,7 @@ import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import RoleRepository from '../../../features/role/repositories/RoleRepository';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout';
+import { showErrorNotification, showSuccessNotification } from '../../../features/shared/utils/showNotification';
 
 const IndexPage: Component = () =>
 {
@@ -33,7 +34,15 @@ const IndexPage: Component = () =>
             permissions,
         };
         const create = userRepository.createUser( data );
-        const response = await create();
+        const response = await create().then( () =>
+        {
+            showSuccessNotification( 'User created' );
+        } )
+            .catch( () =>
+            {
+                showErrorNotification( 'Intern Error System' );
+            } );
+
         // assign roles
         if ( payload.roles && payload.roles.length > 0 )
         {

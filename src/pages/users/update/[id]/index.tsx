@@ -6,6 +6,7 @@ import AuthRepository from '../../../../features/auth/repositories/AuthRepositor
 import RoleRepository from '../../../../features/role/repositories/RoleRepository';
 import UserRepository from '../../../../features/user/repositories/UserRepository';
 import PrivateLayout from '../../../../features/shared/layout/PrivateLayout';
+import { showErrorNotification, showSuccessNotification } from '../../../../features/shared/utils/showNotification';
 
 const IndexPage: Component = () =>
 {
@@ -29,7 +30,14 @@ const IndexPage: Component = () =>
         const rolesId: string[] = payload.roles.map( ( role: any ) => role.value );
         const data = { ...payload, country, documentType, enable, permissions };
         const update = userRepository.updateUser( id, data );
-        const response = await update();
+        const response = await update().then( () =>
+        {
+            showSuccessNotification( 'User actualizada' );
+        } )
+            .catch( () =>
+            {
+                showErrorNotification( 'Error interno del servidor' );
+            } );
 
         if ( payload.roles && payload.roles.length > 0 )
         {
