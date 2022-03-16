@@ -1,3 +1,4 @@
+import { Text } from 'solid-i18n';
 import { Component, splitProps } from 'solid-js';
 import Button from '../../atoms/Button';
 import IconCross from '../../atoms/Icons/Stroke/IconCross';
@@ -46,11 +47,11 @@ const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
                     </div>
                     <div class="flex justify-around ">
                         <ButtonClose onClick={onHandleCloseModal( { onClose } )}>
-                            Cancel
+                            <Text message='a_cancel'/>
                         </ButtonClose>
 
                         <ButtonConfirm onClick={handleDeleteUser( { onClose, cbAction } )}>
-                            Save
+                            <Text message='a_delete'/>
                         </ButtonConfirm>
                     </div>
                 </div>

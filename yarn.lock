@@ -1926,6 +1926,11 @@ husky@^7.0.0:
   resolved "https://registry.yarnpkg.com/husky/-/husky-7.0.4.tgz#242048245dc49c8fb1bf0cc7cfb98dd722531535"
   integrity sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==
 
+i18n-mini@1.1.x:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/i18n-mini/-/i18n-mini-1.1.0.tgz#66a34ac8404c16b4521da51abeee3923912fe218"
+  integrity sha512-Y7R8/ITtjYAAklY9a8vizkFpUlgJDFLGWUlppH7Lcx2R3dXQaZXrugJtGXYjL9vK1ym5CzhbN2kU4lj8ELA6vg==
+
 ignore@^4.0.3, ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
@@ -3340,6 +3345,13 @@ solid-app-router@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/solid-app-router/-/solid-app-router-0.3.0.tgz#c06aba1c170649a65b3511210769020d973e3bc9"
   integrity sha512-427qO9W90HH3coVq3a25xlL0B8dv+FKQcGQE3v5z5Z+8+u00svhOEQoM3Yj8W0C0xhGKSh2mKSIhpjUGQ7C68g==
+
+solid-i18n@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/solid-i18n/-/solid-i18n-1.0.2.tgz#77a28fbaab9bcfc1e7679e516ca7ff0d41db0e12"
+  integrity sha512-+WJQLlkB4H/TLr7YcthBcrWdvOL3FMGs+gyJhltcj5Y7lrDRZvGIzw1o/vcO0WiQDEfsvK1mMPu2gqAIs1l8gQ==
+  dependencies:
+    i18n-mini "1.1.x"
 
 solid-js-form@^0.1.5:
   version "0.1.5"
