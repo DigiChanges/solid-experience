@@ -4,9 +4,9 @@ import ButtonIcon from '../molecules/ButtonIcon';
 
 interface TitleWithButtonProps
 {
-    title?: string;
+    title?: string | HTMLElement | ( string | HTMLElement )[];
     icon: any;
-    labelButtonName?: string;
+    labelButtonName?: string | HTMLElement | ( string | HTMLElement )[];
     class: string;
     path: string;
     buttonAction?: any;
@@ -19,9 +19,8 @@ const TitleWithButton: Component<TitleWithButtonProps> = ( props ) =>
         </Title>
         <ButtonIcon
             icon={props.icon}
-            labelName={props.labelButtonName}
+            labelName={props.labelButtonName as string}
             path={props.path}
-
         />
     </section>;
 

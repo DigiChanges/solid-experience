@@ -4,7 +4,11 @@ import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
 import { handleSelect } from './handlers';
 
-type PasswordShowHideProps = Omit<InputFormProps, 'value'>;
+type InputFormPropsWithoutValue = Omit<InputFormProps, 'value' |  'placeholder' | 'labelName'>;
+type PasswordShowHideProps = InputFormPropsWithoutValue & {
+    placeholder?: string | HTMLElement | ( string | HTMLElement )[];
+    labelName?: string | HTMLElement | ( string | HTMLElement )[];
+};
 
 const PasswordShowHide: Component<PasswordShowHideProps> = props =>
 {
@@ -16,6 +20,8 @@ const PasswordShowHide: Component<PasswordShowHideProps> = props =>
             errorChildren={field.error()}
             onChange={handleSelect( { setValue: form.setValue } )}
             {...props}
+            placeholder={props.placeholder as string}
+            labelName={props.labelName as string}
         />
     );
 };

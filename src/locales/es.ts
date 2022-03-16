@@ -4,18 +4,27 @@ const app: I18nLocales = {
     a_cancel: 'Cancelar',
     a_dashboard: 'Panel de control',
     a_delete: 'Eliminar',
+    a_email: 'Correo electrónico',
     a_filter_by: 'Filtrar por',
     a_filter_field: 'Campo de filtro',
     a_filter: 'Filtrar',
     a_home: 'Inicio',
+    a_loading: 'Cargando',
     a_login: 'Iniciar sesión',
     a_logout: 'Cerrar sesión',
     a_order_by: 'Ordenar por',
     a_order_field: 'Campo de ordenación',
+    a_password: 'Contraseña',
     a_reset: 'Reiniciar',
     a_save: 'Guardar',
     a_search: 'Buscar',
     a_view_more: 'Ver más',
+    a_your_email: 'Tu correo electrónico',
+    a_your_password: 'Tu contraseña',
+};
+
+const auth: I18nLocales = {
+    au_forgot_password: '¿Olvidaste tu contraseña?',
 };
 
 const appValidations: I18nLocales = {
@@ -45,6 +54,7 @@ const user: I18nLocales = {
 
 const es: I18nLocales = {
     ...app,
+    ...auth,
     ...appValidations,
     ...roles,
     ...user,

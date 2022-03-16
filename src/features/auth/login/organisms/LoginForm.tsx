@@ -1,3 +1,4 @@
+import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../../../../atoms/Button';
@@ -12,57 +13,61 @@ interface LoginFormProps {
     onClick: ( event: MouseEvent ) => void;
 }
 
-const LoginForm: Component<LoginFormProps> = props => (
-    <Form
-        initialValues={{ email: '', password: '', tenant: 'public' }}
-        validation={SignUpSchema}
-        onSubmit={async ( form ) =>
-        {
-            props.onSubmit( form.values );
-        }}
-    >
-        <Title titleType="h1" class="mb-2 text-left text-xs font-extrabold text-main-gray-250">
-                    Login
-        </Title>
-        <div class="mb-4">
-            <Input
-                name="email"
-                type="text"
-                id="email"
-                class="dg-form-field-full font-extrabold pl-5"
-                placeholder="Your Email"
-                labelClass="text-main-gray-200 block mb-2"
-                labelName="Email"
-            />
-        </div>
-        <div>
-            <PasswordShowHide
-                name="password"
-                id="password"
-                class="dg-form-field-full font-extrabold pl-5"
-                placeholder="Your Password"
-                labelClass="text-main-gray-200 block my-3"
-                labelName="Password"
-            />
-            <div class="flex items-center justify-between">
+const LoginForm: Component<LoginFormProps> = props =>
+{
+    const { t } = useI18n();
+    return (
+        <Form
+            initialValues={{ email: '', password: '', tenant: 'public' }}
+            validation={SignUpSchema}
+            onSubmit={async ( form ) =>
+            {
+                props.onSubmit( form.values );
+            }}
+        >
+            <Title titleType="h1" class="mb-2 text-left text-xs font-extrabold text-main-gray-250">
+                <Text message="a_login" />
+            </Title>
+            <div class="mb-4">
+                <Input
+                    name="email"
+                    type="text"
+                    id="email"
+                    class="dg-form-field-full font-extrabold pl-5"
+                    placeholder={t( 'a_your_email' )}
+                    labelClass="text-main-gray-200 block mb-2"
+                    labelName={t( 'a_email' )}
+                />
+            </div>
+            <div>
+                <PasswordShowHide
+                    name="password"
+                    id="password"
+                    class="dg-form-field-full font-extrabold pl-5"
+                    placeholder={t( 'a_your_password' )}
+                    labelClass="text-main-gray-200 block my-3"
+                    labelName={t( 'a_password' )}
+                />
+                <div class="flex items-center justify-between">
+                    <Button
+                        name="forgotPassword"
+                        onClick={props.onClick}
+                        class="no-underline inline-block align-baseline font-bold text-sm text-blue hover:text-blue-dark "
+                    >
+                        <Text message="au_forgot_password" />
+                    </Button>
+                </div>
+            </div>
+            <div class="mt-10 flex justify-center">
                 <Button
-                    name="forgotPassword"
-                    onClick={props.onClick}
-                    class="no-underline inline-block align-baseline font-bold text-sm text-blue hover:text-blue-dark "
+                    type="submit"
+                    class="mx-auto text-white bg-primary-main border-0 py-2 focus:outline-none hover:bg-primary-hover rounded-full text-sm font-bold w-32 text-center"
                 >
-                            Forgot Password?
+                    <Text message="a_login" />
                 </Button>
             </div>
-        </div>
-        <div class="mt-10 flex justify-center">
-            <Button
-                type="submit"
-                class="mx-auto text-white bg-primary-main border-0 py-2 focus:outline-none hover:bg-primary-hover rounded-full text-sm font-bold w-32 text-center"
-            >
-                        Login
-            </Button>
-        </div>
-    </Form>
-);
+        </Form>
+    );
+};
 
 export default LoginForm;

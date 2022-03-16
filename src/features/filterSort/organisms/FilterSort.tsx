@@ -65,7 +65,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                 type="search"
                                 id="search"
                                 class="dg-form-field-full"
-                                placeholder={props.searchPlaceholder || t( 'a_search' ) as string}
+                                placeholder={props.searchPlaceholder || t( 'a_search' )}
                                 labelName=""
                                 errorClass="ml-1"
                                 addon={{

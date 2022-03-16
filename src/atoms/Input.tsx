@@ -3,9 +3,11 @@ import { InputForm } from '@digichanges/solid-components';
 import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
 
-type InputFormPropsWithoutValue = Omit<InputFormProps, 'value'>;
+type InputFormPropsWithoutValue = Omit<InputFormProps, 'value' | 'placeholder' | 'labelName'>;
 type InputProps = InputFormPropsWithoutValue & {
     value?: any;
+    placeholder?: string | HTMLElement | ( string | HTMLElement )[];
+    labelName?: string | HTMLElement | ( string | HTMLElement )[];
 };
 
 type setValue = ( name: string, value: any ) => void;
@@ -28,6 +30,8 @@ const Input: Component<InputProps> = ( props ) =>
             checked={props.type === 'radio' && props.value === field.value()}
             onChange={handleSelect( { setValue: form.setValue } )}
             {...props}
+            placeholder={props.placeholder as string}
+            labelName={props.labelName as string}
         />
     );
 };

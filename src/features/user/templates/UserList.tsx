@@ -58,8 +58,8 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
             <TitleWithButton
                 class="dg-section-title"
-                title={ t( 'u_list_title' ) as string }
-                labelButtonName={t( 'u_create_user' ) as string}
+                title={ t( 'u_list_title' ) }
+                labelButtonName={t( 'u_create_user' )}
                 icon={IconPlus}
                 buttonAction={actionCreateButton()}
                 path="/users/create"
@@ -69,7 +69,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
             <div class="dg-grid-3x3 justify-center">
                 <Show when={!props.loading || props.userList?.length} fallback={() => <GeneralLoader/>}>
-                    <For each={props.userList} fallback={<div>{t( 'u_no_users' )}...</div>}>
+                    <For each={props.userList} fallback={<div><Text message={'u_no_users'} />...</div>}>
                         {( user ) =>
                             <MediaObject class="dg-media-object" >
                                 <div class="flex-col justify-center content-center ml-3 text-gray-400">
@@ -117,9 +117,9 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             </div>
 
             <div class="dg-full-center-flex mt-8">
-                <Show when={!!props.nextPage}>
+                <Show when={!props.nextPage}>
                     <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
-                        <Show when={!props.loading} fallback="Loading">
+                        <Show when={!!props.loading} fallback={() => <span><Text message='a_loading' />...</span>}>
                             <Text message='a_view_more'/>
                         </Show>
                     </Button>
