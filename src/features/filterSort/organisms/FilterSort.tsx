@@ -1,4 +1,5 @@
 import { Icon, StrokeIcons } from '@digichanges/solid-components';
+import { useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../../../atoms/Button';
@@ -30,6 +31,8 @@ interface FilterSortProps{
 
 const FilterSort: Component<FilterSortProps> = ( props ) =>
 {
+    const i18n = useI18n();
+    const { t } = i18n;
     const { filter, setFilter, toggleSort } = useFilter();
 
     return (
@@ -39,7 +42,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                 filterBy: filter?.filterBy ? { ...props.filterBy.find( filterOption => filterOption.value === filter.filterBy ) } : null,
                 orderBy: filter?.filterBy ? { ...props.orderBy.find( orderByOption => orderByOption.value === filter.orderBy ) } : null,
             }}
-            validation={filterSortValidationSchema}
+            validation={filterSortValidationSchema( t )}
             onSubmit={async ( form ) =>
             {
                 const { search, filterBy, orderBy } = form.values;
@@ -62,7 +65,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                 type="search"
                                 id="search"
                                 class="dg-form-field-full"
-                                placeholder={props.searchPlaceholder}
+                                placeholder={props.searchPlaceholder || t( 'a_search' ) as string}
                                 labelName=""
                                 errorClass="ml-1"
                                 addon={{
@@ -73,7 +76,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
 
                         <div class="flex flex-wrap md:flex-nowrap w-full content-center items-center md:mb-5">
                             <div class="md:flex md:items-center w-full">
-                                <Label for="filterBy" class="dg-form-label whitespace-nowrap md:mr-5">Filter By</Label>
+                                <Label for="filterBy" class="dg-form-label whitespace-nowrap md:mr-5">{ t( 'a_filter_by' )}</Label>
                                 <SingleSelect
                                     id="filterBy"
                                     name="filterBy"
@@ -81,14 +84,14 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                     isObject
                                     displayValue="label"
                                     style={singleSelectRoundedStyle}
-                                    placeholder="Filter field..."
+                                    placeholder={`${t( 'a_filter_field' )}...`}
                                     errorClass="ml-1"
                                 />
                             </div>
 
                             <div class="flex w-full content-center items-center">
                                 <div class="md:flex md:items-center w-full">
-                                    <Label for="orderBy" class="dg-form-label whitespace-nowrap md:mr-5">Sort By</Label>
+                                    <Label for="orderBy" class="dg-form-label whitespace-nowrap md:mr-5">{t( 'a_order_by' )}</Label>
                                     <SingleSelect
                                         id="orderBy"
                                         name="orderBy"
@@ -96,7 +99,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                         isObject
                                         displayValue="label"
                                         style={singleSelectRoundedStyle}
-                                        placeholder="Order field..."
+                                        placeholder={`${t( 'a_order_field' )}...`}
                                         errorClass="ml-1"
                                     />
                                 </div>
@@ -121,13 +124,13 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                 type="button"
                                 onClick={reset()}
                             >
-                                Reset
+                                {t( 'a_reset' )}
                             </Button>
                             <Button
                                 class="w-full md:w-32 dg-main-button"
                                 type="submit"
                             >
-                                Filter
+                                {t( 'a_filter' )}
                             </Button>
                         </div>
                     </> );

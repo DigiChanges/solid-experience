@@ -1,8 +1,7 @@
-import { MountableElement, render } from 'solid-js/web';
 import { Router } from 'solid-app-router';
-import { ApplicationProvider } from './context/context';
-
+import { MountableElement, render } from 'solid-js/web';
 import App from './App';
+import { ApplicationProvider } from './context/context';
 
 render( () => (
     <Router>

@@ -1,4 +1,5 @@
 import { Link } from 'solid-app-router';
+import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
 import Button from '../../../atoms/Button';
 import IconLockOpen from '../../../atoms/Icons/Stroke/IconLockOpen';
@@ -30,6 +31,9 @@ interface UserListTemplateProps
 
 const UserList: Component<UserListTemplateProps> = ( props ) =>
 {
+    const i18n = useI18n();
+    const { t } = i18n;
+
     const { isShowModal, modalData, openModal, closeModal } = useModal<BasicConfirmationModalData>( { id: undefined, text: '' } );
 
     const actionCreateButton = () =>
@@ -46,7 +50,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                     onClose={closeModal()}
                 >
                     <RemoveModalContent
-                        title="Are you sure delete user:"
+                        title={t( 'u_remove_title' ) as string}
                         content={modalData().text}
                     />
                 </ConfirmDelete>
@@ -54,18 +58,18 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
             <TitleWithButton
                 class="dg-section-title"
-                title={props.loading ? 'Users List ...' : 'Users List'}
-                labelButtonName="Create User"
+                title={ t( 'u_list_title' ) as string }
+                labelButtonName={t( 'u_create_user' ) as string}
                 icon={IconPlus}
                 buttonAction={actionCreateButton()}
                 path="/users/create"
             />
 
-            <FilterSort searchPlaceholder="Search users..." filterBy={filterBy} orderBy={orderBy}/>
+            <FilterSort searchPlaceholder={`${t( 'u_search', { count: 1 } )}...`} filterBy={filterBy} orderBy={orderBy}/>
 
             <div class="dg-grid-3x3 justify-center">
                 <Show when={!props.loading || props.userList?.length} fallback={() => <GeneralLoader/>}>
-                    <For each={props.userList} fallback={<div>No users...</div>}>
+                    <For each={props.userList} fallback={<div>{t( 'u_no_users' )}...</div>}>
                         {( user ) =>
                             <MediaObject class="dg-media-object" >
                                 <div class="flex-col justify-center content-center ml-3 text-gray-400">
@@ -116,7 +120,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 <Show when={!!props.nextPage}>
                     <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
                         <Show when={!props.loading} fallback="Loading">
-                            View More
+                            <Text message='a_view_more'/>
                         </Show>
                     </Button>
                 </Show>
