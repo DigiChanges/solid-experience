@@ -30,14 +30,7 @@ const IndexPage: Component = () =>
         const rolesId: string[] = payload.roles.map( ( role: any ) => role.value );
         const data = { ...payload, country, documentType, enable, permissions };
         const update = userRepository.updateUser( id, data );
-        const response = await update().then( () =>
-        {
-            showSuccessNotification( 'User actualizada' );
-        } )
-            .catch( () =>
-            {
-                showErrorNotification( 'Error interno del servidor' );
-            } );
+        const response = await update();
 
         if ( payload.roles && payload.roles.length > 0 )
         {
