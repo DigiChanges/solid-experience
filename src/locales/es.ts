@@ -31,6 +31,14 @@ const appValidations: I18nLocales = {
     av_required: 'Requerido',
 };
 
+const errors: I18nLocales = {
+    'err_save_user': 'Error al guardar el usuario',
+    'err_save': 'Error al guardar',
+    'err_server': 'Error del servidor',
+    'err': 'Error',
+    'Unprocessable Entity': 'Error al procesar los datos',
+};
+
 const roles: I18nLocales = {
     r_create: 'Crear Rol',
     r_home: 'Inicio de Roles',
@@ -56,6 +64,7 @@ const es: I18nLocales = {
     ...app,
     ...auth,
     ...appValidations,
+    ...errors,
     ...roles,
     ...user,
 };
