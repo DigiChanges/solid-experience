@@ -9,7 +9,7 @@ type LogoutSideBarItemProps = {
 
 const LogoutSideBarItem: Component<LogoutSideBarItemProps> = ( props ) => (
     <SideBarItem
-        name="Logout"
+        name="a_logout"
         icon={IconLogout}
         isLoading={false}
         onClick={logout( { user: props.user } )}

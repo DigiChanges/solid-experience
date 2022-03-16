@@ -61,7 +61,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                     >
                         <Show when={getShowSubitems() && sectionSelected() === item.path}>
                             <div class=" flex flex-row">
-                                <a class=" ">
+                                <div>
                                     <For each={item.children}>
                                         {( item ) =>
                                             <HasPermission
@@ -84,7 +84,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                                         }
                                     </For>
 
-                                </a>
+                                </div>
                             </div>
                         </Show>
                     </SideBarItem>
@@ -98,7 +98,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
         <div class="grid grid-areas-mobile-layout md:grid-areas-tablet-layout lg:grid-areas-desktop-layout grid-cols-desktop-layout
         h-full dg-main-bg">
             <header class="grid-in-header dg-element-bg">
-                <NavBar showSidebar={showSidebar()} onClick={onClick} email={'example@emai.com'} />
+                <NavBar showSidebar={showSidebar()} onClick={onClick} email={'example@mail.com'} />
             </header>
             <div class="hidden md:block mt-6 ml-4 z-10 w-max grid-in-sidebar text-white">
                 <SideBar class="dg-rounded ml-1 h-89 py-5">

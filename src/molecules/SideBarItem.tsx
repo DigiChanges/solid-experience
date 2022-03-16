@@ -1,4 +1,5 @@
 import { NavLink } from 'solid-app-router';
+import { Text } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
 import Button from '../atoms/Button';
 
@@ -26,7 +27,7 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
                     <Icon />
                 </span>
             </Show>
-            {props.name}
+            <Text message={props.name} />
         </>
     );
 };
