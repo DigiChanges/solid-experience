@@ -8,6 +8,7 @@ import RoleRepository from '../../../features/role/repositories/RoleRepository';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout';
 import { showErrorNotification, showSuccessNotification } from '../../../features/shared/utils/showNotification';
+import { showErrorAlert } from '../../../features/shared/utils/showAlert';
 
 const IndexPage: Component = () =>
 {
@@ -36,11 +37,17 @@ const IndexPage: Component = () =>
         const create = userRepository.createUser( data );
         const response = await create().then( () =>
         {
-            showSuccessNotification( 'User created' );
-        } )
-            .catch( () =>
+            showSuccessNotification( 'User Created' );
+            setTimeout( () =>
             {
-                showErrorNotification( 'Intern Error System' );
+                navigate( '/users', { replace: true } );
+            }, 3500 );
+        } )
+            .catch( ( e ) =>
+            {
+                // console.log( 'show error ', e.message );
+                showErrorNotification( 'Internal Error Server' );
+                //  showErrorAlert( e.errors[0].property );
             } );
 
         // assign roles
@@ -50,7 +57,6 @@ const IndexPage: Component = () =>
             const assignRoles = userRepository.assignUserRole( id, rolesId );
             void await assignRoles();
         }
-        navigate( '/users', { replace: true } );
     };
 
     return (

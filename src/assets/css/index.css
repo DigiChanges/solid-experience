@@ -167,7 +167,7 @@
 }
 
 .success {
-  background: linear-gradient(128deg, #b6ff40 0%, #3fff47 100%);
+  background: linear-gradient(128deg, rgb(86, 147, 114) 0%, rgb(86, 147, 114) 100%);
 }
 
 .error {
@@ -175,7 +175,7 @@
 }
 
 .alert {
-  background: linear-gradient(128deg, #ff9a3fff 0%, #ff4b40 100%);
+  background: linear-gradient(128deg, rgb(227, 75, 75) 0%, rgb(227, 75, 75) 100%);
 }
 
 .info {
@@ -224,4 +224,18 @@
 
 .search-wrapper:hover {
   @apply border-indigo-400 !important;
+}
+/* Alert */
+.containerAlert{
+  position: fixed;
+  max-height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* max-width: 14rem; */
+}
+.containerAlert::-webkit-scrollbar {
+  display: none;
 }

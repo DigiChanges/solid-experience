@@ -97,6 +97,8 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
     return (
         <div class="grid grid-areas-mobile-layout md:grid-areas-tablet-layout lg:grid-areas-desktop-layout grid-cols-desktop-layout
         h-full dg-main-bg">
+            <div class="containerNotification top-0 right-0  max-w-xs"></div>
+            <div class="containerAlert top-0 right-50 max-w-xs"></div>
             <header class="grid-in-header dg-element-bg">
                 <NavBar showSidebar={showSidebar()} onClick={onClick} email={'example@mail.com'} />
             </header>
