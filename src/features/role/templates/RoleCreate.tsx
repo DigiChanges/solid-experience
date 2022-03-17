@@ -12,6 +12,7 @@ import { SelectTransform } from '../../shared/utils/SelectTransform';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
+import { Text, useI18n } from 'solid-i18n';
 
 interface RoleCreateTemplateProps {
     permissionsList?: IPermissionApi[];
@@ -26,13 +27,15 @@ const singleSelectStyle = {
 
 const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
+    const i18n = useI18n();
+    const { t } = i18n;
     const groupedPermissions = createMemo( () =>  SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
 
     return (
         <section class="px-4">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold" titleType="h1">
-                    Create Role
+                    <Text message="r_create_role" />
                 </Title>
             </div>
 
@@ -61,9 +64,9 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 type="text"
                                 id="name"
                                 class="dg-form-field-full"
-                                placeholder="Enter name"
+                                placeholder={t( 'r_enter_name' )}
                                 labelClass="text-main-gray-200 block mb-2"
-                                labelName="Name"
+                                labelName={t( 'r_name' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -73,15 +76,15 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 type="text"
                                 id="slug"
                                 class="dg-form-field-full"
-                                placeholder="Enter slug"
+                                placeholder={t( 'r_enter_slug' )}
                                 labelClass="text-main-gray-200 block mb-2"
-                                labelName="Slug"
+                                labelName={t( 'r_slug' )}
                                 errorClass="ml-1"
                             />
                         </div>
 
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="permissions">Permissions</Label>
+                            <Label for="permissions"><Text message="r_select_permissions" /></Label>
                             <MultiSelect
                                 name="permissions"
                                 options={groupedPermissions()}
@@ -89,12 +92,14 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                placeholder="Select Permissions"
+                                placeholder={t( 'r_enter_permissions' ) as string}
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-quarter-field-wrapper">
-                            <Label for="enable" class="dg-form-label">Enable</Label>
+                            <Label for="enable" class="dg-form-label">
+                                <Text message="r_enable" />
+                            </Label>
                             <SingleSelect
                                 id="enable"
                                 name="enable"
@@ -108,9 +113,11 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                         </div>
                         <div class="w-full mt-5 flex justify-end">
                             <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
-                                Close
+                                <Text message='r_close' />
                             </Link>
-                            <ButtonConfirm type="submit">Save</ButtonConfirm>
+                            <ButtonConfirm type="submit">
+                                <Text message='r_save'/>
+                            </ButtonConfirm>
                         </div>
                     </div>
                 </Form>

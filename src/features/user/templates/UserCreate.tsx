@@ -15,7 +15,7 @@ import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
 import { countryMultiSelectStyle, documentTypeMultiSelectStyle, enableMultiSelectStyle } from '../constants/selectStyles';
 import userCreateValidationSchema from '../validations/schemas/userCreateValidationSchema';
-import { useI18n } from 'solid-i18n';
+import { Text, useI18n } from 'solid-i18n';
 
 interface UserCreateTemplateProps
 {
@@ -50,7 +50,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
         <section class="px-4">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold" titleType="h1">
-                    {t( 'u_create_user' ) as string}
+                    <Text message="u_create_user" />
                 </Title>
             </div>
 
@@ -74,14 +74,14 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         roles: [],
                         enable: { label: 'Enabled', value: true },
                     }}
-                    validation={userCreateValidationSchema}
+                    validation={userCreateValidationSchema( t )}
                     onSubmit={async ( form ) =>
                     {
                         props.createAction( form.values );
                     }}
                 >
                     <div class="flex flex-wrap text-sm">
-                        <span class="w-full text-xs text-bold">{t( 'u_personal_information' ) as string}</span>
+                        <span class="w-full text-xs text-bold"><Text message="u_personal_information" /></span>
                         <div class="dg-form-full-field-wrapper">
                             <Input
                                 style={{ display: 'block' }}
@@ -89,9 +89,9 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 type="text"
                                 id="firstName"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_first_name' ) as string}
+                                placeholder={t( 'u_enter_first_name' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_first_name' ) as string}
+                                labelName={t( 'u_first_name' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -101,15 +101,17 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 type="text"
                                 id="lastName"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_last_name' ) as string}
+                                placeholder={t( 'u_enter_last_name' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_last_name' ) as string}
+                                labelName={t( 'u_last_name' )}
                                 errorClass="ml-1"
                             />
                         </div>
                         {/* dg-form-quarter-field-wrapper */}
                         <div class="dg-form-quarter-field-wrapper ">
-                            <Label for="documentType" class="dg-form-label">{t( 'u_id_number' ) as string}</Label>
+                            <Label for="documentType" class="dg-form-label">
+                                <Text message="u_id_number" />
+                            </Label>
                             <div class="flex w-full">
                                 <div>
                                     <SingleSelect
@@ -132,7 +134,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                         type="text"
                                         id="documentNumber"
                                         class="flex-1 dg-form-field-quarter rounded-l-none flex w-full mr-2"
-                                        placeholder={t( 'u_enter_id_number' ) as string}
+                                        placeholder={t( 'u_enter_id_number' )}
                                         errorClass="ml-1"
                                     />
                                 </div>
@@ -141,7 +143,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
 
                         <div class="dg-form-quarter-field-wrapper text-center">
                             <Label for="gender" class="dg-form-label text-left">
-                                {t( 'u_gender' ) as string}
+                                <Text message="u_gender" />
                             </Label>
                             <div class='flex'>
 
@@ -172,7 +174,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                     value="Other"
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1 mr-2"
                                     labelClass="text-gray-400 text-xs font-bold mr-1"
-                                    labelName={t( 'u_gender_other' ) as string}
+                                    labelName={t( 'u_gender_other' )}
                                     errorClass="ml-1"
                                 />
                             </div>
@@ -181,17 +183,19 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         <div class="dg-form-quarter-field-wrapper">
                             <Input
                                 name="birthday"
-                                labelName={t( 'u_birthday' ) as string}
+                                labelName={t( 'u_birthday' )}
                                 type="date"
                                 id="birthday"
                                 class="dg-form-field-full"
-                                placeholder= {t( 'u_choose_birthday' ) as string}
+                                placeholder= {t( 'u_choose_birthday' )}
                                 labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-quarter-field-wrapper">
-                            <Label for="enable" class="dg-form-label">{t( 'u_enable' ) as string}</Label>
+                            <Label for="enable" class="dg-form-label">
+                                <Text message="u_enable" />
+                            </Label>
                             <SingleSelect
                                 id="enable"
                                 name="enable"
@@ -204,7 +208,9 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="country" class="dg-form-label">{t( 'u_country' ) as string}</Label>
+                            <Label for="country" class="dg-form-label">
+                                <Text message="u_country" />
+                            </Label>
                             <SingleSelect
                                 id="country"
                                 name="country"
@@ -222,22 +228,24 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 id="address"
                                 type="text"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_phone' ) as string}
+                                placeholder={t( 'u_enter_address' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_address' ) as string}
+                                labelName={t( 'u_address' )}
                                 errorClass="ml-1"
                             />
                         </div>
-                        <span class="w-full mt-5">{t( 'u_contact_information' ) as string} </span>
+                        <span class="w-full mt-5">
+                            <Text message="u_contact_information" />
+                        </span>
                         <div class="dg-form-full-field-wrapper">
                             <Input
                                 name="email"
                                 type="text"
                                 id="email"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_email' ) as string}
+                                placeholder={t( 'u_enter_email' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_email' ) as string}
+                                labelName={t( 'u_email' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -247,9 +255,9 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 type="text"
                                 id="phone"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_phone' ) as string}
+                                placeholder={t( 'u_enter_phone' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_phone' ) as string}
+                                labelName={t( 'u_phone' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -258,9 +266,9 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 name="password"
                                 id="password"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_password' ) as string}
+                                placeholder={t( 'u_enter_password' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_password' ) as string}
+                                labelName={t( 'u_password' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -269,14 +277,16 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 name="passwordConfirmation"
                                 id="passwordConfirmation"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_repeat_password' ) as string}
+                                placeholder={t( 'u_repeat_password' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_confirm_password' ) as string}
+                                labelName={t( 'u_confirm_password' )}
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="permissions" class="dg-form-label">{t( 'u_select_permissions' ) as string}</Label>
+                            <Label for="permissions" class="dg-form-label">
+                                <Text message="u_select_permissions" />
+                            </Label>
                             <MultiSelect
                                 name="permissions"
                                 options={groupedPermissions()}
@@ -290,7 +300,9 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         </div>
 
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="roles" class="dg-form-label">{t( 'u_select_roles' ) as string}</Label>
+                            <Label for="roles" class="dg-form-label">
+                                <Text message="u_select_roles" />
+                            </Label>
                             <MultiSelect
                                 name="roles"
                                 options={roleOptions()}
@@ -304,10 +316,10 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
 
                         <div class="w-full mt-5 flex justify-end">
                             <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
-                                {t( 'u_close' ) as string}
+                                <Text message='u_close' />
                             </Link>
                             <ButtonConfirm type="submit">
-                                {t( 'u_save' ) as string}
+                                <Text message='u_save'/>
                             </ButtonConfirm>
                         </div>
                     </div>

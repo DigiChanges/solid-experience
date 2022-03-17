@@ -5,6 +5,7 @@ import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
 import ChangePasswordSchema from '../../auth/validations/schemas/ChangePasswordSchema';
+import { Text, useI18n } from 'solid-i18n';
 
 interface UserChangePasswordTemplateProps
 {
@@ -14,11 +15,14 @@ interface UserChangePasswordTemplateProps
 
 const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) =>
 {
+    const i18n = useI18n();
+    const { t } = i18n;
+
     return (
         <section class="text-gray-500 body-font bg-gray-900 w-full md:container mx-auto px-3">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold sm:px-0 md:px-18 lg:px-14" titleType="h1">
-          Change Password
+                    <Text message="u_edit_password" />
                 </Title>
             </div>
 
@@ -45,9 +49,9 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
                             type="password"
                             id="password"
                             class="w-full bg-gray-800 border rounded-full border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base hover:border-grey px-2 py-3 h-10 shadow font-bold"
-                            placeholder="Enter Password"
+                            placeholder={t( 'u_enter_password' )}
                             labelClass="dg-form-label"
-                            labelName="New Password"
+                            labelName={t( 'u_new_password' )}
                         />
                     </div>
                     <div class="w-full px-2 mb-5">
@@ -57,17 +61,16 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
                             type="password"
                             id="passwordConfirmation"
                             class="w-full bg-gray-800 border rounded-full border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base  hover:border-grey px-2 py-3 h-10 shadow font-bold"
-                            placeholder="Repeat Password"
+                            placeholder={t( 'u_repeat_password' )}
                             labelClass="dg-form-label"
-                            labelName="Confirm Password"
+                            labelName={t( 'u_confirm_password' )}
                         />
                     </div>
 
                     <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
-                                Close
-                    </Link>
+                        <Text message='u_close' />                    </Link>
                     <Button class="dg-main-button" type="submit">
-                          Save
+                        <Text message='u_save'/>
                     </Button>
 
                 </div>
