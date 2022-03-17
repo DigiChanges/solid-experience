@@ -21,11 +21,70 @@ const app: I18nLocales = {
     a_your_email: 'Your email',
     a_your_password: 'Your password',
 };
+const auth: I18nLocales = {
+    au_forgot_password: '¿Forgot your Password?',
+};
+
+const roles: I18nLocales = {
+    r_create: 'Create Rol',
+    r_home: 'Roles Home',
+    r_roles: 'Roles',
+    r_update: 'Edit Rol',
+};
+
+const user: I18nLocales = {
+    u_address: 'Address',
+    u_birthday: 'birthday',
+    u_choose_birthday: 'Choose the birthday...',
+    u_close: 'Close',
+    u_confirm_password: 'Confirm Password',
+    u_contact_information: 'CONTACT INFORMATION',
+    u_country: 'Country',
+    u_create_user: 'Create User',
+    u_create: 'Create User',
+    u_edit_password: 'Change Password',
+    u_email: 'Email',
+    u_enable: 'Enable',
+    u_enter_address: 'Your address...',
+    u_enter_country: 'Select Country',
+    u_enter_email: 'Enter Email',
+    u_enter_first_name: 'Enter First Name',
+    u_enter_id_number: 'Enter ID',
+    u_enter_last_name: 'Enter Last Name',
+    u_enter_password: 'Enter Password',
+    u_enter_permissions: 'Select Permissions',
+    u_enter_phone: 'Enter Phone',
+    u_enter_roles: 'Select Roles',
+    u_first_name: 'First name',
+    u_gender_other: 'other',
+    u_gender: 'Gender',
+    u_home: 'user Home',
+    u_id_number: 'ID number',
+    u_last_name: 'Last name',
+    u_list_title: 'User List',
+    u_no_users: 'Without User',
+    u_password: 'Password',
+    u_personal_information: 'INFORMACION PERSONAL',
+    u_phone: 'Phone',
+    u_remove_title: 'Are you sure you want to delete this user?',
+    u_repeat_password: 'Repeat Password',
+    u_save: 'Save',
+    u_search: '{count, plural, one {Search user} other {Search users}}',
+    u_select_permissions: 'Permissions',
+    u_select_roles: 'Roles',
+    u_type_id: 'Type',
+    u_update: 'Edit User',
+    u_users: 'Users',
+    u_view: 'Show User',
+};
 
 const en: I18nLocales = {
     user_list_title: 'User List',
     user_remove_title: 'Are you sure you want to delete this user?',
     ...app,
+    ...auth,
+    ...roles,
+    ...user,
 };
 
 export default en;

@@ -69,7 +69,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
             <div class="dg-grid-3x3 justify-center">
                 <Show when={!props.loading || props.userList?.length} fallback={() => <GeneralLoader/>}>
-                    <For each={props.userList} fallback={<div><Text message={'u_no_users'} />...</div>}>
+                    <For each={props.userList} fallback={<div><Text message="u_no_users" />...</div>}>
                         {( user ) =>
                             <MediaObject class="dg-media-object" >
                                 <div class="flex-col justify-center content-center ml-3 text-gray-400">
