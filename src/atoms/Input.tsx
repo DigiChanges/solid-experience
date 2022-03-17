@@ -3,8 +3,7 @@ import { InputForm } from '@digichanges/solid-components';
 import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
 
-type InputFormPropsWithoutValue = Omit<InputFormProps, 'value' | 'placeholder' | 'labelName'>;
-type InputProps = InputFormPropsWithoutValue & {
+type InputProps = Omit<InputFormProps, 'value' | 'placeholder' | 'labelName'> & {
     value?: any;
     placeholder?: string | HTMLElement | ( string | HTMLElement )[];
     labelName?: string | HTMLElement | ( string | HTMLElement )[];

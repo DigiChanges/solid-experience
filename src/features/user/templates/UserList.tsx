@@ -117,9 +117,9 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             </div>
 
             <div class="dg-full-center-flex mt-8">
-                <Show when={!props.nextPage}>
+                <Show when={!!props.nextPage}>
                     <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
-                        <Show when={!!props.loading} fallback={() => <span><Text message='a_loading' />...</span>}>
+                        <Show when={!props.loading} fallback={() => <span><Text message='a_loading' />...</span>}>
                             <Text message='a_view_more'/>
                         </Show>
                     </Button>

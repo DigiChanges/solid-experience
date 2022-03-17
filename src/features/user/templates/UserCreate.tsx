@@ -121,9 +121,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                         isObject
                                         displayValue="label"
                                         style={documentTypeMultiSelectStyle}
-                                        // class="dg-form-field-full"
-                                        // style={{ 'border-radius': '100', 'height': '10px' }}
-                                        placeholder={t( 'u_type_id' ) as string}
+                                        placeholder={t( 'u_type_id' )}
                                         errorClass="ml-1"
                                     />
                                 </div>
@@ -217,7 +215,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 options={country}
                                 isObject
                                 displayValue="label"
-                                placeholder={t( 'u_enter_country' ) as string}
+                                placeholder={t( 'u_enter_country' )}
                                 style={countryMultiSelectStyle}
                                 errorClass="ml-1"
                             />
@@ -294,7 +292,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                placeholder={t( 'u_enter_permissions' ) as string}
+                                placeholder={t( 'u_enter_permissions' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -309,7 +307,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 isObject
                                 displayValue="label"
                                 id="roles"
-                                placeholder={t( 'u_enter_roles' ) as string}
+                                placeholder={t( 'u_enter_roles' )}
                                 errorClass="ml-1"
                             />
                         </div>

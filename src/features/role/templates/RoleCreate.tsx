@@ -92,7 +92,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                placeholder={t( 'r_enter_permissions' ) as string}
+                                placeholder={t( 'r_enter_permissions' )}
                                 errorClass="ml-1"
                             />
                         </div>

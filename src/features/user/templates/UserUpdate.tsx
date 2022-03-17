@@ -110,7 +110,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                         isObject
                                         displayValue="label"
                                         style={documentTypeMultiSelectStyle}
-                                        placeholder={t( 'u_type_id' ) as string}
+                                        placeholder={t( 'u_type_id' )}
                                         errorClass="ml-1"
                                     />
                                 </div>
@@ -202,7 +202,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 isObject
                                 displayValue="label"
                                 style={countryMultiSelectStyle}
-                                placeholder={t( 'u_enter_country' ) as string}
+                                placeholder={t( 'u_enter_country' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -256,7 +256,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                placeholder={t( 'u_enter_permissions' ) as string}
+                                placeholder={t( 'u_enter_permissions' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -270,7 +270,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 isObject
                                 displayValue="label"
                                 id="roles"
-                                placeholder={t( 'u_enter_roles' ) as string}
+                                placeholder={t( 'u_enter_roles' )}
                                 errorClass="ml-1"
                             />
                         </div>

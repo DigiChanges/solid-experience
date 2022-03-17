@@ -38,9 +38,9 @@ export const createAction = ( { user, setErrors, t, navigate }: any ) => async (
     }
     catch ( error: any )
     {
-        if ( error.response?.data?.errors )
+        if ( error.response?.status >= 400 && error.response?.status < 500 )
         {
-            setErrors( error.response.data.errors );
+            setErrors( error.response.data );
         }
         else
         {

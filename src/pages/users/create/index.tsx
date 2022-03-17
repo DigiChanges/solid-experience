@@ -19,13 +19,13 @@ const IndexPage: Component = () =>
     const roleRepository = new RoleRepository( user() );
     const [ getRoles ] = createResource( roleRepository.getRoles() );
     const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
-    const [ errors, setErrors ] = createSignal<any[]>( [] );
+    const [ errorData, setErrorData ] = createSignal<any>( null );
 
     return (
         <PrivateLayout>
-            <AlertErrors errors={errors()} title={t( 'err_save' )} description={t( 'err_save_user' )} onClose={() => setErrors( [] )}/>
+            <AlertErrors errorData={errorData()} title="err_save" description="err_save_user" onClose={() => setErrorData( null )}/>
             <UserCreate
-                createAction={createAction( { user, setErrors, t, navigate } )}
+                createAction={createAction( { user, setErrors: setErrorData, t, navigate } )}
                 permissionsList={getPermissions()?.data}
                 rolesList={getRoles()?.data}
                 loading={getPermissions.loading || getRoles.loading}

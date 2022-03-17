@@ -2,10 +2,11 @@ import Multiselect, { IMultiSelectProps } from '@digichanges/solid-multiselect';
 import { Component, splitProps } from 'solid-js';
 import ErrorForm from '../../../atoms/ErrorForm';
 
-export type MultiselectFormProps = IMultiSelectProps & {
+export type MultiselectFormProps = Omit<IMultiSelectProps, 'placeholder'> & {
     name: string;
     errorClass?: string;
     error?: string;
+    placeholder?: string | HTMLElement | ( string | HTMLElement )[];
 };
 const MultiSelectForm: Component<MultiselectFormProps> = ( props ) =>
 {
@@ -14,6 +15,7 @@ const MultiSelectForm: Component<MultiselectFormProps> = ( props ) =>
         <>
             <Multiselect
                 {...restOfProps}
+                placeholder={props.placeholder as string}
             />
             <ErrorForm
                 class={local.errorClass}

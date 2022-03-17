@@ -35,11 +35,17 @@ const appValidations: I18nLocales = {
 };
 
 const errors: I18nLocales = {
+    'app.presentation.exceptions.duplicateEntity': 'Ya existe un registro con {field} {value}.',
     'err_save_user': 'Error al guardar el usuario',
     'err_save': 'Error al guardar',
     'err_server': 'Error del servidor',
     'err': 'Error',
     'Unprocessable Entity': 'Error al procesar los datos',
+    'Bad Request': 'Error en la petición',
+};
+
+const properties: I18nLocales = {
+    document_number: 'número de documento',
 };
 
 const roles: I18nLocales = {
@@ -116,6 +122,7 @@ const es: I18nLocales = {
     ...appValidations,
     ...auth,
     ...errors,
+    ...properties,
     ...roles,
     ...user,
 };
