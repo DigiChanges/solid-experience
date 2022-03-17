@@ -28,7 +28,10 @@ const auth: I18nLocales = {
 };
 
 const appValidations: I18nLocales = {
+    av_one_item: 'Debe contener al menos un elemento',
     av_required: 'Requerido',
+    av_too_long: 'Demasiado Largo!',
+    av_too_short: 'Demasiado Corto!',
 };
 
 const errors: I18nLocales = {
@@ -40,16 +43,30 @@ const errors: I18nLocales = {
 };
 
 const roles: I18nLocales = {
+    r_close: 'Cerrar',
+    r_create_role: 'Crear Rol',
     r_create: 'Crear Rol',
+    r_enable: 'Habilitar',
+    r_enter_name: 'Ingresar Nombre',
+    r_enter_permissions: 'Seleccionar Permisos',
+    r_enter_slug: 'Ingresar Slug',
     r_home: 'Inicio de Roles',
+    r_list_title: 'Lista de Roles',
+    r_name: 'Nombre',
+    r_no_roles: 'No Roles',
     r_roles: 'Roles',
+    r_save: 'Guardar',
+    r_search: '{count, plural, one {Buscar rol} other {Buscar roles}}',
+    r_select_permissions: 'Permisos',
+    r_slug: 'Slug',
+    r_update_role: 'Editar Rol',
     r_update: 'Editar Rol',
 };
 
 const user: I18nLocales = {
     u_address: 'Dirección',
     u_birthday: 'Fecha de nacimiento',
-    u_choose_birthday: 'Insertar Fecha de Nacimiento...',
+    u_choose_birthday: 'Ingresar Fecha de Nacimiento...',
     u_close: 'Cerrar',
     u_confirm_password: 'Confirmar Contraseña',
     u_contact_information: 'INFORMACION DE CONTACTO',
@@ -60,14 +77,14 @@ const user: I18nLocales = {
     u_email: 'Email',
     u_enable: 'Habilitar',
     u_enter_address: 'Tú dirección',
-    u_enter_country: 'Insertar País',
-    u_enter_email: 'Insertar Email',
-    u_enter_first_name: 'Insertar Nombre',
-    u_enter_id_number: 'Insertar ID',
-    u_enter_last_name: 'Insertar Apellido',
-    u_enter_password: 'Insertar Contraseña',
+    u_enter_country: 'Ingresar País',
+    u_enter_email: 'Ingresar Email',
+    u_enter_first_name: 'Ingresar Nombre',
+    u_enter_id_number: 'Ingresar ID',
+    u_enter_last_name: 'Ingresar Apellido',
+    u_enter_password: 'Ingresar Contraseña',
     u_enter_permissions: 'Seleccionar Permisos',
-    u_enter_phone: 'Insertar Télefono',
+    u_enter_phone: 'Ingresar Teléfono',
     u_enter_roles: 'Seleccionar Roles',
     u_first_name: 'Nombre',
     u_gender_other: 'otro',
@@ -76,10 +93,11 @@ const user: I18nLocales = {
     u_id_number: 'Número ID',
     u_last_name: 'Apellido',
     u_list_title: 'Lista de Usuarios',
+    u_new_password: 'Nueva Contraseña',
     u_no_users: 'Sin usuarios',
     u_password: 'Contraseña',
     u_personal_information: 'INFORMACION PERSONAL',
-    u_phone: 'Télefono',
+    u_phone: 'Teléfono',
     u_remove_title: '¿Está seguro que desea eliminar este usuario?',
     u_repeat_password: 'Repetir Contraseña',
     u_save: 'Guardar',
@@ -87,6 +105,7 @@ const user: I18nLocales = {
     u_select_permissions: 'Permisos',
     u_select_roles: 'Roles',
     u_type_id: 'Tipo',
+    u_update_user: 'Editar Usuario',
     u_update: 'Editar Usuario',
     u_users: 'Usuarios',
     u_view: 'Ver Usuario',
