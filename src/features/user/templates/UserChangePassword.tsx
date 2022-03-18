@@ -1,3 +1,4 @@
+import { useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../../../atoms/Button';
@@ -13,6 +14,8 @@ interface UserChangePasswordTemplateProps
 
 const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props ) =>
 {
+    const i18n = useI18n();
+    const { t } = i18n;
     return (
         <section class="dg-main-bg h-screen">
             <div class="dg-full-center-flex">
@@ -30,7 +33,7 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props 
                                 password: '',
                                 passwordConfirmation: '',
                             }}
-                            validation={ChangePasswordSchema}
+                            validation={ChangePasswordSchema( t )}
                             onSubmit={async ( form ) =>
                             {
                                 props.changePasswordAction( form.values );

@@ -54,7 +54,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         permissions: roleCurrentPermissions(),
                         enable: { ...states.find( enableOption => enableOption.value === props.roleSelected?.enable ) },
                     }}
-                    validation={RoleSchema}
+                    validation={RoleSchema( t )}
                     onSubmit={async ( form ) =>
                     {
                         props.updateAction( form.values );

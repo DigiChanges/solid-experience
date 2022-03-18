@@ -2,13 +2,13 @@ import * as Yup from 'yup';
 
 const userCreateValidationSchema = ( t: any ) => ( {
     firstName: Yup.string()
-        .required(  t( 'av_required' ) )
         .min( 2, t( 'av_too_short' ) )
-        .max( 50, t( 'av_too_long' ) ),
+        .max( 50, t( 'av_too_long' ) )
+        .required(  t( 'av_required' ) ),
     lastName: Yup.string()
-        .required(  t( 'av_required' ) )
         .min( 2, t( 'av_too_short' ) )
-        .max( 50, t( 'av_too_long' ) ),
+        .max( 50, t( 'av_too_long' ) )
+        .required(  t( 'av_required' ) ),
     email: Yup.string()
         .email( 'Invalid email' )
         .required(  t( 'av_required' ) ),
@@ -40,7 +40,7 @@ const userCreateValidationSchema = ( t: any ) => ( {
         .max( 50, t( 'av_too_long' ) )
         .required(  t( 'av_required' ) ),
     passwordConfirmation: Yup.string()
-        .oneOf( [ Yup.ref( 'password' ), null ], 'Passwords must match' )
+        .oneOf( [ Yup.ref( 'password' ), null ], t( 'av_password_match' ) )
         .required(  t( 'av_required' ) ),
 } );
 

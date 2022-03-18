@@ -66,7 +66,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         permissions: currentUserPermissions(),
                         enable: { ...states.find( enableOption => enableOption.value === props.userSelected?.enable ) },
                     }}
-                    validation={userUpdateValidationSchema}
+                    validation={userUpdateValidationSchema( t )}
                     onSubmit={async ( form ) => props.updateAction( form.values )}
                 >
                     <div class="flex flex-wrap text-sm">

@@ -32,7 +32,7 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
                     password: undefined,
                     passwordConfirmation: undefined,
                 }}
-                validation={ChangePasswordSchema}
+                validation={ChangePasswordSchema( t )}
                 onSubmit={async ( form ) =>
                 {
                     props.editPasswordAction( form.values );

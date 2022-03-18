@@ -48,7 +48,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                         permissions: [],
                         enable: { label: 'Enabled', value: true },
                     }}
-                    validation={RoleSchema}
+                    validation={RoleSchema( t )}
 
                     onSubmit={async ( form ) =>
                     {
