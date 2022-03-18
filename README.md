@@ -42,3 +42,4 @@ yarn husky:init
 ```bash
 yarn prepare
 ```
+restore .husky/pre-commit
