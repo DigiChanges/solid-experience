@@ -1,47 +1,40 @@
 import * as Yup from 'yup';
 
-const userUpdateValidationSchema = {
+const userUpdateValidationSchema = ( t: any ) => ( {
     firstName: Yup.string()
-        .required( 'Required' )
-        .min( 2, 'Too Short!' )
-        .max( 50, 'Too Long!' ),
+        .min( 2, t( 'av_too_short' ) )
+        .max( 50, t( 'av_too_long' ) )
+        .required(  t( 'av_required' ) ),
     lastName: Yup.string()
-        .required( 'Required' )
-        .min( 2, 'Too Short!' )
-        .max( 50, 'Too Long!' ),
+        .min( 2, t( 'av_too_short' ) )
+        .max( 50, t( 'av_too_long' ) )
+        .required(  t( 'av_required' ) ),
     email: Yup.string()
         .email( 'Invalid email' )
-        .required( 'Required' ),
+        .required(  t( 'av_required' ) ),
     gender: Yup.string()
-        .oneOf( [ 'male', 'fame', 'other' ], 'Required' )
-        .required( 'Required' ),
+        .oneOf( [ 'male', 'fame', 'other' ], t( 'av_required' ) )
+        .required(  t( 'av_required' ) ),
     country: Yup.object()
-        .required( 'Required' ),
+        .required(  t( 'av_required' ) ),
     birthday: Yup.string()
-        .required( 'Required' ),
+        .required(  t( 'av_required' ) ),
     phone: Yup.string()
-        .max( 20, 'Too Long!' )
-        .required( 'Required' ),
+        .max( 20,  t( 'av_too_long' ) )
+        .required(  t( 'av_required' )  ),
     documentType: Yup.object()
-        .required( 'Required' ),
+        .required(  t( 'av_required' ) ),
     documentNumber: Yup.string()
-        .required( 'Required' ),
+        .required(  t( 'av_required' ) ),
     address: Yup.string()
-        .required( 'Required' ),
+        .required(  t( 'av_required' ) ),
     enable: Yup.object()
-        .required( 'Required' ),
+        .required(  t( 'av_required' ) ),
     roles: Yup.array()
-        .min( 1 )
-        .required( 'Required' ),
+        .min( 1, t( 'av_one_item' )  )
+        .required(  t( 'av_required' ) ),
     permissions: Yup.array()
-        .min( 1 ),
-    password: Yup.string()
-        .min( 2, 'Too Short!' )
-        .max( 50, 'Too Long!' )
-        .required( 'Required' ),
-    passwordConfirmation: Yup.string()
-        .oneOf( [ Yup.ref( 'password' ), null ], 'Passwords must match' )
-        .required( 'Required' ),
-};
+        .min( 1, t( 'av_one_item' )  ),
+} );
 
 export default userUpdateValidationSchema;
