@@ -74,9 +74,9 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                             />
                         </div>
 
-                        <div class="flex flex-wrap md:flex-nowrap w-full content-center items-center md:mb-5">
-                            <div class="md:flex md:items-center w-full">
-                                <Label for="filterBy" class="dg-form-label whitespace-nowrap md:mr-5">{ t( 'a_filter_by' )}</Label>
+                        <div class="flex flex-wrap lg:flex-nowrap w-full content-center items-center lg:mb-5">
+                            <div class="lg:flex lg:items-center w-full">
+                                <Label for="filterBy" class="dg-form-label whitespace-nowrap lg:mr-5">{ t( 'a_filter_by' )}</Label>
                                 <SingleSelect
                                     id="filterBy"
                                     name="filterBy"
@@ -90,8 +90,8 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                             </div>
 
                             <div class="flex w-full content-center items-center">
-                                <div class="md:flex md:items-center w-full">
-                                    <Label for="orderBy" class="dg-form-label whitespace-nowrap md:mr-5">{t( 'a_order_by' )}</Label>
+                                <div class="lg:flex lg:items-center w-full">
+                                    <Label for="orderBy" class="dg-form-label whitespace-nowrap lg:mr-5">{t( 'a_order_by' )}</Label>
                                     <SingleSelect
                                         id="orderBy"
                                         name="orderBy"
@@ -105,7 +105,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                 </div>
                             </div>
 
-                            <div class="mb-5 md:mb-0 mx-auto">
+                            <div class="mb-5 lg:mb-0 mx-auto">
                                 <div class="w-6 h-6">
                                     <IconButtonActive
                                         classNameOnActive="text-white"
@@ -118,16 +118,16 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                             </div>
                         </div>
 
-                        <div class="flex flex-col gap-4 md:flex-row mb-5 mx-auto">
+                        <div class="flex flex-col gap-4 lg:flex-row mb-5 mx-auto">
                             <Button
-                                class="w-full md:w-32 dg-secondary-button"
+                                class="w-full lg:w-32 dg-secondary-button"
                                 type="button"
                                 onClick={reset()}
                             >
                                 {t( 'a_reset' )}
                             </Button>
                             <Button
-                                class="w-full md:w-32 dg-main-button"
+                                class="w-full lg:w-32 dg-main-button"
                                 type="submit"
                             >
                                 {t( 'a_filter' )}
