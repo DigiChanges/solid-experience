@@ -11,7 +11,7 @@ const AlertNotFoundEntityError: Component<AlertMetadataErrorsProps> = ( props ) 
     const { t } = useI18n();
     return (
         <Alert
-            title={props.errorData?.metadata?.field ? t( props.errorData?.metadata?.field ) : 'Alerta'}
+            title={props.errorData?.metadata?.field ? t( props.errorData?.metadata?.field ) : t( 'err' )}
             message={t( props.errorData?.errorCode, {
                 entity: props.errorData?.metadata?.entity ? t( props.errorData?.metadata?.entity ) as string : '',
             } )}
@@ -24,11 +24,10 @@ const AlertDuplicateEntityError: Component<AlertMetadataErrorsProps> = ( props )
     const { t } = useI18n();
     return (
         <Alert
-            title={props.errorData?.metadata?.field ? t( props.errorData?.metadata?.field ) : 'Alerta'}
+            title={props.errorData?.metadata?.field ? t( props.errorData?.metadata?.field ) : t( 'err' )}
             message={t( props.errorData?.errorCode, {
                 field: props.errorData?.metadata?.field ? t( props.errorData?.metadata?.field ) as string : '',
                 value: props.errorData?.metadata?.field ? props.errorData?.metadata?.value : '',
-                entity: props.errorData?.metadata?.entity ? t( props.errorData?.metadata?.entity ) as string : '',
             } )}
         />
     );
@@ -39,7 +38,7 @@ const AlertUniqueAttributeError: Component<AlertMetadataErrorsProps> = ( props )
     const { t } = useI18n();
     return (
         <Alert
-            title={props.errorData?.metadata?.replace?.name ? t( props.errorData?.metadata?.replace?.name ) : 'Alerta'}
+            title={props.errorData?.metadata?.replace?.name ? t( props.errorData?.metadata?.replace?.name ) : t( 'err' )}
             message={t( props.errorData?.errorCode, {
                 field: props.errorData?.metadata?.replace?.name ? t( props.errorData?.metadata?.replace?.name ) as string : '',
             } )}
@@ -68,5 +67,5 @@ export const alertFactory = ( { errorData, t }: any ) =>
 
     const errorKey = errorData.errorCode as string;
 
-    return errors[errorKey] ? errors[errorKey] : <Alert title={t( 'a_alert' )} message={t( errorKey )} />;
+    return errors[errorKey] ? errors[errorKey] : <Alert title={t( t( 'err' ) )} message={t( errorKey )} />;
 };
