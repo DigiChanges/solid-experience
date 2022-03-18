@@ -2,9 +2,9 @@ import { showErrorNotification, showSuccessNotification } from '../../../feature
 import { IUserPayload } from '../../../features/user/interfaces';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 
-export const createAction = ( { user, setErrors, t, navigate }: any ) => async ( payload: any ) =>
+export const createAction = ( { user, setErrorData, t, navigate }: any ) => async ( payload: any ) =>
 {
-    const userRepository = new UserRepository( user() );
+    const userRepository = new UserRepository( user );
 
     const permissions = payload.permissions.map( ( permission: any ) => permission.value );
     const documentType = payload.documentType?.value;
@@ -40,12 +40,7 @@ export const createAction = ( { user, setErrors, t, navigate }: any ) => async (
     {
         if ( error.response?.status >= 400 && error.response?.status < 500 )
         {
-            setErrors( error.response.data );
-        }
-        else
-        {
-            console.log( '>>> error?.response:' );
-            console.log( error?.response );
+            setErrorData( error.response.data );
         }
         showErrorNotification( t( error.response?.statusText || 'err_server' ) as string );
     }

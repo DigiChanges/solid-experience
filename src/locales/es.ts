@@ -35,14 +35,23 @@ const appValidations: I18nLocales = {
     av_password_match: 'Las contraseñas deben coincidir',
 };
 
+const entities: I18nLocales = {
+    User: 'Usuario',
+};
+
 const errors: I18nLocales = {
+    'app.domain.exceptions.uniqueAttribute': 'Ya existe un registro con el mismo valor de `{field}`.',
     'app.presentation.exceptions.duplicateEntity': 'Ya existe un registro con {field} {value}.',
+    'Bad Request': 'Error en la petición',
+    'err_login_description': 'No se pudo iniciar sesión. Verifique su correo electrónico y contraseña o vuelva a intentar mas tarde.',
+    'err_login': 'Error al iniciar sesión',
+    'err_save_role': 'Error al guardar el rol',
     'err_save_user': 'Error al guardar el usuario',
     'err_save': 'Error al guardar',
     'err_server': 'Error del servidor',
     'err': 'Error',
+    'shared.exceptions.notFound': 'No se encuentra el recurso `{entity}`.',
     'Unprocessable Entity': 'Error al procesar los datos',
-    'Bad Request': 'Error en la petición',
 };
 
 const properties: I18nLocales = {
@@ -124,6 +133,7 @@ const es: I18nLocales = {
     ...app,
     ...appValidations,
     ...auth,
+    ...entities,
     ...errors,
     ...properties,
     ...roles,
