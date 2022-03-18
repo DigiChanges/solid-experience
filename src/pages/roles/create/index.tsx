@@ -1,44 +1,27 @@
 import { useNavigate } from 'solid-app-router';
-import { Component, createResource } from 'solid-js';
+import { useI18n } from 'solid-i18n';
+import { Component, createResource, createSignal } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
-import { GroupedPermission } from '../../../features/auth/interfaces';
-import { IRolePayload } from '../../../features/role/interfaces';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
-import RoleRepository from '../../../features/role/repositories/RoleRepository';
-import PrivateLayout from '../../../features/shared/layout/PrivateLayout';
 import RoleCreate from '../../../features/role/templates/RoleCreate';
+import PrivateLayout from '../../../features/shared/layout/PrivateLayout';
+import AlertErrors from '../../../features/shared/molecules/AlertErrors/AlertErrors';
+import { createAction } from './handlers';
 
 const IndexPage: Component = () =>
 {
-    const [ user ]: any = useApplicationContext();
-    const roleRepository = new RoleRepository( user() );
-    const authRepository = new AuthRepository( user() );
-
-    const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
-
+    const { t } = useI18n();
     const navigate = useNavigate();
 
-    const createAction = async ( payload: any ) =>
-    {
-        const { name, slug } = payload;
-        const permissions = ( payload.permissions as GroupedPermission[] ).map( ( permission ) => permission.value );
-        const enable = payload.enable?.value;
-
-        const data: IRolePayload = {
-            name,
-            slug,
-            enable,
-            permissions,
-        };
-        const create = roleRepository.createRole( data );
-        void await create();
-
-        navigate( '/roles', { replace: true } );
-    };
+    const [ user ]: any = useApplicationContext();
+    const authRepository = new AuthRepository( user() );
+    const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
+    const [ errorData, setErrorData ] = createSignal<any>( null );
 
     return <PrivateLayout>
+        <AlertErrors errorData={errorData()} title="err_save" description="err_save_role"/>
         <RoleCreate
-            createAction={createAction}
+            createAction={createAction( { user: user(), setErrorData, t, navigate } )}
             permissionsList={getPermissions()?.data}
             loading={getPermissions.loading}
         />
