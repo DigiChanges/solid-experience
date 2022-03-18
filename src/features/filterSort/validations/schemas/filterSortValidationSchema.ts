@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { FilterBy, OrderBy } from '../../types/FilterSortTypes';
+import { FilterBy, OrderBy } from '../../types/filterSortTypes';
 
 type FilterFields = {
     filterBy: FilterBy;

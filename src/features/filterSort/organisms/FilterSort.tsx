@@ -10,7 +10,7 @@ import Label from '../../../atoms/Label';
 import IconButtonActive from '../../../molecules/IconButtonActive';
 import useFilter from '../../shared/hooks/useFilter';
 import SingleSelect from '../../shared/molecules/SingleSelect';
-import { FilterBy, OrderBy } from '../types/FilterSortTypes';
+import { FilterBy, OrderBy } from '../types/filterSortTypes';
 import filterSortValidationSchema from '../validations/schemas/filterSortValidationSchema';
 
 const singleSelectRoundedStyle = {

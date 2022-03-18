@@ -43,3 +43,6 @@ yarn husky:init
 yarn prepare
 ```
 restore .husky/pre-commit
+
+chmod ug+x .husky/*
+chmod ug+x .git/hooks/*
