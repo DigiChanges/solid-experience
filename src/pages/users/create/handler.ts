@@ -1,10 +1,16 @@
-import { showErrorNotification, showSuccessNotification } from '../../../features/shared/utils/showNotification';
+import { createAlertType } from '../../../features/shared/hooks/createAlert';
 import { IUserPayload } from '../../../features/user/interfaces';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 
-export const createAction = ( { user, setErrorData, t, navigate }: any ) => async ( payload: any ) =>
+type params = {
+    userRepository: UserRepository;
+    errorAlert: createAlertType;
+    navigate: any;
+};
+
+export const createAction = ( { userRepository, errorAlert, navigate }: params ) => async ( payload: any ) =>
 {
-    const userRepository = new UserRepository( user );
+    const { setError, showNotification } = errorAlert;
 
     const permissions = payload.permissions.map( ( permission: any ) => permission.value );
     const documentType = payload.documentType?.value;
@@ -18,11 +24,12 @@ export const createAction = ( { user, setErrorData, t, navigate }: any ) => asyn
         enable,
         permissions,
     };
+
     const create = userRepository.createUser( data );
     try
     {
         const response = await create();
-        showSuccessNotification( t( 'u_created' ) );
+        showNotification( 'u_created' );
 
         // assign roles
         if ( payload.roles && payload.roles.length > 0 )
@@ -30,19 +37,12 @@ export const createAction = ( { user, setErrorData, t, navigate }: any ) => asyn
             const { id } = response.data;
             const assignRoles = userRepository.assignUserRole( id, rolesId );
             void await assignRoles();
-            showSuccessNotification( t( 'u_role_assigned' ) );
+            showNotification( 'u_role_assigned' );
         }
-        setTimeout( () =>
-        {
-            navigate( '/users', { replace: true } );
-        }, 3500 );
+        navigate( '/users', { replace: true } );
     }
     catch ( error: any )
     {
-        if ( error.response?.status >= 400 && error.response?.status < 500 )
-        {
-            setErrorData( error.response.data );
-        }
-        showErrorNotification( t( error.response?.statusText || 'err_server' ) as string );
+        setError( error );
     }
 };

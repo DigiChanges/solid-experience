@@ -27,7 +27,7 @@ export const createAction = ( { roleRepository, errorAlert, navigate }: params )
     {
         void await create();
 
-        await showNotification( 'r_created' );
+        showNotification( 'r_created' );
         navigate( '/roles', { replace: true } );
     }
     catch ( error: any )

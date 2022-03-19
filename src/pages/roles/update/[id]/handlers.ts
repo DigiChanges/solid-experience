@@ -29,7 +29,7 @@ export const updateAction = ( { roleRepository, errorAlert, navigate, id }: para
     {
         void await update();
 
-        await showNotification( 'r_updated' );
+        showNotification( 'r_updated' );
         navigate( '/roles', { replace: true } );
     }
     catch ( error: any )

@@ -20,7 +20,23 @@ function createAlert ( user?: any ): createAlertType
         {
             setErrorData( error.response.data );
         }
-        showErrorNotification( t( error.response?.statusText || 'err_server' ) as string );
+
+        let message = t( 'err_server' );
+
+        if ( error.response?.statusText )
+        {
+            message = t( error.response.statusText );
+        }
+        else if ( error.response?.statusCode )
+        {
+            message = t( error.response.statusCode );
+        }
+        else if ( error.response?.data?.statusCode )
+        {
+            message = t( error.response.data.statusCode );
+        }
+
+        showErrorNotification( message as string );
     };
 
     const showNotification = ( message: string, time = 0 ) =>

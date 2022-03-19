@@ -43,7 +43,6 @@ const errors: I18nLocales = {
     'app.domain.exceptions.uniqueAttribute': 'Ya existe un registro con el mismo valor de `{field}`.',
     'app.presentation.exceptions.duplicateEntity': 'Ya existe un registro con {field} {value}.',
     'auth.domain.exceptions.badCredentials': 'Correo electrónico o contraseña incorrectos.',
-    'Bad Request': 'Error en la petición',
     'err_login_description': 'No se pudo iniciar sesión. Verifique su correo electrónico y contraseña o vuelva a intentar mas tarde.',
     'err_login': 'Error al iniciar sesión',
     'err_save_role': 'Error al guardar el rol',
@@ -51,6 +50,8 @@ const errors: I18nLocales = {
     'err_save': 'Error al guardar',
     'err_server': 'Error del servidor',
     'err': 'Error',
+    'HTTP_BAD_REQUEST': 'Error en la petición',
+    'HTTP_UNPROCESSABLE_ENTITY': 'El registro no cumple con las reglas de validación.',
     'shared.exceptions.notFound': 'No se encuentra el recurso `{entity}`.',
     'Unprocessable Entity': 'Error al procesar los datos',
 };

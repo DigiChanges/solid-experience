@@ -41,7 +41,6 @@ const errors: I18nLocales = {
     'app.domain.exceptions.uniqueAttribute': 'Already exists a record with the same value of `{field}`.',
     'app.presentation.exceptions.duplicateEntity': 'Already exists a record with {field} {value}.',
     'auth.domain.exceptions.badCredentials': 'Email or password incorrect.',
-    'Bad Request': 'Error in the request',
     'err_login_description': 'Could not start session. Check your email and password or try again later.',
     'err_login': 'Error at login',
     'err_save_role': 'Error at save role',
@@ -49,8 +48,9 @@ const errors: I18nLocales = {
     'err_save': 'Error at save',
     'err_server': 'Error at server',
     'err': 'Error',
+    'HTTP_BAD_REQUEST': 'Error in the request',
+    'HTTP_UNPROCESSABLE_ENTITY': 'The record does not meet the validation rules.',
     'shared.exceptions.notFound': 'The resource `{entity}` was not found.',
-    'Unprocessable Entity': 'Error at process data',
 };
 
 const properties: I18nLocales = {
