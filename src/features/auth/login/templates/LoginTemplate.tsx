@@ -21,7 +21,6 @@ const LoginTemplate: Component = () =>
 
     return (
         <section class="dg-main-bg h-screen">
-            <div class="containerNotification top-0 right-0 z-50 max-w-xs"></div>
             <AlertErrors
                 errorData={errorData()}
                 title="err_login"

@@ -30,6 +30,7 @@ export const createAction = ( { user, setErrorData, t, navigate }: any ) => asyn
             const { id } = response.data;
             const assignRoles = userRepository.assignUserRole( id, rolesId );
             void await assignRoles();
+            showSuccessNotification( t( 'u_role_assigned' ) );
         }
         setTimeout( () =>
         {

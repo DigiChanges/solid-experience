@@ -42,6 +42,7 @@ const entities: I18nLocales = {
 const errors: I18nLocales = {
     'app.domain.exceptions.uniqueAttribute': 'Ya existe un registro con el mismo valor de `{field}`.',
     'app.presentation.exceptions.duplicateEntity': 'Ya existe un registro con {field} {value}.',
+    'auth.domain.exceptions.badCredentials': 'Correo electrónico o contraseña incorrectos.',
     'Bad Request': 'Error en la petición',
     'err_login_description': 'No se pudo iniciar sesión. Verifique su correo electrónico y contraseña o vuelva a intentar mas tarde.',
     'err_login': 'Error al iniciar sesión',
@@ -78,6 +79,7 @@ const roles: I18nLocales = {
     r_slug: 'Slug',
     r_update_role: 'Editar Rol',
     r_update: 'Editar Rol',
+    r_updated: 'Rol Actualizado',
 };
 
 const user: I18nLocales = {
@@ -118,6 +120,7 @@ const user: I18nLocales = {
     u_phone: 'Teléfono',
     u_remove_title: '¿Está seguro que desea eliminar este usuario?',
     u_repeat_password: 'Repetir Contraseña',
+    u_role_assigned: 'Role/s asignados',
     u_save: 'Guardar',
     u_search: '{count, plural, one {Buscar usuario} other {Buscar usuarios}}',
     u_select_permissions: 'Permisos',

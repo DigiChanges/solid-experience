@@ -33,6 +33,30 @@ const appValidations: I18nLocales = {
     av_password_match: 'Passwords must match',
 };
 
+const entities: I18nLocales = {
+    User: 'User',
+};
+
+const errors: I18nLocales = {
+    'app.domain.exceptions.uniqueAttribute': 'Already exists a record with the same value of `{field}`.',
+    'app.presentation.exceptions.duplicateEntity': 'Already exists a record with {field} {value}.',
+    'auth.domain.exceptions.badCredentials': 'Email or password incorrect.',
+    'Bad Request': 'Error in the request',
+    'err_login_description': 'Could not start session. Check your email and password or try again later.',
+    'err_login': 'Error at login',
+    'err_save_role': 'Error at save role',
+    'err_save_user': 'Error at save user',
+    'err_save': 'Error at save',
+    'err_server': 'Error at server',
+    'err': 'Error',
+    'shared.exceptions.notFound': 'The resource `{entity}` was not found.',
+    'Unprocessable Entity': 'Error at process data',
+};
+
+const properties: I18nLocales = {
+    document_number: 'document number',
+};
+
 const roles: I18nLocales = {
     r_close: 'Close',
     r_create_role: 'Create Role',
@@ -53,6 +77,7 @@ const roles: I18nLocales = {
     r_slug: 'Slug',
     r_update_role: 'Update Role',
     r_update: 'Edit Rol',
+    r_updated: 'Role Updated',
 };
 
 const user: I18nLocales = {
@@ -93,6 +118,7 @@ const user: I18nLocales = {
     u_phone: 'Phone',
     u_remove_title: 'Are you sure you want to delete this user?',
     u_repeat_password: 'Repeat Password',
+    u_role_assigned: 'Role/s assigned',
     u_save: 'Save',
     u_search: '{count, plural, one {Search user} other {Search users}}',
     u_select_permissions: 'Permissions',
@@ -105,11 +131,12 @@ const user: I18nLocales = {
 };
 
 const en: I18nLocales = {
-    user_list_title: 'User List',
-    user_remove_title: 'Are you sure you want to delete this user?',
     ...app,
     ...appValidations,
     ...auth,
+    ...entities,
+    ...errors,
+    ...properties,
     ...roles,
     ...user,
 };

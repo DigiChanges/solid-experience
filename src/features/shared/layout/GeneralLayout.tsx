@@ -27,8 +27,6 @@ const GeneralLayout: Component = ( props: any ): any =>
           msg={notification.message} />
       )} */}
 
-            <div class="containerNotification top-0 right-0  max-w-xs"></div>
-
             {props.children}
         </>
     );
