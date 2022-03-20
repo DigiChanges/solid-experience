@@ -1,9 +1,11 @@
 import { createEffect, createSignal, Resource } from 'solid-js';
+import { IPaginationApi } from '../interfaces/response/IPaginationApi';
 
 function usePaginatedState<T, U> ( resource: Resource<U | undefined> )
 {
     let viewMore = false;
-    const [ resourceList, setUserList ] = createSignal<T[]>();
+    const [ resourceList, setResourceList ] = createSignal<T[]>();
+    const [ paginationData, setPaginationData ] = createSignal<IPaginationApi>();
 
     const setViewMore = () => viewMore = true;
 
@@ -13,22 +15,26 @@ function usePaginatedState<T, U> ( resource: Resource<U | undefined> )
         if ( viewMore && resource()?.data )
         {
             // @ts-ignore
-            setUserList( ( state ) => [ ...state, ...resource().data ] );
+            setResourceList( ( state ) => [ ...state, ...resource().data ] );
+            // @ts-ignore
+            setPaginationData( resource()?.pagination );
             viewMore = false;
         }
         // @ts-ignore
         else if ( resource()?.data )
         {
             // @ts-ignore
-            setUserList( () => [ ...resource().data ] );
+            setResourceList( () => [ ...resource().data ] );
+            // @ts-ignore
+            setPaginationData( resource()?.pagination );
         }
         else
         {
-            setUserList( [] );
+            setResourceList( [] );
         }
     } );
 
-    return { resourceList, setViewMore };
+    return { resourceList, setViewMore, paginationData };
 }
 
 export default usePaginatedState;

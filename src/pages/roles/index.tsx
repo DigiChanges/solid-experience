@@ -1,12 +1,12 @@
 import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
+import { IRoleApi, RoleListResponse } from '../../features/role/interfaces';
+import RoleRepository from '../../features/role/repositories/RoleRepository';
+import RoleList from '../../features/role/templates/RoleList';
 import { INIT_STATE } from '../../features/shared/constants';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import useQuery from '../../features/shared/hooks/useQuery';
-import { IRoleApi, RoleListResponse } from '../../features/role/interfaces';
-import RoleRepository from '../../features/role/repositories/RoleRepository';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout';
-import RoleList from '../../features/role/templates/RoleList';
 
 const IndexPage: Component = () =>
 {
@@ -16,7 +16,7 @@ const IndexPage: Component = () =>
     const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
 
     const [ roles, { refetch } ] = createResource( uriParams, roleRepository.getRoles() );
-    const { resourceList: roleList, setViewMore } = usePaginatedState<IRoleApi, RoleListResponse>( roles );
+    const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<IRoleApi, RoleListResponse>( roles );
 
     const viewMoreAction = () => () =>
     {
@@ -44,7 +44,7 @@ const IndexPage: Component = () =>
                 removeAction={removeAction}
                 loading={roles.loading}
                 viewMoreAction={viewMoreAction}
-                nextPage={roles()?.pagination?.nextUrl}
+                nextPage={paginationData()?.nextUrl}
             />
         </PrivateLayout>
     );

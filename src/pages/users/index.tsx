@@ -16,7 +16,7 @@ const IndexPage: Component = () =>
     const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
 
     const [ users, { refetch } ] = createResource( uriParams, userRepository.getUsers() );
-    const { resourceList: userList, setViewMore } = usePaginatedState<IUserApi, UserListResponse>( users );
+    const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<IUserApi, UserListResponse>( users );
 
     const viewMoreAction = () => () =>
     {
@@ -43,7 +43,7 @@ const IndexPage: Component = () =>
                 removeAction={removeAction}
                 loading={users.loading}
                 viewMoreAction={viewMoreAction}
-                nextPage={users()?.pagination?.nextUrl}
+                nextPage={paginationData()?.nextUrl}
             />
         </PrivateLayout>
     );
