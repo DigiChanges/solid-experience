@@ -60,8 +60,12 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 
             <FilterSort searchPlaceholder={`${t( 'r_search', { count: 1 } )}...`} filterBy={filterBy} orderBy={orderBy}/>
 
+            <Show when={props.loading} >
+                <GeneralLoader/>
+            </Show>
+
             <div class="dg-grid-3x3">
-                <Show when={!props.loading || props.roleList?.length} fallback={() => <GeneralLoader/>}>
+                <Show when={!props.loading || props.roleList?.length}>
                     <For each={props.roleList} fallback={<div><Text message="r_no_roles" /></div>}>
                         {( role ) =>
                             <MediaObject class="dg-media-object" >
