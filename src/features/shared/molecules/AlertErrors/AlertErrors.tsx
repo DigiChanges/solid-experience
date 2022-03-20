@@ -28,7 +28,7 @@ const AlertErrors: Component<AlertErrorProps> = ( props ) =>
 
     return (
         <Show when={ errors() }>
-            <div class={`${props.class} animate-fade`} classList={{ 'absolute top-0 mt-5 w-full': props?.position === 'float-top' }}>
+            <div class="animate-fade z-50" classList={{ 'absolute top-0 mt-5 w-full': props?.position === 'float-top', [`${props.class}`]: !!props.class }}>
 
                 <Alert title={t( props.title )} message={t( props.description )} closeable onClose={handleClose( { setErrors } )} />
 
