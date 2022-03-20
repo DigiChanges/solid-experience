@@ -2,6 +2,7 @@ import { I18nLocales } from 'i18n-mini/lib/types';
 
 const app: I18nLocales = {
     a_cancel: 'Cancelar',
+    a_clear: 'Limpiar',
     a_dashboard: 'Panel de control',
     a_delete: 'Eliminar',
     a_email: 'Correo electrónico',
@@ -15,6 +16,7 @@ const app: I18nLocales = {
     a_order_by: 'Ordenar por',
     a_order_field: 'Campo de ordenación',
     a_password: 'Contraseña',
+    a_reload: 'Recargar',
     a_reset: 'Reiniciar',
     a_save: 'Guardar',
     a_search: 'Buscar',

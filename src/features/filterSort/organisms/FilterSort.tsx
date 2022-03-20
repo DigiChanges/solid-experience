@@ -29,6 +29,12 @@ interface FilterSortProps{
 
 }
 
+const reload = ( { setFilter, reset }: any ) => () =>
+{
+    setFilter( { search: '', filterBy: null, orderBy: null } );
+    // reset();
+};
+
 const FilterSort: Component<FilterSortProps> = ( props ) =>
 {
     const i18n = useI18n();
@@ -124,7 +130,14 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                 type="button"
                                 onClick={reset()}
                             >
-                                {t( 'a_reset' )}
+                                {t( 'a_clear' )}
+                            </Button>
+                            <Button
+                                class="w-full lg:w-32 dg-secondary-button"
+                                type="button"
+                                onClick={reload( { setFilter, reset: reset() } )}
+                            >
+                                {t( 'a_reload' )}
                             </Button>
                             <Button
                                 class="w-full lg:w-32 dg-main-button"
