@@ -1,9 +1,16 @@
-import { showErrorNotification } from '../../../shared/utils/showNotification';
-import { ILoginPayload } from '../../interfaces';
+import { createAlertType } from '../../../shared/hooks/createAlert';
+import { ILoginApi, ILoginPayload } from '../../interfaces';
 import AuthRepository from '../../repositories/AuthRepository';
 
-export const handleLoginFormSubmit = ( { addUser, setErrorData, t, navigate }: any ) => async ( values: ILoginPayload ) =>
+type params = {
+    addUser: ( data: ILoginApi ) => void;
+    errorAlert: createAlertType;
+    navigate: any;
+};
+
+export const handleLoginFormSubmit = ( { addUser, errorAlert, navigate }: params ) => async ( values: ILoginPayload ) =>
 {
+    const { setError } = errorAlert;
     const authRepository = new AuthRepository();
     const signIn = authRepository.signIn( values as ILoginPayload );
     try
@@ -14,11 +21,7 @@ export const handleLoginFormSubmit = ( { addUser, setErrorData, t, navigate }: a
     }
     catch ( error: any )
     {
-        if ( error.response?.status >= 400 && error.response?.status < 500 )
-        {
-            setErrorData( error.response.data );
-        }
-        showErrorNotification( t( error.response?.statusText || 'err_server' ) as string );
+        setError( error );
     }
 };
 

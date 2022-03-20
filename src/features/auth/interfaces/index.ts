@@ -36,3 +36,7 @@ export type IPermissionApi =
 export type PermissionListResponse = IBodyApi & {
     data: IPermissionApi[];
 };
+
+export type LoginResponse = IBodyApi & {
+    data: ILoginApi;
+};

@@ -4,6 +4,7 @@ import { Component, createSignal, Show } from 'solid-js';
 import logoNav from '../../../../assets/images/logo-nav.png';
 import Image from '../../../../atoms/Image';
 import { useApplicationContext } from '../../../../context/context';
+import createAlert from '../../../shared/hooks/createAlert';
 import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm';
 import LoginForm from '../organisms/LoginForm';
@@ -16,13 +17,13 @@ const LoginTemplate: Component = () =>
     const [ getShowRecoverPassword, setShowRecoverPassword ] = createSignal( false );
 
     const [ , { addUser } ] = useApplicationContext();
+    const errorAlert = createAlert();
 
-    const [ errorData, setErrorData ] = createSignal<any>( null );
 
     return (
         <section class="dg-main-bg h-screen">
             <AlertErrors
-                errorData={errorData()}
+                errorData={errorAlert.errorData()}
                 title="err_login"
                 description="err_login_description"
                 position='float-top'
@@ -40,7 +41,7 @@ const LoginTemplate: Component = () =>
                     <Show when={!getShowRecoverPassword()}>
                         <LoginForm
                             onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
-                            onSubmit={handleLoginFormSubmit( { addUser, setErrorData, t, navigate } )}
+                            onSubmit={handleLoginFormSubmit( { addUser, errorAlert, navigate } )}
                         />
                     </Show>
                 </div>

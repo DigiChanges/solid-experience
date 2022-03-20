@@ -59,13 +59,15 @@ export const alertFactory = ( { errorData, t }: any ) =>
         );
     }
 
-    const errors: any = {
+    type MapErrors = { [key: string]: any };
+
+    const errors: MapErrors = {
         'app.domain.exceptions.uniqueAttribute': <AlertUniqueAttributeError errorData={ errorData } />,
         'app.presentation.exceptions.duplicateEntity': <AlertDuplicateEntityError errorData={ errorData } />,
         'shared.exceptions.notFound': <AlertNotFoundEntityError errorData={ errorData } />,
     };
 
-    const errorKey = errorData.errorCode as string;
+    const errorKey: keyof MapErrors = errorData.errorCode;
 
     return errors[errorKey] ? errors[errorKey] : <Alert title={t( t( 'err' ) )} message={t( errorKey )} />;
 };
