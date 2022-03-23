@@ -1,4 +1,4 @@
-import { logoutHelper } from '../helper';
+import { logoutHelper } from '../../auth/logout/helper';
 
 export const logout = ( { user }: any ) => async () =>
 {
