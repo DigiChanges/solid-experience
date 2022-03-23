@@ -1,3 +1,4 @@
+import { Text } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logoNav from '../../../assets/images/logo-nav.png';
 import IconBell from '../../../atoms/Icons/Stroke/IconBell';
@@ -5,6 +6,8 @@ import IconBurger from '../../../atoms/Icons/Stroke/IconBurger';
 import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
 import IconCross from '../../../atoms/Icons/Stroke/IconCross';
 import Image from '../../../atoms/Image';
+import { useApplicationContext } from '../../../context/context';
+import { logout } from './handlers';
 
 interface NavbarTemplatePRops {
     email?: string;
@@ -15,6 +18,7 @@ interface NavbarTemplatePRops {
 
 const NavBar: Component<NavbarTemplatePRops> = props =>
 {
+    const [ user ] = useApplicationContext();
     const [ getToggledDrop, setToggleDrop ] = createSignal( false );
 
     return (
@@ -68,8 +72,7 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
                         </div>
 
 
-                        {/* TODO: corregir dropdown, atomizar, etc */}
-                        <div class="origin-top-right absolute right-0 w-48 py-1 mt-5 shadow-md bg-main-gray-500 text-white"
+                        <div class="origin-top-right absolute right-0 w-48 py-1 mt-5 shadow-md bg-main-gray-500 text-white z-10"
                             classList={{ hidden: !getToggledDrop() }}
                             role="menu"
                             aria-orientation="vertical"
@@ -77,11 +80,13 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
                             <div role="none">
                                 <a href="/" class="block px-4 py-2 text-sm" role="menuitem">Item 1</a>
                                 <a href="/" class="block px-4 py-2 text-sm active" role="menuitem">Item 1 active</a>
-                                <form action="/" role="none">
-                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">
-                                        Sign out?
-                                    </button>
-                                </form>
+                                <button type="button"
+                                    class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
+                                    role="menuitem"
+                                    onClick={logout( { user: user() } )}
+                                >
+                                    <Text message='a_logout' />
+                                </button>
                             </div>
                         </div>
                     </div>
