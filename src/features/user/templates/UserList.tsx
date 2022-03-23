@@ -50,7 +50,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                     onClose={closeModal()}
                 >
                     <RemoveModalContent
-                        title={t( 'u_remove_title' ) as string}
+                        title={t( 'u_remove' ) as string}
                         content={modalData().text}
                     />
                 </ConfirmDelete>
@@ -58,8 +58,8 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
             <TitleWithButton
                 class="dg-section-title"
-                title={ t( 'u_list_title' ) }
-                labelButtonName={t( 'u_create_user' )}
+                title={ t( 'u_list' ) }
+                labelButtonName={t( 'u_create' )}
                 icon={IconPlus}
                 buttonAction={actionCreateButton()}
                 path="/users/create"

@@ -41,7 +41,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
         <section class="px-4">
             <div class="mb-2">
                 <Title class="text-3xl font-bold" titleType="h1">
-                    <Text message="r_update_role" />
+                    <Text message="r_update" />
                 </Title>
             </div>
 
@@ -68,9 +68,9 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 type="text"
                                 id="name"
                                 class="dg-form-field-full"
-                                placeholder={t( 'r_enter_name' )}
+                                placeholder={t( 'a_enter_name' )}
                                 labelClass="text-main-gray-200 block mb-2"
-                                labelName={t( 'r_name' )}
+                                labelName={t( 'name' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -80,14 +80,14 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 type="text"
                                 id="slug"
                                 class="dg-form-field-full"
-                                placeholder={t( 'r_enter_slug' )}
+                                placeholder={t( 'a_enter_slug' )}
                                 labelClass="text-main-gray-200 block mb-2"
-                                labelName={t( 'r_slug' )}
+                                labelName={t( 'slug' )}
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="permissions"><Text message="r_select_permissions" /></Label>
+                            <Label for="permissions"><Text message="permissions" /></Label>
                             <MultiSelect
                                 name="permissions"
                                 options={groupedPermissions()}
@@ -95,13 +95,13 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                placeholder={t( 'r_enter_permissions' )}
+                                placeholder={t( 'a_enter_permissions' )}
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-quarter-field-wrapper">
                             <Label for="enable" class="dg-form-label">
-                                <Text message="r_enable" />
+                                <Text message="enable" />
                             </Label>
                             <SingleSelect
                                 id="enable"
@@ -117,11 +117,11 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         <div class="w-full mt-5 flex justify-end">
 
                             <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
-                                <Text message='r_close' />
+                                <Text message='a_close' />
                             </Link>
 
                             <Button class="px-10 py-2 items-center dg-secondary-button" type="submit">
-                                <Text message='r_save'/>
+                                <Text message='a_save'/>
 
                             </Button>
                         </div>

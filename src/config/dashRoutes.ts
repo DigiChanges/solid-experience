@@ -51,7 +51,7 @@ export const dashRoutes = [
             {
                 path: '/',
                 component: lazy( () => import( '../pages/users' ) ),
-                name: 'u_home',
+                name: 'a_list',
                 icon: IconHome,
                 showItem: true,
                 permission: permissions.USERS.LIST,
@@ -59,7 +59,7 @@ export const dashRoutes = [
             {
                 path: '/create',
                 component: lazy( () => import( '../pages/users/create' ) ),
-                name: 'u_create',
+                name: 'a_create',
                 icon: IconPlus,
                 showItem: true,
                 permission: permissions.USERS.SAVE,
@@ -83,7 +83,7 @@ export const dashRoutes = [
             {
                 path: '/editPassword/:id',
                 component: lazy( () => import( '../pages/users/editPassword' ) ),
-                name: 'u_edit_password',
+                name: 'a_change_password',
                 icon: IconPencilAlt,
                 showItem: false,
                 permission: 'Dashboard',
@@ -93,13 +93,13 @@ export const dashRoutes = [
     {
         path: '/UserChangePass/:token',
         component: lazy( () => import( '../pages/users/changePassword' ) ),
-        name: 'u_edit_password',
+        name: 'a_change_password',
         icon: IconPencilAlt,
         showItem: false,
     },
     {
         path: '/roles',
-        name: 'r_roles',
+        name: 'roles',
         icon: IconCog,
         showItem: true,
         permission: permissions.ROLES.SHOW,
@@ -108,7 +108,7 @@ export const dashRoutes = [
             {
                 path: '/',
                 component: lazy( () => import( '../pages/roles' ) ),
-                name: 'r_home',
+                name: 'a_list',
                 icon: IconHome,
                 showItem: true,
                 permission: permissions.ROLES.LIST,
@@ -116,7 +116,7 @@ export const dashRoutes = [
             {
                 path: '/create',
                 component: lazy( () => import( '../pages/roles/create' ) ),
-                name: 'r_create',
+                name: 'a_create',
                 icon: IconPlus,
                 showItem: true,
                 permission: permissions.ROLES.SAVE,

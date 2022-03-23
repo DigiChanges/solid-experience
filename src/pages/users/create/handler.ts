@@ -37,7 +37,7 @@ export const createAction = ( { userRepository, errorAlert, navigate }: params )
             const { id } = response.data;
             const assignRoles = userRepository.assignUserRole( id, rolesId );
             void await assignRoles();
-            showNotification( 'u_role_assigned' );
+            showNotification( 'r_assigned' );
         }
         navigate( '/users', { replace: true } );
     }
