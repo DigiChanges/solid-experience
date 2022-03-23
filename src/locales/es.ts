@@ -52,11 +52,13 @@ const errors: I18nLocales = {
     'err_save': 'Error al guardar',
     'err_server': 'Error del servidor',
     'err': 'Error',
+    'Forbidden': 'Acceso denegado',
     'HTTP_BAD_REQUEST': 'Error en la petición',
     'HTTP_FORBIDDEN': 'Acceso denegado',
     'HTTP_UNPROCESSABLE_ENTITY': 'El registro no cumple con las reglas de validación.',
     'shared.exceptions.notFound': 'No se encuentra el recurso `{entity}`.',
     'Unprocessable Entity': 'Error al procesar los datos',
+    'user.domain.exceptions.unverifiedUser': 'El usuario no ha sido verificado.',
 };
 
 const properties: I18nLocales = {

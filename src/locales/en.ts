@@ -49,10 +49,12 @@ const errors: I18nLocales = {
     'err_save': 'Error at save',
     'err_server': 'Error at server',
     'err': 'Error',
+    'Forbidden': 'Access denied',
     'HTTP_BAD_REQUEST': 'Error in the request',
     'HTTP_FORBIDDEN': 'Access denied',
     'HTTP_UNPROCESSABLE_ENTITY': 'The record does not meet the validation rules.',
     'shared.exceptions.notFound': 'The resource `{entity}` was not found.',
+    'user.domain.exceptions.unverifiedUser': 'The user is not verified.',
 };
 
 const properties: I18nLocales = {
