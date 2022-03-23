@@ -1,52 +1,52 @@
-import { Component, createSignal, JSX } from 'solid-js';
+import { Component, JSX } from 'solid-js';
+import IconArrowCircleLeft from '../../../atoms/Icons/Stroke/IconArrowCircleLeft';
 
 interface SideBarProps {
     class?: string;
     children?: JSX.Element;
+    getExpanded: any;
+    setExpanded: any;
 }
 
 const SideBar: Component<SideBarProps> = ( props ) =>
 {
-    const [ getExpanded, setExpanded ] = createSignal( true );
+    // showArrow
+    let classUl = 'flex flex-col items-center h-full  md:justify-center  w-full md:w-auto  pl-4 ml-1 ';
 
-    let classUl = 'flex flex-col items-center h-full md:items-start md:justify-center  w-full md:w-auto  pl-4 ml-1 ';
-
-    classUl = getExpanded() ? classUl : 'flex flex-col items-center h-full md:items-center md:justify-center w-max';
+    classUl = props.getExpanded ? classUl : 'flex flex-col items-center h-full md:items-center md:justify-center w-max';
 
     // const getChildren = () =>
-    //     React.Children.map( props.children, ( child: React.ReactElement) =>
+    //     React.Children.map( props.children, ( child: React.ReactElement ) =>
     //         React.cloneElement( child, { isToggled: getExpanded() } )
     //     );
     return (
         <div
             class={props.class}
-            classList={{ 'md:relative md:w-56': getExpanded() }}
+            classList={{ 'md:relative md:w-56': props.getExpanded }}
         >
             <div class={'text-white'}>
-                {/* {props.children} */}
-                {/* TODO: Change image logic*/}
-                {/* <div class={classUl}>
+                <div class={classUl}>
                     {
-                        getExpanded() ? (
-                            <div class="hidden md:flex flex-row-reverse w-full">
+                        props.getExpanded ? (
+                            <div class="hidden md:flex  flex-row-reverse w-full">
                                 <button
-                                    onClick={() => setExpanded( false)}
+                                    onClick={() => props.setExpanded( false )}
                                     type="button" class="right-0 w-5 text-main-gray-300 mr-3" >
-                                   <IconArrowCircleLeft />
+                                    <IconArrowCircleLeft />
                                 </button>
                             </div>
                         )
-                            : <div class="flex w-full ml-14 mb-8">
+                            : <div class="flex w-full ml-1 mb-8">
                                 <button
-                                    onClick={() => setExpanded(true)}
-                                    type="button" class="transform rotate-180 w-5 text-white" >
+                                    onClick={() => props.setExpanded( true )}
+                                    type="button" class=" transform rotate-180 w-5 text-white" >
                                     <IconArrowCircleLeft />
                                 </button>
                             </div>
                     }
-                    {getChildren()}
-                </div> */}
+                    {/* {getChildren()} */}
 
+                </div>
                 {props.children}
             </div>
         </div >

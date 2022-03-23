@@ -26,6 +26,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
     const [ getShowSubitems, setShowSubitems ] = createSignal( false );
     const [ sectionSelected, setSectionSelected ] = createSignal( '' );
     // const { user, userPermissions } = useSelector((state : any) => state.Auth);
+    const [ getExpanded, setExpanded ] = createSignal( true );
     const [ user ] = useApplicationContext();
     const location = useLocation();
 
@@ -58,8 +59,9 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                         showItem={item.showItem as boolean}
                         isLink={!item.children}
                         path={ item.path }
+                        getExpanded={getExpanded()}
                     >
-                        <Show when={getShowSubitems() && sectionSelected() === item.path}>
+                        <Show when={getShowSubitems() && getExpanded() &&  sectionSelected() === item.path}>
                             <div class=" flex flex-row">
                                 <div>
                                     <For each={item.children}>
@@ -101,16 +103,16 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                 <NavBar showSidebar={showSidebar()} onClick={onClick} email={'example@mail.com'} />
             </header>
             <div class="hidden md:block mt-6 ml-4 z-10 w-max grid-in-sidebar text-white">
-                <SideBar class="dg-rounded ml-1 h-89 py-5">
+                <SideBar class="dg-rounded ml-1 h-89 py-5" getExpanded={getExpanded()} setExpanded={setExpanded}>
                     {getDashItems()}
-                    <LogoutSideBarItem user={user()} />
+                    <LogoutSideBarItem user={user()} getExpanded={getExpanded()}/>
                 </SideBar>
             </div>
             <Show when={showSidebar()} >
                 <div class="absolute md:hidden mt-20 md:m-4 z-50 ">
-                    <SideBar class="relative ml-5 dg-rounded min-h-80vh  py-5 w-48 pb-20">
+                    <SideBar class="relative ml-5 dg-rounded min-h-80vh  py-5 w-48 pb-20" getExpanded={getExpanded()} setExpanded={setExpanded}>
                         {getDashItems()}
-                        <LogoutSideBarItem user={user()} />
+                        <LogoutSideBarItem user={user()} getExpanded={getExpanded()}/>
 
                     </SideBar>
                 </div>
