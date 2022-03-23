@@ -44,7 +44,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
         <section class="px-4">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold" titleType="h1">
-                    <Text message="u_update_user" />
+                    <Text message="u_update" />
                 </Title>
             </div>
 
@@ -70,7 +70,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                     onSubmit={async ( form ) => props.updateAction( form.values )}
                 >
                     <div class="flex flex-wrap text-sm">
-                        <span class="w-full text-xs text-bold"><Text message="u_personal_information" /></span>
+                        <span class="w-full text-xs text-bold"><Text message="a_personal_information" /></span>
                         <div class="dg-form-full-field-wrapper">
                             <Input
                                 style={{ display: 'block' }}
@@ -78,9 +78,9 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 type="text"
                                 id="firstName"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_first_name' )}
+                                placeholder={t( 'a_enter_first_name' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_first_name' )}
+                                labelName={t( 'first_name' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -90,16 +90,16 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 type="text"
                                 id="lastName"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_last_name' )}
+                                placeholder={t( 'a_enter_last_name' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_last_name' )}
+                                labelName={t( 'last_name' )}
                                 errorClass="ml-1"
                             />
                         </div>
                         {/* dg-form-quarter-field-wrapper */}
                         <div class="dg-form-quarter-field-wrapper ">
                             <Label for="documentType" class="dg-form-label">
-                                <Text message="u_id_number" />
+                                <Text message="id_number" />
                             </Label>
                             <div class="flex w-full">
                                 <div>
@@ -110,7 +110,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                         isObject
                                         displayValue="label"
                                         style={documentTypeMultiSelectStyle}
-                                        placeholder={t( 'u_type_id' )}
+                                        placeholder={t( 'type_id' )}
                                         errorClass="ml-1"
                                     />
                                 </div>
@@ -121,7 +121,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                         type="text"
                                         id="documentNumber"
                                         class="flex-1 dg-form-field-quarter rounded-l-none flex w-full mr-2"
-                                        placeholder={t( 'u_enter_id_number' )}
+                                        placeholder={t( 'a_enter_id_number' )}
                                         errorClass="ml-1"
                                     />
                                 </div>
@@ -129,7 +129,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         </div>
                         <div class="dg-form-quarter-field-wrapper text-center">
                             <Label for="gender" class="dg-form-label text-left">
-                                <Text message="u_gender" />
+                                <Text message="gender" />
                             </Label>
                             <div class='flex'>
                                 <Input
@@ -159,7 +159,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                     value="other"
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1 mr-2"
                                     labelClass="text-gray-400 text-xs font-bold mr-1"
-                                    labelName={t( 'u_gender_other' )}
+                                    labelName={t( 'a_gender_other' )}
                                     errorClass="ml-1"
                                 />
                             </div>
@@ -168,18 +168,18 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         <div class="dg-form-quarter-field-wrapper">
                             <Input
                                 name="birthday"
-                                labelName={t( 'u_birthday' )}
+                                labelName={t( 'birthday' )}
                                 type="date"
                                 id="birthday"
                                 class="dg-form-field-full"
-                                placeholder= {t( 'u_choose_birthday' )}
+                                placeholder= {t( 'a_choose_birthday' )}
                                 labelClass="dg-form-label"
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-quarter-field-wrapper">
                             <Label for="enable" class="dg-form-label">
-                                <Text message="u_enable" />
+                                <Text message="enable" />
                             </Label>                            <SingleSelect
                                 id="enable"
                                 name="enable"
@@ -193,7 +193,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         </div>
                         <div class="dg-form-full-field-wrapper">
                             <Label for="country" class="dg-form-label">
-                                <Text message="u_country" />
+                                <Text message="country" />
                             </Label>
                             <SingleSelect
                                 id="country"
@@ -202,7 +202,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 isObject
                                 displayValue="label"
                                 style={countryMultiSelectStyle}
-                                placeholder={t( 'u_enter_country' )}
+                                placeholder={t( 'a_select_country' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -212,14 +212,14 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 id="address"
                                 type="text"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_address' )}
+                                placeholder={t( 'a_your_address' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_address' )}
+                                labelName={t( 'address' )}
                                 errorClass="ml-1"
                             />
                         </div>
                         <span class="w-full mt-5">
-                            <Text message="u_contact_information" />
+                            <Text message="a_contact_information" />
                         </span>
                         <div class="dg-form-full-field-wrapper">
                             <Input
@@ -227,9 +227,9 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 type="text"
                                 id="email"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_email' )}
+                                placeholder={t( 'a_your_email' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_email' )}
+                                labelName={t( 'email' )}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -239,15 +239,15 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 type="text"
                                 id="phone"
                                 class="dg-form-field-full"
-                                placeholder={t( 'u_enter_phone' )}
+                                placeholder={t( 'a_enter_phone' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'u_phone' )}
+                                labelName={t( 'phone' )}
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
                             <Label for="permissions" class="dg-form-label">
-                                <Text message="u_select_permissions" />
+                                <Text message="permissions" />
                             </Label>
                             <MultiSelect
                                 name="permissions"
@@ -256,13 +256,13 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 displayValue="value"
                                 groupBy='group'
                                 id="permissions"
-                                placeholder={t( 'u_enter_permissions' )}
+                                placeholder={t( 'a_enter_permissions' )}
                                 errorClass="ml-1"
                             />
                         </div>
                         <div class="dg-form-full-field-wrapper">
                             <Label for="roles" class="dg-form-label">
-                                <Text message="u_select_roles" />
+                                <Text message="roles" />
                             </Label>
                             <MultiSelect
                                 name="roles"
@@ -270,16 +270,16 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 isObject
                                 displayValue="label"
                                 id="roles"
-                                placeholder={t( 'u_enter_roles' )}
+                                placeholder={t( 'a_select_roles' )}
                                 errorClass="ml-1"
                             />
                         </div>
 
                         <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
-                            <Text message='u_close' />
+                            <Text message='a_close' />
                         </Link>
                         <Button class="dg-main-button" type="submit">
-                            <Text message='u_save'/>
+                            <Text message='a_save'/>
                         </Button>
                     </div>
                 </Form>

@@ -29,7 +29,7 @@ export const updateAction = ( { userRepository, errorAlert, navigate, id }: para
             const { id } = response.data;
             const rolesRes = userRepository.assignUserRole( id, rolesId );
             void await rolesRes();
-            showNotification( 'u_role_assigned' );
+            showNotification( 'r_assigned' );
         }
         navigate( '/users', { replace: true } );
     }

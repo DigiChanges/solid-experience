@@ -10,22 +10,13 @@ interface SideBarProps {
 
 const SideBar: Component<SideBarProps> = ( props ) =>
 {
-    // showArrow
-    let classUl = 'flex flex-col items-center h-full  md:justify-center  w-full md:w-auto  pl-4 ml-1 ';
-
-    classUl = props.getExpanded ? classUl : 'flex flex-col items-center h-full md:items-center md:justify-center w-max';
-
-    // const getChildren = () =>
-    //     React.Children.map( props.children, ( child: React.ReactElement ) =>
-    //         React.cloneElement( child, { isToggled: getExpanded() } )
-    //     );
     return (
         <div
             class={props.class}
             classList={{ 'md:relative md:w-56': props.getExpanded }}
         >
             <div class={'text-white'}>
-                <div class={classUl}>
+                <div class='flex flex-col items-center h-full  md:justify-center  w-full md:w-auto'>
                     {
                         props.getExpanded ? (
                             <div class="hidden md:flex  flex-row-reverse w-full">
@@ -36,7 +27,7 @@ const SideBar: Component<SideBarProps> = ( props ) =>
                                 </button>
                             </div>
                         )
-                            : <div class="flex w-full ml-1 mb-8">
+                            : <div class="flex w-full ml-2 mb-8 pl-4">
                                 <button
                                     onClick={() => props.setExpanded( true )}
                                     type="button" class=" transform rotate-180 w-5 text-white" >
@@ -44,8 +35,6 @@ const SideBar: Component<SideBarProps> = ( props ) =>
                                 </button>
                             </div>
                     }
-                    {/* {getChildren()} */}
-
                 </div>
                 {props.children}
             </div>

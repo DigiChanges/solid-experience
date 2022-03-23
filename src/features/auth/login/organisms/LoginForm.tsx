@@ -36,7 +36,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                     class="dg-form-field-full font-extrabold pl-5"
                     placeholder={t( 'a_your_email' )}
                     labelClass="text-main-gray-200 block mb-2"
-                    labelName={t( 'a_email' )}
+                    labelName={t( 'email' )}
                 />
             </div>
             <div>

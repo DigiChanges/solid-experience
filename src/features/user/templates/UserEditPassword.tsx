@@ -22,7 +22,7 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
         <section class="text-gray-500 body-font bg-gray-900 w-full md:container mx-auto px-3">
             <div class="mb-2 ">
                 <Title class="text-3xl font-bold sm:px-0 md:px-18 lg:px-14" titleType="h1">
-                    <Text message="u_edit_password" />
+                    <Text message="a_change_password" />
                 </Title>
             </div>
 
@@ -49,9 +49,9 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
                             type="password"
                             id="password"
                             class="w-full bg-gray-800 border rounded-full border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base hover:border-grey px-2 py-3 h-10 shadow font-bold"
-                            placeholder={t( 'u_enter_password' )}
+                            placeholder={t( 'a_your_password' )}
                             labelClass="dg-form-label"
-                            labelName={t( 'u_new_password' )}
+                            labelName={t( 'new_password' )}
                         />
                     </div>
                     <div class="w-full px-2 mb-5">
@@ -61,16 +61,16 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
                             type="password"
                             id="passwordConfirmation"
                             class="w-full bg-gray-800 border rounded-full border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base  hover:border-grey px-2 py-3 h-10 shadow font-bold"
-                            placeholder={t( 'u_repeat_password' )}
+                            placeholder={t( 'a_repeat_password' )}
                             labelClass="dg-form-label"
-                            labelName={t( 'u_confirm_password' )}
+                            labelName={t( 'confirm_password' )}
                         />
                     </div>
 
                     <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
-                        <Text message='u_close' />                    </Link>
+                        <Text message='a_close' />                    </Link>
                     <Button class="dg-main-button" type="submit">
-                        <Text message='u_save'/>
+                        <Text message='a_save'/>
                     </Button>
 
                 </div>

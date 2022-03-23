@@ -43,7 +43,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                     onClose={closeModal()}
                 >
                     <RemoveModalContent
-                        title="Are you sure delete role:"
+                        title={t( 'r_remove' ) as string}
                         content={modalData().text}
                     />
                 </ConfirmDelete>
@@ -51,7 +51,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 
             <TitleWithButton
                 class="dg-section-title"
-                title={ t( 'r_list_title' ) }
+                title={ t( 'r_list' ) }
                 labelButtonName={t( 'r_create' )}
                 icon={IconPlus}
                 path="/roles/create"
