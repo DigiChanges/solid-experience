@@ -58,7 +58,7 @@
     @apply dg-element-bg w-1/2 md:w-1/3 min-w-xxs max-w-lg rounded-lg p-8 shadow-lg;
   }
   .dg-section-title {
-    @apply text-3xl font-bold h-8 mt-4;
+    @apply text-3xl font-bold mt-4;
   }
   .dg-full-center-flex {
     @apply mx-auto h-full flex justify-center items-center;
