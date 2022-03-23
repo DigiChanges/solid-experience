@@ -13,6 +13,7 @@ interface SideBarItemProps {
     showItem: boolean;
     isLink: boolean;
     path: string;
+    getExpanded: any;
 }
 
 const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
@@ -22,12 +23,15 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
     return (
         <>
             <Show when={props.icon}
-                fallback={() => <span class="mr-1 inline-flex items-center justify-center h-8 w-6 text-lg " />} >
-                <span class={'mr-1 inline-flex items-center justify-center h-8 w-6 text-lg '}>
+                fallback={() => <span class=" mr-1 inline-flex items-center justify-center h-8 w-6 text-lg " />} >
+                <span class={'text-main-gray-100  mr-1 inline-flex items-center justify-center h-8 w-6 text-lg '}>
                     <Icon />
                 </span>
             </Show>
-            <Text message={props.name} />
+            <Show when={props.getExpanded}
+                fallback={() =>  <Text class="text-main-gray-100 text-sm font-bold md:block" message=''/>} >
+                <Text class="text-main-gray-100 text-sm font-bold md:block pr-2 pl-4" message={props.name} />
+            </Show>
         </>
     );
 };

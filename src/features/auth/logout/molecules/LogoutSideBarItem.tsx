@@ -5,6 +5,7 @@ import { logout } from './handlers';
 
 type LogoutSideBarItemProps = {
     user: any;
+    getExpanded: any;
 };
 
 const LogoutSideBarItem: Component<LogoutSideBarItemProps> = ( props ) => (
@@ -18,6 +19,7 @@ const LogoutSideBarItem: Component<LogoutSideBarItemProps> = ( props ) => (
         showItem={true}
         isLink={false}
         path=""
+        getExpanded={props.getExpanded}
     />
 );
 
