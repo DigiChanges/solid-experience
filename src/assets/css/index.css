@@ -225,6 +225,14 @@
 .search-wrapper:hover {
   @apply border-indigo-400 !important;
 }
+
+input.searchBox:focus {
+   box-shadow: none !important;
+   -moz-box-shadow: none !important;
+   -webkit-box-shadow: none !important;
+   outline: none !important;
+}
+
 /* Alert */
 .containerAlert{
   position: fixed;
