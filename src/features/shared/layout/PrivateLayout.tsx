@@ -61,9 +61,9 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                         path={ item.path }
                         getExpanded={getExpanded()}
                     >
-                        <Show when={getShowSubitems() && getExpanded() &&  sectionSelected() === item.path}>
-                            <div class=" flex flex-row">
-                                <div>
+                        <Show when={getShowSubitems() && getExpanded() && sectionSelected() === item.path}>
+                            <div class="flex flex-row">
+                                <div class="w-full">
                                     <For each={item.children}>
                                         {( item ) =>
                                             <HasPermission
@@ -85,7 +85,6 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                                             </HasPermission>
                                         }
                                     </For>
-
                                 </div>
                             </div>
                         </Show>

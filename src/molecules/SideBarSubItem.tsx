@@ -16,9 +16,9 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
     const Icon: any = props.icon;
 
     return (
-        props.showItem && (
-            <div class="flex flex-row">
-                <NavLink href={props.path} class="pl-9  h-8 ">
+        <Show when={props.showItem} >
+            <div class="flex">
+                <NavLink href={props.path} class="pl-9 h-8 w-full">
                     <div
                         class="border-r-2 border-gray-800  hover:text-blue-500 flex flex-row items-center justify-start h-8 text-blue-700"
                         classList={{ 'text-blue-700 border-blue-700': props.equalPath }}
@@ -38,7 +38,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                     </div>
                 </NavLink>
             </div>
-        )
+        </Show>
     );
 };
 

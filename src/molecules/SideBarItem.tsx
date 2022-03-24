@@ -38,10 +38,8 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
 
 
 const SideBarItem: Component<SideBarItemProps> = ( props ) => (
-    <div class="mx-1 w-full">
-
-        <Show when={props.showItem }>
-
+    <div class="w-full">
+        <Show when={props.showItem}>
             <Show when={props.isLink}
                 fallback={() =>
                     <Button
@@ -53,17 +51,14 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
                 }
             >
                 <NavLink
-                    class="flex text-white text-sm font-bold md:flex pr-3 pl-4 items-center"
+                    class="flex text-white text-sm font-bold md:flex pr-3 pl-4 items-center w-full"
                     href={props.path}
                 >
                     <SideBarItemContent {...props} />
                 </NavLink>
             </Show>
-
         </Show>
-
         {props.children}
-
     </div>
 );
 
