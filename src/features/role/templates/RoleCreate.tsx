@@ -1,18 +1,18 @@
 import { Label } from '@digichanges/solid-components';
 import { Link } from 'solid-app-router';
+import { Text, useI18n } from 'solid-i18n';
 import { Component, createMemo, Show } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
 import { states } from '../../../entities';
-import { IPermissionApi } from '../../auth/interfaces';
 import ButtonConfirm from '../../../molecules/ButtonConfirm';
-import RoleSchema from '../validations/schemas/RoleSchema';
-import { SelectTransform } from '../../shared/utils/SelectTransform';
+import { IPermissionApi } from '../../auth/interfaces';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
-import { Text, useI18n } from 'solid-i18n';
+import { SelectTransform } from '../../shared/utils/SelectTransform';
+import RoleSchema from '../validations/schemas/RoleSchema';
 
 interface RoleCreateTemplateProps {
     permissionsList?: IPermissionApi[];
@@ -33,11 +33,11 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 
     return (
         <section class="px-4">
-            <div class="mb-2 ">
-                <Title class="text-3xl font-bold" titleType="h1">
+            <section class="flex flex-row justify-between items-center my-6">
+                <Title class="dg-section-title" titleType="h1">
                     <Text message="r_create" />
                 </Title>
-            </div>
+            </section>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
 
@@ -111,11 +111,11 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 errorClass="ml-1"
                             />
                         </div>
-                        <div class="w-full mt-5 flex justify-end">
-                            <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
+                        <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
+                            <Link href='/roles' class="dg-secondary-button">
                                 <Text message='a_close' />
                             </Link>
-                            <ButtonConfirm type="submit">
+                            <ButtonConfirm type="submit" class="w-full md:w-32 m-0">
                                 <Text message='a_save'/>
                             </ButtonConfirm>
                         </div>

@@ -4,6 +4,7 @@ import { useApplicationContext } from '../../../../context/context';
 import AuthRepository from '../../../../features/auth/repositories/AuthRepository';
 import RoleRepository from '../../../../features/role/repositories/RoleRepository';
 import createAlert from '../../../../features/shared/hooks/createAlert';
+import usePermission from '../../../../features/shared/hooks/usePermission';
 import PrivateLayout from '../../../../features/shared/layout/PrivateLayout';
 import AlertErrors from '../../../../features/shared/molecules/AlertErrors/AlertErrors';
 import UserRepository from '../../../../features/user/repositories/UserRepository';
@@ -12,6 +13,7 @@ import { updateAction } from './handlers';
 
 const IndexPage: Component = () =>
 {
+    const navigate = useNavigate();
     const { id } = useParams<{ id: string  }> ();
     const [ user ]: any = useApplicationContext();
     const authRepository = new AuthRepository( user() );
@@ -21,9 +23,8 @@ const IndexPage: Component = () =>
     const [ userSelected ] = createResource( userRepository.getOne ( id ) );
     const [ getRoles ] = createResource( roleRepository.getRoles() );
     const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
-    const navigate = useNavigate();
-
     const errorAlert = createAlert();
+    usePermission( user, [] );
 
     return (
         <PrivateLayout>

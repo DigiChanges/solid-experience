@@ -408,6 +408,13 @@
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
+"@types/velocity-animate@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/velocity-animate/-/velocity-animate-2.0.1.tgz#9ec3d72557a97d11e91443082ab45914b82d5d55"
+  integrity sha512-6uo06eV6A8eDFOAnF0DR8krFFzWPE+FiEsXbYJfRE1ZREvOBwuGPBVOPeM0FJfEWylUGXEYT4/slItHtHIgjWQ==
+  dependencies:
+    velocity-animate "*"
+
 "@typescript-eslint/eslint-plugin@^5.1.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.3.0.tgz#a55ae72d28ffeb6badd817fe4566c9cced1f5e29"
@@ -826,6 +833,11 @@ caniuse-lite@^1.0.30001272, caniuse-lite@^1.0.30001274:
   version "1.0.30001274"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001274.tgz#26ca36204d15b17601ba6fc35dbdad950a647cc7"
   integrity sha512-+Nkvv0fHyhISkiMIjnyjmf5YJcQ1IQHZN6U9TLUMroWR38FNwpsC51Gb68yueafX1V6ifOisInSgP9WJFS13ew==
+
+cash-dom@^8.1.1:
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/cash-dom/-/cash-dom-8.1.1.tgz#37f6ba46fc470a1efad5215eefc2515271949c60"
+  integrity sha512-aMESow+8m7EuifAeNhpnRHQHN8O24gGeiR53lebD5ShBCisBCoB4y5BBe9pGXtTPP6b1qCp90W9HaaUARyc16Q==
 
 chalk@^2.0.0:
   version "2.4.2"
@@ -3786,6 +3798,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+velocity-animate@*, velocity-animate@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/velocity-animate/-/velocity-animate-1.5.2.tgz#5a351d75fca2a92756f5c3867548b873f6c32105"
+  integrity sha512-m6EXlCAMetKztO1ppBhGU1/1MR3IiEevO6ESq6rcrSQ3Q77xYSW13jkfXW88o4xMrkXJhy/U7j4wFR/twMB0Eg==
 
 vite-plugin-solid@^2.1.0:
   version "2.1.1"

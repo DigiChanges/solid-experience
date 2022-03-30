@@ -2,6 +2,8 @@
 
 ## Usage
 
+duplicate and rename .env.example to .env
+
 Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
 
 This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
@@ -44,5 +46,7 @@ yarn prepare
 ```
 restore .husky/pre-commit
 
+```bash
 chmod ug+x .husky/*
 chmod ug+x .git/hooks/*
+```

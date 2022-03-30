@@ -124,7 +124,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                             </div>
                         </div>
 
-                        <div class="flex flex-col gap-4 lg:flex-row mb-5 mx-auto">
+                        <div class="flex flex-col gap-4 mb-5 mx-auto lg:justify-end lg:flex-row lg:my-8">
                             <Button
                                 class="w-full lg:w-32 dg-secondary-button"
                                 type="button"

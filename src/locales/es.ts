@@ -27,7 +27,7 @@ const app: I18nLocales = {
     a_login: 'Iniciar sesión',
     a_logout: 'Cerrar sesión',
     a_order_by: 'Ordenar por',
-    a_order_field: 'Campo de ordenación',
+    a_order_field: 'Campo de ordenamiento',
     a_password: 'Contraseña',
     a_personal_information: 'INFORMACION PERSONAL',
     a_reload: 'Recargar',
@@ -122,6 +122,7 @@ const user: I18nLocales = {
     u_remove: '¿Está seguro que desea eliminar este usuario?',
     u_search: '{count, plural, one {Buscar usuario} other {Buscar usuarios}}',
     u_update: 'Editar Usuario',
+    u_updated: 'Usuario actualizado',
     u_users: 'Usuarios',
     u_view: 'Ver Usuario',
 };

@@ -42,11 +42,11 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
 
     return (
         <section class="px-4">
-            <div class="mb-2 ">
-                <Title class="text-3xl font-bold" titleType="h1">
+            <section class="flex flex-row justify-between items-center my-6">
+                <Title class="dg-section-title" titleType="h1">
                     <Text message="u_update" />
                 </Title>
-            </div>
+            </section>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
 
@@ -275,12 +275,18 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
 
-                        <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
-                            <Text message='a_close' />
-                        </Link>
-                        <Button class="dg-main-button" type="submit">
-                            <Text message='a_save'/>
-                        </Button>
+                        <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
+                            <Link href='/users' class="px-10 py-2 dg-secondary-button">
+                                <Text message='a_close' />
+                            </Link>
+                            <div id="usersUpdate" class="w-full md:w-32">
+                                <div class="permission hidden">
+                                    <Button class="dg-main-button" type="submit">
+                                        <Text message='a_save'/>
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </Form>
             </Show>

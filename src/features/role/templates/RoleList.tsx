@@ -1,13 +1,14 @@
 import { Link } from 'solid-app-router';
+import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
 import Button from '../../../atoms/Button';
 import IconPencilAlt from '../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../../atoms/Title';
+import ButtonIcon from '../../../molecules/ButtonIcon';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
-import TitleWithButton from '../../../molecules/TitleWithButton';
 import ConfirmDelete from '../../../templates/modal/ConfirmDelete';
 import FilterSort from '../../filterSort/organisms/FilterSort';
 import useModal from '../../shared/hooks/useModal';
@@ -17,7 +18,6 @@ import { BasicConfirmationModalData } from '../../shared/types/Modal';
 import { filterBy } from '../constants/filterBy';
 import { orderBy } from '../constants/orderBy';
 import { IRoleApi } from '../interfaces';
-import { Text, useI18n } from 'solid-i18n';
 
 interface RoleListTemplateProps
 {
@@ -49,14 +49,21 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 </ConfirmDelete>
             </Show>
 
-            <TitleWithButton
-                class="dg-section-title"
-                title={ t( 'r_list' ) }
-                labelButtonName={t( 'r_create' )}
-                icon={IconPlus}
-                path="/roles/create"
-                // buttonAction={actionCreateButton()}
-            />
+            <section class="flex flex-row justify-between items-center my-6">
+                <Title class="dg-section-title" titleType="h4">
+                    <Text message='r_list' />
+                </Title>
+
+                <div id="rolesSave">
+                    <div class="permission hidden">
+                        <ButtonIcon
+                            icon={IconPlus}
+                            labelName={t( 'r_create' )}
+                            path="/roles/create"
+                        />
+                    </div>
+                </div>
+            </section>
 
             <FilterSort searchPlaceholder={`${t( 'r_search', { count: 1 } )}...`} filterBy={filterBy} orderBy={orderBy}/>
 
@@ -87,17 +94,19 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                                             <IconPencilAlt />
                                         </Link>
                                     </div>
-                                    <div class="h-6 w-6 my-1">
-                                        <button
-                                            class="w-6 hover:text-white mr-1 focus:outline-none"
-                                            onClick={ openModal( {
-                                                id: role.id,
-                                                text: role.name,
-                                            } )}
-                                            type='button'
-                                        >
-                                            <IconTrash />
-                                        </button>
+                                    <div class="h-6 w-6 my-1" id="rolesDelete">
+                                        <div class="permission hidden">
+                                            <button
+                                                class="w-6 hover:text-white mr-1 focus:outline-none"
+                                                onClick={ openModal( {
+                                                    id: role.id,
+                                                    text: role.name,
+                                                } )}
+                                                type='button'
+                                            >
+                                                <IconTrash />
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </MediaObject>

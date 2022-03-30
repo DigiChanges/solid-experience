@@ -4,9 +4,10 @@ import { useApplicationContext } from '../../../../context/context';
 import AuthRepository from '../../../../features/auth/repositories/AuthRepository';
 import RoleRepository from '../../../../features/role/repositories/RoleRepository';
 import RoleUpdate from '../../../../features/role/templates/RoleUpdate';
+import createAlert from '../../../../features/shared/hooks/createAlert';
+import usePermission from '../../../../features/shared/hooks/usePermission';
 import PrivateLayout from '../../../../features/shared/layout/PrivateLayout';
 import AlertErrors from '../../../../features/shared/molecules/AlertErrors/AlertErrors';
-import createAlert from '../../../../features/shared/hooks/createAlert';
 import { updateAction } from './handlers';
 
 const IndexPage: Component = () =>
@@ -19,6 +20,7 @@ const IndexPage: Component = () =>
     const [ role ] = createResource( roleRepository.getOne( id ) );
     const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
     const errorAlert = createAlert();
+    usePermission( user, [] );
 
     return (
         <PrivateLayout>

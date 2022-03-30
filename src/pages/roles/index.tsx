@@ -5,6 +5,7 @@ import RoleRepository from '../../features/role/repositories/RoleRepository';
 import RoleList from '../../features/role/templates/RoleList';
 import { INIT_STATE } from '../../features/shared/constants';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
+import usePermission from '../../features/shared/hooks/usePermission';
 import useQuery from '../../features/shared/hooks/useQuery';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout';
 
@@ -17,6 +18,8 @@ const IndexPage: Component = () =>
 
     const [ roles, { refetch } ] = createResource( uriParams, roleRepository.getRoles() );
     const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<IRoleApi, RoleListResponse>( roles );
+
+    usePermission( user, [ roles ] );
 
     const viewMoreAction = () => () =>
     {

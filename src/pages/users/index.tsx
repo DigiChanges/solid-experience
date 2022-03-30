@@ -7,6 +7,7 @@ import UserList from '../../features/user/templates/UserList';
 import { IUserApi, UserListResponse } from '../../features/user/interfaces';
 import UserRepository from '../../features/user/repositories/UserRepository';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout';
+import usePermission from '../../features/shared/hooks/usePermission';
 
 const IndexPage: Component = () =>
 {
@@ -17,6 +18,8 @@ const IndexPage: Component = () =>
 
     const [ users, { refetch } ] = createResource( uriParams, userRepository.getUsers() );
     const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<IUserApi, UserListResponse>( users );
+
+    usePermission( user, [ users ] );
 
     const viewMoreAction = () => () =>
     {

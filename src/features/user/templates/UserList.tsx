@@ -7,9 +7,9 @@ import IconPencilAlt from '../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../../atoms/Title';
+import ButtonIcon from '../../../molecules/ButtonIcon';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
-import TitleWithButton from '../../../molecules/TitleWithButton';
 import ConfirmDelete from '../../../templates/modal/ConfirmDelete';
 import FilterSort from '../../filterSort/organisms/FilterSort';
 import useModal from '../../shared/hooks/useModal';
@@ -56,14 +56,21 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 </ConfirmDelete>
             </Show>
 
-            <TitleWithButton
-                class="dg-section-title"
-                title={ t( 'u_list' ) }
-                labelButtonName={t( 'u_create' )}
-                icon={IconPlus}
-                buttonAction={actionCreateButton()}
-                path="/users/create"
-            />
+            <section class="flex flex-row justify-between items-center my-6">
+                <Title class="dg-section-title" titleType="h4">
+                    <Text message='u_list' />
+                </Title>
+
+                <div id="usersSave">
+                    <div class="permission hidden">
+                        <ButtonIcon
+                            icon={IconPlus}
+                            labelName={t( 'u_create' )}
+                            path="/users/create"
+                        />
+                    </div>
+                </div>
+            </section>
 
             <FilterSort searchPlaceholder={`${t( 'u_search', { count: 1 } )}...`} filterBy={filterBy} orderBy={orderBy}/>
 
@@ -93,24 +100,28 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                                             <IconPencilAlt />
                                         </Link>
                                     </div>
-                                    <div class="h-6 w-6 my-1">
-                                        <Link
-                                            class="w-6 hover:text-white mr-1 focus:outline-none"
-                                            href={`/users/editPassword/${user.id}`}>
-                                            <IconLockOpen />
-                                        </Link>
+                                    <div class="h-6 w-6 my-1" id="usersChangeUserPassword">
+                                        <div class="permission hidden">
+                                            <Link
+                                                class="w-6 hover:text-white mr-1 focus:outline-none"
+                                                href={`/users/editPassword/${user.id}`}>
+                                                <IconLockOpen />
+                                            </Link>
+                                        </div>
                                     </div>
-                                    <div class="h-6 w-6 my-1">
-                                        <button
-                                            class="w-6 hover:text-white mr-1 focus:outline-none"
-                                            onClick={ openModal( {
-                                                id: user.id,
-                                                text: `${user.firstName} ${user.lastName}`,
-                                            } )}
-                                            type='button'
-                                        >
-                                            <IconTrash />
-                                        </button>
+                                    <div class="h-6 w-6 my-1" id="usersDelete">
+                                        <div class="permission hidden">
+                                            <button
+                                                class="w-6 hover:text-white mr-1 focus:outline-none"
+                                                onClick={ openModal( {
+                                                    id: user.id,
+                                                    text: `${user.firstName} ${user.lastName}`,
+                                                } )}
+                                                type='button'
+                                            >
+                                                <IconTrash />
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </MediaObject>

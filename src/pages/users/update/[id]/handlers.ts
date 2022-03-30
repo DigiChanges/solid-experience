@@ -22,7 +22,7 @@ export const updateAction = ( { userRepository, errorAlert, navigate, id }: para
     try
     {
         const response = await update();
-        showNotification( 'u_created' );
+        showNotification( 'u_updated' );
 
         if ( payload.roles && payload.roles.length > 0 )
         {

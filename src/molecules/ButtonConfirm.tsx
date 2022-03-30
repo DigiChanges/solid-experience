@@ -1,4 +1,4 @@
-import { Component, JSX } from 'solid-js';
+import { Component, JSX, splitProps } from 'solid-js';
 import Button from '../atoms/Button';
 
 interface ButtonConfirmProps
@@ -7,18 +7,20 @@ interface ButtonConfirmProps
     labelName?: string;
     type?: 'button' | 'submit' | 'reset';
     onClick?: ( e: MouseEvent ) => void;
+    class?: string;
     children: JSX.Element;
 }
 
 const ButtonConfirm: Component<ButtonConfirmProps> = ( props ) =>
 {
+    const [ local, others ] = splitProps( props, [ 'class', 'children' ] );
     return (
         <Button
-            class="dg-main-button"
+            class={`dg-main-button ${local.class}`}
             type="submit"
-            {...props}
+            {...others}
         >
-            {props.children}
+            {local.children}
         </Button>
     );
 };

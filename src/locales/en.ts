@@ -113,12 +113,13 @@ const roles: I18nLocales = {
 const user: I18nLocales = {
     u_assigned: 'User/s assigned',
     u_create: 'Create User',
-    u_created: 'Created User',
+    u_created: 'User created',
     u_list: 'User List',
     u_no_users: 'Without User',
     u_remove: 'Are you sure you want to delete this user?',
     u_search: '{count, plural, one {Search user} other {Search users}}',
     u_update: 'Update User',
+    u_updated: 'User updated',
     u_users: 'Users',
     u_view: 'Show User',
 };
