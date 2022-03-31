@@ -1,4 +1,5 @@
 import { createAlertType } from '../../../shared/hooks/createAlert';
+import assignAllPermissionsToSuperAdminUser from '../../helper/assignAllPermissionsToSuperAdminUser';
 import { ILoginApi, ILoginPayload } from '../../interfaces';
 import AuthRepository from '../../repositories/AuthRepository';
 
@@ -14,11 +15,13 @@ export const handleLoginFormSubmit = ( { addUser, errorAlert, navigate, setIsLoa
     const { setError } = errorAlert;
     const authRepository = new AuthRepository();
     const signIn = authRepository.signIn( values as ILoginPayload );
+
     try
     {
         setIsLoading( true );
         const response = await signIn();
-        addUser( response.data );
+        const userAuth = await assignAllPermissionsToSuperAdminUser( response.data );
+        addUser( userAuth );
         navigate( '/dashboard', { replace: true } );
     }
     catch ( error: any )

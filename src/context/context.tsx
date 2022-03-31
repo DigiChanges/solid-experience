@@ -1,5 +1,5 @@
-import { createSignal, createContext, useContext, JSX } from 'solid-js';
-import { IUserApi } from '../features/user/interfaces';
+import { createContext, createSignal, JSX, useContext } from 'solid-js';
+import { ILoginApi } from '../features/auth/interfaces';
 
 interface ApplicationProviderProps
 {
@@ -10,14 +10,14 @@ const ApplicationContext = createContext();
 
 export function ApplicationProvider ( props: ApplicationProviderProps )
 {
-    const [ user, setUser ] = createSignal<IUserApi>();
+    const [ authUser, setAuthUser ] = createSignal<ILoginApi>();
 
     const store = [
-        user,
+        authUser,
         {
-            addUser ( user: IUserApi )
+            addUser ( _authUser: ILoginApi )
             {
-                setUser( () => user );
+                setAuthUser( () => _authUser );
             },
         },
     ];

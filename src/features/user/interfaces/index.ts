@@ -30,6 +30,7 @@ export type IUserPayload =
 export type IUserApi = Omit<IUserPayload, 'roles'> &
 {
     id: string;
+    isSumerAdmin: boolean;
     roles: IRoleApi[];
     createdAt: number;
     updatedAt: number;
