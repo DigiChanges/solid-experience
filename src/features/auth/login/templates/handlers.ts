@@ -4,7 +4,7 @@ import { ILoginApi, ILoginPayload } from '../../interfaces';
 import AuthRepository from '../../repositories/AuthRepository';
 
 type params = {
-    addUser: ( data: ILoginApi ) => void;
+    addUser: ( data?: ILoginApi ) => void;
     errorAlert: createAlertType;
     navigate: any;
     setIsLoading: ( isLoading: boolean ) => void;
