@@ -78,21 +78,32 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                             <MediaObject class="dg-media-object" >
                                 <div class="flex-col justify-center content-center ml-3 text-gray-400">
                                     <Title titleType="h6" class="hover:transform hover:scale-125">
-                                        <Link
-                                            class="w-6 text-gray-300 hover:text-white mr-1 focus:outline-none"
-                                            href={`/roles/${role.id}/update`}>
-                                            {role.name}
-                                        </Link>
+                                        <div data-parent="rolesShow">
+                                            <div class="permission hidden">
+                                                <Link
+                                                    class="w-6 text-gray-300 hover:text-white mr-1 focus:outline-none"
+                                                    href={`/roles/${role.id}/update`}>
+                                                    {role.name}
+                                                </Link>
+                                            </div>
+                                            <div class="fallback">
+                                                <span class="w-6 text-gray-300 hover:text-white mr-1 focus:outline-none" >
+                                                    {role.name}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </Title>
                                     { role.slug }
                                 </div>
                                 <div class="flex flex-col ml-auto">
-                                    <div class="h-6 w-6 my-1">
-                                        <Link
-                                            class="w-6 hover:text-white mr-1 focus:outline-none"
-                                            href={`/roles/${role.id}/update`}>
-                                            <IconPencilAlt />
-                                        </Link>
+                                    <div class="h-6 w-6 my-1" data-parent="rolesUpdate">
+                                        <div class="permission hidden">
+                                            <Link
+                                                class="w-6 hover:text-white mr-1 focus:outline-none"
+                                                href={`/roles/${role.id}/update`}>
+                                                <IconPencilAlt />
+                                            </Link>
+                                        </div>
                                     </div>
                                     <div class="h-6 w-6 my-1" data-parent="rolesDelete">
                                         <div class="permission hidden">

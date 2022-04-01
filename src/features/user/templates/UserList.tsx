@@ -84,21 +84,34 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                             <MediaObject class="dg-media-object" >
                                 <div class="flex-col justify-center content-center ml-3 text-gray-400">
                                     <Title titleType="h6" class="hover:transform hover:scale-125">
-                                        <Link href={`/users/${user.id}/update`}
-                                            class="w-6 hover:text-white mr-1 focus:outline-none"
-                                        >
-                                            {`${user.firstName} ${user.lastName}`}
-                                        </Link>
+                                        <div data-parent="usersShow">
+                                            <div class="permission hidden">
+                                                <Link href={`/users/${user.id}/update`}
+                                                    class="w-6 hover:text-white mr-1 focus:outline-none"
+                                                >
+                                                    {`${user.firstName} ${user.lastName}`}
+                                                </Link>
+                                            </div>
+                                            <div class="fallback">
+                                                <span class="w-6 hover:text-white mr-1 focus:outline-none">
+                                                    {`${user.firstName} ${user.lastName}`}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </Title>
                                     {user.email}
                                 </div>
                                 <div class="flex flex-col ml-auto">
-                                    <div class="h-6 w-6 my-1">
-                                        <Link
-                                            class="w-6 hover:text-white mr-1 focus:outline-none"
-                                            href={`/users/${user.id}/update`}>
-                                            <IconPencilAlt />
-                                        </Link>
+                                    <div class="h-6 w-6 my-1" data-parent="usersUpdate">
+                                        <div class="permission hidden">
+                                            <div class="h-6 w-6 my-1">
+                                                <Link
+                                                    class="w-6 hover:text-white mr-1 focus:outline-none"
+                                                    href={`/users/${user.id}/update`}>
+                                                    <IconPencilAlt />
+                                                </Link>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="h-6 w-6 my-1" data-parent="usersChangeUserPassword">
                                         <div class="permission hidden">

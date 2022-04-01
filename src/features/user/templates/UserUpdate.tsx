@@ -44,7 +44,14 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
         <section class="px-4">
             <section class="flex flex-row justify-between items-center my-6">
                 <Title class="dg-section-title" titleType="h1">
-                    <Text message="u_update" />
+                    <div data-parent="usersUpdate">
+                        <div class="permission hidden">
+                            <Text message="u_update" />
+                        </div>
+                        <div class="fallback">
+                            <Text message="User" />
+                        </div>
+                    </div>
                 </Title>
             </section>
 
@@ -275,16 +282,19 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
 
-                        <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
-                            <Link href='/users' class="px-10 py-2 dg-secondary-button">
-                                <Text message='a_close' />
-                            </Link>
-                            <div data-parent="usersUpdate" class="w-full md:w-32">
-                                <div class="permission hidden">
-                                    <Button class="dg-main-button" type="submit">
-                                        <Text message='a_save'/>
-                                    </Button>
-                                </div>
+                        <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent="usersUpdate">
+                            <div class="permission hidden">
+                                <Link href='/users' class="px-10 py-2 dg-secondary-button">
+                                    <Text message='a_close' />
+                                </Link>
+                                <Button class="dg-main-button" type="submit">
+                                    <Text message='a_save'/>
+                                </Button>
+                            </div>
+                            <div class="fallback w-full md:w-32">
+                                <Link href="/users" class="px-10 py-2 dg-main-button">
+                                    <Text message="a_close" />
+                                </Link>
                             </div>
                         </div>
                     </div>

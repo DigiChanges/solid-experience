@@ -41,7 +41,14 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
         <section class="px-4">
             <section class="flex flex-row justify-between items-center my-6">
                 <Title class="dg-section-title" titleType="h1">
-                    <Text message="r_update" />
+                    <div data-parent="rolesUpdate">
+                        <div class="permission hidden">
+                            <Text message="r_update" />
+                        </div>
+                        <div class="fallback">
+                            <Text message="Role" />
+                        </div>
+                    </div>
                 </Title>
             </section>
 
@@ -114,16 +121,19 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 errorClass="ml-1"
                             />
                         </div>
-                        <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
-                            <Link href='/roles' class="px-10 py-2 dg-secondary-button">
-                                <Text message='a_close' />
-                            </Link>
-                            <div data-parent="rolesUpdate" class="w-full md:w-32">
-                                <div class="permission hidden">
-                                    <ButtonConfirm type="submit">
-                                        <Text message='a_save'/>
-                                    </ButtonConfirm>
-                                </div>
+                        <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent="rolesUpdate">
+                            <div class="permission hidden">
+                                <Link href='/roles' class="px-10 py-2 dg-secondary-button">
+                                    <Text message='a_close' />
+                                </Link>
+                                <ButtonConfirm type="submit">
+                                    <Text message='a_save'/>
+                                </ButtonConfirm>
+                            </div>
+                            <div class="fallback w-full md:w-32">
+                                <Link href='/roles' class="px-10 py-2 dg-main-button">
+                                    <Text message='a_close' />
+                                </Link>
                             </div>
                         </div>
                     </div>

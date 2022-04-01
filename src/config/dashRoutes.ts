@@ -45,7 +45,7 @@ export const dashRoutes = [
         name: 'u_users',
         icon: IconUsers,
         showItem: true,
-        permission: permissions.USERS.SHOW,
+        permission: permissions.USERS.LIST,
         children:
         [
             {
@@ -102,7 +102,7 @@ export const dashRoutes = [
         name: 'roles',
         icon: IconCog,
         showItem: true,
-        permission: permissions.ROLES.SHOW,
+        permission: permissions.ROLES.LIST,
         children:
         [
             {
