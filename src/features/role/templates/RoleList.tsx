@@ -54,7 +54,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                     <Text message='r_list' />
                 </Title>
 
-                <div id="rolesSave">
+                <div data-parent="rolesSave">
                     <div class="permission hidden">
                         <ButtonIcon
                             icon={IconPlus}
@@ -94,7 +94,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                                             <IconPencilAlt />
                                         </Link>
                                     </div>
-                                    <div class="h-6 w-6 my-1" id="rolesDelete">
+                                    <div class="h-6 w-6 my-1" data-parent="rolesDelete">
                                         <div class="permission hidden">
                                             <button
                                                 class="w-6 hover:text-white mr-1 focus:outline-none"

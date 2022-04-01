@@ -279,7 +279,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             <Link href='/users' class="px-10 py-2 dg-secondary-button">
                                 <Text message='a_close' />
                             </Link>
-                            <div id="usersUpdate" class="w-full md:w-32">
+                            <div data-parent="usersUpdate" class="w-full md:w-32">
                                 <div class="permission hidden">
                                     <Button class="dg-main-button" type="submit">
                                         <Text message='a_save'/>

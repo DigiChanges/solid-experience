@@ -61,7 +61,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                     <Text message='u_list' />
                 </Title>
 
-                <div id="usersSave">
+                <div data-parent="usersSave">
                     <div class="permission hidden">
                         <ButtonIcon
                             icon={IconPlus}
@@ -100,7 +100,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                                             <IconPencilAlt />
                                         </Link>
                                     </div>
-                                    <div class="h-6 w-6 my-1" id="usersChangeUserPassword">
+                                    <div class="h-6 w-6 my-1" data-parent="usersChangeUserPassword">
                                         <div class="permission hidden">
                                             <Link
                                                 class="w-6 hover:text-white mr-1 focus:outline-none"
@@ -109,7 +109,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                                             </Link>
                                         </div>
                                     </div>
-                                    <div class="h-6 w-6 my-1" id="usersDelete">
+                                    <div class="h-6 w-6 my-1" data-parent="usersDelete">
                                         <div class="permission hidden">
                                             <button
                                                 class="w-6 hover:text-white mr-1 focus:outline-none"

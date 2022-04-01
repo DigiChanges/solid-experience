@@ -1,15 +1,20 @@
 import cash from 'cash-dom';
 
-function showDomElements ( elementIds: string[] )
+function showDomElements ( elementDataParents: string[] )
 {
-    if ( Array.isArray( elementIds ) )
+    if ( Array.isArray( elementDataParents ) )
     {
         cash( 'document' ).ready(  function ()
         {
-            for ( const elementId of elementIds )
+            for ( const elementId of elementDataParents )
             {
-                cash( `#${elementId}` ).find( '.fallback' ).hide();
-                cash( `#${elementId}` ).find( '.permission' ).show();
+                cash( `[data-parent="${elementId}"]` )
+                    .each( ( idx, elem )  =>
+                    {
+                        const parent = cash( elem );
+                        parent.find( '.fallback' ).hide();
+                        parent.find( '.permission' ).show();
+                    } );
             }
         } );
     }
