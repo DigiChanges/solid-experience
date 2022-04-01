@@ -118,7 +118,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                             <Link href='/roles' class="px-10 py-2 dg-secondary-button">
                                 <Text message='a_close' />
                             </Link>
-                            <div id="rolesUpdate" class="w-full md:w-32">
+                            <div data-parent="rolesUpdate" class="w-full md:w-32">
                                 <div class="permission hidden">
                                     <ButtonConfirm type="submit">
                                         <Text message='a_save'/>

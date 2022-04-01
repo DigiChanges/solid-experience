@@ -1,10 +1,10 @@
-import PermissionList from '../../shared/utils/PemissionList';
+import PermissionList from '../../shared/utils/PermissionList';
 import { ILoginApi } from '../interfaces';
 import AuthRepository from '../repositories/AuthRepository';
 
-const assignAllPermissionsToSuperAdminUser = async ( userAuth: ILoginApi ) =>
+const assignAllPermissionsToSuperAdminUser = async ( userAuth?: ILoginApi ) =>
 {
-    if ( userAuth.user.isSumerAdmin )
+    if ( userAuth && userAuth.user.isSumerAdmin )
     {
         const authRepository = new AuthRepository( userAuth );
         const getAllPermissions = authRepository.getAllPermissions();

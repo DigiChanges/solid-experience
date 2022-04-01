@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'solid-app-router';
 import { createEffect, createResource, createSignal } from 'solid-js';
 import { useApplicationContext } from '../../../../context/context';
 import { LOGIN_PAGE_PATH } from '../../../shared/constants';
+import assignAllPermissionsToSuperAdminUser from '../../helper/assignAllPermissionsToSuperAdminUser';
 import AuthRepository from '../../repositories/AuthRepository';
 
 const createRefreshToken = () =>
@@ -17,23 +18,22 @@ const createRefreshToken = () =>
     {
         if ( !auth.loading )
         {
-            const login = async () =>
+            ( async () =>
             {
                 if ( auth.error )
                 {
                     navigate( LOGIN_PAGE_PATH, { replace: true } );
+                    return setLoading( false );
                 }
-                else
+
+                const userAuth = await assignAllPermissionsToSuperAdminUser( auth()?.data );
+                addUser( userAuth );
+                if ( location.pathname === LOGIN_PAGE_PATH )
                 {
-                    addUser( auth()?.data );
-                    if ( location.pathname === LOGIN_PAGE_PATH )
-                    {
-                        navigate( '/', { replace: true } );
-                    }
+                    navigate( '/', { replace: true } );
                 }
                 setLoading( false );
-            };
-            login();
+            } )();
         }
     } );
 

@@ -1,11 +1,11 @@
 import { Link } from 'solid-app-router';
+import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
-import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
+import ButtonConfirm from '../../../molecules/ButtonConfirm';
 import ChangePasswordSchema from '../../auth/validations/schemas/ChangePasswordSchema';
-import { Text, useI18n } from 'solid-i18n';
 
 interface UserChangePasswordTemplateProps
 {
@@ -49,7 +49,7 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
                             type="password"
                             id="password"
                             class="w-full bg-gray-800 border rounded-full border-gray-700 text-white focus:outline-none focus:border-indigo-500 text-base hover:border-grey px-2 py-3 h-10 shadow font-bold"
-                            placeholder={t( 'a_your_password' )}
+                            placeholder={t( 'a_password' )}
                             labelClass="dg-form-label"
                             labelName={t( 'new_password' )}
                         />
@@ -67,11 +67,14 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
                         />
                     </div>
 
-                    <Link href='/users' class="px-10 py-2 items-center dg-secondary-button">
-                        <Text message='a_close' />                    </Link>
-                    <Button class="dg-main-button" type="submit">
-                        <Text message='a_save'/>
-                    </Button>
+                    <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
+                        <Link href='/users' class="dg-secondary-button">
+                            <Text message='a_close' />
+                        </Link>
+                        <ButtonConfirm type="submit" class="w-full md:w-32 m-0">
+                            <Text message='a_save'/>
+                        </ButtonConfirm>
+                    </div>
 
                 </div>
             </Form>
