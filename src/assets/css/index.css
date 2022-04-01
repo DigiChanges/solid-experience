@@ -251,3 +251,6 @@ input.searchBox:focus {
 .has-permission {
   display: none;
 }
+.selectedBlue {
+  color: rgba(66, 153, 225, var(--tw-text-opacity));
+}
