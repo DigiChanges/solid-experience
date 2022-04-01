@@ -42,7 +42,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
             <section class="flex flex-row justify-between items-center my-6">
                 <Title class="dg-section-title" titleType="h1">
                     <div data-parent="rolesUpdate">
-                        <div class="permission hidden">
+                        <div class="has-permission">
                             <Text message="r_update" />
                         </div>
                         <div class="fallback">
@@ -122,10 +122,10 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
                         <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent="rolesUpdate">
-                            <div class="permission hidden">
-                                <Link href="/roles" class="px-10 py-2 dg-secondary-button">
-                                    <Text message="a_close" />
-                                </Link>
+                            <Link href="/roles" class="px-10 py-2 dg-secondary-button has-permission">
+                                <Text message="a_close" />
+                            </Link>
+                            <div class="has-permission">
                                 <ButtonConfirm type="submit">
                                     <Text message="a_save"/>
                                 </ButtonConfirm>

@@ -13,7 +13,7 @@ function showDomElements ( elementDataParents: string[] )
                     {
                         const parent = cash( elem );
                         parent.find( '.fallback' ).hide();
-                        parent.find( '.permission' ).show();
+                        parent.find( '.has-permission' ).show();
                     } );
             }
         } );

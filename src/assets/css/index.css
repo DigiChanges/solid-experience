@@ -247,3 +247,7 @@ input.searchBox:focus {
 .containerAlert::-webkit-scrollbar {
   display: none;
 }
+
+.has-permission {
+  display: none;
+}

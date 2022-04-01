@@ -49,19 +49,17 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 </ConfirmDelete>
             </Show>
 
-            <section class="flex flex-row justify-between items-center my-6">
+            <section class="flex flex-row justify-between items-center my-6" data-parent="rolesSave">
                 <Title class="dg-section-title" titleType="h4">
                     <Text message="r_list" />
                 </Title>
 
-                <div data-parent="rolesSave">
-                    <div class="permission hidden">
-                        <ButtonIcon
-                            icon={IconPlus}
-                            labelName={t( 'r_create' )}
-                            path="/roles/create"
-                        />
-                    </div>
+                <div class="has-permission">
+                    <ButtonIcon
+                        icon={IconPlus}
+                        labelName={t( 'r_create' )}
+                        path="/roles/create"
+                    />
                 </div>
             </section>
 
@@ -77,47 +75,37 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                         {( role ) =>
                             <MediaObject class="dg-media-object" >
                                 <div class="flex-col justify-center content-center ml-3 text-gray-400">
-                                    <Title titleType="h6" class="hover:transform hover:scale-125">
-                                        <div data-parent="rolesShow">
-                                            <div class="permission hidden">
-                                                <Link
-                                                    class="w-6 text-gray-300 hover:text-white mr-1 focus:outline-none"
-                                                    href={`/roles/${role.id}/update`}>
-                                                    {role.name}
-                                                </Link>
-                                            </div>
-                                            <div class="fallback">
-                                                <span class="w-6 text-gray-300 hover:text-white mr-1 focus:outline-none" >
-                                                    {role.name}
-                                                </span>
-                                            </div>
-                                        </div>
+                                    <Title titleType="h6" class="hover:transform hover:scale-125" data-parent="rolesShow">
+                                        <Link
+                                            class="w-6 text-gray-300 hover:text-white mr-1 focus:outline-none has-permission"
+                                            href={`/roles/${role.id}/update`}>
+                                            {role.name}
+                                        </Link>
+                                        <span class="w-6 text-gray-300 hover:text-white mr-1 focus:outline-none fallback" >
+                                            {role.name}
+                                        </span>
                                     </Title>
                                     { role.slug }
                                 </div>
                                 <div class="flex flex-col ml-auto">
                                     <div class="h-6 w-6 my-1" data-parent="rolesUpdate">
-                                        <div class="permission hidden">
-                                            <Link
-                                                class="w-6 hover:text-white mr-1 focus:outline-none"
-                                                href={`/roles/${role.id}/update`}>
-                                                <IconPencilAlt />
-                                            </Link>
-                                        </div>
+                                        <Link
+                                            class="w-6 hover:text-white mr-1 focus:outline-none has-permission"
+                                            href={`/roles/${role.id}/update`}>
+                                            <IconPencilAlt />
+                                        </Link>
                                     </div>
                                     <div class="h-6 w-6 my-1" data-parent="rolesDelete">
-                                        <div class="permission hidden">
-                                            <button
-                                                class="w-6 hover:text-white mr-1 focus:outline-none"
-                                                onClick={ openModal( {
-                                                    id: role.id,
-                                                    text: role.name,
-                                                } )}
-                                                type="button"
-                                            >
-                                                <IconTrash />
-                                            </button>
-                                        </div>
+                                        <button
+                                            class="w-6 hover:text-white mr-1 focus:outline-none has-permission"
+                                            onClick={ openModal( {
+                                                id: role.id,
+                                                text: role.name,
+                                            } )}
+                                            type="button"
+                                        >
+                                            <IconTrash />
+                                        </button>
                                     </div>
                                 </div>
                             </MediaObject>
