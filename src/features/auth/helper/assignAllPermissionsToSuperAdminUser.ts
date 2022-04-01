@@ -1,4 +1,4 @@
-import PermissionList from '../../shared/utils/PemissionList';
+import PermissionList from '../../shared/utils/PermissionList';
 import { ILoginApi } from '../interfaces';
 import AuthRepository from '../repositories/AuthRepository';
 

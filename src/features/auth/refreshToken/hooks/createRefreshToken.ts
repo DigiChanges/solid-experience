@@ -18,24 +18,22 @@ const createRefreshToken = () =>
     {
         if ( !auth.loading )
         {
-            const login = async () =>
+            ( async () =>
             {
                 if ( auth.error )
                 {
                     navigate( LOGIN_PAGE_PATH, { replace: true } );
+                    return setLoading( false );
                 }
-                else
+
+                const userAuth = await assignAllPermissionsToSuperAdminUser( auth()?.data );
+                addUser( userAuth );
+                if ( location.pathname === LOGIN_PAGE_PATH )
                 {
-                    const userAuth = await assignAllPermissionsToSuperAdminUser( auth()?.data );
-                    addUser( userAuth );
-                    if ( location.pathname === LOGIN_PAGE_PATH )
-                    {
-                        navigate( '/', { replace: true } );
-                    }
+                    navigate( '/', { replace: true } );
                 }
                 setLoading( false );
-            };
-            login();
+            } )();
         }
     } );
 
