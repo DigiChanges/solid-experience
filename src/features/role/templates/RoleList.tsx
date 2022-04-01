@@ -51,7 +51,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 
             <section class="flex flex-row justify-between items-center my-6">
                 <Title class="dg-section-title" titleType="h4">
-                    <Text message='r_list' />
+                    <Text message="r_list" />
                 </Title>
 
                 <div data-parent="rolesSave">
@@ -113,7 +113,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                                                     id: role.id,
                                                     text: role.name,
                                                 } )}
-                                                type='button'
+                                                type="button"
                                             >
                                                 <IconTrash />
                                             </button>
@@ -130,7 +130,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 <Show when={!!props.nextPage}>
                     <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
                         <Show when={!props.loading} fallback="Loading">
-                            <Text message='a_view_more'/>
+                            <Text message="a_view_more"/>
                         </Show>
                     </Button>
                 </Show>

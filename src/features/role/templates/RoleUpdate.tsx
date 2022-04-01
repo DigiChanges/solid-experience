@@ -100,7 +100,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                                 options={groupedPermissions()}
                                 isObject
                                 displayValue="value"
-                                groupBy='group'
+                                groupBy="group"
                                 id="permissions"
                                 placeholder={t( 'a_enter_permissions' )}
                                 errorClass="ml-1"
@@ -123,16 +123,16 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                         </div>
                         <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent="rolesUpdate">
                             <div class="permission hidden">
-                                <Link href='/roles' class="px-10 py-2 dg-secondary-button">
-                                    <Text message='a_close' />
+                                <Link href="/roles" class="px-10 py-2 dg-secondary-button">
+                                    <Text message="a_close" />
                                 </Link>
                                 <ButtonConfirm type="submit">
-                                    <Text message='a_save'/>
+                                    <Text message="a_save"/>
                                 </ButtonConfirm>
                             </div>
                             <div class="fallback w-full md:w-32">
-                                <Link href='/roles' class="px-10 py-2 dg-main-button">
-                                    <Text message='a_close' />
+                                <Link href="/roles" class="px-10 py-2 dg-main-button">
+                                    <Text message="a_close" />
                                 </Link>
                             </div>
                         </div>

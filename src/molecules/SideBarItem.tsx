@@ -29,7 +29,7 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
                 </span>
             </Show>
             <Show when={props.getExpanded}
-                fallback={() =>  <Text class="text-main-gray-100 text-sm font-bold md:block" message=''/>} >
+                fallback={() =>  <Text class="text-main-gray-100 text-sm font-bold md:block" message=""/>} >
                 <Text class="text-main-gray-100 text-sm font-bold md:block pr-2 pl-4" message={props.name} />
             </Show>
         </>

@@ -58,7 +58,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
             <section class="flex flex-row justify-between items-center my-6">
                 <Title class="dg-section-title" titleType="h4">
-                    <Text message='u_list' />
+                    <Text message="u_list" />
                 </Title>
 
                 <div data-parent="usersSave">
@@ -130,7 +130,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                                                     id: user.id,
                                                     text: `${user.firstName} ${user.lastName}`,
                                                 } )}
-                                                type='button'
+                                                type="button"
                                             >
                                                 <IconTrash />
                                             </button>
@@ -146,8 +146,8 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             <div class="dg-full-center-flex mt-8">
                 <Show when={!!props.nextPage}>
                     <Button onClick={props.viewMoreAction()} class="dg-secondary-button">
-                        <Show when={!props.loading} fallback={() => <span><Text message='a_loading' />...</span>}>
-                            <Text message='a_view_more'/>
+                        <Show when={!props.loading} fallback={() => <span><Text message="a_loading" />...</span>}>
+                            <Text message="a_view_more"/>
                         </Show>
                     </Button>
                 </Show>

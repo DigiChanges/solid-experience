@@ -26,7 +26,7 @@ const LoginTemplate: Component = () =>
                 errorData={errorAlert.errorData()}
                 title="err_login"
                 description="err_login_description"
-                position='float-top'
+                position="float-top"
             />
 
             <Show when={isLoading()} >

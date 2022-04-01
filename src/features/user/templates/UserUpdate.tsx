@@ -123,7 +123,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 </div>
                                 <div>
                                     <Input
-                                        labelName=''
+                                        labelName=""
                                         name="documentNumber"
                                         type="text"
                                         id="documentNumber"
@@ -138,7 +138,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                             <Label for="gender" class="dg-form-label text-left">
                                 <Text message="gender" />
                             </Label>
-                            <div class='flex'>
+                            <div class="flex">
                                 <Input
                                     name="gender"
                                     type="radio"
@@ -261,7 +261,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 options={groupedPermissions()}
                                 isObject
                                 displayValue="value"
-                                groupBy='group'
+                                groupBy="group"
                                 id="permissions"
                                 placeholder={t( 'a_enter_permissions' )}
                                 errorClass="ml-1"
@@ -284,11 +284,11 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
 
                         <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent="usersUpdate">
                             <div class="permission hidden">
-                                <Link href='/users' class="px-10 py-2 dg-secondary-button">
-                                    <Text message='a_close' />
+                                <Link href="/users" class="px-10 py-2 dg-secondary-button">
+                                    <Text message="a_close" />
                                 </Link>
                                 <Button class="dg-main-button" type="submit">
-                                    <Text message='a_save'/>
+                                    <Text message="a_save"/>
                                 </Button>
                             </div>
                             <div class="fallback w-full md:w-32">

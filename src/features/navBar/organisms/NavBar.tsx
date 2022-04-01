@@ -85,7 +85,7 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
                                     role="menuitem"
                                     onClick={logout( { user: user() } )}
                                 >
-                                    <Text message='a_logout' />
+                                    <Text message="a_logout" />
                                 </button>
                             </div>
                         </div>

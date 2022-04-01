@@ -47,11 +47,11 @@ const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
                     </div>
                     <div class="flex justify-around ">
                         <ButtonClose onClick={onHandleCloseModal( { onClose } )}>
-                            <Text message='a_cancel'/>
+                            <Text message="a_cancel"/>
                         </ButtonClose>
 
                         <ButtonConfirm onClick={handleDeleteUser( { onClose, cbAction } )}>
-                            <Text message='a_delete'/>
+                            <Text message="a_delete"/>
                         </ButtonConfirm>
                     </div>
                 </div>

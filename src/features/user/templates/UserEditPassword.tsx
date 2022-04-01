@@ -68,11 +68,11 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) 
                     </div>
 
                     <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
-                        <Link href='/users' class="dg-secondary-button">
-                            <Text message='a_close' />
+                        <Link href="/users" class="dg-secondary-button">
+                            <Text message="a_close" />
                         </Link>
                         <ButtonConfirm type="submit" class="w-full md:w-32 m-0">
-                            <Text message='a_save'/>
+                            <Text message="a_save"/>
                         </ButtonConfirm>
                     </div>
 

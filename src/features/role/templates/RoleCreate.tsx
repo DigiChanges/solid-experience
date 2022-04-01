@@ -90,7 +90,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 options={groupedPermissions()}
                                 isObject
                                 displayValue="value"
-                                groupBy='group'
+                                groupBy="group"
                                 id="permissions"
                                 placeholder={t( 'a_enter_permissions' )}
                                 errorClass="ml-1"
@@ -112,11 +112,11 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                             />
                         </div>
                         <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
-                            <Link href='/roles' class="dg-secondary-button">
-                                <Text message='a_close' />
+                            <Link href="/roles" class="dg-secondary-button">
+                                <Text message="a_close" />
                             </Link>
                             <ButtonConfirm type="submit" class="w-full md:w-32 m-0">
-                                <Text message='a_save'/>
+                                <Text message="a_save"/>
                             </ButtonConfirm>
                         </div>
                     </div>

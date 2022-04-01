@@ -95,7 +95,7 @@ const RoleView: Component<RoleViewTemplateProps> = props =>
 
 
                         <div class="w-full mt-5 flex justify-end">
-                            <Link href='/roles' class="px-10 py-2 items-center dg-secondary-button">
+                            <Link href="/roles" class="px-10 py-2 items-center dg-secondary-button">
                                 Close
                             </Link>
                             <Button class="dg-main-button">Save</Button>

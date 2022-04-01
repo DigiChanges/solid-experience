@@ -16,7 +16,7 @@ const SideBar: Component<SideBarProps> = ( props ) =>
             classList={{ 'md:relative md:w-56': props.getExpanded }}
         >
             <div class={'text-white'}>
-                <div class='flex flex-col items-center h-full md:justify-center w-full md:w-auto'>
+                <div class="flex flex-col items-center h-full md:justify-center w-full md:w-auto">
                     {
                         props.getExpanded ? (
                             <div class="hidden md:flex  flex-row-reverse w-full">
