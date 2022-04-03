@@ -122,10 +122,12 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
                             />
                         </div>
                         <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent="rolesUpdate">
-                            <Link href="/roles" class="px-10 py-2 dg-secondary-button has-permission">
-                                <Text message="a_close" />
-                            </Link>
-                            <div class="has-permission">
+                            <div class="w-full md:w-32 m-0 has-permission">
+                                <Link href="/roles" class="dg-secondary-button">
+                                    <Text message="a_close" />
+                                </Link>
+                            </div>
+                            <div class="w-full md:w-32 m-0 has-permission">
                                 <ButtonConfirm type="submit">
                                     <Text message="a_save"/>
                                 </ButtonConfirm>

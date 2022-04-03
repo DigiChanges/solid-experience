@@ -1,11 +1,12 @@
 import { Label } from '@digichanges/solid-components';
 import { Link } from 'solid-app-router';
+import { Text, useI18n } from 'solid-i18n';
 import { Component, createMemo, Show } from 'solid-js';
 import { Form } from 'solid-js-form';
-import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
 import { country, documentTypeOptions, states } from '../../../entities';
+import ButtonConfirm from '../../../molecules/ButtonConfirm';
 import { IPermissionApi } from '../../auth/interfaces';
 import { IRoleApi } from '../../role/interfaces';
 import MultiSelect from '../../shared/molecules/MultiSelect';
@@ -15,7 +16,6 @@ import { SelectTransform } from '../../shared/utils/SelectTransform';
 import { countryMultiSelectStyle, documentTypeMultiSelectStyle, singleSelectStyle } from '../constants/selectStyles';
 import { IUserApi } from '../interfaces';
 import userUpdateValidationSchema from '../validations/schemas/userUpdateValidationSchema';
-import { Text, useI18n } from 'solid-i18n';
 
 interface UserUpdateTemplateProps
 {
@@ -281,13 +281,15 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                         </div>
 
                         <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent="usersUpdate">
-                            <Link href="/users" class="px-10 py-2 dg-secondary-button has-permission">
-                                <Text message="a_close" />
-                            </Link>
-                            <div class="has-permission">
-                                <Button class="dg-main-button" type="submit">
+                            <div class="w-full md:w-32 m-0 has-permission">
+                                <Link href="/users" class="dg-secondary-button">
+                                    <Text message="a_close" />
+                                </Link>
+                            </div>
+                            <div class="w-full md:w-32 m-0 has-permission">
+                                <ButtonConfirm type="submit">
                                     <Text message="a_save"/>
-                                </Button>
+                                </ButtonConfirm>
                             </div>
                             <div class="fallback w-full md:w-32">
                                 <Link href="/users" class="px-10 py-2 dg-main-button">
