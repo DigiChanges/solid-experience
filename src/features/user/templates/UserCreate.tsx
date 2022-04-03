@@ -1,7 +1,9 @@
 import { Label } from '@digichanges/solid-components';
 import { Link } from 'solid-app-router';
+import { Text, useI18n } from 'solid-i18n';
 import { Component, createMemo, /* DEV, */ Show } from 'solid-js';
 import { Form } from 'solid-js-form';
+import ErrorField from '../../../atoms/ErrorField';
 import Input from '../../../atoms/Input';
 import PasswordShowHide from '../../../atoms/PasswordShowHide/PasswordShowHide';
 import Title from '../../../atoms/Title';
@@ -15,7 +17,6 @@ import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
 import { countryMultiSelectStyle, documentTypeMultiSelectStyle, enableMultiSelectStyle } from '../constants/selectStyles';
 import userCreateValidationSchema from '../validations/schemas/userCreateValidationSchema';
-import { Text, useI18n } from 'solid-i18n';
 
 interface UserCreateTemplateProps
 {
@@ -107,12 +108,12 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 errorClass="ml-1"
                             />
                         </div>
-                        {/* dg-form-quarter-field-wrapper */}
-                        <div class="dg-form-quarter-field-wrapper ">
+                        <div class="dg-form-full-field-wrapper">
                             <Label for="documentType" class="dg-form-label">
                                 <Text message="id_number" />
                             </Label>
                             <div class="flex w-full">
+                                <input autocomplete="false" name="hidden" type="text" style={{ display: 'none' }}/>
                                 <div>
                                     <SingleSelect
                                         id="documentType"
@@ -125,26 +126,26 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                         errorClass="ml-1"
                                     />
                                 </div>
-                                <div>
+                                <div class="w-full">
                                     <Input
                                         labelName=""
                                         name="documentNumber"
                                         type="text"
                                         id="documentNumber"
-                                        class="flex-1 dg-form-field-quarter rounded-l-none flex w-full mr-2"
+                                        class="flex-1 dg-form-field-quarter rounded-l-none flex w-full"
                                         placeholder={t( 'a_enter_id_number' )}
                                         errorClass="ml-1"
+                                        autocomplete="nope"
                                     />
                                 </div>
                             </div>
                         </div>
 
-                        <div class="dg-form-quarter-field-wrapper text-center">
+                        <div class="dg-form-full-field-wrapper">
                             <Label for="gender" class="dg-form-label text-left">
                                 <Text message="gender" />
                             </Label>
-                            <div class="flex">
-
+                            <div class="flex justify-between items-center">
                                 <Input
                                     name="gender"
                                     type="radio"
@@ -153,7 +154,8 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
                                     labelClass="text-gray-400 text-xs font-bold mr-1"
                                     labelName="F"
-                                    errorChildren={false}
+                                    errorChildren={null}
+                                    hideError
                                 />
                                 <Input
                                     name="gender"
@@ -163,7 +165,8 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
                                     labelClass="text-gray-400 text-xs font-bold mr-1"
                                     labelName="M"
-                                    errorChildren={false}
+                                    errorChildren={null}
+                                    hideError
                                 />
                                 <Input
                                     name="gender"
@@ -173,12 +176,13 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1 mr-2"
                                     labelClass="text-gray-400 text-xs font-bold mr-1"
                                     labelName={t( 'a_gender_other' )}
-                                    errorClass="ml-1"
+                                    hideError
                                 />
                             </div>
+                            <ErrorField name="gender" class="ml-1"/>
                         </div>
 
-                        <div class="dg-form-quarter-field-wrapper">
+                        <div class="dg-form-full-field-wrapper">
                             <Input
                                 name="birthday"
                                 labelName={t( 'birthday' )}
@@ -190,7 +194,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 errorClass="ml-1"
                             />
                         </div>
-                        <div class="dg-form-quarter-field-wrapper">
+                        <div class="dg-form-full-field-wrapper">
                             <Label for="enable" class="dg-form-label">
                                 <Text message="enable" />
                             </Label>

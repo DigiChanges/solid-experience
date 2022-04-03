@@ -30,9 +30,6 @@ const userValidationSchema = ( t: any ) => ( {
         .required(  t( 'av_required' ) ),
     enable: Yup.object()
         .required(  t( 'av_required' ) ),
-    roles: Yup.array()
-        .min( 1, t( 'av_one_item' )  )
-        .required(  t( 'av_required' ) ),
 } );
 
 export default userValidationSchema;

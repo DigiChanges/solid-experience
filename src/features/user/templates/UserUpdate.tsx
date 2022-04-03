@@ -3,6 +3,7 @@ import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, createMemo, Show } from 'solid-js';
 import { Form } from 'solid-js-form';
+import ErrorField from '../../../atoms/ErrorField';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
 import { country, documentTypeOptions, states } from '../../../entities';
@@ -43,12 +44,14 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
     return (
         <section class="px-4">
             <section class="flex flex-row justify-between items-center my-6">
-                <Title class="dg-section-title" titleType="h1" data-parent="usersUpdate">
-                    <div class="has-permission">
-                        <Text message="u_update" />
-                    </div>
-                    <div class="fallback">
-                        <Text message="User" />
+                <Title class="dg-section-title" titleType="h1">
+                    <div data-parent="usersUpdate">
+                        <div class="has-permission">
+                            <Text message="u_update" />
+                        </div>
+                        <div class="fallback">
+                            <Text message="User" />
+                        </div>
                     </div>
                 </Title>
             </section>
@@ -101,8 +104,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 errorClass="ml-1"
                             />
                         </div>
-                        {/* dg-form-quarter-field-wrapper */}
-                        <div class="dg-form-quarter-field-wrapper ">
+                        <div class="dg-form-full-field-wrapper">
                             <Label for="documentType" class="dg-form-label">
                                 <Text message="id_number" />
                             </Label>
@@ -119,33 +121,36 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                         errorClass="ml-1"
                                     />
                                 </div>
-                                <div>
+                                <div class="w-full">
                                     <Input
                                         labelName=""
                                         name="documentNumber"
                                         type="text"
                                         id="documentNumber"
-                                        class="flex-1 dg-form-field-quarter rounded-l-none flex w-full mr-2"
+                                        class="flex-1 dg-form-field-quarter rounded-l-none flex w-full"
                                         placeholder={t( 'a_enter_id_number' )}
                                         errorClass="ml-1"
+                                        autocomplete="nope"
                                     />
                                 </div>
                             </div>
                         </div>
-                        <div class="dg-form-quarter-field-wrapper text-center">
+
+                        <div class="dg-form-full-field-wrapper">
                             <Label for="gender" class="dg-form-label text-left">
                                 <Text message="gender" />
                             </Label>
-                            <div class="flex">
+                            <div class="flex justify-between items-center">
                                 <Input
                                     name="gender"
                                     type="radio"
                                     id="gender-f"
                                     value="fame"
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
-                                    labelClass="text-gray-400 text-xs font-bold mr-1"
+                                    labelClass="text-gray-400 text-xs font-bold"
                                     labelName="F"
-                                    errorChildren={false}
+                                    errorChildren={null}
+                                    hideError
                                 />
                                 <Input
                                     name="gender"
@@ -153,9 +158,10 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                     id="gender-m"
                                     value="male"
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
-                                    labelClass="text-gray-400 text-xs font-bold mr-1"
+                                    labelClass="text-gray-400 text-xs font-bold"
                                     labelName="M"
-                                    errorChildren={false}
+                                    errorChildren={null}
+                                    hideError
                                 />
                                 <Input
                                     name="gender"
@@ -163,14 +169,16 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                     id="gender-o"
                                     value="other"
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1 mr-2"
-                                    labelClass="text-gray-400 text-xs font-bold mr-1"
+                                    labelClass="text-gray-400 text-xs font-bold"
                                     labelName={t( 'a_gender_other' )}
-                                    errorClass="ml-1"
+                                    errorChildren={false}
+                                    hideError
                                 />
                             </div>
+                            <ErrorField name="gender" class="ml-1"/>
                         </div>
 
-                        <div class="dg-form-quarter-field-wrapper">
+                        <div class="dg-form-full-field-wrapper">
                             <Input
                                 name="birthday"
                                 labelName={t( 'birthday' )}
@@ -179,20 +187,6 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder= {t( 'a_choose_birthday' )}
                                 labelClass="dg-form-label"
-                                errorClass="ml-1"
-                            />
-                        </div>
-                        <div class="dg-form-quarter-field-wrapper">
-                            <Label for="enable" class="dg-form-label">
-                                <Text message="enable" />
-                            </Label>                            <SingleSelect
-                                id="enable"
-                                name="enable"
-                                options={states}
-                                isObject
-                                displayValue="label"
-                                style={singleSelectStyle}
-                                placeholder="Type"
                                 errorClass="ml-1"
                             />
                         </div>
@@ -220,6 +214,21 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                 placeholder={t( 'a_your_address' )}
                                 labelClass="dg-form-label"
                                 labelName={t( 'address' )}
+                                errorClass="ml-1"
+                            />
+                        </div>
+                        <div class="dg-form-full-field-wrapper">
+                            <Label for="enable" class="dg-form-label">
+                                <Text message="enable" />
+                            </Label>
+                            <SingleSelect
+                                id="enable"
+                                name="enable"
+                                options={states}
+                                isObject
+                                displayValue="label"
+                                style={singleSelectStyle}
+                                placeholder="Type"
                                 errorClass="ml-1"
                             />
                         </div>

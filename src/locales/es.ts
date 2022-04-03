@@ -86,7 +86,7 @@ const properties: I18nLocales = {
     country: 'Pais',
     document_number: 'número de documento',
     email: 'Correo electrónico',
-    enable: 'Habilitar',
+    enable: 'Habilitado',
     first_name: 'Nombre',
     gender: 'Género',
     id_number: 'Número ID',
