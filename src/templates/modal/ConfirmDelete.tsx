@@ -31,7 +31,7 @@ const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
     return (
         <Modal {...others}>
             <div class="dg-full-center-flex">
-                <div class="dg-rounded-small-box flex flex-col justify-between">
+                <div class="dg-rounded-small-box flex flex-col justify-between min-w-full min-h-full md:min-w-0 md:min-h-0">
                     <div class="w-full flex justify-end">
                         <Button class="dg-link w-6" type="button" onClick={onHandleCloseModal( { onClose } )}>
                             <IconCross />
