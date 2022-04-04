@@ -50,18 +50,13 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
                         classList={{ selectedBlue: props.sectionSelected === props.path }}
                     >
                         <SideBarItemContent {...props} />
-
-                        {props.sectionSelected === props.path ?
-                            <span class={'inline-flex ml-auto  pl-1 w-6'}
-                                classList={{ hidden: props.path === '/logout'  }}
-                            > <IconChevronDown /></span>
-
-                            :
-                            <span class={' inline-flex ml-auto  pl-1 w-6'}
-                                classList={{ hidden: props.path === '/logout'  }}
-                            > <IconChevronRight /></span>
-                        }
-
+                        <span class="inline-flex ml-auto pl-1 w-6" classList={{ hidden: props.path === '/logout'  }} >
+                            <Show when={props.sectionSelected === props.path}
+                                fallback={<IconChevronRight />}
+                            >
+                                <IconChevronDown />
+                            </Show>
+                        </span>
                     </button>
                 }
             >

@@ -9,6 +9,7 @@ interface SideBarSubItemProps {
     isToggled?: boolean;
     equalPath?: any;
     showItem: boolean;
+    expanded: boolean;
 }
 
 const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
@@ -29,12 +30,15 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                                 <Icon />
                             </span>
                         </Show>
-                        <span
-                            class="text-sm font-bold justify-start md:justify-center pl-2 px-4"
-                            classList={{ 'pl-1': props.isToggled } }
-                        >
-                            <Text message={props.name} />
-                        </span>
+                        <Show when={props.expanded}>
+
+                            <span
+                                class="text-sm font-bold justify-start md:justify-center pl-2 px-4"
+                                classList={{ 'pl-1': props.isToggled } }
+                            >
+                                <Text message={props.name} />
+                            </span>
+                        </Show>
                     </div>
                 </NavLink>
             </div>
