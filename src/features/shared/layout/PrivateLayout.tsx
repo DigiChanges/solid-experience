@@ -102,7 +102,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
             <header class="grid-in-header dg-element-bg">
                 <NavBar showSidebar={showSidebar()} onClick={onClick} email={'example@mail.com'} />
             </header>
-            <div class="hidden md:block mt-6 ml-4 z-10 w-max">
+            <div class="grid-in-sidebar hidden md:block mt-6 ml-4 z-10 w-max">
                 <SideBar class="dg-rounded ml-1 h-89 py-5" getExpanded={getExpanded()} setExpanded={setExpanded}>
                     <div class="flex flex-col h-full justify-between pb-5">
                         <div class="">
@@ -113,7 +113,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                 </SideBar>
             </div>
             <Show when={showSidebar()} >
-                <div class="absolute md:hidden mt-20 md:m-4 z-50 ">
+                <div class="grid-in-sidebar absolute md:hidden mt-20 md:m-4 z-50 ">
                     <SideBar class="relative ml-5 dg-rounded min-h-80vh py-5 w-48" getExpanded={getExpanded()} setExpanded={setExpanded}>
                         {getDashItems()}
                         <LogoutSideBarItem user={user()} getExpanded={getExpanded()} sectionSelected={sectionSelected()}/>
@@ -124,7 +124,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                 {/* <Breadcrumb class="pt-5 text-gray-500 lg:text-base ml-2 md:ml-4" /> */}
                 {props.children}
             </main>
-            <Footer class="flex grid-in-footer border m-4 w-auto p-4 text-sm text-gray-200 rounded justify-center">
+            <Footer class="flex grid-in-footer border m-4 w-auto p-4 text-sm text-gray-200 items-end justify-center">
                 {new Date().getFullYear()} © DigiChanges
             </Footer>
 
