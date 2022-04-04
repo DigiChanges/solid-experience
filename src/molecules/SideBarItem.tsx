@@ -14,7 +14,7 @@ interface SideBarItemProps {
     showItem: boolean;
     isLink: boolean;
     path: string;
-    getExpanded: any;
+    getExpanded: boolean;
     sectionSelected: string;
 }
 
