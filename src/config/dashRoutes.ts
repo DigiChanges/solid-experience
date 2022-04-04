@@ -133,7 +133,7 @@ export const dashRoutes = [
     },
     {
         path: '/*all',
-        component: lazy( () => import( '../pages/dashboard' ) ),
+        component: lazy( () => import( '../pages/error/Custom404' ) ),
     },
 ];
 

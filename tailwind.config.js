@@ -16,17 +16,17 @@ module.exports = {
             'md-private-layout': [
                 'header header header header',
                 'sidebar main main main',
-                'footer footer footer footer',
+                'sidebar footer footer footer',
             ],
             'desktop-layout': [
                 'header header header header',
                 'sidebar main main main',
-                'footer footer footer footer',
+                'sidebar footer footer footer',
             ],
             'tablet-layout': [
                 'header header header header',
                 'sidebar . main main',
-                'footer footer footer footer',
+                'sidebar footer footer footer',
             ],
             'mobile-layout': [
                 'header header header header',
