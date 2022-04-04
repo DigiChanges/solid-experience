@@ -40,7 +40,7 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
 
 
 const SideBarItem: Component<SideBarItemProps> = ( props ) => (
-    <div class={'w-full '}>
+    <div class="w-full">
         <Show when={props.showItem}>
             <Show when={props.isLink}
                 fallback={() =>
