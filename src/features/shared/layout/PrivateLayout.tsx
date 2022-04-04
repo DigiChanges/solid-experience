@@ -60,6 +60,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                         isLink={!item.children}
                         path={ item.path }
                         getExpanded={getExpanded()}
+                        sectionSelected={sectionSelected()}
                     >
                         <Show when={getShowSubitems() && getExpanded() && sectionSelected() === item.path}>
                             <div class="flex flex-row">
@@ -107,7 +108,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                         <div class="">
                             {getDashItems()}
                         </div>
-                        <LogoutSideBarItem user={user()} getExpanded={getExpanded()}/>
+                        <LogoutSideBarItem user={user()} getExpanded={getExpanded()} sectionSelected={sectionSelected()}/>
                     </div>
                 </SideBar>
             </div>
@@ -115,7 +116,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                 <div class="absolute md:hidden mt-20 md:m-4 z-50 ">
                     <SideBar class="relative ml-5 dg-rounded min-h-80vh py-5 w-48" getExpanded={getExpanded()} setExpanded={setExpanded}>
                         {getDashItems()}
-                        <LogoutSideBarItem user={user()} getExpanded={getExpanded()}/>
+                        <LogoutSideBarItem user={user()} getExpanded={getExpanded()} sectionSelected={sectionSelected()}/>
                     </SideBar>
                 </div>
             </Show>
