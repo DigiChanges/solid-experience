@@ -101,18 +101,21 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
             <header class="grid-in-header dg-element-bg">
                 <NavBar showSidebar={showSidebar()} onClick={onClick} email={'example@mail.com'} />
             </header>
-            <div class="hidden md:block mt-6 ml-4 z-10 w-max grid-in-sidebar text-white">
+            <div class="hidden md:block mt-6 ml-4 z-10 w-max">
                 <SideBar class="dg-rounded ml-1 h-89 py-5" getExpanded={getExpanded()} setExpanded={setExpanded}>
-                    {getDashItems()}
-                    <LogoutSideBarItem user={user()} getExpanded={getExpanded()}/>
+                    <div class="flex flex-col h-full justify-between pb-5">
+                        <div class="">
+                            {getDashItems()}
+                        </div>
+                        <LogoutSideBarItem user={user()} getExpanded={getExpanded()}/>
+                    </div>
                 </SideBar>
             </div>
             <Show when={showSidebar()} >
                 <div class="absolute md:hidden mt-20 md:m-4 z-50 ">
-                    <SideBar class="relative ml-5 dg-rounded min-h-80vh  py-5 w-48 pb-20" getExpanded={getExpanded()} setExpanded={setExpanded}>
+                    <SideBar class="relative ml-5 dg-rounded min-h-80vh py-5 w-48" getExpanded={getExpanded()} setExpanded={setExpanded}>
                         {getDashItems()}
                         <LogoutSideBarItem user={user()} getExpanded={getExpanded()}/>
-
                     </SideBar>
                 </div>
             </Show>
