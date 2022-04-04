@@ -264,10 +264,10 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
-"@digichanges/solid-components@*":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@digichanges/solid-components/-/solid-components-0.4.0.tgz#eb615948e4704d73914eb2a1ddd7f966005a3175"
-  integrity sha512-vfNIrwwkHg72iCr+PAEByYwwg8VOZzlGPtqgmojEG6fi6Ou1Qp9R2EC/Vdu0JBTDJEB6GpP9H57r5qMuDjcGMw==
+"@digichanges/solid-components@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@digichanges/solid-components/-/solid-components-0.5.0.tgz#4b480e7e1fddf8a3e8d49798754fcb23b66364b0"
+  integrity sha512-WZnnveWy+Y3M2oB1/+NQAyO2oozg9Cq/DJW5ilyKl/0NAECuuDm4cNhwZKSvFbrWnC6jbXhlLmtmNCDWiSkwhw==
   dependencies:
     solid-js "^1.1.3"
 
