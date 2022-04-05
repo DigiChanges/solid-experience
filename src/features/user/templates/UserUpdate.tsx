@@ -147,7 +147,8 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                     id="gender-f"
                                     value="fame"
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
-                                    labelClass="text-gray-400 text-xs font-bold"
+                                    labelClass="text-gray-400 text-xs font-bold mr-8"
+                                    containerClass="flex-grow"
                                     labelName="F"
                                     errorChildren={null}
                                     hideError
@@ -158,7 +159,8 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                     id="gender-m"
                                     value="male"
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
-                                    labelClass="text-gray-400 text-xs font-bold"
+                                    labelClass="text-gray-400 text-xs font-bold mr-8"
+                                    containerClass="flex-grow"
                                     labelName="M"
                                     errorChildren={null}
                                     hideError
@@ -169,7 +171,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
                                     id="gender-o"
                                     value="other"
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1 mr-2"
-                                    labelClass="text-gray-400 text-xs font-bold"
+                                    labelClass="text-gray-400 text-xs font-bold mr-8"
                                     labelName={t( 'a_gender_other' )}
                                     errorChildren={false}
                                     hideError

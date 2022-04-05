@@ -254,3 +254,7 @@ input.searchBox:focus {
 .selectedBlue {
   color: rgba(66, 153, 225, var(--tw-text-opacity));
 }
+
+.flex-grow {
+  flex-grow: 1;
+}
