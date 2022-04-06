@@ -18,7 +18,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
     const [ getExpanded, setExpanded ] = createSignal( true );
     const [ authUser ] = useApplicationContext();
 
-    const onShowSideBar = () =>
+    const toggleShowSideBar = () =>
     {
         setShowSideBar( !showSidebar() );
     };
@@ -27,7 +27,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
         <div class="grid grid-areas-mobile-layout md:grid-areas-tablet-layout lg:grid-areas-desktop-layout grid-cols-desktop-layout
         h-full dg-main-bg">
             <header class="grid-in-header dg-element-bg">
-                <NavBar showSidebar={showSidebar()} onClick={onShowSideBar} email={'example@mail.com'} />
+                <NavBar sideBarIsShown={showSidebar()} onClick={toggleShowSideBar} email={'example@mail.com'} />
             </header>
             {/* desktop */}
             <div class="grid-in-sidebar hidden md:block mt-6 ml-4 z-10 w-max">

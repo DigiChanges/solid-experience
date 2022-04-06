@@ -1,9 +1,9 @@
 import { lazy } from 'solid-js';
-import IconCog from '../atoms/Icons/Stroke/IconCog';
 import IconDashboard from '../atoms/Icons/Stroke/IconDashboard';
 import IconHome from '../atoms/Icons/Stroke/IconHome';
 import IconPencilAlt from '../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../atoms/Icons/Stroke/IconPlus';
+import IconRoles from '../atoms/Icons/Stroke/IconRoles';
 import IconUsers from '../atoms/Icons/Stroke/IconUsers';
 import IconViewList from '../atoms/Icons/Stroke/IconViewList';
 import { permissions } from './permissions';
@@ -52,7 +52,7 @@ export const dashRoutes = [
                 path: '/',
                 component: lazy( () => import( '../pages/users' ) ),
                 name: 'a_list',
-                icon: IconHome,
+                icon: IconViewList,
                 showItem: true,
                 permission: permissions.USERS.LIST,
             },
@@ -100,7 +100,7 @@ export const dashRoutes = [
     {
         path: '/roles',
         name: 'roles',
-        icon: IconCog,
+        icon: IconRoles,
         showItem: true,
         permission: permissions.ROLES.LIST,
         children:
@@ -109,7 +109,7 @@ export const dashRoutes = [
                 path: '/',
                 component: lazy( () => import( '../pages/roles' ) ),
                 name: 'a_list',
-                icon: IconHome,
+                icon: IconViewList,
                 showItem: true,
                 permission: permissions.ROLES.LIST,
             },

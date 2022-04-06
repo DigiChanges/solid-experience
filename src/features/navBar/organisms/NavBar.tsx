@@ -7,13 +7,14 @@ import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
 import IconCross from '../../../atoms/Icons/Stroke/IconCross';
 import Image from '../../../atoms/Image';
 import { useApplicationContext } from '../../../context/context';
+import LanguageMenu from '../../language/LanguageMenu';
 import { logout } from './handlers';
 
 interface NavbarTemplatePRops {
     email?: string;
     onClick?: ( event: MouseEvent ) => void;
     permissionsList?: string[];
-    showSidebar: boolean;
+    sideBarIsShown: boolean;
 }
 
 const NavBar: Component<NavbarTemplatePRops> = props =>
@@ -24,17 +25,20 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
     return (
         <nav class=" shadow-md text-white " >
             <div class="mx-auto px-2 sm:px-6 lg:px-8">
-                <div class="relative dg-full-center-flex h-16">
+                <div class="dg-full-center-flex h-16">
 
                     <div class="flex-1 flex items-start justify-start sm:items-stretch sm:justify-start">
                         <div class="flex-shrink-0 flex items-center  cursor-pointer">
-                            <a href="/">
+                            <a href="/" class="mr-5">
                                 <Image src={logoNav} alt="digichanges logo" class="block h-8 w-auto"/>
                             </a>
+                            <h2 class="text-gray-400">DIGICHANGES</h2>
                         </div>
                     </div>
 
-                    <div class="absolute flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <LanguageMenu />
+
+                    <div class="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         <button class="p-1 rounded-full text-gray-400 hover:text-white h-8 w-8 hidden md:block lg:block">
                             <span class="sr-only">View notifications</span>
                             <span>
@@ -91,14 +95,14 @@ const NavBar: Component<NavbarTemplatePRops> = props =>
                         </div>
                     </div>
 
-                    <div class="absolute inset-y-0 p-3 right-0 flex items-center md:hidden">
+                    <div class="inset-y-0 p-3 right-0 flex items-center md:hidden">
                         <button
                             onClick={props.onClick}
                             type="button"
                             class="items-center justify-center rounded-md text-gray-400 hover:text-white w-6 h-6"
                         >
                             <span class="sr-only">Open Main Menu</span>
-                            <Show when={!props.showSidebar} fallback={ <IconCross /> }>
+                            <Show when={!props.sideBarIsShown} fallback={ <IconCross /> }>
                                 <IconBurger/>
                             </Show>
                         </button>
