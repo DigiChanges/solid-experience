@@ -25,6 +25,7 @@ const app: I18nLocales = {
     a_gender_other: 'other',
     a_home: 'Home',
     a_list: 'List',
+    a_loading: 'Loading',
     a_login: 'Login',
     a_logout: 'Logout',
     a_order_by: 'Order by',
