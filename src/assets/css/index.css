@@ -109,13 +109,12 @@
 
 .row {
   position: relative;
-  max-height: 8rem;
+  max-height: 9rem;
   margin: .5rem auto;
   padding: 2vh;
   border-radius: 10px;
   text-shadow: #3c3c3c 0 1px 1px;
   color: #f2f2f2;
-  width: 60vw;
   overflow-wrap: break-word;
   background: #3c3c3c;
 }

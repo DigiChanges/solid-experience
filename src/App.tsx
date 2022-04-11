@@ -19,7 +19,7 @@ function App ()
             <div style={{ 'background-color': 'rgb(7, 11, 20)', 'min-height': '100vh' }}>
                 <ErrorBoundary fallback={<CustomError/>}>
                     <Portal>
-                        <div class="containerNotification top-0 right-0 z-50 max-w-xs"></div>
+                        <div class="containerNotification top-0 right-0 z-50 xs:max-w-xs md:max-w-xl pr-0  py-1"></div>
                     </Portal>
                     <Show when={!loading()}
                         fallback={(
