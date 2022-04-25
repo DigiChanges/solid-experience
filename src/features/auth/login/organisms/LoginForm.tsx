@@ -18,7 +18,7 @@ const LoginForm: Component<LoginFormProps> = props =>
     const { t } = useI18n();
     return (
         <Form
-            initialValues={{ email: '', password: '', tenant: 'public' }}
+            initialValues={{ email: '', password: '' }}
             validation={SignUpSchema}
             onSubmit={async ( form ) =>
             {
