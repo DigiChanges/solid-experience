@@ -1,4 +1,4 @@
-import Dashboard from '../../templates/dashboard/index';
+import Dashboard from '../../features/dashboard/templates/dashboard';
 import { Component } from 'solid-js';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout';
 const DashboardPage: Component = () =>

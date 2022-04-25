@@ -77,9 +77,7 @@ export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) =>
     }
 
     // axios.defaults.withCredentials = true;
-    const http = axios.create( {
-        withCredentials: true,
-    } );
+    const http = axios.create();
 
     const response = await http.request<T>( { ...requestDefaultOptions, ...config } );
 

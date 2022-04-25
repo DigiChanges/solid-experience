@@ -10,7 +10,7 @@ import Title from '../../../atoms/Title';
 import ButtonIcon from '../../../molecules/ButtonIcon';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
-import ConfirmDelete from '../../../templates/modal/ConfirmDelete';
+import ConfirmDelete from '../../shared/modals/ConfirmDelete';
 import FilterSort from '../../filterSort/organisms/FilterSort';
 import useModal from '../../shared/hooks/useModal';
 import RemoveModalContent from '../../shared/modals/RemoveModalContent';

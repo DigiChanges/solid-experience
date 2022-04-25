@@ -1,11 +1,11 @@
 import { Text } from 'solid-i18n';
 import { Component, splitProps } from 'solid-js';
-import Button from '../../atoms/Button';
-import IconCross from '../../atoms/Icons/Stroke/IconCross';
-import IconExclamation from '../../atoms/Icons/Stroke/IconExclamation';
-import ButtonClose from '../../molecules/ButtonClose';
-import ButtonConfirm from '../../molecules/ButtonConfirm';
-import Modal from '../../molecules/Modal';
+import Button from '../../../atoms/Button';
+import IconCross from '../../../atoms/Icons/Stroke/IconCross';
+import IconExclamation from '../../../atoms/Icons/Stroke/IconExclamation';
+import ButtonClose from '../../../molecules/ButtonClose';
+import ButtonConfirm from '../../../molecules/ButtonConfirm';
+import Modal from '../../../molecules/Modal';
 
 interface ConfirmDeleteTemplateProps
 {
