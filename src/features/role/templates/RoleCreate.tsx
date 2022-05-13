@@ -29,7 +29,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
     const i18n = useI18n();
     const { t } = i18n;
-    const groupedPermissions = createMemo( () =>  SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
+    const groupedPermissions = createMemo( () => SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
 
     return (
         <section class="px-4">

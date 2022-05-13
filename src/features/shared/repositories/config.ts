@@ -1,4 +1,4 @@
-const API_PROTOCOL  = import.meta.env.VITE_API_PROTOCOL as string || 'http';
+const API_PROTOCOL = import.meta.env.VITE_API_PROTOCOL as string || 'http';
 const API_HOSTNAME = import.meta.env.VITE_API_HOSTNAME as string || 'localhost';
 const API_PORT = import.meta.env.VITE_API_PORT as string || 8089;
 

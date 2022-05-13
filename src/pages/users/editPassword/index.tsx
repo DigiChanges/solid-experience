@@ -8,7 +8,7 @@ import PrivateLayout from '../../../features/shared/layout/PrivateLayout';
 const IndexPage: Component = () =>
 {
     const navigate = useNavigate();
-    const { id } = useParams<{ id: string  }> ();
+    const { id } = useParams<{ id: string }> ();
     const [ user ]: any = useApplicationContext();
     const userRepository = new UserRepository( user() );
 

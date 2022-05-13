@@ -5,7 +5,7 @@ function useModal<T> ( initialValue: T )
     const [ isShowModal, setIsShowModal ] = createSignal( false );
     const [ modalData, setModalData ] = createSignal<T>( initialValue );
 
-    const openModal = (  newModalData: T ) =>  () =>
+    const openModal = ( newModalData: T ) => () =>
     {
         setIsShowModal( true );
         // @ts-ignore

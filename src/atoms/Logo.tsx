@@ -7,7 +7,7 @@ interface LogoProps
     class?: string;
 }
 
-const Logo: Component<LogoProps> =  props =>
+const Logo: Component<LogoProps> = props =>
     <img src={props.image} alt={props.alt} class={props.class} />;
 
 export default Logo;

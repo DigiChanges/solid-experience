@@ -6,7 +6,7 @@ interface SearchInputProps {
     class?: string;
 }
 
-const SearchInput: Component<SearchInputProps> = props  =>
+const SearchInput: Component<SearchInputProps> = props =>
 {
     return (
         <>

@@ -4,7 +4,7 @@ import { Component } from 'solid-js';
 import { useField } from 'solid-js-form';
 import { handleSelect } from './handlers';
 
-type InputFormPropsWithoutValue = Omit<InputFormProps, 'value' |  'placeholder' | 'labelName'>;
+type InputFormPropsWithoutValue = Omit<InputFormProps, 'value' | 'placeholder' | 'labelName'>;
 type PasswordShowHideProps = InputFormPropsWithoutValue & {
     placeholder?: string | HTMLElement | ( string | HTMLElement )[];
     labelName?: string | HTMLElement | ( string | HTMLElement )[];

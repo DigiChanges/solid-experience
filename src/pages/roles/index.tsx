@@ -27,7 +27,7 @@ const IndexPage: Component = () =>
         setViewMore();
     };
 
-    const removeAction = async ( id: string  ) =>
+    const removeAction = async ( id: string ) =>
     {
         const remove = roleRepository.removeRole( id );
         void await remove();

@@ -13,7 +13,7 @@ const MultiSelect: Component<MultiselectFormProps> = ( props ) =>
             {...props}
             error={field.error()}
             errorClass={local.errorClass}
-            selectedValues={Array.from(  field.value() as Option[] )}
+            selectedValues={Array.from( field.value() as Option[] )}
             onSelect={( values ) => form.setValue( props.name, values )}
             onRemove={( values ) => form.setValue( props.name, values )}
         />

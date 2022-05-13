@@ -27,7 +27,7 @@ const handleDeleteUser = ( { onClose, cbAction = () => {} }: {onClose: () => voi
 
 const ConfirmDelete: Component<ConfirmDeleteTemplateProps> = ( props ) =>
 {
-    const [ { children, onClose, cbAction }, others ] = splitProps( props, [ 'children', 'onClose', 'cbAction'  ] );
+    const [ { children, onClose, cbAction }, others ] = splitProps( props, [ 'children', 'onClose', 'cbAction' ] );
     return (
         <Modal {...others}>
             <div class="dg-full-center-flex">

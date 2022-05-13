@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 yarn ts:check
-yarn lint:fix
+yarn lint

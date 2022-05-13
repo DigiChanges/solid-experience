@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
 interface IconButtonProps
-{   isActive: boolean;
+{ isActive: boolean;
     iconEnable: any;
     iconDisable: any;
     classNameOnActive: string;

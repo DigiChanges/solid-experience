@@ -27,7 +27,7 @@ const IndexPage: Component = () =>
         setViewMore();
     };
 
-    const removeAction = async ( id: string  ) =>
+    const removeAction = async ( id: string ) =>
     {
         const remove = userRepository.removeUser( id );
         void await remove();

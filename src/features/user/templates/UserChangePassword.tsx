@@ -12,7 +12,7 @@ interface UserChangePasswordTemplateProps
     confirmationToken: string;
 }
 
-const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props ) =>
+const UserChangePassword: Component<UserChangePasswordTemplateProps> = ( props ) =>
 {
     const i18n = useI18n();
     const { t } = i18n;
@@ -67,10 +67,10 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> =  ( props 
                                     />
                                 </div>
                                 <div class="w-full  flex flex-row-reverse ">
-                                    <Button  class="dg-main-button" type="submit">
+                                    <Button class="dg-main-button" type="submit">
                                         Save
                                     </Button>
-                                    <Button  class="dg-secondary-button mr-1" onClick={props.changePasswordAction()}>
+                                    <Button class="dg-secondary-button mr-1" onClick={props.changePasswordAction()}>
                                         Close
                                     </Button>
                                 </div>

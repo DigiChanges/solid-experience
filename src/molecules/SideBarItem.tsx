@@ -31,7 +31,7 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
                 </span>
             </Show>
             <Show when={props.getExpanded}
-                fallback={() =>  <Text class="hover:text-blue-500 text-sm font-bold md:block" message=""/>} >
+                fallback={() => <Text class="hover:text-blue-500 text-sm font-bold md:block" message=""/>} >
                 <Text class=" hover:text-blue-500 text-sm font-bold md:block pr-2 pl-4" message={props.name} />
             </Show>
         </>
@@ -50,7 +50,7 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
                         classList={{ selectedBlue: props.sectionSelected === props.path }}
                     >
                         <SideBarItemContent {...props} />
-                        <span class="inline-flex ml-auto pl-1 w-6" classList={{ hidden: props.path === '/logout'  }} >
+                        <span class="inline-flex ml-auto pl-1 w-6" classList={{ hidden: props.path === '/logout' }} >
                             <Show when={props.sectionSelected === props.path}
                                 fallback={<IconChevronRight />}
                             >

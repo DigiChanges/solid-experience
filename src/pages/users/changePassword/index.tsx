@@ -7,7 +7,7 @@ import UserChangePassword from '../../../features/user/templates/UserChangePassw
 
 const IndexPage: Component = () =>
 {
-    const { token } = useParams<{ token: string  }> ();
+    const { token } = useParams<{ token: string }> ();
     const repository = new AuthRepository();
 
     const changePasswordAction = async ( body: any ) =>

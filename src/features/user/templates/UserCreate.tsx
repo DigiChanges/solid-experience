@@ -44,8 +44,8 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
      */
     const i18n = useI18n();
     const { t } = i18n;
-    const roleOptions = createMemo( () =>  SelectTransform.getOptionsObjectArray( props.rolesList, 'name', 'id' ) );
-    const groupedPermissions = createMemo( () =>  SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
+    const roleOptions = createMemo( () => SelectTransform.getOptionsObjectArray( props.rolesList, 'name', 'id' ) );
+    const groupedPermissions = createMemo( () => SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
 
     return (
         <section class="px-4">

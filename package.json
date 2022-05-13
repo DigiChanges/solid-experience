@@ -7,6 +7,7 @@
     "dev": "vite",
     "pre-build": "cpy 'src/images/**/*.{png,jpeg,jpg}' 'dist/src/images'",
     "build": "vite build",
+    "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "prepare": "husky install",
     "husky:init": "npx husky-init",

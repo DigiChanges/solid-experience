@@ -13,7 +13,7 @@ interface UserChangePasswordTemplateProps
     confirmationToken: string;
 }
 
-const UserEditPassword: Component<UserChangePasswordTemplateProps> =  ( props ) =>
+const UserEditPassword: Component<UserChangePasswordTemplateProps> = ( props ) =>
 {
     const i18n = useI18n();
     const { t } = i18n;

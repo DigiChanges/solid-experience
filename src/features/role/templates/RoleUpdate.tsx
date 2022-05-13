@@ -29,7 +29,7 @@ const singleSelectStyle = {
     inputField: { 'max-height': '40px', 'padding': '0 10px' },
 };
 
-const RoleUpdate: Component<RoleUpdateTemplateProps> =  ( props ) =>
+const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
 {
     const i18n = useI18n();
     const { t } = i18n;

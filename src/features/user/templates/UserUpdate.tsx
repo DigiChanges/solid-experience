@@ -24,18 +24,18 @@ interface UserUpdateTemplateProps
     rolesList: IRoleApi[] | undefined;
     idSelected: string;
     userSelected?: IUserApi;
-    updateAction: ( data: any ) =>  void;
+    updateAction: ( data: any ) => void;
     loading: boolean;
 }
 
-const UserUpdate: Component<UserUpdateTemplateProps> =  ( props ) =>
+const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
 {
     const i18n = useI18n();
     const { t } = i18n;
     const groupedPermissions = createMemo( () => SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
-    const roleOptions = createMemo( () =>  SelectTransform.getOptionsObjectArray( props.rolesList, 'name', 'id' ) );
+    const roleOptions = createMemo( () => SelectTransform.getOptionsObjectArray( props.rolesList, 'name', 'id' ) );
 
-    const currentUserPermissions = createMemo( () =>  SelectTransform.getOptionsSimpleArray( props.userSelected?.permissions ) );
+    const currentUserPermissions = createMemo( () => SelectTransform.getOptionsSimpleArray( props.userSelected?.permissions ) );
     const currentUserRoles = createMemo( () => SelectTransform.getOptionsObjectArray( props.userSelected?.roles, 'name', 'id' ) );
 
     const getCurrentCountry = createMemo( () => ( { ...country.find( countryOption => countryOption.value === props.userSelected?.country ) } ) );

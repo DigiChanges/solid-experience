@@ -14,7 +14,7 @@ import { updateAction } from './handlers';
 const IndexPage: Component = () =>
 {
     const navigate = useNavigate();
-    const { id } = useParams<{ id: string  }> ();
+    const { id } = useParams<{ id: string }> ();
     const [ user ]: any = useApplicationContext();
     const authRepository = new AuthRepository( user() );
     const roleRepository = new RoleRepository( user() );

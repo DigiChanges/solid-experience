@@ -41,7 +41,7 @@ export default function notify ( o = {} )
         }, b ? parseFloat( getComputedStyle( r ).getPropertyValue( 'animation-duration' ) ) * 1000 : 0 );
     };
 
-    const progressbar = d && p ? `<div class='${  p.join( ' ' )  }'></div>` : '';
+    const progressbar = d && p ? `<div class='${p.join( ' ' )}'></div>` : '';
     r.innerHTML = o.block || `${m}</br>${progressbar}`;
 
     a && r.classList.add( ...a );
@@ -62,7 +62,7 @@ export default function notify ( o = {} )
     {
         if ( p && d )
         {
-            r.querySelector( `.${  p[0]}` ).style.width = `${( d - s ) / d * 100  }%`;
+            r.querySelector( `.${p[0]}` ).style.width = `${( d - s ) / d * 100}%`;
         }
         if ( s >= d )
         {

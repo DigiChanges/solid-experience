@@ -7,13 +7,13 @@ interface ButtonGoUpProps {
     class?: string;
 }
 
-const handleClick = ( { scrollTop }: { scrollTop: () => void } ) =>  () => scrollTop();
+const handleClick = ( { scrollTop }: { scrollTop: () => void } ) => () => scrollTop();
 
 const ButtonScrollUp: Component<ButtonGoUpProps> = ( props ) =>
 {
     const [ getShowScroll, setShowScroll ] = createSignal( false );
 
-    function checkScrollTop  ()
+    function checkScrollTop ()
     {
         if ( !getShowScroll() && window.pageYOffset > 300 )
         {

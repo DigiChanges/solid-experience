@@ -271,10 +271,10 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
-"@digichanges/solid-components@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@digichanges/solid-components/-/solid-components-0.6.0.tgz#e1eb90019bee35a443dc312882b913c6767e43d4"
-  integrity sha512-QmAOc08+b2E3+bUKKHzTMrMccd7oq4GrWH6Y1p1Livx1aflphE3Unbln/GVTBaLY5QW/5Uro9cm1LvSp4B1l2Q==
+"@digichanges/solid-components@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@digichanges/solid-components/-/solid-components-0.6.1.tgz#e20e2381086adb042a8a2cd8e17797bbea1accd7"
+  integrity sha512-J7J2tcUzVI8F3V1xZ39E7eyLAxiCwbZLgsDt6FVScYNCY+FgYeOE/pIDqLSRAXQqqs9XSvkuboxu/ViJlwX1sg==
   dependencies:
     solid-js "^1.1.3"
 
@@ -3387,7 +3387,7 @@ solid-refresh@^0.2.2:
 
 "solidjs-eslint-config@https://github.com/DigiChanges/solidjs-eslint-config":
   version "1.0.0"
-  resolved "https://github.com/DigiChanges/solidjs-eslint-config#0f9cdbdbe7befe5ae8bb5f5d833e00ef3ad79748"
+  resolved "https://github.com/DigiChanges/solidjs-eslint-config#2a8206db62e3ffbc5f00c41f14f53a80404849a7"
 
 source-map-js@^0.6.2:
   version "0.6.2"
