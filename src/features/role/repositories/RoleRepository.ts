@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { IRolePayload, RoleListResponse, RoleResponse } from '../interfaces';
+import { RolePayload, RoleListResponse, RoleResponse } from '../interfaces';
 import { HttpAxiosRequest } from '../../../services/HttpAxiosRequest';
 import { config } from '../../shared/repositories/config';
 
@@ -30,7 +30,7 @@ class RoleRepository
         return HttpAxiosRequest<RoleResponse>( config );
     }
 
-    public updateRole ( id: string, data: IRolePayload )
+    public updateRole ( id: string, data: RolePayload )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${update}/${id}`,
@@ -41,7 +41,7 @@ class RoleRepository
         return HttpAxiosRequest<RoleResponse>( config, this.user );
     }
 
-    public createRole ( data: IRolePayload )
+    public createRole ( data: RolePayload )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${create}`,

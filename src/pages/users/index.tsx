@@ -4,20 +4,24 @@ import { INIT_STATE } from '../../features/shared/constants';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import useQuery from '../../features/shared/hooks/useQuery';
 import UserList from '../../features/user/templates/UserList';
-import { IUserApi, UserListResponse } from '../../features/user/interfaces';
+import { UserApi, UserListResponse } from '../../features/user/interfaces';
 import UserRepository from '../../features/user/repositories/UserRepository';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout';
 import usePermission from '../../features/shared/hooks/usePermission';
+import { removeUserAction } from './delete/handlers';
+import createAlert from '../../features/shared/hooks/createAlert';
+import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
 
 const IndexPage: Component = () =>
 {
+    const errorAlert = createAlert();
     const [ user ]: any = useApplicationContext();
     const userRepository = new UserRepository( user() );
 
-    const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
+    const { goToPage, uriParams } = useQuery( INIT_STATE.nextQueryParamsPagination );
 
     const [ users, { refetch } ] = createResource( uriParams, userRepository.getUsers() );
-    const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<IUserApi, UserListResponse>( users );
+    const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<UserApi, UserListResponse>( users );
 
     usePermission( user, [ users ] );
 
@@ -27,23 +31,12 @@ const IndexPage: Component = () =>
         setViewMore();
     };
 
-    const removeAction = async ( id: string ) =>
-    {
-        const remove = userRepository.removeUser( id );
-        void await remove();
-        if ( page() === INIT_STATE.nextQueryParamsPagination )
-        {
-            return refetch();
-        }
-
-        goFirstPage();
-    };
-
     return (
         <PrivateLayout>
+            <AlertErrors errorData={errorAlert.errorData()} title="err_save" description="err_process_user"/>
             <UserList
                 userList={userList()}
-                removeAction={removeAction}
+                removeAction={removeUserAction( { userRepository, errorAlert, refetch } )}
                 loading={users.loading}
                 viewMoreAction={viewMoreAction}
                 nextPage={paginationData()?.nextUrl}

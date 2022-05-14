@@ -1,13 +1,13 @@
 import { useNavigate, useParams } from 'solid-app-router';
 import { Component, createResource } from 'solid-js';
-import { useApplicationContext } from '../../../../context/context';
-import AuthRepository from '../../../../features/auth/repositories/AuthRepository';
-import RoleRepository from '../../../../features/role/repositories/RoleRepository';
-import RoleUpdate from '../../../../features/role/templates/RoleUpdate';
-import createAlert from '../../../../features/shared/hooks/createAlert';
-import usePermission from '../../../../features/shared/hooks/usePermission';
-import PrivateLayout from '../../../../features/shared/layout/PrivateLayout';
-import AlertErrors from '../../../../features/shared/molecules/AlertErrors/AlertErrors';
+import { useApplicationContext } from '../../../context/context';
+import AuthRepository from '../../../features/auth/repositories/AuthRepository';
+import RoleRepository from '../../../features/role/repositories/RoleRepository';
+import RoleUpdate from '../../../features/role/templates/RoleUpdate';
+import createAlert from '../../../features/shared/hooks/createAlert';
+import usePermission from '../../../features/shared/hooks/usePermission';
+import PrivateLayout from '../../../features/shared/layout/PrivateLayout';
+import AlertErrors from '../../../features/shared/molecules/AlertErrors/AlertErrors';
 import { updateAction } from './handlers';
 
 const IndexPage: Component = () =>

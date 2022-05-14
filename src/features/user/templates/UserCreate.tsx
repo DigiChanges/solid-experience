@@ -7,22 +7,24 @@ import ErrorField from '../../../atoms/ErrorField';
 import Input from '../../../atoms/Input';
 import PasswordShowHide from '../../../atoms/PasswordShowHide/PasswordShowHide';
 import Title from '../../../atoms/Title';
-import { country, documentTypeOptions, states } from '../../../entities';
+import { country, states, userDocumentTypeOptions } from '../../../entities';
 import ButtonConfirm from '../../../molecules/ButtonConfirm';
-import { IPermissionApi } from '../../auth/interfaces';
-import { IRoleApi } from '../../role/interfaces';
+import { PermissionApi } from '../../auth/interfaces/permission';
+import { RoleApi } from '../../role/interfaces';
+import { roundedSelectStyle } from '../../shared/constants/selectStyles';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
+import { SelectValueOption } from '../../shared/types/Selects';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
-import { countryMultiSelectStyle, documentTypeMultiSelectStyle, enableMultiSelectStyle } from '../constants/selectStyles';
+import { documentTypeMultiSelectStyle } from '../constants/selectStyles';
 import userCreateValidationSchema from '../validations/schemas/userCreateValidationSchema';
 
 interface UserCreateTemplateProps
 {
-    permissionsList?: IPermissionApi[];
-    rolesList?: IRoleApi[];
-    createAction: ( data: any ) => void;
+    permissionsList?: PermissionApi[];
+    rolesList?: RoleApi[];
+    onSave: ( data: any ) => void;
     loading: boolean;
 }
 
@@ -44,7 +46,19 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
      */
     const i18n = useI18n();
     const { t } = i18n;
-    const roleOptions = createMemo( () => SelectTransform.getOptionsObjectArray( props.rolesList, 'name', 'id' ) );
+
+    const roleOptions = () => SelectTransform.getOptionsObjectArray<RoleApi>(
+        props.rolesList,
+        ( item ) => item.name,
+        ( item ) => item.id
+    );
+
+    const statesOptions = () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
+        states,
+        ( item ) => t( item.label ) as string,
+        ( item ) => item.value
+    );
+
     const groupedPermissions = createMemo( () => SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
 
     return (
@@ -71,18 +85,20 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         address: '',
                         password: '',
                         passwordConfirmation: '',
-                        permissions: [],
                         roles: [],
-                        enable: { label: 'Enabled', value: true },
+                        permissions: [],
+                        enable: statesOptions()[0],
                     }}
                     validation={userCreateValidationSchema( t )}
                     onSubmit={async ( form ) =>
                     {
-                        props.createAction( form.values );
+                        props.onSave( form.values );
                     }}
                 >
                     <div class="flex flex-wrap text-sm">
-                        <span class="w-full text-xs text-bold"><Text message="a_personal_information" /></span>
+                        <h2 class="w-full text-xs text-bold uppercase border-b-2 border-gray-800 mb-2">
+                            <Text message="a_personal_information" />
+                        </h2>
                         <div class="dg-form-full-field-wrapper">
                             <Input
                                 style={{ display: 'block' }}
@@ -92,7 +108,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_enter_first_name' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'first_name' )}
+                                labelName={ <Text message="first_name" />}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -104,7 +120,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_enter_last_name' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'last_name' )}
+                                labelName={ <Text message="last_name" />}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -118,7 +134,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                     <SingleSelect
                                         id="documentType"
                                         name="documentType"
-                                        options={documentTypeOptions}
+                                        options={userDocumentTypeOptions}
                                         isObject
                                         displayValue="label"
                                         style={documentTypeMultiSelectStyle}
@@ -174,7 +190,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                     name="gender"
                                     type="radio"
                                     id="gender-o"
-                                    value="Other"
+                                    value="other"
                                     class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1 mr-2"
                                     labelClass="text-gray-400 text-xs font-bold mr-8"
                                     labelName={t( 'a_gender_other' )}
@@ -187,7 +203,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         <div class="dg-form-full-field-wrapper">
                             <Input
                                 name="birthday"
-                                labelName={t( 'birthday' )}
+                                labelName={ <Text message="birthday" />}
                                 type="date"
                                 id="birthday"
                                 class="dg-form-field-full"
@@ -203,10 +219,10 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                             <SingleSelect
                                 id="enable"
                                 name="enable"
-                                options={states}
+                                options={statesOptions()}
                                 isObject
                                 displayValue="label"
-                                style={enableMultiSelectStyle}
+                                style={roundedSelectStyle}
                                 placeholder="Type"
                                 errorClass="ml-1"
                             />
@@ -222,7 +238,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 isObject
                                 displayValue="label"
                                 placeholder={t( 'a_select_country' )}
-                                style={countryMultiSelectStyle}
+                                style={roundedSelectStyle}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -234,7 +250,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_your_address' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'address' )}
+                                labelName={ <Text message="address" />}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -249,7 +265,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_your_email' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'email' )}
+                                labelName={ <Text message="email" />}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -261,7 +277,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_enter_phone' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'phone' )}
+                                labelName={ <Text message="phone" />}
                                 errorClass="ml-1"
                             />
                         </div>

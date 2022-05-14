@@ -1,16 +1,19 @@
 import { AxiosRequestConfig } from 'axios';
 import { HttpAxiosRequest, HttpAxiosRequestWithoutToken } from '../../../services/HttpAxiosRequest';
 import { config } from '../../shared/repositories/config';
-import { IChangeForgotPasswordPayload, ILoginPayload, LoginResponse, PermissionListResponse } from '../interfaces';
+import { CreateAccountResponse, RegisterPayload } from '../interfaces/createAccount';
+import { ChangeForgotPasswordPayload, ForgotPasswordPayload } from '../interfaces/forgotPassword';
+import { LoginPayload, LoginResponse } from '../interfaces/login';
+import { PermissionListResponse } from '../interfaces/permission';
 
 const { protocol, hostname, port } = config.apiGateway.server;
-const { login, refreshToken, logout, permissionsGetAll, forgotPassword, changeForgotPassword } = config.apiGateway.routes.auth;
+const { register, login, refreshToken, logout, permissionsGetAll, forgotPassword, changeForgotPassword, verifyYourAccount } = config.apiGateway.routes.auth;
 
 class AuthRepository
 {
     constructor ( private user?: any ) {}
 
-    public signIn ( data: ILoginPayload )
+    public signIn ( data: LoginPayload )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${login}`,
@@ -49,23 +52,42 @@ class AuthRepository
         return HttpAxiosRequest<PermissionListResponse>( config, this.user );
     };
 
-    public getForgotPassword = ( email: string ) =>
+    public getForgotPassword = ( data: ForgotPasswordPayload ) =>
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${forgotPassword}`,
             method: 'POST',
-            data: { email },
+            data,
         };
 
         return HttpAxiosRequestWithoutToken( config );
     };
 
-    public setChangeForgotPassword = ( data: IChangeForgotPasswordPayload ) =>
+    public setChangeForgotPassword = ( data: ChangeForgotPasswordPayload ) =>
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${changeForgotPassword}`,
             method: 'POST',
             data,
+        };
+
+        return HttpAxiosRequestWithoutToken( config );
+    };
+
+    public register ( data: RegisterPayload )
+    {
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${register}`,
+            method: 'POST',
+            data,
+        };
+        return HttpAxiosRequestWithoutToken<CreateAccountResponse>( config );
+    }
+    public verifyYourAccount = ( confirmationToken: string ) =>
+    {
+        const config: AxiosRequestConfig = {
+            url: `${protocol}://${hostname}:${port}/${verifyYourAccount}/${confirmationToken}`,
+            method: 'PUT',
         };
 
         return HttpAxiosRequestWithoutToken( config );

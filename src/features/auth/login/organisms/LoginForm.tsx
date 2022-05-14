@@ -5,11 +5,11 @@ import Button from '../../../../atoms/Button';
 import Input from '../../../../atoms/Input';
 import PasswordShowHide from '../../../../atoms/PasswordShowHide/PasswordShowHide';
 import Title from '../../../../atoms/Title';
-import { ILoginPayload } from '../../interfaces';
+import { LoginPayload } from '../../interfaces/login';
 import SignUpSchema from '../../validations/schemas/SignUpSchema';
 
 interface LoginFormProps {
-    onSubmit: ( values: ILoginPayload ) => Promise<void>;
+    onSubmit: ( values: LoginPayload ) => Promise<void>;
     onClick: ( event: MouseEvent ) => void;
 }
 

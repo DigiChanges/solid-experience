@@ -12,12 +12,12 @@ import { Form } from 'solid-js-form';
 import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
-import { IUserApi } from '../interfaces';
+import { UserApi } from '../interfaces';
 
 interface UserViewTemplateProps {
     permissionsList?: string[];
     // rolesList: IRoleApi[];
-    userSelected?: IUserApi;
+    userSelected?: UserApi;
 
 }
 

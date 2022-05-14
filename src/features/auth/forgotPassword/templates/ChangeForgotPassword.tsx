@@ -1,25 +1,32 @@
+import { useNavigate } from 'solid-app-router';
 import { useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
-import Button from '../../../atoms/Button';
-import Input from '../../../atoms/Input';
-import Title from '../../../atoms/Title';
-import ChangePasswordSchema from '../../auth/validations/schemas/ChangePasswordSchema';
+import Button from '../../../../atoms/Button';
+import Input from '../../../../atoms/Input';
+import Title from '../../../../atoms/Title';
+import { ChangeForgotPasswordPayload } from '../../interfaces/forgotPassword';
+import ChangeForgotPasswordSchema from '../../validations/schemas/ChangeForgotPasswordSchema';
 
 interface UserChangePasswordTemplateProps
 {
-    changePasswordAction?: any;
+    changeForgotPasswordAction: ( data: ChangeForgotPasswordPayload ) => void;
     confirmationToken: string;
 }
 
-const UserChangePassword: Component<UserChangePasswordTemplateProps> = ( props ) =>
+const ChangeForgotPassword: Component<UserChangePasswordTemplateProps> = ( props ) =>
 {
+    const navigate = useNavigate();
+    const onClose = () =>
+    {
+        navigate( '/login' );
+    };
     const i18n = useI18n();
     const { t } = i18n;
     return (
         <section class="dg-main-bg h-screen">
             <div class="dg-full-center-flex">
-                <div class="dg-rounded-small-box py-5 ">
+                <div class="dg-rounded-small-box-gray py-5 ">
                     <div class="text-gray-500 body-font  w-full  mx-auto px-3 pt-2 md:pt-10">
                         <div class="mb-2 ">
                             <Title class="text-3xl font-bold sm:px-0 md:px-18 lg:px-14" titleType="h1">
@@ -33,10 +40,10 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> = ( props )
                                 password: '',
                                 passwordConfirmation: '',
                             }}
-                            validation={ChangePasswordSchema( t )}
+                            validation={ChangeForgotPasswordSchema( t )}
                             onSubmit={async ( form ) =>
                             {
-                                props.changePasswordAction( form.values );
+                                props.changeForgotPasswordAction( form.values );
                             }}
 
                         >
@@ -70,7 +77,7 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> = ( props )
                                     <Button class="dg-main-button" type="submit">
                                         Save
                                     </Button>
-                                    <Button class="dg-secondary-button mr-1" onClick={props.changePasswordAction()}>
+                                    <Button class="dg-secondary-button mr-1" onClick={onClose}>
                                         Close
                                     </Button>
                                 </div>
@@ -85,4 +92,4 @@ const UserChangePassword: Component<UserChangePasswordTemplateProps> = ( props )
     );
 };
 
-export default UserChangePassword;
+export default ChangeForgotPassword;

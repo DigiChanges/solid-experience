@@ -1,7 +1,8 @@
+import Base from '../../shared/interfaces/Base';
 import { IBodyApi } from '../../shared/interfaces/response/IBodyApi';
 import { IPaginatedBodyApi } from '../../shared/interfaces/response/IPaginatedBodyApi';
 
-export interface IRolePayload
+export interface Role
 {
     name: string;
     slug: string;
@@ -9,17 +10,20 @@ export interface IRolePayload
     enable: boolean;
 }
 
-export interface IRoleApi extends IRolePayload
+export interface RolePayload
 {
-    id: string;
-    createdAt: number;
-    updatedAt: number;
+    name: string;
+    slug: string;
+    permissions: string[];
+    enable: boolean;
 }
 
+export interface RoleApi extends Role, Base {}
+
 export type RoleResponse = IBodyApi & {
-    data: IRoleApi;
+    data: RoleApi;
 };
 
 export type RoleListResponse = IPaginatedBodyApi & {
-    data: IRoleApi[];
+    data: RoleApi[];
 };

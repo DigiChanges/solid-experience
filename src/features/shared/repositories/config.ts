@@ -20,6 +20,8 @@ export const config = {
                 keepAlive: `${BACKEND_BASE_PATH}/auth/keep-alive`,
                 forgotPassword: `${BACKEND_BASE_PATH}/auth/forgot-password`,
                 changeForgotPassword: `${BACKEND_BASE_PATH}/auth/change-forgot-password`,
+                register: `${BACKEND_BASE_PATH}/auth/account`,
+                verifyYourAccount: `${BACKEND_BASE_PATH}/auth/verify-your-account`,
             },
             users: {
                 getAll: `${BACKEND_BASE_PATH}/users`,

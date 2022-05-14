@@ -17,11 +17,11 @@ import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { BasicConfirmationModalData } from '../../shared/types/Modal';
 import { filterBy } from '../constants/filterBy';
 import { orderBy } from '../constants/orderBy';
-import { IRoleApi } from '../interfaces';
+import { RoleApi } from '../interfaces';
 
 interface RoleListTemplateProps
 {
-    roleList: IRoleApi[] | undefined;
+    roleList: RoleApi[] | undefined;
     removeAction: any;
     loading: boolean;
     viewMoreAction: any;

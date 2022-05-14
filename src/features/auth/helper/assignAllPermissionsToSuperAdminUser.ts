@@ -1,8 +1,8 @@
 import PermissionList from '../../shared/utils/PermissionList';
-import { ILoginApi } from '../interfaces';
+import { LoginApi } from '../interfaces/login';
 import AuthRepository from '../repositories/AuthRepository';
 
-const assignAllPermissionsToSuperAdminUser = async ( userAuth?: ILoginApi ) =>
+const assignAllPermissionsToSuperAdminUser = async ( userAuth?: LoginApi ) =>
 {
     if ( userAuth && userAuth.user.isSumerAdmin )
     {

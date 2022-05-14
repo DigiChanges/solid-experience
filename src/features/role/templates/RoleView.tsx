@@ -9,13 +9,13 @@ import { Component } from 'solid-js';
 import Button from '../../../atoms/Button';
 import Input from '../../../atoms/Input';
 import { Form } from 'solid-js-form';
-import { IRoleApi } from '../interfaces';
+import { RoleApi } from '../interfaces';
 import { Link } from 'solid-app-router';
 
 interface RoleViewTemplateProps {
 
     permissionsList?: string[];
-    roleSelected?: IRoleApi;
+    roleSelected?: RoleApi;
 }
 
 const RoleView: Component<RoleViewTemplateProps> = props =>

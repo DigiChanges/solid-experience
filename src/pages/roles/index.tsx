@@ -1,6 +1,6 @@
 import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
-import { IRoleApi, RoleListResponse } from '../../features/role/interfaces';
+import { RoleApi, RoleListResponse } from '../../features/role/interfaces';
 import RoleRepository from '../../features/role/repositories/RoleRepository';
 import RoleList from '../../features/role/templates/RoleList';
 import { INIT_STATE } from '../../features/shared/constants';
@@ -17,7 +17,7 @@ const IndexPage: Component = () =>
     const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
 
     const [ roles, { refetch } ] = createResource( uriParams, roleRepository.getRoles() );
-    const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<IRoleApi, RoleListResponse>( roles );
+    const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<RoleApi, RoleListResponse>( roles );
 
     usePermission( user, [ roles ] );
 

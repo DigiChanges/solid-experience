@@ -1,5 +1,5 @@
-import { createAlertType } from '../../../../features/shared/hooks/createAlert';
-import UserRepository from '../../../../features/user/repositories/UserRepository';
+import { createAlertType } from '../../../features/shared/hooks/createAlert';
+import UserRepository from '../../../features/user/repositories/UserRepository';
 
 type params = {
     userRepository: UserRepository;

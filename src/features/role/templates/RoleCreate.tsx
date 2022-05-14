@@ -7,7 +7,7 @@ import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
 import { states } from '../../../entities';
 import ButtonConfirm from '../../../molecules/ButtonConfirm';
-import { IPermissionApi } from '../../auth/interfaces';
+import { PermissionApi } from '../../auth/interfaces/permission';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
@@ -15,7 +15,7 @@ import { SelectTransform } from '../../shared/utils/SelectTransform';
 import RoleSchema from '../validations/schemas/RoleSchema';
 
 interface RoleCreateTemplateProps {
-    permissionsList?: IPermissionApi[];
+    permissionsList?: PermissionApi[];
     createAction: ( data: any ) => void;
     loading: boolean;
 }
