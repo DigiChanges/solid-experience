@@ -1,8 +1,8 @@
-import { IPermissionApi } from '../../auth/interfaces';
+import { PermissionApi } from '../../auth/interfaces/permission';
 
 class PermissionList
 {
-    static getPermissionsToArray ( items: IPermissionApi[] | undefined ): string[]
+    static getPermissionsToArray ( items: PermissionApi[] | undefined ): string[]
     {
         if ( items && items.length > 0 )
         {

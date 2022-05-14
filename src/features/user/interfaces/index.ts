@@ -1,14 +1,26 @@
 import { IBodyApi } from '../../shared/interfaces/response/IBodyApi';
 import { IPaginatedBodyApi } from '../../shared/interfaces/response/IPaginatedBodyApi';
-import { IRoleApi } from '../../role/interfaces';
+import { RoleApi } from '../../role/interfaces';
+import Base from '../../shared/interfaces/Base';
 
-export interface IChangePasswordPayload
-{
-    newPassword: string;
-    newPasswordConfirmation: string;
+export interface User {
+    firstName: string;
+    lastName: string;
+    email: string;
+    birthday: string;
+    documentType: string;
+    documentNumber: string;
+    gender: string;
+    phone: string;
+    country: string;
+    address: string;
+    permissions: string[];
+    enable: boolean;
+    isSuperAdmin: boolean;
+    roles: RoleApi[];
 }
 
-export type IUserPayload =
+export type UserPayload =
 {
     email: string;
     firstName: string;
@@ -23,23 +35,16 @@ export type IUserPayload =
     password: string;
     passwordConfirmation: string;
     permissions: string[];
-    roles: string[];
-    enable: boolean;
+    roles?: string[];
+    enable?: boolean;
 };
 
-export type IUserApi = Omit<IUserPayload, 'roles'> &
-{
-    id: string;
-    isSumerAdmin: boolean;
-    roles: IRoleApi[];
-    createdAt: number;
-    updatedAt: number;
-};
+export interface UserApi extends User, Base {}
 
 export type UserResponse = IBodyApi & {
-    data: IUserApi;
+    data: UserApi;
 };
 
 export type UserListResponse = IPaginatedBodyApi & {
-    data: IUserApi[];
+    data: UserApi[];
 };

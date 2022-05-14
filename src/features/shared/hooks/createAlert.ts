@@ -2,10 +2,12 @@ import { useI18n } from 'solid-i18n';
 import { createSignal } from 'solid-js';
 import { showErrorNotification, showSuccessNotification } from '../utils/showNotification';
 
+type showNotificationType = ( message: string, messageValue?: Record<string, any>, time?: number ) => Promise<unknown>;
+
 export type createAlertType = {
     errorData: any;
     setError: ( error: any ) => void;
-    showNotification: ( message: string, time?: number ) => Promise<unknown>;
+    showNotification: showNotificationType;
     user?: any;
 };
 
@@ -23,7 +25,11 @@ function createAlert ( user?: any ): createAlertType
 
         let message = t( 'err_server' );
 
-        if ( error.response?.statusText )
+        if ( error.response?.data?.errorCode )
+        {
+            message = t( error.response.data.errorCode );
+        }
+        else if ( error.response?.statusText )
         {
             message = t( error.response.statusText );
         }
@@ -39,9 +45,9 @@ function createAlert ( user?: any ): createAlertType
         showErrorNotification( message as string );
     };
 
-    const showNotification = ( message: string, time = 0 ) =>
+    const showNotification: showNotificationType = ( message: string, messageValue = {}, time = 0 ) =>
     {
-        showSuccessNotification( t( message ) );
+        showSuccessNotification( t( message, messageValue ) );
 
         return new Promise( ( resolve ) =>
         {

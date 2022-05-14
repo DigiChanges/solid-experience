@@ -6,25 +6,27 @@ import { Form } from 'solid-js-form';
 import ErrorField from '../../../atoms/ErrorField';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
-import { country, documentTypeOptions, states } from '../../../entities';
+import { country, userDocumentTypeOptions, states } from '../../../entities';
 import ButtonConfirm from '../../../molecules/ButtonConfirm';
-import { IPermissionApi } from '../../auth/interfaces';
-import { IRoleApi } from '../../role/interfaces';
+import { PermissionApi } from '../../auth/interfaces/permission';
+import { RoleApi } from '../../role/interfaces';
+import { roundedSelectStyle } from '../../shared/constants/selectStyles';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
+import { SelectValueOption } from '../../shared/types/Selects';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
-import { countryMultiSelectStyle, documentTypeMultiSelectStyle, singleSelectStyle } from '../constants/selectStyles';
-import { IUserApi } from '../interfaces';
+import { documentTypeMultiSelectStyle } from '../constants/selectStyles';
+import { UserApi } from '../interfaces';
 import userUpdateValidationSchema from '../validations/schemas/userUpdateValidationSchema';
 
 interface UserUpdateTemplateProps
 {
-    permissionsList: IPermissionApi[] | undefined;
-    rolesList: IRoleApi[] | undefined;
+    permissionsList: PermissionApi[] | undefined;
+    rolesList: RoleApi[] | undefined;
     idSelected: string;
-    userSelected?: IUserApi;
-    updateAction: ( data: any ) => void;
+    userSelected?: UserApi;
+    onUpdate: ( data: any ) => void;
     loading: boolean;
 }
 
@@ -33,10 +35,31 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
     const groupedPermissions = createMemo( () => SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
-    const roleOptions = createMemo( () => SelectTransform.getOptionsObjectArray( props.rolesList, 'name', 'id' ) );
 
     const currentUserPermissions = createMemo( () => SelectTransform.getOptionsSimpleArray( props.userSelected?.permissions ) );
-    const currentUserRoles = createMemo( () => SelectTransform.getOptionsObjectArray( props.userSelected?.roles, 'name', 'id' ) );
+
+    const roleOptions = createMemo( () =>
+        SelectTransform.getOptionsObjectArray<RoleApi>(
+            props.rolesList,
+            ( item ) => item.name,
+            ( item ) => item.id
+        )
+    );
+
+    const statesOptions = createMemo( () =>
+        SelectTransform.getOptionsObjectArray<SelectValueOption>(
+            states,
+            ( item ) => t( item.label ) as string,
+            ( item ) => item.value
+        )
+    );
+    const currentUserRoles = createMemo( () =>
+        SelectTransform.getOptionsObjectArray<RoleApi>(
+            props.userSelected?.roles,
+            ( item ) => item.name,
+            ( item ) => item.id
+        )
+    );
 
     const getCurrentCountry = createMemo( () => ( { ...country.find( countryOption => countryOption.value === props.userSelected?.country ) } ) );
 
@@ -64,7 +87,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                         lastName: props.userSelected?.lastName,
                         email: props.userSelected?.email,
                         birthday: props.userSelected?.birthday,
-                        documentType: { ...documentTypeOptions.find( dniOption => dniOption.value === props.userSelected?.documentType ) },
+                        documentType: { ...userDocumentTypeOptions.find( dniOption => dniOption.value === props.userSelected?.documentType ) },
                         documentNumber: props.userSelected?.documentNumber,
                         gender: props.userSelected?.gender,
                         phone: props.userSelected?.phone,
@@ -72,10 +95,10 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                         address: props.userSelected?.address,
                         roles: currentUserRoles(),
                         permissions: currentUserPermissions(),
-                        enable: { ...states.find( enableOption => enableOption.value === props.userSelected?.enable ) },
+                        enable: { ...statesOptions().find( enableOption => enableOption.value === props.userSelected?.enable ) },
                     }}
                     validation={userUpdateValidationSchema( t )}
-                    onSubmit={async ( form ) => props.updateAction( form.values )}
+                    onSubmit={async ( form ) => props.onUpdate( form.values )}
                 >
                     <div class="flex flex-wrap text-sm">
                         <span class="w-full text-xs text-bold"><Text message="a_personal_information" /></span>
@@ -88,7 +111,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_enter_first_name' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'first_name' )}
+                                labelName={ <Text message="first_name" />}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -100,7 +123,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_enter_last_name' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'last_name' )}
+                                labelName={ <Text message="last_name" />}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -113,7 +136,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                                     <SingleSelect
                                         id="documentType"
                                         name="documentType"
-                                        options={documentTypeOptions}
+                                        options={userDocumentTypeOptions}
                                         isObject
                                         displayValue="label"
                                         style={documentTypeMultiSelectStyle}
@@ -183,7 +206,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                         <div class="dg-form-full-field-wrapper">
                             <Input
                                 name="birthday"
-                                labelName={t( 'birthday' )}
+                                labelName={ <Text message="birthday" />}
                                 type="date"
                                 id="birthday"
                                 class="dg-form-field-full"
@@ -202,7 +225,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                                 options={country}
                                 isObject
                                 displayValue="label"
-                                style={countryMultiSelectStyle}
+                                style={roundedSelectStyle}
                                 placeholder={t( 'a_select_country' )}
                                 errorClass="ml-1"
                             />
@@ -215,7 +238,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_your_address' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'address' )}
+                                labelName={ <Text message="address" />}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -226,10 +249,10 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                             <SingleSelect
                                 id="enable"
                                 name="enable"
-                                options={states}
+                                options={statesOptions()}
                                 isObject
                                 displayValue="label"
-                                style={singleSelectStyle}
+                                style={roundedSelectStyle}
                                 placeholder="Type"
                                 errorClass="ml-1"
                             />
@@ -245,7 +268,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_your_email' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'email' )}
+                                labelName={ <Text message="email" />}
                                 errorClass="ml-1"
                             />
                         </div>
@@ -257,7 +280,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                                 class="dg-form-field-full"
                                 placeholder={t( 'a_enter_phone' )}
                                 labelClass="dg-form-label"
-                                labelName={t( 'phone' )}
+                                labelName={ <Text message="phone" />}
                                 errorClass="ml-1"
                             />
                         </div>

@@ -25,7 +25,7 @@ const IndexPage: Component = () =>
         <PrivateLayout>
             <AlertErrors errorData={errorAlert.errorData()} title="err_save" description="err_save_user"/>
             <UserCreate
-                createAction={createAction( { userRepository, errorAlert, navigate } )}
+                onSave={createAction( { userRepository, errorAlert, navigate } )}
                 permissionsList={getPermissions()?.data}
                 rolesList={getRoles()?.data}
                 loading={getPermissions.loading || getRoles.loading}

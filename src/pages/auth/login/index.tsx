@@ -1,4 +1,4 @@
-import LoginTemplate from '../../features/auth/login/templates/LoginTemplate';
+import LoginTemplate from '../../../features/auth/login/templates/LoginTemplate';
 import { Component } from 'solid-js';
 
 const LoginPage: Component = () =>

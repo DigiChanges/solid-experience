@@ -1,20 +1,20 @@
 import { createAlertType } from '../../../shared/hooks/createAlert';
 import assignAllPermissionsToSuperAdminUser from '../../helper/assignAllPermissionsToSuperAdminUser';
-import { ILoginApi, ILoginPayload } from '../../interfaces';
+import { LoginApi, LoginPayload } from '../../interfaces/login';
 import AuthRepository from '../../repositories/AuthRepository';
 
 type params = {
-    addUser: ( data?: ILoginApi ) => void;
+    addUser: ( data?: LoginApi ) => void;
     errorAlert: createAlertType;
     navigate: any;
     setIsLoading: ( isLoading: boolean ) => void;
 };
 
-export const handleLoginFormSubmit = ( { addUser, errorAlert, navigate, setIsLoading }: params ) => async ( values: ILoginPayload ) =>
+export const handleLoginFormSubmit = ( { addUser, errorAlert, navigate, setIsLoading }: params ) => async ( values: LoginPayload ) =>
 {
     const { setError } = errorAlert;
     const authRepository = new AuthRepository();
-    const signIn = authRepository.signIn( values as ILoginPayload );
+    const signIn = authRepository.signIn( values as LoginPayload );
 
     try
     {

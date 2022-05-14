@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const ChangePasswordSchema = ( t: any ) => ( {
+const ChangeForgotPasswordSchema = ( t: any ) => ( {
     password: Yup.string()
         .min( 2, t( 'av_too_short' ) )
         .max( 50, t( 'av_too_long' ) )
@@ -10,4 +10,4 @@ const ChangePasswordSchema = ( t: any ) => ( {
         .required( t( 'av_required' ) ),
 } );
 
-export default ChangePasswordSchema;
+export default ChangeForgotPasswordSchema;

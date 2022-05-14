@@ -1,7 +1,7 @@
-import { useLocation, useNavigate } from 'solid-app-router';
+import { useLocation, useMatch, useNavigate } from 'solid-app-router';
 import { createEffect, createResource, createSignal } from 'solid-js';
 import { useApplicationContext } from '../../../../context/context';
-import { LOGIN_PAGE_PATH } from '../../../shared/constants';
+import { CHANGE_FORGOT_PASSWORD_PAGE_PATH, LOGIN_PAGE_PATH, REDIRECT_SIGNED_IN_USERS_PAGES, WHITE_PAGES } from '../../../shared/constants';
 import assignAllPermissionsToSuperAdminUser from '../../helper/assignAllPermissionsToSuperAdminUser';
 import AuthRepository from '../../repositories/AuthRepository';
 
@@ -11,29 +11,44 @@ const createRefreshToken = () =>
     const [ auth ] = createResource( authRepository.refreshToken() );
     const navigate = useNavigate();
     const location = useLocation();
-    const [ , { addUser } ] = useApplicationContext();
+    const [ user, { addUser } ] = useApplicationContext();
     const [ loading, setLoading ] = createSignal( true );
+
+    const setUser = async () =>
+    {
+        const userAuth = await assignAllPermissionsToSuperAdminUser( auth()?.data );
+        return addUser( userAuth );
+    };
+
+    const redirect = async () =>
+    {
+        if ( auth.error )
+        {
+            const matchLogin = useMatch( () => `${LOGIN_PAGE_PATH}/:tenant` );
+            const matchChangeForgotPassword = useMatch( () => `${CHANGE_FORGOT_PASSWORD_PAGE_PATH}/:token` );
+
+            if ( !( Boolean( matchLogin() ) || Boolean( matchChangeForgotPassword() ) || WHITE_PAGES.includes( location.pathname ) ) )
+            {
+                navigate( LOGIN_PAGE_PATH, { replace: true } );
+            }
+        }
+        else
+        {
+            await setUser();
+            if ( REDIRECT_SIGNED_IN_USERS_PAGES.includes( location.pathname ) )
+            {
+                navigate( '/', { replace: true } );
+            }
+        }
+
+        setLoading( false );
+    };
 
     createEffect( () =>
     {
-        if ( !auth.loading )
+        if ( !user() && !auth.loading )
         {
-            ( async () =>
-            {
-                if ( auth.error )
-                {
-                    navigate( LOGIN_PAGE_PATH, { replace: true } );
-                    return setLoading( false );
-                }
-
-                const userAuth = await assignAllPermissionsToSuperAdminUser( auth()?.data );
-                addUser( userAuth );
-                if ( location.pathname === LOGIN_PAGE_PATH )
-                {
-                    navigate( '/', { replace: true } );
-                }
-                setLoading( false );
-            } )();
+            redirect();
         }
     } );
 

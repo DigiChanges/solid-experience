@@ -1,5 +1,5 @@
 import { Icon, StrokeIcons } from '@digichanges/solid-components';
-import { useI18n } from 'solid-i18n';
+import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../../../atoms/Button';
@@ -10,6 +10,8 @@ import Label from '../../../atoms/Label';
 import IconButtonActive from '../../../molecules/IconButtonActive';
 import useFilter from '../../shared/hooks/useFilter';
 import SingleSelect from '../../shared/molecules/SingleSelect';
+import { SelectValueOption } from '../../shared/types/Selects';
+import { SelectTransform } from '../../shared/utils/SelectTransform';
 import { FilterBy, OrderBy } from '../types/filterSortTypes';
 import filterSortValidationSchema from '../validations/schemas/filterSortValidationSchema';
 
@@ -40,7 +42,16 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
     const { filter, setFilter, toggleSort } = useFilter();
-
+    const filterOptions = () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
+        props.filterBy,
+        ( item ) => t( item.label ) as string,
+        ( item ) => item.value
+    );
+    const orderByOptions = () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
+        props.orderBy,
+        ( item ) => t( item.label ) as string,
+        ( item ) => item.value
+    );
     return (
         <Form
             initialValues={{
@@ -82,11 +93,11 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
 
                         <div class="flex flex-wrap lg:flex-nowrap w-full content-center items-center lg:mb-5">
                             <div class="lg:flex lg:items-center w-full">
-                                <Label for="filterBy" class="dg-form-label whitespace-nowrap lg:mr-5">{ t( 'a_filter_by' )}</Label>
+                                <Label for="filterBy" class="dg-form-label whitespace-nowrap lg:mr-5"><Text message="a_filter_by" /></Label>
                                 <SingleSelect
                                     id="filterBy"
                                     name="filterBy"
-                                    options={props.filterBy}
+                                    options={filterOptions()}
                                     isObject
                                     displayValue="label"
                                     style={singleSelectRoundedStyle}
@@ -97,11 +108,11 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
 
                             <div class="flex w-full content-center items-center">
                                 <div class="lg:flex lg:items-center w-full">
-                                    <Label for="orderBy" class="dg-form-label whitespace-nowrap lg:mr-5">{t( 'a_order_by' )}</Label>
+                                    <Label for="orderBy" class="dg-form-label whitespace-nowrap lg:mr-5"><Text message="a_order_by" /></Label>
                                     <SingleSelect
                                         id="orderBy"
                                         name="orderBy"
-                                        options={props.orderBy}
+                                        options={orderByOptions()}
                                         isObject
                                         displayValue="label"
                                         style={singleSelectRoundedStyle}
@@ -130,20 +141,20 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                 type="button"
                                 onClick={reset()}
                             >
-                                {t( 'a_clear' )}
+                                <Text message="a_clear"/>
                             </Button>
                             <Button
                                 class="w-full lg:w-32 dg-secondary-button"
                                 type="button"
                                 onClick={reload( { setFilter, reset: reset() } )}
                             >
-                                {t( 'a_reload' )}
+                                <Text message="a_reload"/>
                             </Button>
                             <Button
                                 class="w-full lg:w-32 dg-main-button"
                                 type="submit"
                             >
-                                {t( 'a_filter' )}
+                                <Text message="a_filter"/>
                             </Button>
                         </div>
                     </> );

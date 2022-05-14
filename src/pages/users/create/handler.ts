@@ -1,5 +1,5 @@
 import { createAlertType } from '../../../features/shared/hooks/createAlert';
-import { IUserPayload } from '../../../features/user/interfaces';
+import { UserPayload } from '../../../features/user/interfaces';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 
 type params = {
@@ -17,12 +17,13 @@ export const createAction = ( { userRepository, errorAlert, navigate }: params )
     const country = payload.country?.value;
     const enable = payload.enable?.value;
     const rolesId = payload.roles.map( ( role: any ) => role.value );
-    const data: IUserPayload = {
+    const data: UserPayload = {
         ...payload,
         country,
         documentType,
         enable,
         permissions,
+        roles: undefined,
     };
 
     const create = userRepository.createUser( data );

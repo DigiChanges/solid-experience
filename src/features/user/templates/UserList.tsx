@@ -10,19 +10,19 @@ import Title from '../../../atoms/Title';
 import ButtonIcon from '../../../molecules/ButtonIcon';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
-import ConfirmDelete from '../../shared/modals/ConfirmDelete';
 import FilterSort from '../../filterSort/organisms/FilterSort';
 import useModal from '../../shared/hooks/useModal';
+import ConfirmDelete from '../../shared/modals/ConfirmDelete';
 import RemoveModalContent from '../../shared/modals/RemoveModalContent';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { BasicConfirmationModalData } from '../../shared/types/Modal';
 import { filterBy } from '../constants/filterBy';
 import { orderBy } from '../constants/orderBy';
-import { IUserApi } from '../interfaces';
+import { UserApi } from '../interfaces';
 
 interface UserListTemplateProps
 {
-    userList: IUserApi[] | undefined;
+    userList: UserApi[] | undefined;
     removeAction: any;
     loading: boolean;
     viewMoreAction: any;
@@ -35,12 +35,6 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
     const { t } = i18n;
 
     const { isShowModal, modalData, openModal, closeModal } = useModal<BasicConfirmationModalData>( { id: undefined, text: '' } );
-
-    const actionCreateButton = () =>
-    {
-        // return router.push( '/users/create' );
-        return true;
-    };
 
     return (
         <section class="mx-8">

@@ -5,7 +5,7 @@ import { Form } from 'solid-js-form';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
 import ButtonConfirm from '../../../molecules/ButtonConfirm';
-import ChangePasswordSchema from '../../auth/validations/schemas/ChangePasswordSchema';
+import userEditPasswordSchema from '../validations/schemas/userEditPasswordSchema';
 
 interface UserChangePasswordTemplateProps
 {
@@ -32,7 +32,7 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> = ( props ) =
                     password: undefined,
                     passwordConfirmation: undefined,
                 }}
-                validation={ChangePasswordSchema( t )}
+                validation={userEditPasswordSchema( t )}
                 onSubmit={async ( form ) =>
                 {
                     props.editPasswordAction( form.values );

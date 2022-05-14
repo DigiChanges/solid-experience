@@ -1,4 +1,5 @@
 import { useNavigate } from 'solid-app-router';
+import { Text } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logoNav from '../../../../assets/images/logo-nav.png';
 import Image from '../../../../atoms/Image';
@@ -7,6 +8,7 @@ import createAlert from '../../../shared/hooks/createAlert';
 import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm';
+import { createForgotPasswordAction } from '../../forgotPassword/organisms/handlers';
 import LoginForm from '../organisms/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 
@@ -19,7 +21,10 @@ const LoginTemplate: Component = () =>
     const [ , { addUser } ] = useApplicationContext();
     const errorAlert = createAlert();
 
-
+    const handleRegister = () =>
+    {
+        navigate( '/register', { replace: true } );
+    };
     return (
         <section class="dg-main-bg h-screen">
             <AlertErrors
@@ -40,10 +45,14 @@ const LoginTemplate: Component = () =>
                             <Image src={logoNav} class="h-8"/>
                         </a>
                     </div>
-                    <Show when={getShowRecoverPassword()}>
-                        <ForgotPasswordForm onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )} />
-                    </Show>
-                    <Show when={!getShowRecoverPassword()}>
+
+                    <Show when={!getShowRecoverPassword()}
+                        fallback={() => <ForgotPasswordForm
+                            createForgotPasswordAction={createForgotPasswordAction( { errorAlert, navigate } )}
+
+                            onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )} />}
+                    >
+                        <p class="text-sm block mb-2 pb-5 text-center"><Text message="a_dont_have_account" /><button type="button" onClick={() => handleRegister()}> <b><Text message="a_sign_up"/></b></button></p>
                         <LoginForm
                             onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
                             onSubmit={handleLoginFormSubmit( { addUser, errorAlert, navigate, setIsLoading } )}
