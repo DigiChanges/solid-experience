@@ -1,0 +1,6 @@
+{
+    "/api/*": "/$1",
+    "/auth/login": "/super-admin-login",
+    "/auth/login?provider=local": "/super-admin-login",
+    "/auth/permissions": "/permissions"
+  }
