@@ -32,6 +32,19 @@ It correctly bundles Solid Experience in production mode and optimizes the build
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
+
+## Mock server with json-server
+
+install mock server dependencies
+```bash
+cd json-server && yarn
+```
+
+run server
+```bash
+cd json-server && yarn server
+```
+
 ## Deployment
 
 You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
