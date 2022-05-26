@@ -11,6 +11,7 @@ import { PermissionApi } from '../../auth/interfaces/permission';
 import MultiSelect from '../../shared/molecules/MultiSelect';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
+import preventEnterCharacter from '../../shared/utils/PreventEnterCharacter';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
 import RoleSchema from '../validations/schemas/RoleSchema';
 
@@ -80,6 +81,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                                 labelClass="text-main-gray-200 block mb-2"
                                 labelName={t( 'slug' )}
                                 errorClass="ml-1"
+                                onKeyDown={preventEnterCharacter( [ 'Space' ] )}
                             />
                         </div>
 

@@ -37,6 +37,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                     placeholder={t( 'a_your_email' )}
                     labelClass="text-main-gray-200 block mb-2"
                     labelName={t( 'email' )}
+                    errorClass="ml-1"
                 />
             </div>
             <div>
@@ -47,6 +48,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                     placeholder={t( 'a_your_password' )}
                     labelClass="text-main-gray-200 block my-3"
                     labelName={t( 'a_password' )}
+                    errorClass="ml-1"
                 />
                 <div class="flex items-center justify-between">
                     <Button

@@ -48,11 +48,12 @@ const auth: I18nLocales = {
     au_forgot_password: '¿Forgot your Password?',
 };
 const appValidations: I18nLocales = {
+    av_email_valid: 'Must be a valid email',
     av_one_item: 'Must have at least 1 items',
+    av_password_match: 'Passwords must match',
     av_required: 'Required',
     av_too_long: 'Too Long!',
     av_too_short: 'Too Short!',
-    av_password_match: 'Passwords must match',
 };
 
 const entities: I18nLocales = {

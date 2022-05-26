@@ -101,6 +101,7 @@ const auth: I18nLocales = {
 };
 
 const appValidations: I18nLocales = {
+    av_email_valid: 'Debe ser un correo electrónico válido',
     av_one_item: 'Debe contener al menos un elemento',
     av_password_match: 'Las contraseñas deben coincidir',
     av_required: 'Requerido',

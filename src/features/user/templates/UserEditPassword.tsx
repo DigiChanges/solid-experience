@@ -52,6 +52,7 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> = ( props ) =
                             placeholder={t( 'a_password' )}
                             labelClass="dg-form-label"
                             labelName={t( 'new_password' )}
+                            errorClass="ml-1"
                         />
                     </div>
                     <div class="w-full px-2 mb-5">
@@ -64,6 +65,7 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> = ( props ) =
                             placeholder={t( 'a_repeat_password' )}
                             labelClass="dg-form-label"
                             labelName={t( 'confirm_password' )}
+                            errorClass="ml-1"
                         />
                     </div>
 

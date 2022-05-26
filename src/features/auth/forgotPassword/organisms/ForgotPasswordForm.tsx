@@ -39,6 +39,7 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
                     placeholder={t( 'a_your_email' )}
                     labelClass="text-main-gray-200 block mb-2"
                     labelName={t( 'email' )}
+                    errorClass="ml-1"
                 />
             </div>
             <div class="flex items-center mt-6 justify-between w-full">

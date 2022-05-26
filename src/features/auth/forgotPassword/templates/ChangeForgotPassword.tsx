@@ -59,6 +59,7 @@ const ChangeForgotPassword: Component<UserChangePasswordTemplateProps> = ( props
                                         placeholder="Enter Password"
                                         labelClass="dg-form-label"
                                         labelName="Password"
+                                        errorClass="ml-1"
                                     />
                                 </div>
                                 <div class="w-full px-2 mb-5">
@@ -71,6 +72,7 @@ const ChangeForgotPassword: Component<UserChangePasswordTemplateProps> = ( props
                                         placeholder="Repeat Password"
                                         labelClass="dg-form-label"
                                         labelName="Confirm Password"
+                                        errorClass="ml-1"
                                     />
                                 </div>
                                 <div class="w-full  flex flex-row-reverse ">
