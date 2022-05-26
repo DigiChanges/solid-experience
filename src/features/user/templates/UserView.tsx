@@ -66,6 +66,7 @@ const UserView: Component<UserViewTemplateProps> = ( props ) =>
                                 placeholder="Enter First Name"
                                 labelClass="dg-form-label"
                                 labelName="First name"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="w-full md:w-1/2 px-2 mb-5">
@@ -78,6 +79,7 @@ const UserView: Component<UserViewTemplateProps> = ( props ) =>
                                 placeholder="Enter Last Name"
                                 labelClass="dg-form-label"
                                 labelName="Last name"
+                                errorClass="ml-1"
                             />
                         </div>
                         {/* <div class="w-full md:w-1/4 px-2 mb-5">
@@ -225,6 +227,7 @@ const UserView: Component<UserViewTemplateProps> = ( props ) =>
                                 placeholder="Your address..."
                                 labelClass="dg-form-label"
                                 labelName="Address"
+                                errorClass="ml-1"
                             />
                         </div>
                         <span class="w-full mt-5 px-2">CONTACT INFORMATION </span>
@@ -237,6 +240,7 @@ const UserView: Component<UserViewTemplateProps> = ( props ) =>
                                 placeholder="Enter Email"
                                 labelClass="dg-form-label"
                                 labelName="Email"
+                                errorClass="ml-1"
                             />
                         </div>
                         <div class="w-full md:w-1/2 px-2 mb-5">
@@ -248,6 +252,7 @@ const UserView: Component<UserViewTemplateProps> = ( props ) =>
                                 placeholder="Enter number"
                                 labelClass="dg-form-label"
                                 labelName="Phone"
+                                errorClass="ml-1"
                             />
                         </div>
                         {/* <div class="w-full md:w-1/2 mb-5">
