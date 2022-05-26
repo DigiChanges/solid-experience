@@ -14,25 +14,6 @@
       "permissions": [],
       "enable": true,
       "id": "922465bc-db4e-4794-b25c-9311ce124e00"
-    },
-    {
-      "firstName": "demo1",
-      "lastName": "demo1",
-      "email": "mariagonzalez@gmail.com",
-      "birthday": "2022-05-17",
-      "documentType": "dni",
-      "documentNumber": "32160501",
-      "gender": "fame",
-      "phone": "2235463201",
-      "country": "AX",
-      "address": "Susie Brookss",
-      "password": "12345678",
-      "passwordConfirmation": "12345678",
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "id": "RpgKmhT"
     }
   ],
   "super-admin-login": {
