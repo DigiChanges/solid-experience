@@ -4,6 +4,7 @@ import { config } from '../../shared/repositories/config';
 import { CreateAccountResponse, RegisterPayload } from '../interfaces/createAccount';
 import { ChangeForgotPasswordPayload, ForgotPasswordPayload } from '../interfaces/forgotPassword';
 import { LoginPayload, LoginResponse } from '../interfaces/login';
+import { LogoutResponse } from '../interfaces/logout';
 import { PermissionListResponse } from '../interfaces/permission';
 
 const { protocol, hostname, port } = config.apiGateway.server;
@@ -40,7 +41,7 @@ class AuthRepository
             method: 'POST',
             data: {},
         };
-        return HttpAxiosRequest<LoginResponse>( config, this.user );
+        return HttpAxiosRequest<LogoutResponse>( config, this.user );
     }
 
     public getAllPermissions = () =>
