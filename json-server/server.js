@@ -12,6 +12,7 @@ server.use( middlewares );
 server.use( jsonServer.rewriter( {
     '/api/*': '/$1',
     '/auth/login': '/super-admin-login',
+    '/auth/account': '/users',
     '/auth/logout': '/logout',
     '/auth/login?provider=local': '/super-admin-login',
     '/auth/permissions': '/permissions',
