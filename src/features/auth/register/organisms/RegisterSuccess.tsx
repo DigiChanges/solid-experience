@@ -4,7 +4,6 @@ import { Component, Show } from 'solid-js';
 interface RegisterFormProps
 {
     email: string;
-    tenant: string;
     getShowBtnToLogin: any;
 }
 
@@ -13,7 +12,7 @@ const RegisterSuccess: Component<RegisterFormProps> = ( props ) =>
     const navigate = useNavigate();
     const handleOnclick = () =>
     {
-        navigate( `/login/${props.tenant}`, { replace: true } );
+        navigate( '/login', { replace: true } );
     };
     const { t } = useI18n();
     return (
@@ -32,8 +31,6 @@ const RegisterSuccess: Component<RegisterFormProps> = ( props ) =>
                     <div class="w-full mb-2">
                         <span class="text-xl text-white text-bold">{t( 'password' )}: </span><span class="text-xl text-bold ">{t( 'a_your_password' )}</span>
                     </div>
-                    <div class="w-full">
-                        <span class="text-xl text-white text-bold ">{t( 'organization' )}: </span><span class="text-xl text-bold">{props.tenant}</span></div>
                 </div>
             </div>
 

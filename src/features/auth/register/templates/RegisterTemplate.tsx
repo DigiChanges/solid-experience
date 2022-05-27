@@ -16,10 +16,7 @@ const RegisterTemplate: Component = () =>
     const navigate = useNavigate();
     const [ getShowRegisterSuccess, setShowRegisterSuccess ] = createSignal( false );
     const [ getShowBtnToLogin, setShowBtnGoToLogin ] = createSignal( false );
-
-    const [ getTenant, setTenant ] = createSignal( '' );
     const [ getEmail, setEmail ] = createSignal( '' );
-
     const [ isLoading, setIsLoading ] = createSignal( false );
     const [ user ]: any = useApplicationContext();
     const authRepository = new AuthRepository( user() );
@@ -49,11 +46,11 @@ const RegisterTemplate: Component = () =>
                     </div>
 
                     <Show when={!getShowRegisterSuccess()}
-                        fallback={() => <RegisterSuccess email={getEmail()} tenant={getTenant()} getShowBtnToLogin={getShowBtnToLogin}/>}
+                        fallback={() => <RegisterSuccess email={getEmail()} getShowBtnToLogin={getShowBtnToLogin}/>}
                     >
                         <RegisterForm
                             onSubmit={handleRegisterFormSubmit( { authRepository, errorAlert,
-                                navigate, setIsLoading, setTenant, setShowRegisterSuccess, getShowRegisterSuccess, setShowBtnGoToLogin } )}
+                                navigate, setIsLoading, setShowRegisterSuccess, getShowRegisterSuccess, setShowBtnGoToLogin } )}
                             setEmail={setEmail}
                         />
                     </Show>

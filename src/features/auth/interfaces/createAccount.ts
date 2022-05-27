@@ -3,7 +3,6 @@ import { IBodyApi } from '../../shared/interfaces/response/IBodyApi';
 export interface CreateAccountApi
 {
     message: string;
-    tenant: string;
 }
 
 export type CreateAccountResponse = IBodyApi & {
@@ -20,7 +19,6 @@ export type RegisterPayload =
     documentNumber: string;
     phone: string;
     country: string;
-    tenant: string;
     password: string;
     passwordConfirmation: string;
 };

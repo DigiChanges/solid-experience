@@ -1,7 +1,7 @@
 import { I18nLocales } from 'i18n-mini/lib/types';
 
 const app: I18nLocales = {
-    a_account_created: 'Cuenta creada. Tenant: {tenant_slug}',
+    a_account_created: 'Cuenta creada.',
     a_actions: 'Acciones',
     a_add: 'Agregar',
     a_autocomplete: 'Autocompletar',
@@ -97,7 +97,19 @@ const app: I18nLocales = {
 };
 
 const auth: I18nLocales = {
+    au_can_log_in_data: 'Ya puedes iniciar sesión con tus datos.',
+    au_can_log_in_with: 'Podrás iniciar sesión con:',
+    au_check_your_box: 'Revisa tu casilla, te enviamos un correo con el link de activación de la cuenta.',
+    au_check_your_email_change_password: 'Por favor revise en su correo electrónico la bandeja de entrada, para proceder al cambio de contraseña y luego iniciar sesión.',
+    au_check_your_email: 'Revisa tu casilla, te enviamos un correo.',
+    au_email_sent_successfully: '¡Email enviado con éxito!',
     au_forgot_password: '¿Olvidaste tu contraseña?',
+    au_go_to_login: 'Ir a inicio de sesión',
+    au_password_updated: 'Contraseña actualizada',
+    au_send_email: 'Se envio un email',
+    au_verification_successful: '¡ Verificación exitosa !',
+    au_wait_few_moments: 'Aguarda unos instantes...',
+    au_we_building: 'Estamos construyendo todo lo que necesitas para empezar',
 };
 
 const appValidations: I18nLocales = {
