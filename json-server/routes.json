@@ -2,6 +2,7 @@
     "/api/*": "/$1",
     "/auth/login": "/super-admin-login",
     "/auth/account": "/users",
+    "/auth/forgot-password": "/forgot-password",
     "/auth/logout": "/logout",
     "/auth/login?provider=local": "/super-admin-login",
     "/auth/permissions": "/permissions"
