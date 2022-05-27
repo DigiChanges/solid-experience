@@ -35,6 +35,10 @@
   "logout": {
     "message": "You have logged out successfully.",
     "messageCode": "auth.domain.messages.logout"
+  },  
+  "forgot-password": {
+    "message": "We've sent you an email.",
+    "messageCode": "auth.domain.messages.forgotPassword"
   },
   "permissions": [
     {

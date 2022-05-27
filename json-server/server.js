@@ -4,6 +4,7 @@ const path = require( 'path' );
 const jsonServer = require( 'json-server' );
 const login = require( './login' );
 const logout = require( './logout' );
+const forgotPassword = require( './forgot-password' );
 const server = jsonServer.create();
 const router = jsonServer.router( path.resolve( __dirname, 'db.json' ) );
 const middlewares = jsonServer.defaults();
@@ -14,6 +15,7 @@ server.use( jsonServer.rewriter( {
     '/auth/login': '/super-admin-login',
     '/auth/account': '/users',
     '/auth/logout': '/logout',
+    '/auth/forgot-password': '/forgot-password',
     '/auth/login?provider=local': '/super-admin-login',
     '/auth/permissions': '/permissions',
 } ) );
@@ -26,6 +28,7 @@ router.render = ( req, res ) =>
 };
 server.use( login );
 server.use( logout );
+server.use( forgotPassword );
 server.use( router );
 
 server.listen( 8089, () =>
