@@ -13,7 +13,8 @@
     "husky:init": "npx husky-init",
     "pre-commit": "lint-staged",
     "ts:check": "tsc -p tsconfig.json --noEmit",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "server": "cd json-server && yarn server"
   },
   "license": "MIT",
   "devDependencies": {

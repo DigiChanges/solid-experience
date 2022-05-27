@@ -11,6 +11,7 @@ import { permissions } from '../../../config/permissions';
 import ButtonIcon from '../../../molecules/ButtonIcon';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
+import Filter from '../../filterSort/organisms/Filter';
 import FilterSort from '../../filterSort/organisms/FilterSort';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { filterBy } from '../constants/filterBy';
@@ -76,6 +77,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 </div>
             </section>
 
+            <Filter />
             <FilterSort searchPlaceholder={`${t( 'u_search', { count: 1 } )}...`} filterBy={filterBy} orderBy={orderBy}/>
 
             <Show when={props.loading} >
