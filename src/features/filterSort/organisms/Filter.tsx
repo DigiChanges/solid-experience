@@ -1,7 +1,16 @@
+import MultiSelect from '@digichanges/solid-multiselect';
 import { Component, createSignal, For, onMount } from 'solid-js';
+import { SelectValueOption } from '../../shared/types/Selects';
 import './filter.css';
 
-const Filter: Component = () =>
+
+interface FilterProps{
+    // searchPlaceholder: string;
+    filterOptions: SelectValueOption[];
+    // orderBy: OrderBy[];
+}
+
+const Filter: Component<FilterProps> = ( props ) =>
 {
     const [ selectedMenu, setSelectedMenu ] = createSignal( { value: 'enable', label: 'Enable' } );
     const [ filterText, setFilterText ] = createSignal( '' );
@@ -65,9 +74,27 @@ const Filter: Component = () =>
                         id="propertyDropdown"
                         class="dropdown-content"
                     >
-                        <button class="dropdown-option opt" name="enable" onClick={toggleDropdown( 'propertyDropdown' )}>Enable</button>
-                        <button class="dropdown-option opt" name="email" onClick={toggleDropdown( 'propertyDropdown' )}>Email</button>
+                        <For each={props.filterOptions}>
+                            {( filterBy ) => (
+                                <>
+                                    <button class="dropdown-option opt" name={filterBy.value as string} onClick={toggleDropdown( 'propertyDropdown' )}>{( filterBy.label as any )?.innerText}</button>
+                                    {filterBy.label}
+                                </>
+                            )}
+                        </For>
+                        {/* <button class="dropdown-option opt" name="email" onClick={toggleDropdown( 'propertyDropdown' )}>Email</button> */}
                     </div>
+                    <MultiSelect
+                        id="filterBy"
+                        // name="filterBy"
+                        options={props.filterOptions}
+                        isObject
+                        displayValue="label"
+                        onSelect={() => {}}
+                        // style={singleSelectRoundedStyle}
+                        // placeholder={`${t( 'a_filter_field' )}...`}
+                        // errorClass="ml-1"
+                    />
                     <p>Es igual o contiene:</p>
                     <input class="dropdown-option" type="text" value={filterText()} onInput={( e ) => setFilterText( e.currentTarget.value )} />
                     <button class="opt" onClick={handleAddFilter()}>+ Add filter</button>

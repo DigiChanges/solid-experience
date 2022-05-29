@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
-import { FilterBy, OrderBy } from '../../types/filterSortTypes';
+import { SelectValueOption } from '../../../shared/types/Selects';
 
 type FilterFields = {
-    filterBy: FilterBy;
-    orderBy: OrderBy;
+    filterBy: SelectValueOption;
+    orderBy: SelectValueOption;
     search: string;
 };
 
