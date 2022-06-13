@@ -24,7 +24,7 @@ const app: I18nLocales = {
     a_data_type: 'Tipo de dato',
     a_delete: 'Eliminar',
     a_description: 'Descripción',
-    a_dont_have_account: '¿No tenés cuenta?',
+    a_do_not_have_account: '¿No tenés cuenta?',
     a_en: 'Inglés',
     a_enter_balance: 'Ingresar Balance',
     a_enter_business_name: 'Ingrese nombre del negocio',

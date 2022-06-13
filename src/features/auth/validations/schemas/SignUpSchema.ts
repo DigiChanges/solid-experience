@@ -1,13 +1,13 @@
-import * as Yup from 'yup';
+import { object, string } from 'yup';
 
-const SignUpSchema = {
-    email: Yup.string()
-        .email( 'Invalid email' )
-        .required( 'Required' ),
-    password: Yup.string()
-        .min( 2, 'Too Short!' )
-        .max( 50, 'Too Long!' )
-        .required( 'Required' ),
-};
+const signUpSchema = object( {
+    email: string()
+        .email( 'av_email_valid' )
+        .required( 'av_required' ),
+    password: string()
+        .min( 2, 'av_too_short' )
+        .max( 50, 'av_too_long' )
+        .required( 'av_required' ),
+} );
 
-export default SignUpSchema;
+export default signUpSchema;
