@@ -23,9 +23,10 @@ const LoginTemplate: Component = () =>
     const errorAlert = createAlert();
 
     const Card = hope( 'div', {
-        baseClass: 'w-1/2 md:w-1/3 min-w-xxs max-w-lg rounded-lg p-8 shadow-lg',
         baseStyle: {
             bg: 'white',
+            borderRadius: '8px',
+            padding: '2rem',
         },
     } );
 
@@ -48,7 +49,7 @@ const LoginTemplate: Component = () =>
 
             <VStack>
                 <Card>
-                    <Center h="50px">
+                    <Center h="100px">
                         <Image src={logoNav} class="h-8"/>
                     </Center>
 
