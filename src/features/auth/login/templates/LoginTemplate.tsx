@@ -1,4 +1,4 @@
-import { Anchor, Center, Flex, Heading, hope, HStack, Text, VStack } from '@hope-ui/solid';
+import { Anchor, Center, Flex, Heading, hope, HStack, Text, VStack, Box } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
 import { Text as TextI18 } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
@@ -48,7 +48,7 @@ const LoginTemplate: Component = () =>
             </Show>
 
             <VStack>
-                <Card>
+                <Box borderRadius="$md" backgroundColor="$whiteAlpha5" padding="$8">
                     <Center h="100px">
                         <Image src={logoNav} class="h-8"/>
                     </Center>
@@ -61,20 +61,20 @@ const LoginTemplate: Component = () =>
                             />
                         )}
                     >
-                        <HStack spacing="$2">
+                        <Flex justifyContent="space-between" paddingBottom="$4">
                             <Text>
                                 <TextI18 message="a_do_not_have_account" />
                             </Text>
                             <Anchor onClick={() => handleRegister()}>
                                 <Heading><TextI18 message="a_sign_up"/></Heading>
                             </Anchor>
-                        </HStack>
+                        </Flex>
                         <LoginForm
                             onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
                             onSubmit={handleLoginFormSubmit( { addUser, errorAlert, navigate, setIsLoading } )}
                         />
                     </Show>
-                </Card>
+                </Box>
             </VStack>
         </Flex>
     );

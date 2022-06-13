@@ -29,7 +29,7 @@ const LoginForm: Component<LoginFormProps> = props =>
 
     return (
         <>
-            <Heading>
+            <Heading paddingBottom="$2">
                 <Text message="a_login" />
             </Heading>
             <VStack
