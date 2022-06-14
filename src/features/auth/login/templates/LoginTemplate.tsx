@@ -1,4 +1,4 @@
-import { Anchor, Center, Flex, Heading, hope, HStack, Text, VStack, Box } from '@hope-ui/solid';
+import { Anchor, Center, Flex, Heading, Text, VStack, Box } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
 import { Text as TextI18 } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
@@ -21,14 +21,6 @@ const LoginTemplate: Component = () =>
 
     const [ , { addUser } ] = useApplicationContext();
     const errorAlert = createAlert();
-
-    const Card = hope( 'div', {
-        baseStyle: {
-            bg: 'white',
-            borderRadius: '8px',
-            padding: '2rem',
-        },
-    } );
 
     const handleRegister = () =>
     {

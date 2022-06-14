@@ -1,13 +1,22 @@
-import { Component } from 'solid-js';
+import { Component, splitProps } from 'solid-js';
+import { Image as HImage } from '@hope-ui/solid';
 
 interface ImageProps {
-    src: string;
-    class: string;
     alt?: string;
+    src?: string;
+    class?: string;
+    width?: string;
+    height?: string;
 }
 
 const Image: Component<ImageProps> = props =>
-    <img src={props.src} alt={props.alt ?? ''} class={props.class} />;
+{
+    const [ local, others ] = splitProps( props, [ 'alt' ] );
 
+    return <HImage
+        alt={local.alt ?? ''}
+        {...others}
+    />;
+};
 
 export default Image;
