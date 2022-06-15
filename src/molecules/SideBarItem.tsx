@@ -1,3 +1,4 @@
+import { Icon } from '@hope-ui/solid';
 import { NavLink } from 'solid-app-router';
 import { Text } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
@@ -14,26 +15,34 @@ interface SideBarItemProps {
     showItem: boolean;
     isLink: boolean;
     path: string;
-    getExpanded: boolean;
+    expanded: boolean;
     sectionSelected: string;
 }
 
 const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
 {
-    const Icon: any = props.icon;
+    const IconProps: any = props.icon;
 
     return (
         <>
             <Show when={props.icon}
                 fallback={() => <span class=" mr-1 inline-flex items-center justify-center h-8 w-6 text-lg " />} >
-                <span class={' mr-1 inline-flex items-center justify-center h-8 w-6 text-lg '} >
-                    <Icon />
+                <Icon class={' mr-1 inline-flex items-center justify-center h-8 w-6 text-lg '} >
+                    <IconProps />
+                </Icon>
+            </Show>
+            <div class="block" classList={{
+                'md:hidden': !props.expanded,
+            }}>
+                <span
+                    class="hover:text-blue-500 text-sm font-bold md:block"
+                    classList={{
+                        'pr-2 pl-4': props.expanded,
+                    }}
+                >
+                    <Text message={props.name} />
                 </span>
-            </Show>
-            <Show when={props.getExpanded}
-                fallback={() => <Text class="hover:text-blue-500 text-sm font-bold md:block" message=""/>} >
-                <Text class=" hover:text-blue-500 text-sm font-bold md:block pr-2 pl-4" message={props.name} />
-            </Show>
+            </div>
         </>
     );
 };
@@ -50,13 +59,13 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
                         classList={{ selectedBlue: props.sectionSelected === props.path }}
                     >
                         <SideBarItemContent {...props} />
-                        <span class="inline-flex ml-auto pl-1 w-6" classList={{ hidden: props.path === '/logout' }} >
+                        <Icon class="inline-flex ml-auto pl-1 w-6" classList={{ hidden: props.path === '/logout' }} >
                             <Show when={props.sectionSelected === props.path}
                                 fallback={<IconChevronRight />}
                             >
                                 <IconChevronDown />
                             </Show>
-                        </span>
+                        </Icon>
                     </button>
                 }
             >

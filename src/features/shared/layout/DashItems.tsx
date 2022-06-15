@@ -28,58 +28,61 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
     };
 
     return (
-        <For each={dashRoutes}>
-            {( dashRoute: any ) =>
-                <HasPermission
-                    permission={dashRoute.permission as string}
-                    user={props.authUser()}
-                    userPermissions={props.authUser().user.permissions}
-                >
-                    <SideBarItem
-                        name={dashRoute.name as string}
-                        icon={dashRoute.icon}
-                        isLoading={true}
-                        onClick={() => ( onToggled( dashRoute.path ) )}
-                        getShowSubitems={getShowSubitems()}
-                        routes={dashRoute}
-                        showItem={dashRoute.showItem as boolean}
-                        isLink={!dashRoute.children}
-                        path={ dashRoute.path }
-                        getExpanded={props.expanded}
-                        sectionSelected={sectionSelected()}
+        <div class="flex flex-col justify-start h-full">
+
+            <For each={dashRoutes}>
+                {( dashRoute: any ) =>
+                    <HasPermission
+                        permission={dashRoute.permission as string}
+                        user={props.authUser}
+                        userPermissions={props.authUser.user.permissions}
                     >
-                        <Show when={getShowSubitems() && sectionSelected() === dashRoute.path}>
-                            <div class="flex flex-row">
-                                <div class="w-full">
-                                    <For each={dashRoute.children}>
-                                        {( childrenDashRoute: any ) =>
-                                            <HasPermission
-                                                permission={childrenDashRoute.permission}
-                                                user={props.authUser()}
-                                                userPermissions={props.authUser().user.permissions}
-                                            >
-                                                <SideBarSubItem
-                                                    name={childrenDashRoute.name}
-                                                    path={sectionSelected().concat( childrenDashRoute.path )}
-                                                    icon={childrenDashRoute.icon}
-                                                    isToggled={true}
-                                                    showItem={childrenDashRoute.showItem}
-                                                    expanded={props.expanded}
-                                                    equalPath={isEqualPath( {
-                                                        locationPath: location.pathname,
-                                                        itemPath: sectionSelected().concat( childrenDashRoute.path ),
-                                                    } )}
-                                                />
-                                            </HasPermission>
-                                        }
-                                    </For>
+                        <SideBarItem
+                            name={dashRoute.name as string}
+                            icon={dashRoute.icon}
+                            isLoading={true}
+                            onClick={() => ( onToggled( dashRoute.path ) )}
+                            getShowSubitems={getShowSubitems()}
+                            routes={dashRoute}
+                            showItem={dashRoute.showItem as boolean}
+                            isLink={!dashRoute.children}
+                            path={ dashRoute.path }
+                            expanded={props.expanded}
+                            sectionSelected={sectionSelected()}
+                        >
+                            <Show when={getShowSubitems() && sectionSelected() === dashRoute.path}>
+                                <div class="flex flex-row">
+                                    <div class="w-full">
+                                        <For each={dashRoute.children}>
+                                            {( childrenDashRoute: any ) =>
+                                                <HasPermission
+                                                    permission={childrenDashRoute.permission}
+                                                    user={props.authUser}
+                                                    userPermissions={props.authUser.user.permissions}
+                                                >
+                                                    <SideBarSubItem
+                                                        name={childrenDashRoute.name}
+                                                        path={sectionSelected().concat( childrenDashRoute.path )}
+                                                        icon={childrenDashRoute.icon}
+                                                        isToggled={true}
+                                                        showItem={childrenDashRoute.showItem}
+                                                        expanded={props.expanded}
+                                                        equalPath={isEqualPath( {
+                                                            locationPath: location.pathname,
+                                                            itemPath: sectionSelected().concat( childrenDashRoute.path ),
+                                                        } )}
+                                                    />
+                                                </HasPermission>
+                                            }
+                                        </For>
+                                    </div>
                                 </div>
-                            </div>
-                        </Show>
-                    </SideBarItem>
-                </HasPermission>
-            }
-        </For>
+                            </Show>
+                        </SideBarItem>
+                    </HasPermission>
+                }
+            </For>
+        </div>
     );
 };
 

@@ -1,6 +1,7 @@
 import { Component, Show } from 'solid-js';
 import { NavLink } from 'solid-app-router';
 import { Text } from 'solid-i18n';
+import { Icon } from '@hope-ui/solid';
 
 interface SideBarSubItemProps {
     name: string;
@@ -14,7 +15,7 @@ interface SideBarSubItemProps {
 
 const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
 {
-    const Icon: any = props.icon;
+    const IconProps: any = props.icon;
 
     return (
         <Show when={props.showItem} >
@@ -26,19 +27,20 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                     >
                         <Show when={props.icon}
                             fallback={() => <span class="inline-flex w-6 items-center justify-center h-6 text-lg" />}>
-                            <span class="inline-flex w-6 items-center md:justify-start h-6 text-lg">
-                                <Icon />
-                            </span>
+                            <Icon class="inline-flex w-6 items-center md:justify-start h-6 text-lg">
+                                <IconProps />
+                            </Icon>
                         </Show>
-                        <Show when={props.expanded}>
-
+                        <div class="block" classList={{
+                            'md:hidden': !props.expanded,
+                        }}>
                             <span
                                 class="text-sm font-bold justify-start md:justify-center pl-2 px-4"
                                 classList={{ 'pl-1': props.isToggled } }
                             >
                                 <Text message={props.name} />
                             </span>
-                        </Show>
+                        </div>
                     </div>
                 </NavLink>
             </div>
