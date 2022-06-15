@@ -1,0 +1,56 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 12px 20px;
+    margin: 0 5px;
+}
+
+.nav .logo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav .logo {
+    max-height: 30px;
+}
+
+.nav .nav_container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav .nav_container .icon_bell {
+    display: none;
+}
+
+.nav .menu {
+    display: none;
+/* hidden md:block lg:block */
+}
+
+@media screen and (min-width: 520x) {
+}
+
+@media screen and (min-width: 768px) {
+    .nav {
+        margin: 0 20px;
+    }
+    
+    .nav .nav_container .icon_bell {
+        display: block;
+    }
+
+    .nav .menu {
+        display: block;
+    }
+
+    .nav .icon_burger {
+        display: none;
+    }
+}

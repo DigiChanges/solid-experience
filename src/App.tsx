@@ -16,22 +16,20 @@ function App ()
 
     return (
         <I18nProvider i18n={i18n}>
-            <div style={{ 'background-color': 'rgb(7, 11, 20)', 'min-height': '100vh' }}>
-                <ErrorBoundary fallback={<CustomError/>}>
-                    <Portal>
-                        <div class="containerNotification top-0 right-0 z-50 xs:max-w-xs md:max-w-xl pr-0  py-1"></div>
-                    </Portal>
-                    <Show when={!loading()}
-                        fallback={(
-                            <GeneralLoader />
-                        )}
-                    >
-                        <Suspense>
-                            <Routes />
-                        </Suspense>
-                    </Show>
-                </ErrorBoundary>
-            </div>
+            <ErrorBoundary fallback={<CustomError/>}>
+                <Portal>
+                    <div class="containerNotification top-0 right-0 z-50 xs:max-w-xs md:max-w-xl pr-0  py-1"></div>
+                </Portal>
+                <Show when={!loading()}
+                    fallback={(
+                        <GeneralLoader />
+                    )}
+                >
+                    <Suspense>
+                        <Routes />
+                    </Suspense>
+                </Show>
+            </ErrorBoundary>
         </I18nProvider>
     );
 }
