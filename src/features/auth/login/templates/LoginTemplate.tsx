@@ -1,5 +1,6 @@
+import { Anchor, Center, Flex, Heading, Text, VStack, Box } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
-import { Text } from 'solid-i18n';
+import { Text as TextI18 } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logoNav from '../../../../assets/images/logo-nav.png';
 import Image from '../../../../atoms/Image';
@@ -26,7 +27,7 @@ const LoginTemplate: Component = () =>
         navigate( '/register', { replace: true } );
     };
     return (
-        <section class="dg-main-bg h-screen">
+        <Flex alignItems="center" justifyContent="center" minHeight="100vh">
             <AlertErrors
                 errorData={errorAlert.errorData()}
                 title="err_login"
@@ -38,29 +39,36 @@ const LoginTemplate: Component = () =>
                 <GeneralLoader/>
             </Show>
 
-            <div class="dg-full-center-flex">
-                <div class="dg-rounded-small-box">
-                    <div class="flex w-full justify-center mb-6 h-8 -mt-4">
-                        <a href="/">
-                            <Image src={logoNav} class="h-8"/>
-                        </a>
-                    </div>
+            <VStack>
+                <Box borderRadius="$md" backgroundColor="$whiteAlpha5" padding="$8">
+                    <Center h="100px">
+                        <Image src={logoNav} class="h-8"/>
+                    </Center>
 
                     <Show when={!getShowRecoverPassword()}
-                        fallback={() => <ForgotPasswordForm
-                            createForgotPasswordAction={createForgotPasswordAction( { errorAlert, navigate } )}
-
-                            onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )} />}
+                        fallback={() => (
+                            <ForgotPasswordForm
+                                createForgotPasswordAction={createForgotPasswordAction( { errorAlert, navigate } )}
+                                onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
+                            />
+                        )}
                     >
-                        <p class="text-sm block mb-2 pb-5 text-center"><Text message="a_dont_have_account" /><button type="button" onClick={() => handleRegister()}> <b><Text message="a_sign_up"/></b></button></p>
+                        <Flex justifyContent="space-between" paddingBottom="$4">
+                            <Text>
+                                <TextI18 message="a_do_not_have_account" />
+                            </Text>
+                            <Anchor onClick={() => handleRegister()}>
+                                <Heading><TextI18 message="a_sign_up"/></Heading>
+                            </Anchor>
+                        </Flex>
                         <LoginForm
                             onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
                             onSubmit={handleLoginFormSubmit( { addUser, errorAlert, navigate, setIsLoading } )}
                         />
                     </Show>
-                </div>
-            </div>
-        </section>
+                </Box>
+            </VStack>
+        </Flex>
     );
 };
 

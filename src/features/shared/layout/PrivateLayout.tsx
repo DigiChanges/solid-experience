@@ -1,4 +1,3 @@
-
 import { Component, createSignal, JSX, Show } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
@@ -25,7 +24,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
 
     return (
         <div class="grid grid-flow-row">
-            <header class="dg-element-bg">
+            <header>
                 <div class="lg:max-w-screen-xxl lg:w-full lg:mx-auto xl:px-6">
                     <NavBar sideBarIsShown={showSidebar()} onClick={toggleShowSideBar} email={'example@mail.com'} />
                 </div>
@@ -33,7 +32,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
 
             <div class="grid grid-areas-mobile-layout md:grid-areas-tablet-layout lg:grid-areas-desktop-layout grid-cols-desktop-layout
         h-full dg-main-bg lg:max-w-screen-xl lg:w-full lg:mx-auto">
-                {/* desktop */}
+
                 <div class="grid-in-sidebar hidden md:block mt-6 z-10 w-max">
                     <SideBar class="dg-rounded h-89 py-5" getExpanded={getExpanded()}>
                         <ExpandButton getExpanded={getExpanded()} setExpanded={setExpanded} />
@@ -45,7 +44,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                         </div>
                     </SideBar>
                 </div>
-                {/* mobile */}
+
                 <div class="grid-in-sidebar absolute md:hidden mt-20 md:m-4 z-50 ">
                     <Show when={showSidebar()} >
                         <SideBar class="relative ml-5 dg-rounded min-h-80vh py-5 w-48" getExpanded={true}>
@@ -60,7 +59,6 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                 <Footer class="flex grid-in-footer border m-4 w-auto p-4 text-sm text-gray-200 items-end justify-center">
                     {new Date().getFullYear()} © DigiChanges
                 </Footer>
-
             </div>
         </div>
     );

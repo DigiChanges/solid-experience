@@ -1,12 +1,11 @@
+import { createForm } from '@felte/solid';
+import { validator } from '@felte/validator-yup';
+import { Anchor, Button, FormControl, FormErrorMessage, FormHelperText, FormLabel, Heading, HStack, Input, VStack } from '@hope-ui/solid';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
-import { Form } from 'solid-js-form';
-import Button from '../../../../atoms/Button';
-import Input from '../../../../atoms/Input';
-import PasswordShowHide from '../../../../atoms/PasswordShowHide/PasswordShowHide';
-import Title from '../../../../atoms/Title';
+import type { InferType } from 'yup';
 import { LoginPayload } from '../../interfaces/login';
-import SignUpSchema from '../../validations/schemas/SignUpSchema';
+import signUpSchema from '../../validations/schemas/SignUpSchema';
 
 interface LoginFormProps {
     onSubmit: ( values: LoginPayload ) => Promise<void>;
@@ -16,59 +15,58 @@ interface LoginFormProps {
 const LoginForm: Component<LoginFormProps> = props =>
 {
     const { t } = useI18n();
+    const {
+        form,
+        errors,
+        isValid,
+    } = createForm<InferType<typeof signUpSchema>>( {
+        extend: validator( { schema: signUpSchema } ),
+        onSubmit: async values =>
+        {
+            props.onSubmit( values );
+        },
+    } );
+
     return (
-        <Form
-            initialValues={{ email: '', password: '' }}
-            validation={SignUpSchema}
-            onSubmit={async ( form ) =>
-            {
-                props.onSubmit( form.values );
-            }}
-        >
-            <Title titleType="h1" class="mb-2 text-left text-xs font-extrabold text-main-gray-250">
+        <>
+            <Heading paddingBottom="$2">
                 <Text message="a_login" />
-            </Title>
-            <div class="mb-4">
-                <Input
-                    name="email"
-                    type="text"
-                    id="email"
-                    class="dg-form-field-full font-extrabold pl-5"
-                    placeholder={t( 'a_your_email' )}
-                    labelClass="text-main-gray-200 block mb-2"
-                    labelName={t( 'email' )}
-                    errorClass="ml-1"
-                />
-            </div>
-            <div>
-                <PasswordShowHide
-                    name="password"
-                    id="password"
-                    class="dg-form-field-full font-extrabold pl-5"
-                    placeholder={t( 'a_your_password' )}
-                    labelClass="text-main-gray-200 block my-3"
-                    labelName={t( 'a_password' )}
-                    errorClass="ml-1"
-                />
-                <div class="flex items-center justify-between">
-                    <Button
+            </Heading>
+            <VStack
+                as="form"
+                ref={form}
+                spacing="$5"
+                alignItems="stretch"
+                maxW="$96"
+                mx="auto"
+            >
+                <FormControl required invalid={!!errors( 'email' )}>
+                    <FormLabel for="email"><Text message="email"/></FormLabel>
+                    <Input name="email" type="email" placeholder={t( 'a_your_email' )}/>
+                    <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
+                </FormControl>
+
+                <FormControl required invalid={!!errors( 'password' )}>
+                    <FormLabel for="password"><Text message="a_password"/></FormLabel>
+                    <Input name="password" type="password" placeholder={t( 'a_your_password' )}/>
+                    <FormErrorMessage><Text message={errors( 'password' )[0]} /></FormErrorMessage>
+                </FormControl>
+
+                <FormHelperText>
+                    <Anchor
                         name="forgotPassword"
                         onClick={props.onClick}
-                        class="no-underline inline-block align-baseline font-bold text-sm text-blue hover:text-blue-dark "
                     >
                         <Text message="au_forgot_password" />
+                    </Anchor>
+                </FormHelperText>
+                <HStack justifyContent="flex-end">
+                    <Button type="submit" disabled={!isValid()}>
+                        <Text message="a_login" />
                     </Button>
-                </div>
-            </div>
-            <div class="mt-10 flex justify-center">
-                <Button
-                    type="submit"
-                    class="mx-auto text-white bg-primary-main border-0 py-2 focus:outline-none hover:bg-primary-hover rounded-full text-sm font-bold w-32 text-center"
-                >
-                    <Text message="a_login" />
-                </Button>
-            </div>
-        </Form>
+                </HStack>
+            </VStack>
+        </>
     );
 };
 

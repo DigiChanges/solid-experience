@@ -1,4 +1,5 @@
 import { Component, splitProps } from 'solid-js';
+import { Button as HButton } from '@hope-ui/solid';
 
 interface ButtonProps {
     type?: 'button' | 'submit' | 'reset';
@@ -12,12 +13,12 @@ const Button: Component<ButtonProps> = ( props ) =>
     const [ local, others ] = splitProps( props, [ 'children', 'type' ] );
 
     return (
-        <button
+        <HButton
             type={local.type ?? 'button'}
             {...others}
         >
             {local.children}
-        </button>
+        </HButton>
     );
 };
 
