@@ -32,23 +32,19 @@ const LoginForm: Component<LoginFormProps> = props =>
             <Heading paddingBottom="$2">
                 <Text message="a_login" />
             </Heading>
-            <VStack
-                as="form"
+            <form
                 ref={form}
-                spacing="$5"
-                alignItems="stretch"
-                maxW="$96"
-                mx="auto"
+                class="flex flex-col w-72 gap-9"
             >
                 <FormControl required invalid={!!errors( 'email' )}>
                     <FormLabel for="email"><Text message="email"/></FormLabel>
-                    <Input name="email" type="email" placeholder={t( 'a_your_email' )}/>
+                    <Input name="email" type="email" autocomplete="username" placeholder={t( 'a_your_email' )}/>
                     <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
                 </FormControl>
 
                 <FormControl required invalid={!!errors( 'password' )}>
                     <FormLabel for="password"><Text message="a_password"/></FormLabel>
-                    <Input name="password" type="password" placeholder={t( 'a_your_password' )}/>
+                    <Input name="password" type="password" autocomplete="current-password" placeholder={t( 'a_your_password' )}/>
                     <FormErrorMessage><Text message={errors( 'password' )[0]} /></FormErrorMessage>
                 </FormControl>
 
@@ -65,7 +61,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                         <Text message="a_login" />
                     </Button>
                 </HStack>
-            </VStack>
+            </form>
         </>
     );
 };

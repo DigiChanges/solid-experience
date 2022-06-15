@@ -39,35 +39,33 @@ const LoginTemplate: Component = () =>
                 <GeneralLoader/>
             </Show>
 
-            <VStack>
-                <Box borderRadius="$md" backgroundColor="$whiteAlpha5" padding="$8">
-                    <Center h="100px">
-                        <Image src={logoNav} class="h-8"/>
-                    </Center>
+            <div class="dg-rounded-small-box-gray py-5 ">
+                <Center h="100px">
+                    <Image src={logoNav} class="h-8"/>
+                </Center>
 
-                    <Show when={!getShowRecoverPassword()}
-                        fallback={() => (
-                            <ForgotPasswordForm
-                                createForgotPasswordAction={createForgotPasswordAction( { errorAlert, navigate } )}
-                                onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
-                            />
-                        )}
-                    >
-                        <Flex justifyContent="space-between" paddingBottom="$4">
-                            <Text>
-                                <TextI18 message="a_do_not_have_account" />
-                            </Text>
-                            <Anchor onClick={() => handleRegister()}>
-                                <Heading><TextI18 message="a_sign_up"/></Heading>
-                            </Anchor>
-                        </Flex>
-                        <LoginForm
+                <Show when={!getShowRecoverPassword()}
+                    fallback={() => (
+                        <ForgotPasswordForm
+                            createForgotPasswordAction={createForgotPasswordAction( { errorAlert, navigate } )}
                             onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
-                            onSubmit={handleLoginFormSubmit( { addUser, errorAlert, navigate, setIsLoading } )}
                         />
-                    </Show>
-                </Box>
-            </VStack>
+                    )}
+                >
+                    <Flex justifyContent="space-between" paddingBottom="$4">
+                        <Text>
+                            <TextI18 message="a_do_not_have_account" />
+                        </Text>
+                        <Anchor onClick={() => handleRegister()}>
+                            <Heading><TextI18 message="a_sign_up"/></Heading>
+                        </Anchor>
+                    </Flex>
+                    <LoginForm
+                        onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
+                        onSubmit={handleLoginFormSubmit( { addUser, errorAlert, navigate, setIsLoading } )}
+                    />
+                </Show>
+            </div>
         </Flex>
     );
 };

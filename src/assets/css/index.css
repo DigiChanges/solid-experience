@@ -5,7 +5,7 @@
 
 @layer base {
   .gilroy {
-    font-family: "Gilroy-Regular", sans-serif;
+    /* font-family: "Gilroy-Regular", sans-serif; */
   }
 
   .hover-trigger .hover-target {
@@ -22,8 +22,21 @@
     width: max-content;
   }
 
+  .border {
+    /* border: 1px solid var(--hope-colors-neutral10); */
+  }
+
+  .background {
+    background-color: var(--hope-colors-blackAlpha1);
+  }
+
+  .dg-rounded-small-box-gray {
+    @apply background p-8 rounded-default
+
+  }
+
   .dg-media-object {
-    @apply flex items-center font-semibold text-sm text-main-gray-250 rounded-lg py-2 px-4 dg-subelement-bg hover:bg-main-gray-500;
+    @apply flex items-center font-semibold text-sm rounded-lg py-2 px-4;
   }
   .dg-grid-3x3 {
     @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3;
@@ -31,11 +44,12 @@
   .dg-icon-pill {
     @apply md:max-w-md w-full md:w-1/2 p-2 dg-subelement-bg h-18 rounded-lg mx-1 my-1 flex items-center font-semibold text-sm text-main-gray-250;
   }
-  .dg-main-bg {
+  /* .dg-main-bg {
     @apply bg-gray-900 text-gray-500 gilroy;
-  }
+  } */
   .dg-element-bg {
-    @apply bg-gray-800 gilroy;
+    @apply background;
+    /* @apply bg-gray-800 gilroy; */
   }
   .dg-subelement-bg {
     @apply bg-gray-650;
@@ -44,7 +58,7 @@
     @apply border-gray-700 rounded-full;
   }
   .dg-rounded {
-    @apply dg-element-bg rounded-lg-md shadow-md;
+    @apply dg-element-bg rounded-lg-md shadow-md border;
   }
   .dg-rounded-small-box {
     @apply dg-element-bg w-1/2 md:w-1/3 min-w-xxs max-w-lg rounded-lg p-8 shadow-lg;
