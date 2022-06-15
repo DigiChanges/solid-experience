@@ -30,7 +30,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
         h-full dg-main-bg lg:max-w-screen-xl lg:w-full lg:mx-auto">
 
                 <div class="absolute md:relative mt-6 z-10 w-max">
-                    <SideBar class="dg-rounded py-5" showInMobile={showSidebar()} authUser={authUser()}/>
+                    <SideBar showInMobile={showSidebar()} authUser={authUser()}/>
                 </div>
 
                 <main class="grid-in-main w-full">

@@ -28,7 +28,7 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
     };
 
     return (
-        <div class="flex flex-col justify-start h-full">
+        <div class="flex flex-col justify-start">
 
             <For each={dashRoutes}>
                 {( dashRoute: any ) =>

@@ -17,18 +17,15 @@ const SideBar: Component<SideBarProps> = ( props ) =>
 
     return (
         <nav
-            class={`${styles.side_nav} md:block ${props.class} md:flex md:flex-col transition-all`}
+            class={`${styles.side_nav} dg-rounded`}
             classList={{
-                'hidden': !props.showInMobile,
-                'md:relative md:w-56': getExpanded(),
+                [styles.hidden]: !props.showInMobile,
             }}
         >
             <ExpandButton getExpanded={getExpanded()} setExpanded={setExpanded} />
-            <div class="flex flex-col h-full pb-5">
-                <DashItems expanded={getExpanded()} authUser={props.authUser} />
-                <div class="flex">
-                    <LogoutSideBarItem user={props.authUser} getExpanded={getExpanded()} sectionSelected=""/>
-                </div>
+            <DashItems expanded={getExpanded()} authUser={props.authUser} />
+            <div class={styles.logout_container}>
+                <LogoutSideBarItem user={props.authUser} getExpanded={getExpanded()} sectionSelected=""/>
             </div>
         </nav>
     );
