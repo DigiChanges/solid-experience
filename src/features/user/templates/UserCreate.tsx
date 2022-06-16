@@ -1,65 +1,68 @@
-import { Label } from '@digichanges/solid-components';
+import { createForm } from '@felte/solid';
+import { validator } from '@felte/validator-yup';
+import {
+    Button,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    HStack,
+    Input,
+    Radio,
+    RadioGroup,
+    Select,
+    SelectContent,
+    SelectIcon,
+    SelectLabel,
+    SelectListbox,
+    SelectOptGroup,
+    SelectOption,
+    SelectOptionIndicator,
+    SelectOptionText,
+    SelectPlaceholder,
+    SelectTrigger,
+    SelectValue,
+    SimpleOption,
+    SimpleSelect,
+    Switch
+} from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, createMemo, /* DEV, */ Show } from 'solid-js';
-import { Form } from 'solid-js-form';
-import ErrorField from '../../../atoms/ErrorField';
-import Input from '../../../atoms/Input';
-import PasswordShowHide from '../../../atoms/PasswordShowHide/PasswordShowHide';
+import { Component, For, Show } from 'solid-js';
+import { InferType } from 'yup';
 import Title from '../../../atoms/Title';
-import { country, states, userDocumentTypeOptions } from '../../../entities';
-import ButtonConfirm from '../../../molecules/ButtonConfirm';
+import { country, states } from '../../../entities';
 import { PermissionApi } from '../../auth/interfaces/permission';
 import { RoleApi } from '../../role/interfaces';
-import { roundedSelectStyle } from '../../shared/constants/selectStyles';
-import MultiSelect from '../../shared/molecules/MultiSelect';
-import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
-import { SelectValueOption } from '../../shared/types/Selects';
-import { SelectTransform } from '../../shared/utils/SelectTransform';
-import { documentTypeMultiSelectStyle } from '../constants/selectStyles';
+import preventEnterCharacter from '../../shared/utils/PreventEnterCharacter';
 import userCreateValidationSchema from '../validations/schemas/userCreateValidationSchema';
 
-interface UserCreateTemplateProps
-{
+interface UserCreateTemplateProps {
     permissionsList?: PermissionApi[];
     rolesList?: RoleApi[];
     onSave: ( data: any ) => void;
     loading: boolean;
 }
 
-const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
+const UserCreate: Component<UserCreateTemplateProps> = props =>
 {
-    /**
-     *
-     * show dev tools
-     * const owner: any = getOwner();
-     * window._$afterUpdate = () =>
-     * {
-     *     document.body.getElementsByTagName( 'pre' )[0].textContent = JSON.stringify(
-     *         DEV.serializeGraph( owner ),
-     *         null,
-     *         2
-     *     );
-     * };
-     *
-     */
     const i18n = useI18n();
     const { t } = i18n;
 
-    const roleOptions = () => SelectTransform.getOptionsObjectArray<RoleApi>(
-        props.rolesList,
-        ( item ) => item.name,
-        ( item ) => item.id
-    );
-
-    const statesOptions = () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
-        states,
-        ( item ) => t( item.label ) as string,
-        ( item ) => item.value
-    );
-
-    const groupedPermissions = createMemo( () => SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
+    const {
+        form,
+        errors,
+        isValid,
+        setFields,
+    // @ts-ignore
+    } = createForm<InferType<typeof userCreateValidationSchema>>( {
+        extend: validator( { schema: userCreateValidationSchema } ),
+        onSubmit: async values =>
+        {
+            console.log( values );
+            // props.onSave( values );
+        },
+    } );
 
     return (
         <section class="px-4">
@@ -70,37 +73,13 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
             </section>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
-
-                <Form
-                    initialValues={{
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        birthday: '',
-                        documentType: undefined,
-                        documentNumber: '',
-                        gender: '',
-                        phone: '',
-                        country: undefined,
-                        address: '',
-                        password: '',
-                        passwordConfirmation: '',
-                        roles: [],
-                        permissions: [],
-                        enable: statesOptions()[0],
-                    }}
-                    // validation={userCreateValidationSchema( t )}
-                    onSubmit={async ( form ) =>
-                    {
-                        props.onSave( form.values );
-                    }}
-                >
+                <form ref={form} class="flex flex-wrap text-sm">
                     <div class="flex flex-wrap text-sm">
                         <h2 class="w-full text-xs text-bold uppercase border-b-2 border-gray-800 mb-2">
                             <Text message="a_personal_information" />
                         </h2>
                         <div class="dg-form-full-field-wrapper">
-                            <Input
+                            {/* <Input
                                 style={{ display: 'block' }}
                                 name="firstName"
                                 type="text"
@@ -110,10 +89,15 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 labelClass="dg-form-label"
                                 labelName={ <Text message="first_name" />}
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <FormControl required invalid={!!errors( 'firstName' )}>
+                                <FormLabel for="firstName"><Text message="first_name"/></FormLabel>
+                                <Input name="firstName" type="text" placeholder={t( 'a_enter_first_name' )}/>
+                                <FormErrorMessage><Text message={errors( 'first_name' )[0]} /></FormErrorMessage>
+                            </FormControl>
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Input
+                            {/* <Input
                                 name="lastName"
                                 type="text"
                                 id="lastName"
@@ -122,13 +106,18 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 labelClass="dg-form-label"
                                 labelName={ <Text message="last_name" />}
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <FormControl required invalid={!!errors( 'lastName' )}>
+                                <FormLabel for="lastName"><Text message="last_name"/></FormLabel>
+                                <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' )}/>
+                                <FormErrorMessage><Text message={errors( 'last_name' )[0]} /></FormErrorMessage>
+                            </FormControl>
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="documentType" class="dg-form-label">
+                            {/* <Label for="documentType" class="dg-form-label">
                                 <Text message="id_number" />
-                            </Label>
-                            <div class="flex w-full">
+                            </Label> */}
+                            {/* <div class="flex w-full">
                                 <input autocomplete="false" name="hidden" type="text" style={{ display: 'none' }}/>
                                 <div>
                                     <SingleSelect
@@ -154,11 +143,11 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                         autocomplete="nope"
                                     />
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="gender" class="dg-form-label text-left">
+                            {/* <Label for="gender" class="dg-form-label text-left">
                                 <Text message="gender" />
                             </Label>
                             <div class="flex justify-between items-center">
@@ -197,11 +186,18 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                     hideError
                                 />
                             </div>
-                            <ErrorField name="gender" class="ml-1"/>
+                            <ErrorField name="gender" class="ml-1"/> */}
+                            <RadioGroup defaultValue="1">
+                                <HStack spacing="$4">
+                                    <Radio name="gender" id="gender-f" value="f">F</Radio>
+                                    <Radio name="gender" id="gender-m" value="m">M</Radio>
+                                    <Radio name="gender" id="gender-o" value="other">{t( 'a_gender_other' )}</Radio>
+                                </HStack>
+                            </RadioGroup>
                         </div>
 
                         <div class="dg-form-full-field-wrapper">
-                            <Input
+                            {/* <Input
                                 name="birthday"
                                 labelName={ <Text message="birthday" />}
                                 type="date"
@@ -210,10 +206,15 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder= {t( 'a_choose_birthday' )}
                                 labelClass="dg-form-label"
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <FormControl required invalid={!!errors( 'birthday' )}>
+                                <FormLabel for="birthday"><Text message="birthday"/></FormLabel>
+                                <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' )}/>
+                                <FormErrorMessage><Text message={errors( 'birthday' )[0]} /></FormErrorMessage>
+                            </FormControl>
                         </div>
-                        <div class="dg-form-full-field-wrapper">
-                            <Label for="enable" class="dg-form-label">
+                        <div class="dg-form-full-field-wrapper flex justify-around self-center">
+                            {/* <Label for="enable" class="dg-form-label">
                                 <Text message="enable" />
                             </Label>
                             <SingleSelect
@@ -225,10 +226,12 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 style={roundedSelectStyle}
                                 placeholder="Type"
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <Switch id="enable"
+                                name="enable" defaultChecked>enable</Switch>
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Label for="country" class="dg-form-label">
+                            {/* <Label for="country" class="dg-form-label">
                                 <Text message="country" />
                             </Label>
                             <SingleSelect
@@ -240,10 +243,23 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder={t( 'a_select_country' )}
                                 style={roundedSelectStyle}
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <FormControl required invalid={!!errors( 'country' )}>
+                                <FormLabel><Text message="country"/></FormLabel>
+                                <SimpleSelect
+                                    placeholder={<Text message="a_select_enable"/> as string}
+                                    onChange={value => setFields( 'country', value )}
+                                >
+                                    <For each={ country }>
+                                        {/* @ts-ignore */}
+                                        {item => <SimpleOption value={item.value}>{item.label}</SimpleOption>}
+                                    </For>
+                                </SimpleSelect>
+                                <FormErrorMessage>{errors( 'enable' )[0]}</FormErrorMessage>
+                            </FormControl>
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Input
+                            {/* <Input
                                 name="address"
                                 id="address"
                                 type="text"
@@ -252,13 +268,18 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 labelClass="dg-form-label"
                                 labelName={ <Text message="address" />}
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <FormControl required invalid={!!errors( 'address' )}>
+                                <FormLabel for="address"><Text message="address"/></FormLabel>
+                                <Input name="address" type="text" placeholder={t( 'a_your_address' )}/>
+                                <FormErrorMessage><Text message={errors( 'address' )[0]} /></FormErrorMessage>
+                            </FormControl>
                         </div>
                         <span class="w-full mt-5">
                             <Text message="a_contact_information" />
                         </span>
                         <div class="dg-form-full-field-wrapper">
-                            <Input
+                            {/* <Input
                                 name="email"
                                 type="text"
                                 id="email"
@@ -267,10 +288,15 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 labelClass="dg-form-label"
                                 labelName={ <Text message="email" />}
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <FormControl required invalid={!!errors( 'email' )}>
+                                <FormLabel for="email"><Text message="email"/></FormLabel>
+                                <Input name="email" type="text" placeholder={t( 'a_your_email' )}/>
+                                <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
+                            </FormControl>
                         </div>
                         <div class="dg-form-full-field-wrapper">
-                            <Input
+                            {/* <Input
                                 name="phone"
                                 type="text"
                                 id="phone"
@@ -279,10 +305,15 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 labelClass="dg-form-label"
                                 labelName={ <Text message="phone" />}
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <FormControl required invalid={!!errors( 'phone' )}>
+                                <FormLabel for="phone"><Text message="phone"/></FormLabel>
+                                <Input name="phone" type="text" placeholder={t( 'a_enter_phone' )}/>
+                                <FormErrorMessage><Text message={errors( 'phone' )[0]} /></FormErrorMessage>
+                            </FormControl>
                         </div>
                         <div class="w-full mb-5 pr-2">
-                            <PasswordShowHide
+                            {/* <PasswordShowHide
                                 name="password"
                                 id="password"
                                 class="dg-form-field-full"
@@ -290,10 +321,15 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 labelClass="dg-form-label"
                                 labelName={t( 'password' )}
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <FormControl required invalid={!!errors( 'password' )}>
+                                <FormLabel for="password"><Text message="password"/></FormLabel>
+                                <Input name="password" type="password" placeholder={t( 'a_your_password' )}/>
+                                <FormErrorMessage><Text message={errors( 'password' )[0]} /></FormErrorMessage>
+                            </FormControl>
                         </div>
                         <div class="w-full mb-5 pr-2">
-                            <PasswordShowHide
+                            {/* <PasswordShowHide
                                 name="passwordConfirmation"
                                 id="passwordConfirmation"
                                 class="dg-form-field-full"
@@ -301,9 +337,14 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 labelClass="dg-form-label"
                                 labelName={t( 'confirm_password' )}
                                 errorClass="ml-1"
-                            />
+                            /> */}
+                            <FormControl required invalid={!!errors( 'passwordConfirmation' )}>
+                                <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
+                                <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' )}/>
+                                <FormErrorMessage><Text message={errors( 'confirm_password' )[0]} /></FormErrorMessage>
+                            </FormControl>
                         </div>
-                        <div class="dg-form-full-field-wrapper">
+                        {/* <div class="dg-form-full-field-wrapper">
                             <Label for="permissions" class="dg-form-label">
                                 <Text message="permissions" />
                             </Label>
@@ -332,20 +373,26 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                                 placeholder={t( 'a_select_roles' )}
                                 errorClass="ml-1"
                             />
-                        </div>
+                        </div> */}
 
                         <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
-                            <Link href="/users" class="px-10 py-2 dg-secondary-button">
+                            {/* <Link href="/users" class="px-10 py-2 dg-secondary-button">
                                 <Text message="a_close" />
                             </Link>
                             <ButtonConfirm type="submit">
                                 <Text message="a_save"/>
-                            </ButtonConfirm>
+                            </ButtonConfirm> */}
+                            <Button as={Link} colorScheme="neutral" href="/roles">
+                                <Text message="a_close" />
+                            </Button>
+                            <Button type="submit" disabled={!isValid()}>
+                                <Text message="a_save"/>
+                            </Button>
                         </div>
                     </div>
-                </Form>
+                </form>
             </Show>
-            {/* <pre/> */}
+
         </section>
     );
 };
