@@ -10,10 +10,27 @@
       "gender": "male",
       "phone": "2234456999",
       "address": "New America 123",
+      "country": "AR",
       "roles": [],
       "permissions": [],
       "enable": true,
       "id": "922465bc-db4e-4794-b25c-9311ce124e00"
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john-doe@node.com",
+      "birthday": "04/01/1990",
+      "documentType": "dni",
+      "documentNumber": "22222",
+      "gender": "male",
+      "phone": "223444455",
+      "address": "Av Siempre Viva 123",
+      "country": "ES",
+      "roles": ["5db96817-33c8-446d-8050-830c4d88f26d"],
+      "permissions": [],
+      "enable": true,
+      "id": "922465bc-db4e-4794-b25c-9311ce124e01"
     }
   ],
   "super-admin-login": {
@@ -35,7 +52,7 @@
   "logout": {
     "message": "You have logged out successfully.",
     "messageCode": "auth.domain.messages.logout"
-  },  
+  },
   "forgot-password": {
     "message": "We've sent you an email.",
     "messageCode": "auth.domain.messages.forgotPassword"

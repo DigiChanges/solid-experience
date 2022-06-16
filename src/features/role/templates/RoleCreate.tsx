@@ -1,7 +1,6 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
-import {
-    Button,
+import { Button,
     FormControl,
     FormErrorMessage,
     FormLabel,
@@ -19,8 +18,7 @@ import {
     SelectTrigger,
     SelectValue,
     SimpleOption,
-    SimpleSelect
-} from '@hope-ui/solid';
+    SimpleSelect } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';

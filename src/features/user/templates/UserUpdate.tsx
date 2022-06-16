@@ -1,22 +1,15 @@
-import { Label } from '@digichanges/solid-components';
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
-import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@hope-ui/solid';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Select, SelectContent, SelectIcon, SelectLabel, SelectListbox, SelectOptGroup, SelectOption, SelectOptionIndicator, SelectOptionText, SelectPlaceholder, SelectTrigger, SelectValue, SimpleOption, SimpleSelect } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, createMemo, Show } from 'solid-js';
-import ErrorField from '../../../atoms/ErrorField';
+import { Component, createMemo, For, Show } from 'solid-js';
 import Title from '../../../atoms/Title';
-import { country, states, userDocumentTypeOptions } from '../../../entities';
+import { country, states } from '../../../entities';
 import { PermissionApi } from '../../auth/interfaces/permission';
 import { RoleApi } from '../../role/interfaces';
-import { roundedSelectStyle } from '../../shared/constants/selectStyles';
-import MultiSelect from '../../shared/molecules/MultiSelect';
-import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
-import { SelectValueOption } from '../../shared/types/Selects';
 import { SelectTransform } from '../../shared/utils/SelectTransform';
-import { documentTypeMultiSelectStyle } from '../constants/selectStyles';
 import { UserApi } from '../interfaces';
 import userUpdateValidationSchema from '../validations/schemas/userUpdateValidationSchema';
 
@@ -100,7 +93,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                     <div class="dg-form-full-field-wrapper">
                         <FormControl required invalid={!!errors( 'firstName' )}>
                             <FormLabel for="firstName"><Text message="firstName"/></FormLabel>
-                            <Input name="firstName" type="text" placeholder={t( 'a_enter_first_name' )} value={props.userSelected?.firstName}/>
+                            <Input name="firstName" autoFocus type="text" placeholder={t( 'a_enter_first_name' )} value={props.userSelected?.firstName}/>
                             <FormErrorMessage><Text message={errors( 'firstName' )[0]} /></FormErrorMessage>
                         </FormControl>
                     </div>
@@ -113,204 +106,158 @@ const UserUpdate: Component<UserUpdateTemplateProps> = ( props ) =>
                         </FormControl>
                     </div>
 
-                    {/* <div class="dg-form-full-field-wrapper">
-                        <Input
-                            name="lastName"
-                            type="text"
-                            id="lastName"
-                            class="dg-form-field-full"
-                            placeholder={t( 'a_enter_last_name' )}
-                            labelClass="dg-form-label"
-                            labelName={ <Text message="last_name" />}
-                            errorClass="ml-1"
-                        />
-                    </div>
                     <div class="dg-form-full-field-wrapper">
-                        <Label for="documentType" class="dg-form-label">
-                            <Text message="id_number" />
-                        </Label>
-                        <div class="flex w-full">
-                            <div>
-                                <SingleSelect
-                                    id="documentType"
-                                    name="documentType"
-                                    options={userDocumentTypeOptions}
-                                    isObject
-                                    displayValue="label"
-                                    style={documentTypeMultiSelectStyle}
-                                    placeholder={t( 'type_id' )}
-                                    errorClass="ml-1"
-                                />
-                            </div>
-                            <div class="w-full">
-                                <Input
-                                    labelName=""
-                                    name="documentNumber"
-                                    type="text"
-                                    id="documentNumber"
-                                    class="flex-1 dg-form-field-quarter rounded-l-none flex w-full"
-                                    placeholder={t( 'a_enter_id_number' )}
-                                    errorClass="ml-1"
-                                    autocomplete="nope"
-                                />
-                            </div>
-                        </div>
+                        <FormControl required invalid={!!errors( 'country' )}>
+                            <FormLabel><Text message="country"/></FormLabel>
+                            <SimpleSelect
+                                value={props.userSelected?.country}
+                                placeholder={<Text message="a_select_country"/> as string}
+                                onChange={value => setFields( 'country', value )}
+                            >
+                                <For each={ country }>
+                                    {/* @ts-ignore */}
+                                    {item => <SimpleOption
+                                        value={item.value}
+                                        rounded="$none"
+                                        fontSize="$sm"
+                                        _active={{ bg: '$warning3', color: '$warning11' }}
+                                        _selected={{ bg: '$warning9', color: 'white' }}
+                                    >{item.label}</SimpleOption>}
+                                </For>
+                            </SimpleSelect>
+                            <FormErrorMessage>{errors( 'country' )[0]}</FormErrorMessage>
+                        </FormControl>
                     </div>
 
                     <div class="dg-form-full-field-wrapper">
-                        <Label for="gender" class="dg-form-label text-left">
-                            <Text message="gender" />
-                        </Label>
-                        <div class="flex justify-between items-center">
-                            <Input
-                                name="gender"
-                                type="radio"
-                                id="gender-f"
-                                value="fame"
-                                class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
-                                labelClass="text-gray-400 text-xs font-bold mr-8"
-                                containerClass="flex-grow"
-                                labelName="F"
-                                errorChildren={null}
-                                hideError
-                            />
-                            <Input
-                                name="gender"
-                                type="radio"
-                                id="gender-m"
-                                value="male"
-                                class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1"
-                                labelClass="text-gray-400 text-xs font-bold mr-8"
-                                containerClass="flex-grow"
-                                labelName="M"
-                                errorChildren={null}
-                                hideError
-                            />
-                            <Input
-                                name="gender"
-                                type="radio"
-                                id="gender-o"
-                                value="other"
-                                class="border-1 rounded-full border-main-gray-500 bg-gray-800 p-3 focus:bg-white focus:border-white m-1 mr-2"
-                                labelClass="text-gray-400 text-xs font-bold mr-8"
-                                labelName={t( 'a_gender_other' )}
-                                errorChildren={false}
-                                hideError
-                            />
-                        </div>
-                        <ErrorField name="gender" class="ml-1"/>
+                        <FormControl required invalid={!!errors( 'address' )}>
+                            <FormLabel for="address"><Text message="address"/></FormLabel>
+                            <Input name="address" type="text" placeholder={t( 'a_enter_last_name' )} value={props.userSelected?.address}/>
+                            <FormErrorMessage><Text message={errors( 'address' )[0]} /></FormErrorMessage>
+                        </FormControl>
                     </div>
 
                     <div class="dg-form-full-field-wrapper">
-                        <Input
-                            name="birthday"
-                            labelName={ <Text message="birthday" />}
-                            type="date"
-                            id="birthday"
-                            class="dg-form-field-full"
-                            placeholder= {t( 'a_choose_birthday' )}
-                            labelClass="dg-form-label"
-                            errorClass="ml-1"
-                        />
+                        <FormControl required invalid={!!errors( 'enable' )}>
+                            <FormLabel><Text message="enable"/></FormLabel>
+                            <SimpleSelect
+                                value={props.userSelected?.enable}
+                                placeholder={<Text message="a_select_enable"/> as string}
+                                onChange={value => setFields( 'enable', value )}
+                            >
+                                <For each={ states }>
+                                    {/* @ts-ignore */}
+                                    {item => <SimpleOption value={item.value}>{item.label}</SimpleOption>}
+                                </For>
+                            </SimpleSelect>
+                            <FormErrorMessage>{errors( 'enable' )[0]}</FormErrorMessage>
+                        </FormControl>
                     </div>
-                    <div class="dg-form-full-field-wrapper">
-                        <Label for="country" class="dg-form-label">
-                            <Text message="country" />
-                        </Label>
-                        <SingleSelect
-                            id="country"
-                            name="country"
-                            options={country}
-                            isObject
-                            displayValue="label"
-                            style={roundedSelectStyle}
-                            placeholder={t( 'a_select_country' )}
-                            errorClass="ml-1"
-                        />
-                    </div>
-                    <div class="dg-form-full-field-wrapper">
-                        <Input
-                            name="address"
-                            id="address"
-                            type="text"
-                            class="dg-form-field-full"
-                            placeholder={t( 'a_your_address' )}
-                            labelClass="dg-form-label"
-                            labelName={ <Text message="address" />}
-                            errorClass="ml-1"
-                        />
-                    </div>
-                    <div class="dg-form-full-field-wrapper">
-                        <Label for="enable" class="dg-form-label">
-                            <Text message="enable" />
-                        </Label>
-                        <SingleSelect
-                            id="enable"
-                            name="enable"
-                            options={statesOptions()}
-                            isObject
-                            displayValue="label"
-                            style={roundedSelectStyle}
-                            placeholder="Type"
-                            errorClass="ml-1"
-                        />
-                    </div>
+
                     <span class="w-full mt-5">
                         <Text message="a_contact_information" />
                     </span>
+
                     <div class="dg-form-full-field-wrapper">
-                        <Input
-                            name="email"
-                            type="text"
-                            id="email"
-                            class="dg-form-field-full"
-                            placeholder={t( 'a_your_email' )}
-                            labelClass="dg-form-label"
-                            labelName={ <Text message="email" />}
-                            errorClass="ml-1"
-                        />
+                        <FormControl required invalid={!!errors( 'email' )}>
+                            <FormLabel for="email"><Text message="email"/></FormLabel>
+                            <Input name="email" autoFocus type="email" placeholder={t( 'a_enter_email' )} value={props.userSelected?.email}/>
+                            <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
+                        </FormControl>
                     </div>
+
                     <div class="dg-form-full-field-wrapper">
-                        <Input
-                            name="phone"
-                            type="text"
-                            id="phone"
-                            class="dg-form-field-full"
-                            placeholder={t( 'a_enter_phone' )}
-                            labelClass="dg-form-label"
-                            labelName={ <Text message="phone" />}
-                            errorClass="ml-1"
-                        />
+                        <FormControl required invalid={!!errors( 'phone' )}>
+                            <FormLabel for="phone"><Text message="phone"/></FormLabel>
+                            <Input name="phone" autoFocus type="phone" placeholder={t( 'a_enter_phone' )} value={props.userSelected?.phone}/>
+                            <FormErrorMessage><Text message={errors( 'phone' )[0]} /></FormErrorMessage>
+                        </FormControl>
                     </div>
+
                     <div class="dg-form-full-field-wrapper">
-                        <Label for="permissions" class="dg-form-label">
-                            <Text message="permissions" />
-                        </Label>
-                        <MultiSelect
-                            name="permissions"
-                            options={groupedPermissions()}
-                            isObject
-                            displayValue="value"
-                            groupBy="group"
-                            id="permissions"
-                            placeholder={t( 'a_enter_permissions' )}
-                            errorClass="ml-1"
-                        />
+                        <FormControl required invalid={!!errors( 'permissions' )}>
+                            <FormLabel for="permissions"><Text message="permissions"/></FormLabel>
+                            <Select multiple
+                                value={props.userSelected?.permissions}
+                                onChange={value => setFields( 'permissions', value )}
+                            >
+                                <SelectTrigger>
+                                    <SelectPlaceholder>
+                                        <Text message="a_enter_permissions"/>
+                                    </SelectPlaceholder>
+                                    <SelectValue />
+                                    <SelectIcon />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectListbox>
+                                        <SelectOptGroup>
+                                            <For each={props.permissionsList}>
+                                                {permissionGroup => (
+                                                    <>
+                                                        <SelectLabel>{permissionGroup.group}</SelectLabel>
+                                                        <For each={permissionGroup.permissions}>
+                                                            {permission => (
+                                                                <SelectOption
+                                                                    value={permission}
+                                                                    rounded="$none"
+                                                                    fontSize="$sm"
+                                                                    _active={{ bg: '$warning3', color: '$warning11' }}
+                                                                    _selected={{ bg: '$warning9', color: 'white' }}
+                                                                >
+                                                                    <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>
+                                                                        {permission}
+                                                                    </SelectOptionText>
+                                                                    <SelectOptionIndicator/>
+                                                                </SelectOption>
+                                                            )}
+                                                        </For>
+                                                    </>
+                                                )}
+                                            </For>
+                                        </SelectOptGroup>
+                                    </SelectListbox>
+                                </SelectContent>
+                            </Select>
+                            <FormErrorMessage><Text message={errors( 'permissions' )[0]} /></FormErrorMessage>
+                        </FormControl>
                     </div>
+
                     <div class="dg-form-full-field-wrapper">
-                        <Label for="roles" class="dg-form-label">
-                            <Text message="roles" />
-                        </Label>
-                        <MultiSelect
-                            name="roles"
-                            options={roleOptions()}
-                            isObject
-                            displayValue="label"
-                            id="roles"
-                            placeholder={t( 'a_select_roles' )}
-                            errorClass="ml-1"
-                        />
-                    </div> */}
+                        <FormControl required invalid={!!errors( 'roles' )}>
+                            <FormLabel for="roles"><Text message="roles"/></FormLabel>
+                            <Select multiple
+                                value={props.userSelected?.roles}
+                                onChange={value => setFields( 'roles', value )}
+                            >
+                                <SelectTrigger>
+                                    <SelectPlaceholder>
+                                        <Text message="a_select_roles"/>
+                                    </SelectPlaceholder>
+                                    <SelectValue />
+                                    <SelectIcon />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectListbox>
+                                        <For each={props.rolesList}>
+                                            {role => (
+                                                <SelectOption
+                                                    value={role.id}
+                                                    rounded="$none"
+                                                    fontSize="$sm"
+                                                    _active={{ bg: '$warning3', color: '$warning11' }}
+                                                    _selected={{ bg: '$warning9', color: 'white' }}
+                                                >
+                                                    <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>{role.name}</SelectOptionText>
+                                                    <SelectOptionIndicator/>
+                                                </SelectOption>
+                                            )}
+                                        </For>
+                                    </SelectListbox>
+                                </SelectContent>
+                            </Select>
+                            <FormErrorMessage><Text message={errors( 'roles' )[0]} /></FormErrorMessage>
+                        </FormControl>
+                    </div>
 
                     <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent="usersUpdate">
                         <div class="w-full md:w-32 m-0 has-permission">
