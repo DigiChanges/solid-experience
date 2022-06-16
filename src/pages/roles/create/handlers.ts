@@ -12,9 +12,7 @@ type params = {
 export const createAction = ( { roleRepository, errorAlert, navigate }: params ) => async ( payload: any ) =>
 {
     const { setError, showNotification } = errorAlert;
-    const { name, slug } = payload;
-    const permissions = ( payload.permissions as GroupedPermission[] ).map( ( permission ) => permission.value );
-    const enable = payload.enable?.value;
+    const { name, slug, permissions, enable } = payload;
 
     const data: RolePayload = {
         name,

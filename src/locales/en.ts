@@ -38,6 +38,7 @@ const app: I18nLocales = {
     a_save: 'Save',
     a_search: 'Search',
     a_select_country: 'Select Country',
+    a_select_enable: 'Select State',
     a_select_roles: 'Select Roles',
     a_view_more: 'View more',
     a_your_address: 'Your address...',

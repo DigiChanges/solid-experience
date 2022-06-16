@@ -89,7 +89,7 @@ const UserCreate: Component<UserCreateTemplateProps> = ( props ) =>
                         permissions: [],
                         enable: statesOptions()[0],
                     }}
-                    validation={userCreateValidationSchema( t )}
+                    // validation={userCreateValidationSchema( t )}
                     onSubmit={async ( form ) =>
                     {
                         props.onSave( form.values );

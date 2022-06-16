@@ -26,7 +26,7 @@ const RegisterForm: Component<RegisterFormProps> = props =>
             initialValues={{ firstName: '', lastName: '', email: '', password: '', passwordConfirmation: '', birthday: '',
                 documentType: undefined, documentNumber: '', phone: '', country: undefined, gender: '',
                 address: '', enable: { label: 'Enabled', value: true } }}
-            validation={RegisterSchema( t )}
+            // validation={RegisterSchema( t )}
             onSubmit={async ( form ) =>
             {
                 props.setEmail( form.values.email );

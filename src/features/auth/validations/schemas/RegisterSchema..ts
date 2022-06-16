@@ -1,15 +1,14 @@
-import * as Yup from 'yup';
+import { ref, string } from 'yup';
 import userValidationSchema from '../../../user/validations/schemas/userValidationSchema';
 
-const RegisterSchema = ( t: any ) => ( {
-    ...userValidationSchema( t ),
-    password: Yup.string()
-        .min( 2, t( 'av_too_short' ) )
-        .max( 50, t( 'av_too_long' ) )
-        .required( t( 'av_required' ) ),
-    passwordConfirmation: Yup.string()
-        .oneOf( [ Yup.ref( 'password' ), null ], t( 'av_password_match' ) )
-        .required( t( 'av_required' ) ),
+const RegisterSchema = userValidationSchema.shape( {
+    password: string()
+        .min( 2, 'av_too_short' )
+        .max( 50, 'av_too_long' )
+        .required( 'av_required' ),
+    passwordConfirmation: string()
+        .oneOf( [ ref( 'password' ), null ], 'av_password_match' )
+        .required( 'av_required' ),
 } );
 
 export default RegisterSchema;

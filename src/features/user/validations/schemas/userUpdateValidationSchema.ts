@@ -1,7 +1,5 @@
 import userValidationSchema from './userValidationSchema';
 
-const userUpdateValidationSchema = ( t: any ) => ( {
-    ...userValidationSchema( t ),
-} );
+const userUpdateValidationSchema = userValidationSchema ;
 
 export default userUpdateValidationSchema;
