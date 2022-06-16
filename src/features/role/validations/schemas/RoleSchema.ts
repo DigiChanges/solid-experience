@@ -1,16 +1,16 @@
-import * as Yup from 'yup';
+import { array, bool, object, string } from 'yup';
 
-const RoleSchema = ( t: any ) => ( {
-    name: Yup.string()
-        .min( 2, t( 'av_too_short' ) )
-        .max( 50, t( 'av_too_long' ) )
-        .required( t( 'av_required' ) ),
-    slug: Yup.string()
-        .min( 2, t( 'av_too_short' ) )
-        .max( 50, t( 'av_too_long' ) )
-        .required( t( 'av_required' ) ),
-    permissions: Yup.array()
-        .min( 1, t( 'av_one_item' ) ),
+const roleSchema = object( {
+    name: string()
+        .min( 3, 'av_too_short' )
+        .max( 50, 'av_too_long' )
+        .required( 'av_required' ),
+    slug: string()
+        .min( 3, 'av_too_short' )
+        .max( 50, 'av_too_long' )
+        .required( 'av_required' ),
+    permissions: array().min( 1, 'av_one_item' ).required( 'av_required' ),
+    enable: bool().required(),
 } );
 
-export default RoleSchema;
+export default roleSchema;

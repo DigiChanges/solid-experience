@@ -79,6 +79,7 @@ const app: I18nLocales = {
     a_search: 'Buscar',
     a_security: 'Seguridad',
     a_select_country: 'Seleccionar País',
+    a_select_enable: 'Seleccionar el estado',
     a_select_roles: 'Seleccionar Roles',
     a_select: 'Seleccionar',
     a_sign_up: '¡Registrate!',

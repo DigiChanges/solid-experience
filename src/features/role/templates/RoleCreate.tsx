@@ -1,36 +1,59 @@
-import { Label } from '@digichanges/solid-components';
+import { createForm } from '@felte/solid';
+import { validator } from '@felte/validator-yup';
+import { Button,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input,
+    Select,
+    SelectContent,
+    SelectIcon,
+    SelectLabel,
+    SelectListbox,
+    SelectOptGroup,
+    SelectOption,
+    SelectOptionIndicator,
+    SelectOptionText,
+    SelectPlaceholder,
+    SelectTrigger,
+    SelectValue,
+    SimpleOption,
+    SimpleSelect } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, createMemo, Show } from 'solid-js';
-import { Form } from 'solid-js-form';
-import Input from '../../../atoms/Input';
+import { Component, For, Show } from 'solid-js';
+import { InferType } from 'yup';
 import Title from '../../../atoms/Title';
 import { states } from '../../../entities';
-import ButtonConfirm from '../../../molecules/ButtonConfirm';
 import { PermissionApi } from '../../auth/interfaces/permission';
-import MultiSelect from '../../shared/molecules/MultiSelect';
-import SingleSelect from '../../shared/molecules/SingleSelect';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import preventEnterCharacter from '../../shared/utils/PreventEnterCharacter';
-import { SelectTransform } from '../../shared/utils/SelectTransform';
-import RoleSchema from '../validations/schemas/RoleSchema';
+import roleSchema from '../validations/schemas/RoleSchema';
 
 interface RoleCreateTemplateProps {
     permissionsList?: PermissionApi[];
-    createAction: ( data: any ) => void;
+    createAction: ( data: any ) => Promise<void>;
     loading: boolean;
 }
-
-const singleSelectStyle = {
-    searchBox: { 'max-height': '40px' },
-    inputField: { 'max-height': '40px', 'padding': '0 10px' },
-};
 
 const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
     const i18n = useI18n();
     const { t } = i18n;
-    const groupedPermissions = createMemo( () => SelectTransform.getPermissionsGroupedToSelectArray( props?.permissionsList ) );
+
+    const {
+        form,
+        errors,
+        isValid,
+        setFields,
+    // @ts-ignore
+    } = createForm<InferType<typeof roleSchema>>( {
+        extend: validator( { schema: roleSchema } ),
+        onSubmit: async values =>
+        {
+            props.createAction( values );
+        },
+    } );
 
     return (
         <section class="px-4">
@@ -41,88 +64,97 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
             </section>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
+                <form ref={form} class="flex flex-wrap text-sm">
 
-                <Form
-                    initialValues={{
-                        name: '',
-                        slug: '',
-                        permissions: [],
-                        enable: { label: 'Enabled', value: true },
-                    }}
-                    validation={RoleSchema( t )}
-
-                    onSubmit={async ( form ) =>
-                    {
-                        props.createAction( form.values );
-                    }}
-
-                >
-
-                    <div class="flex flex-wrap text-sm">
-                        <div class="dg-form-full-field-wrapper">
-                            <Input
-                                name="name"
-                                type="text"
-                                id="name"
-                                class="dg-form-field-full"
-                                placeholder={t( 'a_enter_name' )}
-                                labelClass="text-main-gray-200 block mb-2"
-                                labelName={t( 'name' )}
-                                errorClass="ml-1"
-                            />
-                        </div>
-                        <div class="dg-form-full-field-wrapper">
-                            <Input
-                                name="slug"
-                                type="text"
-                                id="slug"
-                                class="dg-form-field-full"
-                                placeholder={t( 'a_enter_slug' )}
-                                labelClass="text-main-gray-200 block mb-2"
-                                labelName={t( 'slug' )}
-                                errorClass="ml-1"
-                                onKeyDown={preventEnterCharacter( [ 'Space' ] )}
-                            />
-                        </div>
-
-                        <div class="dg-form-full-field-wrapper">
-                            <Label for="permissions"><Text message="permissions" /></Label>
-                            <MultiSelect
-                                name="permissions"
-                                options={groupedPermissions()}
-                                isObject
-                                displayValue="value"
-                                groupBy="group"
-                                id="permissions"
-                                placeholder={t( 'a_enter_permissions' )}
-                                errorClass="ml-1"
-                            />
-                        </div>
-                        <div class="dg-form-quarter-field-wrapper">
-                            <Label for="enable" class="dg-form-label">
-                                <Text message="enable" />
-                            </Label>
-                            <SingleSelect
-                                id="enable"
-                                name="enable"
-                                options={states}
-                                isObject
-                                displayValue="label"
-                                style={singleSelectStyle}
-                                placeholder="Type"
-                                errorClass="ml-1"
-                            />
-                        </div>
-                        <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
-                            <Link href="/roles" class="dg-secondary-button">
-                                <Text message="a_close" />
-                            </Link>
-                            <ButtonConfirm type="submit" class="w-full md:w-32 m-0">
-                                <Text message="a_save"/>
-                            </ButtonConfirm>
-                        </div>
+                    <div class="dg-form-full-field-wrapper">
+                        <FormControl required invalid={!!errors( 'name' )}>
+                            <FormLabel for="name"><Text message="name"/></FormLabel>
+                            <Input name="name" type="text" placeholder={t( 'a_enter_name' )}/>
+                            <FormErrorMessage><Text message={errors( 'name' )[0]} /></FormErrorMessage>
+                        </FormControl>
                     </div>
-                </Form>
+
+                    <div class="dg-form-full-field-wrapper">
+                        <FormControl required invalid={!!errors( 'slug' )}>
+                            <FormLabel for="slug"><Text message="slug"/></FormLabel>
+                            <Input name="slug" type="text" placeholder={t( 'a_enter_slug' )} onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
+                            <FormErrorMessage><Text message={errors( 'slug' )[0]} /></FormErrorMessage>
+                        </FormControl>
+                    </div>
+
+                    <div class="dg-form-full-field-wrapper">
+                        <FormControl required invalid={!!errors( 'permissions' )}>
+                            <FormLabel for="permissions"><Text message="permissions"/></FormLabel>
+                            <Select multiple
+                                onChange={value => setFields( 'permissions', value )}
+                            >
+                                <SelectTrigger>
+                                    <SelectPlaceholder>
+                                        <Text message="a_enter_permissions"/>
+                                    </SelectPlaceholder>
+                                    <SelectValue />
+                                    <SelectIcon />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectListbox>
+                                        <SelectOptGroup>
+                                            <For each={props.permissionsList}>
+                                                {permissionGroup => (
+                                                    <>
+                                                        <SelectLabel>{permissionGroup.group}</SelectLabel>
+                                                        <For each={permissionGroup.permissions}>
+                                                            {permission => (
+                                                                <SelectOption
+                                                                    value={permission}
+                                                                    rounded="$none"
+                                                                    fontSize="$sm"
+                                                                    _active={{ bg: '$warning3', color: '$warning11' }}
+                                                                    _selected={{ bg: '$warning9', color: 'white' }}
+                                                                >
+                                                                    <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>
+                                                                        {permission}
+                                                                    </SelectOptionText>
+                                                                    <SelectOptionIndicator/>
+                                                                </SelectOption>
+                                                            )}
+                                                        </For>
+                                                    </>
+                                                )}
+                                            </For>
+                                        </SelectOptGroup>
+                                    </SelectListbox>
+                                </SelectContent>
+                            </Select>
+                            <FormErrorMessage><Text message={errors( 'permissions' )[0]} /></FormErrorMessage>
+                        </FormControl>
+                    </div>
+
+                    <div class="dg-form-full-field-wrapper">
+                        <FormControl required invalid={!!errors( 'enable' )}>
+                            <FormLabel><Text message="enable"/></FormLabel>
+                            <SimpleSelect
+                                placeholder={<Text message="a_select_enable"/> as string}
+                                onChange={value => setFields( 'enable', value )}
+                            >
+                                <For each={ states }>
+                                    {/* @ts-ignore */}
+                                    {item => <SimpleOption value={item.value}>{item.label}</SimpleOption>}
+                                </For>
+                            </SimpleSelect>
+                            <FormErrorMessage>{errors( 'enable' )[0]}</FormErrorMessage>
+                        </FormControl>
+                    </div>
+
+                    <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
+                        <Button as={Link} colorScheme="neutral" href="/roles">
+                            <Text message="a_close" />
+                        </Button>
+                        <Button type="submit" disabled={!isValid()}>
+                            <Text message="a_save"/>
+                        </Button>
+                    </div>
+
+                </form>
             </Show>
 
         </section>

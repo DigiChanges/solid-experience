@@ -7,7 +7,7 @@ import { dashRoutes } from './config/dashRoutes';
 import createRefreshToken from './features/auth/refreshToken/hooks/createRefreshToken';
 import GeneralLoader from './features/shared/templates/GeneralLoader';
 import { i18n } from './locales';
-import CustomError from './pages/error/CustomError';
+// import CustomError from './pages/error/CustomError';
 
 function App ()
 {
@@ -16,20 +16,20 @@ function App ()
 
     return (
         <I18nProvider i18n={i18n}>
-            <ErrorBoundary fallback={<CustomError/>}>
-                <Portal>
-                    <div class="containerNotification top-0 right-0 z-50 xs:max-w-xs md:max-w-xl pr-0  py-1"></div>
-                </Portal>
-                <Show when={!loading()}
-                    fallback={(
-                        <GeneralLoader />
-                    )}
-                >
-                    <Suspense>
-                        <Routes />
-                    </Suspense>
-                </Show>
-            </ErrorBoundary>
+            {/* <ErrorBoundary fallback={<CustomError/>}> */}
+            <Portal>
+                <div class="containerNotification top-0 right-0 z-50 xs:max-w-xs md:max-w-xl pr-0  py-1"></div>
+            </Portal>
+            <Show when={!loading()}
+                fallback={(
+                    <GeneralLoader />
+                )}
+            >
+                <Suspense>
+                    <Routes />
+                </Suspense>
+            </Show>
+            {/* </ErrorBoundary> */}
         </I18nProvider>
     );
 }

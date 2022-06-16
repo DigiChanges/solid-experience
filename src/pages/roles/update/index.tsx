@@ -27,7 +27,7 @@ const IndexPage: Component = () =>
             <AlertErrors errorData={errorAlert.errorData()} title="err_save" description="err_save_role"/>
             <RoleUpdate
                 permissionsList={getPermissions()?.data}
-                updateAction={updateAction( { roleRepository, errorAlert, navigate, id } )}
+                onUpdate={updateAction( { roleRepository, errorAlert, navigate, id } )}
                 roleSelected={role()?.data}
                 idSelected={id}
                 loading={role.loading || getPermissions.loading}
