@@ -1,4 +1,3 @@
-import { GroupedPermission } from '../../../features/auth/interfaces/permission';
 import { RolePayload } from '../../../features/role/interfaces';
 import RoleRepository from '../../../features/role/repositories/RoleRepository';
 import { createAlertType } from '../../../features/shared/hooks/createAlert';
@@ -13,9 +12,7 @@ type params = {
 export const updateAction = ( { roleRepository, errorAlert, navigate, id }: params ) => async ( payload: any ) =>
 {
     const { setError, showNotification } = errorAlert;
-    const { name, slug } = payload;
-    const permissions = ( payload.permissions as GroupedPermission[] ).map( ( permission ) => permission.value ) ;
-    const enable = payload.enable?.value;
+    const { name, slug, permissions, enable } = payload;
 
     const data: RolePayload = {
         name,
