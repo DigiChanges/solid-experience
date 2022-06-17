@@ -28,7 +28,6 @@ const IndexPage: Component = () =>
                 roleSelected={role()?.data}
                 permissionsList={permissions()?.data}
                 onUpdate={updateAction( { roleRepository, id } )}
-                idSelected={id}
                 loading={role.loading || permissions.loading}
             />
         </PrivateLayout>

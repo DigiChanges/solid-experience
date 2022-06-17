@@ -33,10 +33,10 @@ import roleSchema from '../validations/schemas/RoleSchema';
 interface RoleUpdateTemplateProps
 {
     permissionsList?: PermissionApi[];
-    onUpdate: ( data: RolePayload ) => Promise<RoleResponse>;
-    roleSelected: RoleApi | undefined;
-    idSelected: string;
+    onSubmit: ( data: RolePayload ) => Promise<RoleResponse>;
+    roleSelected?: RoleApi | undefined;
     loading: boolean;
+    userPermission: Record<string, string>;
 }
 
 const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
@@ -63,7 +63,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
         setTouched,
         // @ts-ignore
     } = createForm<InferType<typeof roleSchema>>( {
-        initialValues: { permissions: props.roleSelected?.permissions },
+        initialValues: { permissions: props.roleSelected?.permissions || [] },
         extend: validator( { schema: roleSchema } ),
         onSuccess: async () =>
         {
@@ -76,7 +76,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
         },
         onSubmit: async values =>
         {
-            await props.onUpdate( values as RolePayload );
+            await props.onSubmit( values as RolePayload );
         },
     } );
 
@@ -157,7 +157,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                 </FormControl>
             </div>
 
-            <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent="rolesUpdate">
+            <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent={props.userPermission.submit}>
                 <div class="w-full md:w-32 m-0 has-permission">
                     <Button as={Link} href="/roles" colorScheme="neutral">
                         <Text message="a_close" />

@@ -108,10 +108,10 @@
   "roles": [
     {
       "permissions": [
-        "getPermissions"
+        "authSyncPermissions"
       ],
-      "name": "Role1",
-      "slug": "role1",
+      "name": "Role",
+      "slug": "role",
       "enable": true,
       "id": "5db96817-33c8-446d-8050-830c4d88f26d"
     },

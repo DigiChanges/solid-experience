@@ -1,6 +1,7 @@
 import { Text } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
 import Title from '../../../atoms/Title';
+import { permissions } from '../../../config/permissions';
 import { PermissionApi } from '../../auth/interfaces/permission';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { RoleApi, RolePayload, RoleResponse } from '../interfaces';
@@ -11,7 +12,6 @@ interface RoleUpdateTemplateProps
     permissionsList?: PermissionApi[];
     onUpdate: ( data: RolePayload ) => Promise<RoleResponse>;
     roleSelected: RoleApi | undefined;
-    idSelected: string;
     loading: boolean;
 }
 
@@ -21,7 +21,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
         <section class="px-4">
             <section class="flex flex-row justify-between items-center my-6">
                 <Title class="dg-section-title" titleType="h1">
-                    <div data-parent="rolesUpdate">
+                    <div data-parent={permissions.ROLES.UPDATE}>
                         <div class="has-permission">
                             <Text message="r_update" />
                         </div>
@@ -35,10 +35,10 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <RoleForm
                     loading={props.loading}
-                    onUpdate={props.onUpdate}
+                    onSubmit={props.onUpdate}
                     permissionsList={props.permissionsList}
                     roleSelected={props.roleSelected}
-                    idSelected={props.idSelected}
+                    userPermission={{ submit: permissions.ROLES.UPDATE }}
                 />
             </Show>
         </section>
