@@ -1,17 +1,17 @@
+import { Button, Icon } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
-import Button from '../../../atoms/Button';
 import IconPencilAlt from '../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../../atoms/Title';
-import ButtonIcon from '../../../molecules/ButtonIcon';
+import { permissions } from '../../../config/permissions';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
-import ConfirmDelete from '../../shared/modals/ConfirmDelete';
 import FilterSort from '../../filterSort/organisms/FilterSort';
 import useModal from '../../shared/hooks/useModal';
+import ConfirmDelete from '../../shared/modals/ConfirmDelete';
 import RemoveModalContent from '../../shared/modals/RemoveModalContent';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { BasicConfirmationModalData } from '../../shared/types/Modal';
@@ -49,17 +49,15 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 </ConfirmDelete>
             </Show>
 
-            <section class="flex flex-row justify-between items-center my-6" data-parent="rolesSave">
-                <Title class="dg-section-title" titleType="h4">
+            <section class="flex justify-between items-center my-6" data-parent={permissions.ROLES.SAVE}>
+                <h1 class="dg-section-title">
                     <Text message="r_list" />
-                </Title>
+                </h1>
 
                 <div class="has-permission">
-                    <ButtonIcon
-                        icon={IconPlus}
-                        labelName={t( 'r_create' )}
-                        path="/roles/create"
-                    />
+                    <Link href={'/roles/create'}>
+                        <Button leftIcon={<Icon ><IconPlus/></Icon>}><Text message="r_create"/></Button>
+                    </Link>
                 </div>
             </section>
 
