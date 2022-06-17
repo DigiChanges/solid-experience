@@ -20,31 +20,28 @@ import {
     SelectValue,
     Switch
 } from '@hope-ui/solid';
-import { Link, useNavigate } from 'solid-app-router';
+import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For } from 'solid-js';
 import { InferType } from 'yup';
 import { PermissionApi } from '../../auth/interfaces/permission';
-import createAlert from '../../shared/hooks/createAlert';
 import preventEnterCharacter from '../../shared/utils/PreventEnterCharacter';
 import { RoleApi, RolePayload, RoleResponse } from '../interfaces';
 import roleSchema from '../validations/schemas/RoleSchema';
 
 interface RoleUpdateTemplateProps
 {
-    permissionsList?: PermissionApi[];
-    onSubmit: ( data: RolePayload ) => Promise<RoleResponse>;
-    roleSelected?: RoleApi | undefined;
     loading: boolean;
+    onError: ( error: unknown ) => void;
+    onSubmit: ( data: RolePayload ) => Promise<RoleResponse>;
+    onSuccess: () => void;
+    permissionsList?: PermissionApi[];
+    roleSelected?: RoleApi | undefined;
     userPermission: Record<string, string>;
 }
 
 const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
 {
-    const navigate = useNavigate();
-    const errorAlert = createAlert();
-    const { setError, showNotification } = errorAlert;
-
     const i18n = useI18n();
     const { t } = i18n;
 
@@ -65,19 +62,9 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
     } = createForm<InferType<typeof roleSchema>>( {
         initialValues: { permissions: props.roleSelected?.permissions || [] },
         extend: validator( { schema: roleSchema } ),
-        onSuccess: async () =>
-        {
-            showNotification( 'r_updated' );
-            navigate( '/roles', { replace: true } );
-        },
-        onError: ( error ) =>
-        {
-            setError( error );
-        },
-        onSubmit: async values =>
-        {
-            await props.onSubmit( values as RolePayload );
-        },
+        onSuccess: props.onSuccess,
+        onError: props.onError,
+        onSubmit: values => props.onSubmit( values as RolePayload ),
     } );
 
     return (
