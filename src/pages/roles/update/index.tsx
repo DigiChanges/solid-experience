@@ -18,19 +18,19 @@ const IndexPage: Component = () =>
     const roleRepository = new RoleRepository( user() );
     const authRepository = new AuthRepository( user() );
     const [ role ] = createResource( roleRepository.getOne( id ) );
-    const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
+    const [ permissions ] = createResource( authRepository.getAllPermissions() );
     const errorAlert = createAlert();
-    usePermission( user, [] );
+    usePermission( user, [ role, permissions ] );
 
     return (
         <PrivateLayout>
             <AlertErrors errorData={errorAlert.errorData()} title="err_save" description="err_save_role"/>
             <RoleUpdate
-                permissionsList={getPermissions()?.data}
-                onUpdate={updateAction( { roleRepository, errorAlert, navigate, id } )}
                 roleSelected={role()?.data}
+                permissionsList={permissions()?.data}
+                onUpdate={updateAction( { roleRepository, errorAlert, navigate, id } )}
                 idSelected={id}
-                loading={role.loading || getPermissions.loading}
+                loading={role.loading || permissions.loading}
             />
         </PrivateLayout>
     );

@@ -1,25 +1,26 @@
-import { createEffect, Resource } from 'solid-js';
+import { createEffect, createMemo, Resource } from 'solid-js';
 import showDomElements from '../../../libs/showDomElements';
 
 function usePermission ( user: any, resourceWithLoading?: Resource<any>[] )
 {
     void showDomElements( user().user.permissions );
+    const resourcesLoaded = createMemo( () =>
+    {
+        if ( Array.isArray( resourceWithLoading ) && user().user.permissions )
+        {
+            return resourceWithLoading.every( resource => resource.loading === false );
+        }
+        else
+        {
+            return Array.isArray( user().user.permissions );
+        }
+    } );
+
     createEffect( () =>
     {
-        if ( Array.isArray( resourceWithLoading ) )
+        if ( resourcesLoaded() )
         {
-            let isLoaded = true;
-            for ( const resource of resourceWithLoading )
-            {
-                if ( resource?.loading )
-                {
-                    isLoaded = false;
-                }
-            }
-            if ( isLoaded )
-            {
-                showDomElements( user().user.permissions );
-            }
+            showDomElements( user().user.permissions );
         }
     } );
 }
