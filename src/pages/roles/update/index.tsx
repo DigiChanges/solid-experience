@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'solid-app-router';
+import { useParams } from 'solid-app-router';
 import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
@@ -12,7 +12,6 @@ import { updateAction } from './handlers';
 
 const IndexPage: Component = () =>
 {
-    const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
     const [ user ]: any = useApplicationContext();
     const roleRepository = new RoleRepository( user() );
@@ -28,7 +27,7 @@ const IndexPage: Component = () =>
             <RoleUpdate
                 roleSelected={role()?.data}
                 permissionsList={permissions()?.data}
-                onUpdate={updateAction( { roleRepository, errorAlert, navigate, id } )}
+                onUpdate={updateAction( { roleRepository, id } )}
                 idSelected={id}
                 loading={role.loading || permissions.loading}
             />

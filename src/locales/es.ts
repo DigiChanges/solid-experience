@@ -83,6 +83,7 @@ const app: I18nLocales = {
     a_select_roles: 'Seleccionar Roles',
     a_select: 'Seleccionar',
     a_sign_up: '¡Registrate!',
+    a_submitting: 'Enviando',
     a_tax_condition: 'Condiciones Fiscales',
     a_type: 'Tipo',
     a_types: 'Tipos',

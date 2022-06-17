@@ -40,6 +40,7 @@ const app: I18nLocales = {
     a_select_country: 'Select Country',
     a_select_enable: 'Select State',
     a_select_roles: 'Select Roles',
+    a_submitting: 'Submitting',
     a_view_more: 'View more',
     a_your_address: 'Your address...',
     a_your_email: 'Your email',
