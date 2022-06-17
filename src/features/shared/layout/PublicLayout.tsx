@@ -11,7 +11,7 @@ const PublicLayout: Component = ( props ) =>
                     {props.children}
                 </main>
                 <Footer class="text-center flex grid-in-footer border m-4 w-auto p-4 text-sm text-gray-200 rounded justify-center">
-                    2021 © DigiChanges
+                    {new Date().getFullYear()} © DigiChanges
                 </Footer>
             </div>
         </>

@@ -34,7 +34,7 @@ const LoginForm: Component<LoginFormProps> = props =>
             </Heading>
             <form
                 ref={form}
-                class="flex flex-col w-72 gap-9"
+                class="flex flex-col gap-9"
             >
                 <FormControl required invalid={!!errors( 'email' )}>
                     <FormLabel for="email"><Text message="email"/></FormLabel>

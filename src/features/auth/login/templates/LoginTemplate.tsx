@@ -1,4 +1,4 @@
-import { Anchor, Center, Flex, Heading, Text, VStack, Box } from '@hope-ui/solid';
+import { Anchor, Center, Flex, Heading, Text } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
 import { Text as TextI18 } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
@@ -12,6 +12,8 @@ import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordFor
 import { createForgotPasswordAction } from '../../forgotPassword/organisms/handlers';
 import LoginForm from '../organisms/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
+import styles from './LoginTemplate.module.css';
+
 
 const LoginTemplate: Component = () =>
 {
@@ -39,7 +41,7 @@ const LoginTemplate: Component = () =>
                 <GeneralLoader/>
             </Show>
 
-            <div class="dg-rounded-small-box-gray py-5 ">
+            <div class={styles.login}>
                 <Center h="100px">
                     <Image src={logoNav} class="h-8"/>
                 </Center>

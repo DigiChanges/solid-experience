@@ -35,7 +35,7 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
                 'md:hidden': !props.expanded,
             }}>
                 <span
-                    class="hover:text-blue-500 text-sm font-bold md:block"
+                    class="hover:text-blue-500 md:block"
                     classList={{
                         'pr-2 pl-4': props.expanded,
                     }}
@@ -53,10 +53,10 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
         <Show when={props.showItem}>
             <Show when={props.isLink}
                 fallback={() =>
-                    <button
-                        class="flex text-main-gray-100 text-sm hover:text-blue-500 font-bold md:flex pr-3 pl-4 items-center w-full active"
+                    <span
+                        class="flex md:flex pr-3 pl-4 items-center w-full active"
                         onClick={props.onClick}
-                        classList={{ selectedBlue: props.sectionSelected === props.path }}
+                        // classList={{ selectedBlue: props.sectionSelected === props.path }}
                     >
                         <SideBarItemContent {...props} />
                         <Icon class="inline-flex ml-auto pl-1 w-6" classList={{ hidden: props.path === '/logout' }} >
@@ -66,11 +66,11 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
                                 <IconChevronDown />
                             </Show>
                         </Icon>
-                    </button>
+                    </span>
                 }
             >
                 <NavLink
-                    class="flex text-main-gray-100 text-sm hover:text-blue-500 font-bold md:flex pr-3 pl-4 items-center w-full"
+                    class="flex md:flex pr-3 pl-4 items-center w-full"
                     href={props.path}
                 >
                     <SideBarItemContent {...props} />
