@@ -1,9 +1,10 @@
-import { Component, createSignal, For, Show } from 'solid-js';
-import HasPermission from '../../../atoms/HasPermission';
-import SideBarItem from '../../../molecules/SideBarItem';
-import SideBarSubItem from '../../../molecules/SideBarSubItem';
-import { dashRoutes } from '../../../config/dashRoutes';
 import { useLocation } from 'solid-app-router';
+import { Component, createSignal, For, Show } from 'solid-js';
+import HasPermission from '../../../../atoms/HasPermission';
+import { dashRoutes } from '../../../../config/dashRoutes';
+import SideBarItem from '../../../../molecules/SideBarItem';
+import SideBarSubItem from '../../../../molecules/SideBarSubItem';
+import styles from './DashItems.module.css';
 
 const isEqualPath = ( { locationPath, itemPath }: {locationPath: string; itemPath: string} ) =>
 {
@@ -28,8 +29,7 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
     };
 
     return (
-        <div class="flex flex-col justify-start">
-
+        <div class={styles.dash_item_container}>
             <For each={dashRoutes}>
                 {( dashRoute: any ) =>
                     <HasPermission
