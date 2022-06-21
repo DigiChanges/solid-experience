@@ -1,5 +1,3 @@
-import { useNavigate } from 'solid-app-router';
-import { useI18n } from 'solid-i18n';
 import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
@@ -13,7 +11,6 @@ import { createAction } from './handler';
 
 const IndexPage: Component = () =>
 {
-    const navigate = useNavigate();
     const [ user ]: any = useApplicationContext();
     const authRepository = new AuthRepository( user() );
     const userRepository = new UserRepository( user() );
@@ -21,13 +18,12 @@ const IndexPage: Component = () =>
     const [ getRoles ] = createResource( roleRepository.getRoles() );
     const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
     const errorAlert = createAlert();
-    const { t } = useI18n();
 
     return (
         <PrivateLayout>
             <AlertErrors errorData={errorAlert.errorData()} title="err_save" description="err_save_user"/>
             <UserCreate
-                onSave={createAction( { userRepository, errorAlert, navigate, t } )}
+                onCreate={createAction( { userRepository } )}
                 permissionsList={getPermissions()?.data}
                 rolesList={getRoles()?.data}
                 loading={getPermissions.loading || getRoles.loading}
