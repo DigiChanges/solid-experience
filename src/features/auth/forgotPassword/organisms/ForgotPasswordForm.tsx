@@ -1,20 +1,25 @@
+import { useNavigate } from 'solid-app-router';
 import { useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../../../../atoms/Button';
 import Input from '../../../../atoms/Input';
 import Title from '../../../../atoms/Title';
+import createAlert from '../../../shared/hooks/createAlert';
 import ForgetPasswordSchema from '../../validations/schemas/ForgetPasswordSchema';
+import { createForgotPasswordAction } from './handlers';
 
 interface ForgotPasswordFormProps
 {
     onClick: ( event: MouseEvent ) => void;
-    createForgotPasswordAction: ( data: any ) => void;
 }
 
 const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
 {
     const { t } = useI18n();
+    const navigate = useNavigate();
+    const errorAlert = createAlert();
+
     return (
 
         <Form
@@ -22,10 +27,7 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
             initialValues={{ email: '' }}
             validation={ForgetPasswordSchema}
 
-            onSubmit={async ( form ) =>
-            {
-                props.createForgotPasswordAction( form.values );
-            }}
+            onSubmit={async ( form ) => createForgotPasswordAction( { errorAlert, navigate, t } )( form.values )}
         >
             <Title titleType="h1" class="mb-2 text-left text-xs font-extrabold text-main-gray-250 w-full">
             ACCOUNT RECOVERY

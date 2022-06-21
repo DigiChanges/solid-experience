@@ -11,9 +11,11 @@ import usePermission from '../../features/shared/hooks/usePermission';
 import { removeUserAction } from './delete/handlers';
 import createAlert from '../../features/shared/hooks/createAlert';
 import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
+import { useI18n } from 'solid-i18n';
 
 const IndexPage: Component = () =>
 {
+    const { t } = useI18n();
     const errorAlert = createAlert();
     const [ user ]: any = useApplicationContext();
     const userRepository = new UserRepository( user() );
@@ -36,7 +38,7 @@ const IndexPage: Component = () =>
             <AlertErrors errorData={errorAlert.errorData()} title="err_save" description="err_process_user"/>
             <UserList
                 userList={userList()}
-                removeAction={removeUserAction( { userRepository, errorAlert, refetch } )}
+                removeAction={removeUserAction( { userRepository, errorAlert, refetch, t } )}
                 loading={users.loading}
                 viewMoreAction={viewMoreAction}
                 nextPage={paginationData()?.nextUrl}

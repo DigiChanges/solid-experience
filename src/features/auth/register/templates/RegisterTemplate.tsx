@@ -1,4 +1,5 @@
 import { useNavigate } from 'solid-app-router';
+import { useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logoNav from '../../../../assets/images/logo-nav.png';
 import Image from '../../../../atoms/Image';
@@ -21,6 +22,7 @@ const RegisterTemplate: Component = () =>
     const [ user ]: any = useApplicationContext();
     const authRepository = new AuthRepository( user() );
     const errorAlert = createAlert();
+    const { t } = useI18n();
 
     return (
         <section class="dg-main-bg"
@@ -50,7 +52,7 @@ const RegisterTemplate: Component = () =>
                     >
                         <RegisterForm
                             onSubmit={handleRegisterFormSubmit( { authRepository, errorAlert,
-                                navigate, setIsLoading, setShowRegisterSuccess, getShowRegisterSuccess, setShowBtnGoToLogin } )}
+                                navigate, setIsLoading, setShowRegisterSuccess, getShowRegisterSuccess, setShowBtnGoToLogin, t } )}
                             setEmail={setEmail}
                         />
                     </Show>

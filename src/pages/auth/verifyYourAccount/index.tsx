@@ -4,9 +4,11 @@ import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import createAlert from '../../../features/shared/hooks/createAlert';
 import VerifyAccountConfirmToken from '../../../features/auth/forgotPassword/templates/VerifyAccountConfirmToken';
 import { verifyAccountAction } from './handler';
+import { useI18n } from 'solid-i18n';
 
 const verifyYourAccount: Component = () =>
 {
+    const { t } = useI18n();
     const [ searchParams ] = useSearchParams();
 
     const authRepository = new AuthRepository();
@@ -16,7 +18,7 @@ const verifyYourAccount: Component = () =>
     return (
         <VerifyAccountConfirmToken
             isLoading={isLoading()}
-            verifyAccountAction={ verifyAccountAction( { authRepository, errorAlert, navigate, setIsLoading, searchParams } )}
+            verifyAccountAction={ verifyAccountAction( { authRepository, errorAlert, navigate, setIsLoading, searchParams, t } )}
         />
     );
 };

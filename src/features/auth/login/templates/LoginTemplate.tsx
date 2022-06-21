@@ -9,7 +9,6 @@ import createAlert from '../../../shared/hooks/createAlert';
 import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm';
-import { createForgotPasswordAction } from '../../forgotPassword/organisms/handlers';
 import LoginForm from '../organisms/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 import styles from './LoginTemplate.module.css';
@@ -49,7 +48,6 @@ const LoginTemplate: Component = () =>
                 <Show when={!getShowRecoverPassword()}
                     fallback={() => (
                         <ForgotPasswordForm
-                            createForgotPasswordAction={createForgotPasswordAction( { errorAlert, navigate } )}
                             onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
                         />
                     )}

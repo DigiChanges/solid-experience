@@ -1,3 +1,4 @@
+import { notificationService } from '@hope-ui/solid';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import { createAlertType } from '../../../features/shared/hooks/createAlert';
 
@@ -7,23 +8,35 @@ type params = {
     navigate: any;
     searchParams: any;
     setIsLoading: ( isLoading: boolean ) => void;
+    t: any;
 };
 
-export const verifyAccountAction = ( { authRepository, errorAlert, navigate, setIsLoading, searchParams }: params ) => async () =>
+export const verifyAccountAction = ( { authRepository, errorAlert, navigate, setIsLoading, searchParams, t }: params ) => async () =>
 {
-    const { setError, showNotification } = errorAlert;
+    const { setError } = errorAlert;
     const create = authRepository.verifyYourAccount( searchParams.token );
     try
     {
         setIsLoading( true );
         void await create();
-        showNotification( 'au_verification_successful' );
+
+        notificationService.show( {
+            status: 'success',
+            title: t( 'au_verification_successful' ) as string,
+        } );
+
         navigate( '/verify-account-success', { replace: true } );
         setIsLoading( false );
     }
     catch ( error: any )
     {
-        setError( error );
+        const errorMessage = setError( error );
+        notificationService.show( {
+            status: 'danger',
+            title: t( 'err_verify_account' ) as string,
+            description: t( errorMessage ) as string,
+        } );
+
         setIsLoading( false );
         navigate( '/login', { replace: true } );
     }

@@ -125,6 +125,7 @@ const roles: I18nLocales = {
     r_list: 'Role List',
     r_no_roles: 'Without Roles',
     r_remove: 'Are you sure you want to delete this role?',
+    r_removed: 'The role was removed',
     r_search: '{count, plural, one {Search role} other {Search roles}}',
     r_update: 'Update Role',
     r_updated: 'Role Updated',
