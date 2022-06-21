@@ -20,6 +20,7 @@ const SideBar: Component<SideBarProps> = ( props ) =>
             class={`${styles.side_nav} dg-rounded`}
             classList={{
                 [styles.hidden]: !props.showInMobile,
+                [styles.expanded]: getExpanded(),
             }}
         >
             <ExpandButton getExpanded={getExpanded()} setExpanded={setExpanded} />

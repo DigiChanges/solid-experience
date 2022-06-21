@@ -15,10 +15,7 @@ const ExpandButton: Component<SideBarProps> = ( props ) => (
     >
 
         <div
-            class="hidden md:flex w-full"
-            classList={{
-                'flex-row-reverse': props.getExpanded,
-            }}
+            class="hidden md:flex w-full flex-row-reverse"
         >
             <IconButton
                 aria-label="Expand Sidebar"

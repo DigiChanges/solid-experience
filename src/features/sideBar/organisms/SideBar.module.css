@@ -4,6 +4,12 @@
     display: flex;
     flex-direction: column;
     background-color: var(--hope-colors-primary5);
+    transition: width .8s ease;
+    width: 100px;
+}
+
+.expanded {
+    width: 250px;
 }
 
 .hidden {

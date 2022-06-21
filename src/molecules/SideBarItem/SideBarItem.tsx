@@ -2,8 +2,8 @@ import { Icon } from '@hope-ui/solid';
 import { NavLink } from 'solid-app-router';
 import { Text } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
-import IconChevronDown from '../atoms/Icons/Stroke/IconChevronDown';
-import IconChevronRight from '../atoms/Icons/Stroke/IconChevronRight';
+import IconChevronDown from '../../atoms/Icons/Stroke/IconChevronDown';
+import IconChevronRight from '../../atoms/Icons/Stroke/IconChevronRight';
 
 interface SideBarItemProps {
     name: string;
@@ -31,7 +31,7 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
                     <IconProps />
                 </Icon>
             </Show>
-            <div class="block" classList={{
+            <div class="visible" classList={{
                 'md:hidden': !props.expanded,
             }}>
                 <span
