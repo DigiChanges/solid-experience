@@ -10,6 +10,7 @@ const app: I18nLocales = {
     a_create: 'Create',
     a_dashboard: 'Dashboard',
     a_delete: 'Delete',
+    a_delete_data: 'Delete Data',
     a_en: 'English',
     a_enter_first_name: 'Enter First Name',
     a_enter_id_number: 'Enter ID',

@@ -1,7 +1,7 @@
+import { Button, createDisclosure, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
-import Button from '../../../atoms/Button';
 import IconLockOpen from '../../../atoms/Icons/Stroke/IconLockOpen';
 import IconPencilAlt from '../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
@@ -11,11 +11,7 @@ import ButtonIcon from '../../../molecules/ButtonIcon';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
 import FilterSort from '../../filterSort/organisms/FilterSort';
-import useModal from '../../shared/hooks/useModal';
-import ConfirmDelete from '../../shared/modals/ConfirmDelete';
-import RemoveModalContent from '../../shared/modals/RemoveModalContent';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
-import { BasicConfirmationModalData } from '../../shared/types/Modal';
 import { filterBy } from '../constants/filterBy';
 import { orderBy } from '../constants/orderBy';
 import { UserApi } from '../interfaces';
@@ -34,21 +30,38 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
 
-    const { isShowModal, modalData, openModal, closeModal } = useModal<BasicConfirmationModalData>( { id: undefined, text: '' } );
+    const { isOpen, onOpen, onClose } = createDisclosure();
+    let deleteData: UserApi | undefined;
+
+    const handleModalClick = () => () =>
+    {
+        props.removeAction( deleteData?.id );
+        onClose();
+    };
+
+    const handleDelete = ( role: UserApi ) => () =>
+    {
+        deleteData = role;
+        onOpen();
+    };
 
     return (
         <section class="mx-8">
-            <Show when={isShowModal()}>
-                <ConfirmDelete
-                    cbAction={() => props.removeAction( modalData()?.id )}
-                    onClose={closeModal()}
-                >
-                    <RemoveModalContent
-                        title={t( 'u_remove' ) as string}
-                        content={modalData().text}
-                    />
-                </ConfirmDelete>
-            </Show>
+            <Modal opened={isOpen()} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalCloseButton />
+                    <ModalHeader><Text message="a_delete_data"/></ModalHeader>
+                    <ModalBody>
+                        <p><Text message="u_remove"/></p>
+                        <h1>{deleteData?.firstName} {deleteData?.lastName}</h1>
+                    </ModalBody>
+                    <ModalFooter class="flex gap-5">
+                        <Button onClick={onClose}><Text message="a_cancel"/></Button>
+                        <Button colorScheme="danger" onClick={handleModalClick()}><Text message="a_delete"/></Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
 
             <section class="flex flex-row justify-between items-center my-6" data-parent="usersSave">
                 <Title class="dg-section-title" titleType="h4">
@@ -104,11 +117,9 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                                         </Link>
                                     </div>
                                     <div class="h-6 w-6 my-1" data-parent="usersDelete">
-                                        <button class="w-6 hover:text-white mr-1 focus:outline-none has-permission"
-                                            onClick={ openModal( {
-                                                id: user.id,
-                                                text: `${user.firstName} ${user.lastName}`,
-                                            } )}
+                                        <button
+                                            class="w-6 hover:text-white mr-1 focus:outline-none has-permission"
+                                            onClick={handleDelete( user )}
                                             type="button"
                                         >
                                             <IconTrash />

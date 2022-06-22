@@ -1,4 +1,4 @@
-import { Button, Icon } from '@hope-ui/solid';
+import { Button, createDisclosure, Icon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
@@ -10,11 +10,7 @@ import { permissions } from '../../../config/permissions';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
 import FilterSort from '../../filterSort/organisms/FilterSort';
-import useModal from '../../shared/hooks/useModal';
-import ConfirmDelete from '../../shared/modals/ConfirmDelete';
-import RemoveModalContent from '../../shared/modals/RemoveModalContent';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
-import { BasicConfirmationModalData } from '../../shared/types/Modal';
 import { filterBy } from '../constants/filterBy';
 import { orderBy } from '../constants/orderBy';
 import { RoleApi } from '../interfaces';
@@ -32,22 +28,39 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 {
     const i18n = useI18n();
     const { t } = i18n;
-    const { isShowModal, modalData, openModal, closeModal } = useModal<BasicConfirmationModalData>( { id: undefined, text: '' } );
+
+    const { isOpen, onOpen, onClose } = createDisclosure();
+    let deleteData: RoleApi | undefined;
+
+    const handleModalClick = () => () =>
+    {
+        props.removeAction( deleteData?.id );
+        onClose();
+    };
+
+    const handleDelete = ( role: RoleApi ) => () =>
+    {
+        deleteData = role;
+        onOpen();
+    };
 
     return (
         <section class="mx-8">
-
-            <Show when={isShowModal()}>
-                <ConfirmDelete
-                    cbAction={() => props.removeAction( modalData()?.id )}
-                    onClose={closeModal()}
-                >
-                    <RemoveModalContent
-                        title={t( 'r_remove' ) as string}
-                        content={modalData().text}
-                    />
-                </ConfirmDelete>
-            </Show>
+            <Modal opened={isOpen()} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalCloseButton />
+                    <ModalHeader><Text message="a_delete_data"/></ModalHeader>
+                    <ModalBody>
+                        <p><Text message="r_remove"/></p>
+                        <h1>{deleteData?.name}</h1>
+                    </ModalBody>
+                    <ModalFooter class="flex gap-5">
+                        <Button onClick={onClose}><Text message="a_cancel"/></Button>
+                        <Button colorScheme="danger" onClick={handleModalClick()}><Text message="a_delete"/></Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
 
             <section class="flex justify-between items-center my-6" data-parent={permissions.ROLES.SAVE}>
                 <h1 class="dg-section-title">
@@ -96,10 +109,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                                     <div class="h-6 w-6 my-1" data-parent="rolesDelete">
                                         <button
                                             class="w-6 hover:text-white mr-1 focus:outline-none has-permission"
-                                            onClick={ openModal( {
-                                                id: role.id,
-                                                text: role.name,
-                                            } )}
+                                            onClick={handleDelete( role )}
                                             type="button"
                                         >
                                             <IconTrash />
