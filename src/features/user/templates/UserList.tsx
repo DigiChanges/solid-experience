@@ -1,4 +1,4 @@
-import { Button, createDisclosure, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@hope-ui/solid';
+import { Button, createDisclosure, Icon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
@@ -7,6 +7,7 @@ import IconPencilAlt from '../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../../atoms/Title';
+import { permissions } from '../../../config/permissions';
 import ButtonIcon from '../../../molecules/ButtonIcon';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
@@ -63,17 +64,15 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 </ModalContent>
             </Modal>
 
-            <section class="flex flex-row justify-between items-center my-6" data-parent="usersSave">
-                <Title class="dg-section-title" titleType="h4">
+            <section class="flex justify-between items-center my-6" data-parent={permissions.USERS.SAVE}>
+                <h1 class="dg-section-title">
                     <Text message="u_list" />
-                </Title>
+                </h1>
 
                 <div class="has-permission">
-                    <ButtonIcon
-                        icon={IconPlus}
-                        labelName={t( 'u_create' )}
-                        path="/users/create"
-                    />
+                    <Link href={'/users/create'}>
+                        <Button leftIcon={<Icon ><IconPlus/></Icon>}><Text message="u_create"/></Button>
+                    </Link>
                 </div>
             </section>
 

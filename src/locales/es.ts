@@ -219,6 +219,7 @@ const user: I18nLocales = {
     u_list: 'Listado  de Usuarios',
     u_no_users: 'Sin usuarios',
     u_remove: '¿Está seguro que desea eliminar este usuario?',
+    u_removed: 'Usuario Eliminado',
     u_search: '{count, plural, one {Buscar usuario} other {Buscar usuarios}}',
     u_update: 'Editar Usuario',
     u_updated: 'Usuario actualizado',

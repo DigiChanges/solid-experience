@@ -1,5 +1,4 @@
-import { useNavigate, useParams } from 'solid-app-router';
-import { useI18n } from 'solid-i18n';
+import { useParams } from 'solid-app-router';
 import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
@@ -14,8 +13,6 @@ import { updateAction } from './handlers';
 
 const IndexPage: Component = () =>
 {
-    const { t } = useI18n();
-    const navigate = useNavigate();
     const { id } = useParams<{ id: string }> ();
     const [ user ]: any = useApplicationContext();
     const authRepository = new AuthRepository( user() );
@@ -23,21 +20,19 @@ const IndexPage: Component = () =>
     const userRepository = new UserRepository( user() );
 
     const [ userSelected ] = createResource( userRepository.getOne ( id ) );
-    const [ getRoles ] = createResource( roleRepository.getRoles() );
-    const [ getPermissions ] = createResource( authRepository.getAllPermissions() );
+    const [ roles ] = createResource( roleRepository.getRoles() );
     const errorAlert = createAlert();
-    usePermission( user, [] );
-
+    const [ permissions ] = createResource( authRepository.getAllPermissions() );
+    usePermission( user, [ roles, permissions, userSelected ] );
     return (
         <PrivateLayout>
             <AlertErrors errorData={errorAlert.errorData()} title="err_save" description="err_save_user"/>
             <UserUpdate
-                permissionsList={getPermissions()?.data}
-                idSelected={id}
+                onUpdate={updateAction( { userRepository, id } )}
                 userSelected={userSelected()?.data}
-                onUpdate={updateAction( { userRepository, errorAlert, navigate, id, t } )}
-                rolesList={getRoles()?.data}
-                loading={userSelected.loading || getRoles.loading || getPermissions.loading}
+                permissionsList={permissions()?.data}
+                rolesList={roles()?.data}
+                loading={permissions.loading || roles.loading}
             />
         </PrivateLayout>
     );
