@@ -1,10 +1,11 @@
 import { Button, createDisclosure, Icon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, For, Show } from 'solid-js';
+import { Component, createMemo, For, Show } from 'solid-js';
 import IconPencilAlt from '../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
+import Filter from '../../filterSort/organisms/Filter';
 import Title from '../../../atoms/Title';
 import { permissions } from '../../../config/permissions';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
@@ -14,6 +15,9 @@ import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { filterBy } from '../constants/filterBy';
 import { orderBy } from '../constants/orderBy';
 import { RoleApi } from '../interfaces';
+import { SelectTransform } from '../../shared/utils/SelectTransform';
+import { SelectValueOption } from '../../shared/types/Selects';
+import useTransformTranslatedOptions from '../../shared/hooks/useTransformTranslatedOptions';
 
 interface RoleListTemplateProps
 {
@@ -43,6 +47,21 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
         deleteData = role;
         onOpen();
     };
+
+    const { filterOptions } = useTransformTranslatedOptions( filterBy, ( item ) => <Text message={item.label} /> );
+    // const { filterOptions } = useTransformTranslatedOptions( filterBy, ( item ) => t( item.label ) );
+
+    // const filterOptions = createMemo( () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
+    //     filterBy,
+    //     ( item ) => <Text message={item.label} /> as string,
+    //     ( item ) => item.value
+    // ) );
+
+    const orderOptions = createMemo( () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
+        orderBy,
+        ( item ) => <Text message={item.label} /> as string,
+        ( item ) => item.value
+    ) );
 
     return (
         <section class="mx-8">
@@ -74,7 +93,8 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 </div>
             </section>
 
-            <FilterSort searchPlaceholder={`${t( 'r_search', { count: 1 } )}...`} filterBy={filterBy} orderBy={orderBy}/>
+            <Filter filterOptions={filterOptions()} />
+            <FilterSort searchPlaceholder={`${t( 'r_search', { count: 1 } )}...`} filterBy={filterOptions()} orderBy={orderOptions()}/>
 
             <Show when={props.loading} >
                 <GeneralLoader/>
