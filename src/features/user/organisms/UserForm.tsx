@@ -89,14 +89,14 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <FormControl required invalid={!!errors( 'firstName' )}>
                         <FormLabel for="firstName"><Text message="first_name"/></FormLabel>
                         <Input name="firstName" type="text" placeholder={t( 'a_enter_first_name' )} value={props.userSelected?.firstName}/>
-                        <FormErrorMessage><Text message={errors( 'first_name' )[0]} /></FormErrorMessage>
+                        <FormErrorMessage><Text message={errors( 'firstName' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
                 <div class="dg-form-full-field-wrapper">
                     <FormControl required invalid={!!errors( 'lastName' )}>
                         <FormLabel for="lastName"><Text message="last_name"/></FormLabel>
                         <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' )} value={props.userSelected?.lastName}/>
-                        <FormErrorMessage><Text message={errors( 'last_name' )[0]} /></FormErrorMessage>
+                        <FormErrorMessage><Text message={errors( 'lastName' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
 
@@ -303,12 +303,6 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </FormControl>
                 </div>
                 <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
-                    {/* <Link href="/users" class="px-10 py-2 dg-secondary-button">
-                    <Text message="a_close" />
-                </Link>
-                <ButtonConfirm type="submit">
-                    <Text message="a_save"/>
-                </ButtonConfirm> */}
                     <Button as={Link} colorScheme="neutral" href="/users">
                         <Text message="a_close" />
                     </Button>
