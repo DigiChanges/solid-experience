@@ -130,12 +130,12 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <div class="dg-form-full-field-wrapper">
                     <FormControl required invalid={!!errors( 'gender' )}>
                         <FormLabel for="gender"><Text message="gender"/></FormLabel>
-                        <RadioGroup defaultValue="1" value={props.userSelected?.gender}>
-                            <HStack spacing="$4" class="flex justify-between items-center">
-                        F<Radio name="gender" id="gender-f" value="fame" class="input-addon-container flex-grow"></Radio>
-                        M<Radio name="gender" id="gender-m" value="male" class="input-addon-container flex-grow"></Radio>
-                                {t( 'a_gender_other' )} <Radio name="gender" id="gender-o" value="other" class="input-addon-container "></Radio>
-                            </HStack>
+                        <RadioGroup defaultValue={props.userSelected?.gender}>
+                            <div class="flex justify-between items-center">
+                                <Radio name="gender" id="gender-f" value="fame" class="input-addon-container flex-grow">F</Radio>
+                                <Radio name="gender" id="gender-m" value="male" class="input-addon-container flex-grow">M</Radio>
+                                <Radio name="gender" id="gender-o" value="other" class="input-addon-container "><Text message="a_gender_other"/></Radio>
+                            </div>
                         </RadioGroup>
                         <FormErrorMessage><Text message={errors( 'gender' )[0]} /></FormErrorMessage>
                     </FormControl>

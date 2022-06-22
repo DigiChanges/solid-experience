@@ -1,5 +1,6 @@
+import { notificationService } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
-import { Text } from 'solid-i18n';
+import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
 import Title from '../../../atoms/Title';
 import { permissions } from '../../../config/permissions';
@@ -20,19 +21,28 @@ interface UserCreateTemplateProps {
 
 const UserUpdate: Component<UserCreateTemplateProps> = props =>
 {
+    const { t } = useI18n();
     const navigate = useNavigate();
     const errorAlert = createAlert();
-    const { setError, showNotification } = errorAlert;
+    const { setError } = errorAlert;
 
     const handleSuccess = () => () =>
     {
-        showNotification( 'u_updated' );
+        notificationService.show( {
+            status: 'success',
+            title: t( 'u_updated' ) as string,
+        } );
         navigate( '/users', { replace: true } );
     };
 
     const handleError = () => ( error: unknown ) =>
     {
-        setError( error );
+        const errorMessage = setError( error );
+        notificationService.show( {
+            status: 'danger',
+            title: t( 'err_save_user' ) as string,
+            description: t( errorMessage ) as string,
+        } );
     } ;
 
     return (
