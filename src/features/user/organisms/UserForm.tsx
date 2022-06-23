@@ -207,7 +207,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormControl required invalid={!!errors( 'passwordConfirmation' )}>
                             <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
                             <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' )}/>
-                            <FormErrorMessage><Text message={errors( 'confirm_password' )[0]} /></FormErrorMessage>
+                            <FormErrorMessage><Text message={errors( 'passwordConfirmation' )[0]} /></FormErrorMessage>
                         </FormControl>
                     </div>
                 </Show>

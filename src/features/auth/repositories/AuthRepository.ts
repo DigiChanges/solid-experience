@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { HttpAxiosRequest, HttpAxiosRequestWithoutToken } from '../../../services/HttpAxiosRequest';
 import { config } from '../../shared/repositories/config';
-import { CreateAccountResponse, RegisterPayload } from '../interfaces/createAccount';
+import { RegisterPayload, RegisterResponse } from '../register/interfaces/createAccount';
 import { ChangeForgotPasswordPayload, ForgotPasswordPayload } from '../interfaces/forgotPassword';
 import { LoginPayload, LoginResponse } from '../interfaces/login';
 import { LogoutResponse } from '../interfaces/logout';
@@ -82,7 +82,7 @@ class AuthRepository
             method: 'POST',
             data,
         };
-        return HttpAxiosRequestWithoutToken<CreateAccountResponse>( config );
+        return HttpAxiosRequestWithoutToken<RegisterResponse>( config );
     }
     public verifyYourAccount = ( confirmationToken: string ) =>
     {

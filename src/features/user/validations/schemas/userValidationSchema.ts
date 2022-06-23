@@ -1,4 +1,4 @@
-import { boolean, object, string } from 'yup';
+import { object, string } from 'yup';
 
 const userValidationSchema = object( {
     firstName: string()
@@ -27,8 +27,6 @@ const userValidationSchema = object( {
     documentNumber: string()
         .required( 'av_required' ),
     address: string()
-        .required( 'av_required' ),
-    enable: boolean()
         .required( 'av_required' ),
 } );
 

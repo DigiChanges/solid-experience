@@ -1,19 +1,14 @@
-import { useNavigate } from 'solid-app-router';
+import { Button } from '@hope-ui/solid';
+import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, Show } from 'solid-js';
+import { Component } from 'solid-js';
 interface RegisterFormProps
 {
     email: string;
-    getShowBtnToLogin: any;
 }
 
 const RegisterSuccess: Component<RegisterFormProps> = ( props ) =>
 {
-    const navigate = useNavigate();
-    const handleOnclick = () =>
-    {
-        navigate( '/login', { replace: true } );
-    };
     const { t } = useI18n();
     return (
         <div>
@@ -35,10 +30,9 @@ const RegisterSuccess: Component<RegisterFormProps> = ( props ) =>
             </div>
 
             <div class="flex items-center justify-center pt-10">
-                <Show when={props.getShowBtnToLogin()}
-                    fallback={() => <Text message="au_wait_few_moments" class="hide-message text-2xl dg-form-label" />}>
-                    <button onClick={handleOnclick} class="inline-block align-baseline font-bold text-base ">  <Text message="au_go_to_login" class="underline" /></button>
-                </Show>
+                <Link href={'/login'}>
+                    <Button><Text message="au_go_to_login"/></Button>
+                </Link>
             </div>
         </div>
     );
