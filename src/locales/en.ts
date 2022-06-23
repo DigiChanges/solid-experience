@@ -1,6 +1,8 @@
 import { I18nLocales } from 'i18n-mini/lib/types';
 
 const app: I18nLocales = {
+    a_account_created: 'Created Account',
+    a_account_recovery: 'ACCOUNT RECOVERY',
     a_cancel: 'Cancel',
     a_change_password: 'Change Password',
     a_choose_birthday: 'Choose the birthday...',
@@ -9,8 +11,8 @@ const app: I18nLocales = {
     a_contact_information: 'CONTACT INFORMATION',
     a_create: 'Create',
     a_dashboard: 'Dashboard',
-    a_delete: 'Delete',
     a_delete_data: 'Delete Data',
+    a_delete: 'Delete',
     a_en: 'English',
     a_enter_first_name: 'Enter First Name',
     a_enter_id_number: 'Enter ID',
@@ -41,11 +43,13 @@ const app: I18nLocales = {
     a_select_country: 'Select Country',
     a_select_enable: 'Select State',
     a_select_roles: 'Select Roles',
+    a_send: 'Send',
     a_submitting: 'Submitting',
     a_view_more: 'View more',
     a_your_address: 'Your address...',
     a_your_email: 'Your email',
     a_your_password: 'Your password',
+
 };
 const auth: I18nLocales = {
     au_can_log_in_data: 'You can log in with your data.',

@@ -1,6 +1,6 @@
 import { Anchor, Center, Flex, Heading, Text } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
-import { Text as TextI18 } from 'solid-i18n';
+import { Text as TextI18, useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logoNav from '../../../../assets/images/logo-nav.png';
 import Image from '../../../../atoms/Image';
@@ -9,6 +9,7 @@ import createAlert from '../../../shared/hooks/createAlert';
 import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm';
+import { createForgotPasswordAction } from '../../forgotPassword/organisms/handlers';
 import LoginForm from '../organisms/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 import styles from './LoginTemplate.module.css';
@@ -22,6 +23,7 @@ const LoginTemplate: Component = () =>
 
     const [ , { addUser } ] = useApplicationContext();
     const errorAlert = createAlert();
+    const { t } = useI18n();
 
     const handleRegister = () =>
     {
@@ -49,6 +51,7 @@ const LoginTemplate: Component = () =>
                     fallback={() => (
                         <ForgotPasswordForm
                             onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
+                            onSubmit={createForgotPasswordAction( { errorAlert, navigate, t } )}
                         />
                     )}
                 >

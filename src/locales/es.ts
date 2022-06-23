@@ -2,6 +2,7 @@ import { I18nLocales } from 'i18n-mini/lib/types';
 
 const app: I18nLocales = {
     a_account_created: 'Cuenta creada.',
+    a_account_recovery: 'RECUPERACIÓN DE CUENTA',
     a_actions: 'Acciones',
     a_add: 'Agregar',
     a_autocomplete: 'Autocompletar',
@@ -22,8 +23,8 @@ const app: I18nLocales = {
     a_create: 'Crear',
     a_dashboard: 'Panel de control',
     a_data_type: 'Tipo de dato',
-    a_delete: 'Eliminar',
     a_delete_data: 'Eliminar Datos',
+    a_delete: 'Eliminar',
     a_description: 'Descripción',
     a_do_not_have_account: '¿No tenés cuenta?',
     a_en: 'Inglés',
@@ -83,6 +84,7 @@ const app: I18nLocales = {
     a_select_enable: 'Seleccionar el estado',
     a_select_roles: 'Seleccionar Roles',
     a_select: 'Seleccionar',
+    a_send: 'Enviar',
     a_sign_up: '¡Registrate!',
     a_submitting: 'Enviando',
     a_tax_condition: 'Condiciones Fiscales',
