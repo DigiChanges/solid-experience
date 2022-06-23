@@ -1,4 +1,5 @@
 import { Button } from '@hope-ui/solid';
+import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import Title from '../../../atoms/Title';
@@ -27,10 +28,10 @@ const UserMessageSuccess: Component<messageSuccessProps> = ( props ) =>
                                     <span class="w-full text-xl text-bold  ">{t( props.description )}</span>
                                 </div>
                             </div>
-                            <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
-                                <Button type="button" >
-                                    <Text message="au_go_to_login" />
-                                </Button>
+                            <div class="w-full mt-5 md:mr-5 flex flex-wrap justify-center gap-4">
+                                <Link href={'/login'}>
+                                    <Button><Text message="au_go_to_login"/></Button>
+                                </Link>
                             </div>
                         </div>
                     </div>

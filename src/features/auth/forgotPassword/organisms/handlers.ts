@@ -9,13 +9,13 @@ type params = {
     t: any;
 };
 
-export const createForgotPasswordAction = ( { errorAlert, navigate, t }: params ) => async ( payload: any ) =>
+export const createForgotPasswordAction = ( { errorAlert, navigate, t }: params ) => async ( payload: ForgotPasswordPayload ) =>
 {
     const { setError } = errorAlert;
-    const { email, tenant } = payload;
+    const { email } = payload;
 
     const data: ForgotPasswordPayload = {
-        email, tenant,
+        email,
     };
 
     const authRepository = new AuthRepository();

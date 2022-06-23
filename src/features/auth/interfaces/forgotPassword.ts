@@ -1,7 +1,6 @@
 export interface ForgotPasswordPayload
 {
     email: string;
-    tenant: string;
 }
 
 export interface ChangeForgotPasswordPayload
