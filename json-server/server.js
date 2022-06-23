@@ -3,6 +3,7 @@
 const path = require( 'path' );
 const jsonServer = require( 'json-server' );
 const login = require( './login' );
+const refreshToken = require( './refreshToken' );
 const logout = require( './logout' );
 const forgotPassword = require( './forgot-password' );
 const server = jsonServer.create();
@@ -13,6 +14,7 @@ server.use( middlewares );
 server.use( jsonServer.rewriter( {
     '/api/*': '/$1',
     '/auth/login': '/super-admin-login',
+    '/auth/refresh-token': '/refresh-token',
     '/auth/account': '/users',
     '/auth/logout': '/logout',
     '/auth/forgot-password': '/forgot-password',
@@ -27,6 +29,7 @@ router.render = ( req, res ) =>
     } );
 };
 server.use( login );
+server.use( refreshToken );
 server.use( logout );
 server.use( forgotPassword );
 server.use( router );

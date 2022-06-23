@@ -29,10 +29,9 @@ interface FilterSortProps{
 
 }
 
-const reload = ( { setFilter, reset }: any ) => () =>
+const reload = ( { setFilter }: any ) => () =>
 {
-    setFilter( { search: '', filterBy: null, orderBy: null } );
-    // reset();
+    setFilter( { search: '', filterBy: undefined, orderBy: undefined } );
 };
 
 const FilterSort: Component<FilterSortProps> = ( props ) =>
