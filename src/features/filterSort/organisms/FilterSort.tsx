@@ -11,8 +11,6 @@ import IconButtonActive from '../../../molecules/IconButtonActive';
 import useFilter from '../../shared/hooks/useFilter';
 import SingleSelect from '../../shared/molecules/SingleSelect';
 import { SelectValueOption } from '../../shared/types/Selects';
-import { SelectTransform } from '../../shared/utils/SelectTransform';
-import { FilterBy, OrderBy } from '../types/filterSortTypes';
 import filterSortValidationSchema from '../validations/schemas/filterSortValidationSchema';
 
 const singleSelectRoundedStyle = {
@@ -26,15 +24,14 @@ const singleSelectRoundedStyle = {
 
 interface FilterSortProps{
     searchPlaceholder: string;
-    filterBy: FilterBy[];
-    orderBy: OrderBy[];
+    filterBy: SelectValueOption[];
+    orderBy: SelectValueOption[];
 
 }
 
-const reload = ( { setFilter, reset }: any ) => () =>
+const reload = ( { setFilter }: any ) => () =>
 {
-    setFilter( { search: '', filterBy: null, orderBy: null } );
-    // reset();
+    setFilter( { search: '', filterBy: undefined, orderBy: undefined } );
 };
 
 const FilterSort: Component<FilterSortProps> = ( props ) =>
@@ -42,16 +39,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
     const { filter, setFilter, toggleSort } = useFilter();
-    const filterOptions = () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
-        props.filterBy,
-        ( item ) => t( item.label ) as string,
-        ( item ) => item.value
-    );
-    const orderByOptions = () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
-        props.orderBy,
-        ( item ) => t( item.label ) as string,
-        ( item ) => item.value
-    );
+
     return (
         <Form
             initialValues={{
@@ -63,7 +51,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
             onSubmit={async ( form ) =>
             {
                 const { search, filterBy, orderBy } = form.values;
-                setFilter( { search, filterBy: filterBy?.value, orderBy: orderBy?.value } );
+                setFilter( { search, filterBy: filterBy?.value as string, orderBy: orderBy?.value as string } );
             }}
         >
             {( form ) =>
@@ -97,7 +85,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                 <SingleSelect
                                     id="filterBy"
                                     name="filterBy"
-                                    options={filterOptions()}
+                                    options={props.filterBy}
                                     isObject
                                     displayValue="label"
                                     style={singleSelectRoundedStyle}
@@ -112,7 +100,7 @@ const FilterSort: Component<FilterSortProps> = ( props ) =>
                                     <SingleSelect
                                         id="orderBy"
                                         name="orderBy"
-                                        options={orderByOptions()}
+                                        options={props.orderBy}
                                         isObject
                                         displayValue="label"
                                         style={singleSelectRoundedStyle}
