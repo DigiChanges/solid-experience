@@ -133,6 +133,7 @@ const errors: I18nLocales = {
     'app.presentation.exceptions.duplicateEntity': 'Ya existe un registro con {field} {value}.',
     'auth.domain.exceptions.badCredentials': 'Correo electrónico o contraseña incorrectos.',
     'err_404': 'La página solicitada no existe',
+    'err_create_user': 'Error al crear el usuario',
     'err_login_description': 'No se pudo iniciar sesión. Verifique su correo electrónico y contraseña o vuelva a intentar mas tarde.',
     'err_login': 'Error al iniciar sesión',
     'err_save_role': 'Error al guardar el rol',

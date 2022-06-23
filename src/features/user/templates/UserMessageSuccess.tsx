@@ -1,4 +1,4 @@
-import { useNavigate } from 'solid-app-router';
+import { Button } from '@hope-ui/solid';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import Title from '../../../atoms/Title';
@@ -10,11 +10,6 @@ const UserMessageSuccess: Component<messageSuccessProps> = ( props ) =>
 {
     const i18n = useI18n();
     const { t } = i18n;
-    const navigate = useNavigate();
-    const handleOnclick = () =>
-    {
-        navigate( '/login', { replace: true } );
-    };
 
     return (
         <section class="dg-main-bg h-screen">
@@ -32,9 +27,10 @@ const UserMessageSuccess: Component<messageSuccessProps> = ( props ) =>
                                     <span class="w-full text-xl text-bold  ">{t( props.description )}</span>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-center pt-10 pb-5">
-                                <button onClick={handleOnclick} class="inline-block align-baseline font-bold text-base ">
-                                    <Text message="au_go_to_login" class="underline" /></button>
+                            <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
+                                <Button type="button" >
+                                    <Text message="au_go_to_login" />
+                                </Button>
                             </div>
                         </div>
                     </div>
