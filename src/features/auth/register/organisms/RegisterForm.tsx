@@ -38,7 +38,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setFields,
         // @ts-ignore
     } = createForm<InferType<typeof RegisterSchema>>( {
-        initialValues: { documentType: ''},
+        initialValues: { },
         extend: validator( { schema: RegisterSchema } ),
         onSuccess: props.onSuccess,
         onError: props.onError,
