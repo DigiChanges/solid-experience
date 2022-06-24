@@ -5,7 +5,6 @@ import {
     FormControl,
     FormErrorMessage,
     FormLabel,
-    HStack,
     Input,
     Radio,
     RadioGroup,
@@ -38,7 +37,6 @@ import userUpdateValidationSchema from '../validations/schemas/userUpdateValidat
 
 interface UserUpdateTemplateProps
 {
-    loading: boolean;
     onError: ( error: unknown ) => void;
     onSubmit: ( data: UserPayload ) => Promise<UserResponse>;
     onSuccess: () => void;
@@ -72,7 +70,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setTouched,
         // @ts-ignore
     } = createForm<InferType<typeof typeSchema>>( {
-        initialValues: { permissions: props.userSelected?.permissions || [], roles: props.userSelected?.roles || [], documentType: props.userSelected?.documentType || '', country: props.userSelected?.country || ''},
+        initialValues: { permissions: props.userSelected?.permissions || [], roles: props.userSelected?.roles || [], documentType: props.userSelected?.documentType || '', country: props.userSelected?.country || '' },
         extend: validator( { schema: typeSchema } ),
         onSuccess: props.onSuccess,
         onError: props.onError,

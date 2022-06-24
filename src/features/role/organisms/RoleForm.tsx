@@ -31,7 +31,6 @@ import roleSchema from '../validations/schemas/RoleSchema';
 
 interface RoleUpdateTemplateProps
 {
-    loading: boolean;
     onError: ( error: unknown ) => void;
     onSubmit: ( data: RolePayload ) => Promise<RoleResponse>;
     onSuccess: () => void;

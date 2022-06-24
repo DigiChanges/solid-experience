@@ -51,7 +51,6 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
             </section>
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <RoleForm
-                    loading={props.loading}
                     onError={handleError()}
                     onSubmit={props.onCreate}
                     onSuccess={handleSuccess()}

@@ -135,6 +135,8 @@ const entities: I18nLocales = {
 const errors: I18nLocales = {
     'app.domain.exceptions.uniqueAttribute': 'Ya existe un registro con el mismo valor de `{field}`.',
     'app.presentation.exceptions.duplicateEntity': 'Ya existe un registro con {field} {value}.',
+    'app.presentation.exceptions.referenceConstraint': 'Otro registro tiene una relación con este {field} {value}.',
+    'app.presentation.exceptions.validator': 'Los valores de los campos no son válidos.',
     'auth.domain.exceptions.badCredentials': 'Correo electrónico o contraseña incorrectos.',
     'err_404': 'La página solicitada no existe',
     'err_create_user': 'Error al crear el usuario',

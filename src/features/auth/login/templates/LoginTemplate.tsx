@@ -1,5 +1,5 @@
-import { Anchor, Center, Flex, Heading, Text } from '@hope-ui/solid';
-import { useNavigate } from 'solid-app-router';
+import { Center, Flex, notificationService, Text } from '@hope-ui/solid';
+import { Link, useNavigate } from 'solid-app-router';
 import { Text as TextI18, useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logoNav from '../../../../assets/images/logo-nav.png';
@@ -23,12 +23,25 @@ const LoginTemplate: Component = () =>
 
     const [ , { addUser } ] = useApplicationContext();
     const errorAlert = createAlert();
+    const { setError } = errorAlert;
     const { t } = useI18n();
 
-    const handleRegister = () =>
+    const handleSuccess = () => () =>
     {
-        navigate( '/register', { replace: true } );
+        navigate( '/dashboard', { replace: true } );
     };
+
+    const handleError = () => ( error: unknown ) =>
+    {
+        const errorMessage = setError( error );
+        setIsLoading( false );
+        notificationService.show( {
+            status: 'danger',
+            title: t( 'err_login' ) as string,
+            description: t( errorMessage ) as string,
+        } );
+    };
+
     return (
         <Flex alignItems="center" justifyContent="center" minHeight="100vh">
             <AlertErrors
@@ -59,13 +72,16 @@ const LoginTemplate: Component = () =>
                         <Text>
                             <TextI18 message="a_do_not_have_account" />
                         </Text>
-                        <Anchor onClick={() => handleRegister()}>
-                            <Heading><TextI18 message="a_sign_up"/></Heading>
-                        </Anchor>
+                        <Link href="/register">
+                            <strong><TextI18 message="a_sign_up"/></strong>
+                        </Link>
                     </Flex>
+
                     <LoginForm
                         onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
-                        onSubmit={handleLoginFormSubmit( { addUser, errorAlert, navigate, setIsLoading } )}
+                        onSubmit={handleLoginFormSubmit( { addUser, setIsLoading } )}
+                        onError={handleError()}
+                        onSuccess={handleSuccess()}
                     />
                 </Show>
             </div>

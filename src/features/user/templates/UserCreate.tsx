@@ -54,7 +54,6 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <UserForm
-                    loading={props.loading}
                     onError={handleError()}
                     onSubmit={props.onCreate}
                     onSuccess={handleSuccess()}

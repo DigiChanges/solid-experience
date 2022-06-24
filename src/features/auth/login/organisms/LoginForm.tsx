@@ -9,6 +9,8 @@ import signUpSchema from '../../validations/schemas/SignUpSchema';
 
 interface LoginFormProps {
     onSubmit: ( values: LoginPayload ) => Promise<void>;
+    onError: ( error: unknown ) => void;
+    onSuccess: () => void;
     onClick: ( event: MouseEvent ) => void;
 }
 
@@ -21,10 +23,9 @@ const LoginForm: Component<LoginFormProps> = props =>
         isValid,
     } = createForm<InferType<typeof signUpSchema>>( {
         extend: validator( { schema: signUpSchema } ),
-        onSubmit: async values =>
-        {
-            props.onSubmit( values );
-        },
+        onSuccess: props.onSuccess,
+        onError: props.onError,
+        onSubmit: async values => props.onSubmit( values ),
     } );
 
     return (

@@ -1,5 +1,4 @@
 import { createSignal } from 'solid-js';
-import { showErrorNotification } from '../utils/showNotification';
 
 export type createAlertType = {
     errorData: any;
@@ -37,7 +36,7 @@ function createAlert ( user?: any ): createAlertType
             message = error.response.data.statusCode;
         }
 
-        showErrorNotification( message );
+        // showErrorNotification( message );
 
         return message;
     };

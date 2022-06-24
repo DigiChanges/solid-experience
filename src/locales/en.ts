@@ -85,6 +85,8 @@ const entities: I18nLocales = {
 const errors: I18nLocales = {
     'app.domain.exceptions.uniqueAttribute': 'Already exists a record with the same value of `{field}`.',
     'app.presentation.exceptions.duplicateEntity': 'Already exists a record with {field} {value}.',
+    'app.presentation.exceptions.referenceConstraint': 'Other record has a relation with this {field} {value}.',
+    'app.presentation.exceptions.validator': 'Value fields are not valid.',
     'auth.domain.exceptions.badCredentials': 'Email or password incorrect.',
     'err_404': 'The page you are looking for doesn&apos;t exist',
     'err_create_user': 'Error at create user',
@@ -102,7 +104,6 @@ const errors: I18nLocales = {
     'HTTP_UNPROCESSABLE_ENTITY': 'The record does not meet the validation rules.',
     'shared.exceptions.notFound': 'The resource `{entity}` was not found.',
     'user.domain.exceptions.unverifiedUser': 'The user is not verified.',
-
 };
 
 const properties: I18nLocales = {
