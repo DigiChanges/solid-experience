@@ -1,29 +1,29 @@
+import { useSearchParams } from 'solid-app-router';
 import { createMemo } from 'solid-js';
-import FilterFactory from '../utils/FilterFactory';
-import { QueryParams } from '../../../services/HttpAxiosRequest';
-import useFilter from './useFilter';
+import { PaginationParams, QueryParams } from '../../../services/HttpAxiosRequest';
 import usePagination from './usePagination';
 
-function useQuery ( initialPagination?: string )
+function useQuery ( initialPagination?: PaginationParams )
 {
-    const { filter } = useFilter();
+    const [ searchParams ] = useSearchParams();
     const { page, goToPage, goFirstPage } = usePagination( initialPagination );
 
-    const uriParams = createMemo<QueryParams>( ( prev ) =>
+    const getURLSearchParams = createMemo<QueryParams>( ( prev ) =>
     {
-        const newFilter = FilterFactory.getUriParam( filter );
-        if ( newFilter !== prev?.filter )
+        const newFilter = new URLSearchParams( searchParams );
+
+        if ( newFilter?.toString() !== prev?.filter?.toString() )
         {
             goFirstPage();
         }
 
-        return ( {
+        return {
             filter: newFilter,
             pagination: page(),
-        } );
+        };
     } );
 
-    return { page, goToPage, goFirstPage, uriParams };
+    return { page, goToPage, goFirstPage, getURLSearchParams };
 }
 
 export default useQuery;

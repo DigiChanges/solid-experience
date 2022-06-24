@@ -8,13 +8,12 @@ import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../../atoms/Title';
 import { permissions } from '../../../config/permissions';
-import ButtonIcon from '../../../molecules/ButtonIcon';
 import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
 import MediaObject from '../../../molecules/MediaObject';
-import FilterSort from '../../filterSort/organisms/FilterSort';
+import Filter from '../../filterSort/organisms/Filter/Filter';
+import useTransformTranslatedOptions from '../../shared/hooks/useTransformTranslatedOptions';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { filterBy } from '../constants/filterBy';
-import { orderBy } from '../constants/orderBy';
 import { UserApi } from '../interfaces';
 
 interface UserListTemplateProps
@@ -46,6 +45,8 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
         onOpen();
     };
 
+    const { filterOptions } = useTransformTranslatedOptions( filterBy, ( item ) => t( item.label ) );
+
     return (
         <section class="mx-8">
             <Modal opened={isOpen()} onClose={onClose}>
@@ -76,7 +77,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 </div>
             </section>
 
-            <FilterSort searchPlaceholder={`${t( 'u_search', { count: 1 } )}...`} filterBy={filterBy} orderBy={orderBy}/>
+            <Filter filterOptions={filterOptions()} />
 
             <Show when={props.loading} >
                 <GeneralLoader/>
