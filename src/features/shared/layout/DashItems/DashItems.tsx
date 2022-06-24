@@ -2,8 +2,8 @@ import { useLocation } from 'solid-app-router';
 import { Component, createSignal, For, Show } from 'solid-js';
 import HasPermission from '../../../../atoms/HasPermission';
 import { dashRoutes } from '../../../../config/dashRoutes';
-import SideBarItem from '../../../../molecules/SideBarItem/SideBarItem';
-import SideBarSubItem from '../../../../molecules/SideBarSubItem';
+import SideBarItem from '../../../navBar/molecules/SideBarItem/SideBarItem';
+import SideBarSubItem from '../../../navBar/molecules/SideBarSubItem/SideBarSubItem';
 import styles from './DashItems.module.css';
 
 const isEqualPath = ( { locationPath, itemPath }: {locationPath: string; itemPath: string} ) =>

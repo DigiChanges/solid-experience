@@ -1,0 +1,30 @@
+@tailwind components;
+@tailwind utilities;
+
+.side_bar_item_sub_item_container {
+    @apply flex;
+}
+
+.side_bar_item_sub_item_nav_link {
+    @apply pl-9 h-8 w-full;
+}
+
+.side_bar_item_sub_item_nav_link_container {
+    @apply border-r-2 flex flex-row items-center justify-start h-8;
+}
+
+.side_bar_item_sub_item_nav_link_container_override {
+    @apply border-blue-700;
+}
+
+.side_bar_item_sub_item_nav_link_container_fallback_span {
+    @apply inline-flex w-6 items-center justify-center h-6;
+}
+
+.side_bar_item_sub_item_nav_link_container_icon {
+    @apply inline-flex w-6 items-center md:justify-start h-6;
+}
+
+.side_bar_item_sub_item_nav_link_container_span {
+    @apply justify-start md:justify-center pl-2 px-4;
+}

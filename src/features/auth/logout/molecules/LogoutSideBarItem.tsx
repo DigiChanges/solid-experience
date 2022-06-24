@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
 import IconLogout from '../../../../atoms/Icons/Stroke/IconLogout';
-import SideBarItem from '../../../../molecules/SideBarItem/SideBarItem';
+import SideBarItem from '../../../navBar/molecules/SideBarItem/SideBarItem';
 import { logout } from './handlers';
 
 type LogoutSideBarItemProps = {

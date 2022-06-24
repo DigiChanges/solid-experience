@@ -2,6 +2,7 @@ import { Component, Show } from 'solid-js';
 import { NavLink } from 'solid-app-router';
 import { Text } from 'solid-i18n';
 import { Icon } from '@hope-ui/solid';
+import styles from './SideBarItemSubItem.module.css';
 
 interface SideBarSubItemProps {
     name: string;
@@ -19,15 +20,15 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
 
     return (
         <Show when={props.showItem} >
-            <div class="flex">
-                <NavLink href={props.path} class="pl-9 h-8 w-full">
+            <div class={`${styles.side_bar_item_sub_item_container}`}>
+                <NavLink href={props.path} class={`${styles.side_bar_item_sub_item_nav_link}`}>
                     <div
-                        class="border-r-2 flex flex-row items-center justify-start h-8"
-                        classList={{ 'border-blue-700': props.equalPath }}
+                        class={`${styles.side_bar_item_sub_item_nav_link_container}`}
+                        classList={{ [styles.side_bar_item_sub_item_nav_link_container]: props.equalPath }}
                     >
                         <Show when={props.icon}
-                            fallback={() => <span class="inline-flex w-6 items-center justify-center h-6" />}>
-                            <Icon class="inline-flex w-6 items-center md:justify-start h-6">
+                            fallback={() => <span class={`${styles.side_bar_item_sub_item_nav_link_container_fallback_span}`} />}>
+                            <Icon class={`${styles.side_bar_item_sub_item_nav_link_container_span}`}>
                                 <IconProps />
                             </Icon>
                         </Show>
@@ -35,7 +36,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                             'md:hidden': !props.expanded,
                         }}>
                             <span
-                                class="justify-start md:justify-center pl-2 px-4"
+                                class={`${styles.side_bar_item_sub_item_nav_link_container_span}`}
                                 classList={{ 'pl-1': props.isToggled } }
                             >
                                 <Text message={props.name} />
