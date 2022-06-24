@@ -64,7 +64,6 @@ class HttpRequest
         }
         catch ( e: any )
         {
-            console.log( e );
             const { message } = e.response.data;
             throw new Error( message );
         }

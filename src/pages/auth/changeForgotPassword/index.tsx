@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useSearchParams } from 'solid-app-router';
+import { useNavigate, useSearchParams } from 'solid-app-router';
 import { useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import ChangeForgotPassword from '../../../features/auth/forgotPassword/templates/ChangeForgotPassword';

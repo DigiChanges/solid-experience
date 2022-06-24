@@ -97,14 +97,6 @@ export const dashRoutes = [
                 permission: permissions.USERS.SAVE,
             },
             {
-                path: '/view',
-                component: lazy( () => import( '../pages/users/view' ) ),
-                name: 'u_view',
-                icon: IconViewList,
-                showItem: false,
-                permission: permissions.USERS.SHOW,
-            },
-            {
                 path: '/:id/update',
                 component: lazy( () => import( '../pages/users/update' ) ),
                 name: 'u_update',
@@ -158,7 +150,7 @@ export const dashRoutes = [
     },
     {
         path: '/*all',
-        component: lazy( () => import( '../pages/error/Custom404' ) ),
+        component: lazy( () => import( '../pages/error/Custom404/Custom404' ) ),
     },
 ];
 
