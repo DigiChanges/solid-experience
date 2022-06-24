@@ -1,6 +1,7 @@
 import { createSignal } from 'solid-js';
+import { PaginationParams } from '../../../services/HttpAxiosRequest';
 
-function usePagination ( initialPagination?: string )
+function usePagination ( initialPagination?: PaginationParams )
 {
     const [ page, setPage ] = createSignal( initialPagination );
 
@@ -16,8 +17,7 @@ function usePagination ( initialPagination?: string )
                 offset: params.get( 'pagination[offset]' ),
             };
 
-            const nextPageParams = `pagination[limit]=${nextPage.limit}&pagination[offset]=${nextPage.offset}`;
-            setPage( nextPageParams );
+            setPage( nextPage );
         }
     };
 

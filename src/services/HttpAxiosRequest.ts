@@ -4,12 +4,17 @@ import { useApplicationContext } from '../context/context';
 const HTTP_SUCCESS_STATUS = [ 200, 201, 204, 300, 302, 304 ];
 const HTTP_ERROR_STATUS = [ 400, 401, 403, 404, 412, 500, 501 ];
 
-export type QueryParams = {
-    filter?: string;
-    pagination?: string;
+export type PaginationParams = {
+    limit: string | null;
+    offset: string | null;
 };
 
-export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any ) => async ( queryParams?: QueryParams ) =>
+export type QueryParams = {
+    filter?: URLSearchParams;
+    pagination?: PaginationParams;
+};
+
+export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any ) => async ( urlSearchParams?: QueryParams ) =>
 {
     if ( !dataUser )
     {
@@ -32,10 +37,10 @@ export const HttpAxiosRequest = <T>( config: AxiosRequestConfig, dataUser?: any 
         },
     };
 
-    return await HttpAxiosRequestWithoutToken<T>( requestDefaultOptions )( queryParams );
+    return await HttpAxiosRequestWithoutToken<T>( requestDefaultOptions )( urlSearchParams );
 };
 
-export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) => async ( queryParams?: QueryParams ) =>
+export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) => async ( urlSearchParams?: QueryParams ) =>
 {
     const requestDefaultOptions: AxiosRequestConfig =
     {
@@ -59,28 +64,29 @@ export const HttpAxiosRequestWithoutToken = <T>( config: AxiosRequestConfig ) =>
         }
     }
 
-    if ( queryParams?.filter )
-    {
-        config.url = `${config.url}?${queryParams.filter}`;
-    }
-
-    if ( queryParams?.pagination )
-    {
-        if ( queryParams?.filter )
-        {
-            config.url = `${config.url}&${queryParams.pagination}`;
-        }
-        else
-        {
-            config.url = `${config.url}?${queryParams.pagination}`;
-        }
-    }
-
     const http = axios.create( {
         withCredentials: true,
     } );
 
-    const response = await http.request<T>( { ...requestDefaultOptions, ...config } );
+    const params = new URLSearchParams( urlSearchParams?.filter );
+
+    if ( urlSearchParams?.pagination )
+    {
+        if ( urlSearchParams?.pagination?.limit )
+        {
+            params.set( 'pagination[limit]', urlSearchParams?.pagination?.limit );
+        }
+        if ( urlSearchParams?.pagination?.offset )
+        {
+            params.set( 'pagination[offset]', urlSearchParams?.pagination?.offset );
+        }
+    }
+
+    const response = await http.request<T>( {
+        ...requestDefaultOptions,
+        ...config,
+        params,
+    } );
 
     if ( HTTP_SUCCESS_STATUS.includes( response.status ) )
     {

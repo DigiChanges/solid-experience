@@ -21,9 +21,9 @@ const IndexPage: Component = () =>
     const [ user ]: any = useApplicationContext();
     const roleRepository = new RoleRepository( user() );
 
-    const { page, goToPage, uriParams, goFirstPage } = useQuery( INIT_STATE.nextQueryParamsPagination );
+    const { page, goToPage, goFirstPage, getURLSearchParams } = useQuery( INIT_STATE.nextPaginationParams );
 
-    const [ roles, { refetch } ] = createResource( uriParams, roleRepository.getRoles() );
+    const [ roles, { refetch } ] = createResource( getURLSearchParams, roleRepository.getRoles() );
     const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<RoleApi, RoleListResponse>( roles );
 
     usePermission( user, [ roles ] );
@@ -47,7 +47,7 @@ const IndexPage: Component = () =>
                 title: t( 'r_removed' ) as string,
             } );
 
-            if ( page() === INIT_STATE.nextQueryParamsPagination )
+            if ( page()?.offset === INIT_STATE.nextPaginationParams.offset )
             {
                 return refetch();
             }

@@ -20,9 +20,9 @@ const IndexPage: Component = () =>
     const [ user ]: any = useApplicationContext();
     const userRepository = new UserRepository( user() );
 
-    const { goToPage, uriParams } = useQuery( INIT_STATE.nextQueryParamsPagination );
+    const { goToPage, getURLSearchParams } = useQuery( INIT_STATE.nextPaginationParams );
 
-    const [ users, { refetch } ] = createResource( uriParams, userRepository.getUsers() );
+    const [ users, { refetch } ] = createResource( getURLSearchParams, userRepository.getUsers() );
     const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<UserApi, UserListResponse>( users );
 
     usePermission( user, [ users ] );

@@ -1,5 +1,6 @@
 import { useI18n } from 'solid-i18n';
-import { Component, For } from 'solid-js';
+import { Component, For, JSX } from 'solid-js';
+import { IErrorResponse } from '../../interfaces/response/IErrorResponse';
 import Alert from '../Alert';
 
 type AlertMetadataErrorsProps = {
@@ -19,7 +20,7 @@ const AlertNotFoundEntityError: Component<AlertMetadataErrorsProps> = ( props ) 
     );
 };
 
-const AlertDuplicateEntityError: Component<AlertMetadataErrorsProps> = ( props ) =>
+const AlertEntityWithMetadataFieldAndValueError: Component<AlertMetadataErrorsProps> = ( props ) =>
 {
     const { t } = useI18n();
     return (
@@ -46,28 +47,32 @@ const AlertUniqueAttributeError: Component<AlertMetadataErrorsProps> = ( props )
     );
 };
 
-export const alertFactory = ( { errorData, t }: any ) =>
+const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
 {
-    if ( errorData.code === 422 )
-    {
-        return (
-            <For each={errorData.errors}>
-                {( error: any ) => (
-                    <Alert title={t( error.property )} messagesObject={error.constraints} />
-                )}
-            </For>
-        );
-    }
+    const { t } = useI18n();
+    return (
+        <For each={props.errorData?.errors}>
+            {( error: IErrorResponse ) => (
+                <Alert title={t( error.property )} messagesObject={error.constraints} />
+            )}
+        </For>
+    );
+};
 
-    type MapErrors = { [key: string]: any };
+export const alertFactory = ( props: any ) =>
+{
+    const { t } = useI18n();
+    type MapErrors = { [key: string]: () => JSX.Element };
 
     const errors: MapErrors = {
-        'app.domain.exceptions.uniqueAttribute': <AlertUniqueAttributeError errorData={ errorData } />,
-        'app.presentation.exceptions.duplicateEntity': <AlertDuplicateEntityError errorData={ errorData } />,
-        'shared.exceptions.notFound': <AlertNotFoundEntityError errorData={ errorData } />,
+        'app.presentation.exceptions.validator': () => <AlertValidatorErrors errorData={ props.errorData } />,
+        'app.domain.exceptions.uniqueAttribute': () => <AlertUniqueAttributeError errorData={ props.errorData } />,
+        'app.presentation.exceptions.duplicateEntity': () => <AlertEntityWithMetadataFieldAndValueError errorData={ props.errorData } />,
+        'app.presentation.exceptions.referenceConstraint': () => <AlertEntityWithMetadataFieldAndValueError errorData={ props.errorData } />,
+        'shared.exceptions.notFound': () => <AlertNotFoundEntityError errorData={ props.errorData } />,
     };
 
-    const errorKey: keyof MapErrors = errorData.errorCode;
+    const errorKey: keyof MapErrors = props.errorData.errorCode;
 
-    return errors[errorKey] ? errors[errorKey] : <Alert title={t( t( 'err' ) )} message={t( errorKey )} />;
+    return typeof errors[errorKey] === 'function' ? errors[errorKey]() : <Alert title={t( 'err' )} message={t( errorKey as string || 'err_unexpected' )} />;
 };

@@ -72,7 +72,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
             <div class="dg-form-full-field-wrapper">
                 <FormControl required invalid={!!errors( 'name' )}>
                     <FormLabel for="name"><Text message="name"/></FormLabel>
-                    <Input name="name" type="text" placeholder={t( 'a_enter_name' )} value={props.roleSelected?.name} />
+                    <Input autofocus name="name" type="text" placeholder={t( 'a_enter_name' )} value={props.roleSelected?.name} />
                     <FormErrorMessage><Text message={errors( 'name' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
