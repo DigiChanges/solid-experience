@@ -112,7 +112,7 @@ const Filter: Component<FilterProps> = ( props ) =>
                     {( filter ) => (
                         <Badge colorScheme="primary">
                             <div class="flex items-center">
-                                <span><Text message={filter.field}/> <Text message="a_contains"/>{filter.value}</span>
+                                <p><Text message={filter.field}/> <Text message="a_contains"/> {filter.value}</p>
                                 <CloseButton aria-label="remove filter" size="sm" onClick={handleRemoveFilter( filter )} />
                             </div>
                         </Badge>

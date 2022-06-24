@@ -44,12 +44,6 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
 
-    const handleSelect = () => ( value: string[] ) =>
-    {
-        setFields( 'permissions', value );
-        setTouched( 'permissions', true );
-    };
-
     const {
         errors,
         form,
@@ -65,6 +59,12 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
         onError: props.onError,
         onSubmit: values => props.onSubmit( values as RolePayload ),
     } );
+
+    const handleSelect = ( field: keyof InferType<typeof roleSchema> ) => ( value: string[] ) =>
+    {
+        setFields( field, value );
+        setTouched( field, true );
+    };
 
     return (
         <form ref={form} class="flex flex-wrap text-sm">
@@ -90,7 +90,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                     <FormLabel for="permissions"><Text message="permissions"/></FormLabel>
                     <Select multiple
                         value={props.roleSelected?.permissions}
-                        onChange={handleSelect()}
+                        onChange={handleSelect( 'permissions' )}
                     >
                         <SelectTrigger
                             onBlur={() => setTouched( 'permissions', true )}
@@ -138,7 +138,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
             <div class="dg-form-full-field-wrapper">
                 <FormControl required invalid={!!errors( 'enable' )}>
                     <FormLabel><Text message="enable"/></FormLabel>
-                    <Switch class="block ml-3 mt-1" name="enable" defaultChecked={props.roleSelected?.enable}></Switch>
+                    <Switch class="block ml-3 mt-1" name="enable" defaultChecked={props.roleSelected?.id ? props.roleSelected?.enable : true}></Switch>
                     <FormErrorMessage><Text message={errors( 'enable' )[0]}/></FormErrorMessage>
                 </FormControl>
             </div>

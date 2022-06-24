@@ -20,8 +20,6 @@ import {
     SelectPlaceholder,
     SelectTrigger,
     SelectValue,
-    SimpleOption,
-    SimpleSelect,
     Switch
 } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
@@ -50,18 +48,8 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 {
     const i18n = useI18n();
     const { t } = i18n;
-    const handleSelect = () => ( value: string[] ) =>
-    {
-        setFields( 'permissions', value );
-        setTouched( 'permissions', true );
-    };
-    const handleSelectRoles = () => ( value: string[] ) =>
-    {
-        setFields( 'roles', value );
-        setTouched( 'roles', true );
-    };
 
-    const typeSchema = props.userSelected?.id ? userUpdateValidationSchema : userCreateValidationSchema;
+    const userSchema = props.userSelected?.id ? userUpdateValidationSchema : userCreateValidationSchema;
     const {
         errors,
         form,
@@ -69,13 +57,19 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setFields,
         setTouched,
         // @ts-ignore
-    } = createForm<InferType<typeof typeSchema>>( {
+    } = createForm<InferType<typeof userSchema>>( {
         initialValues: { permissions: props.userSelected?.permissions || [], roles: props.userSelected?.roles || [], documentType: props.userSelected?.documentType || '', country: props.userSelected?.country || '' },
-        extend: validator( { schema: typeSchema } ),
+        extend: validator( { schema: userSchema } ),
         onSuccess: props.onSuccess,
         onError: props.onError,
         onSubmit: values => props.onSubmit( values as UserPayload ),
     } );
+
+    const handleSelect = ( field: keyof InferType<typeof userSchema> ) => ( value: string[] ) =>
+    {
+        setFields( field, value );
+        setTouched( field, true );
+    };
 
     return (
         <form ref={form} class="flex flex-wrap text-sm">
@@ -86,7 +80,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <div class="dg-form-full-field-wrapper">
                     <FormControl required invalid={!!errors( 'firstName' )}>
                         <FormLabel for="firstName"><Text message="first_name"/></FormLabel>
-                        <Input name="firstName" type="text" placeholder={t( 'a_enter_first_name' )} value={props.userSelected?.firstName}/>
+                        <Input autofocus name="firstName" type="text" placeholder={t( 'a_enter_first_name' )} value={props.userSelected?.firstName}/>
                         <FormErrorMessage><Text message={errors( 'firstName' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
@@ -103,17 +97,43 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <div class="w-full flex justify-between">
                         <div class="w-1/4">
                             <FormControl required invalid={!!errors( 'documentType' )}>
-                                <SimpleSelect
+                                <Select
                                     value={props.userSelected?.documentType}
-                                    placeholder={<Text message="type_id"/> as string}
-                                    onChange={value => setFields( 'documentType', value )}
+                                    onChange={handleSelect( 'documentType' )}
                                 >
-                                    <For each={ userDocumentTypeOptions }>
-                                        {/* @ts-ignore */}
-                                        {item => <SimpleOption value={item.value}>{item.label}</SimpleOption>}
-                                    </For>
-                                </SimpleSelect>
-                                <FormErrorMessage>{errors( 'documentType' )[0]}</FormErrorMessage>
+                                    <SelectTrigger
+                                        onBlur={() => setTouched( 'documentType', true )}
+                                    >
+                                        <SelectPlaceholder>
+                                            <Text message="type_id"/>
+                                        </SelectPlaceholder>
+                                        <SelectValue />
+                                        <SelectIcon />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectListbox>
+                                            <SelectOptGroup>
+                                                <For each={userDocumentTypeOptions}>
+                                                    {documentType => (
+                                                        <SelectOption
+                                                            value={documentType.value}
+                                                            rounded="$none"
+                                                            fontSize="$sm"
+                                                            _active={{ bg: '$warning3', color: '$warning11' }}
+                                                            _selected={{ bg: '$warning9', color: 'white' }}
+                                                        >
+                                                            <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>
+                                                                {documentType.label}
+                                                            </SelectOptionText>
+                                                            <SelectOptionIndicator/>
+                                                        </SelectOption>
+                                                    )}
+                                                </For>
+                                            </SelectOptGroup>
+                                        </SelectListbox>
+                                    </SelectContent>
+                                </Select>
+                                <FormErrorMessage><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormErrorMessage>
                             </FormControl>
                         </div>
                         <div class="w-3/4">
@@ -149,24 +169,36 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <div class="dg-form-full-field-wrapper">
                     <FormControl required invalid={!!errors( 'enable' )}>
                         <FormLabel><Text message="enable"/></FormLabel>
-                        <Switch class="block ml-3 mt-1" name="enable" defaultChecked={props.userSelected?.enable}></Switch>
+                        <Switch class="block ml-3 mt-1" name="enable" defaultChecked={props.userSelected?.id ? props.userSelected?.enable : true}></Switch>
                         <FormErrorMessage><Text message={errors( 'enable' )[0]}/></FormErrorMessage>
                     </FormControl>
                 </div>
                 <div class="dg-form-full-field-wrapper">
                     <FormControl required invalid={!!errors( 'country' )}>
                         <FormLabel><Text message="country"/></FormLabel>
-                        <SimpleSelect
-                            placeholder={<Text message="a_select_enable"/> as string}
-                            onChange={value => setFields( 'country', value )}
+                        <Select
                             value={props.userSelected?.country}
+                            onChange={value => setFields( 'country', value )}
                         >
-                            <For each={ country }>
-                                {/* @ts-ignore */}
-                                {item => <SimpleOption value={item.value}>{item.label}</SimpleOption>}
-                            </For>
-                        </SimpleSelect>
-                        <FormErrorMessage>{errors( 'country' )[0]}</FormErrorMessage>
+                            <SelectTrigger
+                                onBlur={() => setTouched( 'country', true )}
+                            >
+                                <SelectPlaceholder>
+                                    <Text message="a_select_country"/>
+                                </SelectPlaceholder>
+                                <SelectValue />
+                                <SelectIcon />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectListbox>
+                                    <For each={ country }>
+                                        {/* @ts-ignore */}
+                                        {item => <SelectOption value={item.value}>{item.label}</SelectOption>}
+                                    </For>
+                                </SelectListbox>
+                            </SelectContent>
+                        </Select>
+                        <FormErrorMessage><Text message={errors( 'country' ) && errors( 'country' )[0] || 'loading'} /></FormErrorMessage>
                     </FormControl>
                 </div>
                 <div class="dg-form-full-field-wrapper">
@@ -214,7 +246,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormLabel for="permissions"><Text message="permissions"/></FormLabel>
                         <Select multiple
                             value={props.userSelected?.permissions}
-                            onChange={handleSelect()}
+                            onChange={handleSelect( 'permissions' )}
                         >
                             <SelectTrigger
                                 onBlur={() => setTouched( 'permissions', true )}
@@ -263,7 +295,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormLabel for="roles"><Text message="roles"/></FormLabel>
                         <Select multiple
                             value={props.userSelected?.roles}
-                            onChange={handleSelectRoles()}
+                            onChange={handleSelect( 'roles' )}
                         >
                             <SelectTrigger
                                 onBlur={() => setTouched( 'roles', true )}
