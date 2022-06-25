@@ -1,6 +1,6 @@
 import { notificationService } from '@hope-ui/solid';
 import { useI18n } from 'solid-i18n';
-import { Component, createResource } from 'solid-js';
+import { Component, createEffect, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
 import { RoleApi, RoleListResponse } from '../../features/role/interfaces';
 import RoleRepository from '../../features/role/repositories/RoleRepository';
@@ -16,7 +16,7 @@ import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors
 const IndexPage: Component = () =>
 {
     const { t } = useI18n();
-    const errorAlert = createAlert();
+    const { errorData, setError } = createAlert();
 
     const [ user ]: any = useApplicationContext();
     const roleRepository = new RoleRepository( user() );
@@ -34,9 +34,10 @@ const IndexPage: Component = () =>
         setViewMore();
     };
 
+    createEffect( () => roles.error && setError( roles.error ) );
+
     const removeAction = async ( id: string ) =>
     {
-        const { setError } = errorAlert;
         const remove = roleRepository.removeRole( id );
         try
         {
@@ -67,7 +68,7 @@ const IndexPage: Component = () =>
 
     return (
         <PrivateLayout>
-            <AlertErrors errorData={errorAlert.errorData()} title="err_save" description="err_process_role"/>
+            <AlertErrors errorData={errorData()} title="err" description="err_process_role"/>
             <RoleList
                 roleList={roleList()}
                 removeAction={removeAction}

@@ -6,6 +6,7 @@ import Title from '../../../atoms/Title';
 import { permissions } from '../../../config/permissions';
 import { PermissionApi } from '../../auth/interfaces/permission';
 import createAlert from '../../shared/hooks/createAlert';
+import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { RolePayload, RoleResponse } from '../interfaces';
 import RoleForm from '../organisms/RoleForm';
@@ -44,6 +45,13 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 
     return (
         <section class="px-4">
+
+            <AlertErrors
+                errorData={errorAlert.errorData()}
+                title="err_save"
+                description="err_save_role"
+            />
+
             <section class="flex flex-row justify-between items-center my-6">
                 <Title class="dg-section-title" titleType="h1">
                     <Text message="r_create" />

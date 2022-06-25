@@ -1,18 +1,15 @@
 import { notificationService } from '@hope-ui/solid';
-import { createAlertType } from '../../../features/shared/hooks/createAlert';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 
 type params = {
     userRepository: UserRepository;
-    errorAlert: createAlertType;
+    setError: ( error: undefined ) => string;
     refetch: ( info?: unknown ) => void;
     t: any;
 };
 
-export const removeUserAction = ( { userRepository, errorAlert, refetch, t }: params ) => async ( id: string ) =>
+export const removeUserAction = ( { userRepository, setError, refetch, t }: params ) => async ( id: string ) =>
 {
-    const { setError } = errorAlert;
-
     const remove = userRepository.removeUser( id );
     try
     {

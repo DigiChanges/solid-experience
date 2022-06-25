@@ -11,6 +11,11 @@ function usePaginatedState<T, U> ( resource: Resource<U | undefined> )
 
     createEffect( () =>
     {
+        if ( resource.error )
+        {
+            return setResourceList( [] );
+        }
+
         // @ts-ignore
         if ( viewMore && resource()?.data )
         {
