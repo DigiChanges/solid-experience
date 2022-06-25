@@ -7,6 +7,7 @@ import { permissions } from '../../../config/permissions';
 import { PermissionApi } from '../../auth/interfaces/permission';
 import { RoleApi } from '../../role/interfaces';
 import createAlert from '../../shared/hooks/createAlert';
+import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { UserPayload, UserResponse } from '../interfaces';
 import UserForm from '../organisms/UserForm';
@@ -46,6 +47,13 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
 
     return (
         <section class="px-4">
+
+            <AlertErrors
+                errorData={errorAlert.errorData()}
+                title="err_save"
+                description="err_save_user"
+            />
+
             <section class="flex flex-row justify-between items-center my-6">
                 <Title class="dg-section-title" titleType="h1">
                     <Text message="u_create" />

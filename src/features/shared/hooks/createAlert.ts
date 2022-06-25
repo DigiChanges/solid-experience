@@ -1,20 +1,29 @@
+import { useI18n } from 'solid-i18n';
 import { createSignal } from 'solid-js';
+import { getErrorKeyFunction } from '../../error/utils/errorTransformers';
 
 export type createAlertType = {
     errorData: any;
     setError: ( error: any ) => string;
-    user?: any;
 };
 
-function createAlert ( user?: any ): createAlertType
+function createAlert (): createAlertType
 {
     const [ errorData, setErrorData ] = createSignal<any>( null );
+    const { t } = useI18n();
 
     const setError = ( error: any ) =>
     {
         if ( error.response?.status >= 400 && error.response?.status < 500 )
         {
             setErrorData( error.response.data );
+
+            const actionToThisError = getErrorKeyFunction( error.response.data.errorCode );
+
+            if ( typeof actionToThisError === 'function' )
+            {
+                return actionToThisError( { errorData: error.response.data, t } );
+            }
         }
 
         let message = 'err_server';
@@ -41,7 +50,7 @@ function createAlert ( user?: any ): createAlertType
         return message;
     };
 
-    return { errorData, setError, user };
+    return { errorData, setError };
 }
 
 export default createAlert;

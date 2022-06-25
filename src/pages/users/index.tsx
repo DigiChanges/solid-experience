@@ -1,4 +1,4 @@
-import { Component, createResource } from 'solid-js';
+import { Component, createEffect, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
 import { INIT_STATE } from '../../features/shared/constants';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
@@ -16,7 +16,7 @@ import { useI18n } from 'solid-i18n';
 const IndexPage: Component = () =>
 {
     const { t } = useI18n();
-    const errorAlert = createAlert();
+    const { errorData, setError } = createAlert();
     const [ user ]: any = useApplicationContext();
     const userRepository = new UserRepository( user() );
 
@@ -27,6 +27,8 @@ const IndexPage: Component = () =>
 
     usePermission( user, [ users ] );
 
+    createEffect( () => users.error && setError( users.error ) );
+
     const viewMoreAction = () => () =>
     {
         goToPage( users()?.pagination?.nextUrl );
@@ -35,10 +37,10 @@ const IndexPage: Component = () =>
 
     return (
         <PrivateLayout>
-            <AlertErrors errorData={errorAlert.errorData()} title="err_save" description="err_process_user"/>
+            <AlertErrors errorData={errorData} title="err" description="err_process_user"/>
             <UserList
                 userList={userList()}
-                removeAction={removeUserAction( { userRepository, errorAlert, refetch, t } )}
+                removeAction={removeUserAction( { userRepository, setError, refetch, t } )}
                 loading={users.loading}
                 viewMoreAction={viewMoreAction}
                 nextPage={paginationData()?.nextUrl}

@@ -1,7 +1,7 @@
-import { useI18n } from 'solid-i18n';
-import { Component, For, JSX } from 'solid-js';
+import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@hope-ui/solid';
+import { Text, useI18n } from 'solid-i18n';
+import { Component, For, JSX, Show } from 'solid-js';
 import { IErrorResponse } from '../../interfaces/response/IErrorResponse';
-import Alert from '../Alert';
 
 type AlertMetadataErrorsProps = {
     errorData: any;
@@ -9,51 +9,82 @@ type AlertMetadataErrorsProps = {
 
 const AlertNotFoundEntityError: Component<AlertMetadataErrorsProps> = ( props ) =>
 {
-    const { t } = useI18n();
     return (
-        <Alert
-            title={props.errorData?.metadata?.field ? t( props.errorData?.metadata?.field ) : t( 'err' )}
-            message={t( props.errorData?.errorCode, {
-                entity: props.errorData?.metadata?.entity ? t( props.errorData?.metadata?.entity ) as string : '',
-            } )}
-        />
+        <Alert status="danger" variant="left-accent">
+            <AlertIcon mr="$2_5" />
+            <div>
+                <AlertTitle mr="$2_5"><Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err' }/></AlertTitle>
+                <AlertDescription>
+                    <Text
+                        message={ props.errorData?.errorCode }
+                        entity={ props.errorData?.metadata?.entity }
+                    />
+                </AlertDescription>
+            </div>
+        </Alert>
     );
 };
 
 const AlertEntityWithMetadataFieldAndValueError: Component<AlertMetadataErrorsProps> = ( props ) =>
 {
     const { t } = useI18n();
+
     return (
-        <Alert
-            title={props.errorData?.metadata?.field ? t( props.errorData?.metadata?.field ) : t( 'err' )}
-            message={t( props.errorData?.errorCode, {
-                field: props.errorData?.metadata?.field ? t( props.errorData?.metadata?.field ) as string : '',
-                value: props.errorData?.metadata?.field ? props.errorData?.metadata?.value : '',
-            } )}
-        />
+        <Alert status="danger" variant="left-accent">
+            <AlertIcon mr="$2_5" />
+            <div>
+                <AlertTitle mr="$2_5"><Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err'}/></AlertTitle>
+                <AlertDescription>
+                    <Text
+                        message={ props.errorData?.errorCode }
+                        field={ t( props.errorData?.metadata?.field ) as string }
+                        value={ props.errorData?.metadata?.value }
+                    />
+                </AlertDescription>
+            </div>
+        </Alert>
     );
 };
 
 const AlertUniqueAttributeError: Component<AlertMetadataErrorsProps> = ( props ) =>
 {
     const { t } = useI18n();
+
     return (
-        <Alert
-            title={props.errorData?.metadata?.replace?.name ? t( props.errorData?.metadata?.replace?.name ) : t( 'err' )}
-            message={t( props.errorData?.errorCode, {
-                field: props.errorData?.metadata?.replace?.name ? t( props.errorData?.metadata?.replace?.name ) as string : '',
-            } )}
-        />
+        <Alert status="danger" variant="left-accent">
+            <AlertIcon mr="$2_5" />
+            <div>
+                <AlertTitle mr="$2_5"><Text message={props.errorData?.metadata?.replace?.name ? props.errorData?.metadata?.replace?.name : 'err' }/></AlertTitle>
+                <AlertDescription>
+                    <Text
+                        message={ props.errorData?.errorCode }
+                        field={ t( props.errorData?.metadata?.replace?.name ) as string }
+                    />
+                </AlertDescription>
+            </div>
+        </Alert>
     );
 };
 
 const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
 {
-    const { t } = useI18n();
     return (
         <For each={props.errorData?.errors}>
             {( error: IErrorResponse ) => (
-                <Alert title={t( error.property )} messagesObject={error.constraints} />
+                <Alert status="danger" variant="left-accent">
+                    <AlertIcon mr="$2_5" />
+                    <div>
+                        <AlertTitle mr="$2_5"><Text message={error.property}/></AlertTitle>
+
+                        <Show when={error.constraints}>
+                            <For each={Object.keys( error.constraints )}>
+                                {( constraint: any ) => (
+                                    <p>{error.constraints[constraint]}</p>
+                                )}
+                            </For>
+                        </Show>
+                    </div>
+                </Alert>
             )}
         </For>
     );
@@ -61,7 +92,6 @@ const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
 
 export const alertFactory = ( props: any ) =>
 {
-    const { t } = useI18n();
     type MapErrors = { [key: string]: () => JSX.Element };
 
     const errors: MapErrors = {
@@ -74,5 +104,19 @@ export const alertFactory = ( props: any ) =>
 
     const errorKey: keyof MapErrors = props.errorData.errorCode;
 
-    return typeof errors[errorKey] === 'function' ? errors[errorKey]() : <Alert title={t( 'err' )} message={t( errorKey as string || 'err_unexpected' )} />;
+    return typeof errors[errorKey] === 'function' ?
+        errors[errorKey]()
+        :
+        <Alert status="danger" variant="left-accent">
+            <AlertIcon mr="$2_5" />
+            <div>
+                <AlertTitle mr="$2_5"><Text message="err"/></AlertTitle>
+                <AlertDescription>
+                    <Text
+                        message={ errorKey as string || 'err_unexpected' }
+                    />
+                </AlertDescription>
+            </div>
+        </Alert>
+    ;
 };

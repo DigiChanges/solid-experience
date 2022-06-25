@@ -1,6 +1,6 @@
-import { useI18n } from 'solid-i18n';
+import { Alert, AlertDescription, AlertIcon, AlertTitle, CloseButton } from '@hope-ui/solid';
+import { Text, useI18n } from 'solid-i18n';
 import { Component, createEffect, createSignal, Show } from 'solid-js';
-import Alert from '../Alert';
 import { alertFactory } from './alertFactory';
 
 const handleClose = ( { setErrors }: { setErrors: ( errors: any ) => void} ) => () =>
@@ -30,9 +30,16 @@ const AlertErrors: Component<AlertErrorProps> = ( props ) =>
         <Show when={ errors() }>
             <div class="animate-fade z-50" classList={{ 'absolute top-0 mt-5 w-full': props?.position === 'float-top', [`${props.class}`]: !!props.class }}>
 
-                <Alert title={t( props.title )} message={t( props.description )} closeable onClose={handleClose( { setErrors } )} />
+                <Alert status="danger" variant="left-accent">
+                    <AlertIcon mr="$2_5" />
+                    <div>
+                        <AlertTitle mr="$2_5"><Text message={props.title}/></AlertTitle>
+                        <AlertDescription><Text message={props.description}/></AlertDescription>
+                    </div>
+                    <CloseButton onClick={handleClose( { setErrors } )} position="absolute" right="8px" top="8px" />
+                </Alert>
 
-                {alertFactory( { errorData: props.errorData, t } )}
+                {alertFactory( { errorData: errors(), t } )}
 
             </div>
         </Show>
