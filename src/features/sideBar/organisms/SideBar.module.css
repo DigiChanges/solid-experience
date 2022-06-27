@@ -5,10 +5,6 @@
     flex-direction: column;
     background-color: var(--hope-colors-primary5);
     transition: width 100ms ease;
-    width: 100px;
-}
-
-.expanded {
     width: 250px;
 }
 
@@ -28,5 +24,9 @@
 
     .expanded {
         position: relative;
+    }
+
+    .not_expanded {
+        width: 100px;
     }
 }
