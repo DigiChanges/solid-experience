@@ -28,10 +28,11 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                     >
                         <Show when={props.icon}
                             fallback={() => <span class={`${styles.side_bar_item_sub_item_nav_link_container_fallback_span}`} />}>
-                            <Icon class={`${styles.side_bar_item_sub_item_nav_link_container_span}`}>
+                            <Icon>
                                 <IconProps />
                             </Icon>
                         </Show>
+
                         <div class="block" classList={{
                             'md:hidden': !props.expanded,
                         }}>
