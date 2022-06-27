@@ -40,6 +40,7 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     class={styles.icon_bell}
                     aria-label="View notifications"
                     icon={<IconBell/>}
+                    variant="ghost"
                     compact
                 />
 

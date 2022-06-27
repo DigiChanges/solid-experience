@@ -3,6 +3,7 @@ import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import IconLanguage from '../../atoms/Icons/Stroke/IconLanguage';
 import { changeLanguage } from './handlers';
+import styles from './LanguageMenu.module.css';
 
 const LanguageMenu: Component = () =>
 {
@@ -12,9 +13,10 @@ const LanguageMenu: Component = () =>
         <Flex>
             <Center>
                 <Menu>
-                    <MenuTrigger>
+                    <MenuTrigger class={styles.language_menu}>
                         <IconButton
-                            colorScheme="neutral"
+                            class={styles.icon}
+                            variant="ghost"
                             aria-label="Change language"
                             icon={<IconLanguage />}
                             compact
