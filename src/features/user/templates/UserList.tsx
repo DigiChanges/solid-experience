@@ -14,6 +14,7 @@ import useTransformTranslatedOptions from '../../shared/hooks/useTransformTransl
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { filterBy } from '../constants/filterBy';
 import { UserApi } from '../interfaces';
+import styles from './UserList.module.css';
 
 interface UserListTemplateProps
 {
@@ -47,7 +48,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
     const { filterOptions } = useTransformTranslatedOptions( filterBy, ( item ) => t( item.label ) );
 
     return (
-        <section class="mx-8">
+        <section class={`${styles.user_list_container}`}>
             <Modal opened={isOpen()} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -64,8 +65,8 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 </ModalContent>
             </Modal>
 
-            <section class="flex justify-between items-center my-6" data-parent={permissions.USERS.SAVE}>
-                <h1 class="dg-section-title">
+            <section class={`${styles.user_list_section_title}`} data-parent={permissions.USERS.SAVE}>
+                <h1 class={`${styles.user_list_title}`}>
                     <Text message="u_list" />
                 </h1>
 
@@ -81,12 +82,12 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             <Show when={props.loading} >
                 <GeneralLoader/>
             </Show>
-            <div class="dg-grid-3x3 justify-center">
+            <div class={`${styles.user_list_second_container}`}>
                 <Show when={!props.loading || props.userList?.length}>
                     <For each={props.userList} fallback={<div><Text message="u_no_users" />...</div>}>
                         {( user ) =>
                             <div class="dg-media-object" >
-                                <div class="flex-col justify-center content-center ml-3 text-gray-400">
+                                <div class={styles.user_list_media_object_container}>
                                     <Title titleType="h6" class="hover:transform hover:scale-125" data-parent="usersShow">
                                         <Link class="w-6 hover:text-white mr-1 focus:outline-none has-permission"
                                             href={`/users/${user.id}/update`}

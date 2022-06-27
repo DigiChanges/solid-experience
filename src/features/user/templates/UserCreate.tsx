@@ -11,7 +11,7 @@ import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { UserPayload, UserResponse } from '../interfaces';
 import UserForm from '../organisms/UserForm';
-
+import styles from './UserCreate.module.css';
 interface UserCreateTemplateProps {
     permissionsList?: PermissionApi[];
     rolesList?: RoleApi[];
@@ -46,16 +46,9 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
     } ;
 
     return (
-        <section class="px-4">
-
-            <AlertErrors
-                errorData={errorAlert.errorData()}
-                title="err_save"
-                description="err_save_user"
-            />
-
-            <section class="flex flex-row justify-between items-center my-6">
-                <Title class="dg-section-title" titleType="h1">
+        <section class={`${styles.user_create_container}`}>
+            <section class={`${styles.user_create_section_title}`}>
+                <Title class={`${styles.user_create_title}`} titleType="h1">
                     <Text message="u_create" />
                 </Title>
             </section>

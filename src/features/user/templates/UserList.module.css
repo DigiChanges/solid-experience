@@ -1,0 +1,21 @@
+@tailwind components;
+@tailwind utilities;
+
+.user_list_container {
+    @apply mx-8;
+}
+.user_list_section_title{
+    @apply flex justify-between items-center my-6;
+}
+.user_list_title{
+    @apply text-3xl font-bold;
+}
+.user_list_second_container {
+    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3;
+}
+.user_list_media_object{
+    @apply flex items-center font-semibold text-sm rounded-lg py-2 px-4;
+}
+.user_list_media_object_container{
+    @apply flex-col justify-center content-center ml-3 text-gray-400;
+}
