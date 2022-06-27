@@ -1,0 +1,21 @@
+
+.container {
+    @apply hidden md:flex flex-col md:justify-center w-full md:w-auto px-8 mb-4;
+}
+
+.not_expanded {
+    margin-bottom: 30px;
+}
+
+.button_container {
+    @apply hidden md:flex w-full flex-row-reverse;
+}
+
+.icon {
+    border-radius: 50%;
+    @apply transition-transform duration-700;
+}
+
+.icon_not_expanded {
+    @apply transform rotate-180;
+}

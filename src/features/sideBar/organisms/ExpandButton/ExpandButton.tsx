@@ -1,6 +1,7 @@
 import { IconButton } from '@hope-ui/solid';
 import { Component } from 'solid-js';
-import IconArrowCircleLeft from '../../../atoms/Icons/Stroke/IconArrowCircleLeft';
+import IconArrowCircleLeft from '../../../../atoms/Icons/Stroke/IconArrowCircleLeft';
+import styles from './ExpandButton.module.css';
 
 interface SideBarProps {
     getExpanded: any;
@@ -8,21 +9,22 @@ interface SideBarProps {
 }
 
 const ExpandButton: Component<SideBarProps> = ( props ) => (
-    <div class="hidden md:flex flex-col md:justify-center w-full md:w-auto text-white px-8 mb-4"
+    <div class={styles.container}
         classList={{
-            'mb-8': !props.getExpanded,
+            [styles.not_expanded]: !props.getExpanded,
         }}
     >
 
         <div
-            class="hidden md:flex w-full flex-row-reverse"
+            class={styles.button_container}
         >
             <IconButton
                 aria-label="Expand Sidebar"
                 onClick={() => props.setExpanded( !props.getExpanded )}
-                class="transition-transform"
+                class={styles.icon}
+                variant="ghost"
                 classList={{
-                    'transform rotate-180': !props.getExpanded,
+                    [styles.icon_not_expanded]: !props.getExpanded,
                 }}
                 icon={ <IconArrowCircleLeft />}
                 compact

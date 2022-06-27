@@ -1,7 +1,7 @@
 import { Component, createSignal, JSX } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
-import ExpandButton from './ExpandButton';
+import ExpandButton from './ExpandButton/ExpandButton';
 import styles from './SideBar.module.css';
 
 interface SideBarProps {
