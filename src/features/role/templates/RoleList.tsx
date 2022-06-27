@@ -7,8 +7,7 @@ import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
 import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
 import Title from '../../../atoms/Title';
 import { permissions } from '../../../config/permissions';
-import ButtonScrollUp from '../../../molecules/ButtonScrollUp';
-import MediaObject from '../../../molecules/MediaObject';
+import ButtonScrollUp from '../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
 import Filter from '../../filterSort/organisms/Filter/Filter';
 import useTransformTranslatedOptions from '../../shared/hooks/useTransformTranslatedOptions';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
@@ -101,7 +100,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 <Show when={!props.loading || props.roleList?.length}>
                     <For each={props.roleList} fallback={<div><Text message="r_no_roles" /></div>}>
                         {( role ) =>
-                            <MediaObject class="dg-media-object" >
+                            <div class="dg-media-object" >
                                 <div class="flex-col justify-center content-center ml-3 text-gray-400">
                                     <Title titleType="h6" class="hover:transform hover:scale-125" data-parent="rolesShow">
                                         <Link
@@ -133,7 +132,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                                         </button>
                                     </div>
                                 </div>
-                            </MediaObject>
+                            </div>
                         }
                     </For>
                 </Show>

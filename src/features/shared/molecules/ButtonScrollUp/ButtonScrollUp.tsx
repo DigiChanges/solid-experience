@@ -1,10 +1,10 @@
+import { IconButton } from '@hope-ui/solid';
 import { Component, createSignal, onCleanup } from 'solid-js';
-import Button from '../atoms/Button';
-import IconArrowCircleLeft from '../atoms/Icons/Stroke/IconArrowCircleLeft';
+import IconArrowCircleLeft from '../../../../atoms/Icons/Stroke/IconArrowCircleLeft';
+import styles from './ButtonScrollUp.module.css';
 
 interface ButtonGoUpProps {
     onGoUp?: ( e: MouseEvent ) => void;
-    class?: string;
 }
 
 const handleClick = ( { scrollTop }: { scrollTop: () => void } ) => () => scrollTop();
@@ -47,12 +47,17 @@ const ButtonScrollUp: Component<ButtonGoUpProps> = ( props ) =>
     } );
 
     return (
-        <Button
+        <IconButton
+            aria-label="Go top"
             onClick={handleClick( { scrollTop } )}
-            class={`h-10 w-10 transform rotate-90 text-main-gray-250 ${props.class} ${getShowScroll() ? 'flex' : 'hidden'}`}
-        >
-            <IconArrowCircleLeft />
-        </Button>
+            class={styles.button_scroll_up}
+            classList={{
+                flex: getShowScroll(),
+                hidden: !getShowScroll(),
+
+            }}
+            icon={<IconArrowCircleLeft />}
+        />
     );
 };
 

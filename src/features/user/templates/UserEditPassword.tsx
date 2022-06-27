@@ -4,7 +4,6 @@ import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Input from '../../../atoms/Input';
 import Title from '../../../atoms/Title';
-import ButtonConfirm from '../../../molecules/ButtonConfirm';
 import userEditPasswordSchema from '../validations/schemas/userEditPasswordSchema';
 
 interface UserChangePasswordTemplateProps
@@ -73,9 +72,9 @@ const UserEditPassword: Component<UserChangePasswordTemplateProps> = ( props ) =
                         <Link href="/users" class="dg-secondary-button">
                             <Text message="a_close" />
                         </Link>
-                        <ButtonConfirm type="submit" class="w-full md:w-32 m-0">
+                        <button type="submit" class="w-full md:w-32 m-0">
                             <Text message="a_save"/>
-                        </ButtonConfirm>
+                        </button>
                     </div>
 
                 </div>

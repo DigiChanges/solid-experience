@@ -1,5 +1,4 @@
 .dash_item_container {
-    background-color: var(--hope-colors-primary5);
     @apply flex flex-col justify-start;
 }
 
