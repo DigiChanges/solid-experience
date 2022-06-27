@@ -71,8 +71,8 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     onClick={props.onClick}
                     aria-label="Open Main Menu"
                     icon={!props.sideBarIsShown ? <IconBurger/> : <IconCross/>}
+                    variant="ghost"
                     compact
-                    colorScheme="info"
                 />
 
             </section>

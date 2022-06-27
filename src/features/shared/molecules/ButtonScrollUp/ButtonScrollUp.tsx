@@ -54,8 +54,8 @@ const ButtonScrollUp: Component<ButtonGoUpProps> = ( props ) =>
             classList={{
                 flex: getShowScroll(),
                 hidden: !getShowScroll(),
-
             }}
+            variant="ghost"
             icon={<IconArrowCircleLeft />}
         />
     );

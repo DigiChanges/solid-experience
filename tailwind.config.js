@@ -14,18 +14,22 @@ module.exports = {
     theme: {
         gridTemplateAreas: {
             'md-private-layout': [
+                'header header header header',
                 'sidebar main main main',
                 'sidebar footer footer footer',
             ],
             'desktop-layout': [
+                'header header header header',
                 'sidebar main main main',
                 'sidebar footer footer footer',
             ],
             'tablet-layout': [
+                'header header header header',
                 'sidebar . main main',
                 'sidebar footer footer footer',
             ],
             'mobile-layout': [
+                'header header header header',
                 'main main main main',
                 'footer footer footer footer',
             ],
