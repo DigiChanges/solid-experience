@@ -1,0 +1,8 @@
+
+.alert_container {
+    @apply flex flex-col gap-2 z-50;
+}
+
+.alert_container.float {
+    @apply absolute top-0 mt-5 w-full;
+}

@@ -1,6 +1,7 @@
 import { Alert, AlertDescription, AlertIcon, AlertTitle, CloseButton } from '@hope-ui/solid';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, createEffect, createSignal, Show } from 'solid-js';
+import styles from './AlertErrors.module.css';
 import { alertFactory } from './alertFactory';
 
 const handleClose = ( { setErrors }: { setErrors: ( errors: any ) => void} ) => () =>
@@ -12,7 +13,6 @@ type AlertErrorProps = {
     errorData: any;
     title: string;
     description: string;
-    class?: string;
     position?: 'block' | 'float-top';
 };
 
@@ -28,8 +28,11 @@ const AlertErrors: Component<AlertErrorProps> = ( props ) =>
 
     return (
         <Show when={ errors() }>
-            <div class="animate-fade z-50" classList={{ 'absolute top-0 mt-5 w-full': props?.position === 'float-top', [`${props.class}`]: !!props.class }}>
-
+            <div class={styles.alert_container}
+                classList={{
+                    [styles.float]: props?.position === 'float-top',
+                }}
+            >
                 <Alert status="danger" variant="left-accent">
                     <AlertIcon mr="$2_5" />
                     <div>

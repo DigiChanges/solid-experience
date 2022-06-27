@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "@digichanges/solid-components": "^0.7.0",
-    "@digichanges/solid-multiselect": "^0.0.10",
     "@felte/solid": "^1.2.2",
     "@felte/validator-yup": "^1.0.8",
     "@hope-ui/solid": "^0.6.2",
