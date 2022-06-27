@@ -10,7 +10,7 @@ import createAlert from '../../features/shared/hooks/createAlert';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import usePermission from '../../features/shared/hooks/usePermission';
 import useQuery from '../../features/shared/hooks/useQuery';
-import PrivateLayout from '../../features/shared/layout/PrivateLayout';
+import PrivateLayout from '../../features/shared/layout/PrivateLayout/PrivateLayout';
 import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
 
 const IndexPage: Component = () =>

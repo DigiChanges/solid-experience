@@ -4,7 +4,7 @@ import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import RoleRepository from '../../../features/role/repositories/RoleRepository';
 import usePermission from '../../../features/shared/hooks/usePermission';
-import PrivateLayout from '../../../features/shared/layout/PrivateLayout';
+import PrivateLayout from '../../../features/shared/layout/PrivateLayout/PrivateLayout';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import UserUpdate from '../../../features/user/templates/UserUpdate';
 import { updateAction } from './handlers';
