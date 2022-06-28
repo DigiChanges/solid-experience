@@ -2,20 +2,21 @@ import { Button, createDisclosure, Icon, Modal, ModalBody, ModalCloseButton, Mod
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, createMemo, For, Show } from 'solid-js';
-import IconPencilAlt from '../../../atoms/Icons/Stroke/IconPencilAlt';
-import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
-import IconTrash from '../../../atoms/Icons/Stroke/IconTrash';
-import Title from '../../../atoms/Title';
-import { permissions } from '../../../config/permissions';
-import ButtonScrollUp from '../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
-import Filter from '../../filterSort/organisms/Filter/Filter';
-import useTransformTranslatedOptions from '../../shared/hooks/useTransformTranslatedOptions';
-import GeneralLoader from '../../shared/templates/GeneralLoader';
-import { SelectValueOption } from '../../shared/types/Selects';
-import { SelectTransform } from '../../shared/utils/SelectTransform';
-import { filterBy } from '../constants/filterBy';
-import { orderBy } from '../constants/orderBy';
-import { RoleApi } from '../interfaces';
+import IconPencilAlt from '../../../../atoms/Icons/Stroke/IconPencilAlt';
+import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
+import IconTrash from '../../../../atoms/Icons/Stroke/IconTrash';
+import Title from '../../../../atoms/Title';
+import { permissions } from '../../../../config/permissions';
+import ButtonScrollUp from '../../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
+import Filter from '../../../filterSort/organisms/Filter/Filter';
+import useTransformTranslatedOptions from '../../../shared/hooks/useTransformTranslatedOptions';
+import GeneralLoader from '../../../shared/templates/GeneralLoader';
+import { SelectValueOption } from '../../../shared/types/Selects';
+import { SelectTransform } from '../../../shared/utils/SelectTransform';
+import { filterBy } from '../../constants/filterBy';
+import { orderBy } from '../../constants/orderBy';
+import { RoleApi } from '../../interfaces';
+import styles from './RoleList.module.css';
 
 interface RoleListTemplateProps
 {
@@ -61,7 +62,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
     ) );
 
     return (
-        <section class="mx-8">
+        <section class={styles.list_container}>
             <Modal opened={isOpen()} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -71,15 +72,15 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                         <p><Text message="r_remove"/></p>
                         <h1>{deleteData?.name}</h1>
                     </ModalBody>
-                    <ModalFooter class="flex gap-5">
+                    <ModalFooter class={styles.modal_footer}>
                         <Button onClick={onClose}><Text message="a_cancel"/></Button>
                         <Button colorScheme="danger" onClick={handleModalClick()}><Text message="a_delete"/></Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
 
-            <section class="flex justify-between items-center my-6" data-parent={permissions.ROLES.SAVE}>
-                <h1 class="dg-section-title">
+            <section class={styles.list_section_title} data-parent={permissions.ROLES.SAVE}>
+                <h1 class={styles.list_title}>
                     <Text message="r_list" />
                 </h1>
 
@@ -96,35 +97,38 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 <GeneralLoader/>
             </Show>
 
-            <div class="dg-grid-3x3">
+            <div class={styles.list_second_container}>
                 <Show when={!props.loading || props.roleList?.length}>
                     <For each={props.roleList} fallback={<div><Text message="r_no_roles" /></div>}>
                         {( role ) =>
-                            <div class="dg-media-object" >
-                                <div class="flex-col justify-center content-center ml-3 text-gray-400">
-                                    <Title titleType="h6" class="hover:transform hover:scale-125" data-parent="rolesShow">
+                            <div class={styles.list_media_object} >
+                                <div class={styles.list_media_object_container}>
+                                    <Title titleType="h6" class={styles.list_media_object_container_title} data-parent="rolesShow">
                                         <Link
-                                            class="w-6 text-gray-300 hover:text-white mr-1 focus:outline-none has-permission"
+                                            class={`${styles.list_media_object_container_link} has-permission `}
                                             href={`/roles/${role.id}/update`}>
                                             {role.name}
                                         </Link>
-                                        <span class="w-6 text-gray-300 hover:text-white mr-1 focus:outline-none fallback" >
+                                        <span class={`${styles.list_media_object_container_span} fallback `}>
                                             {role.name}
                                         </span>
                                     </Title>
                                     { role.slug }
                                 </div>
-                                <div class="flex flex-col ml-auto">
-                                    <div class="h-6 w-6 my-1" data-parent="rolesUpdate">
-                                        <Link
-                                            class="w-6 hover:text-white mr-1 focus:outline-none has-permission"
-                                            href={`/roles/${role.id}/update`}>
-                                            <IconPencilAlt />
-                                        </Link>
+                                <div class={styles.list_third_container}>
+                                    <div class={styles.list_third_container_parent_update} data-parent="rolesUpdate">
+                                        <div class={`${styles.list_third_container_children_update} has-permission`}>
+                                            <Link class={styles.list_third_container_link_update}
+                                                href={`/roles/${role.id}/update`}
+                                            >
+                                                <IconPencilAlt />
+                                            </Link>
+                                        </div>
                                     </div>
-                                    <div class="h-6 w-6 my-1" data-parent="rolesDelete">
+
+                                    <div class={styles.list_third_container_parent_delete} data-parent="rolesDelete">
                                         <button
-                                            class="w-6 hover:text-white mr-1 focus:outline-none has-permission"
+                                            class={`${styles.list_third_container_link_delete} has-permission`}
                                             onClick={handleDelete( role )}
                                             type="button"
                                         >
@@ -138,7 +142,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 </Show>
             </div>
 
-            <div class="dg-full-center-flex mt-8">
+            <div class={styles.sections_buttons}>
                 <Show when={!!props.nextPage}>
                     <Button onClick={props.viewMoreAction()} variant="outline">
                         <Show when={!props.loading} fallback={() => <span><Text message="a_loading" />...</span>}>

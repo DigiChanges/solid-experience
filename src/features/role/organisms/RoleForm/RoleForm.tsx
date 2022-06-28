@@ -24,10 +24,11 @@ import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For } from 'solid-js';
 import { InferType } from 'yup';
-import { PermissionApi } from '../../auth/interfaces/permission';
-import preventEnterCharacter from '../../shared/utils/PreventEnterCharacter';
-import { RoleApi, RolePayload, RoleResponse } from '../interfaces';
-import roleSchema from '../validations/schemas/RoleSchema';
+import { PermissionApi } from '../../../auth/interfaces/permission';
+import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
+import { RoleApi, RolePayload, RoleResponse } from '../../interfaces';
+import roleSchema from '../../validations/schemas/RoleSchema';
+import styles from './RoleForm.module.css';
 
 interface RoleUpdateTemplateProps
 {
@@ -67,9 +68,8 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
     };
 
     return (
-        <form ref={form} class="flex flex-wrap text-sm">
-
-            <div class="dg-form-full-field-wrapper">
+        <form ref={form} class={styles.form}>
+            <div class={styles.field_wrapper}>
                 <FormControl required invalid={!!errors( 'name' )}>
                     <FormLabel for="name"><Text message="name"/></FormLabel>
                     <Input autofocus name="name" type="text" placeholder={t( 'a_enter_name' )} value={props.roleSelected?.name} />
@@ -77,7 +77,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                 </FormControl>
             </div>
 
-            <div class="dg-form-full-field-wrapper">
+            <div class={styles.field_wrapper}>
                 <FormControl required invalid={!!errors( 'slug' )}>
                     <FormLabel for="slug"><Text message="slug"/></FormLabel>
                     <Input name="slug" type="text" placeholder={t( 'a_enter_slug' )} value={props.roleSelected?.slug} onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
@@ -85,7 +85,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                 </FormControl>
             </div>
 
-            <div class="dg-form-full-field-wrapper">
+            <div class={styles.field_wrapper}>
                 <FormControl id="permissions" required invalid={!!errors( 'permissions' )}>
                     <FormLabel for="permissions"><Text message="permissions"/></FormLabel>
                     <Select multiple
@@ -135,26 +135,26 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                 </FormControl>
             </div>
 
-            <div class="dg-form-full-field-wrapper">
+            <div class={styles.field_wrapper}>
                 <FormControl required invalid={!!errors( 'enable' )}>
                     <FormLabel><Text message="enable"/></FormLabel>
-                    <Switch class="block ml-3 mt-1" name="enable" defaultChecked={props.roleSelected?.id ? props.roleSelected?.enable : true}></Switch>
+                    <Switch class={styles.switch_enable} name="enable" defaultChecked={props.roleSelected?.id ? props.roleSelected?.enable : true}></Switch>
                     <FormErrorMessage><Text message={errors( 'enable' )[0]}/></FormErrorMessage>
                 </FormControl>
             </div>
 
-            <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4" data-parent={props.userPermission.submit}>
-                <div class="w-full md:w-32 m-0 has-permission">
+            <div class={styles.container_buttons} data-parent={props.userPermission.submit}>
+                <div class={`${styles.button_close_save} has-permission `}>
                     <Button as={Link} href="/roles" colorScheme="neutral">
                         <Text message="a_close" />
                     </Button>
                 </div>
-                <div class="w-full md:w-32 m-0 has-permission">
+                <div class={`${styles.button_close_save} has-permission `}>
                     <Button type="submit" disabled={!isValid()} loading={isSubmitting()} loadingText={<Text message="a_submitting"/> as string}>
                         <Text message="a_save"/>
                     </Button>
                 </div>
-                <div class="fallback w-full md:w-32">
+                <div class={`${styles.button_close} fallback `}>
                     <Button as={Link} href="/roles">
                         <Text message="a_close" />
                     </Button>
