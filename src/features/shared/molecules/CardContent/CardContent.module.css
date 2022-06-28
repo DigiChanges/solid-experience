@@ -1,0 +1,4 @@
+
+.container {
+    @apply flex items-center font-semibold text-sm py-2 px-4;
+}

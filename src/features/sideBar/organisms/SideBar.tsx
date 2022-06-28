@@ -1,6 +1,7 @@
 import { Component, createSignal, JSX } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
+import Card from '../../shared/molecules/Card/Card';
 import ExpandButton from '../molecules/ExpandButton/ExpandButton';
 import styles from './SideBar.module.css';
 
@@ -15,8 +16,8 @@ const SideBar: Component<SideBarProps> = ( props ) =>
     const [ getExpanded, setExpanded ] = createSignal( true );
 
     return (
-        <nav
-            class={`${styles.side_nav} dg-rounded`}
+        <Card
+            class={styles.side_nav}
             classList={{
                 [styles.hidden]: !props.showInMobile,
                 [styles.not_expanded]: !getExpanded(),
@@ -27,7 +28,7 @@ const SideBar: Component<SideBarProps> = ( props ) =>
             <div class={styles.logout_container}>
                 <LogoutSideBarItem user={props.authUser} getExpanded={getExpanded()} sectionSelected=""/>
             </div>
-        </nav>
+        </Card>
     );
 };
 

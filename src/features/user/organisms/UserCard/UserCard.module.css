@@ -1,0 +1,23 @@
+.card_container {
+    min-height: 120px;
+}
+
+.list_media_object_container{
+    @apply flex-col justify-center content-center ml-3;
+}
+
+.list_media_object_container_title{
+    color: var(--hope-colors-neutral12);
+    @apply hover:scale-150;
+}
+
+.list_media_object_container_link{
+    @apply mr-1 focus:outline-none w-6;
+}
+.list_media_object_container_link:hover {
+    color: var(--hope-colors-accent10);
+}
+
+.list_third_container {
+    @apply flex flex-col ml-auto;
+}
