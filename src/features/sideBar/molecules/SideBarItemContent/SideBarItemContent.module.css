@@ -21,10 +21,6 @@
     @apply md:hidden;
 }
 
-.side_bar_item_content_container_span {
-    @apply hover:text-blue-500 md:block;
-}
-
 .side_bar_item_content_container_span_expanded {
     @apply pr-2 pl-58;
 }

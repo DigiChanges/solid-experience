@@ -2,7 +2,7 @@
 @tailwind utilities;
 
 .side_bar_item_sub_item_container {
-    @apply flex;
+    @apply flex hover:text-blue-500 hover:underline;
 }
 
 .side_bar_item_sub_item_nav_link {

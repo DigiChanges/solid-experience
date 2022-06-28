@@ -31,7 +31,7 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
                         // classList={{ selectedBlue: props.sectionSelected === props.path }}
                     >
                         <SideBarItemContent {...props} />
-                        <Icon class={`${styles.side_bar_item_icon}`} classList={{ hidden: props.path === '/logout' }} >
+                        <Icon class={styles.side_bar_item_icon}>
                             <Show when={props.sectionSelected === props.path}
                                 fallback={<IconChevronRight />}
                             >

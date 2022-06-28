@@ -6,7 +6,7 @@
 }
 
 .side_bar_item_span {
-    @apply flex md:flex pr-3 pl-4 items-center w-full;
+    @apply flex md:flex pr-3 pl-4 items-center w-full cursor-pointer hover:text-blue-500;
 }
 
 .side_bar_item_icon {
@@ -14,5 +14,5 @@
 }
 
 .side_bar_item_nav_link {
-    @apply flex md:flex pr-3 pl-4 items-center w-full;
+    @apply flex md:flex pr-3 pl-4 items-center w-full hover:text-blue-500 hover:underline;
 }

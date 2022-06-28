@@ -32,14 +32,7 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
             <div class={`${styles.side_bar_item_content_container}`} classList={{
                 [styles.side_bar_item_content_container_expanded]: !props.expanded,
             }}>
-                <span
-                    class={`${styles.side_bar_item_content_container_span}`}
-                    classList={{
-                        [styles.side_bar_item_content_container_span]: props.expanded,
-                    }}
-                >
-                    <Text message={props.name} />
-                </span>
+                <Text message={props.name} />
             </div>
         </>
     );
