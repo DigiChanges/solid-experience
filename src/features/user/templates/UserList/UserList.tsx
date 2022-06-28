@@ -2,11 +2,7 @@ import { Button, createDisclosure, Icon, Modal, ModalBody, ModalCloseButton, Mod
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
-import IconLockOpen from '../../../../atoms/Icons/Stroke/IconLockOpen';
-import IconPencilAlt from '../../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
-import IconTrash from '../../../../atoms/Icons/Stroke/IconTrash';
-import Title from '../../../../atoms/Title';
 import { permissions } from '../../../../config/permissions';
 import Filter from '../../../filterSort/organisms/Filter/Filter';
 import useTransformTranslatedOptions from '../../../shared/hooks/useTransformTranslatedOptions';
@@ -14,6 +10,7 @@ import ButtonScrollUp from '../../../shared/molecules/ButtonScrollUp/ButtonScrol
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { filterBy } from '../../constants/filterBy';
 import { UserApi } from '../../interfaces';
+import UserCard from '../../organisms/UserCard/UserCard';
 import styles from './UserList.module.css';
 
 interface UserListTemplateProps
@@ -86,48 +83,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 <Show when={!props.loading || props.userList?.length}>
                     <For each={props.userList} fallback={<div><Text message="u_no_users" />...</div>}>
                         {( user ) =>
-                            <div class={styles.list_media_object}>
-                                <div class={styles.list_media_object_container}>
-                                    <Title titleType="h6" class={styles.list_media_object_container_title} data-parent="usersShow">
-                                        <Link class={`${styles.list_media_object_container_link} has-permission `}
-                                            href={`/users/${user.id}/update`}
-                                        >
-                                            {`${user.firstName} ${user.lastName}`}
-                                        </Link>
-                                        <span class={`${styles.list_media_object_container_span} fallback `}>
-                                            {`${user.firstName} ${user.lastName}`}
-                                        </span>
-                                    </Title>
-                                    {user.email}
-                                </div>
-                                <div class={styles.list_third_container}>
-                                    <div class={styles.list_third_container_parent_update} data-parent="usersUpdate">
-                                        <div class={`${styles.list_third_container_children_update} has-permission`}>
-                                            <Link class={styles.list_third_container_link_update}
-                                                href={`/users/${user.id}/update`}
-                                            >
-                                                <IconPencilAlt />
-                                            </Link>
-                                        </div>
-                                    </div>
-                                    <div class={styles.list_third_container_parent_password} data-parent="usersChangeUserPassword">
-                                        <Link class={`${styles.list_third_container_link_password} has-permission`}
-                                            href={`/users/editPassword/${user.id}`}>
-                                            <IconLockOpen />
-                                        </Link>
-                                    </div>
-                                    <div class={styles.list_third_container_parent_delete} data-parent="usersDelete">
-                                        <button
-                                            class={`${styles.list_third_container_link_delete} has-permission`}
-                                            onClick={handleDelete( user )}
-                                            type="button"
-                                        >
-                                            <IconTrash />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                            <UserCard user={user} onDelete={handleDelete( user )}/>}
                     </For>
                 </Show>
             </div>

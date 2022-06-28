@@ -1,15 +1,18 @@
 import { Component } from 'solid-js';
+import Card from '../../shared/molecules/Card/Card';
+import CardContent from '../../shared/molecules/CardContent/CardContent';
+import styles from './Dashboard.module.css';
 
 const Dashboard: Component = () =>
 {
     return (
-        <section class="dg-main-bg min-h-full h-full p-6">
-            <div class="dg-full-center-flex h-128">
-                <div class="dg-media-object w-full h-full flex-col justify-center" >
+        <section class="p-6">
+            <Card>
+                <CardContent class={styles.content}>
                     <p>Dashboard</p>
                     <p>esto es template dashboard</p>
-                </div>
-            </div>
+                </CardContent>
+            </Card>
         </section>
     );
 };

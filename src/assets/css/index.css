@@ -35,9 +35,6 @@
 
   }
 
-  .dg-media-object {
-    @apply flex items-center font-semibold text-sm rounded-lg py-2 px-4;
-  }
   .dg-grid-3x3 {
     @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3;
   }
