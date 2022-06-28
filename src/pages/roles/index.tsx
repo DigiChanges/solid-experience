@@ -4,7 +4,7 @@ import { Component, createEffect, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
 import { RoleApi, RoleListResponse } from '../../features/role/interfaces';
 import RoleRepository from '../../features/role/repositories/RoleRepository';
-import RoleList from '../../features/role/templates/RoleList';
+import RoleList from '../../features/role/templates/RoleList/RoleList';
 import { INIT_STATE } from '../../features/shared/constants';
 import createAlert from '../../features/shared/hooks/createAlert';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';

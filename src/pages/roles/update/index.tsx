@@ -3,7 +3,7 @@ import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import RoleRepository from '../../../features/role/repositories/RoleRepository';
-import RoleUpdate from '../../../features/role/templates/RoleUpdate';
+import RoleUpdate from '../../../features/role/templates/RoleUpdate/RoleUpdate';
 import usePermission from '../../../features/shared/hooks/usePermission';
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout/PrivateLayout';
 import { updateAction } from './handlers';

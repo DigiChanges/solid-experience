@@ -94,7 +94,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                                         >
                                             {`${user.firstName} ${user.lastName}`}
                                         </Link>
-                                        <span class={styles.list_media_object_container_span}>
+                                        <span class={`${styles.list_media_object_container_span} fallback `}>
                                             {`${user.firstName} ${user.lastName}`}
                                         </span>
                                     </Title>

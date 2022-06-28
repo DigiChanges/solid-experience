@@ -2,14 +2,15 @@ import { notificationService } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
-import Title from '../../../atoms/Title';
-import { permissions } from '../../../config/permissions';
-import { PermissionApi } from '../../auth/interfaces/permission';
-import createAlert from '../../shared/hooks/createAlert';
-import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
-import GeneralLoader from '../../shared/templates/GeneralLoader';
-import { RoleApi, RolePayload, RoleResponse } from '../interfaces';
-import RoleForm from '../organisms/RoleForm';
+import Title from '../../../../atoms/Title';
+import { permissions } from '../../../../config/permissions';
+import { PermissionApi } from '../../../auth/interfaces/permission';
+import createAlert from '../../../shared/hooks/createAlert';
+import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
+import GeneralLoader from '../../../shared/templates/GeneralLoader';
+import { RoleApi, RolePayload, RoleResponse } from '../../interfaces';
+import RoleForm from '../../organisms/RoleForm/RoleForm';
+import styles from './RoleUpdate.module.css';
 
 interface RoleUpdateTemplateProps
 {
@@ -46,7 +47,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
     } ;
 
     return (
-        <section class="px-4">
+        <section class={styles.container}>
 
             <AlertErrors
                 errorData={errorAlert.errorData()}
@@ -54,8 +55,8 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
                 description="err_save_role"
             />
 
-            <section class="flex flex-row justify-between items-center my-6">
-                <Title class="dg-section-title" titleType="h1">
+            <section class={styles.section_title}>
+                <Title class={styles.title} titleType="h1">
                     <div data-parent={permissions.ROLES.UPDATE}>
                         <div class="has-permission">
                             <Text message="r_update" />

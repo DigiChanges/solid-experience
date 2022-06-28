@@ -48,9 +48,9 @@ const UserUpdate: Component<UserCreateTemplateProps> = props =>
     } ;
 
     return (
-        <section class={styles.user_update_container}>
-            <section class={styles.user_update_section_title}>
-                <Title class={styles.user_update_title} titleType="h1">
+        <section class={styles.container}>
+            <section class={styles.section_title}>
+                <Title class={styles.title} titleType="h1">
                     <Text message="u_update" />
                 </Title>
             </section>

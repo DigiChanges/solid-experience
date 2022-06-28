@@ -47,9 +47,9 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
     } ;
 
     return (
-        <section class={styles.user_create_container}>
-            <section class={styles.user_create_section_title}>
-                <Title class={styles.user_create_title} titleType="h1">
+        <section class={styles.container}>
+            <section class={styles.section_title}>
+                <Title class={styles.title} titleType="h1">
                     <Text message="u_create" />
                 </Title>
             </section>
