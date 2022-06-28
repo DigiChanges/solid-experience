@@ -2,16 +2,17 @@ import { notificationService } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
-import Title from '../../../atoms/Title';
-import { permissions } from '../../../config/permissions';
-import { PermissionApi } from '../../auth/interfaces/permission';
-import { RoleApi } from '../../role/interfaces';
-import createAlert from '../../shared/hooks/createAlert';
-import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
-import GeneralLoader from '../../shared/templates/GeneralLoader';
-import { UserPayload, UserResponse } from '../interfaces';
-import UserForm from '../organisms/UserForm';
+import Title from '../../../../atoms/Title';
+import { permissions } from '../../../../config/permissions';
+import { PermissionApi } from '../../../auth/interfaces/permission';
+import { RoleApi } from '../../../role/interfaces';
+import createAlert from '../../../shared/hooks/createAlert';
+import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
+import GeneralLoader from '../../../shared/templates/GeneralLoader';
+import { UserPayload, UserResponse } from '../../interfaces';
+import UserForm from '../../organisms/UserForm/UserForm';
 import styles from './UserCreate.module.css';
+
 interface UserCreateTemplateProps {
     permissionsList?: PermissionApi[];
     rolesList?: RoleApi[];
@@ -46,9 +47,9 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
     } ;
 
     return (
-        <section class={`${styles.user_create_container}`}>
-            <section class={`${styles.user_create_section_title}`}>
-                <Title class={`${styles.user_create_title}`} titleType="h1">
+        <section class={styles.user_create_container}>
+            <section class={styles.user_create_section_title}>
+                <Title class={styles.user_create_title} titleType="h1">
                     <Text message="u_create" />
                 </Title>
             </section>

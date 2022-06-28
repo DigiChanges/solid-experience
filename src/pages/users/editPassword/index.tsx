@@ -1,7 +1,7 @@
 import { useParams } from 'solid-app-router';
 import { Component } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
-import UserEditPassword from '../../../features/user/templates/UserEditPassword';
+import UserEditPassword from '../../../features/user/templates/UserEditPassword/UserEditPassword';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout/PrivateLayout';
 

@@ -1,12 +1,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.user_create_container {
+.user_update_container {
     @apply px-4;
 }
-.user_create_section_title{
+.user_update_section_title{
     @apply flex flex-row justify-between items-center my-6;
 }
-.user_create_title{
+.user_update_title{
     @apply text-3xl font-bold;
 }

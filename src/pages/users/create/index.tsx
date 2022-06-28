@@ -4,7 +4,7 @@ import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import RoleRepository from '../../../features/role/repositories/RoleRepository';
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout/PrivateLayout';
 import UserRepository from '../../../features/user/repositories/UserRepository';
-import UserCreate from '../../../features/user/templates/UserCreate';
+import UserCreate from '../../../features/user/templates/UserCreate/UserCreate';
 import { createAction } from './handler';
 
 const IndexPage: Component = () =>

@@ -1,0 +1,36 @@
+@tailwind components;
+@tailwind utilities;
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.second_section_container{
+    @apply p-8 rounded-default py-5
+}
+.third_section_container{
+    @apply text-gray-500 w-full mx-auto px-3 pt-2
+}
+.title_container{
+    @apply mb-2;
+}
+.title{
+    @apply text-3xl font-bold sm:px-0 text-center pb-16;
+}
+.description_container{
+    @apply flex flex-wrap text-center text-sm pb-10;
+}
+.description_sub_container{
+    @apply w-full mb-1 pr-3 pl-2;
+}
+.description_span{
+    @apply w-full text-xl;
+}
+.link_login{
+    @apply w-full mt-5 md:mr-5 flex flex-wrap justify-center gap-4;
+}

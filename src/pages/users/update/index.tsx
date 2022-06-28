@@ -6,7 +6,7 @@ import RoleRepository from '../../../features/role/repositories/RoleRepository';
 import usePermission from '../../../features/shared/hooks/usePermission';
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout/PrivateLayout';
 import UserRepository from '../../../features/user/repositories/UserRepository';
-import UserUpdate from '../../../features/user/templates/UserUpdate';
+import UserUpdate from '../../../features/user/templates/UserUpdate/UserUpdate';
 import { updateAction } from './handlers';
 
 const IndexPage: Component = () =>

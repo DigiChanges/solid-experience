@@ -26,12 +26,13 @@ import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
 import { InferType } from 'yup';
-import { country, userDocumentTypeOptions } from '../../../entities';
-import { PermissionApi } from '../../auth/interfaces/permission';
-import { RoleApi } from '../../role/interfaces';
-import { UserApi, UserPayload, UserResponse } from '../interfaces';
-import userCreateValidationSchema from '../validations/schemas/userCreateValidationSchema';
-import userUpdateValidationSchema from '../validations/schemas/userUpdateValidationSchema';
+import { country, userDocumentTypeOptions } from '../../../../entities';
+import { PermissionApi } from '../../../auth/interfaces/permission';
+import { RoleApi } from '../../../role/interfaces';
+import { UserApi, UserPayload, UserResponse } from '../../interfaces';
+import userCreateValidationSchema from '../../validations/schemas/userCreateValidationSchema';
+import userUpdateValidationSchema from '../../validations/schemas/userUpdateValidationSchema';
+import styles from './UserForm.module.css';
 
 interface UserUpdateTemplateProps
 {
@@ -72,19 +73,20 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
     };
 
     return (
-        <form ref={form} class="flex flex-wrap text-sm">
-            <div class="flex flex-wrap text-sm">
-                <h2 class="w-full text-xs text-bold uppercase border-b-2 border-gray-800 mb-2">
+        <form ref={form} class={styles.form}>
+            <div class={styles.form}>
+                <h2 class={styles.form_h2}>
+
                     <Text message="a_personal_information" />
                 </h2>
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'firstName' )}>
                         <FormLabel for="firstName"><Text message="first_name"/></FormLabel>
                         <Input autofocus name="firstName" type="text" placeholder={t( 'a_enter_first_name' )} value={props.userSelected?.firstName}/>
                         <FormErrorMessage><Text message={errors( 'firstName' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'lastName' )}>
                         <FormLabel for="lastName"><Text message="last_name"/></FormLabel>
                         <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' )} value={props.userSelected?.lastName}/>
@@ -92,10 +94,11 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </FormControl>
                 </div>
 
-                <div class="dg-form-full-field-wrapper w-full ">
+                <div class={styles.field_wrapper}>
                     <FormLabel><Text message="documentType"/></FormLabel>
-                    <div class="w-full flex justify-between">
-                        <div class="w-1/4">
+                    <div class={styles.field_justify_between}>
+                        <div class={styles.field_small}>
+
                             <FormControl required invalid={!!errors( 'documentType' )}>
                                 <Select
                                     value={props.userSelected?.documentType}
@@ -136,7 +139,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                 <FormErrorMessage><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormErrorMessage>
                             </FormControl>
                         </div>
-                        <div class="w-3/4">
+                        <div class={styles.field_big}>
                             <FormControl required invalid={!!errors( 'documentNumber' )}>
                                 <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' )} value={props.userSelected?.documentNumber}/>
                                 <FormErrorMessage><Text message={errors( 'documentNumber' )[0]} /></FormErrorMessage>
@@ -145,35 +148,35 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </div>
                 </div>
 
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'gender' )}>
                         <FormLabel for="gender"><Text message="gender"/></FormLabel>
                         <RadioGroup defaultValue={props.userSelected?.gender}>
-                            <div class="flex justify-between items-center">
-                                <Radio name="gender" id="gender-f" value="fame" class="input-addon-container flex-grow">F</Radio>
-                                <Radio name="gender" id="gender-m" value="male" class="input-addon-container flex-grow">M</Radio>
-                                <Radio name="gender" id="gender-o" value="other" class="input-addon-container "><Text message="a_gender_other"/></Radio>
+                            <div class={styles.radio_group}>
+                                <Radio name="gender" id="gender-f" value="fame" class={styles.radio_group_input_f_m}>F</Radio>
+                                <Radio name="gender" id="gender-m" value="male" class={styles.radio_group_input_f_m}>M</Radio>
+                                <Radio name="gender" id="gender-o" value="other"><Text message="a_gender_other"/></Radio>
                             </div>
                         </RadioGroup>
                         <FormErrorMessage><Text message={errors( 'gender' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
 
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'birthday' )}>
                         <FormLabel for="birthday"><Text message="birthday"/></FormLabel>
                         <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' )} value={props.userSelected?.birthday}/>
                         <FormErrorMessage><Text message={errors( 'birthday' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'enable' )}>
                         <FormLabel><Text message="enable"/></FormLabel>
-                        <Switch class="block ml-3 mt-1" name="enable" defaultChecked={props.userSelected?.id ? props.userSelected?.enable : true}></Switch>
+                        <Switch class={styles.switch_enable} name="enable" defaultChecked={props.userSelected?.id ? props.userSelected?.enable : true}></Switch>
                         <FormErrorMessage><Text message={errors( 'enable' )[0]}/></FormErrorMessage>
                     </FormControl>
                 </div>
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'country' )}>
                         <FormLabel><Text message="country"/></FormLabel>
                         <Select
@@ -201,24 +204,24 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormErrorMessage><Text message={errors( 'country' ) && errors( 'country' )[0] || 'loading'} /></FormErrorMessage>
                     </FormControl>
                 </div>
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'address' )}>
                         <FormLabel for="address"><Text message="address"/></FormLabel>
                         <Input name="address" type="text" placeholder={t( 'a_your_address' )} value={props.userSelected?.address}/>
                         <FormErrorMessage><Text message={errors( 'address' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
-                <span class="w-full mt-5">
+                <span class={styles.span_contact}>
                     <Text message="a_contact_information" />
                 </span>
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'email' )}>
                         <FormLabel for="email"><Text message="email"/></FormLabel>
                         <Input name="email" type="text" placeholder={t( 'a_your_email' )} value={props.userSelected?.email}/>
                         <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'phone' )}>
                         <FormLabel for="phone"><Text message="phone"/></FormLabel>
                         <Input name="phone" type="text" placeholder={t( 'a_enter_phone' )} value={props.userSelected?.phone}/>
@@ -226,14 +229,14 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </FormControl>
                 </div>
                 <Show when={!props.userSelected?.id}>
-                    <div class="w-full mb-5 pr-2">
+                    <div class={styles.input_password}>
                         <FormControl required invalid={!!errors( 'password' )}>
                             <FormLabel for="password"><Text message="password"/></FormLabel>
                             <Input name="password" type="password" placeholder={t( 'a_your_password' )} />
                             <FormErrorMessage><Text message={errors( 'password' )[0]} /></FormErrorMessage>
                         </FormControl>
                     </div>
-                    <div class="w-full mb-5 pr-2">
+                    <div class={styles.input_password}>
                         <FormControl required invalid={!!errors( 'passwordConfirmation' )}>
                             <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
                             <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' )}/>
@@ -241,7 +244,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         </FormControl>
                     </div>
                 </Show>
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl id="permissions" required invalid={!!errors( 'permissions' )}>
                         <FormLabel for="permissions"><Text message="permissions"/></FormLabel>
                         <Select multiple
@@ -290,7 +293,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormErrorMessage><Text message={errors( 'permissions' ) && errors( 'permissions' )[0] || 'loading'} /></FormErrorMessage>
                     </FormControl>
                 </div>
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl id="roles" required invalid={!!errors( 'roles' )}>
                         <FormLabel for="roles"><Text message="roles"/></FormLabel>
                         <Select multiple
@@ -332,7 +335,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormErrorMessage><Text message={errors( 'roles' ) && errors( 'roles' )[0] || 'loading'} /></FormErrorMessage>
                     </FormControl>
                 </div>
-                <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
+                <div class={styles.container_buttons}>
                     <Button as={Link} colorScheme="neutral" href="/users">
                         <Text message="a_close" />
                     </Button>

@@ -1,0 +1,67 @@
+@import url("https://fonts.cdnfonts.com/css/gilroy-bold");
+@tailwind components;
+@tailwind utilities;
+
+.list_container {
+    @apply mx-8;
+}
+.list_section_title{
+    @apply flex justify-between items-center my-6;
+}
+.list_title{
+    @apply text-3xl font-bold;
+}
+.list_second_container {
+    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3;
+}
+
+.modal_footer{
+    @apply flex gap-5;
+}
+.list_media_object{
+    @apply flex items-center font-semibold text-sm rounded-lg py-2 px-4;
+}
+.list_media_object_container{
+    @apply flex-col justify-center content-center ml-3 text-gray-400;
+}
+.list_media_object_container_title{
+    @apply hover:scale-125;
+}
+.list_media_object_container_link{
+    @apply hover:text-white mr-1 focus:outline-none w-6;
+}
+.list_media_object_container_span{
+    @apply hover:text-white mr-1 focus:outline-none w-6; 
+}
+
+.list_third_container {
+    @apply flex flex-col ml-auto;
+}
+.list_third_container_parent_update {
+    @apply h-6 w-6 my-1
+}
+.list_third_container_children_update {
+    @apply h-6 w-6 my-1
+}
+.list_third_container_link_update{
+    @apply w-6 hover:text-white mr-1 focus:outline-none
+}
+.list_third_container_parent_password {
+    @apply h-6 w-6 my-1
+}
+.list_second_container_link_password {
+    @apply w-6 hover:text-white mr-1 focus:outline-none
+}
+.list_third_container_parent_delete {
+    @apply h-6 w-6 my-1
+}
+.list_third_container_link_delete{
+    @apply w-6 hover:text-white mr-1 focus:outline-none
+}
+.sections_buttons{
+    @apply mx-auto h-full flex justify-center items-center mt-8;
+}
+.button_view_more {
+    @apply w-full md:w-32 h-10 flex justify-center items-center bg-main-gray-500 hover:bg-main-gray-400 rounded-xl text-white font-bold text-sm;
+}
+

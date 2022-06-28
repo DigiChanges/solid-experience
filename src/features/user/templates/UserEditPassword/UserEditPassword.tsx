@@ -6,15 +6,16 @@ import {
     FormErrorMessage,
     FormLabel,
     Input,
-    notificationService} from '@hope-ui/solid';
+    notificationService } from '@hope-ui/solid';
 import { Link, useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { InferType } from 'yup';
-import Title from '../../../atoms/Title';
-import createAlert from '../../shared/hooks/createAlert';
-import preventEnterCharacter from '../../shared/utils/PreventEnterCharacter';
-import userEditPasswordSchema from '../validations/schemas/userEditPasswordSchema';
+import Title from '../../../../atoms/Title';
+import createAlert from '../../../shared/hooks/createAlert';
+import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
+import userEditPasswordSchema from '../../validations/schemas/userEditPasswordSchema';
+import styles from './UserEditPassword.module.css';
 
 interface EditPasswordTemplateProps
 {
@@ -62,14 +63,14 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
     } );
 
     return (
-        <div class="px-4">
-            <section class="flex flex-row justify-between items-center my-6">
-                <Title class="dg-section-title" titleType="h1">
+        <div class={styles.container}>
+            <section class={styles.section_title}>
+                <Title class={styles.title} titleType="h1">
                     <Text message="a_change_password" />
                 </Title>
             </section>
-            <form ref={form} class="flex flex-wrap text-sm">
-                <div class="dg-form-full-field-wrapper">
+            <form ref={form} class={styles.form}>
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'password' )}>
                         <FormLabel for="password"><Text message="new_password"/></FormLabel>
                         <Input name="password" type="password" placeholder={t( 'a_password' )} />
@@ -77,7 +78,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                     </FormControl>
                 </div>
 
-                <div class="dg-form-full-field-wrapper">
+                <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'passwordConfirmation' )}>
                         <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
                         <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' )}onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
@@ -86,13 +87,13 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                 </div>
 
 
-                <div class="w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4">
-                    <div class="w-full md:w-32 m-0 ">
+                <div class={styles.container_buttons}>
+                    <div class={styles.button_close_save}>
                         <Button as={Link} href="/users" colorScheme="neutral">
                             <Text message="a_close" />
                         </Button>
                     </div>
-                    <div class="w-full md:w-32 m-0 ">
+                    <div class={styles.button_close_save}>
                         <Button type="submit" disabled={!isValid()} loading={isSubmitting()} loadingText={<Text message="a_submitting"/> as string}>
                             <Text message="a_save"/>
                         </Button>
