@@ -1,0 +1,44 @@
+@tailwind components;
+@tailwind utilities;
+
+.form{
+    @apply flex flex-wrap text-sm;
+}
+.form_h2{
+    @apply w-full text-xs uppercase border-b-2 border-gray-800 mb-2;
+}
+.field_wrapper{
+    @apply w-full md:w-1/2 mb-5 pr-3;
+}
+.field_justify_between{
+    @apply w-full flex justify-between;
+}
+.field_small{
+    @apply w-1/4;
+}
+.field_big{
+    @apply w-3/4;
+}
+.radio_group{
+    @apply flex justify-between items-center;
+}
+.radio_group_input_f_m{
+   flex-grow: 1
+}
+.switch_enable{
+    @apply block ml-3 mt-1;
+}
+.span_contact{
+    @apply w-full mt-5;
+}
+.input_password{
+    @apply w-full mb-5 pr-2;
+}
+.container_buttons{
+    @apply w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4
+}
+
+
+
+
+

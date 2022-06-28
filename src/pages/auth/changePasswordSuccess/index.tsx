@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
 import GeneralLayout from '../../../features/shared/layout/GeneralLayout';
-import UserMessageSuccess from '../../../features/user/templates/UserMessageSuccess';
+import UserMessageSuccess from '../../../features/user/templates/UserMessageSuccess/UserMessageSuccess';
 
 const IndexPage: Component = () =>
 {

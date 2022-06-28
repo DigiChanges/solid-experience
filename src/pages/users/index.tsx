@@ -3,8 +3,6 @@ import { useApplicationContext } from '../../context/context';
 import { INIT_STATE } from '../../features/shared/constants';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import useQuery from '../../features/shared/hooks/useQuery';
-import UserList from '../../features/user/templates/UserList';
-import { UserApi, UserListResponse } from '../../features/user/interfaces';
 import UserRepository from '../../features/user/repositories/UserRepository';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout/PrivateLayout';
 import usePermission from '../../features/shared/hooks/usePermission';
@@ -12,6 +10,8 @@ import { removeUserAction } from './delete/handlers';
 import createAlert from '../../features/shared/hooks/createAlert';
 import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
 import { useI18n } from 'solid-i18n';
+import { UserApi, UserListResponse } from '../../features/user/interfaces';
+import UserList from '../../features/user/templates/UserList/UserList';
 
 const IndexPage: Component = () =>
 {

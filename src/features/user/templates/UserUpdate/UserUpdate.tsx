@@ -2,15 +2,16 @@ import { notificationService } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
-import Title from '../../../atoms/Title';
-import { permissions } from '../../../config/permissions';
-import { PermissionApi } from '../../auth/interfaces/permission';
-import { RoleApi } from '../../role/interfaces';
-import createAlert from '../../shared/hooks/createAlert';
-import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
-import GeneralLoader from '../../shared/templates/GeneralLoader';
-import { UserApi, UserPayload, UserResponse } from '../interfaces';
-import UserForm from '../organisms/UserForm';
+import Title from '../../../../atoms/Title';
+import { permissions } from '../../../../config/permissions';
+import { PermissionApi } from '../../../auth/interfaces/permission';
+import { RoleApi } from '../../../role/interfaces';
+import createAlert from '../../../shared/hooks/createAlert';
+import GeneralLoader from '../../../shared/templates/GeneralLoader';
+import { UserApi, UserPayload, UserResponse } from '../../interfaces';
+import UserForm from '../../organisms/UserForm/UserForm';
+
+import styles from './UserUpdate.module.css';
 
 interface UserCreateTemplateProps {
     permissionsList?: PermissionApi[];
@@ -47,16 +48,9 @@ const UserUpdate: Component<UserCreateTemplateProps> = props =>
     } ;
 
     return (
-        <section class="px-4">
-
-            <AlertErrors
-                errorData={errorAlert.errorData()}
-                title="err_save"
-                description="err_save_user"
-            />
-
-            <section class="flex flex-row justify-between items-center my-6">
-                <Title class="dg-section-title" titleType="h1">
+        <section class={styles.user_update_container}>
+            <section class={styles.user_update_section_title}>
+                <Title class={styles.user_update_title} titleType="h1">
                     <Text message="u_update" />
                 </Title>
             </section>
