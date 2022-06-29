@@ -14,7 +14,7 @@
 }
 
 .sidebar_container {
-    @apply grid-in-sidebar absolute md:relative mt-6 z-10 w-max;
+    @apply grid-in-sidebar absolute md:relative mt-6 z-10 w-max ml-4;
 }
 
 .main {

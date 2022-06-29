@@ -2,20 +2,18 @@ import { Button, createDisclosure, Icon, Modal, ModalBody, ModalCloseButton, Mod
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, createMemo, For, Show } from 'solid-js';
-import IconPencilAlt from '../../../../atoms/Icons/Stroke/IconPencilAlt';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
-import IconTrash from '../../../../atoms/Icons/Stroke/IconTrash';
-import Title from '../../../../atoms/Title';
 import { permissions } from '../../../../config/permissions';
-import ButtonScrollUp from '../../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
 import Filter from '../../../filterSort/organisms/Filter/Filter';
 import useTransformTranslatedOptions from '../../../shared/hooks/useTransformTranslatedOptions';
+import ButtonScrollUp from '../../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { SelectValueOption } from '../../../shared/types/Selects';
 import { SelectTransform } from '../../../shared/utils/SelectTransform';
 import { filterBy } from '../../constants/filterBy';
 import { orderBy } from '../../constants/orderBy';
 import { RoleApi } from '../../interfaces';
+import RoleCard from '../../organisms/RoleCard/RoleCard';
 import styles from './RoleList.module.css';
 
 interface RoleListTemplateProps
@@ -101,42 +99,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 <Show when={!props.loading || props.roleList?.length}>
                     <For each={props.roleList} fallback={<div><Text message="r_no_roles" /></div>}>
                         {( role ) =>
-                            <div class={styles.list_media_object} >
-                                <div class={styles.list_media_object_container}>
-                                    <Title titleType="h6" class={styles.list_media_object_container_title} data-parent="rolesShow">
-                                        <Link
-                                            class={`${styles.list_media_object_container_link} has-permission `}
-                                            href={`/roles/${role.id}/update`}>
-                                            {role.name}
-                                        </Link>
-                                        <span class={`${styles.list_media_object_container_span} fallback `}>
-                                            {role.name}
-                                        </span>
-                                    </Title>
-                                    { role.slug }
-                                </div>
-                                <div class={styles.list_third_container}>
-                                    <div class={styles.list_third_container_parent_update} data-parent="rolesUpdate">
-                                        <div class={`${styles.list_third_container_children_update} has-permission`}>
-                                            <Link class={styles.list_third_container_link_update}
-                                                href={`/roles/${role.id}/update`}
-                                            >
-                                                <IconPencilAlt />
-                                            </Link>
-                                        </div>
-                                    </div>
-
-                                    <div class={styles.list_third_container_parent_delete} data-parent="rolesDelete">
-                                        <button
-                                            class={`${styles.list_third_container_link_delete} has-permission`}
-                                            onClick={handleDelete( role )}
-                                            type="button"
-                                        >
-                                            <IconTrash />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <RoleCard role={role} onDelete={handleDelete( role )} />
                         }
                     </For>
                 </Show>
