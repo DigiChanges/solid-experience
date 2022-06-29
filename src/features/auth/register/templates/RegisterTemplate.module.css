@@ -4,3 +4,21 @@
     background-color: var(--hope-colors-primary5);
     border-radius: var(--hope-radii-lg);
 }
+.container{
+    @apply md:py-10  h-full flex justify-center items-center;
+}
+.class_list_container{
+    @apply xs:px-5 sm:px-20;
+}
+.show_register{
+    @apply md:px-10 xs:px-1 md:w-11/12 py-4;
+}
+.logo_container {
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.7));
+    margin: 0 auto 20px;
+}
+.logo {
+    max-height: 35px;
+}
