@@ -1,13 +1,16 @@
 import { useRoutes } from 'solid-app-router';
 import { I18nProvider } from 'solid-i18n';
-import { ErrorBoundary, Show, Suspense } from 'solid-js';
+import { Show, Suspense } from 'solid-js';
 import { Portal } from 'solid-js/web';
 import './assets/css/index.css';
-import './styles/index.css';
 import { dashRoutes } from './config/dashRoutes';
 import createRefreshToken from './features/auth/refreshToken/hooks/createRefreshToken';
 import GeneralLoader from './features/shared/templates/GeneralLoader';
 import { i18n } from './locales';
+import './styles/form_controls.css';
+import './styles/index.css';
+import './styles/layout.css';
+import './styles/typography.css';
 // import CustomError from './pages/error/CustomError';
 
 function App ()

@@ -18,10 +18,11 @@ const LogoutSideBarItem: Component<LogoutSideBarItemProps> = ( props ) => (
         getShowSubitems={false}
         routes=""
         showItem={true}
-        isLink={true}
+        isLink={false}
         path="/logout"
         expanded={props.getExpanded}
         sectionSelected={props.sectionSelected}
+        hideChevron
     />
 );
 

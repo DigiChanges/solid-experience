@@ -13,10 +13,10 @@ import { useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { InferType } from 'yup';
-import Title from '../../../../atoms/Title';
-import createAlert from '../../../shared/hooks/createAlert';
-import { ForgotPasswordPayload } from '../../interfaces/forgotPassword';
-import ForgetPasswordSchema from '../../validations/schemas/ForgetPasswordSchema';
+import createAlert from '../../../../shared/hooks/createAlert';
+import { ForgotPasswordPayload } from '../../../interfaces/forgotPassword';
+import ForgetPasswordSchema from '../../../validations/schemas/ForgetPasswordSchema';
+import styles from './ForgotPasswordForm.module.css';
 
 interface ForgotPasswordFormProps
 {
@@ -65,16 +65,14 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
     } );
 
     return (
-        <form ref={form} >
-            <Title titleType="h1" class="mb-2 text-left text-xs  font-extrabold text-main-gray-250 w-full">
-                <Text message="a_account_recovery" />
-            </Title>
+        <form ref={form} class={styles.form}>
+            <h1 class="section_title_opaque"><Text message="a_account_recovery"/></h1>
             <FormControl required invalid={!!errors( 'email' )}>
                 <FormLabel for="email"><Text message="email"/></FormLabel>
                 <Input name="email" type="email" placeholder={t( 'a_your_email' )} />
-                <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
+                <FormErrorMessage class="error_message_block"><Text message={errors( 'email' )[0]} /></FormErrorMessage>
             </FormControl>
-            <div class="flex items-center mt-6 justify-around w-full">
+            <div class={styles.buttons_container}>
                 <Button onClick={props.onClick} colorScheme="neutral">
                     <Text message="a_cancel" />
                 </Button>

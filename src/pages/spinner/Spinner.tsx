@@ -4,7 +4,7 @@ import navLogo from '../../assets/images/logo-nav.png';
 const Spinner = () => (
     <div class="dg-main-bg h-screen">
         <div class="dg-full-center-flex">
-            <div class="dg-rounded-small-box">
+            <div>
                 <div class="flex w-full justify-center mb-6 h-8 -mt-4">
                     <a href="/">
                         <img src={navLogo} class="h-8"/>

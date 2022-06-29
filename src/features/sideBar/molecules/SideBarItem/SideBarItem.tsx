@@ -18,6 +18,7 @@ interface SideBarItemProps {
     path: string;
     expanded: boolean;
     sectionSelected: string;
+    hideChevron?: boolean;
 }
 
 const SideBarItem: Component<SideBarItemProps> = ( props ) => (
@@ -28,16 +29,17 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
                     <span
                         class={`${styles.side_bar_item_span}`}
                         onClick={props.onClick}
-                        // classList={{ selectedBlue: props.sectionSelected === props.path }}
                     >
                         <SideBarItemContent {...props} />
-                        <Icon class={styles.side_bar_item_icon}>
-                            <Show when={props.sectionSelected === props.path}
-                                fallback={<IconChevronRight />}
-                            >
-                                <IconChevronDown />
-                            </Show>
-                        </Icon>
+                        <Show when={!props.hideChevron}>
+                            <Icon class={styles.side_bar_item_icon}>
+                                <Show when={props.sectionSelected === props.path}
+                                    fallback={<IconChevronRight />}
+                                >
+                                    <IconChevronDown />
+                                </Show>
+                            </Icon>
+                        </Show>
                     </span>
                 }
             >

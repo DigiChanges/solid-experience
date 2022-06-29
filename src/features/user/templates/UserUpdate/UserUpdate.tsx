@@ -11,8 +11,6 @@ import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { UserApi, UserPayload, UserResponse } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
 
-import styles from './UserUpdate.module.css';
-
 interface UserCreateTemplateProps {
     permissionsList?: PermissionApi[];
     rolesList?: RoleApi[];
@@ -48,12 +46,8 @@ const UserUpdate: Component<UserCreateTemplateProps> = props =>
     } ;
 
     return (
-        <section class={styles.container}>
-            <section class={styles.section_title}>
-                <Title class={styles.title} titleType="h1">
-                    <Text message="u_update" />
-                </Title>
-            </section>
+        <section class="section_container">
+            <h1 class="section_title"><Text message="u_update" /></h1>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <UserForm

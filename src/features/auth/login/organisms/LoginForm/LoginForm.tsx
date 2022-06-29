@@ -4,8 +4,9 @@ import { Anchor, Button, FormControl, FormErrorMessage, FormHelperText, FormLabe
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import type { InferType } from 'yup';
-import { LoginPayload } from '../../interfaces/login';
-import signUpSchema from '../../validations/schemas/SignUpSchema';
+import { LoginPayload } from '../../../interfaces/login';
+import signUpSchema from '../../../validations/schemas/SignUpSchema';
+import styles from './LoginForm.module.css';
 
 interface LoginFormProps {
     onSubmit: ( values: LoginPayload ) => Promise<void>;
@@ -30,23 +31,18 @@ const LoginForm: Component<LoginFormProps> = props =>
 
     return (
         <>
-            <Heading paddingBottom="$2">
-                <Text message="a_login" />
-            </Heading>
-            <form
-                ref={form}
-                class="flex flex-col gap-9"
-            >
+            <h1 class="section_title_opaque"><Text message="a_login"/></h1>
+            <form ref={form} class="flex flex-col gap-9 w-full" >
                 <FormControl required invalid={!!errors( 'email' )}>
                     <FormLabel for="email"><Text message="email"/></FormLabel>
                     <Input name="email" type="email" autocomplete="username" placeholder={t( 'a_your_email' )}/>
-                    <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
+                    <FormErrorMessage class="error_message_block"><Text message={errors( 'email' )[0]} /></FormErrorMessage>
                 </FormControl>
 
                 <FormControl required invalid={!!errors( 'password' )}>
                     <FormLabel for="password"><Text message="a_password"/></FormLabel>
                     <Input name="password" type="password" autocomplete="current-password" placeholder={t( 'a_your_password' )}/>
-                    <FormErrorMessage><Text message={errors( 'password' )[0]} /></FormErrorMessage>
+                    <FormErrorMessage class="error_message_block"><Text message={errors( 'password' )[0]} /></FormErrorMessage>
                 </FormControl>
 
                 <FormHelperText>

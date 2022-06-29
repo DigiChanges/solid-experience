@@ -8,9 +8,9 @@ import createAlert from '../../../shared/hooks/createAlert';
 import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 import Card from '../../../shared/molecules/Card/Card';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
-import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm';
+import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm/ForgotPasswordForm';
 import { createForgotPasswordAction } from '../../forgotPassword/organisms/handlers';
-import LoginForm from '../organisms/LoginForm';
+import LoginForm from '../organisms/LoginForm/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 import styles from './LoginTemplate.module.css';
 
