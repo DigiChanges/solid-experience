@@ -3,11 +3,13 @@ import { Badge, Button, CloseButton, Icon, Input, Menu, MenuContent, MenuItem, M
 import { useSearchParams } from 'solid-app-router';
 import { Text } from 'solid-i18n';
 import { Component, createMemo, createSignal, For } from 'solid-js';
+import IconChevronDown from '../../../../atoms/Icons/Stroke/IconChevronDown';
 import IconFilter from '../../../../atoms/Icons/Stroke/IconFilter';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
+import Card from '../../../shared/molecules/Card/Card';
+import CardContent from '../../../shared/molecules/CardContent/CardContent';
 import { SelectValueOption } from '../../../shared/types/Selects';
-import './Filter.css';
-
+import styles from './Filter.module.css';
 
 type FilterType = {
     field: string;
@@ -68,59 +70,62 @@ const Filter: Component<FilterProps> = ( props ) =>
         },
     } );
     return (
-        <div class={'dropdown'}>
+        <>
+            <div class={styles.dropdown}>
 
-            <Button class="mr-5" leftIcon={<Icon><IconFilter/></Icon>} onClick={() => setShowFilter( !showFilter() )} ><Text message="filter"/></Button>
+                <div>
+                    <Button
+                        leftIcon={<Icon><IconFilter/></Icon>}
+                        onClick={() => setShowFilter( !showFilter() )}
+                    >
+                        <Text message="a_filter"/>
+                    </Button>
 
-            <div
-                id="filterDropdown"
-                class="dropdown-content"
-                classList={{
-                    show: showFilter(),
-                }}
-            >
-                <div class={'dropdown show'}>
-                    <form ref={form}>
-                        <Menu>
-                            <MenuTrigger
-                                as="button"
-                                variant="subtle"
-                                colorScheme="danger"
-                                class="w-full p-4"
-                            >
-                                {selectedMenu().label}
-                            </MenuTrigger>
-                            <MenuContent>
-                                <For each={props.filterOptions}>
-                                    {( filterBy ) => (
-                                        <MenuItem name={filterBy.value as string} onSelect={handleSelect( filterBy )}>
-                                            {( filterBy.label as any )}
-                                        </MenuItem>
-                                    )}
-                                </For>
-                            </MenuContent>
-                        </Menu>
-                        <p class="p-4"><Text message="a_contains"/>:</p>
-                        <Input type="text" name="valor" />
-                        <Button disabled={!errors()} type="submit" class="w-full" leftIcon={<Icon><IconPlus/></Icon>}><Text message="a_add_filter"/></Button>
-                    </form>
+                    <Card
+                        class={styles.dropdown_content}
+                        classList={{
+                            [styles.show]: showFilter(),
+                        }}
+                    >
+                        <div class={styles.show}>
+                            <CardContent>
+                                <form ref={form} class={styles.form}>
+                                    <Menu>
+                                        <MenuTrigger class={styles.menu_button}>
+                                            {selectedMenu().label}
+                                            <Icon><IconChevronDown /></Icon>
+                                        </MenuTrigger>
+                                        <MenuContent>
+                                            <For each={props.filterOptions}>
+                                                {( filterBy ) => (
+                                                    <MenuItem name={filterBy.value as string} onSelect={handleSelect( filterBy )}>
+                                                        {( filterBy.label as any )}
+                                                    </MenuItem>
+                                                )}
+                                            </For>
+                                        </MenuContent>
+                                    </Menu>
+                                    <p><Text message="a_contains"/>:</p>
+                                    <Input type="text" name="valor" autofocus />
+                                    <Button disabled={!errors()} type="submit" leftIcon={<Icon><IconPlus/></Icon>}><Text message="a_add_filter"/></Button>
+                                </form>
+                            </CardContent>
+                        </div>
+                    </Card>
                 </div>
-            </div>
 
-            <div class="inline-flex gap-3 flex-wrap">
                 <For each={getSearchParams()}>
                     {( filter ) => (
-                        <Badge colorScheme="primary">
-                            <div class="flex items-center">
-                                <p><Text message={filter.field}/> <Text message="a_contains"/> {filter.value}</p>
-                                <CloseButton aria-label="remove filter" size="sm" onClick={handleRemoveFilter( filter )} />
-                            </div>
+                        <Badge colorScheme="primary" class={styles.badge}>
+                            <p><Text message={filter.field}/> <Text message="a_contains"/> {filter.value}</p>
+                            <CloseButton aria-label="remove filter" size="sm" onClick={handleRemoveFilter( filter )} />
                         </Badge>
                     )}
                 </For>
+
             </div>
 
-        </div>
+        </>
     );
 };
 
