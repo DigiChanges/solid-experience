@@ -1,6 +1,37 @@
 
 .login {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_container {
     padding: 30px 20px;
-    background-color: var(--hope-colors-primary5);
-    border-radius: var(--hope-radii-lg);
+    max-width: 450px;
+}
+
+.img_container {
+    height: 20px;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    background-color: tomato;
+}
+
+.logo_container {
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.7));
+    margin: 20px;
+}
+
+.logo {
+    max-height: 30px;
+}
+
+.register {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
 }

@@ -1,12 +1,12 @@
-import { Center, Flex, notificationService, Text } from '@hope-ui/solid';
+import { notificationService } from '@hope-ui/solid';
 import { Link, useNavigate } from 'solid-app-router';
 import { Text as TextI18, useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
-import logoNav from '../../../../assets/images/logo-nav.png';
-import Image from '../../../../atoms/Image';
+import logo from '../../../../assets/images/dgc_logo.png';
 import { useApplicationContext } from '../../../../context/context';
 import createAlert from '../../../shared/hooks/createAlert';
 import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
+import Card from '../../../shared/molecules/Card/Card';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import ForgotPasswordForm from '../../forgotPassword/organisms/ForgotPasswordForm';
 import { createForgotPasswordAction } from '../../forgotPassword/organisms/handlers';
@@ -43,7 +43,7 @@ const LoginTemplate: Component = () =>
     };
 
     return (
-        <Flex alignItems="center" justifyContent="center" minHeight="100vh">
+        <>
             <AlertErrors
                 errorData={errorAlert.errorData()}
                 title="err_login"
@@ -54,38 +54,39 @@ const LoginTemplate: Component = () =>
             <Show when={isLoading()} >
                 <GeneralLoader/>
             </Show>
+            <section class={styles.login}>
+                <Card>
+                    <div class={styles.form_container}>
+                        <div class={styles.logo_container}>
+                            <img class={styles.logo} src={logo} alt="digichanges logo"/>
+                        </div>
 
-            <div class={styles.login}>
-                <Center h="100px">
-                    <Image src={logoNav} class="h-8"/>
-                </Center>
+                        <Show when={!getShowRecoverPassword()}
+                            fallback={() => (
+                                <ForgotPasswordForm
+                                    onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
+                                    onSubmit={createForgotPasswordAction( { errorAlert, navigate, t } )}
+                                />
+                            )}
+                        >
+                            <div class={styles.register}>
+                                <p><TextI18 message="a_do_not_have_account" /></p>
+                                <Link href="/register">
+                                    <strong><TextI18 message="a_sign_up"/></strong>
+                                </Link>
+                            </div>
 
-                <Show when={!getShowRecoverPassword()}
-                    fallback={() => (
-                        <ForgotPasswordForm
-                            onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
-                            onSubmit={createForgotPasswordAction( { errorAlert, navigate, t } )}
-                        />
-                    )}
-                >
-                    <Flex justifyContent="space-between" paddingBottom="$4">
-                        <Text>
-                            <TextI18 message="a_do_not_have_account" />
-                        </Text>
-                        <Link href="/register">
-                            <strong><TextI18 message="a_sign_up"/></strong>
-                        </Link>
-                    </Flex>
-
-                    <LoginForm
-                        onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
-                        onSubmit={handleLoginFormSubmit( { addUser, setIsLoading } )}
-                        onError={handleError()}
-                        onSuccess={handleSuccess()}
-                    />
-                </Show>
-            </div>
-        </Flex>
+                            <LoginForm
+                                onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
+                                onSubmit={handleLoginFormSubmit( { addUser, setIsLoading } )}
+                                onError={handleError()}
+                                onSuccess={handleSuccess()}
+                            />
+                        </Show>
+                    </div>
+                </Card>
+            </section>
+        </>
     );
 };
 
