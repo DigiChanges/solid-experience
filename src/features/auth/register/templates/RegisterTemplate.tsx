@@ -5,11 +5,10 @@ import { permissions } from '../../../../config/permissions';
 import createAlert from '../../../shared/hooks/createAlert';
 import RegisterForm from '../organisms/RegisterForm/RegisterForm';
 import RegisterSuccess from '../organisms/RegisterSuccess/RegisterSuccess';
-import logoNav from '../../../../assets/images/logo-nav.png';
-import Image from '../../../../atoms/Image';
 import styles from './RegisterTemplate.module.css';
 import { RegisterPayload, RegisterResponse } from '../interfaces/createAccount';
-
+import Card from '../../../shared/molecules/Card/Card';
+import logo from '../../../../assets/images/dgc_logo.png';
 interface UserCreateTemplateProps {
     onSubmit: ( data: RegisterPayload ) => Promise<RegisterResponse>;
     getEmail: any;
@@ -45,24 +44,24 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
             classList={{ 'h-screen py-40': getShowRegisterSuccess() }}>
             <div class={styles.container}
                 classList={{ [styles.class_list_container]: getShowRegisterSuccess() }}>
-                <div class={`${styles.register} dg-rounded md:w-11/12 `}
-                    classList={{ [styles.show_register]: getShowRegisterSuccess() }}>
-                    <div class={styles.logo_nav}>
-                        <a href="/">
-                            <Image src={logoNav} class="h-8"/>
-                        </a>
+                <Card class={styles.show_register}>
+                    <div
+                        classList={{ [styles.show_register]: getShowRegisterSuccess() }}>
+                        <div class={styles.logo_container}>
+                            <img class={styles.logo} src={logo} alt="digichanges logo"/>
+                        </div>
+                        <Show when={!getShowRegisterSuccess()}
+                            fallback={() => <RegisterSuccess email={props.getEmail()} />}
+                        >
+                            <RegisterForm
+                                onSubmit={props.onSubmit}
+                                onError={handleError()}
+                                onSuccess={handleSuccess()}
+                                userPermission={{ submit: permissions.USERS.SAVE }}
+                            />
+                        </Show>
                     </div>
-                    <Show when={!getShowRegisterSuccess()}
-                        fallback={() => <RegisterSuccess email={props.getEmail()} />}
-                    >
-                        <RegisterForm
-                            onSubmit={props.onSubmit}
-                            onError={handleError()}
-                            onSuccess={handleSuccess()}
-                            userPermission={{ submit: permissions.USERS.SAVE }}
-                        />
-                    </Show>
-                </div>
+                </Card>
             </div>
         </section>
     );

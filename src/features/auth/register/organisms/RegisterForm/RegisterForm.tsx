@@ -8,6 +8,17 @@ import {
     Input,
     Radio,
     RadioGroup,
+    Select,
+    SelectContent,
+    SelectIcon,
+    SelectListbox,
+    SelectOptGroup,
+    SelectOption,
+    SelectOptionIndicator,
+    SelectOptionText,
+    SelectPlaceholder,
+    SelectTrigger,
+    SelectValue,
     SimpleOption,
     SimpleSelect} from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
@@ -36,6 +47,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
         form,
         isValid,
         setFields,
+        setTouched,
         // @ts-ignore
     } = createForm<InferType<typeof RegisterSchema>>( {
         initialValues: { },
@@ -86,31 +98,60 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <Input name="phone" type="text" placeholder={t( 'a_enter_phone' )} />
                         <FormErrorMessage><Text message={errors( 'phone' )[0]} /></FormErrorMessage>
                     </FormControl>
+                    <div class={styles.field_wrapper_document}>
+                        <FormControl required invalid={!!errors( 'documentType' )}>
+                            <FormLabel><Text message="documentType"/></FormLabel>
+                            <div class={styles.field_justify_between}>
+                                <div class={styles.field_small}>
 
-                    <div class={styles.container_document_type}>
-                        <div class={styles.field_small}>
-                            <FormControl required invalid={!!errors( 'documentType' )}>
-                                <FormLabel><Text message="documentType" /></FormLabel>
-                                <SimpleSelect
-                                    placeholder={<Text message="type_id"/> as string}
-                                    onChange={value => setFields( 'documentType', value )}
-                                >
-                                    <For each={ userDocumentTypeOptions }>
-                                        {/* @ts-ignore  */}
-                                        {item => <SimpleOption value={item.value}>{item.label}</SimpleOption>}
-                                    </For>
-                                </SimpleSelect>
-                                <FormErrorMessage>{errors( 'documentType' )[0] === '' ? 'required' : ''}</FormErrorMessage>
-                            </FormControl>
-                        </div>
-                        <div class={styles.container_document_number}>
-                            <FormControl required invalid={!!errors( 'documentNumber' )}>
-                                <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' )} />
-                                <FormErrorMessage><Text message={errors( 'documentNumber' )[0]} /></FormErrorMessage>
-                            </FormControl>
-                        </div>
+                                    <FormControl required invalid={!!errors( 'documentType' )}>
+                                        <Select
+                                            onChange={value => setFields( 'documentType', value )}
+                                        >
+                                            <SelectTrigger
+                                                onBlur={() => setTouched( 'documentType', true )}
+                                            >
+                                                <SelectPlaceholder>
+                                                    <Text message="type_id"/>
+                                                </SelectPlaceholder>
+                                                <SelectValue />
+                                                <SelectIcon />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectListbox>
+                                                    <SelectOptGroup>
+                                                        <For each={userDocumentTypeOptions}>
+                                                            {documentType => (
+                                                                <SelectOption
+                                                                    value={documentType.value}
+                                                                    rounded="$none"
+                                                                    fontSize="$sm"
+                                                                    _active={{ bg: '$warning3', color: '$warning11' }}
+                                                                    _selected={{ bg: '$warning9', color: 'white' }}
+                                                                >
+                                                                    <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>
+                                                                        {documentType.label}
+                                                                    </SelectOptionText>
+                                                                    <SelectOptionIndicator/>
+                                                                </SelectOption>
+                                                            )}
+                                                        </For>
+                                                    </SelectOptGroup>
+                                                </SelectListbox>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormErrorMessage><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormErrorMessage>
+                                    </FormControl>
+                                </div>
+                                <div class={styles.field_big}>
+                                    <FormControl required invalid={!!errors( 'documentNumber' )}>
+                                        <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' )} />
+                                        <FormErrorMessage><Text message={errors( 'documentNumber' )[0]} /></FormErrorMessage>
+                                    </FormControl>
+                                </div>
+                            </div>
+                        </FormControl>
                     </div>
-
                     <div class={styles.gender_container}>
                         <FormControl required invalid={!!errors( 'gender' )} >
                             <FormLabel for="gender"><Text message="gender"/></FormLabel>
