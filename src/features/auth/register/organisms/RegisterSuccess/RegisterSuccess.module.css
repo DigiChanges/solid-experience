@@ -1,0 +1,34 @@
+@tailwind components;
+@tailwind utilities;
+
+.section{
+    @apply flex flex-row justify-between items-center mt-6 mb-2;
+}
+.section_text{
+    @apply text-2xl  pl-2
+}
+.description_container{
+    @apply flex flex-wrap text-sm;
+}
+.description_sub_container{
+    @apply w-full mb-1 pr-3 pl-2;
+}
+.description_text{
+    @apply  flex w-full text-2xl pb-2 pt-10;
+}
+.your_email_container{
+    @apply w-full mb-2 mt-2;
+}
+.description_span{
+    @apply w-full text-xl text-white;
+}
+.description_second_span{
+    @apply w-full text-xl;
+}
+.password_container{
+    @apply w-full mb-2;
+}
+.container_buttons{
+    @apply flex items-center justify-center pt-10;
+}
+

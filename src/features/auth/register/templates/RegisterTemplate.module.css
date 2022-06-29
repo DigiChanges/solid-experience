@@ -4,3 +4,15 @@
     background-color: var(--hope-colors-primary5);
     border-radius: var(--hope-radii-lg);
 }
+.container{
+    @apply md:py-10  h-full flex justify-center items-center;
+}
+.class_list_container{
+    @apply xs:px-5 sm:px-20;
+}
+.show_register{
+    @apply md:px-10 xs:px-1;
+}
+.logo_nav{
+    @apply flex w-full justify-center mb-6 h-8 -mt-4
+}
