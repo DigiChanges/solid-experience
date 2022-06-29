@@ -1,27 +1,9 @@
-.form{
-    @apply flex flex-wrap;
-}
-.field_wrapper{
-    @apply w-full md:w-1/2 mb-5 pr-3;
-}
 .field_justify_between{
     @apply w-full flex justify-between;
 }
 .field_small{
     @apply w-1/4;
 }
-.field_big{
-    @apply w-3/4;
-}
 .radio_group{
     @apply flex justify-between items-center mt-1;
-}
-.switch_enable{
-    @apply block ml-3 mt-1;
-}
-.input_password{
-    @apply w-full mb-5 pr-2;
-}
-.container_buttons{
-    @apply w-full mt-5 md:mr-5 flex flex-wrap md:justify-end gap-4
 }

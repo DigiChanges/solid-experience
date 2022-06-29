@@ -2,7 +2,6 @@ import { notificationService } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
-import Title from '../../../../atoms/Title';
 import { permissions } from '../../../../config/permissions';
 import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
@@ -55,7 +54,7 @@ const UserUpdate: Component<UserCreateTemplateProps> = props =>
                     onSubmit={props.onUpdate}
                     onSuccess={handleSuccess()}
                     permissionsList={props.permissionsList}
-                    userPermission={{ submit: permissions.USERS.UPDATE }}
+                    requiredPermission={{ submit: permissions.USERS.UPDATE }}
                     rolesList={props.rolesList}
                     userSelected={props.userSelected}
                 />

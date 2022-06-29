@@ -11,7 +11,6 @@ import { Link, useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { InferType } from 'yup';
-import Title from '../../../../atoms/Title';
 import createAlert from '../../../shared/hooks/createAlert';
 import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
 import userEditPasswordSchema from '../../validations/schemas/userEditPasswordSchema';
@@ -65,9 +64,9 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
     return (
         <div class={styles.container}>
             <section class={styles.section_title}>
-                <Title class={styles.title} titleType="h1">
+                <h1 class={styles.title}>
                     <Text message="a_change_password" />
-                </Title>
+                </h1>
             </section>
             <form ref={form} class={styles.form}>
                 <div class={styles.field_wrapper}>

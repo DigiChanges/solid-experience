@@ -53,7 +53,7 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
                     onSubmit={props.onCreate}
                     onSuccess={handleSuccess()}
                     permissionsList={props.permissionsList}
-                    userPermission={{ submit: permissions.USERS.SAVE }}
+                    requiredPermission={{ submit: permissions.USERS.SAVE }}
                     rolesList={props.rolesList}
                 />
             </Show>

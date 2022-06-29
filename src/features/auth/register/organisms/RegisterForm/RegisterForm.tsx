@@ -20,12 +20,11 @@ import {
     SelectTrigger,
     SelectValue,
     SimpleOption,
-    SimpleSelect} from '@hope-ui/solid';
+    SimpleSelect } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For } from 'solid-js';
 import { InferType } from 'yup';
-import Title from '../../../../../atoms/Title';
 import { country, userDocumentTypeOptions } from '../../../../../entities';
 import RegisterSchema from '../../../validations/schemas/RegisterSchema.';
 import { RegisterApi, RegisterResponse } from '../../interfaces/createAccount';
@@ -60,9 +59,9 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
     return (
         <form ref={form}>
             <section class={styles.section_title} >
-                <Title class={styles.title} titleType="h1">
+                <h1 class={styles.title}>
                     <Text message="a_create_account" />
-                </Title>
+                </h1>
             </section>
             <div class={styles.form} >
                 <div class={styles.form_container_span}>
