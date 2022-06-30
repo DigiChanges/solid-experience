@@ -4,7 +4,6 @@ import { Component } from 'solid-js';
 import { Form } from 'solid-js-form';
 import Button from '../../../../atoms/Button';
 import Input from '../../../../atoms/Input';
-import Title from '../../../../atoms/Title';
 import { ChangeForgotPasswordPayload } from '../../interfaces/forgotPassword';
 import ChangeForgotPasswordSchema from '../../validations/schemas/ChangeForgotPasswordSchema';
 
@@ -29,9 +28,9 @@ const ChangeForgotPassword: Component<UserChangePasswordTemplateProps> = ( props
                 <div class="dg-rounded-small-box-gray py-5 ">
                     <div class="text-gray-500 body-font  w-full  mx-auto px-3 pt-2 md:pt-10">
                         <div class="mb-2 ">
-                            <Title class="text-3xl font-bold sm:px-0 md:px-18 lg:px-14" titleType="h1">
+                            <h1 class="text-3xl font-bold sm:px-0 md:px-18 lg:px-14">
                                 Change Password
-                            </Title>
+                            </h1>
                         </div>
 
                         <Form
