@@ -2,7 +2,6 @@ import { notificationService } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
-import Title from '../../../../atoms/Title';
 import { permissions } from '../../../../config/permissions';
 import { PermissionApi } from '../../../auth/interfaces/permission';
 import createAlert from '../../../shared/hooks/createAlert';
@@ -10,7 +9,6 @@ import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { RoleApi, RolePayload, RoleResponse } from '../../interfaces';
 import RoleForm from '../../organisms/RoleForm/RoleForm';
-import styles from './RoleUpdate.module.css';
 
 interface RoleUpdateTemplateProps
 {
@@ -47,7 +45,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
     } ;
 
     return (
-        <section class={styles.container}>
+        <section class="section_container">
 
             <AlertErrors
                 errorData={errorAlert.errorData()}
@@ -55,18 +53,14 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
                 description="err_save_role"
             />
 
-            <section class={styles.section_title}>
-                <Title class={styles.title} titleType="h1">
-                    <div data-parent={permissions.ROLES.UPDATE}>
-                        <div class="has-permission">
-                            <Text message="r_update" />
-                        </div>
-                        <div class="fallback">
-                            <Text message="Role" />
-                        </div>
-                    </div>
-                </Title>
-            </section>
+            <div data-parent={permissions.ROLES.UPDATE}>
+                <div class="has-permission">
+                    <h1 class="section_title"><Text message="r_update" /></h1>
+                </div>
+                <div class="fallback">
+                    <h1 class="section_title"><Text message="Role" /></h1>
+                </div>
+            </div>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <RoleForm
@@ -75,7 +69,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
                     onSuccess={handleSuccess()}
                     permissionsList={props.permissionsList}
                     roleSelected={props.roleSelected}
-                    userPermission={{ submit: permissions.ROLES.UPDATE }}
+                    requiredPermission={{ submit: permissions.ROLES.UPDATE }}
                 />
             </Show>
         </section>

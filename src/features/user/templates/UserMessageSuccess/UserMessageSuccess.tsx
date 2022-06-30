@@ -2,7 +2,6 @@ import { Button } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
-import Title from '../../../../atoms/Title';
 import styles from './UserMessageSuccess.module.css';
 
 interface messageSuccessProps{
@@ -19,9 +18,9 @@ const UserMessageSuccess: Component<messageSuccessProps> = ( props ) =>
             <div class={styles.second_section_container}>
                 <div class={styles.third_section_container}>
                     <div class={styles.title_container}>
-                        <Title class={styles.title} titleType="h1">
+                        <h1 class={styles.title}>
                             <Text message={props.title}/>
-                        </Title>
+                        </h1>
                     </div>
                     <div>
                         <div class={styles.description_container}>

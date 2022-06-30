@@ -2,7 +2,6 @@ import { notificationService } from '@hope-ui/solid';
 import { useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
-import Title from '../../../../atoms/Title';
 import { permissions } from '../../../../config/permissions';
 import { PermissionApi } from '../../../auth/interfaces/permission';
 import createAlert from '../../../shared/hooks/createAlert';
@@ -10,7 +9,6 @@ import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { RolePayload, RoleResponse } from '../../interfaces';
 import RoleForm from '../../organisms/RoleForm/RoleForm';
-import styles from './RoleCreate.module.css';
 
 interface RoleCreateTemplateProps {
     permissionsList?: PermissionApi[];
@@ -45,7 +43,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
     } ;
 
     return (
-        <section class={styles.container}>
+        <section class="section_container">
 
             <AlertErrors
                 errorData={errorAlert.errorData()}
@@ -53,18 +51,15 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                 description="err_save_role"
             />
 
-            <section class={styles.section_title}>
-                <Title class={styles.title} titleType="h1">
-                    <Text message="r_create" />
-                </Title>
-            </section>
+            <h1 class="section_title"><Text message="r_create" /></h1>
+
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <RoleForm
                     onError={handleError()}
                     onSubmit={props.onCreate}
                     onSuccess={handleSuccess()}
                     permissionsList={props.permissionsList}
-                    userPermission={{ submit: permissions.ROLES.SAVE }}
+                    requiredPermission={{ submit: permissions.ROLES.SAVE }}
                 />
             </Show>
 
