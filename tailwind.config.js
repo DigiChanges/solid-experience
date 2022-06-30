@@ -962,6 +962,5 @@ module.exports = {
     corePlugins: {},
     plugins: [
         require( '@savvywombat/tailwindcss-grid-areas' ),
-        require( '@tailwindcss/line-clamp' ),
     ],
 };
