@@ -18,6 +18,6 @@
     @apply mx-auto h-full flex justify-center items-center mt-8;
 }
 .button_view_more {
-    @apply w-full md:w-32 h-10 flex justify-center items-center bg-main-gray-500 hover:bg-main-gray-400 rounded-xl text-white font-bold text-sm;
+    @apply w-full md:w-32 h-10 flex justify-center items-center rounded-xl text-white font-bold text-sm;
 }
 

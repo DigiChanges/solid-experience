@@ -1,5 +1,5 @@
 
 .container {
     background-color: var(--hope-colors-neutral3);
-    @apply rounded-lg-md shadow-md;
+    @apply shadow-md;
 }

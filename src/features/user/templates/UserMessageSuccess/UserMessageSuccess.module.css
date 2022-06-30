@@ -14,7 +14,7 @@
     @apply p-8 rounded-default py-5
 }
 .third_section_container{
-    @apply text-gray-500 w-full mx-auto px-3 pt-2
+    @apply w-full mx-auto px-3 pt-2
 }
 .title_container{
     @apply mb-2;

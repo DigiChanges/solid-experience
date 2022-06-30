@@ -14,7 +14,6 @@ import LoginForm from '../organisms/LoginForm/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 import styles from './LoginTemplate.module.css';
 
-
 const LoginTemplate: Component = () =>
 {
     const navigate = useNavigate();

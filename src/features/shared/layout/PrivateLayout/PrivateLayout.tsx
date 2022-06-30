@@ -35,7 +35,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                     {props.children}
                 </main>
                 <Footer class={styles.footer}>
-                    {new Date().getFullYear()} © DigiChanges
+                    {`${new Date().getFullYear()}`} © DigiChanges
                 </Footer>
             </div>
         </div>
