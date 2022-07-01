@@ -1,40 +1,36 @@
 {
   "users": [
     {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "AR",
       "firstName": "Super",
       "lastName": "Admin",
-      "email": "superadmin@node.com",
-      "birthday": "04/07/1990",
-      "documentType": "dni",
       "documentNumber": "11111111",
       "gender": "male",
-      "phone": "2234456999",
-      "address": "New America 123",
-      "country": "AR",
-      "roles": [],
-      "permissions": [],
+      "birthday": "1980-01-01",
       "enable": true,
+      "address": "New America 123",
+      "email": "superadmin@node.com",
+      "phone": "2234456999",
       "id": "922465bc-db4e-4794-b25c-9311ce124e00"
     },
     {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john-doe@node.com",
-      "birthday": "04/01/1990",
-      "documentType": "dni",
-      "documentNumber": "22222",
-      "gender": "male",
-      "phone": "223444455",
-      "address": "Av Siempre Viva 123",
-      "country": "ES",
-      "roles": [
-        "5db96817-33c8-446d-8050-830c4d88f26d"
-      ],
       "permissions": [
         "authSyncPermissions",
         "filesUpload"
       ],
+      "documentType": "dni",
+      "country": "ES",
+      "firstName": "John",
+      "lastName": "Doe",
+      "documentNumber": "22222",
+      "gender": "male",
+      "birthday": "1990-01-01",
       "enable": true,
+      "address": "Av Siempre Viva 123",
+      "email": "john-doe@node.com",
+      "phone": "223444455",
       "id": "922465bc-db4e-4794-b25c-9311ce124e01"
     }
   ],
@@ -133,21 +129,5 @@
       "enable": true,
       "id": "FotmTfY"
     }
-  ],
-  "refresh-token": {
-    "user": {
-      "id": "922465bc-db4e-4794-b25c-9311ce124e00",
-      "firstName": "Super",
-      "lastName": "Admin",
-      "email": "superadmin@node.com",
-      "enable": true,
-      "permissions": [],
-      "roles": [],
-      "isSumerAdmin": true,
-      "createdAt": 1651255968,
-      "updatedAt": 1651255968
-    },
-    "expires": 1689176366,
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6IjIxNDJiMjMzLTEwZDUtNDIyZS04OTRmLTc3MzUwMzA2ZWI5NSIsImlzcyI6InNtYXJ0bmV0IiwiYXVkIjoic21hcnRuZXQuY29tIiwic3ViIjoic3VwZXJhZG1pbkBub2RlLmNvbSIsImlhdCI6MTY4OTE3NjM2NiwiZXhwIjoxNjg5MTc2MzY2LCJ1c2VySWQiOiI5MjI0NjViYy1kYjRlLTQ3OTQtYjI1Yy05MzExY2UxMjRlMDAiLCJlbWFpbCI6InN1cGVyYWRtaW5Abm9kZS5jb20iLCJ0ZW5hbnQiOiJwdWJsaWMifQ.TpYXC1KqDO8XjbAqlP1joX0ye1Drsh2NMnOCS4Cn8bC3mQ_iRVl6tpTtK1WU_WcQB4c0vrRiULbDz6CHyDdAIQ"
-  }
+  ]
 }

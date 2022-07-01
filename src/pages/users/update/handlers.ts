@@ -8,14 +8,13 @@ type params = {
 
 export const updateAction = ( { userRepository: userRepository, id }: params ) => async ( payload: UserPayload ) =>
 {
+    const rolesSelected = Array.from( payload.roles as [] );
+
+    delete payload.roles;
     const update = userRepository.updateUser( id, payload );
 
-    const response = await update();
+    void await update();
 
-    if ( payload.roles?.length )
-    {
-        const { id } = response.data;
-        const assignRoles = userRepository.assignUserRole( id, payload.roles );
-        void await assignRoles();
-    }
+    const assignRoles = userRepository.assignUserRole( id, rolesSelected );
+    void await assignRoles();
 };

@@ -29,7 +29,7 @@ class UserRepository
         return HttpAxiosRequest<UserResponse>( config );
     }
 
-    public assignUserRole ( id: string, rolesId: any )
+    public assignUserRole ( id: string, rolesId: string[] )
     {
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${assignRole}/${id}`,

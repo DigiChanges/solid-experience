@@ -1,5 +1,5 @@
 import { useParams } from 'solid-app-router';
-import { Component, createResource } from 'solid-js';
+import { Component, createMemo, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import RoleRepository from '../../../features/role/repositories/RoleRepository';
@@ -22,6 +22,8 @@ const IndexPage: Component = () =>
     const [ permissions ] = createResource( authRepository.getAllPermissions() );
     usePermission( user, [ roles, permissions, userSelected ] );
 
+    const isLoading = createMemo( () => userSelected.loading || permissions.loading || roles.loading || permissions.loading );
+
     return (
         <PrivateLayout>
             <UserUpdate
@@ -29,7 +31,7 @@ const IndexPage: Component = () =>
                 userSelected={userSelected()?.data}
                 permissionsList={permissions()?.data}
                 rolesList={roles()?.data}
-                loading={permissions.loading || roles.loading || permissions.loading}
+                loading={isLoading()}
             />
         </PrivateLayout>
     );
