@@ -69,7 +69,7 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
             <h1 class="section_title_opaque"><Text message="a_account_recovery"/></h1>
             <FormControl required invalid={!!errors( 'email' )}>
                 <FormLabel for="email"><Text message="email"/></FormLabel>
-                <Input name="email" type="email" placeholder={t( 'a_your_email' )} />
+                <Input name="email" type="email" placeholder={t( 'a_your_email' ) as string} />
                 <FormErrorMessage class="error_message_block"><Text message={errors( 'email' )[0]} /></FormErrorMessage>
             </FormControl>
             <div class={styles.buttons_container}>

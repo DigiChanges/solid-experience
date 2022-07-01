@@ -1,13 +1,9 @@
 import { Component } from 'solid-js';
-import GeneralLayout from '../../../features/shared/layout/GeneralLayout';
 import UserMessageSuccess from '../../../features/user/templates/UserMessageSuccess/UserMessageSuccess';
 
 const IndexPage: Component = () =>
 {
-    return ( <GeneralLayout>
-        <UserMessageSuccess title={'au_password_updated'} description={'au_can_log_in_data'}/>
-    </GeneralLayout>
-    );
+    return ( <UserMessageSuccess title={'au_password_updated'} description={'au_can_log_in_data'}/> );
 };
 
 export default IndexPage;

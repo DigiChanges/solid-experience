@@ -1,6 +1,6 @@
 import { Icon } from '@hope-ui/solid';
 import { NavLink } from 'solid-app-router';
-import { Component, Show } from 'solid-js';
+import { Component, JSX, Show } from 'solid-js';
 import IconChevronDown from '../../../../atoms/Icons/Stroke/IconChevronDown';
 import IconChevronRight from '../../../../atoms/Icons/Stroke/IconChevronRight';
 import SideBarItemContent from '../SideBarItemContent/SideBarItemContent';
@@ -19,6 +19,7 @@ interface SideBarItemProps {
     expanded: boolean;
     sectionSelected: string;
     hideChevron?: boolean;
+    children?: JSX.Element;
 }
 
 const SideBarItem: Component<SideBarItemProps> = ( props ) => (

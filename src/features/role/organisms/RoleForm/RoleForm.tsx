@@ -75,7 +75,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'name' )}>
                     <FormLabel for="name"><Text message="name"/></FormLabel>
-                    <Input autofocus name="name" type="text" placeholder={t( 'a_enter_name' )} value={props.roleSelected?.name} />
+                    <Input autofocus name="name" type="text" placeholder={t( 'a_enter_name' ) as string} value={props.roleSelected?.name} />
                     <FormErrorMessage><Text message={errors( 'name' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
@@ -83,7 +83,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'slug' )}>
                     <FormLabel for="slug"><Text message="slug"/></FormLabel>
-                    <Input name="slug" type="text" placeholder={t( 'a_enter_slug' )} value={props.roleSelected?.slug} onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
+                    <Input name="slug" type="text" placeholder={t( 'a_enter_slug' ) as string} value={props.roleSelected?.slug} onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
                     <FormErrorMessage><Text message={errors( 'slug' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>

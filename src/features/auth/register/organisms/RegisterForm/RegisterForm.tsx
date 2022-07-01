@@ -63,20 +63,20 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <Text message="a_create_account" />
                 </h1>
             </section>
-            <div class={styles.form} >
+            <div class="form_flex" >
                 <div class={styles.form_container_span}>
                     <span class={styles.form_span}><Text message="a_basic_information" /></span>
                 </div>
                 <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'firstName' )} class={styles.form_control} >
                         <FormLabel for="firstName"><Text message="first_name"/></FormLabel>
-                        <Input name="firstName" type="text" placeholder={t( 'a_enter_first_name' )} />
+                        <Input name="firstName" type="text" placeholder={t( 'a_enter_first_name' ) as string} />
                         <FormErrorMessage><Text message={errors( 'firstName' )[0]} /></FormErrorMessage>
                     </FormControl>
 
                     <FormControl required invalid={!!errors( 'lastName' )} class={styles.form_control} >
                         <FormLabel for="lastName"><Text message="last_name"/></FormLabel>
-                        <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' )} />
+                        <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' ) as string} />
                         <FormErrorMessage><Text message={errors( 'lastName' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
@@ -88,13 +88,13 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
                     <FormControl required invalid={!!errors( 'email' )} class={styles.form_control} >
                         <FormLabel for="email"><Text message="email"/></FormLabel>
-                        <Input name="email" type="text" placeholder={t( 'a_your_email' )} />
+                        <Input name="email" type="text" placeholder={t( 'a_your_email' ) as string} />
                         <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
                     </FormControl>
 
                     <FormControl required invalid={!!errors( 'phone' )} class={styles.form_control} >
                         <FormLabel for="phone"><Text message="phone"/></FormLabel>
-                        <Input name="phone" type="text" placeholder={t( 'a_enter_phone' )} />
+                        <Input name="phone" type="text" placeholder={t( 'a_enter_phone' ) as string} />
                         <FormErrorMessage><Text message={errors( 'phone' )[0]} /></FormErrorMessage>
                     </FormControl>
                     <div class={styles.field_wrapper_document}>
@@ -144,7 +144,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                 </div>
                                 <div class={styles.field_big}>
                                     <FormControl required invalid={!!errors( 'documentNumber' )}>
-                                        <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' )} />
+                                        <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' ) as string} />
                                         <FormErrorMessage><Text message={errors( 'documentNumber' )[0]} /></FormErrorMessage>
                                     </FormControl>
                                 </div>
@@ -166,7 +166,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </div>
                     <FormControl required invalid={!!errors( 'birthday' )} class={styles.form_control}>
                         <FormLabel for="birthday"><Text message="birthday"/></FormLabel>
-                        <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' )} />
+                        <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' ) as string} />
                         <FormErrorMessage><Text message={errors( 'birthday' )[0]} /></FormErrorMessage>
                     </FormControl>
 
@@ -185,28 +185,28 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </FormControl>
                     <FormControl required invalid={!!errors( 'address' )} class={styles.form_control} >
                         <FormLabel for="address"><Text message="address"/></FormLabel>
-                        <Input name="address" type="text" placeholder={t( 'a_your_address' )} />
+                        <Input name="address" type="text" placeholder={t( 'a_your_address' ) as string} />
                         <FormErrorMessage><Text message={errors( 'address' )[0]} /></FormErrorMessage>
                     </FormControl>
 
                 </div>
             </div>
 
-            <div class={styles.info_segurity}>
-                <div class={styles.info_segurity_container}>
+            <div class={styles.info_security}>
+                <div class={styles.info_security_container}>
                     <span class={styles.info_span}><Text message="a_security" /></span>
                     <span class={styles.info_span}><Text message="a_used_sign_in" /></span>
                 </div>
                 <div class={styles.password_container}>
                     <FormControl required invalid={!!errors( 'password' )} class={styles.form_control}>
                         <FormLabel for="password"><Text message="password"/></FormLabel>
-                        <Input name="password" type="password" placeholder={t( 'a_your_password' )} />
+                        <Input name="password" type="password" placeholder={t( 'a_your_password' ) as string} />
                         <FormErrorMessage><Text message={errors( 'password' )[0]} /></FormErrorMessage>
                     </FormControl>
 
                     <FormControl required invalid={!!errors( 'passwordConfirmation' )} class={styles.form_control}>
                         <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
-                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' )}/>
+                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string}/>
                         <FormErrorMessage><Text message={errors( 'passwordConfirmation' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>

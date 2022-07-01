@@ -98,7 +98,7 @@ const Filter: Component<FilterProps> = ( props ) =>
                                         <MenuContent>
                                             <For each={props.filterOptions}>
                                                 {( filterBy ) => (
-                                                    <MenuItem name={filterBy.value as string} onSelect={handleSelect( filterBy )}>
+                                                    <MenuItem onSelect={handleSelect( filterBy )}>
                                                         {( filterBy.label as any )}
                                                     </MenuItem>
                                                 )}

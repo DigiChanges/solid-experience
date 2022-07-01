@@ -1,9 +1,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.form{
-    @apply flex flex-wrap text-sm;
-}
 .form_container_span{
     @apply w-full md:w-1/2 mb-1 pr-3;
 }
@@ -43,10 +40,10 @@
 .radio_group_input_f_m{
     flex-grow: 1
  }
-.info_segurity{
+.info_security{
     @apply flex flex-wrap w-full text-sm xs:pt-6 md:pt-9;
 }
-.info_segurity_container{
+.info_security_container{
     @apply w-full md:w-1/2 mb-1 pr-3 xs:pb-5;
 }
 .password_container{

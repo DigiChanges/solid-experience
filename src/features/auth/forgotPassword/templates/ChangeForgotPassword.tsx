@@ -1,7 +1,6 @@
 import { useNavigate } from 'solid-app-router';
 import { useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
-import Button from '../../../../atoms/Button';
 import { ChangeForgotPasswordPayload } from '../../interfaces/forgotPassword';
 import ChangeForgotPasswordSchema from '../../validations/schemas/ChangeForgotPasswordSchema';
 

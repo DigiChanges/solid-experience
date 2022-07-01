@@ -72,7 +72,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                 <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'password' )}>
                         <FormLabel for="password"><Text message="new_password"/></FormLabel>
-                        <Input name="password" type="password" placeholder={t( 'a_password' )} />
+                        <Input name="password" type="password" placeholder={t( 'a_password' ) as string} />
                         <FormErrorMessage><Text message={errors( 'password' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
@@ -80,7 +80,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                 <div class={styles.field_wrapper}>
                     <FormControl required invalid={!!errors( 'passwordConfirmation' )}>
                         <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
-                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' )}onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
+                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string}onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
                         <FormErrorMessage><Text message={errors( 'passwordConfirmation' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>

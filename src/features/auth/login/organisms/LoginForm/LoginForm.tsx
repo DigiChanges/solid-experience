@@ -6,7 +6,6 @@ import { Component } from 'solid-js';
 import type { InferType } from 'yup';
 import { LoginPayload } from '../../../interfaces/login';
 import signUpSchema from '../../../validations/schemas/SignUpSchema';
-import styles from './LoginForm.module.css';
 
 interface LoginFormProps {
     onSubmit: ( values: LoginPayload ) => Promise<void>;
@@ -35,21 +34,18 @@ const LoginForm: Component<LoginFormProps> = props =>
             <form ref={form} class="flex flex-col gap-9 w-full" >
                 <FormControl required invalid={!!errors( 'email' )}>
                     <FormLabel for="email"><Text message="email"/></FormLabel>
-                    <Input name="email" type="email" autocomplete="username" placeholder={t( 'a_your_email' )}/>
+                    <Input name="email" type="email" autocomplete="username" placeholder={t( 'a_your_email' ) as string}/>
                     <FormErrorMessage class="error_message_block"><Text message={errors( 'email' )[0]} /></FormErrorMessage>
                 </FormControl>
 
                 <FormControl required invalid={!!errors( 'password' )}>
                     <FormLabel for="password"><Text message="a_password"/></FormLabel>
-                    <Input name="password" type="password" autocomplete="current-password" placeholder={t( 'a_your_password' )}/>
+                    <Input name="password" type="password" autocomplete="current-password" placeholder={t( 'a_your_password' ) as string}/>
                     <FormErrorMessage class="error_message_block"><Text message={errors( 'password' )[0]} /></FormErrorMessage>
                 </FormControl>
 
                 <FormHelperText>
-                    <Anchor
-                        name="forgotPassword"
-                        onClick={props.onClick}
-                    >
+                    <Anchor onClick={props.onClick} >
                         <Text message="au_forgot_password" />
                     </Anchor>
                 </FormHelperText>

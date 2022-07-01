@@ -85,14 +85,14 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'firstName' )}>
                     <FormLabel for="firstName"><Text message="first_name"/></FormLabel>
-                    <Input autofocus name="firstName" type="text" placeholder={t( 'a_enter_first_name' )} value={props.userSelected?.firstName}/>
+                    <Input autofocus name="firstName" type="text" placeholder={t( 'a_enter_first_name' ) as string} value={props.userSelected?.firstName}/>
                     <FormErrorMessage><Text message={errors( 'firstName' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'lastName' )}>
                     <FormLabel for="lastName"><Text message="last_name"/></FormLabel>
-                    <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' )} value={props.userSelected?.lastName}/>
+                    <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' ) as string} value={props.userSelected?.lastName}/>
                     <FormErrorMessage><Text message={errors( 'lastName' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
@@ -144,7 +144,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             </FormControl>
                         </div>
                         <FormControl required invalid={!!errors( 'documentNumber' )}>
-                            <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' )} value={props.userSelected?.documentNumber}/>
+                            <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' ) as string} value={props.userSelected?.documentNumber}/>
                             <FormErrorMessage><Text message={errors( 'documentNumber' )[0]} /></FormErrorMessage>
                         </FormControl>
                     </div>
@@ -168,7 +168,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'birthday' )}>
                     <FormLabel for="birthday"><Text message="birthday"/></FormLabel>
-                    <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' )} value={props.userSelected?.birthday}/>
+                    <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' ) as string} value={props.userSelected?.birthday}/>
                     <FormErrorMessage><Text message={errors( 'birthday' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
@@ -210,7 +210,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'address' )}>
                     <FormLabel for="address"><Text message="address"/></FormLabel>
-                    <Input name="address" type="text" placeholder={t( 'a_your_address' )} value={props.userSelected?.address}/>
+                    <Input name="address" type="text" placeholder={t( 'a_your_address' ) as string} value={props.userSelected?.address}/>
                     <FormErrorMessage><Text message={errors( 'address' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
@@ -220,14 +220,14 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'email' )}>
                     <FormLabel for="email"><Text message="email"/></FormLabel>
-                    <Input name="email" type="text" placeholder={t( 'a_your_email' )} value={props.userSelected?.email}/>
+                    <Input name="email" type="text" placeholder={t( 'a_your_email' ) as string} value={props.userSelected?.email}/>
                     <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'phone' )}>
                     <FormLabel for="phone"><Text message="phone"/></FormLabel>
-                    <Input name="phone" type="text" placeholder={t( 'a_enter_phone' )} value={props.userSelected?.phone}/>
+                    <Input name="phone" type="text" placeholder={t( 'a_enter_phone' ) as string} value={props.userSelected?.phone}/>
                     <FormErrorMessage><Text message={errors( 'phone' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
@@ -235,14 +235,14 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <div class="field_wrapper full">
                     <FormControl required invalid={!!errors( 'password' )}>
                         <FormLabel for="password"><Text message="password"/></FormLabel>
-                        <Input name="password" type="password" placeholder={t( 'a_your_password' )} />
+                        <Input name="password" type="password" placeholder={t( 'a_your_password' ) as string} />
                         <FormErrorMessage><Text message={errors( 'password' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
                 <div class="field_wrapper full">
                     <FormControl required invalid={!!errors( 'passwordConfirmation' )}>
                         <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
-                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' )}/>
+                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string}/>
                         <FormErrorMessage><Text message={errors( 'passwordConfirmation' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
