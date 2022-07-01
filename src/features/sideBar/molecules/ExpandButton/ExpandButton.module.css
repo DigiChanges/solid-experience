@@ -13,9 +13,10 @@
 
 .icon {
     border-radius: 50%;
-    @apply transition-transform duration-700;
+    transition-property: all;
+    transition-duration: 700ms;
 }
 
 .icon_not_expanded {
-    @apply transform rotate-180;
+    transform: rotate(180deg);
 }
