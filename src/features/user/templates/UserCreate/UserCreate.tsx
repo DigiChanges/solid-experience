@@ -7,13 +7,13 @@ import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
 import createAlert from '../../../shared/hooks/createAlert';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
-import { UserPayload, UserResponse } from '../../interfaces';
+import { UserPayload } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
 
 interface UserCreateTemplateProps {
     permissionsList?: PermissionApi[];
     rolesList?: RoleApi[];
-    onCreate: ( data: UserPayload ) => Promise<UserResponse>;
+    onCreate: ( data: UserPayload ) => Promise<void>;
     loading: boolean;
 }
 

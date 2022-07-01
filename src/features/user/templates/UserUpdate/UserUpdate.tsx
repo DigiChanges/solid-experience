@@ -7,18 +7,18 @@ import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
 import createAlert from '../../../shared/hooks/createAlert';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
-import { UserApi, UserPayload, UserResponse } from '../../interfaces';
+import { UserApi, UserPayload } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
 
-interface UserCreateTemplateProps {
+interface UserUpdateTemplateProps {
     permissionsList?: PermissionApi[];
     rolesList?: RoleApi[];
-    onUpdate: ( data: UserPayload ) => Promise<UserResponse>;
+    onUpdate: ( data: UserPayload ) => Promise<void>;
     loading: boolean;
     userSelected?: UserApi | undefined;
 }
 
-const UserUpdate: Component<UserCreateTemplateProps> = props =>
+const UserUpdate: Component<UserUpdateTemplateProps> = props =>
 {
     const { t } = useI18n();
     const navigate = useNavigate();

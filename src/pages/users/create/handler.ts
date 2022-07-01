@@ -7,6 +7,12 @@ type params = {
 export const createAction = ( { userRepository }: params ) => async ( payload: any ) =>
 {
     const create = userRepository.createUser( payload );
+    const response = await create();
 
-    return await create();
+    if ( payload.roles?.length )
+    {
+        const { id } = response.data;
+        const assignRoles = userRepository.assignUserRole( id, payload.roles );
+        void await assignRoles();
+    }
 };

@@ -29,7 +29,7 @@ const IndexPage: Component = () =>
                 userSelected={userSelected()?.data}
                 permissionsList={permissions()?.data}
                 rolesList={roles()?.data}
-                loading={permissions.loading || roles.loading}
+                loading={permissions.loading || roles.loading || permissions.loading}
             />
         </PrivateLayout>
     );

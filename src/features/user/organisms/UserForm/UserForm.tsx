@@ -24,12 +24,12 @@ import {
 } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, For, Show } from 'solid-js';
+import { Component, createMemo, For, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { country, userDocumentTypeOptions } from '../../../../entities';
 import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
-import { UserApi, UserPayload, UserResponse } from '../../interfaces';
+import { UserApi, UserPayload } from '../../interfaces';
 import userCreateValidationSchema from '../../validations/schemas/userCreateValidationSchema';
 import userUpdateValidationSchema from '../../validations/schemas/userUpdateValidationSchema';
 import styles from './UserForm.module.css';
@@ -41,7 +41,7 @@ enum RequiredPermission {
 interface UserUpdateTemplateProps
 {
     onError: ( error: unknown ) => void;
-    onSubmit: ( data: UserPayload ) => Promise<UserResponse>;
+    onSubmit: ( data: UserPayload ) => Promise<void>;
     onSuccess: () => void;
     permissionsList?: PermissionApi[];
     userSelected?: UserApi | undefined;
@@ -54,6 +54,8 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
 
+    const rolesSelected = createMemo( () => { return props.userSelected?.roles?.map( role => role.id ) || []; } );
+
     const userSchema = props.userSelected?.id ? userUpdateValidationSchema : userCreateValidationSchema;
     const {
         errors,
@@ -64,7 +66,12 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setTouched,
         // @ts-ignore
     } = createForm<InferType<typeof userSchema>>( {
-        initialValues: { permissions: props.userSelected?.permissions || [], roles: props.userSelected?.roles || [], documentType: props.userSelected?.documentType || '', country: props.userSelected?.country || '' },
+        initialValues: {
+            permissions: props.userSelected?.permissions || [],
+            roles: rolesSelected(),
+            documentType: props.userSelected?.documentType || '',
+            country: props.userSelected?.country || '',
+        },
         extend: validator( { schema: userSchema } ),
         onSuccess: props.onSuccess,
         onError: props.onError,
@@ -76,6 +83,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setFields( field, value );
         setTouched( field, true );
     };
+
 
     return (
         <form ref={form} class="form_flex">
@@ -184,7 +192,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <FormLabel><Text message="country"/></FormLabel>
                     <Select
                         value={props.userSelected?.country}
-                        onChange={value => setFields( 'country', value )}
+                        onChange={handleSelect( 'country' )}
                     >
                         <SelectTrigger
                             onBlur={() => setTouched( 'country', true )}
@@ -198,7 +206,6 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <SelectContent>
                             <SelectListbox>
                                 <For each={ country }>
-                                    {/* @ts-ignore */}
                                     {item => <SelectOption value={item.value}>{item.label}</SelectOption>}
                                 </For>
                             </SelectListbox>
@@ -300,7 +307,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <FormControl id="roles" invalid={!!errors( 'roles' )}>
                     <FormLabel for="roles"><Text message="roles"/></FormLabel>
                     <Select multiple
-                        value={props.userSelected?.roles}
+                        value={rolesSelected()}
                         onChange={handleSelect( 'roles' )}
                     >
                         <SelectTrigger
@@ -318,14 +325,14 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                     <For each={props.rolesList}>
                                         {rol => (
                                             <SelectOption
-                                                value={rol.slug}
+                                                value={rol.id}
                                                 rounded="$none"
                                                 fontSize="$sm"
                                                 _active={{ bg: '$warning3', color: '$warning11' }}
                                                 _selected={{ bg: '$warning9', color: 'white' }}
                                             >
                                                 <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>
-                                                    {rol.slug}
+                                                    {rol.name}
                                                 </SelectOptionText>
                                                 <SelectOptionIndicator/>
                                             </SelectOption>
@@ -350,7 +357,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </Button>
                 </div>
                 <div class="button_full fallback">
-                    <Button class="w-full" as={Link} href="/roles">
+                    <Button class="w-full" as={Link} href="/users">
                         <Text message="a_close" />
                     </Button>
                 </div>

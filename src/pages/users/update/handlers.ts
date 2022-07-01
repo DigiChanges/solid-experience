@@ -10,5 +10,12 @@ export const updateAction = ( { userRepository: userRepository, id }: params ) =
 {
     const update = userRepository.updateUser( id, payload );
 
-    return await update();
+    const response = await update();
+
+    if ( payload.roles?.length )
+    {
+        const { id } = response.data;
+        const assignRoles = userRepository.assignUserRole( id, payload.roles );
+        void await assignRoles();
+    }
 };
