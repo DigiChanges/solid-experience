@@ -6,6 +6,7 @@ const login = require( './login' );
 const refreshToken = require( './refreshToken' );
 const logout = require( './logout' );
 const forgotPassword = require( './forgot-password' );
+const assignRoles = require( './assignRolesController' );
 const server = jsonServer.create();
 const router = jsonServer.router( path.resolve( __dirname, 'db.json' ) );
 const middlewares = jsonServer.defaults();
@@ -21,6 +22,8 @@ server.use( jsonServer.rewriter( {
     '/auth/login?provider=local': '/super-admin-login',
     '/auth/permissions': '/permissions',
 } ) );
+
+server.put( '/users/assign-role/:userId', assignRoles );
 
 router.render = ( req, res ) =>
 {
