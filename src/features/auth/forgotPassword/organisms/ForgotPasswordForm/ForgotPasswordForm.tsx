@@ -16,7 +16,6 @@ import { InferType } from 'yup';
 import createAlert from '../../../../shared/hooks/createAlert';
 import { ForgotPasswordPayload } from '../../../interfaces/forgotPassword';
 import ForgetPasswordSchema from '../../../validations/schemas/ForgetPasswordSchema';
-import styles from './ForgotPasswordForm.module.css';
 
 interface ForgotPasswordFormProps
 {
@@ -65,14 +64,14 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
     } );
 
     return (
-        <form ref={form} class={styles.form}>
+        <form ref={form} class="form_flex column">
             <h1 class="section_title_opaque"><Text message="a_account_recovery"/></h1>
             <FormControl required invalid={!!errors( 'email' )}>
                 <FormLabel for="email"><Text message="email"/></FormLabel>
                 <Input name="email" type="email" placeholder={t( 'a_your_email' ) as string} />
                 <FormErrorMessage class="error_message_block"><Text message={errors( 'email' )[0]} /></FormErrorMessage>
             </FormControl>
-            <div class={styles.buttons_container}>
+            <div class="update_save_buttons_container spaced">
                 <Button onClick={props.onClick} colorScheme="neutral">
                     <Text message="a_cancel" />
                 </Button>

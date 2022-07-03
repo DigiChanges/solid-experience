@@ -1,9 +1,0 @@
-.field_justify_between{
-    @apply w-full flex justify-between;
-}
-.field_small{
-    @apply w-1/4;
-}
-.radio_group{
-    @apply flex justify-between items-center mt-1;
-}

@@ -13,3 +13,13 @@
     font-size: 1.85rem;
     font-weight: bold;
 }
+
+.group_field_full_title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.group_field_full_info {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}

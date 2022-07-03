@@ -108,50 +108,48 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'documentType' )}>
                     <FormLabel><Text message="documentType"/></FormLabel>
-                    <div class={styles.field_justify_between}>
-                        <div class={styles.field_small}>
-
-                            <FormControl required invalid={!!errors( 'documentType' )}>
-                                <Select
-                                    value={props.userSelected?.documentType}
-                                    onChange={handleSelect( 'documentType' )}
+                    <div class="field_justify_between">
+                        <FormControl required invalid={!!errors( 'documentType' )} class="small">
+                            <Select
+                                value={props.userSelected?.documentType}
+                                onChange={handleSelect( 'documentType' )}
+                            >
+                                <SelectTrigger
+                                    onBlur={() => setTouched( 'documentType', true )}
                                 >
-                                    <SelectTrigger
-                                        onBlur={() => setTouched( 'documentType', true )}
-                                    >
-                                        <SelectPlaceholder>
-                                            <Text message="type_id"/>
-                                        </SelectPlaceholder>
-                                        <SelectValue />
-                                        <SelectIcon />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectListbox>
-                                            <SelectOptGroup>
-                                                <For each={userDocumentTypeOptions}>
-                                                    {documentType => (
-                                                        <SelectOption
-                                                            value={documentType.value}
-                                                            rounded="$none"
-                                                            fontSize="$sm"
-                                                            _active={{ bg: '$warning3', color: '$warning11' }}
-                                                            _selected={{ bg: '$warning9', color: 'white' }}
-                                                        >
-                                                            <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>
-                                                                {documentType.label}
-                                                            </SelectOptionText>
-                                                            <SelectOptionIndicator/>
-                                                        </SelectOption>
-                                                    )}
-                                                </For>
-                                            </SelectOptGroup>
-                                        </SelectListbox>
-                                    </SelectContent>
-                                </Select>
-                                <FormErrorMessage><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormErrorMessage>
-                            </FormControl>
-                        </div>
-                        <FormControl required invalid={!!errors( 'documentNumber' )}>
+                                    <SelectPlaceholder>
+                                        <Text message="type_id"/>
+                                    </SelectPlaceholder>
+                                    <SelectValue />
+                                    <SelectIcon />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectListbox>
+                                        <SelectOptGroup>
+                                            <For each={userDocumentTypeOptions}>
+                                                {documentType => (
+                                                    <SelectOption
+                                                        value={documentType.value}
+                                                        rounded="$none"
+                                                        fontSize="$sm"
+                                                        _active={{ bg: '$warning3', color: '$warning11' }}
+                                                        _selected={{ bg: '$warning9', color: 'white' }}
+                                                    >
+                                                        <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>
+                                                            {documentType.label}
+                                                        </SelectOptionText>
+                                                        <SelectOptionIndicator/>
+                                                    </SelectOption>
+                                                )}
+                                            </For>
+                                        </SelectOptGroup>
+                                    </SelectListbox>
+                                </SelectContent>
+                            </Select>
+                            <FormErrorMessage><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormErrorMessage>
+                        </FormControl>
+
+                        <FormControl required invalid={!!errors( 'documentNumber' )} class="big">
                             <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' ) as string} value={props.userSelected?.documentNumber}/>
                             <FormErrorMessage><Text message={errors( 'documentNumber' )[0]} /></FormErrorMessage>
                         </FormControl>
@@ -163,7 +161,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <FormControl required invalid={!!errors( 'gender' )}>
                     <FormLabel for="gender"><Text message="gender"/></FormLabel>
                     <RadioGroup defaultValue={props.userSelected?.gender}>
-                        <div class={styles.radio_group}>
+                        <div class="field_justify_between">
                             <Radio name="gender" id="gender-f" value="fame">F</Radio>
                             <Radio name="gender" id="gender-m" value="male">M</Radio>
                             <Radio name="gender" id="gender-o" value="other"><Text message="a_gender_other"/></Radio>
