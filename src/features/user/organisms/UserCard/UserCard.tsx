@@ -7,7 +7,6 @@ import IconTrash from '../../../../atoms/Icons/Stroke/IconTrash';
 import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
 import { UserApi } from '../../interfaces';
-import styles from './UserCard.module.css';
 
 interface UserCardProps {
     user: UserApi;
@@ -16,11 +15,11 @@ interface UserCardProps {
 
 const UserCard: Component<UserCardProps> = ( props ) => (
     <Card>
-        <CardContent class={styles.card_container}>
+        <CardContent class="card_container">
 
-            <div class={styles.list_media_object_container}>
-                <h6 class={styles.list_media_object_container_title} data-parent="usersShow">
-                    <Link class={`${styles.list_media_object_container_link} has-permission `}
+            <div class="card_media_object">
+                <h6 class="card_media_object_title" data-parent="usersShow">
+                    <Link class="card_media_object_link has-permission"
                         href={`/users/${props.user.id}/update`}
                     >
                         {`${props.user.firstName} ${props.user.lastName}`}
@@ -29,7 +28,7 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                 {props.user.email}
             </div>
 
-            <div class={styles.list_third_container}>
+            <div class="card_third">
                 <div data-parent="usersUpdate">
                     <div class="has-permission">
                         <Link href={`/users/${props.user.id}/update`}>
