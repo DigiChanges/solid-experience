@@ -11,6 +11,7 @@ import './styles/form_controls.css';
 import './styles/index.css';
 import './styles/layout.css';
 import './styles/typography.css';
+import './styles/card.css';
 // import CustomError from './pages/error/CustomError';
 
 function App ()
