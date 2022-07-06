@@ -14,7 +14,6 @@ import { InferType } from 'yup';
 import createAlert from '../../../shared/hooks/createAlert';
 import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
 import userEditPasswordSchema from '../../validations/schemas/userEditPasswordSchema';
-import styles from './UserEditPassword.module.css';
 
 interface EditPasswordTemplateProps
 {
@@ -62,14 +61,10 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
     } );
 
     return (
-        <div class={styles.container}>
-            <section class={styles.section_title}>
-                <h1 class={styles.title}>
-                    <Text message="a_change_password" />
-                </h1>
-            </section>
-            <form ref={form} class={styles.form}>
-                <div class={styles.field_wrapper}>
+        <section class="section_container">
+            <h1 class="section_title"><Text message="a_change_password" /></h1>
+            <form ref={form} class="form_password">
+                <div class="field_wrapper">
                     <FormControl required invalid={!!errors( 'password' )}>
                         <FormLabel for="password"><Text message="new_password"/></FormLabel>
                         <Input name="password" type="password" placeholder={t( 'a_password' ) as string} />
@@ -77,30 +72,27 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                     </FormControl>
                 </div>
 
-                <div class={styles.field_wrapper}>
+                <div class="field_wrapper">
                     <FormControl required invalid={!!errors( 'passwordConfirmation' )}>
                         <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
                         <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string}onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
                         <FormErrorMessage><Text message={errors( 'passwordConfirmation' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
-
-
-                <div class={styles.container_buttons}>
-                    <div class={styles.button_close_save}>
-                        <Button as={Link} href="/users" colorScheme="neutral">
+                <div class="update_save_buttons_container">
+                    <div class="button_full">
+                        <Button class="button_full" as={Link} href="/login" colorScheme="neutral">
                             <Text message="a_close" />
                         </Button>
                     </div>
-                    <div class={styles.button_close_save}>
-                        <Button type="submit" disabled={!isValid()} loading={isSubmitting()} loadingText={<Text message="a_submitting"/> as string}>
+                    <div class="button_full">
+                        <Button class="button_full" type="submit" disabled={!isValid()} loading={isSubmitting()} loadingText={<Text message="a_submitting"/> as string}>
                             <Text message="a_save"/>
                         </Button>
                     </div>
                 </div>
-
             </form>
-        </div>
+        </section>
     );
 };
 
