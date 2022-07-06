@@ -1,4 +1,6 @@
 
 .button_scroll_up {
-    @apply h-10 w-10 transform rotate-90;
+    transform: rotate(90deg);
+    height: 2.5rem;
+    width: 2.5rem;
 }

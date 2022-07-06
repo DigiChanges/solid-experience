@@ -1,6 +1,5 @@
-
 .section_container {
-    padding: 0 20px
+    padding: 0 2rem;
 }
 
 .section.mid {
@@ -17,4 +16,8 @@
 
 .grid_cards_container {
     @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 mt-5;
+}
+
+.section_bottom_buttons_container {
+    @apply mx-auto h-full flex justify-center items-center mt-8;
 }

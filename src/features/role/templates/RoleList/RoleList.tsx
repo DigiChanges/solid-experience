@@ -14,7 +14,6 @@ import { filterBy } from '../../constants/filterBy';
 import { orderBy } from '../../constants/orderBy';
 import { RoleApi } from '../../interfaces';
 import RoleCard from '../../organisms/RoleCard/RoleCard';
-import styles from './RoleList.module.css';
 
 interface RoleListTemplateProps
 {
@@ -60,7 +59,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
     ) );
 
     return (
-        <section class={styles.list_container}>
+        <section class="section_container">
             <Modal opened={isOpen()} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -105,7 +104,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 </Show>
             </div>
 
-            <div class={styles.sections_buttons}>
+            <div class="section_bottom_buttons_container">
                 <Show when={!!props.nextPage}>
                     <Button onClick={props.viewMoreAction()} variant="outline">
                         <Show when={!props.loading} fallback={() => <span><Text message="a_loading" />...</span>}>

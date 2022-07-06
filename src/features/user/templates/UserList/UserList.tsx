@@ -11,7 +11,6 @@ import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { filterBy } from '../../constants/filterBy';
 import { UserApi } from '../../interfaces';
 import UserCard from '../../organisms/UserCard/UserCard';
-import styles from './UserList.module.css';
 
 interface UserListTemplateProps
 {
@@ -45,7 +44,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
     const { filterOptions } = useTransformTranslatedOptions( filterBy, ( item ) => t( item.label ) );
 
     return (
-        <section class={styles.list_container}>
+        <section class="section_container">
             <Modal opened={isOpen()} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -87,7 +86,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                     </For>
                 </Show>
             </div>
-            <div class={styles.sections_buttons}>
+            <div class="section_bottom_buttons_container">
                 <Show when={!!props.nextPage}>
                     <Button onClick={props.viewMoreAction()} variant="outline">
                         <Show when={!props.loading} fallback={() => <span><Text message="a_loading" />...</span>}>
