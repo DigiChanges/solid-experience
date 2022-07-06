@@ -147,6 +147,7 @@ const errors: I18nLocales = {
     'err_process_user': 'Error al procesar usuarios',
     'err_remove_role': 'Error al eliminar el rol',
     'err_remove_user': 'Error al eliminar el usuario',
+    'err_save_password': 'Error al guardar la contraseña',
     'err_save_role': 'Error al guardar el rol',
     'err_save_user': 'Error al guardar el usuario',
     'err_save': 'Error al guardar',
