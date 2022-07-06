@@ -5,9 +5,6 @@
 .list_second_container {
     @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 mt-5;
 }
-.modal_footer{
-    @apply flex gap-5;
-}
 .sections_buttons{
     @apply mx-auto h-full flex justify-center items-center mt-8;
 }

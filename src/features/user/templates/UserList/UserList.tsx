@@ -55,7 +55,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                         <p><Text message="u_remove"/></p>
                         <h1>{deleteData?.firstName} {deleteData?.lastName}</h1>
                     </ModalBody>
-                    <ModalFooter class={styles.modal_footer}>
+                    <ModalFooter class="modal_footer">
                         <Button onClick={onClose}><Text message="a_cancel"/></Button>
                         <Button colorScheme="danger" onClick={handleModalClick()}><Text message="a_delete"/></Button>
                     </ModalFooter>

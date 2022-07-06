@@ -70,7 +70,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                         <p><Text message="r_remove"/></p>
                         <h1>{deleteData?.name}</h1>
                     </ModalBody>
-                    <ModalFooter class={styles.modal_footer}>
+                    <ModalFooter class="modal_footer">
                         <Button onClick={onClose}><Text message="a_cancel"/></Button>
                         <Button colorScheme="danger" onClick={handleModalClick()}><Text message="a_delete"/></Button>
                     </ModalFooter>
