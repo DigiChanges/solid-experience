@@ -63,7 +63,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             </Modal>
 
             <header class="section_header_container" data-parent={permissions.USERS.SAVE}>
-                <h1 class={styles.list_title}>
+                <h1 class="section_title">
                     <Text message="u_list" />
                 </h1>
 
@@ -79,7 +79,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             <Show when={props.loading} >
                 <GeneralLoader/>
             </Show>
-            <div class={styles.list_second_container}>
+            <div class="grid_cards_container">
                 <Show when={!props.loading || props.userList?.length}>
                     <For each={props.userList} fallback={<div><Text message="u_no_users" />...</div>}>
                         {( user ) =>

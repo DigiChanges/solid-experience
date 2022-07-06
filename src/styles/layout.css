@@ -14,3 +14,7 @@
 .section_header_container {
     @apply flex justify-between items-center my-6;
 }
+
+.grid_cards_container {
+    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 mt-5;
+}

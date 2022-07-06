@@ -78,7 +78,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
             </Modal>
 
             <header class="section_header_container" data-parent={permissions.ROLES.SAVE}>
-                <h1 class={styles.list_title}>
+                <h1 class="section_title">
                     <Text message="r_list" />
                 </h1>
 
@@ -95,7 +95,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 <GeneralLoader/>
             </Show>
 
-            <div class={styles.list_second_container}>
+            <div class="grid_cards_container">
                 <Show when={!props.loading || props.roleList?.length}>
                     <For each={props.roleList} fallback={<div><Text message="r_no_roles" /></div>}>
                         {( role ) =>
