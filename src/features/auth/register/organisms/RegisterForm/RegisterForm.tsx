@@ -183,7 +183,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormControl required invalid={!!errors( 'country' )}>
                             <FormLabel><Text message="country"/></FormLabel>
                             <SimpleSelect
-                                placeholder={<Text message="a_select_enable"/> as string}
+                                placeholder={<Text message="a_select_country"/> as string}
                                 onChange={value => setFields( 'country', value )}
                             >
                                 <For each={ country }>

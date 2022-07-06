@@ -46,3 +46,10 @@
 .button_full {
     @apply w-full md:w-auto;
 }
+.form_password{
+    @apply flex flex-wrap text-sm
+}
+.button_login{
+    @apply flex items-center justify-center pt-10;
+}
+
