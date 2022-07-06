@@ -2,12 +2,6 @@
 .list_container {
     @apply mx-8;
 }
-.list_section_title{
-    @apply flex justify-between items-center my-6;
-}
-.list_title{
-    @apply text-3xl font-bold;
-}
 .list_second_container {
     @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 mt-5;
 }

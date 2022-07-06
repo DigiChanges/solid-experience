@@ -62,7 +62,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 </ModalContent>
             </Modal>
 
-            <section class={styles.list_section_title} data-parent={permissions.USERS.SAVE}>
+            <header class="section_header_container" data-parent={permissions.USERS.SAVE}>
                 <h1 class={styles.list_title}>
                     <Text message="u_list" />
                 </h1>
@@ -72,7 +72,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                         <Button leftIcon={<Icon ><IconPlus/></Icon>}><Text message="u_create"/></Button>
                     </Link>
                 </div>
-            </section>
+            </header>
 
             <Filter filterOptions={filterOptions()} />
 

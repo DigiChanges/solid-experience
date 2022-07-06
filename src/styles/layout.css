@@ -6,3 +6,11 @@
 .section.mid {
     @apply w-full md:w-1/2;
 }
+
+.list_container {
+    margin: 0 2rem;
+}
+
+.section_header_container {
+    @apply flex justify-between items-center my-6;
+}

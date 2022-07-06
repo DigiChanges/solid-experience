@@ -51,7 +51,9 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                 description="err_save_role"
             />
 
-            <h1 class="section_title"><Text message="r_create" /></h1>
+            <header class="section_header_container">
+                <h1 class="section_title"><Text message="r_create" /></h1>
+            </header>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <RoleForm

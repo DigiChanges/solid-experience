@@ -53,14 +53,14 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
                 description="err_save_role"
             />
 
-            <div data-parent={permissions.ROLES.UPDATE}>
+            <header class="section_header_container" data-parent={permissions.ROLES.UPDATE}>
                 <div class="has-permission">
                     <h1 class="section_title"><Text message="r_update" /></h1>
                 </div>
                 <div class="fallback">
                     <h1 class="section_title"><Text message="Role" /></h1>
                 </div>
-            </div>
+            </header>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <RoleForm

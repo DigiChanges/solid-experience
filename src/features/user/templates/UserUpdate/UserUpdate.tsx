@@ -46,7 +46,15 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
 
     return (
         <section class="section_container">
-            <h1 class="section_title"><Text message="u_update" /></h1>
+
+            <header class="section_header_container" data-parent={permissions.USERS.UPDATE}>
+                <div class="has-permission">
+                    <h1 class="section_title"><Text message="u_update" /></h1>
+                </div>
+                <div class="fallback">
+                    <h1 class="section_title"><Text message="User" /></h1>
+                </div>
+            </header>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <UserForm

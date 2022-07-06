@@ -77,7 +77,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 </ModalContent>
             </Modal>
 
-            <section class={styles.list_section_title} data-parent={permissions.ROLES.SAVE}>
+            <header class="section_header_container" data-parent={permissions.ROLES.SAVE}>
                 <h1 class={styles.list_title}>
                     <Text message="r_list" />
                 </h1>
@@ -87,7 +87,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                         <Button leftIcon={<Icon ><IconPlus/></Icon>}><Text message="r_create"/></Button>
                     </Link>
                 </div>
-            </section>
+            </header>
 
             <Filter filterOptions={filterOptions()} />
 

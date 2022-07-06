@@ -45,7 +45,10 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
 
     return (
         <section class="section_container">
-            <h1 class="section_title"><Text message="u_create" /></h1>
+
+            <header class="section_header_container">
+                <h1 class="section_title"><Text message="u_create" /></h1>
+            </header>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
                 <UserForm
