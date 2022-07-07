@@ -26,13 +26,17 @@ const RegisterSuccess: Component<RegisterFormProps> = ( props ) =>
                     <Text message="au_we_building" class={styles.title} />
                     <Text message="au_check_your_box" class={styles.subtitle} />
                 </AlertTitle>
-                <AlertDescription maxWidth="$md">
-                    <div class={styles.all_description_container}>
-                        <Text message="au_can_log_in_with" class={styles.title} />
-                        <div>
-                            <span class={styles.description}>{t( 'email' )}:&nbsp;{props.email}</span>
-                            <span class={styles.description}>{t( 'password' )}: &nbsp;{t( 'a_your_password' )}</span>
-                        </div>
+                <AlertDescription maxWidth="$xl" class="md:w-3/4" >
+                    <div class="field_justify_between">
+                        <Text message="au_can_log_in_with" class={styles.alert_description_title} />
+                    </div>
+                    <div class={styles.field_justify_between_end}>
+                        <div><span class={styles.description_bold}>{t( 'email' )}:&nbsp;</span></div>
+                        <div><span class={styles.description}>{props.email}</span></div>
+                    </div>
+                    <div class="field_justify_between">
+                        <div><span class={styles.description_bold}>{t( 'password' )}:&nbsp;</span></div>
+                        <div><span class={styles.description}>{t( 'a_your_password' )}</span></div>
                     </div>
                 </AlertDescription>
                 <div class={styles.link_login}>
