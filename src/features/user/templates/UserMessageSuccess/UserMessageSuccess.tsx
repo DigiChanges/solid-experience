@@ -1,4 +1,4 @@
-import { Button } from '@hope-ui/solid';
+import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
@@ -16,29 +16,30 @@ const UserMessageSuccess: Component<messageSuccessProps> = ( props ) =>
     return (
         <section class={styles.container}>
             <div class={styles.second_section_container}>
-                <div class={styles.third_section_container}>
-                    <div class={styles.title_container}>
-                        <h1 class={styles.title}>
-                            <Text message={props.title}/>
-                        </h1>
+                <Alert
+                    status="success"
+                    variant="solid"
+                    flexDirection="column"
+                    justifyContent="center"
+                    textAlign="center"
+                    class={styles.alert_w}
+                >
+                    <AlertIcon boxSize="40px" mr="0" />
+                    <AlertTitle mt="$4" mb="$1" fontSize="$lg">
+                        {t( props.title )}
+                    </AlertTitle>
+                    <AlertDescription maxWidth="$sm">
+                        {t( props.description )}
+                    </AlertDescription>
+                    <div class={styles.link_login}>
+                        <Link href={'/login'}>
+                            <Text message="au_go_to_login"/>
+                        </Link>
                     </div>
-                    <div>
-                        <div class={styles.description_container}>
-                            <div class={styles.description_sub_container}>
-                                <span class={styles.description_span}>{t( props.description )}</span>
-                            </div>
-                        </div>
-                        <div class={styles.link_login}>
-                            <Link href={'/login'}>
-                                <Button><Text message="au_go_to_login"/></Button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+                </Alert>
             </div>
         </section>
     );
 };
 
 export default UserMessageSuccess;
-

@@ -1,34 +1,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.section{
-    @apply flex flex-row justify-between items-center mt-6 mb-2;
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
-.section_text{
-    @apply text-2xl  pl-2
+.title{
+    @apply xs:text-xl md:text-2xl mb-4 pt-10;
 }
-.description_container{
-    @apply flex flex-wrap text-sm;
+.all_description_container{
+    @apply flex flex-wrap justify-start;
 }
-.description_sub_container{
-    @apply w-full mb-1 pr-3 pl-2;
+.subtitle{
+    @apply flex w-full text-2xl pb-2 pt-5 justify-start;
 }
-.description_text{
-    @apply  flex w-full text-2xl pb-2 pt-10;
+.description{
+    @apply w-full xs:text-base md:text-xl flex flex-nowrap;
 }
-.your_email_container{
-    @apply w-full mb-2 mt-2;
+.link_login{
+    @apply w-full md:mt-15 mt-5 md:mr-5 flex flex-wrap justify-center gap-4 underline;
 }
-.description_span{
-    @apply w-full text-xl text-white;
-}
-.description_second_span{
-    @apply w-full text-xl;
-}
-.password_container{
-    @apply w-full mb-2;
-}
-.container_buttons{
-    @apply flex items-center justify-center pt-10;
+.alert_padding{
+    @apply md:p-10; 
 }
 
