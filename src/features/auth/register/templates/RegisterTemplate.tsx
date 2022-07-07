@@ -40,29 +40,28 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
     } ;
 
     return (
-        <section
-            classList={{ 'h-screen py-40': getShowRegisterSuccess() }}>
-            <div class={styles.container}
-                classList={{ [styles.class_list_container]: getShowRegisterSuccess() }}>
-                <Card class={styles.show_register}>
-                    <div
-                        classList={{ [styles.show_register]: getShowRegisterSuccess() }}>
-                        <div class={styles.logo_container}>
-                            <img class={styles.logo} src={logo} alt="digichanges logo"/>
-                        </div>
-                        <Show when={!getShowRegisterSuccess()}
-                            fallback={() => <RegisterSuccess email={props.getEmail()} />}
-                        >
+        <section>
+            <Show when={!getShowRegisterSuccess()}
+                fallback={() => <RegisterSuccess email={props.getEmail()} />}
+            >
+                <div
+                    classList={{ [styles.class_list_container]: !getShowRegisterSuccess() }}>
+                    <Card
+                        classList={{ [styles.show_register]: !getShowRegisterSuccess() }}>
+                        <div>
+                            <div class={styles.logo_container}>
+                                <img class={styles.logo} src={logo} alt="digichanges logo"/>
+                            </div>
                             <RegisterForm
                                 onSubmit={props.onSubmit}
                                 onError={handleError()}
                                 onSuccess={handleSuccess()}
                                 userPermission={{ submit: permissions.USERS.SAVE }}
                             />
-                        </Show>
-                    </div>
-                </Card>
-            </div>
+                        </div>
+                    </Card>
+                </div>
+            </Show>
         </section>
     );
 };
