@@ -11,7 +11,7 @@ const HasPermission: Component<HasPermissionProps> = ( props ) =>
     const shouldRender = () =>
         ( props.userPermissions && props.userPermissions.includes( props.permission ) )
         ||
-        ( props.user.user.isSumerAdmin === true );
+        ( props.user.user.isSuperAdmin === true );
 
     return ( shouldRender() && props.children );
 };

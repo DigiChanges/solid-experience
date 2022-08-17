@@ -7,5 +7,5 @@ export interface Auth {
     enable: boolean;
     permissions: string[];
     roles: RoleApi[];
-    isSumerAdmin: boolean;
+    isSuperAdmin: boolean;
 }

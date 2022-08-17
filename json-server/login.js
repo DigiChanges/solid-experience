@@ -15,7 +15,7 @@ module.exports = ( req, res, next ) =>
                 enable: true,
                 permissions: [],
                 roles: [],
-                isSumerAdmin: true,
+                isSuperAdmin: true,
                 createdAt: 1651255968,
                 updatedAt: 1651255968,
             },

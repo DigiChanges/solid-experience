@@ -7,6 +7,7 @@ const refreshToken = require( './refreshToken' );
 const logout = require( './logout' );
 const forgotPassword = require( './forgot-password' );
 const assignRoles = require( './assignRolesController' );
+const permissions = require('./permissions');
 const server = jsonServer.create();
 const router = jsonServer.router( path.resolve( __dirname, 'db.json' ) );
 const middlewares = jsonServer.defaults();
@@ -33,6 +34,7 @@ router.render = ( req, res ) =>
 };
 server.use( login );
 server.use( refreshToken );
+server.use( permissions )
 server.use( logout );
 server.use( forgotPassword );
 server.use( router );
