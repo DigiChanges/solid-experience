@@ -4,7 +4,7 @@ import AuthRepository from '../repositories/AuthRepository';
 
 const assignAllPermissionsToSuperAdminUser = async ( userAuth?: LoginApi ) =>
 {
-    if ( userAuth && userAuth.user.isSumerAdmin )
+    if ( userAuth && userAuth.user.isSuperAdmin )
     {
         const authRepository = new AuthRepository( userAuth );
         const getAllPermissions = authRepository.getAllPermissions();
