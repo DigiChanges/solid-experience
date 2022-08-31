@@ -15,7 +15,11 @@
     margin-top: auto;
 }
 
-@media screen and (min-width: 768px) {
+.drawer_content {
+    padding-top: 5%;
+}
+
+@media screen and (min-width: 1024px) {
     .side_nav {
         height: calc(100vh - 100px);
         display: flex;
@@ -29,3 +33,6 @@
         width: 100px;
     }
 }
+
+
+

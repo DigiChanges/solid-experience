@@ -10,16 +10,16 @@
 }
 
 .main_container {
-    @apply grid grid-areas-mobile-layout md:grid-areas-tablet-layout lg:grid-areas-desktop-layout grid-cols-desktop-layout h-full lg:max-w-screen-xl lg:w-full lg:mx-auto;
+    @apply grid grid-areas-mobile-layout md:grid-areas-mobile-layout mr-4 ml-4 lg:grid-areas-desktop-layout grid-cols-desktop-layout h-full lg:max-w-screen-xl lg:w-full lg:mx-auto;
 }
 
 .sidebar_container {
     width: max-content;
-    @apply grid-in-sidebar absolute md:relative mt-6 z-10 ml-4;
+    @apply grid-in-sidebar absolute lg:relative mt-6 z-10 ml-4;
 }
 
 .main {
-    @apply grid-in-main w-full;
+    @apply grid-in-main;
 }
 
 .footer {

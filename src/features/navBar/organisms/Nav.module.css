@@ -43,7 +43,7 @@
     color: var(--hope-colors-neutral12);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
     .nav {
         margin: 0 20px;
     }

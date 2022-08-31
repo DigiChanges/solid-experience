@@ -68,7 +68,7 @@ const NavBar: Component<NavbarTemplateProps> = props =>
 
                 <IconButton
                     class={styles.icon_burger}
-                    onClick={props.onClick}
+                    onClick={ props.onClick }
                     aria-label="Open Main Menu"
                     icon={!props.sideBarIsShown ? <IconBurger/> : <IconCross/>}
                     variant="ghost"
