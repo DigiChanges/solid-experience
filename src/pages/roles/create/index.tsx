@@ -12,7 +12,7 @@ const IndexPage: Component = () =>
     const [ user ]: any = useApplicationContext();
     const roleRepository = new RoleRepository( user() );
     const authRepository = new AuthRepository( user() );
-    const [ permissions ] = createResource( authRepository.getAllPermissions() );
+    const [ permissions ] = createResource( authRepository.getAllPermissions );
 
     usePermission( user, [ permissions ] );
 

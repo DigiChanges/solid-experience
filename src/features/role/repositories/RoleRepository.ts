@@ -1,7 +1,8 @@
-import { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { RolePayload, RoleListResponse, RoleResponse } from '../interfaces';
 import { HttpAxiosRequest } from '../../../services/HttpAxiosRequest';
 import { config } from '../../shared/repositories/config';
+import {useApplicationContext} from "../../../context/context";
 
 const { protocol, hostname, port } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne } = config.apiGateway.routes.roles;
@@ -12,22 +13,43 @@ class RoleRepository
     constructor ( private user?: any )
     {}
 
-    public getRoles ()
+    public async getRoles ()
     {
+        const http = axios.create( {
+            withCredentials: false,
+        } );
+
+        const [ user ]: any = useApplicationContext();
+        const dataUser = user();
+
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${getAll}`,
+            url: `${protocol}://${hostname}:${port}/${getAll}`
         };
 
-        return HttpAxiosRequest<RoleListResponse>( config );
+        return (await http.request({
+                ...config,
+                headers: {
+                    'Authorization': `Bearer ${dataUser.token}`,
+                    'Content-Type': 'application/json'
+                },
+            }
+        )).data;
     }
 
-    public getOne ( id: string )
+    public async getOne ( id: string )
     {
+        const http = axios.create( {
+            withCredentials: false,
+        } );
+
         const config: AxiosRequestConfig = {
             url: `${protocol}://${hostname}:${port}/${getOne}/${id}`,
         };
 
-        return HttpAxiosRequest<RoleResponse>( config );
+        return (await http.request({
+                ...config
+            }
+        )).data;
     }
 
     public updateRole ( id: string, data: RolePayload )

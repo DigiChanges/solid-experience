@@ -46,7 +46,7 @@
     "cash-dom": "^8.1.1",
     "solid-app-router": "^0.4.1",
     "solid-i18n": "^1.0.2",
-    "solid-js": "^1.4.5",
+    "solid-js": "^1.5.0",
     "solid-transition-group": "^0.0.10",
     "velocity-animate": "^1.5.2",
     "yup": "^0.32.11"
