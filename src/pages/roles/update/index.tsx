@@ -15,7 +15,7 @@ const IndexPage: Component = () =>
     const roleRepository = new RoleRepository( user() );
     const authRepository = new AuthRepository( user() );
     const [ role ] = createResource( roleRepository.getOne( id ) );
-    const [ permissions ] = createResource( authRepository.getAllPermissions() );
+    const [ permissions ] = createResource( authRepository.getAllPermissions );
     usePermission( user, [ role, permissions ] );
 
     return (

@@ -10,8 +10,8 @@ export const createAction = ( { userRepository }: params ) => async ( payload: U
     const rolesSelected = Array.from( payload.roles as [] );
 
     delete payload.roles;
-    const create = userRepository.createUser( payload );
-    const response = await create();
+    const repo = await userRepository.createUser( payload );
+    const response = await repo;
 
     if ( rolesSelected.length )
     {

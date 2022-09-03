@@ -10,10 +10,9 @@ type params = {
 export const handleLoginFormSubmit = ( { addUser, setIsLoading }: params ) => async ( values: LoginPayload ) =>
 {
     const authRepository = new AuthRepository();
-    const signIn = authRepository.signIn( values as LoginPayload );
 
     setIsLoading( true );
-    const response = await signIn();
+    const response = await authRepository.signIn( values );
     const userAuth = await assignAllPermissionsToSuperAdminUser( response.data );
     addUser( userAuth );
 };

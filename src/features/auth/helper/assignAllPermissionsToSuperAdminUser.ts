@@ -7,8 +7,7 @@ const assignAllPermissionsToSuperAdminUser = async ( userAuth?: LoginApi ) =>
     if ( userAuth && userAuth.user.isSuperAdmin )
     {
         const authRepository = new AuthRepository( userAuth );
-        const getAllPermissions = authRepository.getAllPermissions();
-        const response = await getAllPermissions();
+        const response = await authRepository.getAllPermissions();
         const permissions = PermissionList.getPermissionsToArray( response.data );
         userAuth.user.permissions = permissions;
     }
