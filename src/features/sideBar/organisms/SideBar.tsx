@@ -12,14 +12,14 @@ import {
     DrawerContent,
     DrawerFooter,
     DrawerHeader
-} from "@hope-ui/solid";
+} from '@hope-ui/solid';
 
 interface SideBarProps {
     authUser: any;
     showInMobile?: boolean;
     children?: JSX.Element;
     onClose: () => void;
-    isOpen: Function;
+    isOpen: () => boolean;
     onOpen: () => void;
 }
 
@@ -45,14 +45,14 @@ const SideBar: Component<SideBarProps> = ( props ) =>
 
             <Drawer
                 opened={ props.isOpen() }
-                placement={"left"}
+                placement={'left'}
                 onClose={ props.onClose }
             >
 
                 <DrawerOverlay />
                 <DrawerContent class={styles.drawer_content}>
                     <DrawerCloseButton/>
-                    <DrawerHeader></DrawerHeader>
+                    <DrawerHeader />
                     <DrawerBody>
                         <DashItems expanded={true} authUser={props.authUser}/>
                     </DrawerBody>

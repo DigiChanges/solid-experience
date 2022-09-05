@@ -15,7 +15,7 @@ const LogoutSideBarItem: Component<LogoutSideBarItemProps> = ( props ) => (
         icon={IconLogout}
         isLoading={false}
         onClick={logout( { user: props.user } )}
-        getShowSubitems={false}
+        getShowSubItems={false}
         routes=""
         showItem={true}
         isLink={false}

@@ -1,20 +1,18 @@
 import { UserPayload } from '../../../features/user/interfaces';
 import UserRepository from '../../../features/user/repositories/UserRepository';
+import { LoginApi } from '../../../features/auth/interfaces/login';
 
 type params = {
     userRepository: UserRepository;
     id: string;
+    user: LoginApi;
 };
 
-export const updateAction = ( { userRepository: userRepository, id }: params ) => async ( payload: UserPayload ) =>
+export const updateAction = ( { userRepository, user, id }: params ) => async ( data: UserPayload ) =>
 {
-    const rolesSelected = Array.from( payload.roles as [] );
+    const rolesSelected = Array.from( data.roles as [] );
 
-    delete payload.roles;
-    const update = userRepository.updateUser( id, payload );
-
-    void await update();
-
-    const assignRoles = userRepository.assignUserRole( id, rolesSelected );
-    void await assignRoles();
+    delete data.roles;
+    void await userRepository.updateUser( { id, data, user } );
+    void await userRepository.assignUserRole( { id, data: rolesSelected, user } );
 };

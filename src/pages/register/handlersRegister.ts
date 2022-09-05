@@ -6,10 +6,8 @@ type params = {
     setEmail: any;
 };
 
-export const handleRegisterFormSubmit = ( { authRepository, setEmail }: params ) => async ( payload: RegisterPayload ) =>
+export const handleRegisterFormSubmit = ( { authRepository, setEmail }: params ) => async ( data: RegisterPayload ) =>
 {
-    setEmail( payload.email );
-    const create = authRepository.register( payload );
-
-    return await create();
+    setEmail( data.email );
+    return await authRepository.register( { data } );
 };

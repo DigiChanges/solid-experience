@@ -9,7 +9,7 @@ interface ButtonGoUpProps {
 
 const handleClick = ( { scrollTop }: { scrollTop: () => void } ) => () => scrollTop();
 
-const ButtonScrollUp: Component<ButtonGoUpProps> = ( props ) =>
+const ButtonScrollUp: Component<ButtonGoUpProps> = () =>
 {
     const [ getShowScroll, setShowScroll ] = createSignal( false );
 

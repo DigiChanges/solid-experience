@@ -181,7 +181,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'enable' )}>
                     <FormLabel><Text message="enable"/></FormLabel>
-                    <Switch class="switch_position" name="enable" defaultChecked={props.userSelected?.id ? props.userSelected?.enable : true}></Switch>
+                    <Switch class="switch_position" name="enable" defaultChecked={props.userSelected?.id ? props.userSelected?.enable : true} />
                     <FormErrorMessage><Text message={errors( 'enable' )[0]}/></FormErrorMessage>
                 </FormControl>
             </div>

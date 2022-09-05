@@ -7,12 +7,12 @@ type params = {
     setIsLoading: ( isLoading: boolean ) => void;
 };
 
-export const handleLoginFormSubmit = ( { addUser, setIsLoading }: params ) => async ( values: LoginPayload ) =>
+export const handleLoginFormSubmit = ( { addUser, setIsLoading }: params ) => async ( data: LoginPayload ) =>
 {
     const authRepository = new AuthRepository();
 
     setIsLoading( true );
-    const response = await authRepository.signIn( values );
+    const response = await authRepository.signIn( { data } );
     const userAuth = await assignAllPermissionsToSuperAdminUser( response.data );
     addUser( userAuth );
 };

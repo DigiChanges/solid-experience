@@ -8,14 +8,14 @@ import PrivateLayout from '../../../features/shared/layout/PrivateLayout/Private
 const IndexPage: Component = () =>
 {
     const { id } = useParams<{ id: string }> ();
-    const [ user ]: any = useApplicationContext();
-    const userRepository = new UserRepository( user() );
+    const [ user ] = useApplicationContext();
+    const userRepository = new UserRepository();
 
     const editPassword = async ( data: any ) =>
     {
-        const remove = userRepository.editPassword( id, data );
-        void await remove();
+        void await userRepository.editPassword( { id, data, user } );
     };
+
     return <PrivateLayout>
         <UserEditPassword
             editPasswordAction={editPassword}

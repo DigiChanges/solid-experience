@@ -8,7 +8,7 @@ function usePermission ( user: any, resourceWithLoading?: Resource<any>[] )
     {
         if ( Array.isArray( resourceWithLoading ) && user().user.permissions )
         {
-            return resourceWithLoading.every( resource => resource.loading === false );
+            return resourceWithLoading.every( resource => !resource.loading );
         }
         else
         {

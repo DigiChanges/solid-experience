@@ -7,7 +7,7 @@ const Spinner = () => (
             <div>
                 <div class="flex w-full justify-center mb-6 h-8 -mt-4">
                     <a href="/">
-                        <img src={navLogo} class="h-8"/>
+                        <img src={navLogo} class="h-8" alt={'spinner_loading'}/>
                     </a>
                 </div>
                 <div class="flex w-full justify-center mb-6 h-8">

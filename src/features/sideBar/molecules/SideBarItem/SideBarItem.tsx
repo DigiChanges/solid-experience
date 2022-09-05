@@ -11,7 +11,7 @@ interface SideBarItemProps {
     icon?: any;
     isLoading?: boolean;
     onClick: ( event: MouseEvent ) => void;
-    getShowSubitems: any;
+    getShowSubItems: any;
     routes: any;
     showItem: boolean;
     isLink: boolean;

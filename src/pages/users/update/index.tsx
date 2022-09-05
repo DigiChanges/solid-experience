@@ -13,13 +13,13 @@ const IndexPage: Component = () =>
 {
     const { id } = useParams<{ id: string }> ();
     const [ user ]: any = useApplicationContext();
-    const authRepository = new AuthRepository( user() );
-    const roleRepository = new RoleRepository( user() );
-    const userRepository = new UserRepository( user() );
+    const authRepository = new AuthRepository();
+    const roleRepository = new RoleRepository();
+    const userRepository = new UserRepository();
 
-    const [ userSelected ] = createResource( userRepository.getOne ( id ) );
-    const [ roles ] = createResource( roleRepository.getRoles() );
-    const [ permissions ] = createResource( authRepository.getAllPermissions() );
+    const [ userSelected ] = createResource( { id, user: user() }, userRepository.getOne );
+    const [ roles ] = createResource( { user: user() }, roleRepository.getRoles );
+    const [ permissions ] = createResource( { user: user() }, authRepository.getAllPermissions );
     usePermission( user, [ roles, permissions, userSelected ] );
 
     const isLoading = createMemo( () => userSelected.loading || permissions.loading || roles.loading || permissions.loading );
@@ -27,7 +27,7 @@ const IndexPage: Component = () =>
     return (
         <PrivateLayout>
             <UserUpdate
-                onUpdate={updateAction( { userRepository, id } )}
+                onUpdate={updateAction( { userRepository, id, user: user() } )}
                 userSelected={userSelected()?.data}
                 permissionsList={permissions()?.data}
                 rolesList={roles()?.data}

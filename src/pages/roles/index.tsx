@@ -19,11 +19,11 @@ const IndexPage: Component = () =>
     const { errorData, setError } = createAlert();
 
     const [ user ]: any = useApplicationContext();
-    const roleRepository = new RoleRepository( user() );
+    const roleRepository = new RoleRepository();
 
     const { page, goToPage, goFirstPage, getURLSearchParams } = useQuery( INIT_STATE.nextPaginationParams );
 
-    const [ roles, { refetch } ] = createResource( getURLSearchParams, roleRepository.getRoles );
+    const [ roles, { refetch } ] = createResource( { user: user(), queryParams: getURLSearchParams() }, roleRepository.getRoles );
     const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<RoleApi, RoleListResponse>( roles );
 
     usePermission( user, [ roles ] );
@@ -38,10 +38,9 @@ const IndexPage: Component = () =>
 
     const removeAction = async ( id: string ) =>
     {
-        const remove = roleRepository.removeRole( id );
         try
         {
-            void await remove();
+            void await roleRepository.removeRole( { id, user: user() } );
 
             notificationService.show( {
                 status: 'success',

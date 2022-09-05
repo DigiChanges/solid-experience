@@ -18,13 +18,13 @@ type DashItemsProps = {
 
 const DashItems: Component<DashItemsProps> = ( props ) =>
 {
-    const [ getShowSubitems, setShowSubitems ] = createSignal( false );
+    const [ getShowSubItems, setShowSubItems ] = createSignal( false );
     const [ sectionSelected, setSectionSelected ] = createSignal( '' );
     const location = useLocation();
 
     const onToggled = ( path: string ) =>
     {
-        setShowSubitems( true );
+        setShowSubItems( true );
         setSectionSelected( path );
     };
 
@@ -42,7 +42,7 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
                             icon={dashRoute.icon}
                             isLoading={true}
                             onClick={() => ( onToggled( dashRoute.path ) )}
-                            getShowSubitems={getShowSubitems()}
+                            getShowSubItems={getShowSubItems()}
                             routes={dashRoute}
                             showItem={dashRoute.showItem as boolean}
                             isLink={!dashRoute.children}
@@ -50,7 +50,7 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
                             expanded={props.expanded}
                             sectionSelected={sectionSelected()}
                         >
-                            <Show when={getShowSubitems() && sectionSelected() === dashRoute.path}>
+                            <Show when={getShowSubItems() && sectionSelected() === dashRoute.path}>
                                 <For each={dashRoute.children}>
                                     {( childrenDashRoute: any ) =>
                                         <HasPermission

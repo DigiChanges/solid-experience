@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { PaginationParams } from '../../../services/HttpAxiosRequest';
+import { PaginationParams } from '../../../services/IHttpAxios';
 
 function usePagination ( initialPagination?: PaginationParams )
 {

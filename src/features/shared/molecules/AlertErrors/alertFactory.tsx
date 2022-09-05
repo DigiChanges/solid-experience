@@ -90,21 +90,21 @@ const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
     );
 };
 
-export const alertFactory = ( props: any ) =>
+export const alertFactory = ( data: any ) =>
 {
     type MapErrors = { [key: string]: () => JSX.Element };
 
     const errors: MapErrors = {
-        'app.presentation.exceptions.validator': () => <AlertValidatorErrors errorData={ props.errorData } />,
-        'app.domain.exceptions.uniqueAttribute': () => <AlertUniqueAttributeError errorData={ props.errorData } />,
-        'app.presentation.exceptions.duplicateEntity': () => <AlertEntityWithMetadataFieldAndValueError errorData={ props.errorData } />,
-        'app.presentation.exceptions.referenceConstraint': () => <AlertEntityWithMetadataFieldAndValueError errorData={ props.errorData } />,
-        'shared.exceptions.notFound': () => <AlertNotFoundEntityError errorData={ props.errorData } />,
+        'app.presentation.exceptions.validator': () => <AlertValidatorErrors errorData={ data.errorData } />,
+        'app.domain.exceptions.uniqueAttribute': () => <AlertUniqueAttributeError errorData={ data.errorData } />,
+        'app.presentation.exceptions.duplicateEntity': () => <AlertEntityWithMetadataFieldAndValueError errorData={ data.errorData } />,
+        'app.presentation.exceptions.referenceConstraint': () => <AlertEntityWithMetadataFieldAndValueError errorData={ data.errorData } />,
+        'shared.exceptions.notFound': () => <AlertNotFoundEntityError errorData={ data.errorData } />,
     };
 
-    const errorKey: keyof MapErrors = props.errorData.errorCode;
+    const errorKey: keyof MapErrors = data.errorData.errorCode;
 
-    return typeof errors[errorKey] === 'function' ?
+    return <>{typeof errors[errorKey] === 'function' ?
         errors[errorKey]()
         :
         <Alert status="danger" variant="left-accent">
@@ -117,6 +117,6 @@ export const alertFactory = ( props: any ) =>
                     />
                 </AlertDescription>
             </div>
-        </Alert>
+        </Alert>}</>
     ;
 };

@@ -12,10 +12,10 @@ const IndexPage: Component = () =>
 {
     const { id } = useParams<{ id: string }>();
     const [ user ]: any = useApplicationContext();
-    const roleRepository = new RoleRepository( user() );
-    const authRepository = new AuthRepository( user() );
-    const [ role ] = createResource( roleRepository.getOne( id ) );
-    const [ permissions ] = createResource( authRepository.getAllPermissions );
+    const roleRepository = new RoleRepository();
+    const authRepository = new AuthRepository();
+    const [ role ] = createResource( { id, user: user() }, roleRepository.getOne );
+    const [ permissions ] = createResource( { user: user() }, authRepository.getAllPermissions );
     usePermission( user, [ role, permissions ] );
 
     return (
@@ -23,7 +23,7 @@ const IndexPage: Component = () =>
             <RoleUpdate
                 roleSelected={role()?.data}
                 permissionsList={permissions()?.data}
-                onUpdate={updateAction( { roleRepository, id } )}
+                onUpdate={updateAction( { roleRepository, id, user } )}
                 loading={role.loading || permissions.loading}
             />
         </PrivateLayout>

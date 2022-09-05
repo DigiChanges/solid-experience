@@ -5,8 +5,7 @@ import styles from './GeneralLoader.module.css';
 const GeneralLoader: Component = () => (
     <Portal>
         <div class={styles.preloader}>
-            <div class={styles.loader}/><div>
-            </div>
+            <div class={styles.loader}/><div />
         </div>
     </Portal>
 );

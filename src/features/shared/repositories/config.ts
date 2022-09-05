@@ -1,6 +1,7 @@
 const API_PROTOCOL = import.meta.env.VITE_API_PROTOCOL as string || 'http';
 const API_HOSTNAME = import.meta.env.VITE_API_HOSTNAME as string || 'localhost';
 const API_PORT = import.meta.env.VITE_API_PORT as string || 8089;
+const VITE_API_WITH_CREDENTIALS = import.meta.env.VITE_API_WITH_CREDENTIALS === 'true' ?? false;
 
 const BACKEND_BASE_PATH = import.meta.env.VITE_API_BASE as string || 'api';
 
@@ -10,6 +11,8 @@ export const config = {
             protocol: API_PROTOCOL,
             hostname: API_HOSTNAME,
             port: API_PORT,
+            baseUrl: `${API_PROTOCOL}://${API_HOSTNAME}:${API_PORT}`,
+            withCredentials: VITE_API_WITH_CREDENTIALS,
         },
         routes: {
             auth: {

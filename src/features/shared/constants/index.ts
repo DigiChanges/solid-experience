@@ -8,7 +8,7 @@ export const INIT_STATE = {
 export const LOGIN_PAGE_PATH = '/login';
 export const CHANGE_FORGOT_PASSWORD_PAGE_PATH = '/change-forgot-password';
 
-// this paths redirects to home page / when user is signed in
+// these redirect paths to home page / when user is signed in
 export const REDIRECT_SIGNED_IN_USERS_PAGES = [
     LOGIN_PAGE_PATH,
     CHANGE_FORGOT_PASSWORD_PAGE_PATH,

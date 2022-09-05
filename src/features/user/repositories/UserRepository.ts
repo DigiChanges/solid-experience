@@ -1,85 +1,84 @@
 import { AxiosRequestConfig } from 'axios';
 import { UserPayload, UserListResponse, UserResponse } from '../interfaces';
-import { HttpAxiosRequest } from '../../../services/HttpAxiosRequest';
 import { config } from '../../shared/repositories/config';
+import HttpService from '../../../services/HttpService';
+import PayloadProps from '../../shared/interfaces/PayloadProps';
 
-const { protocol, hostname, port } = config.apiGateway.server;
+const { baseUrl } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne, editPassword, assignRole } = config.apiGateway.routes.users;
 
 class UserRepository
 {
-    constructor ( private user?: any )
-    {}
-
-    public getUsers ()
+    public getUsers ( { user, queryParams }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${getAll}`,
+            url: `${baseUrl}/${getAll}`,
         };
 
-        return HttpAxiosRequest<UserListResponse>( config );
+        return HttpService.request<UserListResponse>( { config, queryParams, user } );
     }
 
-    public getOne ( id: string )
+    public getOne ( { id, user }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${getOne}/${id}`,
+            url: `${baseUrl}/${getOne}/${id}`,
         };
 
-        return HttpAxiosRequest<UserResponse>( config );
+        return HttpService.request<UserResponse>( { config, user } );
     }
 
-    public assignUserRole ( id: string, rolesId: string[] )
+    public assignUserRole ( { id, data, user }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${assignRole}/${id}`,
-            method: 'PUT',
-            data: { rolesId },
-        };
-
-        return HttpAxiosRequest<UserResponse>( config, this.user );
-    }
-
-    public updateUser ( id: string, data: any )
-    {
-        const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${update}/${id}`,
+            url: `${baseUrl}/${assignRole}/${id}`,
             method: 'PUT',
             data,
         };
 
-        return HttpAxiosRequest<UserResponse>( config, this.user );
+        return HttpService.request<UserResponse>( { config, user } );
     }
 
-    public createUser ( data: UserPayload )
+    public updateUser ( { id, data, user }: PayloadProps<UserPayload> )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${create}`,
+            url: `${baseUrl}/${update}/${id}`,
+            method: 'PUT',
+            data,
+        };
+
+        return HttpService.request<UserResponse>( { config, user } );
+    }
+
+    public createUser ( { data, user }: PayloadProps<UserPayload> )
+    {
+        const config: AxiosRequestConfig = {
+            url: `${baseUrl}/${create}`,
             method: 'POST',
             data,
         };
 
-        return HttpAxiosRequest<UserResponse>( config, this.user );
+        return HttpService.request<UserResponse>( { config, user } );
     }
 
-    public removeUser ( id: string )
+    public removeUser ( { id, user }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${remove}/${id}`,
+            url: `${baseUrl}/${remove}/${id}`,
             method: 'DELETE',
         };
 
-        return HttpAxiosRequest<UserResponse>( config, this.user );
+        return HttpService.request<UserResponse>( { config, user } );
     }
-    public editPassword ( id: string, data: any )
+
+    public editPassword ( { id, data, user }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${editPassword}/${id}`,
+            url: `${baseUrl}/${editPassword}/${id}`,
             method: 'PUT',
             data,
         };
 
-        return HttpAxiosRequest( config, this.user );
+        return HttpService.request( { config, user } );
     }
 }
 
