@@ -40,7 +40,7 @@ const IndexPage: Component = () =>
             <AlertErrors errorData={errorData} title="err" description="err_process_user"/>
             <UserList
                 userList={userList()}
-                removeAction={removeUserAction( { userRepository, user, setError, refetch, t } )}
+                removeAction={removeUserAction( { userRepository, user: user(), setError, refetch, t } )}
                 loading={users.loading}
                 viewMoreAction={viewMoreAction}
                 nextPage={paginationData()?.nextUrl}

@@ -22,7 +22,7 @@ const IndexPage: Component = () =>
     return (
         <PrivateLayout>
             <UserCreate
-                onCreate={createAction( { userRepository, user } )}
+                onCreate={createAction( { userRepository, user: user() } )}
                 permissionsList={permissions()?.data}
                 rolesList={roles()?.data}
                 loading={permissions.loading || roles.loading}
