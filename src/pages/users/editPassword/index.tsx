@@ -13,7 +13,7 @@ const IndexPage: Component = () =>
 
     const editPassword = async ( data: any ) =>
     {
-        void await userRepository.editPassword( { id, data, user } );
+        void await userRepository.editPassword( { id, data, user: user() } );
     };
 
     return <PrivateLayout>

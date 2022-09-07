@@ -75,7 +75,10 @@ class UserRepository
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${editPassword}/${id}`,
             method: 'PUT',
-            data,
+            data: {
+                id: id,
+                ...data
+            },
         };
 
         return HttpService.request( { config, user } );
