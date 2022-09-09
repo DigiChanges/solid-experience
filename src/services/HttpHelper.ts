@@ -2,7 +2,7 @@ import { QueryParams } from './IHttpAxios';
 import { config as Config } from '../features/shared/repositories/config';
 import axios, { AxiosRequestConfig } from 'axios';
 
-export function getRequestDefaultOptions ( config: AxiosRequestConfig, token?: string ): AxiosRequestConfig
+export function getDefaultOptions (config: AxiosRequestConfig, token?: string ): AxiosRequestConfig
 {
     return {
         method: 'GET',
@@ -10,6 +10,18 @@ export function getRequestDefaultOptions ( config: AxiosRequestConfig, token?: s
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token ? `Bearer ${token}` : '',
+            ...config.headers,
+        },
+    };
+}
+
+export function getDefaultOptionsWithoutToken ( config: AxiosRequestConfig ): AxiosRequestConfig
+{
+    return {
+        method: 'POST',
+        ...config,
+        headers: {
+            'Content-Type': 'application/json',
             ...config.headers,
         },
     };
