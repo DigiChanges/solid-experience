@@ -9,12 +9,14 @@ type params = {
 
 export const createAction = ( { userRepository, user }: params ) => async ( data: UserPayload ) =>
 {
-    const rolesSelected = Array.from( data.roles as [] );
+    const rolesSelected = {
+        rolesId: Array.from( data.roles as [] ),
+    };
 
     delete data.roles;
     const response = await userRepository.createUser( { data, user } );
 
-    if ( rolesSelected.length )
+    if ( rolesSelected )
     {
         const { id } = response.data;
         void await userRepository.assignUserRole( { id, data: rolesSelected, user } );
