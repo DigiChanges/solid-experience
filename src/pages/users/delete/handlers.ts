@@ -1,19 +1,20 @@
 import { notificationService } from '@hope-ui/solid';
 import UserRepository from '../../../features/user/repositories/UserRepository';
+import { LoginApi } from '../../../features/auth/interfaces/login';
 
 type params = {
     userRepository: UserRepository;
+    user: LoginApi;
     setError: ( error: undefined ) => string;
     refetch: ( info?: unknown ) => void;
     t: any;
 };
 
-export const removeUserAction = ( { userRepository, setError, refetch, t }: params ) => async ( id: string ) =>
+export const removeUserAction = ( { userRepository, user, setError, refetch, t }: params ) => async ( id: string ) =>
 {
-    const remove = userRepository.removeUser( id );
     try
     {
-        void await remove();
+        void await userRepository.removeUser( { id, user } );
 
         notificationService.show( {
             status: 'success',

@@ -19,10 +19,10 @@ export const createForgotPasswordAction = ( { errorAlert, navigate, t }: params 
     };
 
     const authRepository = new AuthRepository();
-    const create = authRepository.getForgotPassword( data );
+
     try
     {
-        void await create();
+        void await authRepository.getForgotPassword( { data } );
 
         notificationService.show( {
             status: 'success',

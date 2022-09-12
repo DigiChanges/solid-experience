@@ -1,6 +1,6 @@
 import { useSearchParams } from 'solid-app-router';
 import { createMemo } from 'solid-js';
-import { PaginationParams, QueryParams } from '../../../services/HttpAxiosRequest';
+import { PaginationParams, QueryParams } from '../../../services/IHttpAxios';
 import usePagination from './usePagination';
 
 function useQuery ( initialPagination?: PaginationParams )

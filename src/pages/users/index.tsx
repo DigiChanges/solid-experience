@@ -18,11 +18,11 @@ const IndexPage: Component = () =>
     const { t } = useI18n();
     const { errorData, setError } = createAlert();
     const [ user ]: any = useApplicationContext();
-    const userRepository = new UserRepository( user() );
+    const userRepository = new UserRepository();
 
     const { goToPage, getURLSearchParams } = useQuery( INIT_STATE.nextPaginationParams );
 
-    const [ users, { refetch } ] = createResource( getURLSearchParams, userRepository.getUsers() );
+    const [ users, { refetch } ] = createResource( { queryParams: getURLSearchParams(), user: user() }, userRepository.getUsers );
     const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<UserApi, UserListResponse>( users );
 
     usePermission( user, [ users ] );
@@ -40,7 +40,7 @@ const IndexPage: Component = () =>
             <AlertErrors errorData={errorData} title="err" description="err_process_user"/>
             <UserList
                 userList={userList()}
-                removeAction={removeUserAction( { userRepository, setError, refetch, t } )}
+                removeAction={removeUserAction( { userRepository, user: user(), setError, refetch, t } )}
                 loading={users.loading}
                 viewMoreAction={viewMoreAction}
                 nextPage={paginationData()?.nextUrl}

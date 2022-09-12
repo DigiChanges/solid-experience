@@ -1,65 +1,62 @@
 import { AxiosRequestConfig } from 'axios';
-import { RolePayload, RoleListResponse, RoleResponse } from '../interfaces';
-import { HttpAxiosRequest } from '../../../services/HttpAxiosRequest';
+import { RoleListResponse, RolePayload, RoleResponse } from '../interfaces';
 import { config } from '../../shared/repositories/config';
+import HttpService from '../../../services/HttpService';
+import PayloadProps from '../../shared/interfaces/PayloadProps';
 
-const { protocol, hostname, port } = config.apiGateway.server;
+const { baseUrl } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne } = config.apiGateway.routes.roles;
-
 
 class RoleRepository
 {
-    constructor ( private user?: any )
-    {}
-
-    public getRoles ()
+    public async getRoles ( { queryParams, user }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${getAll}`,
+            url: `${baseUrl}/${getAll}`,
         };
 
-        return HttpAxiosRequest<RoleListResponse>( config );
+        return HttpService.request<RoleListResponse>( { config, queryParams, user } );
     }
 
-    public getOne ( id: string )
+    public async getOne ( { id, user }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${getOne}/${id}`,
+            url: `${baseUrl}/${getOne}/${id}`,
         };
 
-        return HttpAxiosRequest<RoleResponse>( config );
+        return HttpService.request<RoleResponse>( { config, user } );
     }
 
-    public updateRole ( id: string, data: RolePayload )
+    public async updateRole ( { id, data, user }: PayloadProps<RolePayload> )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${update}/${id}`,
+            url: `${baseUrl}/${update}/${id}`,
             method: 'PUT',
             data,
         };
 
-        return HttpAxiosRequest<RoleResponse>( config, this.user );
+        return HttpService.request<RoleResponse>( { config, user } );
     }
 
-    public createRole ( data: RolePayload )
+    public createRole ( { data, user }: PayloadProps<RolePayload> )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${create}`,
+            url: `${baseUrl}/${create}`,
             method: 'POST',
             data,
         };
 
-        return HttpAxiosRequest<RoleResponse>( config, this.user );
+        return HttpService.request<RoleResponse>( { config, user } );
     }
 
-    public removeRole ( id: string )
+    public removeRole ( { id, user }: PayloadProps )
     {
         const config: AxiosRequestConfig = {
-            url: `${protocol}://${hostname}:${port}/${remove}/${id}`,
+            url: `${baseUrl}/${remove}/${id}`,
             method: 'DELETE',
         };
 
-        return HttpAxiosRequest<RoleResponse>( config, this.user );
+        return HttpService.request<RoleResponse>( { config, user } );
     }
 }
 

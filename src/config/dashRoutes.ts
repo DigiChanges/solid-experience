@@ -7,13 +7,7 @@ import IconRoles from '../atoms/Icons/Stroke/IconRoles';
 import IconUsers from '../atoms/Icons/Stroke/IconUsers';
 import IconViewList from '../atoms/Icons/Stroke/IconViewList';
 import { permissions } from './permissions';
-// import IconCog from '../atoms/Icons/Stroke/IconCog';
-// import IconHome from '../atoms/Icons/Stroke/IconHome';
-// import IconLogout from '../atoms/Icons/Stroke/IconLogout';
-// import IconPlus from '../atoms/Icons/Stroke/IconPlus';
-// import IconUsers from '../atoms/Icons/Stroke/IconUsers';
-// import IconViewList from '../atoms/Icons/Stroke/IconViewList';
-// import {permissions} from './permissions'
+
 
 export const dashRoutes = [
     {
@@ -69,6 +63,22 @@ export const dashRoutes = [
         component: lazy( () => import( '../pages/register' ) ),
         name: 'a_register',
         icon: IconHome,
+        showItem: false,
+        permission: '',
+    },
+    {
+        path: '/verify-account-success',
+        component: lazy( () => import( '../pages/auth/verifyYourAccountSuccess' ) ),
+        name: 'a_verification_success',
+        icon: IconUsers,
+        showItem: false,
+        permission: '',
+    },
+    {
+        path: '/verify-your-account',
+        component: lazy( () => import( '../pages/auth/verifyYourAccount' ) ),
+        name: 'a_verify',
+        icon: IconUsers,
         showItem: false,
         permission: '',
     },

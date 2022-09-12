@@ -2,18 +2,18 @@ import PermissionList from '../../shared/utils/PermissionList';
 import { LoginApi } from '../interfaces/login';
 import AuthRepository from '../repositories/AuthRepository';
 
-const assignAllPermissionsToSuperAdminUser = async ( userAuth?: LoginApi ) =>
+const assignAllPermissionsToSuperAdminUser = async ( user?: LoginApi ) =>
 {
-    if ( userAuth && userAuth.user.isSuperAdmin )
+    if ( user && user.user.isSuperAdmin )
     {
-        const authRepository = new AuthRepository( userAuth );
-        const getAllPermissions = authRepository.getAllPermissions();
-        const response = await getAllPermissions();
-        const permissions = PermissionList.getPermissionsToArray( response.data );
-        userAuth.user.permissions = permissions;
+        const authRepository = new AuthRepository();
+        const response = await authRepository.getAllPermissions(
+            { user } );
+
+        user.user.permissions = PermissionList.getPermissionsToArray( response.data );
     }
 
-    return userAuth;
+    return user;
 };
 
 export default assignAllPermissionsToSuperAdminUser;

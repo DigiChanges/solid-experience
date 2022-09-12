@@ -9,6 +9,7 @@ import styles from './RegisterTemplate.module.css';
 import { RegisterPayload, RegisterResponse } from '../interfaces/createAccount';
 import Card from '../../../shared/molecules/Card/Card';
 import logo from '../../../../assets/images/dgc_logo.png';
+
 interface UserCreateTemplateProps {
     onSubmit: ( data: RegisterPayload ) => Promise<RegisterResponse>;
     getEmail: any;

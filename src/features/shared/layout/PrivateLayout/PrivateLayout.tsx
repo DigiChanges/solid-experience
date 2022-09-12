@@ -4,7 +4,7 @@ import Footer from '../../../footer/organisms/Footer';
 import NavBar from '../../../navBar/organisms/NavBar';
 import SideBar from '../../../sideBar/organisms/SideBar';
 import styles from './PrivateLayout.module.css';
-import { createDisclosure } from "@hope-ui/solid";
+import { createDisclosure } from '@hope-ui/solid';
 
 interface privateTemplateProps {
     children: JSX.Element | JSX.Element[];
@@ -12,7 +12,7 @@ interface privateTemplateProps {
 
 const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
 {
-    const [ showSidebar, setShowSideBar ] = createSignal( false );
+    const [ showSidebar ] = createSignal( false );
     const { isOpen, onOpen, onClose } = createDisclosure();
     const [ authUser ] = useApplicationContext();
 

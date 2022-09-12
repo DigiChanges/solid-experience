@@ -14,11 +14,11 @@ type params = {
 export const verifyAccountAction = ( { authRepository, errorAlert, navigate, setIsLoading, searchParams, t }: params ) => async () =>
 {
     const { setError } = errorAlert;
-    const create = authRepository.verifyYourAccount( searchParams.token );
+
     try
     {
         setIsLoading( true );
-        void await create();
+        void await authRepository.verifyYourAccount( { data: searchParams.token } );
 
         notificationService.show( {
             status: 'success',

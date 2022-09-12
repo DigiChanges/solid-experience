@@ -8,7 +8,7 @@ import AuthRepository from '../../repositories/AuthRepository';
 const createRefreshToken = () =>
 {
     const authRepository = new AuthRepository();
-    const [ auth ] = createResource( authRepository.refreshToken() );
+    const [ auth ] = createResource( authRepository.refreshToken );
     const navigate = useNavigate();
     const location = useLocation();
     const [ user, { addUser } ] = useApplicationContext();

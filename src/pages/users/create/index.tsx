@@ -11,17 +11,18 @@ import { createAction } from './handler';
 const IndexPage: Component = () =>
 {
     const [ user ]: any = useApplicationContext();
-    const authRepository = new AuthRepository( user() );
-    const userRepository = new UserRepository( user() );
-    const roleRepository = new RoleRepository( user() );
-    const [ roles ] = createResource( roleRepository.getRoles() );
-    const [ permissions ] = createResource( authRepository.getAllPermissions() );
+    const authRepository = new AuthRepository();
+    const userRepository = new UserRepository();
+    const roleRepository = new RoleRepository();
+
+    const [ roles ] = createResource( { user: user() }, roleRepository.getRoles );
+    const [ permissions ] = createResource( { user: user() }, authRepository.getAllPermissions );
     usePermission( user, [ roles, permissions ] );
 
     return (
         <PrivateLayout>
             <UserCreate
-                onCreate={createAction( { userRepository } )}
+                onCreate={createAction( { userRepository, user: user() } )}
                 permissionsList={permissions()?.data}
                 rolesList={roles()?.data}
                 loading={permissions.loading || roles.loading}
