@@ -2,8 +2,11 @@ import { createI18n } from 'solid-i18n';
 import en from './en';
 import es from './es';
 
+// @ts-ignore
+const getSelectedLanguage = () => JSON.parse( localStorage.getItem('lang') ) || 'en';
+
 export const i18n = createI18n( {
-    language: 'es',
+    language: getSelectedLanguage(),
     presets: {
         number: {
             default: { minimumFractionDigits: 0, maximumFractionDigits: 0 },
