@@ -2,7 +2,7 @@ import { QueryParams } from './IHttpAxios';
 import { config as Config } from '../features/shared/repositories/config';
 import axios, { AxiosRequestConfig } from 'axios';
 
-export function getDefaultOptions (config: AxiosRequestConfig, token?: string ): AxiosRequestConfig
+export function getDefaultOptions ( config: AxiosRequestConfig, token?: string ): AxiosRequestConfig
 {
     return {
         method: 'GET',

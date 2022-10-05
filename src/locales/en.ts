@@ -24,6 +24,7 @@ const app: I18nLocales = {
     a_enter_permissions: 'Select Permissions',
     a_enter_phone: 'Enter Number',
     a_enter_slug: 'Enter Slug',
+    a_do_not_have_account: 'Do you have an account?',
     a_es: 'Spanish',
     a_filter_by: 'Filter by',
     a_filter_field: 'Filter field',
@@ -47,13 +48,14 @@ const app: I18nLocales = {
     a_select_enable: 'Select State',
     a_select_roles: 'Select Roles',
     a_send: 'Send',
+    a_sign_up: 'Sign Up',
     a_submitting: 'Submitting',
     a_view_more: 'View more',
     a_your_address: 'Your address...',
     a_your_email: 'Your email',
     a_your_password: 'Your password',
-
 };
+
 const auth: I18nLocales = {
     au_can_log_in_data: 'You can log in with your data.',
     au_can_log_in_with: 'You can log in with:',
@@ -69,6 +71,7 @@ const auth: I18nLocales = {
     au_wait_few_moments: 'wait a few moments...',
     au_we_building: 'We are building everything you need to get started',
 };
+
 const appValidations: I18nLocales = {
     av_email_valid: 'Must be a valid email',
     av_one_item: 'Must have at least 1 items',

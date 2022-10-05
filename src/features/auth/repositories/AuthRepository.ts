@@ -7,7 +7,7 @@ import { LogoutResponse } from '../interfaces/logout';
 import HttpService from '../../../services/HttpService';
 import { PermissionListResponse } from '../interfaces/permission';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
-import HttpServiceWithoutToken from "../../../services/HttpServiceWithoutToken";
+import HttpServiceWithoutToken from '../../../services/HttpServiceWithoutToken';
 
 const { baseUrl } = config.apiGateway.server;
 const { register, login, refreshToken, logout, permissionsGetAll, forgotPassword, changeForgotPassword, verifyYourAccount } = config.apiGateway.routes.auth;

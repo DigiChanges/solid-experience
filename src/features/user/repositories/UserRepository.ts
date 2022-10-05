@@ -76,8 +76,8 @@ class UserRepository
             url: `${baseUrl}/${editPassword}/${id}`,
             method: 'PUT',
             data: {
-                id: id,
-                ...data
+                id,
+                ...data,
             },
         };
 
