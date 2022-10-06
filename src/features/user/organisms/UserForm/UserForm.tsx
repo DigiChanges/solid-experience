@@ -32,7 +32,6 @@ import { RoleApi } from '../../../role/interfaces';
 import { UserApi, UserPayload } from '../../interfaces';
 import userCreateValidationSchema from '../../validations/schemas/userCreateValidationSchema';
 import userUpdateValidationSchema from '../../validations/schemas/userUpdateValidationSchema';
-import styles from './UserForm.module.css';
 
 enum RequiredPermission {
     submit='submit'
@@ -84,7 +83,6 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setTouched( field, true );
     };
 
-
     return (
         <form ref={form} class="form_flex">
             <h2 class="section_title_opaque border_bottom">
@@ -118,7 +116,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                     onBlur={() => setTouched( 'documentType', true )}
                                 >
                                     <SelectPlaceholder>
-                                        <Text message="type_id"/>
+                                        <Text message={ props.userSelected?.documentType || 'type_id' }/>
                                     </SelectPlaceholder>
                                     <SelectValue />
                                     <SelectIcon />
