@@ -146,12 +146,16 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                             </SelectListbox>
                                         </SelectContent>
                                     </Select>
-                                    <FormErrorMessage><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormErrorMessage>
+                                    <div class="flex absolute">
+                                        <FormErrorMessage><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormErrorMessage>
+                                    </div>
                                 </FormControl>
 
                                 <FormControl required invalid={!!errors( 'documentNumber' )} class="big">
                                     <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' ) as string} />
-                                    <FormErrorMessage><Text message={errors( 'documentNumber' )[0]} /></FormErrorMessage>
+                                    <div class="flex absolute">
+                                        <FormErrorMessage><Text message={errors( 'documentNumber' )[0]} /></FormErrorMessage>
+                                    </div>
                                 </FormControl>
                             </div>
                         </FormControl>
