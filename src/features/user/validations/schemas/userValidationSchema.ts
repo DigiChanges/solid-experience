@@ -21,8 +21,8 @@ const userValidationSchema = object( {
     birthday: string()
         .test(
             'is-valid-format',
-            "Invalid format",
-            (value: any) => IsValidBirthday(value),
+            'Invalid format',
+            ( value: any ) => IsValidBirthday( value )
         )
         .required( 'av_required' ),
     phone: string()
