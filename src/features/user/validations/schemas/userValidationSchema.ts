@@ -1,4 +1,5 @@
 import { object, string } from 'yup';
+import { IsValidBirthday } from '../../utils/validationCustom';
 
 const userValidationSchema = object( {
     firstName: string()
@@ -18,6 +19,11 @@ const userValidationSchema = object( {
     country: string()
         .required( 'av_required' ),
     birthday: string()
+        .test(
+            'is-valid-format',
+            "Invalid format",
+            (value: any) => IsValidBirthday(value),
+        )
         .required( 'av_required' ),
     phone: string()
         .max( 20, 'av_too_long' )
