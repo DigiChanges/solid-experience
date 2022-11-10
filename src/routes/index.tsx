@@ -1,3 +1,9 @@
+import App from "../App";
+
 export default function Index() {
-    return <div>Welcome to Hogwarts!</div>;
+    return (
+        <App>
+            <div>Welcome to Hogwarts!</div>;
+        </App>
+    )
 }

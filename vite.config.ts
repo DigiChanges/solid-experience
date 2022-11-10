@@ -1,15 +1,8 @@
 import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
+import solid from 'solid-start/vite';
 import legacy from '@vitejs/plugin-legacy';
+import solidPlugin from "vite-plugin-solid";
 
-export default defineConfig( {
-    plugins: [
-        solidPlugin(),
-        legacy( {
-            targets: [ 'defaults', 'not IE 11' ],
-        } ),
-    ],
-    build: {
-        target: 'esnext',
-    },
-} );
+export default defineConfig({
+    plugins: [solid({ ssr: false })],
+});

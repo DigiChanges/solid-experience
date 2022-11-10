@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
     "strict": true,
     "target": "ESNext",
     "module": "ESNext",
@@ -16,6 +20,8 @@
       "es2021",
       "dom",
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+
   }
 }
