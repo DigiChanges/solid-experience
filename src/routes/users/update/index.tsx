@@ -1,4 +1,3 @@
-import { useParams } from 'solid-app-router';
 import { Component, createMemo, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
@@ -8,10 +7,11 @@ import PrivateLayout from '../../../features/shared/layout/PrivateLayout/Private
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import UserUpdate from '../../../features/user/templates/UserUpdate/UserUpdate';
 import { updateAction } from './handlers';
+import { useParams } from "@solidjs/router";
 
 const IndexPage: Component = () =>
 {
-    const { id } = useParams<{ id: string }> ();
+    const { id } = useParams();
     const [ user ]: any = useApplicationContext();
     const authRepository = new AuthRepository();
     const roleRepository = new RoleRepository();
