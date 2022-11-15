@@ -1,5 +1,5 @@
 import { notificationService } from '@hope-ui/solid';
-import { useNavigate } from 'solid-app-router';
+import { useNavigate } from 'solid-start';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';

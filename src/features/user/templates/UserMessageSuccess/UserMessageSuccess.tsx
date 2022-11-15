@@ -1,5 +1,5 @@
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@hope-ui/solid';
-import { Link } from 'solid-app-router';
+import { Link } from 'solid-start';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import styles from './UserMessageSuccess.module.css';

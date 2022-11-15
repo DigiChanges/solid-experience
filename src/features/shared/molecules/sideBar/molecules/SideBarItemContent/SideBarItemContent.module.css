@@ -1,0 +1,26 @@
+@tailwind components;
+@tailwind utilities;
+
+.side_bar_item_content_span {
+    @apply  mr-1 inline-flex items-center justify-center h-8 w-6 text-lg ;
+}
+
+.side_bar_item_content_icon {
+    @apply  mr-1 inline-flex items-center justify-center h-8 w-6 text-lg ;
+}
+
+.side_bar_item_content_nav_link {
+    @apply flex md:flex pr-3 pl-4 items-center w-full;
+}
+
+.side_bar_item_content_container {
+    @apply visible;
+}
+
+.side_bar_item_content_container_expanded {
+    @apply md:hidden;
+}
+
+.side_bar_item_content_container_span_expanded {
+    @apply pr-2 pl-58;
+}

@@ -1,8 +1,8 @@
-import { Component } from 'solid-js';
+import { JSX } from 'solid-js';
 import Dashboard from '../../features/dashboard/templates/dashboard';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout/PrivateLayout';
 
-const DashboardPage: Component = () =>
+const DashboardPage: () => JSX.Element = () =>
 {
     return (
         <PrivateLayout>

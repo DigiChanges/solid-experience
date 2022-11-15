@@ -1,5 +1,5 @@
 import { Icon, IconButton, Menu, MenuContent, MenuItem, MenuTrigger } from '@hope-ui/solid';
-import { Link } from 'solid-app-router';
+import { Link } from 'solid-start';
 import { Text } from 'solid-i18n';
 import { Component } from 'solid-js';
 import logoNav from '../../../assets/images/dgc_logo.png';

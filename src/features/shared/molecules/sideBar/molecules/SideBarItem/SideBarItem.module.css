@@ -1,0 +1,18 @@
+@tailwind components;
+@tailwind utilities;
+
+.side_bar_item_container {
+    @apply w-full;
+}
+
+.side_bar_item_span {
+    @apply flex md:flex pr-3 pl-4 items-center w-full cursor-pointer hover:text-blue-500;
+}
+
+.side_bar_item_icon {
+    @apply inline-flex ml-auto pl-1 w-6;
+}
+
+.side_bar_item_nav_link {
+    @apply flex md:flex pr-3 pl-4 items-center w-full hover:text-blue-500 hover:underline;
+}

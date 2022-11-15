@@ -35,8 +35,8 @@ export type UserPayload =
     password: string;
     passwordConfirmation: string;
     permissions: string[];
-    roles?: string[];
-    enable?: boolean;
+    roles: string[];
+    enable: boolean;
 };
 
 export interface UserApi extends User, Base {}

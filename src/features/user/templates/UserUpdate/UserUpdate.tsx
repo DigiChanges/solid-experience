@@ -1,8 +1,8 @@
-import { notificationService } from '@hope-ui/solid';
-import { useNavigate } from 'solid-app-router';
+// import { notificationService } from '@hope-ui/solid';
+import { useNavigate } from 'solid-start';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
-import { permissions } from '../../../../config/permissions';
+import { permissions } from '~/config/permissions';
 import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
 import createAlert from '../../../shared/hooks/createAlert';
@@ -27,21 +27,21 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
 
     const handleSuccess = () => () =>
     {
-        notificationService.show( {
-            status: 'success',
-            title: t( 'u_updated' ) as string,
-        } );
+        // notificationService.show( {
+        //     status: 'success',
+        //     title: t( 'u_updated' ) as string,
+        // } );
         navigate( '/users', { replace: true } );
     };
 
     const handleError = () => ( error: unknown ) =>
     {
         const errorMessage = setError( error );
-        notificationService.show( {
-            status: 'danger',
-            title: t( 'err_save_user' ) as string,
-            description: t( errorMessage ) as string,
-        } );
+        // notificationService.show( {
+        //     status: 'danger',
+        //     title: t( 'err_save_user' ) as string,
+        //     description: t( errorMessage ) as string,
+        // } );
     } ;
 
     return (

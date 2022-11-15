@@ -7,7 +7,7 @@ import {
     FormLabel,
     Input,
     notificationService } from '@hope-ui/solid';
-import { Link, useNavigate } from 'solid-app-router';
+import { Link, useNavigate } from 'solid-start';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import { InferType } from 'yup';

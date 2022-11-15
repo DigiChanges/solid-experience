@@ -113,4 +113,3 @@ restore .husky/pre-commit
 ```bash
 chmod ug+x .husky/*
 chmod ug+x .git/hooks/*
-```

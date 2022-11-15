@@ -22,11 +22,11 @@ import {
     SelectValue,
     Switch
 } from '@hope-ui/solid';
-import { Link } from 'solid-app-router';
+import { Link } from 'solid-start';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, createMemo, For, Show } from 'solid-js';
 import { InferType } from 'yup';
-import { country, userDocumentTypeOptions } from '../../../../entities';
+import { country, userDocumentTypeOptions } from '~/entities';
 import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
 import { UserApi, UserPayload } from '../../interfaces';
@@ -83,7 +83,6 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setFields( field, value );
         setTouched( field, true );
     };
-
 
     return (
         <form ref={form} class="form_flex">

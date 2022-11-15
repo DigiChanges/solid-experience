@@ -1,8 +1,8 @@
 import { Component, createSignal, JSX } from 'solid-js';
 import { useApplicationContext } from '../../../../context/context';
-import Footer from '../../../footer/organisms/Footer';
-import NavBar from '../../../navBar/organisms/NavBar';
-import SideBar from '../../../sideBar/organisms/SideBar';
+import Footer from '../../molecules/footer/organisms/Footer';
+import NavBar from '../../molecules/navBar/organisms/NavBar';
+import SideBar from '../../molecules/sideBar/organisms/SideBar';
 import styles from './PrivateLayout.module.css';
 import { createDisclosure } from '@hope-ui/solid';
 
