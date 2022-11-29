@@ -75,7 +75,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                 <div class="field_wrapper">
                     <FormControl required invalid={!!errors( 'passwordConfirmation' )}>
                         <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
-                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string}onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
+                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string} onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
                         <FormErrorMessage><Text message={errors( 'passwordConfirmation' )[0]} /></FormErrorMessage>
                     </FormControl>
                 </div>
