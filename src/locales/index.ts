@@ -3,7 +3,7 @@ import en from './en';
 import es from './es';
 
 // @ts-ignore
-const getSelectedLanguage = () => JSON.parse( localStorage.getItem( 'lang' ) ) || 'en';
+const getSelectedLanguage = () => localStorage.getItem( 'lang' ) || 'en';
 
 export const i18n = createI18n( {
     language: getSelectedLanguage(),
