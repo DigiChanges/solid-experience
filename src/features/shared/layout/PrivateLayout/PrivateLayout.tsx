@@ -19,7 +19,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
     return (
         <div class={styles.container}>
             <header class={styles.header}>
-                <NavBar sideBarIsShown={showSidebar()} onClick={onOpen} email={'example@mail.com'} />
+                <NavBar sideBarIsShown={showSidebar()} isOpen={isOpen} onClick={onOpen} email={'example@mail.com'} />
             </header>
 
             <div class={styles.main_container}>

@@ -41,13 +41,17 @@
 
 .icon_burger {
     color: var(--hope-colors-neutral12);
+    outline: none;
+}
+.icon_burger:focus{
+    -moz-outline-style:none;
 }
 
 @media screen and (min-width: 1024px) {
     .nav {
         margin: 0 20px;
     }
-    
+
     .nav .nav_container .icon_bell {
         display: block;
     }
@@ -56,7 +60,4 @@
         display: block;
     }
 
-    .nav .icon_burger {
-        display: none;
-    }
 }

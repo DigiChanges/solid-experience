@@ -29,19 +29,7 @@ const SideBar: Component<SideBarProps> = ( props ) =>
 
     return (
         <>
-            <Card
-                class={styles.side_nav}
-                classList={{
-                    [styles.hidden]: !props.showInMobile,
-                    [styles.not_expanded]: !getExpanded(),
-                }}
-            >
-                <ExpandButton getExpanded={getExpanded()} setExpanded={setExpanded}/>
-                <DashItems expanded={getExpanded()} authUser={props.authUser}/>
-                <div class={styles.logout_container}>
-                    <LogoutSideBarItem user={props.authUser} getExpanded={getExpanded()} sectionSelected=""/>
-                </div>
-            </Card>
+
 
             <Drawer
                 opened={ props.isOpen() }
