@@ -1,0 +1,41 @@
+.lineContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+
+}
+.lineContainer:focus{
+    -moz-outline-style:none;
+}
+
+.line{
+    width:25px;
+    height: 3px;
+    border-radius: 5px;
+    background-color: white;
+    position: relative;
+    margin-bottom: 4px;
+    opacity: 1;
+    -webkit-transition:transform .5s ease;
+    transform: rotate(0deg);
+}
+.line3Opened{
+    margin-bottom: 1px;
+}
+.line1Closed{
+    transform: rotate(-45deg);
+    margin-bottom: 0;
+    transition:transform .5s;
+}
+
+.line2Closed{
+    transform: rotate(45deg);
+    margin-bottom: 0;
+    margin-top: -3px;
+    transition:transform .5s;
+}
+
+.line3Closed{
+    opacity:0;
+    transition:opacity .5s;
+}

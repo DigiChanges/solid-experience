@@ -6,7 +6,6 @@ import logoNav from '../../../assets/images/dgc_logo.png';
 import IconBell from '../../../atoms/Icons/Stroke/IconBell';
 import IconBurger from '../../../atoms/Icons/Stroke/IconBurger';
 import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
-import IconCross from '../../../atoms/Icons/Stroke/IconCross';
 import { useApplicationContext } from '../../../context/context';
 import LanguageMenu from '../../language/LanguageMenu';
 import { logout } from './handlers';
@@ -17,6 +16,7 @@ interface NavbarTemplateProps {
     onClick?: ( event: MouseEvent ) => void;
     permissionsList?: string[];
     sideBarIsShown: boolean;
+    isOpen?: boolean;
 }
 
 const NavBar: Component<NavbarTemplateProps> = props =>
@@ -70,7 +70,7 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     class={styles.icon_burger}
                     onClick={ props.onClick }
                     aria-label="Open Main Menu"
-                    icon={!props.sideBarIsShown ? <IconBurger/> : <IconCross/>}
+                    icon={ <IconBurger isOpened={!props.isOpen()}/> }
                     variant="ghost"
                     compact
                 />
