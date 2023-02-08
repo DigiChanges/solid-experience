@@ -17,6 +17,7 @@ specifiers:
   axios: ^0.27.2
   cash-dom: ^8.1.1
   cpy-cli: ^3.1.1
+  date-time-picker-solid: ^1.0.9
   eslint: 8.28.0
   eslint-plugin-solid: ^0.4.3
   husky: ^7.0.4
@@ -45,6 +46,7 @@ dependencies:
   '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.4
   axios: 0.27.2
   cash-dom: 8.1.2
+  date-time-picker-solid: 1.0.9
   i18n-mini: 1.1.0
   solid-app-router: 0.4.2_solid-js@1.6.2
   solid-i18n: 1.0.4_solid-js@1.6.2
@@ -1356,6 +1358,14 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
 
+  /date-time-picker-solid/1.0.9:
+    resolution: {integrity: sha512-Zv9vK5rCwh0y1zeGMdf23tG34QA9eyOZsMnPf2JTLICK8ufwtaHRzKOqrp4J/2Eee+JLIa/ehYLELHGr+pE4gA==}
+    dependencies:
+      moment: 2.29.4
+      sass: 1.58.0
+      solid-js: 1.6.2
+    dev: false
+
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -2355,6 +2365,10 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /immutable/4.2.4:
+    resolution: {integrity: sha512-WDxL3Hheb1JkRN3sQkyujNlL/xRjAo3rJtaU5xeufUauG66JdMr32bLj4gF+vWl84DIA3Zxw7tiAjneYzRRw+w==}
+    dev: false
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -2975,6 +2989,10 @@ packages:
       is-extendable: 1.0.1
     dev: true
 
+  /moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
+
   /ms/2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
     dev: true
@@ -3548,6 +3566,16 @@ packages:
     dependencies:
       ret: 0.1.15
     dev: true
+
+  /sass/1.58.0:
+    resolution: {integrity: sha512-PiMJcP33DdKtZ/1jSjjqVIKihoDc6yWmYr9K/4r3fVVIEDAluD0q7XZiRKrNJcPK3qkLRF/79DND1H5q1LBjgg==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.2.4
+      source-map-js: 1.0.2
+    dev: false
 
   /scroll-lock/2.1.5:
     resolution: {integrity: sha512-GN8Lp0AzXbkrPFUUNkMUruiiv019UvarNKE/SnXi+AxZRjMnDc2R22VB9RcUtL4P/uub04cKibmpHKIKTyWwYQ==}
