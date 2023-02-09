@@ -24,7 +24,7 @@ import {
 } from '@hope-ui/solid';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, createMemo, For, Show } from 'solid-js';
+import { Component, createMemo, For, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { country, userDocumentTypeOptions } from '../../../../entities';
 import { PermissionApi } from '../../../auth/interfaces/permission';
@@ -32,7 +32,8 @@ import { RoleApi } from '../../../role/interfaces';
 import { UserApi, UserPayload } from '../../interfaces';
 import userCreateValidationSchema from '../../validations/schemas/userCreateValidationSchema';
 import userUpdateValidationSchema from '../../validations/schemas/userUpdateValidationSchema';
-import styles from './UserForm.module.css';
+import './userForm.css';
+import DatePicker from '../../../../atoms/DatePicker/DatePicker';
 
 enum RequiredPermission {
     submit='submit'
@@ -84,7 +85,15 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setTouched( field, true );
     };
 
-
+    onMount( () =>
+    {
+        const forbiddenKeys = [ 'permissions', 'roles', 'country', 'documentType' ];
+        for ( const key in props.userSelected )
+        {
+            // @ts-ignore
+            if ( !forbiddenKeys.includes( key ) ){ setFields( key, props.userSelected[key] ); }
+        }
+    } );
     return (
         <form ref={form} class="form_flex">
             <h2 class="section_title_opaque border_bottom">
@@ -93,7 +102,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'firstName' )}>
                     <FormLabel for="firstName"><Text message="first_name"/></FormLabel>
-                    <Input autofocus name="firstName" type="text" placeholder={t( 'a_enter_first_name' ) as string} value={props.userSelected?.firstName}/>
+                    <Input autofocus name="firstName" type="text" placeholder={t( 'a_enter_first_name' ) as string} value={props.userSelected?.firstName} />
                     <FormErrorMessage><Text message={errors( 'firstName' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
@@ -178,7 +187,15 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl required invalid={!!errors( 'birthday' )}>
                     <FormLabel for="birthday"><Text message="birthday"/></FormLabel>
-                    <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' ) as string} value={props.userSelected?.birthday}/>
+                    <DatePicker prevDate={new Date( '05/01/2022' )}
+                        endDate={new Date()}
+                        currentDate={new Date( props.userSelected?.birthday )}
+                        dateFormat={'DD/MM/YYYY'}
+                        headerMonthFormat={'MM'}
+                        enableSelectedDate={false}
+                        enableCalendarViewType={true}
+                        calendarResponse={( e: any ) => setFields( 'birthday', e.currentDate?.toISOString().split( 'T' )[0] )}
+                    ></DatePicker>
                     <FormErrorMessage><Text message={errors( 'birthday' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
@@ -240,7 +257,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <FormErrorMessage><Text message={errors( 'phone' )[0]} /></FormErrorMessage>
                 </FormControl>
             </div>
-            <Show when={!props.userSelected?.id}>
+            <Show keyed={true} when={!props.userSelected?.id}>
                 <div class="field_wrapper full">
                     <FormControl required invalid={!!errors( 'password' )}>
                         <FormLabel for="password"><Text message="password"/></FormLabel>
