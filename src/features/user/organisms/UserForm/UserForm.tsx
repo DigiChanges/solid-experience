@@ -189,7 +189,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <FormLabel for="birthday"><Text message="birthday"/></FormLabel>
                     <DatePicker prevDate={new Date( '05/01/2022' )}
                         endDate={new Date()}
-                        currentDate={new Date( props.userSelected?.birthday )}
+                        currentDate={new Date( props.userSelected ? props.userSelected.birthday : new Date() )}
                         dateFormat={'DD/MM/YYYY'}
                         headerMonthFormat={'MM'}
                         enableSelectedDate={false}
