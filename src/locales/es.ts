@@ -101,6 +101,30 @@ const app: I18nLocales = {
     a_your_address: 'Tú dirección',
     a_your_email: 'Tu correo electrónico',
     a_your_password: 'Tu contraseña',
+    a_day: 'Día',
+    a_month: 'Més',
+    a_year: 'Año',
+    a_sun: 'DOM',
+    a_mon: 'LUN',
+    a_tue: 'MAR',
+    a_wed: 'MIE',
+    a_thu: 'JUE',
+    a_fri: 'VIE',
+    a_sat: 'SAB',
+    a_jan: 'Ene',
+    a_feb: 'Feb',
+    a_mar: 'Mar',
+    a_apr: 'Abr',
+    a_may: 'May',
+    a_jun: 'Jun',
+    a_jul: 'Jul',
+    a_aug: 'Ago',
+    a_sep: 'Sep',
+    a_oct: 'Oct',
+    a_nov: 'Nov',
+    a_dec: 'Dec',
+
+
 };
 
 const auth: I18nLocales = {
