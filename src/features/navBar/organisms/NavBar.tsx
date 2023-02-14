@@ -44,28 +44,6 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     compact
                 />
 
-                <div class={styles.menu}>
-                    <Menu>
-                        <MenuTrigger>
-                            <span>{props.email ?? ''}</span>
-                            <Icon><IconChevronDown /></Icon>
-                        </MenuTrigger>
-                        <MenuContent>
-                            <MenuItem>
-                                Item 1
-                            </MenuItem>
-                            <MenuItem>
-                                Item 2
-                            </MenuItem>
-                            <MenuItem
-                                onSelect={logout( { user: user() } )}
-                            >
-                                <Text message="a_logout" />
-                            </MenuItem>
-                        </MenuContent>
-                    </Menu>
-                </div>
-
                 <IconButton
                     class={styles.icon_burger}
                     onClick={ props.onClick }

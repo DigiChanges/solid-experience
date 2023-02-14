@@ -28,7 +28,7 @@ export type UserPayload =
     birthday: string;
     documentType: string;
     documentNumber: string;
-    gender: 'male | fame | other';
+    gender: string;
     phone: string;
     country: string;
     address: string;
