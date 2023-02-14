@@ -1,9 +1,9 @@
-import { Component, createSignal, JSX } from 'solid-js';
+import { Component, JSX } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
-import Card from '../../shared/molecules/Card/Card';
-import ExpandButton from '../molecules/ExpandButton/ExpandButton';
+import { Icon, Menu, MenuContent, MenuItem, MenuTrigger } from '@hope-ui/solid';
 import styles from './SideBar.module.css';
+import { Text } from 'solid-i18n';
 import {
     Drawer,
     DrawerOverlay,
@@ -13,6 +13,8 @@ import {
     DrawerFooter,
     DrawerHeader
 } from '@hope-ui/solid';
+import { logout } from '../../navBar/organisms/handlers';
+import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
 
 interface SideBarProps {
     authUser: any;
@@ -25,8 +27,6 @@ interface SideBarProps {
 
 const SideBar: Component<SideBarProps> = ( props ) =>
 {
-    const [ getExpanded, setExpanded ] = createSignal( true );
-
     return (
         <>
 
@@ -42,6 +42,27 @@ const SideBar: Component<SideBarProps> = ( props ) =>
                     <DrawerCloseButton/>
                     <DrawerHeader />
                     <DrawerBody>
+                        <div class={styles.menu}>
+                            <Menu>
+                                <MenuTrigger>
+                                    <span>{props.authUser.user.email ?? ''}</span>
+                                    <Icon><IconChevronDown /></Icon>
+                                </MenuTrigger>
+                                <MenuContent>
+                                    <MenuItem>
+                                Item 1
+                                    </MenuItem>
+                                    <MenuItem>
+                                Item 2
+                                    </MenuItem>
+                                    <MenuItem
+                                        onSelect={logout( { user: props.authUser } )}
+                                    >
+                                        <Text message="a_logout" />
+                                    </MenuItem>
+                                </MenuContent>
+                            </Menu>
+                        </div>
                         <DashItems expanded={true} authUser={props.authUser}/>
                     </DrawerBody>
                     <DrawerFooter>
