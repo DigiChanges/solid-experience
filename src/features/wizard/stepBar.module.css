@@ -1,0 +1,7 @@
+.notGrow{
+    flex-grow: 0;
+}
+.grow{
+    flex-grow:1;
+}
+
