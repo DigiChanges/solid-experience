@@ -1,7 +1,7 @@
 import { Component, For } from 'solid-js';
 import styles from './stepBar.module.css';
 
-interface stepBarProps {
+interface wizardProps {
     stepsQuantity: number;
     lineStartColor?: string;
     lineEndColor?: string;
@@ -15,7 +15,7 @@ interface stepBarProps {
     effectTotalTime?: string;
     actualStep: number;
 }
-const StepBar: Component<stepBarProps> = ( props ) =>
+const Wizard: Component<wizardProps> = (props ) =>
 {
     const numbers = Array( props.stepsQuantity ).fill( 'element' );
 
@@ -37,4 +37,4 @@ const StepBar: Component<stepBarProps> = ( props ) =>
     );
 };
 
-export default StepBar;
+export default Wizard;
