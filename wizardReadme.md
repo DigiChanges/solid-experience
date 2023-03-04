@@ -25,19 +25,18 @@ This should be te output:
 
 ###Props
                     
-Name | Function | Required
-------------- | -------------
-stepsQuantity  | Defines total quantity of steps inside wizard coponent. | ✅ 
-actualStep | Defines actual Step. | ✅ 
-lineStartColor | Change line between numbers background color when actualStep value is smaller than it's index.  | ❌
-lineEndColor | Change line between numbers background color when actualStep value is bigger than it's index.  | ❌
-lineHeight  | Change the line between numbers container height. | ❌
-numbersHeight  | Change the numbers container height. | ❌
-numbersWidth  | Change the numbers container width. | ❌
-numbersContainerStartColor | Change the background numbers color when actualStep value is smaller than it's index. | ❌
-numbersContainerEndColor | Change the background numbers color when actualStep value is bigger than it's index.| ❌
-numberStartColor  | Change the numbers color when actualStep value is smaller than it's index. | ❌
-numberEndColor  | Change the numbers color when actualStep value is bigger than it's index. | ❌
-effectTotalTime | Controls the time of next/previous step animation. | ❌
+| Name                       | Function                                                                                       | Required |
+|----------------------------|------------------------------------------------------------------------------------------------|----------|
+| stepsQuantity              | Defines total quantity of steps inside wizard coponent.                                        | ✅        |
+| actualStep                 | Defines actual Step.                                                                           | ✅        |
+| lineStartColor             | Change line between numbers background color when actualStep value is smaller than it's index. | ❌        |
+| lineEndColor               | Change line between numbers background color when actualStep value is bigger than it's index.  | ❌        |
+| lineHeight                 | Change the line between numbers container height.                                              | ❌        |
+| numbersHeight              | Change the numbers container height.                                                           | ❌        |
+| numbersWidth               | Change the numbers container width.                                                            | ❌        |
+| numbersContainerStartColor | Change the background numbers color when actualStep value is smaller than it's index.          | ❌        |
+| numbersContainerEndColor   | Change the background numbers color when actualStep value is bigger than it's index.           | ❌        |
+| numberStartColor           | Change the numbers color when actualStep value is smaller than it's index.                     | ❌        |
+| numberEndColor             | Change the numbers color when actualStep value is bigger than it's index.                      | ❌        |
+| effectTotalTime            | Controls the time of next/previous step animation.                                             | ❌        |
 
-| 
