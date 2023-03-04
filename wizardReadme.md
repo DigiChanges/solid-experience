@@ -23,7 +23,7 @@ This should be te output:
 
 ![](https://media.discordapp.net/attachments/1077350703443492987/1081608684167241789/image.png?width=918&height=268)
 
-###Props
+### Props
                     
 | Name                       | Function                                                                                       | Required |
 |----------------------------|------------------------------------------------------------------------------------------------|----------|
