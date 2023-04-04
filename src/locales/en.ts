@@ -88,7 +88,7 @@ const auth: I18nLocales = {
     au_check_your_box: 'Check your box, we will send you an email with the account activation link.',
     au_check_your_email_change_password: 'Please check your email inbox, to proceed to change your password and then login.',
     au_check_your_email: 'Check your box, we will send you an email ',
-    au_email_sent_successfully: 'Message sent successfully',
+    au_email_sent_successfully: 'Message sent successfully. ',
     au_forgot_password: '¿Forgot your Password?',
     au_go_to_login: 'Go to Login',
     au_password_updated: 'Password Updated',

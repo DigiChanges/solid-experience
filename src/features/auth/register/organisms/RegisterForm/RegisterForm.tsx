@@ -3,8 +3,8 @@ import { validator } from '@felte/validator-yup';
 import {
     Button,
     FormControl,
-    FormErrorMessage,
-    FormLabel,
+    FormControlError,
+    FormControlLabel,
     Input,
     Radio,
     RadioGroup,
@@ -20,7 +20,7 @@ import {
     SelectTrigger,
     SelectValue,
     SimpleOption,
-    SimpleSelect } from '@hope-ui/solid';
+    SimpleSelect } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For } from 'solid-js';
@@ -66,18 +66,18 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <div class="section mid">
 
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'firstName' )} >
-                            <FormLabel for="firstName"><Text message="first_name"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'firstName' )} >
+                            <FormControlLabel for="firstName"><Text message="first_name"/></FormControlLabel>
                             <Input name="firstName" type="text" placeholder={t( 'a_enter_first_name' ) as string} />
-                            <FormErrorMessage><Text message={errors( 'firstName' )[0]} /></FormErrorMessage>
+                            <FormControlError><Text message={errors( 'firstName' )[0]} /></FormControlError>
                         </FormControl>
                     </div>
 
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'lastName' )} >
-                            <FormLabel for="lastName"><Text message="last_name"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'lastName' )} >
+                            <FormControlLabel for="lastName"><Text message="last_name"/></FormControlLabel>
                             <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' ) as string} />
-                            <FormErrorMessage><Text message={errors( 'lastName' )[0]} /></FormErrorMessage>
+                            <FormControlError><Text message={errors( 'lastName' )[0]} /></FormControlError>
                         </FormControl>
                     </div>
 
@@ -91,26 +91,26 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <div class="section mid">
 
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'email' )} >
-                            <FormLabel for="email"><Text message="email"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'email' )} >
+                            <FormControlLabel for="email"><Text message="email"/></FormControlLabel>
                             <Input name="email" type="text" placeholder={t( 'a_your_email' ) as string} />
-                            <FormErrorMessage><Text message={errors( 'email' )[0]} /></FormErrorMessage>
+                            <FormControlError><Text message={errors( 'email' )[0]} /></FormControlError>
                         </FormControl>
                     </div>
 
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'phone' )} >
-                            <FormLabel for="phone"><Text message="phone"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'phone' )} >
+                            <FormControlLabel for="phone"><Text message="phone"/></FormControlLabel>
                             <Input name="phone" type="text" placeholder={t( 'a_enter_phone' ) as string} />
-                            <FormErrorMessage><Text message={errors( 'phone' )[0]} /></FormErrorMessage>
+                            <FormControlError><Text message={errors( 'phone' )[0]} /></FormControlError>
                         </FormControl>
                     </div>
 
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'documentType' )}>
-                            <FormLabel><Text message="documentType"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'documentType' )}>
+                            <FormControlLabel><Text message="documentType"/></FormControlLabel>
                             <div class="field_justify_between">
-                                <FormControl required invalid={!!errors( 'documentType' )} class="small">
+                                <FormControl isRequired isInvalid={!!errors( 'documentType' )} class="small">
                                     <Select
                                         onChange={value => setFields( 'documentType', value )}
                                     >
@@ -147,14 +147,14 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                         </SelectContent>
                                     </Select>
                                     <div class="flex absolute">
-                                        <FormErrorMessage><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormErrorMessage>
+                                        <FormControlError><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormControlError>
                                     </div>
                                 </FormControl>
 
-                                <FormControl required invalid={!!errors( 'documentNumber' )} class="big">
+                                <FormControl isRequired isInvalid={!!errors( 'documentNumber' )} class="big">
                                     <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' ) as string} />
                                     <div class="flex absolute">
-                                        <FormErrorMessage><Text message={errors( 'documentNumber' )[0]} /></FormErrorMessage>
+                                        <FormControlError><Text message={errors( 'documentNumber' )[0]} /></FormControlError>
                                     </div>
                                 </FormControl>
                             </div>
@@ -162,8 +162,8 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </div>
 
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'gender' )} >
-                            <FormLabel for="gender"><Text message="gender"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'gender' )} >
+                            <FormControlLabel for="gender"><Text message="gender"/></FormControlLabel>
                             <RadioGroup defaultValue="other">
                                 <div class="field_justify_between">
                                     <Radio name="gender" id="gender-f" value="fame">F</Radio>
@@ -171,21 +171,21 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                     <Radio name="gender" id="gender-o" value="other" ><Text message="a_gender_other"/></Radio>
                                 </div>
                             </RadioGroup>
-                            <FormErrorMessage><Text message={errors( 'gender' )[0]} /></FormErrorMessage>
+                            <FormControlError><Text message={errors( 'gender' )[0]} /></FormControlError>
                         </FormControl>
                     </div>
 
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'birthday' )}>
-                            <FormLabel for="birthday"><Text message="birthday"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'birthday' )}>
+                            <FormControlLabel for="birthday"><Text message="birthday"/></FormControlLabel>
                             <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' ) as string} />
-                            <FormErrorMessage><Text message={errors( 'birthday' )[0]} /></FormErrorMessage>
+                            <FormControlError><Text message={errors( 'birthday' )[0]} /></FormControlError>
                         </FormControl>
                     </div>
 
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'country' )}>
-                            <FormLabel><Text message="country"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'country' )}>
+                            <FormControlLabel><Text message="country"/></FormControlLabel>
                             <SimpleSelect
                                 placeholder={<Text message="a_select_country"/> as string}
                                 onChange={value => setFields( 'country', value )}
@@ -195,14 +195,14 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                     {item => <SimpleOption value={item.value}>{item.label}</SimpleOption>}
                                 </For>
                             </SimpleSelect>
-                            <FormErrorMessage>{errors( 'country' )[0]}</FormErrorMessage>
+                            <FormControlError>{errors( 'country' )[0]}</FormControlError>
                         </FormControl>
                     </div>
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'address' )} >
-                            <FormLabel for="address"><Text message="address"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'address' )} >
+                            <FormControlLabel for="address"><Text message="address"/></FormControlLabel>
                             <Input name="address" type="text" placeholder={t( 'a_your_address' ) as string} />
-                            <FormErrorMessage><Text message={errors( 'address' )[0]} /></FormErrorMessage>
+                            <FormControlError><Text message={errors( 'address' )[0]} /></FormControlError>
                         </FormControl>
                     </div>
 
@@ -215,18 +215,18 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
                 <div class="section mid">
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'password' )}>
-                            <FormLabel for="password"><Text message="password"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'password' )}>
+                            <FormControlLabel for="password"><Text message="password"/></FormControlLabel>
                             <Input name="password" type="password" placeholder={t( 'a_your_password' ) as string} />
-                            <FormErrorMessage><Text message={errors( 'password' )[0]} /></FormErrorMessage>
+                            <FormControlError><Text message={errors( 'password' )[0]} /></FormControlError>
                         </FormControl>
                     </div>
 
                     <div class="field_wrapper full">
-                        <FormControl required invalid={!!errors( 'passwordConfirmation' )}>
-                            <FormLabel for="passwordConfirmation"><Text message="confirm_password"/></FormLabel>
+                        <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
+                            <FormControlLabel for="passwordConfirmation"><Text message="confirm_password"/></FormControlLabel>
                             <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string}/>
-                            <FormErrorMessage><Text message={errors( 'passwordConfirmation' )[0]} /></FormErrorMessage>
+                            <FormControlError><Text message={errors( 'passwordConfirmation' )[0]} /></FormControlError>
                         </FormControl>
                     </div>
                 </div>

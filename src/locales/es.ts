@@ -133,7 +133,7 @@ const auth: I18nLocales = {
     au_check_your_box: 'Revisa tu casilla, te enviamos un correo con el link de activación de la cuenta.',
     au_check_your_email_change_password: 'Por favor revise en su correo electrónico la bandeja de entrada, para proceder al cambio de contraseña y luego iniciar sesión.',
     au_check_your_email: 'Revisa tu casilla, te enviamos un correo.',
-    au_email_sent_successfully: '¡Email enviado con éxito!',
+    au_email_sent_successfully: '¡Email enviado con éxito! ',
     au_forgot_password: '¿Olvidaste tu contraseña?',
     au_go_to_login: 'Ir a inicio de sesión',
     au_password_updated: 'Contraseña actualizada',

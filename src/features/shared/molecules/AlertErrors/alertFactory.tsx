@@ -1,7 +1,8 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@hope-ui/solid';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, JSX, Show } from 'solid-js';
 import { IErrorResponse } from '../../interfaces/response/IErrorResponse';
+import { Alert } from '@kobalte/core';
+import styles from './AlertErrors.module.css';
 
 type AlertMetadataErrorsProps = {
     errorData: any;
@@ -10,18 +11,18 @@ type AlertMetadataErrorsProps = {
 const AlertNotFoundEntityError: Component<AlertMetadataErrorsProps> = ( props ) =>
 {
     return (
-        <Alert status="danger" variant="left-accent">
-            <AlertIcon mr="$2_5" />
+        <Alert.Root status="danger" variant="left-accent" class={styles.alert}>
+            {/* <AlertIcon mr="$2_5" /> */}
             <div>
-                <AlertTitle mr="$2_5"><Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err' }/></AlertTitle>
-                <AlertDescription>
-                    <Text
-                        message={ props.errorData?.errorCode }
-                        entity={ props.errorData?.metadata?.entity }
-                    />
-                </AlertDescription>
+                {/* <AlertTitle mr="$2_5"> */}<Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err' }/>{/* </AlertTitle> */}
+                {/* <AlertDescription> */}
+                <Text
+                    message={ props.errorData?.errorCode }
+                    entity={ props.errorData?.metadata?.entity }
+                />
+                {/* </AlertDescription> */}
             </div>
-        </Alert>
+        </Alert.Root>
     );
 };
 
@@ -30,19 +31,19 @@ const AlertEntityWithMetadataFieldAndValueError: Component<AlertMetadataErrorsPr
     const { t } = useI18n();
 
     return (
-        <Alert status="danger" variant="left-accent">
-            <AlertIcon mr="$2_5" />
+        <Alert.Root status="danger" variant="left-accent" class={styles.alert}>
+            {/* <AlertIcon mr="$2_5" /> */}
             <div>
-                <AlertTitle mr="$2_5"><Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err'}/></AlertTitle>
-                <AlertDescription>
-                    <Text
-                        message={ props.errorData?.errorCode }
-                        field={ t( props.errorData?.metadata?.field ) as string }
-                        value={ props.errorData?.metadata?.value }
-                    />
-                </AlertDescription>
+                {/* <AlertTitle mr="$2_5"> */}<Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err'}/>{/* </AlertTitle> */}
+                {/* <AlertDescription> */}
+                <Text
+                    message={ props.errorData?.errorCode }
+                    field={ t( props.errorData?.metadata?.field ) as string }
+                    value={ props.errorData?.metadata?.value }
+                />
+                {/* </AlertDescription> */}
             </div>
-        </Alert>
+        </Alert.Root>
     );
 };
 
@@ -51,18 +52,18 @@ const AlertUniqueAttributeError: Component<AlertMetadataErrorsProps> = ( props )
     const { t } = useI18n();
 
     return (
-        <Alert status="danger" variant="left-accent">
-            <AlertIcon mr="$2_5" />
+        <Alert.Root status="danger" variant="left-accent" class={styles.alert}>
+            {/* <AlertIcon mr="$2_5" /> */}
             <div>
-                <AlertTitle mr="$2_5"><Text message={props.errorData?.metadata?.replace?.name ? props.errorData?.metadata?.replace?.name : 'err' }/></AlertTitle>
-                <AlertDescription>
-                    <Text
-                        message={ props.errorData?.errorCode }
-                        field={ t( props.errorData?.metadata?.replace?.name ) as string }
-                    />
-                </AlertDescription>
+                {/* <AlertTitle mr="$2_5"> */}<Text message={props.errorData?.metadata?.replace?.name ? props.errorData?.metadata?.replace?.name : 'err' }/>{/* </AlertTitle> */}
+                {/* <AlertDescription> */}
+                <Text
+                    message={ props.errorData?.errorCode }
+                    field={ t( props.errorData?.metadata?.replace?.name ) as string }
+                />
+                {/* </AlertDescription> */}
             </div>
-        </Alert>
+        </Alert.Root>
     );
 };
 
@@ -71,10 +72,10 @@ const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
     return (
         <For each={props.errorData?.errors}>
             {( error: IErrorResponse ) => (
-                <Alert status="danger" variant="left-accent">
-                    <AlertIcon mr="$2_5" />
+                <Alert.Root status="danger" variant="left-accent" class={styles.alert}>
+                    {/* <AlertIcon mr="$2_5" /> */}
                     <div>
-                        <AlertTitle mr="$2_5"><Text message={error.property}/></AlertTitle>
+                        {/* <AlertTitle mr="$2_5"> */}<Text message={error.property}/>{/* </AlertTitle> */}
 
                         <Show when={error.constraints}>
                             <For each={Object.keys( error.constraints )}>
@@ -84,7 +85,7 @@ const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
                             </For>
                         </Show>
                     </div>
-                </Alert>
+                </Alert.Root>
             )}
         </For>
     );
@@ -107,16 +108,16 @@ export const alertFactory = ( data: any ) =>
     return <>{typeof errors[errorKey] === 'function' ?
         errors[errorKey]()
         :
-        <Alert status="danger" variant="left-accent">
-            <AlertIcon mr="$2_5" />
+        <Alert.Root status="danger" variant="left-accent" class={styles.alert}>
+            {/* <AlertIcon mr="$2_5" /> */}
             <div>
-                <AlertTitle mr="$2_5"><Text message="err"/></AlertTitle>
-                <AlertDescription>
-                    <Text
-                        message={ errorKey as string || 'err_unexpected' }
-                    />
-                </AlertDescription>
+                {/* <AlertTitle mr="$2_5"> */}<Text message="err"/>{/* </AlertTitle> */}
+                {/* <AlertDescription> */}
+                <Text
+                    message={ errorKey as string || 'err_unexpected' }
+                />
+                {/* </AlertDescription> */}
             </div>
-        </Alert>}</>
+        </Alert.Root>}</>
     ;
 };

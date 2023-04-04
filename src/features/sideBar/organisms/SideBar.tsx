@@ -1,74 +1,56 @@
 import { Component, JSX } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
-import { Icon, Menu, MenuContent, MenuItem, MenuTrigger } from '@hope-ui/solid';
 import styles from './SideBar.module.css';
 import { Text } from 'solid-i18n';
-import {
-    Drawer,
-    DrawerOverlay,
-    DrawerBody,
-    DrawerCloseButton,
-    DrawerContent,
-    DrawerFooter,
-    DrawerHeader
-} from '@hope-ui/solid';
+import { Drawer } from '@hope-ui/core';
 import { logout } from '../../navBar/organisms/handlers';
 import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
+import { DropdownMenu } from '@kobalte/core';
 
 interface SideBarProps {
     authUser: any;
     showInMobile?: boolean;
     children?: JSX.Element;
-    onClose: () => void;
+    close: () => void;
     isOpen: () => boolean;
-    onOpen: () => void;
+    open: () => void;
 }
 
 const SideBar: Component<SideBarProps> = ( props ) =>
 {
     return (
         <>
-
-
             <Drawer
-                opened={ props.isOpen() }
+                isOpen={ props.isOpen() }
                 placement={'left'}
-                onClose={ props.onClose }
+                onClose={ props.close }
             >
-
-                <DrawerOverlay />
-                <DrawerContent class={styles.drawer_content}>
-                    <DrawerCloseButton/>
-                    <DrawerHeader />
-                    <DrawerBody>
+                <Drawer.Overlay />
+                <Drawer.Content class={styles.drawer_content}>
+                    <Drawer.CloseButton/>
+                    <Drawer.Description>
                         <div class={styles.menu}>
-                            <Menu>
-                                <MenuTrigger>
+                            <DropdownMenu.Root>
+                                <DropdownMenu.Trigger class="dropdown-menu__trigger">
                                     <span>{props.authUser.user.email ?? ''}</span>
-                                    <Icon><IconChevronDown /></Icon>
-                                </MenuTrigger>
-                                <MenuContent>
-                                    <MenuItem>
-                                Item 1
-                                    </MenuItem>
-                                    <MenuItem>
-                                Item 2
-                                    </MenuItem>
-                                    <MenuItem
-                                        onSelect={logout( { user: props.authUser } )}
-                                    >
-                                        <Text message="a_logout" />
-                                    </MenuItem>
-                                </MenuContent>
-                            </Menu>
+                                    <DropdownMenu.Icon class="dropdown-menu__trigger-icon"><IconChevronDown /></DropdownMenu.Icon>
+                                </DropdownMenu.Trigger>
+
+                                    <DropdownMenu.Content class="dropdown-menu__content">
+                                        <DropdownMenu.Item class="dropdown-menu__item">Item 1</DropdownMenu.Item>
+                                        <DropdownMenu.Item class="dropdown-menu__item">Item 2</DropdownMenu.Item>
+                                        <DropdownMenu.Item class="dropdown-menu__item" onSelect={logout( { user: props.authUser } )}>
+                                            <Text message="a_logout" />
+                                        </DropdownMenu.Item>
+                                    </DropdownMenu.Content>
+
+                            </DropdownMenu.Root>
                         </div>
                         <DashItems expanded={true} authUser={props.authUser}/>
-                    </DrawerBody>
-                    <DrawerFooter>
                         <LogoutSideBarItem user={props.authUser} getExpanded={true} sectionSelected=""/>
-                    </DrawerFooter>
-                </DrawerContent>
+                    </Drawer.Description>
+                </Drawer.Content>
             </Drawer>
         </>
     );

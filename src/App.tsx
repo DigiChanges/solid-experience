@@ -20,12 +20,13 @@ function App ()
     const { loading } = createRefreshToken();
     const Routes = useRoutes( dashRoutes );
 
+
     return (
         <I18nProvider i18n={i18n}>
             {/* <ErrorBoundary fallback={<CustomError/>}> */}
-            <Portal>
+            {/* <Portal>
                 <div class="containerNotification top-0 right-0 z-50 xs:max-w-xs md:max-w-xl pr-0  py-1" />
-            </Portal>
+            </Portal> */}
             <Show keyed={true} when={!loading()}
                 fallback={(
                     <GeneralLoader />

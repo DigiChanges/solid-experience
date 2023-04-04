@@ -1,4 +1,4 @@
-import { notificationService } from '@hope-ui/solid';
+import { notificationService } from '../../../shared/molecules/Toasts/Toasts';
 import { useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';

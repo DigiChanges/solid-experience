@@ -1,4 +1,4 @@
-import { Icon } from '@hope-ui/solid';
+import { Icon } from '@hope-ui/core';
 import { NavLink } from 'solid-app-router';
 import { Component, JSX, Show } from 'solid-js';
 import IconChevronDown from '../../../../atoms/Icons/Stroke/IconChevronDown';

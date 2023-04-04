@@ -1,4 +1,4 @@
-import { notificationService } from '@hope-ui/solid';
+import { notificationService } from '../../../shared/molecules/Toasts/Toasts';
 import { Link, useNavigate } from 'solid-app-router';
 import { Text as TextI18, useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
@@ -35,7 +35,6 @@ const LoginTemplate: Component = () =>
         const errorMessage = setError( error );
         setIsLoading( false );
         notificationService.show( {
-            status: 'danger',
             title: t( 'err_login' ) as string,
             description: t( errorMessage ) as string,
         } );
