@@ -1,11 +1,11 @@
 
 .section_title_opaque {
-    color: var(--hope-colors-neutral10);
+    color: var(--hope-colors-neutral-500);
     @apply mb-2 text-left text-xs uppercase font-extrabold w-full;
 }
 
 .section_title_opaque.border_bottom {
-    border-bottom: 2px solid var(--hope-colors-neutral4);
+    border-bottom: 2px solid var(--hope-colors-neutral-700);
 }
 
 .section_title {

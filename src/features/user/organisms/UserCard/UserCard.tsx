@@ -1,4 +1,4 @@
-import { IconButton } from '@hope-ui/solid';
+import { IconButton } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Component } from 'solid-js';
 import IconLockOpen from '../../../../atoms/Icons/Stroke/IconLockOpen';
@@ -34,11 +34,11 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                         <Link href={`/users/${props.user.id}/update`}>
                             <IconButton
                                 aria-label="Edit"
-                                variant="ghost"
-                                icon={<IconPencilAlt />}
-                                compact
+                                variant="plain"
                                 colorScheme="success"
-                            />
+                            >
+                                <IconPencilAlt />
+                            </IconButton>
                         </Link>
                     </div>
                 </div>
@@ -48,10 +48,9 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                     >
                         <IconButton
                             aria-label="Change Password"
-                            variant="ghost"
-                            icon={<IconLockOpen />}
-                            compact
+                            variant="plain"
                             colorScheme="warning"
+                            children={<IconLockOpen />}
                         />
                     </Link>
                 </div>
@@ -59,11 +58,10 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                     <IconButton
                         class="has-permission"
                         aria-label="Delete User"
-                        variant="ghost"
-                        icon={<IconTrash />}
-                        compact
+                        variant="plain"
                         colorScheme="danger"
                         onClick={props.onDelete}
+                        children={<IconTrash />}
                     />
                 </div>
             </div>

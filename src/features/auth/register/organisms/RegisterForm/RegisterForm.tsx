@@ -1,33 +1,16 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
-import {
-    Button,
-    FormControl,
-    FormControlError,
-    FormControlLabel,
-    Input,
-    Radio,
-    RadioGroup,
-    Select,
-    SelectContent,
-    SelectIcon,
-    SelectListbox,
-    SelectOptGroup,
-    SelectOption,
-    SelectOptionIndicator,
-    SelectOptionText,
-    SelectPlaceholder,
-    SelectTrigger,
-    SelectValue,
-    SimpleOption,
-    SimpleSelect } from '@hope-ui/core';
+import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, For } from 'solid-js';
+import { Component, For, Show } from 'solid-js';
 import { InferType } from 'yup';
-import { country, userDocumentTypeOptions } from '../../../../../entities';
+import { country, gender, userDocumentTypeOptions } from '../../../../../entities';
 import RegisterSchema from '../../../validations/schemas/RegisterSchema.';
 import { RegisterApi, RegisterResponse } from '../../interfaces/createAccount';
+import { Select, RadioGroup } from '@kobalte/core';
+import styles from './RegisterForm.module.css';
+
 interface UserUpdateTemplateProps
 {
     onError: ( error: unknown ) => void;
@@ -45,10 +28,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
         form,
         isValid,
         setFields,
-        setTouched,
-        // @ts-ignore
     } = createForm<InferType<typeof RegisterSchema>>( {
-        initialValues: { },
         extend: validator( { schema: RegisterSchema } ),
         onSuccess: props.onSuccess,
         onError: props.onError,
@@ -64,12 +44,15 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 </div>
 
                 <div class="section mid">
-
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'firstName' )} >
                             <FormControlLabel for="firstName"><Text message="first_name"/></FormControlLabel>
                             <Input name="firstName" type="text" placeholder={t( 'a_enter_first_name' ) as string} />
-                            <FormControlError><Text message={errors( 'firstName' )[0]} /></FormControlError>
+                            <Show when={errors( 'firstName' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'firstName' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
 
@@ -77,10 +60,13 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormControl isRequired isInvalid={!!errors( 'lastName' )} >
                             <FormControlLabel for="lastName"><Text message="last_name"/></FormControlLabel>
                             <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' ) as string} />
-                            <FormControlError><Text message={errors( 'lastName' )[0]} /></FormControlError>
+                            <Show when={errors( 'lastName' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'lastName' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
-
                 </div>
 
                 <div class="section mid">
@@ -89,12 +75,15 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 </div>
 
                 <div class="section mid">
-
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'email' )} >
                             <FormControlLabel for="email"><Text message="email"/></FormControlLabel>
                             <Input name="email" type="text" placeholder={t( 'a_your_email' ) as string} />
-                            <FormControlError><Text message={errors( 'email' )[0]} /></FormControlError>
+                            <Show when={errors( 'email' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'email' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
 
@@ -102,76 +91,95 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormControl isRequired isInvalid={!!errors( 'phone' )} >
                             <FormControlLabel for="phone"><Text message="phone"/></FormControlLabel>
                             <Input name="phone" type="text" placeholder={t( 'a_enter_phone' ) as string} />
-                            <FormControlError><Text message={errors( 'phone' )[0]} /></FormControlError>
+                            <Show when={errors( 'phone' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'phone' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
 
                     <div class="field_wrapper full">
-                        <FormControl isRequired isInvalid={!!errors( 'documentType' )}>
-                            <FormControlLabel><Text message="documentType"/></FormControlLabel>
-                            <div class="field_justify_between">
-                                <FormControl isRequired isInvalid={!!errors( 'documentType' )} class="small">
-                                    <Select
-                                        onChange={value => setFields( 'documentType', value )}
-                                    >
-                                        <SelectTrigger
-                                            onBlur={() => setTouched( 'documentType', true )}
-                                        >
-                                            <SelectPlaceholder>
-                                                <Text message="type_id"/>
-                                            </SelectPlaceholder>
-                                            <SelectValue />
-                                            <SelectIcon />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectListbox>
-                                                <SelectOptGroup>
-                                                    <For each={userDocumentTypeOptions}>
-                                                        {documentType => (
-                                                            <SelectOption
-                                                                value={documentType.value}
-                                                                rounded="$none"
-                                                                fontSize="$sm"
-                                                                _active={{ bg: '$warning3', color: '$warning11' }}
-                                                                _selected={{ bg: '$warning9', color: 'white' }}
-                                                            >
-                                                                <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>
-                                                                    {documentType.label}
-                                                                </SelectOptionText>
-                                                                <SelectOptionIndicator/>
-                                                            </SelectOption>
-                                                        )}
-                                                    </For>
-                                                </SelectOptGroup>
-                                            </SelectListbox>
-                                        </SelectContent>
-                                    </Select>
+                        <div class="field_justify_between">
+                            <FormControl isRequired isInvalid={!!errors( 'documentType' )}>
+                                <FormControlLabel for="documentType"><Text message="document_type"/></FormControlLabel>
+                                <Select.Root
+                                    name="documentType"
+                                    options={userDocumentTypeOptions}
+                                    placeholder={<Text message="type_id"/> as string}
+                                    optionValue="value"
+                                    optionTextValue="label"
+                                    onValueChange={( value ) => setFields( 'documentType', value, true )}
+                                    valueComponent={props => props.item.rawValue.label}
+                                    itemComponent={props => (
+                                        <Select.Item item={props.item} class={styles.select__item}>
+                                            <Select.ItemLabel>{props.item.rawValue.label}</Select.ItemLabel>
+                                            <Select.ItemIndicator class={styles.select__item__indicator}>
+                                                    x
+                                            </Select.ItemIndicator>
+                                        </Select.Item>
+                                    )}
+                                >
+                                    <Select.Trigger class={styles.select__trigger}>
+                                        <Select.Value class={styles.select__value} />
+                                    </Select.Trigger>
+                                    <Select.Portal>
+                                        <Select.Content class={styles.select__content}>
+                                            <Select.Listbox class={styles.select__listbox} />
+                                        </Select.Content>
+                                    </Select.Portal>
+                                </Select.Root>
+                                <Show when={errors( 'documentType' )} keyed>
                                     <div class="flex absolute">
-                                        <FormControlError><Text message={errors( 'documentType' ) && errors( 'documentType' )[0] || 'loading'} /></FormControlError>
+                                        <FormControlError>
+                                            <Text message={errors( 'documentType' )![0] || 'Loading...'} />
+                                        </FormControlError>
                                     </div>
-                                </FormControl>
+                                </Show>
+                            </FormControl>
 
-                                <FormControl isRequired isInvalid={!!errors( 'documentNumber' )} class="big">
-                                    <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' ) as string} />
+                            <FormControl isRequired isInvalid={!!errors( 'documentNumber' )} class="big">
+                                <FormControlLabel for="documentNumber"><Text message="document_number"/></FormControlLabel>
+                                <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' ) as string} />
+                                <Show when={errors( 'documentNumber' )} keyed>
                                     <div class="flex absolute">
-                                        <FormControlError><Text message={errors( 'documentNumber' )[0]} /></FormControlError>
+                                        <FormControlError>
+                                            <Text message={errors( 'documentNumber' )![0]} />
+                                        </FormControlError>
                                     </div>
-                                </FormControl>
-                            </div>
-                        </FormControl>
+                                </Show>
+                            </FormControl>
+                        </div>
                     </div>
 
                     <div class="field_wrapper full">
-                        <FormControl isRequired isInvalid={!!errors( 'gender' )} >
+                        <FormControl isRequired isInvalid={!!errors( 'gender' )}>
                             <FormControlLabel for="gender"><Text message="gender"/></FormControlLabel>
-                            <RadioGroup defaultValue="other">
-                                <div class="field_justify_between">
-                                    <Radio name="gender" id="gender-f" value="fame">F</Radio>
-                                    <Radio name="gender" id="gender-m" value="male">M</Radio>
-                                    <Radio name="gender" id="gender-o" value="other" ><Text message="a_gender_other"/></Radio>
+                            <RadioGroup.Root
+                                class={styles.radio__group}
+                                defaultValue="other"
+                                name="gender"
+                                onValueChange={( value ) => setFields( 'gender', value, true )}
+                            >
+                                <div class={styles.radio__group__items}>
+                                    <For each={gender}>
+                                        {gender => (
+                                            <RadioGroup.Item value={gender.value} class={styles.radio} onchange={() => setFields( 'gender', gender.value, true )}>
+                                                <RadioGroup.ItemInput class={styles.radio__input}/>
+                                                <RadioGroup.ItemControl class={styles.radio__control}>
+                                                    <RadioGroup.ItemIndicator class={styles.radio__indicator}/>
+                                                </RadioGroup.ItemControl>
+                                                <RadioGroup.ItemLabel><Text message={gender.label}/></RadioGroup.ItemLabel>
+                                            </RadioGroup.Item>
+                                        )}
+                                    </For>
                                 </div>
-                            </RadioGroup>
-                            <FormControlError><Text message={errors( 'gender' )[0]} /></FormControlError>
+                            </RadioGroup.Root>
+                            <Show when={errors( 'gender' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'gender' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
 
@@ -179,33 +187,61 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormControl isRequired isInvalid={!!errors( 'birthday' )}>
                             <FormControlLabel for="birthday"><Text message="birthday"/></FormControlLabel>
                             <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' ) as string} />
-                            <FormControlError><Text message={errors( 'birthday' )[0]} /></FormControlError>
+                            <Show when={errors( 'birthday' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'birthday' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
 
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'country' )}>
-                            <FormControlLabel><Text message="country"/></FormControlLabel>
-                            <SimpleSelect
+                            <FormControlLabel for="country"><Text message="country"/></FormControlLabel>
+                            <Select.Root
+                                name="country"
+                                options={country}
                                 placeholder={<Text message="a_select_country"/> as string}
-                                onChange={value => setFields( 'country', value )}
+                                onValueChange={( value ) => setFields( 'country', value, true )}
+                                optionValue="value"
+                                optionTextValue="label"
+                                valueComponent={props => props.item.rawValue.label}
+                                itemComponent={props => (
+                                    <Select.Item item={props.item} class={styles.select__item} onselect={() => setFields( 'country', props.item.rawValue.value, true )}>
+                                        <Select.ItemLabel>{props.item.rawValue.label}</Select.ItemLabel>
+                                        <Select.ItemIndicator class={styles.select__item__indicator}>
+                                            x
+                                        </Select.ItemIndicator>
+                                    </Select.Item>
+                                )}
                             >
-                                <For each={ country }>
-                                    {/* @ts-ignore */}
-                                    {item => <SimpleOption value={item.value}>{item.label}</SimpleOption>}
-                                </For>
-                            </SimpleSelect>
-                            <FormControlError>{errors( 'country' )[0]}</FormControlError>
+                                <Select.Trigger class={styles.select__trigger}>
+                                    <Select.Value class={styles.select__value} />
+                                </Select.Trigger>
+                                <Select.Portal>
+                                    <Select.Content class={styles.select__content}>
+                                        <Select.Listbox class={styles.select__listbox} />
+                                    </Select.Content>
+                                </Select.Portal>
+                            </Select.Root>
+                            <Show when={errors( 'country' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'country' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'address' )} >
                             <FormControlLabel for="address"><Text message="address"/></FormControlLabel>
                             <Input name="address" type="text" placeholder={t( 'a_your_address' ) as string} />
-                            <FormControlError><Text message={errors( 'address' )[0]} /></FormControlError>
+                            <Show when={errors( 'address' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'address' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
-
                 </div>
 
                 <div class="section mid">
@@ -218,7 +254,11 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormControl isRequired isInvalid={!!errors( 'password' )}>
                             <FormControlLabel for="password"><Text message="password"/></FormControlLabel>
                             <Input name="password" type="password" placeholder={t( 'a_your_password' ) as string} />
-                            <FormControlError><Text message={errors( 'password' )[0]} /></FormControlError>
+                            <Show when={errors( 'password' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'password' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
 
@@ -226,11 +266,14 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
                             <FormControlLabel for="passwordConfirmation"><Text message="confirm_password"/></FormControlLabel>
                             <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string}/>
-                            <FormControlError><Text message={errors( 'passwordConfirmation' )[0]} /></FormControlError>
+                            <Show when={errors( 'passwordConfirmation' )} keyed>
+                                <FormControlError>
+                                    <Text message={errors( 'passwordConfirmation' )![0]} />
+                                </FormControlError>
+                            </Show>
                         </FormControl>
                     </div>
                 </div>
-
             </div>
 
             <div class="update_save_buttons_container">

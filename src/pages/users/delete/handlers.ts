@@ -1,4 +1,4 @@
-import { notificationService } from '@hope-ui/solid';
+import { notificationService } from '../../../features/shared/molecules/Toasts/Toasts';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import { LoginApi } from '../../../features/auth/interfaces/login';
 
@@ -17,7 +17,7 @@ export const removeUserAction = ( { userRepository, user, setError, refetch, t }
         void await userRepository.removeUser( { id, user } );
 
         notificationService.show( {
-            status: 'success',
+            /* status: 'success', */
             title: t( 'u_removed' ) as string,
         } );
 
@@ -27,7 +27,7 @@ export const removeUserAction = ( { userRepository, user, setError, refetch, t }
     {
         const errorMessage = setError( error );
         notificationService.show( {
-            status: 'danger',
+            /* status: 'danger', */
             title: t( 'err_remove_user' ) as string,
             description: t( errorMessage ) as string,
         } );

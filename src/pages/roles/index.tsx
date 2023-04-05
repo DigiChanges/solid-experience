@@ -1,4 +1,4 @@
-import { notificationService } from '@hope-ui/solid';
+import {notificationService} from '../../features/shared/molecules/Toasts/Toasts';
 import { useI18n } from 'solid-i18n';
 import { Component, createEffect, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
@@ -43,7 +43,7 @@ const IndexPage: Component = () =>
             void await roleRepository.removeRole( { id, user: user() } );
 
             notificationService.show( {
-                status: 'success',
+                /* status: 'success', */
                 title: t( 'r_removed' ) as string,
             } );
 
@@ -58,7 +58,7 @@ const IndexPage: Component = () =>
         {
             const errorMessage = setError( error );
             notificationService.show( {
-                status: 'danger',
+                /* status: 'danger', */
                 title: t( 'err_remove_role' ) as string,
                 description: t( errorMessage ) as string,
             } );

@@ -14,21 +14,24 @@ const LanguageMenu: Component = () =>
         <Flex>
             <Center>
                 <DropdownMenu.Root>
-                    <DropdownMenu.Trigger class={styles.language_menu}>
+                    <DropdownMenu.Trigger class={styles.dropdown__menu__trigger}>
                         <IconButton
-                            class={styles.icon}
+                            class={styles.dropdown__menu__trigger__icon}
                             aria-label="Change language"
                             children={<IconLanguage />}
+                            style={{border: 'none'}}
                         />
                     </DropdownMenu.Trigger>
                     <DropdownMenu.Portal>
-                        <DropdownMenu.Content>
+                        <DropdownMenu.Content class={styles.dropdown__menu__content}>
                             <DropdownMenu.Item
+                                class={styles.dropdown__menu__item}
                                 onSelect={changeLanguage( { language: 'en', setLanguage } )}
                             >
                                 <Text message="a_en" />
                             </DropdownMenu.Item>
                             <DropdownMenu.Item
+                                class={styles.dropdown__menu__item}
                                 onSelect={changeLanguage( { language: 'es', setLanguage } )}
                             >
                                 <Text message="a_es" />

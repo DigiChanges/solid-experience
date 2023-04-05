@@ -35,12 +35,12 @@
 }
 
 .nav .menu > button {
-    color: var(--hope-colors-neutral12);
-    background-color: var(--hope-colors-neutral1);
+    color: var(--hope-colors-neutral-300);
+    background-color: var(--hope-colors-neutral-900);
 }
 
 .icon_burger {
-    color: var(--hope-colors-neutral12);
+    color: var(--hope-colors-neutral-300);
     outline: none;
 }
 .icon_burger:focus{

@@ -1,7 +1,7 @@
 
 .register {
     padding: 30px 20px;
-    background-color: var(--hope-colors-primary5);
+    background-color: var(--hope-colors-primary-500);
     border-radius: var(--hope-radii-lg);
 }
 .container{

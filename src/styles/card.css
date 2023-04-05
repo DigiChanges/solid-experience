@@ -7,7 +7,7 @@
 }
 
 .card_media_object_title{
-    color: var(--hope-colors-neutral12);
+    color: var(--hope-colors-neutral-300);
     @apply hover:scale-150;
 }
 
@@ -15,7 +15,7 @@
     @apply mr-1 focus:outline-none w-6;
 }
 .card_media_object_link:hover {
-    color: var(--hope-colors-accent10);
+    color: var(--hope-colors-info-200);
 }
 
 .card_third {

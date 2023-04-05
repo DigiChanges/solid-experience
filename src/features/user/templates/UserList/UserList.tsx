@@ -1,4 +1,4 @@
-import { Button, createDisclosure, Icon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@hope-ui/solid';
+import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
@@ -26,39 +26,39 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
 
-    const { isOpen, onOpen, onClose } = createDisclosure();
+    const { isOpen, open, close } = createDisclosure();
     let deleteData: UserApi | undefined;
 
     const handleModalClick = () => () =>
     {
         props.removeAction( deleteData?.id );
-        onClose();
+        close();
     };
 
     const handleDelete = ( role: UserApi ) => () =>
     {
         deleteData = role;
-        onOpen();
+        open();
     };
 
     const { filterOptions } = useTransformTranslatedOptions( filterBy, ( item ) => t( item.label ) );
 
     return (
         <section class="section_container">
-            <Modal opened={isOpen()} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalCloseButton />
-                    <ModalHeader><Text message="a_delete_data"/></ModalHeader>
-                    <ModalBody>
-                        <p><Text message="u_remove"/></p>
-                        <h1>{deleteData?.firstName} {deleteData?.lastName}</h1>
-                    </ModalBody>
-                    <ModalFooter class="modal_footer">
-                        <Button onClick={onClose}><Text message="a_cancel"/></Button>
+            <Modal isOpen={isOpen()} onClose={close}>
+                <Modal.Overlay />
+                <Modal.Content>
+                    <Modal.CloseButton />
+                    <HStack>
+                        <Modal.Heading><Text message="a_delete_data"/></Modal.Heading>
+                    </HStack>
+                    <p><Text message="u_remove"/></p>
+                    <h1>{deleteData?.firstName} {deleteData?.lastName}</h1>
+                    <HStack class="modal_footer">
+                        <Button onClick={close}><Text message="a_cancel"/></Button>
                         <Button colorScheme="danger" onClick={handleModalClick()}><Text message="a_delete"/></Button>
-                    </ModalFooter>
-                </ModalContent>
+                    </HStack>
+                </Modal.Content>
             </Modal>
 
             <header class="section_header_container" data-parent={permissions.USERS.SAVE}>
@@ -88,14 +88,14 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             </div>
             <div class="section_bottom_buttons_container">
                 <Show when={!!props.nextPage}>
-                    <Button onClick={props.viewMoreAction()} variant="outline">
+                    <Button onClick={props.viewMoreAction()} variant="outlined">
                         <Show when={!props.loading} fallback={() => <span><Text message="a_loading" />...</span>}>
                             <Text message="a_view_more"/>
                         </Show>
                     </Button>
                 </Show>
 
-                <ButtonScrollUp />
+                <ButtonScrollUp dependencies={props.userList}/>
             </div>
         </section>
     );

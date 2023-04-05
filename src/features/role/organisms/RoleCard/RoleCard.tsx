@@ -1,4 +1,4 @@
-import { IconButton } from '@hope-ui/solid';
+import { IconButton } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Component } from 'solid-js';
 import IconPencilAlt from '../../../../atoms/Icons/Stroke/IconPencilAlt';
@@ -36,9 +36,8 @@ const RoleCard: Component<RoleCardProps> = ( props ) => (
                         <Link href={`/roles/${props.role.id}/update`}>
                             <IconButton
                                 aria-label="Edit"
-                                variant="ghost"
-                                icon={<IconPencilAlt />}
-                                compact
+                                variant="plain"
+                                children={<IconPencilAlt />}
                                 colorScheme="success"
                             />
                         </Link>
@@ -48,9 +47,8 @@ const RoleCard: Component<RoleCardProps> = ( props ) => (
                     <IconButton
                         class="has-permission"
                         aria-label="Delete Role"
-                        variant="ghost"
-                        icon={<IconTrash />}
-                        compact
+                        variant="plain"
+                        children={<IconTrash />}
                         colorScheme="danger"
                         onClick={props.onDelete}
                     />

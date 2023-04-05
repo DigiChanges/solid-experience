@@ -17,12 +17,12 @@
 
 .menu{
     margin: 0 0 16px 16px;
-    color: var(--hope-colors-neutral12);
-    background-color: var(--hope-colors-neutral1);
+    color: var(--hope-colors-neutral-300);
+    background-color: var(--hope-colors-neutral-900);
 }
 .menu > button {
-    color: var(--hope-colors-neutral12);
-    background-color: var(--hope-colors-neutral1);
+    color: var(--hope-colors-neutral-300);
+    background-color: var(--hope-colors-neutral-900);
 }
 
 .drawer_content {
@@ -41,6 +41,149 @@
 
     .not_expanded {
         width: 100px;
+    }
+}
+
+.dropdown__menu__trigger {
+    appearance: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: auto;
+    outline: none;
+    border-radius: 6px;
+    padding: 0 16px;
+    background-color: hsl(200 98% 39%);
+    color: white;
+    font-size: 16px;
+    gap: 8px;
+    line-height: 0;
+    transition: 250ms background-color;
+}
+.dropdown__menu__trigger:hover {
+    background-color: hsl(201 96% 32%);
+}
+.dropdown__menu__trigger:focus-visible {
+    outline: 2px solid hsl(200 98% 39%);
+    outline-offset: 2px;
+}
+.dropdown__menu__trigger:active {
+    background-color: hsl(201 90% 27%);
+}
+.dropdown__menu__trigger-icon {
+    height: 20px;
+    width: 20px;
+    flex: 0 0 20px;
+    transition: transform 250ms;
+}
+.dropdown__menu__trigger__icon[data-expanded] {
+    transform: rotate(180deg);
+    border: none;
+}
+.dropdown__menu__content,
+.dropdown__menu__sub-content {
+    min-width: 220px;
+    padding: 8px;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid hsl(240 6% 90%);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    outline: none;
+    transform-origin: var(--kb-menu-content-transform-origin);
+    animation: contentHide 250ms ease-in forwards;
+}
+.dropdown__menu__content[data-expanded],
+.dropdown__menu__sub__content[data-expanded] {
+    animation: contentShow 250ms ease-out;
+}
+.dropdown__menu__item,
+.dropdown__menu__checkbox__item,
+.dropdown__menu__radio__item,
+.dropdown__menu__sub__trigger {
+    font-size: 16px;
+    line-height: 1;
+    color: hsl(240 4% 16%);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 8px 0 24px;
+    position: relative;
+    user-select: none;
+    outline: none;
+}
+.dropdown__menu__sub__trigger[data-expanded] {
+    background-color: hsl(204 94% 94%);
+    color: hsl(201 96% 32%);
+}
+.dropdown__menu__item[data-disabled],
+.dropdown__menu__checkbox__item[data-disabled],
+.dropdown__menu__radio__item[data-disabled],
+.dropdown__menu__sub__trigger[data-disabled] {
+    color: hsl(240 5% 65%);
+    opacity: 0.5;
+    pointer-events: none;
+}
+.dropdown__menu__item[data-highlighted],
+.dropdown__menu__checkbox__item[data-highlighted],
+.dropdown__menu__radio__item[data-highlighted],
+.dropdown__menu__sub__trigger[data-highlighted] {
+    outline: none;
+    background-color: hsl(200 98% 39%);
+    color: white;
+}
+.dropdown__menu__group__label {
+    padding: 0 24px;
+    font-size: 14px;
+    line-height: 32px;
+    color: hsl(240 4% 46%);
+}
+.dropdown__menu__separator {
+    height: 1px;
+    border-top: 1px solid hsl(240 6% 90%);
+    margin: 6px;
+}
+.dropdown__menu__item__indicator {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdown__menu__item__right__slot {
+    margin-left: auto;
+    padding-left: 20px;
+    font-size: 14px;
+    color: hsl(240 4% 46%);
+}
+[data-highlighted] > .dropdown__menu__item__right__slot {
+    color: white;
+}
+[data-disabled] .dropdown__menu__item__right__slot {
+    color: hsl(240 5% 65%);
+    opacity: 0.5;
+}
+@keyframes contentShow {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes contentHide {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.96);
     }
 }
 

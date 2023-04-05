@@ -1,4 +1,4 @@
-import { Button, createDisclosure, Icon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@hope-ui/solid';
+import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, createMemo, For, Show } from 'solid-js';
@@ -29,30 +29,30 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
 
-    const { isOpen, onOpen, onClose } = createDisclosure();
+    const { isOpen, open, close } = createDisclosure();
     let deleteData: RoleApi | undefined;
 
     const handleModalClick = () => () =>
     {
         props.removeAction( deleteData?.id );
-        onClose();
+        close();
     };
 
     const handleDelete = ( role: RoleApi ) => () =>
     {
         deleteData = role;
-        onOpen();
+        open();
     };
 
     const { filterOptions } = useTransformTranslatedOptions( filterBy, ( item ) => t( item.label ) );
 
-    // const filterOptions = createMemo( () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
-    //     filterBy,
-    //     ( item ) => <Text message={item.label} /> as string,
-    //     ( item ) => item.value
-    // ) );
+    const filterOptionsWithMemo = createMemo( () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
+        filterBy,
+        ( item ) => <Text message={item.label} /> as string,
+        ( item ) => item.value
+    ) );
 
-    const orderOptions = createMemo( () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
+    const orderOptionsWithMemo = createMemo( () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
         orderBy,
         ( item ) => <Text message={item.label} /> as string,
         ( item ) => item.value
@@ -60,20 +60,20 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 
     return (
         <section class="section_container">
-            <Modal opened={isOpen()} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalCloseButton />
-                    <ModalHeader><Text message="a_delete_data"/></ModalHeader>
-                    <ModalBody>
-                        <p><Text message="r_remove"/></p>
-                        <h1>{deleteData?.name}</h1>
-                    </ModalBody>
-                    <ModalFooter class="modal_footer">
-                        <Button onClick={onClose}><Text message="a_cancel"/></Button>
+            <Modal isOpen={isOpen()} onClose={close}>
+                <Modal.Overlay />
+                <Modal.Content>
+                    <Modal.CloseButton />
+                    <HStack>
+                        <Modal.Heading><Text message="a_delete_data"/></Modal.Heading>
+                    </HStack>
+                    <p><Text message="r_remove"/></p>
+                    <h1>{deleteData?.name}</h1>
+                    <HStack class="modal_footer">
+                        <Button onClick={close}><Text message="a_cancel"/></Button>
                         <Button colorScheme="danger" onClick={handleModalClick()}><Text message="a_delete"/></Button>
-                    </ModalFooter>
-                </ModalContent>
+                    </HStack>
+                </Modal.Content>
             </Modal>
 
             <header class="section_header_container" data-parent={permissions.ROLES.SAVE}>
@@ -90,12 +90,12 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 
             <Filter filterOptions={filterOptions()} />
 
-            <Show when={props.loading} >
+            <Show when={props.loading} keyed>
                 <GeneralLoader/>
             </Show>
 
             <div class="grid_cards_container">
-                <Show when={!props.loading || props.roleList?.length}>
+                <Show when={!props.loading || props.roleList?.length} keyed>
                     <For each={props.roleList} fallback={<div><Text message="r_no_roles" /></div>}>
                         {( role ) =>
                             <RoleCard role={role} onDelete={handleDelete( role )} />
@@ -106,14 +106,14 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 
             <div class="section_bottom_buttons_container">
                 <Show when={!!props.nextPage}>
-                    <Button onClick={props.viewMoreAction()} variant="outline">
-                        <Show when={!props.loading} fallback={() => <span><Text message="a_loading" />...</span>}>
+                    <Button onClick={props.viewMoreAction()} variant="outlined">
+                        <Show when={!props.loading} fallback={() => <span><Text message="a_loading" />...</span>} keyed>
                             <Text message="a_view_more"/>
                         </Show>
                     </Button>
                 </Show>
 
-                <ButtonScrollUp />
+                <ButtonScrollUp dependencies={props.roleList}/>
             </div>
         </section>
     );

@@ -2,6 +2,7 @@ import { Component } from 'solid-js';
 import Card from '../../shared/molecules/Card/Card';
 import CardContent from '../../shared/molecules/CardContent/CardContent';
 import styles from './Dashboard.module.css';
+import { Text } from 'solid-i18n';
 
 const Dashboard: Component = () =>
 {
@@ -9,8 +10,8 @@ const Dashboard: Component = () =>
         <section class="p-6">
             <Card>
                 <CardContent class={styles.content}>
-                    <p>Dashboard</p>
-                    <p>esto es template dashboard</p>
+                    <Text message="a_dashboard" />
+                    <Text message="a_dashboard_description" />
                 </CardContent>
             </Card>
         </section>

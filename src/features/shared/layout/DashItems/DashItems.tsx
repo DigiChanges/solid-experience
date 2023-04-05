@@ -24,8 +24,14 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
 
     const onToggled = ( path: string ) =>
     {
-        setShowSubItems( true );
-        setSectionSelected( path );
+        if (path === sectionSelected()) {
+            setShowSubItems( false );
+            setSectionSelected( '' );
+        }
+        else {
+            setShowSubItems( true );
+            setSectionSelected( path );
+        }
     };
 
     return (

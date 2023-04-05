@@ -26,7 +26,7 @@ const ExpandButton: Component<SideBarProps> = ( props ) => (
                 classList={{
                     [styles.icon_not_expanded]: !props.getExpanded,
                 }}
-                icon={ <IconArrowCircleLeft />}
+                children={ <IconArrowCircleLeft />}
                 compact
             />
         </div>
