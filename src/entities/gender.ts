@@ -1,5 +1,5 @@
 export const gender = [
-    { value: 'fame', label: 'F' },
-    { value: 'male', label: 'M' },
-    { value: 'other', label: 'a_gender_other' },
+    { value: 'F', label: 'a_gender_female' },
+    { value: 'M', label: 'a_gender_male' },
+    { value: 'O', label: 'a_gender_other' },
 ];

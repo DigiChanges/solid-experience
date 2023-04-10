@@ -1,4 +1,4 @@
-import { notificationService } from '@hope-ui/solid';
+import { notificationService } from '../../../shared/molecules/Toasts/Toasts';
 import { useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
@@ -26,7 +26,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
     const handleSuccess = () => () =>
     {
         notificationService.show( {
-            status: 'success',
+            /* status: 'success', */
             title: t( 'r_created' ) as string,
         } );
         navigate( '/roles', { replace: true } );
@@ -36,7 +36,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
     {
         const errorMessage = setError( error );
         notificationService.show( {
-            status: 'danger',
+            /* status: 'danger', */
             title: t( 'err_save_role' ) as string,
             description: t( errorMessage ) as string,
         } );

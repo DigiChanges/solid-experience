@@ -28,7 +28,7 @@ const AlertErrors: Component<AlertErrorProps> = ( props ) =>
     } );
 
     return (
-        <Show when={ errors() }>
+        <Show when={ errors() } keyed>
             <div class={styles.alert_container}
                 classList={{
                     [styles.float]: props?.position === 'float-top',

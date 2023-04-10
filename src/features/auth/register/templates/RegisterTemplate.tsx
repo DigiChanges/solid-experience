@@ -24,7 +24,7 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
     const handleSuccess = () => () =>
     {
         notificationService.show( {
-            status: 'success',
+            /* status: 'success', */
             title: t( 'u_created' ) as string,
         } );
         setShowRegisterSuccess( true );
@@ -34,7 +34,7 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
     {
         const errorMessage = setError( error );
         notificationService.show( {
-            status: 'danger',
+            /* status: 'danger', */
             title: t( 'err_create_user' ) as string,
             description: t( errorMessage ) as string,
         } );
