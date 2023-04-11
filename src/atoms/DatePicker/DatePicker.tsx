@@ -407,7 +407,7 @@ const DatePicker = (
                                         class={`container-list cur-pointer ${props.customizeListView} ${( ( locDate()?.getMonth() || 0 ) + 1 ) === it.monthIndex ? 'active box-shadow-card' : ''} ${isMonthDisabled ? 'cust-dis pointer-none' : ''}`}
                                         onClick={() => monthSelection( it.monthIndex )}
                                     >
-                                        {<Text message={it.short}></Text>}
+                                        {<Text message={it.short}/>}
                                     </div>
                                 );
                             } )}

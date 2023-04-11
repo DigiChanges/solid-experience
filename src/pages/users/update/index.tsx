@@ -22,7 +22,7 @@ const IndexPage: Component = () =>
     const [ permissions ] = createResource( { user: user() }, authRepository.getAllPermissions );
     usePermission( user, [ roles, permissions, userSelected ] );
 
-    const isLoading = createMemo( () => userSelected.loading || permissions.loading || roles.loading || permissions.loading );
+    const isLoading = createMemo( () => userSelected.loading || permissions.loading || roles.loading );
 
     return (
         <PrivateLayout>
