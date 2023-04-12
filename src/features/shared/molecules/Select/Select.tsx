@@ -5,11 +5,10 @@ import { Text } from 'solid-i18n';
 
 
 interface SelectBase extends JSX.HTMLAttributes<HTMLDivElement> {
-    name: string;
+    name?: string;
     options: any;
     placeholder: string;
     onChange: any;
-    setTouched: any;
     valueProperty: string;
     labelProperty: string;
     groupSelector?: string;
@@ -36,7 +35,6 @@ export const Select: Component<SelectProps> = ( props ) =>
             optionTextValue={props.labelProperty}
             optionGroupChildren={props.groupSelector}
             onValueChange={( value ) => props.onChange( value )}
-            onFocusOut={() => props.setTouched( props.name, true )}
             valueComponent={props => props.item.textValue}
             itemComponent={props => (
                 <KSelect.Item item={props.item} class={styles.select__item}>
@@ -50,11 +48,11 @@ export const Select: Component<SelectProps> = ( props ) =>
             <KSelect.Trigger class={styles.select__trigger}>
                 <KSelect.Value class={styles.select__value} />
             </KSelect.Trigger>
-            <KSelect.Portal>
+
                 <KSelect.Content class={styles.select__content}>
                     <KSelect.Listbox class={styles.select__listbox} />
                 </KSelect.Content>
-            </KSelect.Portal>
+
         </KSelect.Root>
 
     );
@@ -73,7 +71,6 @@ export const MultiSelect: Component<MultiSelectProps> = ( props ) =>
             optionTextValue={props.labelProperty}
             optionGroupChildren={props.groupSelector}
             onValueChange={( value ) => props.onChange( value )}
-            onFocusOut={() => props.setTouched( props.name, true )}
             valueComponent={props =>
                 <>
                     <div>
@@ -106,11 +103,11 @@ export const MultiSelect: Component<MultiSelectProps> = ( props ) =>
                     <KMultiSelect.Value class={styles.select__value}/>
                 </As>
             </KMultiSelect.Trigger>
-            <KMultiSelect.Portal>
+
                 <KMultiSelect.Content class={styles.select__content}>
                     <KMultiSelect.Listbox class={styles.select__listbox}/>
                 </KMultiSelect.Content>
-            </KMultiSelect.Portal>
+
         </KMultiSelect.Root>
 
     );

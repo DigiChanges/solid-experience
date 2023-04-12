@@ -1,4 +1,4 @@
-import { ref, string } from 'yup';
+import { boolean, ref, string } from 'yup';
 import userUpdateValidationSchema from './userUpdateValidationSchema';
 
 const userCreateValidationSchema = userUpdateValidationSchema.shape( {
@@ -8,6 +8,8 @@ const userCreateValidationSchema = userUpdateValidationSchema.shape( {
         .required( 'av_required' ),
     passwordConfirmation: string()
         .oneOf( [ ref( 'password' ), null ], 'av_password_match' )
+        .required( 'av_required' ),
+    enable: boolean()
         .required( 'av_required' ),
 } );
 

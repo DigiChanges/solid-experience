@@ -3,10 +3,13 @@ import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
 import styles from './SideBar.module.css';
 import { Text } from 'solid-i18n';
-import { Drawer } from '@hope-ui/core';
+import { Drawer, Icon } from '@hope-ui/core';
 import { logout } from '../../navBar/organisms/handlers';
 import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
-import { DropdownMenu } from '@kobalte/core';
+/* import { DropdownMenu } from '@kobalte/core'; */
+import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
+import { changeLanguage } from '../../language/handlers';
+import IconLanguage from '../../../atoms/Icons/Stroke/IconLanguage';
 
 interface SideBarProps {
     authUser: any;
@@ -19,6 +22,21 @@ interface SideBarProps {
 
 const SideBar: Component<SideBarProps> = ( props ) =>
 {
+    const items = [
+        {
+            children: <Text message="Item 1" />,
+            onSelect: {} ,
+        },
+        {
+            children: <Text message="Item 2" />,
+            onSelect: {},
+        },
+        {
+            children: <Text message="a_logout" />,
+            onSelect: logout( { user: props.authUser } ),
+        },
+    ];
+
     return (
         <>
             <Drawer
@@ -31,23 +49,13 @@ const SideBar: Component<SideBarProps> = ( props ) =>
                 <Drawer.Content class={styles.drawer_content}>
                     <Drawer.CloseButton/>
                     <Drawer.Description>
-
-                            <DropdownMenu.Root>
-                                <DropdownMenu.Trigger class={styles.dropdown__menu__trigger}>
-                                    <Show when={props.authUser.user.email} keyed>
-                                        <span>{props.authUser.user.email}</span>
-                                    </Show>
-                                    <DropdownMenu.Icon class={styles.dropdown__menu__trigger__icon}><IconChevronDown /></DropdownMenu.Icon>
-                                </DropdownMenu.Trigger>
-                                <DropdownMenu.Content class={styles.dropdown__menu__content}>
-                                    <DropdownMenu.Item class={styles.dropdown__menu__item}>Item 1</DropdownMenu.Item>
-                                    <DropdownMenu.Item class={styles.dropdown__menu__item}>Item 2</DropdownMenu.Item>
-                                    <DropdownMenu.Item class={styles.dropdown__menu__item} onSelect={logout( { user: props.authUser } )}>
-                                        <Text message="a_logout" />
-                                    </DropdownMenu.Item>
-                                </DropdownMenu.Content>
-                            </DropdownMenu.Root>
-
+                        <div class={'w-fit h-[35px] min-w-[250px] pl-[1rem] mb-2'}>
+                            <DropdownMenu
+                                items={items}
+                                icon={<Icon><IconChevronDown /></Icon>}
+                                title={<span>{props.authUser.user.email}</span>}
+                            />
+                        </div>
                         <DashItems expanded={true} authUser={props.authUser}/>
                         <LogoutSideBarItem user={props.authUser} getExpanded={true} sectionSelected=""/>
                     </Drawer.Description>

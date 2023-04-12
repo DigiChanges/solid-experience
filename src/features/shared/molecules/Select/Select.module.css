@@ -57,6 +57,7 @@
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     transform-origin: var(--kb-select-content-transform-origin);
     animation: contentHide 250ms ease-in forwards;
+    z-index: 100;
 }
 .select__content[data-expanded] {
     animation: contentShow 250ms ease-out;

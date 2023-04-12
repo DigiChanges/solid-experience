@@ -3,14 +3,15 @@ import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, For, Show } from 'solid-js';
+import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { PermissionApi } from '../../../auth/interfaces/permission';
 import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
 import { RoleApi, RolePayload, RoleResponse } from '../../interfaces';
 import roleSchema from '../../validations/schemas/RoleSchema';
-import { MultiSelect, As, Switch } from '@kobalte/core';
-import styles from './RoleForm.module.css';
+import { MultiSelect } from '../../../shared/molecules/Select/Select';
+import Switch from '../../../shared/molecules/Switch/Switch';
+
 
 enum RequiredPermission {
     submit='submit'
@@ -38,28 +39,40 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
         isSubmitting,
         isValid,
         setFields,
-        setTouched,
         // @ts-ignore
     } = createForm<InferType<typeof roleSchema>>( {
-        initialValues: { permissions: props.roleSelected?.permissions || [] },
+        initialValues: {
+            permissions: [],
+            enable: true,
+        },
         extend: validator( { schema: roleSchema } ),
         onSuccess: props.onSuccess,
         onError: props.onError,
         onSubmit: values => props.onSubmit( values as RolePayload ),
     } );
 
-    const handleSelect = ( field: keyof InferType<typeof roleSchema> ) => ( value: any ) =>
+    const handleSelect = ( field: keyof InferType<typeof roleSchema> ) => ( value: string[] | boolean ) =>
     {
-        const valuesArray = Array.from( value );
-        setFields( field, valuesArray );
-        setTouched( field, true );
+        setFields( field, value, true );
     };
 
-    const handleCheck = ( field: keyof InferType<typeof roleSchema> ) => ( value: boolean ) =>
+    const handleMultiSelect = ( field: keyof InferType<typeof roleSchema> ) => ( value: any ) =>
     {
-        setFields( field, value );
-        setTouched( field, true );
+        const valuesArray: string[] = Array.from( value );
+        setFields( field, valuesArray, true );
     };
+
+    onMount( () =>
+    {
+        if ( props.roleSelected )
+        {
+            for ( const key in props.roleSelected )
+            {
+                // @ts-ignore
+                setFields( key, props.roleSelected[key] );
+            }
+        }
+    } );
 
     return (
         <form ref={form} class="form_flex">
@@ -77,70 +90,38 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                 <FormControl isRequired isInvalid={!!errors( 'slug' )}>
                     <FormControlLabel for="slug"><Text message="slug"/></FormControlLabel>
                     <Input name="slug" type="text" placeholder={t( 'a_enter_slug' ) as string} value={props.roleSelected?.slug} onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
-                    <Show when={errors( 'slug' )}>
+                    <Show when={errors( 'slug' )} keyed>
                         <FormControlError><Text message={errors( 'slug' )![0]} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
             <div class="field_wrapper">
                 <FormControl id="permissions" isRequired isInvalid={!!errors( 'permissions' )}>
-                    <MultiSelect.Root
-                        onValueChange={handleSelect( 'permissions' )}
-                        value={data().permissions}
+                    <FormControlLabel for="permissions"><Text message="permissions"/></FormControlLabel>
+                    <MultiSelect
+                        name={'permissions'}
                         options={props.permissionsList}
-                        optionGroupChildren="permissions"
-                        placeholder={<Text message="a_enter_permissions"/>}
-                        valueComponent={props =>
-                            <>
-                                <div>
-                                    <For each={props.items}>
-                                        {item =>
-                                            <span>
-                                                {item.rawValue}
-                                                <button
-                                                    onPointerDown={e => e.stopPropagation()}
-                                                    onClick={() => props.remove( item )}
-                                                >X</button>
-                                            </span>
-                                        }
-                                    </For>
-                                </div>
-                                <button onPointerDown={e => e.stopPropagation()} onClick={props.clear}>X</button>
-                            </>
-                        }
-                        itemComponent={props =>
-                            <MultiSelect.Item item={props.item} class={styles.select__item}>
-                                <MultiSelect.ItemLabel>{props.item.rawValue}</MultiSelect.ItemLabel>
-                            </MultiSelect.Item>
-                        }
-                        sectionComponent={props => <MultiSelect.Section>{props.section.rawValue.group}</MultiSelect.Section>}
-                    >
-                        <MultiSelect.Trigger class={`${styles.select__trigger} w-full`} aria-label="Permissions" asChild onBlur={() => setTouched( 'permissions', true )}>
-                            <As component="div">
-                                <MultiSelect.Value class={styles.select__value}/>
-                            </As>
-                        </MultiSelect.Trigger>
-                        <MultiSelect.Portal>
-                            <MultiSelect.Content class={styles.select__content}>
-                                <MultiSelect.Listbox class={styles.select__listbox}/>
-                            </MultiSelect.Content>
-                        </MultiSelect.Portal>
-                    </MultiSelect.Root>
+                        placeholder={'a_enter_permissions'}
+                        value={data().permissions}
+                        onChange={handleMultiSelect( 'permissions' )}
+                        valueProperty={'id'}
+                        labelProperty={'name'}
+                        groupSelector={'permissions'}
+                    />
                     <FormControlError><Text message={errors( 'permissions' ) && errors( 'permissions' )![0] || ''} /></FormControlError>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'enable' )}>
-                    <Switch.Root name="enable" class={styles.switch} defaultIsChecked={props.roleSelected?.id ? props.roleSelected?.enable : true} onCheckedChange={handleCheck( 'enable' )}>
-                        <Switch.Label class={styles.switch__label}><FormControlLabel><Text message="enable"/></FormControlLabel></Switch.Label>
-                        <Switch.Input class={styles.switch__input} />
-                        <Switch.Control class={styles.switch__control}>
-                            <Switch.Thumb class={styles.switch__thumb}/>
-                        </Switch.Control>
-                    </Switch.Root>
-                    <Show when={errors( 'enable' )}>
-                        <FormControlError><Text message={errors( 'enable' )![0]}/></FormControlError>
+                    <FormControlLabel><Text message="enable"/></FormControlLabel>
+                    <Switch
+                        name={'enable'}
+                        value={data().enable}
+                        onChange={handleSelect( 'enable' )}
+                    />
+                    <Show when={errors( 'enable' )} keyed>
+                        <FormControlError><Text message={errors( 'enable' )![0] || ''}/></FormControlError>
                     </Show>
                 </FormControl>
             </div>

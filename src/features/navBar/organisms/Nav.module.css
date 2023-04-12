@@ -54,6 +54,7 @@
 
     .nav .nav_container .icon_bell {
         display: block;
+        padding: 5px;
     }
 
     .nav .menu {

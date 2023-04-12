@@ -3,7 +3,7 @@ import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, createEffect, createMemo, onMount, Show } from 'solid-js';
+import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { country, gender, userDocumentTypeOptions } from '../../../../entities';
 import { PermissionApi } from '../../../auth/interfaces/permission';
@@ -37,8 +37,6 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
 
-    const rolesSelected = createMemo( () => { return props.userSelected?.roles?.map( role => role.id ); } );
-
     const userSchema = props.userSelected?.id ? userUpdateValidationSchema : userCreateValidationSchema;
     const {
         data,
@@ -47,14 +45,15 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         isSubmitting,
         isValid,
         setFields,
-        setTouched,
         // @ts-ignore
     } = createForm<InferType<typeof userSchema>>( {
         initialValues: {
-            permissions: props.userSelected?.permissions || [],
-            roles: rolesSelected() || [],
-            documentType: props.userSelected?.documentType || '',
-            country: props.userSelected?.country || '',
+            permissions: [],
+            roles: [],
+            enable: true,
+            gender: '',
+            country: '',
+            documentType: '',
         },
         extend: validator( { schema: userSchema } ),
         onSuccess: props.onSuccess,
@@ -62,31 +61,27 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         onSubmit: values => props.onSubmit( values as UserPayload ),
     } );
 
-    /* const handleSelect = ( field: keyof InferType<typeof userSchema> ) => ( value: string[] | boolean ) =>
+    const handleSelect = ( field: keyof InferType<typeof userSchema> ) => ( value: string[] | boolean ) =>
     {
-        setFields( field, value );
-        setTouched( field, true );
-    }; */
-    const handleSelect = ( field: keyof InferType<typeof userSchema> ) => ( value: any ) =>
+        setFields( field, value, true );
+    };
+
+    const handleMultiSelect = ( field: keyof InferType<typeof userSchema> ) => ( value: any ) =>
     {
         const valuesArray: string[] = Array.from( value );
-        setFields( field, valuesArray );
-        setTouched( field, true );
+        setFields( field, valuesArray, true );
     };
 
     onMount( () =>
     {
-        const forbiddenKeys = [ 'permissions', 'roles', 'country', 'documentType' ];
-        for ( const key in props.userSelected )
+        if ( props.userSelected )
         {
+            for ( const key in props.userSelected )
+            {
             // @ts-ignore
-            if ( !forbiddenKeys.includes( key ) ){ setFields( key, props.userSelected[key] ); }
+                setFields( key, props.userSelected[key] );
+            }
         }
-    } );
-
-    createEffect( () =>
-    {
-        console.log( data() );
     } );
 
     return (
@@ -124,8 +119,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             options={userDocumentTypeOptions}
                             placeholder={'type_id'}
                             value={data().documentType}
-                            onChange={( value: string ) => setFields( 'documentType', value, true )}
-                            setTouched={setTouched}
+                            onChange={handleSelect( 'documentType' )}
                             valueProperty={'value'}
                             labelProperty={'label'}
                         />
@@ -155,10 +149,10 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         name={'gender'}
                         options={gender}
                         value={data().gender}
-                        setFields={setFields}
+                        onChange={handleSelect( 'gender' )}
                     />
                     <Show when={errors( 'gender' )} keyed>
-                        <FormControlError><Text message={errors( 'gender' )![0]} /></FormControlError>
+                        <FormControlError><Text message={errors( 'gender' )![0] || ''} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
@@ -186,11 +180,11 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <FormControlLabel><Text message="enable"/></FormControlLabel>
                     <Switch
                         name={'enable'}
+                        value={data().enable}
                         onChange={handleSelect( 'enable' )}
-                        defaultValue={props.userSelected?.id ? props.userSelected?.enable : true}
                     />
                     <Show when={errors( 'enable' )} keyed>
-                        <FormControlError><Text message={errors( 'enable' )![0]}/></FormControlError>
+                        <FormControlError><Text message={errors( 'enable' )![0] || ''}/></FormControlError>
                     </Show>
                 </FormControl>
             </div>
@@ -203,15 +197,12 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         placeholder={'a_select_country'}
                         options={country}
                         value={data().country}
-                        onChange={( value: string ) => setFields( 'country', value, true )}
-                        setTouched={setTouched}
+                        onChange={handleSelect( 'country' )}
                         valueProperty={'value'}
                         labelProperty={'label'}
                     />
                     <Show when={errors( 'country' )} keyed>
-                        <FormControlError>
-                            <Text message={errors( 'country' )![0] || ''} />
-                        </FormControlError>
+                        <FormControlError><Text message={errors( 'country' )![0] || ''} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
@@ -278,9 +269,8 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         name={'permissions'}
                         options={props.permissionsList}
                         placeholder={'a_enter_permissions'}
-                        value={props.userSelected?.permissions}
-                        setTouched={setTouched}
-                        onChange={handleSelect( 'permissions' )}
+                        value={data().permissions}
+                        onChange={handleMultiSelect( 'permissions' )}
                         valueProperty={'id'}
                         labelProperty={'name'}
                         groupSelector={'permissions'}
@@ -296,9 +286,8 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         name={'roles'}
                         options={props.rolesList}
                         placeholder={'a_select_roles'}
-                        value={rolesSelected()}
-                        setTouched={setTouched}
-                        onChange={handleSelect( 'roles' )}
+                        value={data().roles}
+                        onChange={handleMultiSelect( 'roles' )}
                         valueProperty={'id'}
                         labelProperty={'name'}
                     />

@@ -5,7 +5,8 @@ import { Switch as KSwitch } from '@kobalte/core';
 interface RadioGroupProps extends JSX.HTMLAttributes<HTMLDivElement> {
     name: string;
     onChange: any;
-    defaultValue?: boolean | undefined;
+    value: boolean;
+    defaultValue?: boolean;
 }
 
 const Switch: Component<RadioGroupProps> = ( props ) =>
@@ -14,8 +15,9 @@ const Switch: Component<RadioGroupProps> = ( props ) =>
         <KSwitch.Root
             name={props.name}
             class={styles.switch}
-            defaultIsChecked={props.defaultValue}
+            isChecked={props.value}
             onCheckedChange={props.onChange}>
+            {/* defaultIsChecked={props.defaultValue} */}
             <KSwitch.Input class={styles.switch__input} />
             <KSwitch.Control class={styles.switch__control}>
                 <KSwitch.Thumb class={styles.switch__thumb}/>

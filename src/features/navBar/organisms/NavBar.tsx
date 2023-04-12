@@ -1,4 +1,4 @@
-import { IconButton } from '@hope-ui/core';
+import { IconButton, Icon } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Component } from 'solid-js';
 import logoNav from '../../../assets/images/dgc_logo.png';
@@ -28,11 +28,13 @@ const NavBar: Component<NavbarTemplateProps> = props =>
             <section class={styles.nav_container}>
                 <LanguageMenu />
                 <IconButton
+                    size={'md'}
                     class={styles.icon_bell}
                     aria-label="View notifications"
                     children={<IconBell/>}
                 />
                 <IconButton
+                    size={'md'}
                     class={styles.icon_burger}
                     onclick={ props.onClick }
                     aria-label="Open Main Menu"

@@ -1,5 +1,5 @@
 
 export type SelectValueOption = {
-    value: string | unknown;
+    value: string | undefined;
     label: string;
 };

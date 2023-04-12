@@ -4,11 +4,11 @@
       "permissions": [],
       "documentType": "dni",
       "country": "DZ",
+      "enable": false,
       "birthday": "1929-02-09",
       "firstName": "Daniels",
       "lastName": "Serpentini",
       "documentNumber": "2323232132143",
-      "enable": true,
       "address": "Susie Brooks12",
       "email": "paolaflorvazquez@gmail.com",
       "phone": "32432432",
@@ -18,14 +18,18 @@
       "id": "O1fzV8l"
     },
     {
-      "permissions": [],
+      "permissions": [
+        "filesUpdate",
+        "getPermissions",
+        "authSyncPermissions"
+      ],
       "documentType": "dni",
       "country": "AO",
+      "enable": false,
       "birthday": "2023-04-11",
-      "firstName": "Test",
+      "firstName": "Test5",
       "lastName": "Test",
       "documentNumber": "12345678",
-      "enable": false,
       "address": "Test 1",
       "email": "test@test.com",
       "phone": "123456",
@@ -33,6 +37,63 @@
       "passwordConfirmation": "123456",
       "gender": "O",
       "id": "uMp5MUW"
+    },
+    {
+      "permissions": [
+        "getPermissions"
+      ],
+      "documentType": "dni",
+      "country": "AQ",
+      "enable": false,
+      "birthday": "2023-04-12",
+      "firstName": "Test2",
+      "lastName": "Test2",
+      "documentNumber": "12345678",
+      "address": "Test 2",
+      "email": "test@test.com",
+      "phone": "123456",
+      "password": "123456",
+      "passwordConfirmation": "123456",
+      "gender": "O",
+      "id": "JvaSr-6"
+    },
+    {
+      "permissions": [
+        "getPermissions"
+      ],
+      "documentType": "dni",
+      "country": "AQ",
+      "enable": false,
+      "birthday": "2023-04-12",
+      "firstName": "Test2",
+      "lastName": "Test2",
+      "documentNumber": "12345678",
+      "address": "Test 2",
+      "email": "test@test.com",
+      "phone": "123456",
+      "password": "123456",
+      "passwordConfirmation": "123456",
+      "gender": "O",
+      "id": "axALIdr"
+    },
+    {
+      "permissions": [
+        "getPermissions"
+      ],
+      "enable": true,
+      "gender": "M",
+      "country": "AQ",
+      "documentType": "dni",
+      "birthday": "2023-04-12",
+      "firstName": "Test2",
+      "lastName": "Test2",
+      "documentNumber": "12345678",
+      "address": "Test 2",
+      "email": "test@test.com",
+      "phone": "123456",
+      "password": "123456",
+      "passwordConfirmation": "123456",
+      "id": "BB5yhIR"
     }
   ],
   "super-admin-login": {
@@ -107,16 +168,18 @@
       "permissions": [
         "authSyncPermissions"
       ],
+      "enable": true,
       "name": "Role",
       "slug": "role",
-      "enable": true,
       "id": "5db96817-33c8-446d-8050-830c4d88f26d"
     },
     {
-      "permissions": [],
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": false,
       "name": "Void Permissions",
-      "slug": "",
-      "enable": true,
+      "slug": "aaa",
       "id": "dfdsa"
     },
     {
@@ -130,21 +193,5 @@
       "enable": true,
       "id": "FotmTfY"
     }
-  ],
-  "refresh-token": {
-    "user": {
-      "id": "922465bc-db4e-4794-b25c-9311ce124e00",
-      "firstName": "Super",
-      "lastName": "Admin",
-      "email": "superadmin@node.com",
-      "enable": true,
-      "permissions": [],
-      "roles": [],
-      "isSuperAdmin": true,
-      "createdAt": 1651255968,
-      "updatedAt": 1651255968
-    },
-    "expires": 1689176366,
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6IjIxNDJiMjMzLTEwZDUtNDIyZS04OTRmLTc3MzUwMzA2ZWI5NSIsImlzcyI6InNtYXJ0bmV0IiwiYXVkIjoic21hcnRuZXQuY29tIiwic3ViIjoic3VwZXJhZG1pbkBub2RlLmNvbSIsImlhdCI6MTY4OTE3NjM2NiwiZXhwIjoxNjg5MTc2MzY2LCJ1c2VySWQiOiI5MjI0NjViYy1kYjRlLTQ3OTQtYjI1Yy05MzExY2UxMjRlMDAiLCJlbWFpbCI6InN1cGVyYWRtaW5Abm9kZS5jb20iLCJ0ZW5hbnQiOiJwdWJsaWMifQ.TpYXC1KqDO8XjbAqlP1joX0ye1Drsh2NMnOCS4Cn8bC3mQ_iRVl6tpTtK1WU_WcQB4c0vrRiULbDz6CHyDdAIQ"
-  }
+  ]
 }

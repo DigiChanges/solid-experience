@@ -35,8 +35,6 @@ const userValidationSchema = object( {
         .required( 'av_required' ),
     address: string()
         .required( 'av_required' ),
-    enable: boolean()
-        .required( 'av_required' ),
 } );
 
 export default userValidationSchema;

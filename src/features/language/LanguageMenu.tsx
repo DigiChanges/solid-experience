@@ -3,42 +3,38 @@ import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import IconLanguage from '../../atoms/Icons/Stroke/IconLanguage';
 import { changeLanguage } from './handlers';
-import styles from './LanguageMenu.module.css';
-import { DropdownMenu } from '@kobalte/core';
+import DropdownMenu from '../shared/molecules/DropdownMenu/DropdownMenu';
+import styles from '../navBar/organisms/Nav.module.css';
+
 
 const LanguageMenu: Component = () =>
 {
     const { setLanguage } = useI18n();
+    const items = [
+        {
+            children: <Text message="a_en" />,
+            onSelect: changeLanguage( { language: 'en', setLanguage } ),
+        },
+        {
+            children: <Text message="a_es" />,
+            onSelect: changeLanguage( { language: 'es', setLanguage } ),
+        },
+    ];
 
     return (
         <Flex>
             <Center>
-                <DropdownMenu.Root>
-                    <DropdownMenu.Trigger class={styles.dropdown__menu__trigger}>
-                        <IconButton
-                            class={styles.dropdown__menu__trigger__icon}
-                            aria-label="Change language"
-                            children={<IconLanguage />}
-                            style={{border: 'none'}}
+                <IconButton
+                    size={'md'}
+                    class={'w-[150%]'}
+                    aria-label="Change language"
+                    children={
+                        <DropdownMenu
+                            items={items}
+                            icon={<IconLanguage />}
                         />
-                    </DropdownMenu.Trigger>
-                    <DropdownMenu.Portal>
-                        <DropdownMenu.Content class={styles.dropdown__menu__content}>
-                            <DropdownMenu.Item
-                                class={styles.dropdown__menu__item}
-                                onSelect={changeLanguage( { language: 'en', setLanguage } )}
-                            >
-                                <Text message="a_en" />
-                            </DropdownMenu.Item>
-                            <DropdownMenu.Item
-                                class={styles.dropdown__menu__item}
-                                onSelect={changeLanguage( { language: 'es', setLanguage } )}
-                            >
-                                <Text message="a_es" />
-                            </DropdownMenu.Item>
-                        </DropdownMenu.Content>
-                    </DropdownMenu.Portal>
-                </DropdownMenu.Root>
+                    }
+                />
             </Center>
         </Flex>
     );

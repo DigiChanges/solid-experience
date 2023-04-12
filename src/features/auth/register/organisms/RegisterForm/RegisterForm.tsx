@@ -3,13 +3,13 @@ import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, For, Show } from 'solid-js';
+import { Component, createEffect, For, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { country, gender, userDocumentTypeOptions } from '../../../../../entities';
 import RegisterSchema from '../../../validations/schemas/RegisterSchema.';
 import { RegisterApi, RegisterResponse } from '../../interfaces/createAccount';
-import { Select, RadioGroup } from '@kobalte/core';
-import styles from './RegisterForm.module.css';
+import {Select} from '../../../../shared/molecules/Select/Select';
+import Radio from '../../../../shared/molecules/Radio/Radio';
 
 interface UserUpdateTemplateProps
 {
@@ -24,6 +24,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
     const i18n = useI18n();
     const { t } = i18n;
     const {
+        data,
         errors,
         form,
         isValid,
@@ -34,6 +35,15 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
         onError: props.onError,
         onSubmit: values => props.onSubmit( values as any ),
     } );
+
+    const handleSelect = ( field: keyof InferType<typeof RegisterSchema> ) => ( value: string | boolean ) =>
+    {
+        setFields( field, value, true );
+    };
+
+    createEffect(()=> {
+        console.log(data())
+    })
 
     return (
         <form ref={form}>
@@ -49,9 +59,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             <FormControlLabel for="firstName"><Text message="first_name"/></FormControlLabel>
                             <Input name="firstName" type="text" placeholder={t( 'a_enter_first_name' ) as string} />
                             <Show when={errors( 'firstName' )} keyed>
-                                <FormControlError>
-                                    <Text message={errors( 'firstName' )![0]} />
-                                </FormControlError>
+                                <FormControlError><Text message={errors( 'firstName' )![0]} /></FormControlError>
                             </Show>
                         </FormControl>
                     </div>
@@ -61,9 +69,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             <FormControlLabel for="lastName"><Text message="last_name"/></FormControlLabel>
                             <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' ) as string} />
                             <Show when={errors( 'lastName' )} keyed>
-                                <FormControlError>
-                                    <Text message={errors( 'lastName' )![0]} />
-                                </FormControlError>
+                                <FormControlError><Text message={errors( 'lastName' )![0]} /></FormControlError>
                             </Show>
                         </FormControl>
                     </div>
@@ -80,9 +86,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             <FormControlLabel for="email"><Text message="email"/></FormControlLabel>
                             <Input name="email" type="text" placeholder={t( 'a_your_email' ) as string} />
                             <Show when={errors( 'email' )} keyed>
-                                <FormControlError>
-                                    <Text message={errors( 'email' )![0]} />
-                                </FormControlError>
+                                <FormControlError><Text message={errors( 'email' )![0]} /></FormControlError>
                             </Show>
                         </FormControl>
                     </div>
@@ -92,9 +96,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             <FormControlLabel for="phone"><Text message="phone"/></FormControlLabel>
                             <Input name="phone" type="text" placeholder={t( 'a_enter_phone' ) as string} />
                             <Show when={errors( 'phone' )} keyed>
-                                <FormControlError>
-                                    <Text message={errors( 'phone' )![0]} />
-                                </FormControlError>
+                                <FormControlError><Text message={errors( 'phone' )![0]} /></FormControlError>
                             </Show>
                         </FormControl>
                     </div>
@@ -103,37 +105,18 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         <div class="field_justify_between">
                             <FormControl isRequired isInvalid={!!errors( 'documentType' )}>
                                 <FormControlLabel for="documentType"><Text message="document_type"/></FormControlLabel>
-                                <Select.Root
-                                    name="documentType"
+                                <Select
+                                    name={'documentType'}
                                     options={userDocumentTypeOptions}
-                                    placeholder={<Text message="type_id"/> as string}
-                                    optionValue="value"
-                                    optionTextValue="label"
-                                    onValueChange={( value ) => setFields( 'documentType', value, true )}
-                                    valueComponent={props => props.item.rawValue.label}
-                                    itemComponent={props => (
-                                        <Select.Item item={props.item} class={styles.select__item}>
-                                            <Select.ItemLabel>{props.item.rawValue.label}</Select.ItemLabel>
-                                            <Select.ItemIndicator class={styles.select__item__indicator}>
-                                                    x
-                                            </Select.ItemIndicator>
-                                        </Select.Item>
-                                    )}
-                                >
-                                    <Select.Trigger class={styles.select__trigger}>
-                                        <Select.Value class={styles.select__value} />
-                                    </Select.Trigger>
-                                    <Select.Portal>
-                                        <Select.Content class={styles.select__content}>
-                                            <Select.Listbox class={styles.select__listbox} />
-                                        </Select.Content>
-                                    </Select.Portal>
-                                </Select.Root>
+                                    placeholder={'type_id'}
+                                    value={data().documentType}
+                                    onChange={handleSelect( 'documentType' )}
+                                    valueProperty={'value'}
+                                    labelProperty={'label'}
+                                />
                                 <Show when={errors( 'documentType' )} keyed>
                                     <div class="flex absolute">
-                                        <FormControlError>
-                                            <Text message={errors( 'documentType' )![0] || 'Loading...'} />
-                                        </FormControlError>
+                                        <FormControlError><Text message={errors( 'documentType' )![0] || ''} /></FormControlError>
                                     </div>
                                 </Show>
                             </FormControl>
@@ -155,30 +138,14 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'gender' )}>
                             <FormControlLabel for="gender"><Text message="gender"/></FormControlLabel>
-                            <RadioGroup.Root
-                                class={styles.radio__group}
-                                defaultValue="other"
-                                name="gender"
-                                onValueChange={( value ) => setFields( 'gender', value, true )}
-                            >
-                                <div class={styles.radio__group__items}>
-                                    <For each={gender}>
-                                        {gender => (
-                                            <RadioGroup.Item value={gender.value} class={styles.radio} onchange={() => setFields( 'gender', gender.value, true )}>
-                                                <RadioGroup.ItemInput class={styles.radio__input}/>
-                                                <RadioGroup.ItemControl class={styles.radio__control}>
-                                                    <RadioGroup.ItemIndicator class={styles.radio__indicator}/>
-                                                </RadioGroup.ItemControl>
-                                                <RadioGroup.ItemLabel><Text message={gender.label}/></RadioGroup.ItemLabel>
-                                            </RadioGroup.Item>
-                                        )}
-                                    </For>
-                                </div>
-                            </RadioGroup.Root>
+                            <Radio
+                                name={'gender'}
+                                options={gender}
+                                value={data().gender}
+                                onChange={handleSelect( 'gender' )}
+                            />
                             <Show when={errors( 'gender' )} keyed>
-                                <FormControlError>
-                                    <Text message={errors( 'gender' )![0]} />
-                                </FormControlError>
+                                <FormControlError><Text message={errors( 'gender' )![0] || ''} /></FormControlError>
                             </Show>
                         </FormControl>
                     </div>
@@ -188,9 +155,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             <FormControlLabel for="birthday"><Text message="birthday"/></FormControlLabel>
                             <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' ) as string} />
                             <Show when={errors( 'birthday' )} keyed>
-                                <FormControlError>
-                                    <Text message={errors( 'birthday' )![0]} />
-                                </FormControlError>
+                                <FormControlError><Text message={errors( 'birthday' )![0]} /></FormControlError>
                             </Show>
                         </FormControl>
                     </div>
@@ -198,36 +163,17 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'country' )}>
                             <FormControlLabel for="country"><Text message="country"/></FormControlLabel>
-                            <Select.Root
-                                name="country"
+                            <Select
+                                name={'country'}
+                                placeholder={'a_select_country'}
                                 options={country}
-                                placeholder={<Text message="a_select_country"/> as string}
-                                onValueChange={( value ) => setFields( 'country', value, true )}
-                                optionValue="value"
-                                optionTextValue="label"
-                                valueComponent={props => props.item.rawValue.label}
-                                itemComponent={props => (
-                                    <Select.Item item={props.item} class={styles.select__item} onselect={() => setFields( 'country', props.item.rawValue.value, true )}>
-                                        <Select.ItemLabel>{props.item.rawValue.label}</Select.ItemLabel>
-                                        <Select.ItemIndicator class={styles.select__item__indicator}>
-                                            x
-                                        </Select.ItemIndicator>
-                                    </Select.Item>
-                                )}
-                            >
-                                <Select.Trigger class={styles.select__trigger}>
-                                    <Select.Value class={styles.select__value} />
-                                </Select.Trigger>
-                                <Select.Portal>
-                                    <Select.Content class={styles.select__content}>
-                                        <Select.Listbox class={styles.select__listbox} />
-                                    </Select.Content>
-                                </Select.Portal>
-                            </Select.Root>
+                                value={data().country}
+                                onChange={handleSelect( 'country' )}
+                                valueProperty={'value'}
+                                labelProperty={'label'}
+                            />
                             <Show when={errors( 'country' )} keyed>
-                                <FormControlError>
-                                    <Text message={errors( 'country' )![0]} />
-                                </FormControlError>
+                                <FormControlError><Text message={errors( 'country' )![0] || ''} /></FormControlError>
                             </Show>
                         </FormControl>
                     </div>
@@ -255,9 +201,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             <FormControlLabel for="password"><Text message="password"/></FormControlLabel>
                             <Input name="password" type="password" placeholder={t( 'a_your_password' ) as string} />
                             <Show when={errors( 'password' )} keyed>
-                                <FormControlError>
-                                    <Text message={errors( 'password' )![0]} />
-                                </FormControlError>
+                                <FormControlError><Text message={errors( 'password' )![0]} /></FormControlError>
                             </Show>
                         </FormControl>
                     </div>
@@ -267,9 +211,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             <FormControlLabel for="passwordConfirmation"><Text message="confirm_password"/></FormControlLabel>
                             <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string}/>
                             <Show when={errors( 'passwordConfirmation' )} keyed>
-                                <FormControlError>
-                                    <Text message={errors( 'passwordConfirmation' )![0]} />
-                                </FormControlError>
+                                <FormControlError><Text message={errors( 'passwordConfirmation' )![0]} /></FormControlError>
                             </Show>
                         </FormControl>
                     </div>

@@ -24,7 +24,7 @@ const app: I18nLocales = {
     a_enter_id_number: 'Enter ID',
     a_enter_last_name: 'Enter Last Name',
     a_enter_name: 'Enter Name',
-    a_enter_permissions: 'Switch Permissions',
+    a_enter_permissions: 'DropdownMenu Permissions',
     a_enter_phone: 'Enter Number',
     a_enter_slug: 'Enter Slug',
     a_do_not_have_account: 'Do you have an account?',
