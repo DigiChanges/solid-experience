@@ -16,7 +16,7 @@
 .dropdown_content {
   display: none;
   position: absolute;
-  background-color: var(--hope-colors-neutral-800);
+  background-color: var(--hope-colors-neutral-700);
   min-width: 160px;
   z-index: 50;
 }
@@ -40,9 +40,9 @@
   padding: 10px;
   font-size: 2rem;
   text-decoration: underline;
-  text-decoration-color: var(--hope-colors-info-100);
-  color: var(--hope-colors-neutral-300);
-  background-color: var(--hope-colors-neutral-800);
+  text-decoration-color: var(--hope-colors-info-200);
+  color: var(--hope-colors-neutral-50);
+  background-color: var(--hope-colors-neutral-700);
 }
 
 .show {

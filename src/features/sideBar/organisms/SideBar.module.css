@@ -17,11 +17,11 @@
 
 .menu{
     margin: 0 0 16px 16px;
-    color: var(--hope-colors-neutral-300);
+    color: var(--hope-colors-neutral-50);
     background-color: var(--hope-colors-neutral-900);
 }
 .menu > button {
-    color: var(--hope-colors-neutral-300);
+    color: var(--hope-colors-neutral-50);
     background-color: var(--hope-colors-neutral-900);
 }
 

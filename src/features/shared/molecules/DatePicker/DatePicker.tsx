@@ -1,108 +1,77 @@
-import { createEffect, createMemo, createSignal, JSXElement, For, mergeProps } from 'solid-js';
-import './assets/stylesheets/base.scss';
+import { createEffect, createMemo, createSignal, For, mergeProps } from 'solid-js';
+import './assets/stylesheets/newBase.css';
 import moment from 'moment';
-import { monthList, viewList, weekDays } from './utils/constant';
+import { monthList, viewList } from './utils/constant';
 import { Text } from 'solid-i18n';
 import arrowIcon from './assets/icons/arrow.svg';
 import clockLogo from './assets/icons/clock.svg';
 import calendarLogo from './assets/icons/calendar.svg';
 import calendarClockLogo from './assets/icons/calendarClock.svg';
-
-interface IPropsValue {
-    activeView: string;
-    startDate?: Date;
-    endDate?: Date;
-    currentDate?: Date;
-    dateRangeDifference: number;
-    date: string;
-    month: string;
-    year: string;
-    day: string;
-    time: string;
-    currentWeekStartDate: Date;
-    currentWeekEndDate: Date;
-    setCalendarState: ( props: boolean ) => void;
-}
-
-interface ICalendarComponentProps {
-    dateFormat?: string;
-    language?: string;
-    customizeRangeSelectedDates?: string;
-    customizeCalendar?: string;
-    customizeCalendarToggler?: string;
-    customizeTogglerArrowIcon?: string;
-    customizeTogglerCalendarIcon?: string;
-    customizeCalendarBody?: string;
-    prevDate?: Date;
-    minDate?: Date;
-    maxDate?: Date;
-    enableDateRangeSelector?: boolean;
-    currentDate: Date | string;
-    headerMonthFormat?: string;
-    headerYearFormat?: string;
-    enableArrowNavigation?: boolean;
-    enableSelectedDate?: boolean;
-    enableSelectedDateEditor?: boolean;
-    enableTodayNavigator?: boolean;
-    customizeSelectedDate?: string;
-    customizeLeftArrow?: string;
-    customizeRightArrow?: string;
-    customizeActiveMonth?: string;
-    customizeTodayNavigator?: string;
-    activeCalendarView?: 'day' | 'month' | 'year';
-    cutomizeCalendarViewButtons?: string;
-    enableCalendarViewType?: boolean;
-    customizeListView?: string;
-    customizeListHeader?: string;
-    customizeYearLeftNavigationArrow?: string;
-    customizeYearRightNavigationArrow?: string;
-    enableTimeView?: boolean;
-    ednableTimeEditing?: boolean;
-    customizeTimeViewSwitch?: string;
-    customizeTimeInputField?: string;
-    customizeTimeUpdateButton?: string;
-    customizeConsolidateTimeView?: string;
-    customizeTimeDownArrow?: string;
-    customizeTimeUpArrow?: string;
-    renameTimeUpdateButton?: string;
-    customizeUpdateCalenderIcon?: string;
-    closeOnSelect?: boolean;
-    children?: JSXElement;
-    calendarResponse?: ( props: IPropsValue ) => void;
-    calendarWidth?: number;
-}
+import IconCross from '../../../../atoms/Icons/Stroke/IconCross';
 
 const DatePicker = (
     _props: any ) =>
 {
-    const props = mergeProps( { customizeTogglerCalendarIcon: '', enableDateRangeSelector: false, prevDate: moment().startOf( 'weeks' ).toDate(), customizeRangeSelectedDates: '', closeOnSelect: false, customizeCalendar: '', customizeCalendarToggler: '', customizeTogglerArrowIcon: '', customizeCalendarBody: '', calendarWidth: 0, headerMonthFormat: 'MMM', headerYearFormat: 'YYYY', enableArrowNavigation: true, customizeLeftArrow: '', customizeRightArrow: '', customizeActiveMonth: '', enableSelectedDate: true, enableSelectedDateEditor: true, dateFormat: 'DD MMM, YYYY', customizeSelectedDate: '', enableTodayNavigator: false, customizeTodayNavigator: '', cutomizeCalendarViewButtons: '', activeCalendarView: 'day', enableCalendarViewType: false, customizeListView: '', customizeListHeader: '', customizeYearLeftNavigationArrow: '', customizeYearRightNavigationArrow: '', enableTimeView: false, ednableTimeEditing: false, customizeTimeViewSwitch: '', customizeTimeInputField: '', customizeTimeUpdateButton: '', customizeConsolidateTimeView: '', customizeTimeDownArrow: '', customizeTimeUpArrow: '', customizeUpdateCalenderIcon: '', renameTimeUpdateButton: '' }, _props );
+    const props = mergeProps( {
+        customizeTogglerCalendarIcon: '',
+        enableDateRangeSelector: false,
+        prevDate: moment().startOf( 'weeks' ).toDate(),
+        customizeRangeSelectedDates: '',
+        closeOnSelect: false,
+        customizeCalendar: '',
+        customizeCalendarToggler: '',
+        customizeTogglerArrowIcon: '',
+        customizeCalendarBody: '',
+        calendarWidth: 0,
+        headerMonthFormat: 'MMM',
+        headerYearFormat: 'YYYY',
+        enableArrowNavigation: true,
+        customizeLeftArrow: '',
+        customizeRightArrow: '',
+        customizeActiveMonth: '',
+        enableSelectedDate: true,
+        enableSelectedDateEditor: true,
+        dateFormat: 'DD MMM, YYYY',
+        customizeSelectedDate: '',
+        enableTodayNavigator: false,
+        customizeTodayNavigator: '',
+        customizeCalendarViewButtons: '',
+        activeCalendarView: 'day',
+        enableCalendarViewType: false,
+        customizeListView: '',
+        customizeListHeader: '',
+        customizeYearLeftNavigationArrow: '',
+        customizeYearRightNavigationArrow: '',
+        enableTimeView: false,
+        enableTimeEditing: false,
+        customizeTimeViewSwitch: '',
+        customizeTimeInputField: '',
+        customizeTimeUpdateButton: '',
+        customizeConsolidateTimeView: '',
+        customizeTimeDownArrow: '',
+        customizeTimeUpArrow: '',
+        customizeUpdateCalenderIcon: '',
+        renameTimeUpdateButton: '',
+        minDate: '',
+        maxDate: '' },
+    _props
+    );
     const [ locDate, setLocDate ] = createSignal<Date | undefined>();
-
     const [ previousDateState, setPreviousDate ] = createSignal<Date | undefined>();
-
-    const [ dateRangeArr, setdateRangeArr ] = createSignal<Date[]>( [] );
-
+    const [ dateRangeArr, setDateRangeArr ] = createSignal<Date[]>( [] );
     const [ headerView, setHeaderView ] = createSignal<{ [key: string]: number | string }>( { monthIndex: 0, month: '', year: 0 } );
-
-    const [ activeView, setActiveView ] = createSignal<string>( props.activeCalendarView );
-
+    const [ activeView, setActiveView ] = createSignal<string>( props.activeCalendarView ); // eslint-disable-line
     const [ yearRangeOffset, setYearRangeOffset ] = createSignal( { start: Number( moment( props.currentDate ).format( 'YYYY' ) ) - 4, offset: 0 } );
-
     const [ isTimeViewEnabled, setTimeView ] = createSignal( false );
-
     const [ timeValue, setTime ] = createSignal<{ [key: string]: string }>( { hour: '', min: '', meridiem: '' } );
-
     const [ isCalendarEnabled, setCalendarState ] = createSignal( false );
-
 
     const dateList = createMemo( () =>
     {
         const currentMonth = headerView().monthIndex;
         const currentYear = headerView().year;
         const monthStartDate = moment( `${currentMonth}, ${currentYear}`, 'MM, YYYY' ).startOf( 'month' ).format( 'DD MMMM, YYYY' );
-
         const weekStartDate = moment( monthStartDate, 'DD MMMM, YYYY' ).startOf( 'week' ).toDate();
-
         return [ ...Array( 35 ) ].map( ( _1, index ) =>
         {
             return moment( weekStartDate ).add( index, 'days' ).toDate();
@@ -121,7 +90,7 @@ const DatePicker = (
         setLocDate( moment( props.currentDate ).toDate() );
         const startDate = moment( props.prevDate ).toDate();
         const endDate = moment( props.currentDate ).toDate();
-        setdateRangeArr( [ startDate, endDate ] );
+        setDateRangeArr( [ startDate, endDate ] );
     } );
 
     //  Render based on locDate;
@@ -137,7 +106,7 @@ const DatePicker = (
         } ) );
     } );
 
-    createEffect( () =>
+    createMemo( () =>
     {
         if ( props.calendarResponse )
         {
@@ -189,7 +158,7 @@ const DatePicker = (
         {
             if ( !dateRangeArr()[1] )
             {
-                setdateRangeArr( [ ...dateRangeArr(), currentDate ] );
+                setDateRangeArr( [ ...dateRangeArr(), currentDate ] );
             }
             setLocDate( currentDate );
             yearViewNavigation( currentDate );
@@ -233,11 +202,11 @@ const DatePicker = (
     {
         if ( dateRangeArr().length === 2 )
         {
-            setdateRangeArr( [ value ] );
+            setDateRangeArr( [ value ] );
         }
         else
         {
-            setdateRangeArr( [ ...dateRangeArr(), moment( value ).endOf( 'days' ).toDate() ] );
+            setDateRangeArr( [ ...dateRangeArr(), moment( value ).endOf( 'days' ).toDate() ] );
         }
     };
 
@@ -266,12 +235,21 @@ const DatePicker = (
                 class={`cal-initial-view cur-pointer ${props.customizeCalendarToggler}`}
                 onClick={() => setCalendarState( ( prev ) => !prev )}
                 style={
-                    props.calendarWidth && props.calendarWidth < 29 ? { 'max-width': `${props.calendarWidth}rem`, 'min-width': `${props.calendarWidth}rem` } : undefined
+                    props.calendarWidth && props.calendarWidth < 29 ? { 'max-width': `${props.calendarWidth}rem !important`, 'min-width': `${props.calendarWidth}rem !important` } : undefined
                 }
             >
                 {( props.calendarWidth ? ( props.calendarWidth >= 13 ) : true ) ? <img src={calendarClockLogo} alt="clock icon" class={`${props.customizeTogglerCalendarIcon}`} /> : null}
                 {moment( locDate() ).format( props.dateFormat )}
-                <img src={arrowIcon} alt="arrow icon" class={`arrow-icon ${isCalendarEnabled() ? 'rotate-arrow-icon' : ''} ${props.customizeTogglerArrowIcon}`} />
+                {!isCalendarEnabled()
+                    ?
+                    <img src={arrowIcon} alt="arrow icon"
+                        class={`arrow-icon ${props.customizeTogglerArrowIcon}`}/>
+                    :
+                    <div class={'w-[20px] mr-[-4px] text-[#919191]'}>
+                        <IconCross strokeWidth={50}/>
+                    </div>
+
+                }
             </div>
 
             <div class={`cal-parent ${!isCalendarEnabled() ? 'd-none' : ''} ${props.customizeCalendarBody}`}>
@@ -292,7 +270,10 @@ const DatePicker = (
                         props.enableArrowNavigation ?
                             <div
                                 class={`right-arrow ${activeView() === 'day' ? 'cur-pointer' : 'v-none'} ${props.customizeRightArrow}`}
-                                onClick={() => { if ( activeView() === 'day' ) { headerNavigation( 1 ); } }}
+                                onClick={() =>
+                                {
+                                    if ( activeView() === 'day' ) { headerNavigation( 1 ); }
+                                }}
                             >
                                 <img src={arrowIcon} alt="right arrow" />
                             </div>
@@ -305,6 +286,7 @@ const DatePicker = (
                     <div class={`cal-sub-header ${!props.enableTodayNavigator || !props.enableTimeView ? 'jst-center' : ''}`}>
                         {props.enableTodayNavigator ?
                             <button
+                                type={'button'}
                                 class={`btn-class jump-today cur-pointer ${isTodayEnabled() ? 'active' : ''} ${props.customizeTodayNavigator}`}
                                 onClick={() =>
                                 {
@@ -339,10 +321,7 @@ const DatePicker = (
                             class={`icon-height cur-pointer ${props.customizeTimeViewSwitch}`}
                             src={isTimeViewEnabled() ? calendarLogo : clockLogo}
                             alt="Day Time Icon"
-                            onClick={() =>
-                            {
-                                setTimeView( !isTimeViewEnabled() );
-                            }}
+                            onClick={ () => { setTimeView( !isTimeViewEnabled() ); } }
                         /> : null}
                     </div> : null
                 }
@@ -354,10 +333,10 @@ const DatePicker = (
                         {
                             return (
                                 <button
-                                    class={`btn-class btn-width cur-pointer ${props.cutomizeCalendarViewButtons} ${it.value === activeView() ? 'active' : ''}`}
-                                    onClick={( e ) =>
+                                    type={'button'}
+                                    class={`btn-class btn-width cur-pointer ${props.customizeCalendarViewButtons} ${it.value === activeView() ? 'active' : ''}`}
+                                    onClick={() =>
                                     {
-                                        e.preventDefault();
                                         if ( isTimeViewEnabled() )
                                         {
                                             setTimeView( false );
@@ -375,52 +354,52 @@ const DatePicker = (
                     {/* Month View */}
                     {activeView() !== 'month' || isTimeViewEnabled() ? null :
                         <div class="container-month-view">
-                            {monthList.map( ( it, monthIndex ) =>
-                            {
-                                let isMonthDisabled = false;
-
-                                if ( props.maxDate )
+                            <For each={monthList}>{
+                                ( it, monthIndex ) => // eslint-disable-line
                                 {
-                                    if ( Number( props.maxDate.getFullYear() ) < Number( locDate()?.getFullYear() ) )
+                                    let isMonthDisabled = false;
+                                    if ( props.maxDate )
                                     {
-                                        isMonthDisabled = true;
+                                        if ( Number( props.maxDate.getFullYear() ) < Number( locDate()?.getFullYear() ) )
+                                        {
+                                            isMonthDisabled = true;
+                                        }
+                                        else if ( Number( props.maxDate.getFullYear() ) === Number( locDate()?.getFullYear() ) )
+                                        {
+                                            isMonthDisabled = Number( props.maxDate.getMonth() ) < monthIndex(); // eslint-disable-line
+                                        }
                                     }
-                                    else if ( Number( props.maxDate.getFullYear() ) === Number( locDate()?.getFullYear() ) )
+                                    if ( props.minDate )
                                     {
-                                        isMonthDisabled = Number( props.maxDate.getMonth() ) < monthIndex;
+                                        if ( Number( props.minDate.getFullYear() ) > Number( locDate()?.getFullYear() ) )
+                                        {
+                                            isMonthDisabled = true;
+                                        }
+                                        else if ( Number( props.minDate.getFullYear() ) === Number( locDate()?.getFullYear() ) )
+                                        {
+                                            isMonthDisabled = isMonthDisabled || Number( props.minDate.getMonth() ) > monthIndex(); // eslint-disable-line
+                                        }
                                     }
-                                }
-                                if ( props.minDate )
-                                {
-                                    if ( Number( props.minDate.getFullYear() ) > Number( locDate()?.getFullYear() ) )
-                                    {
-                                        isMonthDisabled = true;
-                                    }
-                                    else if ( Number( props.minDate.getFullYear() ) === Number( locDate()?.getFullYear() ) )
-                                    {
-                                        isMonthDisabled = isMonthDisabled || Number( props.minDate.getMonth() ) > monthIndex;
-                                    }
-                                }
 
-                                return (
-                                    <div
-                                        class={`container-list cur-pointer ${props.customizeListView} ${( ( locDate()?.getMonth() || 0 ) + 1 ) === it.monthIndex ? 'active box-shadow-card' : ''} ${isMonthDisabled ? 'cust-dis pointer-none' : ''}`}
-                                        onClick={() => monthSelection( it.monthIndex )}
-                                    >
-                                        {<Text message={it.short}/>}
-                                    </div>
-                                );
-                            } )}
+                                    return (
+                                        <div
+                                            class={`container-list cur-pointer ${props.customizeListView} ${( ( locDate()?.getMonth() || 0 ) + 1 ) === it.monthIndex ? 'active box-shadow-card' : ''} ${isMonthDisabled ? 'cust-dis pointer-none' : ''}`}
+                                            onClick={() => monthSelection( it.monthIndex )}
+                                        >
+                                            {<Text message={it.short} />}
+                                        </div>
+                                    );
+                                } }
+                            </For>
                         </div>
                     }
-
                     {/* Year View */}
                     {activeView() !== 'year' || isTimeViewEnabled() ? null :
                         <div class="container-year-view">
                             <img src={arrowIcon} class={`${props.customizeYearLeftNavigationArrow} year-navi__icon cur-pointer`} alt="left arrow" onClick={() => { yearNavigation( -1 ); }} />
 
                             <div class="container-year-list">
-                                {[ ...Array( 9 ) ].map( ( _1, index ) =>
+                                {[ ...Array( 12 ) ].map( ( _1, index ) =>
                                 {
                                     const value = yearRangeOffset().start + index;
                                     const fullYear = Number( momentFormatter( locDate(), 'YYYY' ) );
@@ -453,25 +432,14 @@ const DatePicker = (
                             <img src={arrowIcon} class={`${props.customizeYearRightNavigationArrow} year-navi__icon year-navi__icon_right cur-pointer`} alt="right arrow" onClick={() => { yearNavigation( 1 ); }} />
                         </div>
                     }
-
                     {/* Day view */}
                     {activeView() !== 'day' || isTimeViewEnabled() ? null :
                         <div class="container-day-view">
-
-                            <div class="list-header week-list">
-                                <For each={weekDays}>{( it ) =>
-                                {
-                                    return (
-                                        <div class={`week-list-items pointer-none cust-dis ${props.customizeListHeader}`}>{<Text message={it.short}/>}</div>
-                                    );
-                                }}</For>
-                            </div>
                             <div class="week-list week-list__date">
-                                <For each={dateList()}>{( it ) =>
+                                <For each={dateList()}>{( it ) => // eslint-disable-line
                                 {
                                     const startDate = moment( '12, 1920', 'MM, YYYY' ).startOf( 'months' ).toDate();
                                     const endDate = moment( new Date(), 'MM, YYYY' ).endOf( 'months' ).toDate();
-
                                     let isActive = false; // gives selected dates
                                     let isRangeActive = false; // highlights the dates in-between
                                     let isDatesDisabled = false; // disables the prev date during selection
@@ -494,7 +462,6 @@ const DatePicker = (
                                     {
                                         isActive = moment( it ).isSame( moment( locDate() ).startOf( 'days' ) );
                                     }
-
                                     // handles Max date given by user
                                     if ( props.maxDate )
                                     {
@@ -510,6 +477,7 @@ const DatePicker = (
                                         ${isActive ? `${props.enableDateRangeSelector ? 'active-bg' : 'active '} box-shadow-card` : ''} 
                                         ${props.customizeListView}
                                         ${it < startDate || it > endDate ? 'cust-dis' : ''}
+                                        ${it.toString().split( ' ' )[1] !== moment( headerView().month, 'M' ).format( 'MMM' ) ? 'cust-dis' : ''}
                                         ${isRangeActive ? `bg-hover-clr ${props.customizeRangeSelectedDates}` : ''}
                                         ${isDatesDisabled ? 'cust-dis pointer-none' : ''}
                                         `}
@@ -527,7 +495,6 @@ const DatePicker = (
                                         >
                                             {momentFormatter( it, 'DD' )}
                                         </div>
-
                                     );
                                 }}</For>
                             </div>
@@ -541,16 +508,13 @@ const DatePicker = (
                                         src={arrowIcon}
                                         class={`increment-icon icon_size cur-pointer ${timeValue().hour === '00' ? 'pointer-none cust-dis' : ''} ${props.customizeTimeDownArrow}`}
                                         alt="hour-increment"
-                                        onClick={() =>
-                                        {
-                                            handleTimeChange( -1, 'hour', 23 );
-                                        }}
+                                        onClick={ () => { handleTimeChange( -1, 'hour', 23 ); } }
                                     />
                                     <input
                                         class={`${props.customizeTimeInputField} hour_value`}
                                         value={timeValue().hour}
                                         type="number"
-                                        readOnly={!props.ednableTimeEditing}
+                                        readOnly={!props.enableTimeEditing}
                                         onKeyPress={( e: any ) =>
                                         {
                                             if ( e.target?.value <= 24 && e.target?.value >= 0 && e.code === 'Enter' )
@@ -564,29 +528,22 @@ const DatePicker = (
                                         src={arrowIcon}
                                         class={`decrement-icon icon_size cur-pointer ${timeValue().hour === '23' ? 'pointer-none cust-dis' : ''} ${props.customizeTimeUpArrow}`}
                                         alt="hour-decrement"
-                                        onClick={() =>
-                                        {
-                                            handleTimeChange( 1, 'hour', 23 );
-                                        }}
+                                        onClick={ () => { handleTimeChange( 1, 'hour', 23 ); } }
                                     />
                                 </div>
-
-                                <div class={'time-seperator'}>:</div>
+                                <div class={'time-separator'}>:</div>
                                 <div class={'time-mins-picker'}>
                                     <img
                                         src={arrowIcon}
                                         class={`increment-icon icon_size cur-pointer ${timeValue().min === '00' ? 'pointer-none cust-dis' : ''} ${props.customizeTimeDownArrow}`}
                                         alt="min-increment"
-                                        onClick={() =>
-                                        {
-                                            handleTimeChange( -1, 'min', 59 );
-                                        }}
+                                        onClick={ () => { handleTimeChange( -1, 'min', 59 ); } }
                                     />
                                     <input
                                         class={`${props.customizeTimeInputField} min_value`}
                                         value={timeValue().min}
                                         type="number"
-                                        readOnly={!props.ednableTimeEditing}
+                                        readOnly={!props.enableTimeEditing}
                                         onKeyPress={( e: any ) =>
                                         {
                                             if ( e.target?.value <= 60 && e.target?.value >= 0 && e.code === 'Enter' )
@@ -600,10 +557,7 @@ const DatePicker = (
                                         src={arrowIcon}
                                         class={`decrement-icon icon_size cur-pointer ${timeValue().min === '59' ? 'pointer-none cust-dis' : ''} ${props.customizeTimeUpArrow}`}
                                         alt="min-decrement"
-                                        onClick={() =>
-                                        {
-                                            handleTimeChange( 1, 'min', 59 );
-                                        }}
+                                        onClick={ () => { handleTimeChange( 1, 'min', 59 ); } }
                                     />
                                 </div>
                             </div>
@@ -616,6 +570,7 @@ const DatePicker = (
                                     </div>
                                 </div>
                                 <button
+                                    type={'button'}
                                     class={`btn-class active-bg btn-width cur-pointer ${props.customizeTimeUpdateButton}`}
                                     onClick={() =>
                                     {
@@ -639,12 +594,9 @@ const DatePicker = (
                         </div>
                     }
                 </div>
-                {
-                    props.children
-                }
+                { props.children }
             </div>
         </div>
     );
 };
-
 export default DatePicker;

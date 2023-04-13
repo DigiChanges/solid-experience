@@ -68,7 +68,7 @@ const LoginTemplate: Component = () =>
                             )}
                         >
                             <div class={styles.register}>
-                                <p><TextI18 message="a_do_not_have_account" /></p>
+                                <p class={'text-neutral-50'}><TextI18 message="a_do_not_have_account" /></p>
                                 <Link href="/register">
                                     <strong><TextI18 message="a_sign_up"/></strong>
                                 </Link>

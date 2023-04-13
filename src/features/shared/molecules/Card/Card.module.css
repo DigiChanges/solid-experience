@@ -1,6 +1,6 @@
 
 .container {
-    background-color: var(--hope-colors-neutral-800);
+    background-color: var(--hope-colors-neutral-700);
     border-radius: var(--hope-radii-lg);
     box-shadow: var(--hope-shadows-lg);
 }

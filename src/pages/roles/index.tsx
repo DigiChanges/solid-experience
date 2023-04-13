@@ -1,4 +1,4 @@
-import {notificationService} from '../../features/shared/molecules/Toasts/Toasts';
+import { notificationService } from '../../features/shared/molecules/Toasts/Toasts';
 import { useI18n } from 'solid-i18n';
 import { Component, createEffect, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';

@@ -49,9 +49,9 @@ export const Select: Component<SelectProps> = ( props ) =>
                 <KSelect.Value class={styles.select__value} />
             </KSelect.Trigger>
 
-                <KSelect.Content class={styles.select__content}>
-                    <KSelect.Listbox class={styles.select__listbox} />
-                </KSelect.Content>
+            <KSelect.Content class={styles.select__content}>
+                <KSelect.Listbox class={styles.select__listbox} />
+            </KSelect.Content>
 
         </KSelect.Root>
 
@@ -104,9 +104,9 @@ export const MultiSelect: Component<MultiSelectProps> = ( props ) =>
                 </As>
             </KMultiSelect.Trigger>
 
-                <KMultiSelect.Content class={styles.select__content}>
-                    <KMultiSelect.Listbox class={styles.select__listbox}/>
-                </KMultiSelect.Content>
+            <KMultiSelect.Content class={styles.select__content}>
+                <KMultiSelect.Listbox class={styles.select__listbox}/>
+            </KMultiSelect.Content>
 
         </KMultiSelect.Root>
 

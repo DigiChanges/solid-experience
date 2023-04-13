@@ -24,7 +24,7 @@
 }
 
 .error_message_block {
-    display: block;
+    @apply block mt-1 text-sm
 }
 
 .switch_position {
@@ -53,3 +53,6 @@
     @apply flex items-center justify-center pt-10;
 }
 
+.form_label {
+    @apply text-neutral-50 text-sm mr-1
+}

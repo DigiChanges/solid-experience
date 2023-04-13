@@ -2,7 +2,7 @@ import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Anchor, Button, FormControl, FormControlError, FormControlLabel, FormControlDescription, HStack, Input } from '@hope-ui/core';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, createEffect, Show } from 'solid-js';
+import { Component, Show } from 'solid-js';
 import type { InferType } from 'yup';
 import { LoginPayload } from '../../../interfaces/login';
 import signUpSchema from '../../../validations/schemas/SignUpSchema';
@@ -33,34 +33,63 @@ const LoginForm: Component<LoginFormProps> = props =>
             <h1 class="section_title_opaque"><Text message="a_login"/></h1>
             <form ref={form} class="flex flex-col gap-9 w-full" >
                 <FormControl isRequired isInvalid={!!errors( 'email' )}>
-                    <FormControlLabel for="email"><Text message="email"/></FormControlLabel>
-                    <Input name="email" type="email" autocomplete="username" placeholder={t( 'a_your_email' ) as string}/>
+                    <FormControlLabel for="email" class={'mb-1'}><Text class={'form_label'} message="email"/></FormControlLabel>
+                    <Input
+                        _dark={{
+                            borderColor: 'neutral.400',
+                            bgColor: 'transparent',
+                            color: 'neutral.50',
+                            _focus: { shadow: '0 0 0 3px #07303B', borderColor: 'primary.300' },
+                            _invalid: { borderColor: 'danger.600' },
+                        }}
+                        _placeholder={{ color: 'neutral.300' }}
+                        name="email"
+                        type="email"
+                        autocomplete="username"
+                        placeholder={t( 'a_your_email' ) as string}
+                    />
                     <Show when={errors( 'email' )} keyed>
-                        <FormControlError class="error_message_block">
-                            <Text message={errors( 'email' )![0]} />
-                        </FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'email' )![0]} /></FormControlError>
                     </Show>
                 </FormControl>
 
                 <FormControl isRequired isInvalid={!!errors( 'password' )}>
-                    <FormControlLabel for="password"><Text message="a_password"/></FormControlLabel>
-                    <Input name="password" type="password" autocomplete="current-password" placeholder={t( 'a_your_password' ) as string}/>
+                    <FormControlLabel for="password" class={'mb-1'}><Text class={'form_label'} message="a_password"/></FormControlLabel>
+                    <Input
+                        _dark={{
+                            borderColor: 'neutral.400',
+                            bgColor: 'transparent',
+                            color: 'neutral.50',
+                            _focus: { shadow: '0 0 0 3px #07303B', borderColor: 'primary.300' },
+                            _invalid: { borderColor: 'danger.600' },
+                        }}
+                        _placeholder={{ color: 'neutral.300' }}
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        placeholder={t( 'a_your_password' ) as string}
+                    />
                     <Show when={errors( 'password' )} keyed>
-                        <FormControlError class="error_message_block">
-                            <Text message={errors( 'password' )![0]} />
-                        </FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'password' )![0]} /></FormControlError>
                     </Show>
                 </FormControl>
 
                 <FormControl>
                     <FormControlDescription>
                         <Anchor onClick={props.onClick} >
-                            <Text message="au_forgot_password" />
+                            <Text class={'text-neutral-400 text-sm'} message="au_forgot_password" />
                         </Anchor>
                     </FormControlDescription>
                 </FormControl>
                 <HStack justifyContent="flex-end">
-                    <Button type="submit" disabled={!isValid()}>
+                    <Button
+                        _dark={{
+                            bgColor: 'primary.200',
+                            _disabled: { borderColor: 'transparent', color: 'neutral.400' },
+                        }}
+                        type="submit"
+                        disabled={!isValid()}
+                    >
                         <Text message="a_login" />
                     </Button>
                 </HStack>

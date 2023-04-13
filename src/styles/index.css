@@ -1,4 +1,12 @@
 
 #root {
   background-color: var(--hope-colors-neutral-900);
+
 }
+#root a {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: inherit;
+  color: var(--hope-colors-neutral-50);
+}
+

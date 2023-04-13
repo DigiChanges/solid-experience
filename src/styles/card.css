@@ -7,7 +7,7 @@
 }
 
 .card_media_object_title{
-    color: var(--hope-colors-neutral-300);
+    color: var(--hope-colors-neutral-50);
     @apply hover:scale-150;
 }
 

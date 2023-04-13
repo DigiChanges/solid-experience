@@ -3,13 +3,14 @@ import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, createEffect, For, Show } from 'solid-js';
+import { Component, createEffect, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { country, gender, userDocumentTypeOptions } from '../../../../../entities';
 import RegisterSchema from '../../../validations/schemas/RegisterSchema.';
 import { RegisterApi, RegisterResponse } from '../../interfaces/createAccount';
-import {Select} from '../../../../shared/molecules/Select/Select';
+import { Select } from '../../../../shared/molecules/Select/Select';
 import Radio from '../../../../shared/molecules/Radio/Radio';
+import DatePicker from '../../../../shared/molecules/DatePicker/DatePicker';
 
 interface UserUpdateTemplateProps
 {
@@ -41,9 +42,10 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setFields( field, value, true );
     };
 
-    createEffect(()=> {
-        console.log(data())
-    })
+    const handleDate = ( field: keyof InferType<typeof RegisterSchema>, value: any ) =>
+    {
+        setFields( field, value, true );
+    };
 
     return (
         <form ref={form}>
@@ -153,7 +155,23 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'birthday' )}>
                             <FormControlLabel for="birthday"><Text message="birthday"/></FormControlLabel>
-                            <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' ) as string} />
+                            <DatePicker
+                                currentDate={ new Date() }
+                                dateFormat={ 'DD/MM/YYYY' }
+                                headerMonthFormat={ 'MM' }
+                                enableSelectedDate={ false }
+                                enableCalendarViewType={ true }
+                                activeCalendarView={ 'year' }
+                                calendarResponse={ ( e: any ) =>
+                                {
+                                    handleDate( 'birthday', e.currentDate?.toISOString().split( 'T' )[0] );
+                                } }
+                                maxDate={ new Date() }
+                                minDate={ new Date( '1901' ) }
+                                customizeCalendar={ 'register-birthday' }
+                                name="birthday"
+                            />
+                            {/* <Input name="birthday" type="date" placeholder={t( 'a_choose_birthday' ) as string} /> */}
                             <Show when={errors( 'birthday' )} keyed>
                                 <FormControlError><Text message={errors( 'birthday' )![0]} /></FormControlError>
                             </Show>

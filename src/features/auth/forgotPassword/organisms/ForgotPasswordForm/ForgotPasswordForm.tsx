@@ -58,20 +58,47 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
         <form ref={form} class="form_flex column">
             <h1 class="section_title_opaque"><Text message="a_account_recovery"/></h1>
             <FormControl isRequired={true} isInvalid={!!errors( 'email' )}>
-                <FormControlLabel for="email"><Text message="email"/></FormControlLabel>
-                <Input name="email" type="email" placeholder={t( 'a_your_email' ) as string} />
+                <FormControlLabel for="email" class={'mb-1'}><Text class={'form_label'} message="email"/></FormControlLabel>
+                <Input
+                    _dark={{
+                        borderColor: 'neutral.400',
+                        bgColor: 'transparent',
+                        color: 'neutral.50',
+                        _focus: { shadow: '0 0 0 3px #07303B', borderColor: 'primary.300' },
+                        _invalid: { borderColor: 'danger.600' },
+                    }}
+                    _placeholder={{ color: 'neutral.300' }}
+                    name="email"
+                    type="email"
+                    placeholder={t( 'a_your_email' ) as string}
+                />
                 <Show when={errors( 'email' )} keyed>
                     <FormControlError class="error_message_block">
                         <Text message={errors( 'email' )![0]} />
                     </FormControlError>
                 </Show>
-
             </FormControl>
             <div class="update_save_buttons_container spaced">
-                <Button onClick={props.onClick} colorScheme="neutral">
+                <Button
+                    onClick={props.onClick}
+                    colorScheme="neutral"
+                    _dark={{
+                        bgColor: 'neutral.300',
+                        _hover: { bgColor: 'neutral.200' },
+                    }}
+                >
                     <Text message="a_cancel" />
                 </Button>
-                <Button type="submit" isDisabled={!isValid()} isLoading={isSubmitting()} loadingText={<Text message="a_submitting"/> as string}>
+                <Button
+                    type="submit"
+                    isDisabled={!isValid()}
+                    isLoading={isSubmitting()}
+                    loadingText={<Text message="a_submitting"/> as string}
+                    _dark={{
+                        bgColor: 'primary.200',
+                        _disabled: { borderColor: 'transparent', color: 'neutral.400' },
+                    }}
+                >
                     <Text message="a_send"/>
                 </Button>
             </div>

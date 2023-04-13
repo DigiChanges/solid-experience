@@ -11,10 +11,10 @@ import { RoleApi } from '../../../role/interfaces';
 import { UserApi, UserPayload } from '../../interfaces';
 import userCreateValidationSchema from '../../validations/schemas/userCreateValidationSchema';
 import userUpdateValidationSchema from '../../validations/schemas/userUpdateValidationSchema';
-import DatePicker from '../../../../atoms/DatePicker/DatePicker';
 import { MultiSelect, Select } from '../../../shared/molecules/Select/Select';
 import Radio from '../../../shared/molecules/Radio/Radio';
 import Switch from '../../../shared/molecules/Switch/Switch';
+import DatePicker from '../../../shared/molecules/DatePicker/DatePicker';
 
 
 enum RequiredPermission {
@@ -70,6 +70,11 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
     {
         const valuesArray: string[] = Array.from( value );
         setFields( field, valuesArray, true );
+    };
+
+    const handleDate = ( field: keyof InferType<typeof userSchema>, value: any ) =>
+    {
+        setFields( field, value, true );
     };
 
     onMount( () =>
@@ -160,14 +165,21 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'birthday' )}>
                     <FormControlLabel for="birthday"><Text message="birthday"/></FormControlLabel>
-                    <DatePicker prevDate={new Date( '05/01/2022' )}
-                        endDate={new Date()}
-                        currentDate={new Date( props.userSelected ? props.userSelected.birthday : new Date() )}
-                        dateFormat={'DD/MM/YYYY'}
-                        headerMonthFormat={'MM'}
-                        enableSelectedDate={false}
-                        enableCalendarViewType={true}
-                        calendarResponse={( e: any ) => setFields( 'birthday', e.currentDate?.toISOString().split( 'T' )[0] )}
+                    <DatePicker
+                        currentDate={ new Date() }
+                        dateFormat={ 'DD/MM/YYYY' }
+                        headerMonthFormat={ 'MM' }
+                        enableSelectedDate={ false }
+                        enableCalendarViewType={ true }
+                        activeCalendarView={ 'year' }
+                        calendarResponse={ ( e: any ) =>
+                        {
+                            handleDate( 'birthday', e.currentDate?.toISOString().split( 'T' )[0] );
+                        } }
+                        maxDate={ new Date() }
+                        minDate={ new Date( '1901' ) }
+                        customizeCalendar={ 'register-birthday' }
+                        name="birthday"
                     />
                     <Show when={errors( 'birthday' )} keyed>
                         <FormControlError><Text message={errors( 'birthday' )![0]} /></FormControlError>

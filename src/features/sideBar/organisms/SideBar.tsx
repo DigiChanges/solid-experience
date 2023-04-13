@@ -1,4 +1,4 @@
-import { Component, JSX, Show } from 'solid-js';
+import { Component, JSX } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
 import styles from './SideBar.module.css';
@@ -6,10 +6,7 @@ import { Text } from 'solid-i18n';
 import { Drawer, Icon } from '@hope-ui/core';
 import { logout } from '../../navBar/organisms/handlers';
 import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
-/* import { DropdownMenu } from '@kobalte/core'; */
 import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
-import { changeLanguage } from '../../language/handlers';
-import IconLanguage from '../../../atoms/Icons/Stroke/IconLanguage';
 
 interface SideBarProps {
     authUser: any;
@@ -25,7 +22,7 @@ const SideBar: Component<SideBarProps> = ( props ) =>
     const items = [
         {
             children: <Text message="Item 1" />,
-            onSelect: {} ,
+            onSelect: {},
         },
         {
             children: <Text message="Item 2" />,
