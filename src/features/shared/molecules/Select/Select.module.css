@@ -2,20 +2,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
-    border-radius: 6px;
+    width: 100%;
+    border-radius: 4px;
     padding: 0 10px 0 16px;
     font-size: 16px;
     line-height: 1;
     height: 40px;
     outline: none;
-    background-color: white;
-    border: 1px solid hsl(240 6% 90%);
+    background-color: transparent;
+    border: 1px solid var(--hope-colors-neutral-400);
     color: hsl(240 4% 16%);
     transition: border-color 250ms, color 250ms;
 }
 .select__trigger:hover {
-    border-color: hsl(240 5% 65%);
+    border-color: var(--hope-colors-neutral-300);
 }
 .select__trigger:focus-visible {
     outline: 2px solid hsl(200 98% 39%);

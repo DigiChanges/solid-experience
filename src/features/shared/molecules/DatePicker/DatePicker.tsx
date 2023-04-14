@@ -53,7 +53,9 @@ const DatePicker = (
         customizeUpdateCalenderIcon: '',
         renameTimeUpdateButton: '',
         minDate: '',
-        maxDate: '' },
+        maxDate: '',
+        theme: 'light',
+        },
     _props
     );
     const [ locDate, setLocDate ] = createSignal<Date | undefined>();
@@ -230,7 +232,7 @@ const DatePicker = (
     } );
 
     return (
-        <div class={`calendar ${props.customizeCalendar}`}>
+        <div class={`calendar ${props.customizeCalendar} ${props.theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
             <div
                 class={`cal-initial-view cur-pointer ${props.customizeCalendarToggler}`}
                 onClick={() => setCalendarState( ( prev ) => !prev )}
@@ -239,14 +241,14 @@ const DatePicker = (
                 }
             >
                 {( props.calendarWidth ? ( props.calendarWidth >= 13 ) : true ) ? <img src={calendarClockLogo} alt="clock icon" class={`${props.customizeTogglerCalendarIcon}`} /> : null}
-                {moment( locDate() ).format( props.dateFormat )}
+                <p>{moment( locDate() ).format( props.dateFormat )}</p>
                 {!isCalendarEnabled()
                     ?
                     <img src={arrowIcon} alt="arrow icon"
                         class={`arrow-icon ${props.customizeTogglerArrowIcon}`}/>
                     :
                     <div class={'w-[20px] mr-[-4px] text-[#919191]'}>
-                        <IconCross strokeWidth={50}/>
+                        <IconCross />
                     </div>
 
                 }

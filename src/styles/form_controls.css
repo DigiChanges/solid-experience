@@ -32,7 +32,7 @@
 }
 
 .field_justify_between{
-    @apply flex justify-between items-center mt-1;
+    @apply flex justify-between mt-1;
 }
 
 .update_save_buttons_container {

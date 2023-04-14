@@ -9,6 +9,7 @@ import { InferType } from 'yup';
 import createAlert from '../../../../shared/hooks/createAlert';
 import { ForgotPasswordPayload } from '../../../interfaces/forgotPassword';
 import ForgetPasswordSchema from '../../../validations/schemas/ForgetPasswordSchema';
+import { darkInput, placeholderInput, darkNeutralButton, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
 
 interface ForgotPasswordFormProps
 {
@@ -55,37 +56,26 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
     } );
 
     return (
-        <form ref={form} class="form_flex column">
+        <form ref={form} class="form_flex column w-[20rem]">
             <h1 class="section_title_opaque"><Text message="a_account_recovery"/></h1>
             <FormControl isRequired={true} isInvalid={!!errors( 'email' )}>
                 <FormControlLabel for="email" class={'mb-1'}><Text class={'form_label'} message="email"/></FormControlLabel>
                 <Input
-                    _dark={{
-                        borderColor: 'neutral.400',
-                        bgColor: 'transparent',
-                        color: 'neutral.50',
-                        _focus: { shadow: '0 0 0 3px #07303B', borderColor: 'primary.300' },
-                        _invalid: { borderColor: 'danger.600' },
-                    }}
-                    _placeholder={{ color: 'neutral.300' }}
+                    _dark={darkInput}
+                    _placeholder={placeholderInput}
                     name="email"
                     type="email"
                     placeholder={t( 'a_your_email' ) as string}
                 />
                 <Show when={errors( 'email' )} keyed>
-                    <FormControlError class="error_message_block">
-                        <Text message={errors( 'email' )![0]} />
-                    </FormControlError>
+                    <FormControlError class="error_message_block"><Text message={errors( 'email' )![0]} /></FormControlError>
                 </Show>
             </FormControl>
             <div class="update_save_buttons_container spaced">
                 <Button
                     onClick={props.onClick}
                     colorScheme="neutral"
-                    _dark={{
-                        bgColor: 'neutral.300',
-                        _hover: { bgColor: 'neutral.200' },
-                    }}
+                    _dark={darkNeutralButton}
                 >
                     <Text message="a_cancel" />
                 </Button>
@@ -94,10 +84,7 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
                     isDisabled={!isValid()}
                     isLoading={isSubmitting()}
                     loadingText={<Text message="a_submitting"/> as string}
-                    _dark={{
-                        bgColor: 'primary.200',
-                        _disabled: { borderColor: 'transparent', color: 'neutral.400' },
-                    }}
+                    _dark={darkPrimaryButton}
                 >
                     <Text message="a_send"/>
                 </Button>

@@ -6,7 +6,6 @@ interface RadioGroupProps extends JSX.HTMLAttributes<HTMLDivElement> {
     name: string;
     onChange: any;
     value: boolean;
-    defaultValue?: boolean;
 }
 
 const Switch: Component<RadioGroupProps> = ( props ) =>
@@ -17,7 +16,6 @@ const Switch: Component<RadioGroupProps> = ( props ) =>
             class={styles.switch}
             isChecked={props.value}
             onCheckedChange={props.onChange}>
-            {/* defaultIsChecked={props.defaultValue} */}
             <KSwitch.Input class={styles.switch__input} />
             <KSwitch.Control class={styles.switch__control}>
                 <KSwitch.Thumb class={styles.switch__thumb}/>

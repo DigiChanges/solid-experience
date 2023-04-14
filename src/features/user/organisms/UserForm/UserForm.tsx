@@ -180,6 +180,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         minDate={ new Date( '1901' ) }
                         customizeCalendar={ 'register-birthday' }
                         name="birthday"
+                        theme='dark'
                     />
                     <Show when={errors( 'birthday' )} keyed>
                         <FormControlError><Text message={errors( 'birthday' )![0]} /></FormControlError>

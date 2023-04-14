@@ -12,6 +12,7 @@ interface SelectBase extends JSX.HTMLAttributes<HTMLDivElement> {
     valueProperty: string;
     labelProperty: string;
     groupSelector?: string;
+    class?: string;
 }
 
 interface SelectProps extends SelectBase {
@@ -28,6 +29,7 @@ export const Select: Component<SelectProps> = ( props ) =>
 
         <KSelect.Root
             name={props.name}
+            class={props.class}
             placeholder={<Text message={props.placeholder}/>}
             value={props.value}
             options={props.options}
@@ -64,6 +66,7 @@ export const MultiSelect: Component<MultiSelectProps> = ( props ) =>
 
         <KMultiSelect.Root
             name={props.name}
+            class={props.class}
             placeholder={<Text message={props.placeholder}/>}
             value={props.value}
             options={props.options}

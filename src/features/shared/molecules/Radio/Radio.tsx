@@ -29,7 +29,7 @@ const Radio: Component<RadioGroupProps> = ( props ) =>
                             <KRadioGroup.ItemControl class={styles.radio__control}>
                                 <KRadioGroup.ItemIndicator class={styles.radio__indicator}/>
                             </KRadioGroup.ItemControl>
-                            <KRadioGroup.ItemLabel><Text message={option.label}/></KRadioGroup.ItemLabel>
+                            <KRadioGroup.ItemLabel class={styles.radio__label}><Text message={option.label}/></KRadioGroup.ItemLabel>
                         </KRadioGroup.Item>
                     }
                 </For>

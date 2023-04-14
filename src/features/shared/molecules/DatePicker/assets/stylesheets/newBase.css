@@ -1,13 +1,35 @@
 /* common class */
+.theme-dark {
+    --datepicker-colors-text: var(--hope-colors-neutral-100);
+    --datepicker-colors-text-strong: #FFF;
+    --datepicker-colors-border: var(--hope-colors-neutral-400);
+    --datepicker-colors-border-color: var(--hope-colors-primary-300);
+    --datepicker-colors-shadow-color: var(--hope-colors-primary-600);
+    --datepicker-colors-image: invert(1);
+    --datepicker-colors-background: var(--hope-colors-neutral-900);
+    --datepicker-colors-background-color: var(--hope-colors-primary-300);
+}
+
+.theme-light {
+    --datepicker-colors-text: #151718;
+    --datepicker-colors-text-strong: #000;
+    --datepicker-colors-border: #d7dbdf;
+    --datepicker-colors-border-color: '';
+    --datepicker-colors-shadow-color: '';
+    --datepicker-colors-image: invert(0);
+    --datepicker-colors-background: var(--hope-colors-neutral-50);
+    --datepicker-colors-background-color: linear-gradient(91.51deg, rgb(65, 180, 0) 1.52%, rgb(121, 219, 0) 100.83%);
+}
+
 .cur-pointer {
     cursor: pointer;
 }
 
 .active {
-    background: linear-gradient(91.51deg, rgb(65, 180, 0) 1.52%, rgb(121, 219, 0) 100.83%) !important;
+    background: var(--datepicker-colors-background-color) !important;
     font-weight: 600;
     font-size: 1rem;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     pointer-events: none;
     border-radius: 0.5rem;
 
@@ -90,8 +112,8 @@
     justify-content: space-between;
     align-items: center;
     height: 2.3rem;
-    border: 1px solid #d7dbdf;
-    border-radius: 3px;
+    border: 1px solid var(--datepicker-colors-border);
+    border-radius: 4px;
     padding-left: 12px;
     margin-bottom: 0;
     font-weight: 400;
@@ -99,16 +121,20 @@
     min-height: 2.5rem;
     font-size: 1rem;
     line-height: 1.5rem;
-    color:black
 }
 .cal-initial-view:focus {
-    border:red;
+    border-color: var(--datepicker-colors-border-color);
+    box-shadow: 0 0 0 3px #07303B;
+}
+
+.cal-initial-view p {
+    color: var(--datepicker-colors-text-strong);
 }
 
 .arrow-icon {
     height: 1rem;
     rotate: -180deg;
-
+    filter: var(--datepicker-colors-image);
 }
 
 .rotate-arrow-icon {
@@ -120,7 +146,7 @@
     width: 100%;
     display: inline-block;
     min-height: 25rem;
-    background: #ffff;
+    background: var(--datepicker-colors-background);
     border-radius: 0.625rem;
     padding: 1.5rem;
     position: absolute;
@@ -285,6 +311,7 @@
 
 .cal-header .left-arrow img {
     height: 1rem;
+    filter: var(--datepicker-colors-image);
 }
 
 
@@ -294,11 +321,13 @@
     line-height: 20px;
     letter-spacing: 0px;
     text-align: center;
+    color: var(--datepicker-colors-text-strong);
 }
 
 .cal-header .right-arrow img {
     height: 1rem;
     rotate: -180deg;
+    filter: var(--datepicker-colors-image);
 }
 
 .cal-sub-header {
@@ -339,6 +368,16 @@
     margin: 1.25rem 0;
 }
 
+.cal-sub-header-section button{
+    color: var(--datepicker-colors-text-strong);
+    background-color: transparent;
+    border: 1px solid var(--datepicker-colors-border);
+}
+
+.cal-sub-header-section button:hover{
+    background-color: var(--datepicker-colors-border);
+}
+
 .main-container {
     display: flex;
     justify-content: space-evenly;
@@ -360,10 +399,11 @@
     font-size: 1rem;
     width: 65px;
     text-align: center;
+    color: var(--datepicker-colors-text);
 }
 
 .main-container .container-list:hover {
-    background-color: #EFEFEF;
+    background-color: var(--datepicker-colors-border);
 }
 
 .main-container .container-year-view {
@@ -374,6 +414,7 @@
 .main-container .container-year-view .year-navi__icon {
     height: 1.2rem;
     margin: 0.1rem;
+    filter: var(--datepicker-colors-image);
 }
 
 .main-container .container-year-view .year-navi__icon_right {
@@ -415,10 +456,11 @@
     text-transform: uppercase;
     font-size: small;
     border-radius: 0.5rem;
+    color: var(--datepicker-colors-text);
 }
 
 .main-container .container-day-view .week-list .week-list-items:hover {
-    background-color: #EFEFEF;
+    background-color: var(--datepicker-colors-border);
 }
 
 .main-container .container-day-view .list-header {

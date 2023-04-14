@@ -6,6 +6,7 @@ import { Component, Show } from 'solid-js';
 import type { InferType } from 'yup';
 import { LoginPayload } from '../../../interfaces/login';
 import signUpSchema from '../../../validations/schemas/SignUpSchema';
+import { darkInput, placeholderInput, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter'
 
 interface LoginFormProps {
     onSubmit: ( values: LoginPayload ) => Promise<void>;
@@ -31,18 +32,12 @@ const LoginForm: Component<LoginFormProps> = props =>
     return (
         <>
             <h1 class="section_title_opaque"><Text message="a_login"/></h1>
-            <form ref={form} class="flex flex-col gap-9 w-full" >
+            <form ref={form} class="flex flex-col gap-9 w-[20rem]" >
                 <FormControl isRequired isInvalid={!!errors( 'email' )}>
                     <FormControlLabel for="email" class={'mb-1'}><Text class={'form_label'} message="email"/></FormControlLabel>
                     <Input
-                        _dark={{
-                            borderColor: 'neutral.400',
-                            bgColor: 'transparent',
-                            color: 'neutral.50',
-                            _focus: { shadow: '0 0 0 3px #07303B', borderColor: 'primary.300' },
-                            _invalid: { borderColor: 'danger.600' },
-                        }}
-                        _placeholder={{ color: 'neutral.300' }}
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
                         name="email"
                         type="email"
                         autocomplete="username"
@@ -56,14 +51,8 @@ const LoginForm: Component<LoginFormProps> = props =>
                 <FormControl isRequired isInvalid={!!errors( 'password' )}>
                     <FormControlLabel for="password" class={'mb-1'}><Text class={'form_label'} message="a_password"/></FormControlLabel>
                     <Input
-                        _dark={{
-                            borderColor: 'neutral.400',
-                            bgColor: 'transparent',
-                            color: 'neutral.50',
-                            _focus: { shadow: '0 0 0 3px #07303B', borderColor: 'primary.300' },
-                            _invalid: { borderColor: 'danger.600' },
-                        }}
-                        _placeholder={{ color: 'neutral.300' }}
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
                         name="password"
                         type="password"
                         autocomplete="current-password"
@@ -83,10 +72,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                 </FormControl>
                 <HStack justifyContent="flex-end">
                     <Button
-                        _dark={{
-                            bgColor: 'primary.200',
-                            _disabled: { borderColor: 'transparent', color: 'neutral.400' },
-                        }}
+                        _dark={darkPrimaryButton}
                         type="submit"
                         disabled={!isValid()}
                     >
