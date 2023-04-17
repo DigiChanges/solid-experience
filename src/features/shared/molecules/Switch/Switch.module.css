@@ -1,6 +1,8 @@
 .switch {
     display: inline-flex;
     align-items: center;
+    min-height: var(--hope-sizes-10);
+    align-items: center;
 }
 .switch__control {
     display: inline-flex;

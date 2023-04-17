@@ -6,6 +6,7 @@ interface RadioGroupProps extends JSX.HTMLAttributes<HTMLDivElement> {
     items: any;
     icon?: any;
     title?: any;
+    class?: string;
 }
 
 const DropdownMenu: Component<RadioGroupProps> = ( props ) =>
@@ -14,12 +15,14 @@ const DropdownMenu: Component<RadioGroupProps> = ( props ) =>
         <KDropdownMenu.Root>
             <KDropdownMenu.Trigger class={styles.dropdown__menu__trigger}>
                 {props.title}
-                <KDropdownMenu.Icon
-                    class={styles.dropdown__menu__trigger__icon}
-                    children={props.icon}
-                />
+                {props.icon &&
+                    <KDropdownMenu.Icon
+                        class={styles.dropdown__menu__trigger__icon}
+                        children={props.icon}
+                    />
+                }
             </KDropdownMenu.Trigger>
-            <KDropdownMenu.Content class={styles.dropdown__menu__content}>
+            <KDropdownMenu.Content class={`${styles.dropdown__menu__content} ${props.class}`}>
                 <For each={props.items}>
                     {item =>
                         <KDropdownMenu.Item

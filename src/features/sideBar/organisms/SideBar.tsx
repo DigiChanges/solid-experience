@@ -3,10 +3,10 @@ import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
 import styles from './SideBar.module.css';
 import { Text } from 'solid-i18n';
-import { Drawer, Icon } from '@hope-ui/core';
+import { Drawer } from '@hope-ui/core';
 import { logout } from '../../navBar/organisms/handlers';
-import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
 import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
+import { FaSolidAngleDown } from 'solid-icons/fa';
 
 interface SideBarProps {
     authUser: any;
@@ -40,22 +40,25 @@ const SideBar: Component<SideBarProps> = ( props ) =>
                 isOpen={ props.isOpen() }
                 placement={'left'}
                 onClose={ props.close }
-                size={'sm'}
+                size="xs"
             >
-                <Drawer.Overlay />
-                <Drawer.Content class={styles.drawer_content}>
-                    <Drawer.CloseButton/>
-                    <Drawer.Description>
-                        <div class={'w-fit h-[35px] min-w-[250px] pl-[1rem] mb-2'}>
+                <Drawer.Overlay _dark={{ bgColor: 'rgba(0, 0, 0, 0.65)' }}/>
+                <Drawer.Content class={styles.drawer_content} _dark={{ bgColor: 'neutral.800' }}>
+                    <Drawer.CloseButton class={styles.close_button}/>
+                    <div>
+                        <div class={'w-auto h-[35px] mx-[1rem] mb-2'}>
                             <DropdownMenu
                                 items={items}
-                                icon={<Icon><IconChevronDown /></Icon>}
-                                title={<span>{props.authUser.user.email}</span>}
+                                icon={<FaSolidAngleDown />}
+                                title={<span class={'text-white font-bold'}>{props.authUser.user.email}</span>}
+                                class={'w-[256px]'}
                             />
                         </div>
                         <DashItems expanded={true} authUser={props.authUser}/>
+                    </div>
+                    <div class="justify-self-end">
                         <LogoutSideBarItem user={props.authUser} getExpanded={true} sectionSelected=""/>
-                    </Drawer.Description>
+                    </div>
                 </Drawer.Content>
             </Drawer>
         </>

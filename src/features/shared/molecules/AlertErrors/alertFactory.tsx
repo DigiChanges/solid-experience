@@ -105,19 +105,25 @@ export const alertFactory = ( data: any ) =>
 
     const errorKey: keyof MapErrors = data.errorData.errorCode;
 
-    return <>{typeof errors[errorKey] === 'function' ?
-        errors[errorKey]()
-        :
-        <Alert.Root status="danger" variant="left-accent" class={styles.alert}>
-            {/* <AlertIcon mr="$2_5" /> */}
-            <div>
-                {/* <AlertTitle mr="$2_5"> */}<Text message="err"/>{/* </AlertTitle> */}
-                {/* <AlertDescription> */}
-                <Text
-                    message={ errorKey as string || 'err_unexpected' }
-                />
-                {/* </AlertDescription> */}
-            </div>
-        </Alert.Root>}</>
+    return (
+        <>
+            {
+                typeof errors[errorKey] === 'function' ?
+                    errors[errorKey]()
+                    :
+                    <Alert.Root status="danger" variant="left-accent" class={styles.alert}>
+                        {/* <AlertIcon mr="$2_5" /> */}
+                        <div>
+                            {/* <AlertTitle mr="$2_5"> */}<Text message="err"/>{/* </AlertTitle> */}
+                            {/* <AlertDescription> */}
+                            <Text
+                                message={ errorKey as string || 'err_unexpected' }
+                            />
+                            {/* </AlertDescription> */}
+                        </div>
+                    </Alert.Root>
+            }
+        </>
+    )
     ;
 };

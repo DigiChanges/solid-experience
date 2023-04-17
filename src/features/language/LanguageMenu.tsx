@@ -26,12 +26,13 @@ const LanguageMenu: Component = () =>
             <Center>
                 <IconButton
                     size={'md'}
-                    class={'w-[150%]'}
                     aria-label="Change language"
+                    borderRadius={'4px'}
                     children={
                         <DropdownMenu
                             items={items}
-                            icon={<IconLanguage />}
+                            title={<IconLanguage />}
+                            class={'w-[3rem]'}
                         />
                     }
                 />

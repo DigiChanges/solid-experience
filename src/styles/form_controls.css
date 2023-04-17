@@ -54,5 +54,5 @@
 }
 
 .form_label {
-    @apply text-neutral-50 text-sm mr-1
+    @apply text-neutral-50 text-sm mr-1 mb-1
 }

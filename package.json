@@ -53,6 +53,7 @@
     "moment": "^2.29.4",
     "solid-app-router": "^0.4.2",
     "solid-i18n": "^1.0.2",
+    "solid-icons": "^1.0.4",
     "solid-js": "^1.5.4",
     "solid-transition-group": "^0.0.10",
     "terser": "^5.16.0",

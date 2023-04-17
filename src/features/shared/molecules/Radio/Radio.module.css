@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    min-height: var(--hope-sizes-10);
+    align-items: center;
 }
 .radio__group__label {
     color: var(--hope-colors-neutral-100);
@@ -20,8 +22,11 @@
     user-select: none;
 }
 .radio__group__items {
+    padding-top: 5px;
     display: flex;
     gap: 16px;
+    min-height: var(--hope-sizes-10);
+    align-items: center;
 }
 .radio {
     display: flex;

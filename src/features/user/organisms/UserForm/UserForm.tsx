@@ -15,6 +15,7 @@ import { MultiSelect, Select } from '../../../shared/molecules/Select/Select';
 import Radio from '../../../shared/molecules/Radio/Radio';
 import Switch from '../../../shared/molecules/Switch/Switch';
 import DatePicker from '../../../shared/molecules/DatePicker/DatePicker';
+import { darkInput, darkNeutralButton, darkPrimaryButton, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
 
 enum RequiredPermission {
@@ -97,28 +98,43 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'firstName' )}>
-                    <FormControlLabel for="firstName"><Text message="first_name"/></FormControlLabel>
-                    <Input autofocus name="firstName" type="text" placeholder={t( 'a_enter_first_name' ) as string} value={props.userSelected?.firstName} />
+                    <FormControlLabel class={'form_label'} for="firstName"><Text message="first_name"/></FormControlLabel>
+                    <Input
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
+                        autofocus
+                        name="firstName"
+                        type="text"
+                        placeholder={t( 'a_enter_first_name' ) as string}
+                        value={props.userSelected?.firstName}
+                    />
                     <Show when={errors( 'firstName' )} keyed>
-                        <FormControlError><Text message={errors( 'firstName' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'firstName' )![0]} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'lastName' )}>
-                    <FormControlLabel for="lastName"><Text message="last_name"/></FormControlLabel>
-                    <Input name="lastName" type="text" placeholder={t( 'a_enter_last_name' ) as string} value={props.userSelected?.lastName}/>
+                    <FormControlLabel class={'form_label'} for="lastName"><Text message="last_name"/></FormControlLabel>
+                    <Input
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
+                        name="lastName"
+                        type="text"
+                        placeholder={t( 'a_enter_last_name' ) as string}
+                        value={props.userSelected?.lastName}
+                    />
                     <Show when={errors( 'lastName' )} keyed>
-                        <FormControlError><Text message={errors( 'lastName' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'lastName' )![0]} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
-            <div class="field_wrapper full">
-                <div class="field_justify_between">
-                    <FormControl isRequired isInvalid={!!errors( 'documentType' )}>
-                        <FormControlLabel for="documentType"><Text message="document_type"/></FormControlLabel>
+            <div class="field_wrapper">
+                <div class="field_justify_between h-[90px]">
+                    <FormControl isRequired isInvalid={!!errors( 'documentType' )} class={'w-[25%]'}>
+                        <FormControlLabel class={'form_label'} for="documentType"><Text message="document_type"/></FormControlLabel>
                         <Select
                             name={'documentType'}
                             options={userDocumentTypeOptions}
@@ -127,29 +143,32 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             onChange={handleSelect( 'documentType' )}
                             valueProperty={'value'}
                             labelProperty={'label'}
+                            class={'w-full'}
                         />
                         <Show when={errors( 'documentType' )} keyed>
-                            <div class="flex absolute">
-                                <FormControlError><Text message={errors( 'documentType' )![0] || ''} /></FormControlError>
-                            </div>
+                            <FormControlError class="error_message_block"><Text message={errors( 'documentType' )![0] || ''} /></FormControlError>
                         </Show>
                     </FormControl>
 
                     <FormControl isRequired isInvalid={!!errors( 'documentNumber' )} class="big">
-                        <FormControlLabel for="documentNumber"><Text message="document_number"/></FormControlLabel>
-                        <Input name="documentNumber" type="text" placeholder={t( 'a_enter_id_number' ) as string} />
+                        <FormControlLabel class={'form_label'} for="documentNumber"><Text message="document_number"/></FormControlLabel>
+                        <Input
+                            _dark={darkInput}
+                            _placeholder={placeholderInput}
+                            name="documentNumber"
+                            type="text"
+                            placeholder={t( 'a_enter_id_number' ) as string}
+                        />
                         <Show when={errors( 'documentNumber' )} keyed>
-                            <div class="flex absolute">
-                                <FormControlError><Text message={errors( 'documentNumber' )![0]} /></FormControlError>
-                            </div>
+                            <FormControlError class="error_message_block"><Text message={errors( 'documentNumber' )![0]} /></FormControlError>
                         </Show>
                     </FormControl>
                 </div>
             </div>
 
-            <div class="field_wrapper full">
+            <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'gender' )}>
-                    <FormControlLabel for="gender"><Text message="gender"/></FormControlLabel>
+                    <FormControlLabel class={'form_label'} for="gender"><Text message="gender"/></FormControlLabel>
                     <Radio
                         name={'gender'}
                         options={gender}
@@ -157,14 +176,14 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         onChange={handleSelect( 'gender' )}
                     />
                     <Show when={errors( 'gender' )} keyed>
-                        <FormControlError><Text message={errors( 'gender' )![0] || ''} /></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'gender' )![0] || ''} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'birthday' )}>
-                    <FormControlLabel for="birthday"><Text message="birthday"/></FormControlLabel>
+                    <FormControlLabel class={'form_label'} for="birthday"><Text message="birthday"/></FormControlLabel>
                     <DatePicker
                         currentDate={ new Date() }
                         dateFormat={ 'DD/MM/YYYY' }
@@ -180,31 +199,31 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         minDate={ new Date( '1901' ) }
                         customizeCalendar={ 'register-birthday' }
                         name="birthday"
-                        theme='dark'
+                        theme="dark"
                     />
                     <Show when={errors( 'birthday' )} keyed>
-                        <FormControlError><Text message={errors( 'birthday' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'birthday' )![0]} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'enable' )}>
-                    <FormControlLabel><Text message="enable"/></FormControlLabel>
+                    <FormControlLabel class={'form_label'}><Text message="enable"/></FormControlLabel>
                     <Switch
                         name={'enable'}
                         value={data().enable}
                         onChange={handleSelect( 'enable' )}
                     />
                     <Show when={errors( 'enable' )} keyed>
-                        <FormControlError><Text message={errors( 'enable' )![0] || ''}/></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'enable' )![0] || ''}/></FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
-            <div class="field_wrapper full">
+            <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'country' )}>
-                    <FormControlLabel for="country"><Text message="country"/></FormControlLabel>
+                    <FormControlLabel class={'form_label'} for="country"><Text message="country"/></FormControlLabel>
                     <Select
                         name={'country'}
                         placeholder={'a_select_country'}
@@ -213,19 +232,27 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         onChange={handleSelect( 'country' )}
                         valueProperty={'value'}
                         labelProperty={'label'}
+                        class={'w-full'}
                     />
                     <Show when={errors( 'country' )} keyed>
-                        <FormControlError><Text message={errors( 'country' )![0] || ''} /></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'country' )![0] || ''} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'address' )}>
-                    <FormControlLabel for="address"><Text message="address"/></FormControlLabel>
-                    <Input name="address" type="text" placeholder={t( 'a_your_address' ) as string} value={props.userSelected?.address}/>
+                    <FormControlLabel class={'form_label'} for="address"><Text message="address"/></FormControlLabel>
+                    <Input
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
+                        name="address"
+                        type="text"
+                        placeholder={t( 'a_your_address' ) as string}
+                        value={props.userSelected?.address}
+                    />
                     <Show when={errors( 'address' )} keyed>
-                        <FormControlError><Text message={errors( 'address' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'address' )![0]} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
@@ -236,20 +263,34 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'email' )}>
-                    <FormControlLabel for="email"><Text message="email"/></FormControlLabel>
-                    <Input name="email" type="text" placeholder={t( 'a_your_email' ) as string} value={props.userSelected?.email}/>
+                    <FormControlLabel class={'form_label'} for="email"><Text message="email"/></FormControlLabel>
+                    <Input
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
+                        name="email"
+                        type="text"
+                        placeholder={t( 'a_your_email' ) as string}
+                        value={props.userSelected?.email}
+                    />
                     <Show when={errors( 'email' )} keyed>
-                        <FormControlError><Text message={errors( 'email' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'email' )![0]} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'phone' )}>
-                    <FormControlLabel for="phone"><Text message="phone"/></FormControlLabel>
-                    <Input name="phone" type="text" placeholder={t( 'a_enter_phone' ) as string} value={props.userSelected?.phone}/>
+                    <FormControlLabel class={'form_label'} for="phone"><Text message="phone"/></FormControlLabel>
+                    <Input
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
+                        name="phone"
+                        type="text"
+                        placeholder={t( 'a_enter_phone' ) as string}
+                        value={props.userSelected?.phone}
+                    />
                     <Show when={errors( 'phone' )} keyed>
-                        <FormControlError><Text message={errors( 'phone' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={errors( 'phone' )![0]} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
@@ -257,19 +298,31 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <Show when={!props.userSelected?.id} keyed>
                 <div class="field_wrapper full">
                     <FormControl isRequired isInvalid={!!errors( 'password' )}>
-                        <FormControlLabel for="password"><Text message="password"/></FormControlLabel>
-                        <Input name="password" type="password" placeholder={t( 'a_your_password' ) as string} />
+                        <FormControlLabel class={'form_label'} for="password"><Text message="password"/></FormControlLabel>
+                        <Input
+                            _dark={darkInput}
+                            _placeholder={placeholderInput}
+                            name="password"
+                            type="password"
+                            placeholder={t( 'a_your_password' ) as string}
+                        />
                         <Show when={errors( 'password' )} keyed>
-                            <FormControlError><Text message={errors( 'password' )![0]} /></FormControlError>
+                            <FormControlError class="error_message_block"><Text message={errors( 'password' )![0]} /></FormControlError>
                         </Show>
                     </FormControl>
                 </div>
                 <div class="field_wrapper full">
                     <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
-                        <FormControlLabel for="passwordConfirmation"><Text message="confirm_password"/></FormControlLabel>
-                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string}/>
+                        <FormControlLabel class={'form_label'} for="passwordConfirmation"><Text message="confirm_password"/></FormControlLabel>
+                        <Input
+                            _dark={darkInput}
+                            _placeholder={placeholderInput}
+                            name="passwordConfirmation"
+                            type="password"
+                            placeholder={t( 'a_repeat_password' ) as string}
+                        />
                         <Show when={errors( 'passwordConfirmation' )} keyed>
-                            <FormControlError><Text message={errors( 'passwordConfirmation' )![0]} /></FormControlError>
+                            <FormControlError class="error_message_block"><Text message={errors( 'passwordConfirmation' )![0]} /></FormControlError>
                         </Show>
                     </FormControl>
                 </div>
@@ -277,7 +330,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl id="permissions" isInvalid={!!errors( 'permissions' )}>
-                    <FormControlLabel for="permissions"><Text message="permissions"/></FormControlLabel>
+                    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="permissions"><Text message="permissions"/></FormControlLabel>
                     <MultiSelect
                         name={'permissions'}
                         options={props.permissionsList}
@@ -287,14 +340,15 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         valueProperty={'id'}
                         labelProperty={'name'}
                         groupSelector={'permissions'}
+                        class={'w-full'}
                     />
-                    <FormControlError><Text message={errors( 'permissions' ) && errors( 'permissions' )![0] || ''} /></FormControlError>
+                    <FormControlError class="error_message_block"><Text message={errors( 'permissions' ) && errors( 'permissions' )![0] || ''} /></FormControlError>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
                 <FormControl id="roles" isInvalid={!!errors( 'roles' )}>
-                    <FormControlLabel for="roles"><Text message="roles"/></FormControlLabel>
+                    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="roles"><Text message="roles"/></FormControlLabel>
                     <MultiSelect
                         name={'roles'}
                         options={props.rolesList}
@@ -303,26 +357,45 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         onChange={handleMultiSelect( 'roles' )}
                         valueProperty={'id'}
                         labelProperty={'name'}
+                        class={'w-full'}
                     />
                     <Show when={errors( 'roles' )} keyed>
-                        <FormControlError><Text message={ errors( 'roles' )![0] ?? ''} /></FormControlError>
+                        <FormControlError class="error_message_block"><Text message={ errors( 'roles' )![0] ?? ''} /></FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
             <div class="update_save_buttons_container" data-parent={props.requiredPermission.submit}>
                 <div class="button_full has-permission">
-                    <Button class="button_full" as={Link} href="/users" colorScheme="neutral">
+                    <Button
+                        class="button_full"
+                        as={Link}
+                        href="/users"
+                        colorScheme="neutral"
+                        _dark={darkNeutralButton}
+                    >
                         <Text message="a_close" />
                     </Button>
                 </div>
                 <div class="button_full has-permission">
-                    <Button class="button_full" type="submit" isDisabled={!isValid()} isLoading={isSubmitting()} loadingText={<Text message="a_submitting"/> as string}>
+                    <Button
+                        _dark={darkPrimaryButton}
+                        class="button_full"
+                        type="submit"
+                        isDisabled={!isValid()}
+                        isLoading={isSubmitting()}
+                        loadingText={<Text message="a_submitting"/> as string}
+                    >
                         <Text message="a_save"/>
                     </Button>
                 </div>
                 <div class="button_full fallback">
-                    <Button class="w-full" as={Link} href="/users">
+                    <Button
+                        class="w-full"
+                        as={Link}
+                        href="/users"
+                        _dark={darkNeutralButton}
+                    >
                         <Text message="a_close" />
                     </Button>
                 </div>

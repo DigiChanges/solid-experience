@@ -48,7 +48,7 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
         <section class="section_container">
 
             <header class="section_header_container">
-                <h1 class="section_title"><Text message="u_create" /></h1>
+                <h1 class="section_title text-neutral-50"><Text message="u_create" /></h1>
             </header>
 
             <Show when={!props.loading} fallback={() => <GeneralLoader/>}>

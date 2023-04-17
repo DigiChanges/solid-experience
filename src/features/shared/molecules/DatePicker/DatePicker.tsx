@@ -55,7 +55,7 @@ const DatePicker = (
         minDate: '',
         maxDate: '',
         theme: 'light',
-        },
+    },
     _props
     );
     const [ locDate, setLocDate ] = createSignal<Date | undefined>();

@@ -192,6 +192,139 @@
       "slug": "admin",
       "enable": true,
       "id": "FotmTfY"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Aaa",
+      "slug": "aaa",
+      "id": "-CQLwF3"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category2",
+      "id": "HBPe5hmd"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category2",
+      "id": "HBPe5hma"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category2",
+      "id": "HBPe5hm"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category2",
+      "id": "HBPe5hms"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category2",
+      "id": "HBPe5hmwww"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category2",
+      "id": "HBPe5hmewe"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category2",
+      "id": "HBPe5hm1213"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category3",
+      "id": "HBPe5hmaaa"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category3",
+      "id": "HBPe5hmaaa1"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category3",
+      "id": "HBPe5hmaaa2"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category3",
+      "id": "HBPe5hmaaa3"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions"
+      ],
+      "enable": true,
+      "name": "Test",
+      "slug": "category3",
+      "id": "HBPe5hmaaa4"
     }
-  ]
+  ],
+  "refresh-token": {
+    "user": {
+      "id": "922465bc-db4e-4794-b25c-9311ce124e00",
+      "firstName": "Super",
+      "lastName": "Admin",
+      "email": "superadmin@node.com",
+      "enable": true,
+      "permissions": [],
+      "roles": [],
+      "isSuperAdmin": true,
+      "createdAt": 1651255968,
+      "updatedAt": 1651255968
+    },
+    "expires": 1689176366,
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6IjIxNDJiMjMzLTEwZDUtNDIyZS04OTRmLTc3MzUwMzA2ZWI5NSIsImlzcyI6InNtYXJ0bmV0IiwiYXVkIjoic21hcnRuZXQuY29tIiwic3ViIjoic3VwZXJhZG1pbkBub2RlLmNvbSIsImlhdCI6MTY4OTE3NjM2NiwiZXhwIjoxNjg5MTc2MzY2LCJ1c2VySWQiOiI5MjI0NjViYy1kYjRlLTQ3OTQtYjI1Yy05MzExY2UxMjRlMDAiLCJlbWFpbCI6InN1cGVyYWRtaW5Abm9kZS5jb20iLCJ0ZW5hbnQiOiJwdWJsaWMifQ.TpYXC1KqDO8XjbAqlP1joX0ye1Drsh2NMnOCS4Cn8bC3mQ_iRVl6tpTtK1WU_WcQB4c0vrRiULbDz6CHyDdAIQ"
+  }
 }

@@ -6,7 +6,7 @@ import { Component, Show } from 'solid-js';
 import type { InferType } from 'yup';
 import { LoginPayload } from '../../../interfaces/login';
 import signUpSchema from '../../../validations/schemas/SignUpSchema';
-import { darkInput, placeholderInput, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter'
+import { darkInput, placeholderInput, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
 
 interface LoginFormProps {
     onSubmit: ( values: LoginPayload ) => Promise<void>;
@@ -34,7 +34,7 @@ const LoginForm: Component<LoginFormProps> = props =>
             <h1 class="section_title_opaque"><Text message="a_login"/></h1>
             <form ref={form} class="flex flex-col gap-9 w-[20rem]" >
                 <FormControl isRequired isInvalid={!!errors( 'email' )}>
-                    <FormControlLabel for="email" class={'mb-1'}><Text class={'form_label'} message="email"/></FormControlLabel>
+                    <FormControlLabel for="email" class={'form_label'}><Text message="email"/></FormControlLabel>
                     <Input
                         _dark={darkInput}
                         _placeholder={placeholderInput}
@@ -49,7 +49,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                 </FormControl>
 
                 <FormControl isRequired isInvalid={!!errors( 'password' )}>
-                    <FormControlLabel for="password" class={'mb-1'}><Text class={'form_label'} message="a_password"/></FormControlLabel>
+                    <FormControlLabel for="password" class={'form_label'}><Text message="a_password"/></FormControlLabel>
                     <Input
                         _dark={darkInput}
                         _placeholder={placeholderInput}

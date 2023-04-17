@@ -32,6 +32,7 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     class={styles.icon_bell}
                     aria-label="View notifications"
                     children={<IconBell/>}
+                    borderRadius={'4px'}
                 />
                 <IconButton
                     size={'md'}
@@ -39,6 +40,7 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     onclick={ props.onClick }
                     aria-label="Open Main Menu"
                     children={ <IconBurger isOpened={!props.isOpen()}/> }
+                    borderRadius={'4px'}
                 />
             </section>
         </nav>

@@ -10,8 +10,8 @@ const Dashboard: Component = () =>
         <section class="p-6">
             <Card>
                 <CardContent class={styles.content}>
-                    <Text message="a_dashboard" />
-                    <Text message="a_dashboard_description" />
+                    <Text class="text-neutral-50" message="a_dashboard" />
+                    <Text class="text-neutral-50" message="a_dashboard_description" />
                 </CardContent>
             </Card>
         </section>

@@ -2,11 +2,15 @@
 @tailwind utilities;
 
 .side_bar_item_container {
-    @apply w-full;
+    @apply w-full text-neutral-50 ;
+}
+
+.side_bar_item_container a {
+    @apply no-underline text-inherit
 }
 
 .side_bar_item_span {
-    @apply flex md:flex pr-3 pl-4 items-center w-full cursor-pointer hover:text-blue-500;
+    @apply flex md:flex pr-3 pl-4 items-center w-full cursor-pointer hover:text-blue-500 hover:underline;
 }
 
 .side_bar_item_icon {
