@@ -11,6 +11,8 @@ import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { filterBy } from '../../constants/filterBy';
 import { UserApi } from '../../interfaces';
 import UserCard from '../../organisms/UserCard/UserCard';
+import styles from './UserList.module.css';
+import { darkDangerButton, darkPrimaryButton } from '../../../shared/constants/hopeAdapter';
 
 interface UserListTemplateProps
 {
@@ -46,17 +48,30 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
     return (
         <section class="section_container">
             <Modal isOpen={isOpen()} onClose={close}>
-                <Modal.Overlay />
-                <Modal.Content>
-                    <Modal.CloseButton />
+                <Modal.Overlay _dark={{ bgColor: 'rgba(0, 0, 0, 0.65)' }}/>
+                <Modal.Content class={styles.modal_content} _dark={{ bgColor: 'neutral.800' }}>
+                    <Modal.CloseButton class={styles.close_button}/>
                     <HStack>
-                        <Modal.Heading><Text message="a_delete_data"/></Modal.Heading>
+                        <Modal.Heading class={'text-neutral-50 text-lg font-bold pb-3'}>
+                            <Text message="a_delete_data"/>
+                        </Modal.Heading>
                     </HStack>
-                    <p><Text message="u_remove"/></p>
-                    <h1>{deleteData?.firstName} {deleteData?.lastName}</h1>
-                    <HStack class="modal_footer">
-                        <Button onClick={close}><Text message="a_cancel"/></Button>
-                        <Button colorScheme="danger" onClick={handleModalClick()}><Text message="a_delete"/></Button>
+                    <p class={'text-neutral-50'}><Text message="u_remove"/></p>
+                    <h1 class={'text-neutral-50'}>{deleteData?.firstName} {deleteData?.lastName}</h1>
+                    <HStack class="modal_footer pt-4 justify-end">
+                        <Button
+                            onClick={close}
+                            _dark={darkPrimaryButton}
+                        >
+                            <Text message="a_cancel"/>
+                        </Button>
+                        <Button
+                            _dark={darkDangerButton}
+                            colorScheme="danger"
+                            onClick={handleModalClick()}
+                        >
+                            <Text message="a_delete"/>
+                        </Button>
                     </HStack>
                 </Modal.Content>
             </Modal>
@@ -68,28 +83,35 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
                 <div class="has-permission">
                     <Link href={'/users/create'}>
-                        <Button leftIcon={<Icon ><IconPlus/></Icon>}><Text message="u_create"/></Button>
+                        <Button
+                            leftIcon={<Icon><IconPlus/></Icon>}
+                            _dark={darkPrimaryButton}
+                        >
+                            <Text message="u_create"/>
+                        </Button>
                     </Link>
                 </div>
             </header>
 
             <Filter filterOptions={filterOptions()} />
 
-            <Show when={props.loading} >
+            <Show when={props.loading} keyed>
                 <GeneralLoader/>
             </Show>
+
             <div class="grid_cards_container">
-                <Show when={!props.loading || props.userList?.length}>
-                    <For each={props.userList} fallback={<div><Text message="u_no_users" />...</div>}>
+                <Show when={!props.loading || props.userList?.length} keyed>
+                    <For each={props.userList} fallback={<span class={'text-neutral-50'}><Text message="u_no_users" /></span>}>
                         {( user ) =>
                             <UserCard user={user} onDelete={handleDelete( user )}/>}
                     </For>
                 </Show>
             </div>
+
             <div class="section_bottom_buttons_container">
-                <Show when={!!props.nextPage}>
+                <Show when={!!props.nextPage} keyed>
                     <Button onClick={props.viewMoreAction()} variant="outlined">
-                        <Show when={!props.loading} fallback={() => <span><Text message="a_loading" />...</span>}>
+                        <Show when={!props.loading} keyed fallback={() => <span class={'text-neutral-50'}><Text message="a_loading" />...</span>}>
                             <Text message="a_view_more"/>
                         </Show>
                     </Button>

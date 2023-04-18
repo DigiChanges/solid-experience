@@ -14,6 +14,8 @@ import { filterBy } from '../../constants/filterBy';
 import { orderBy } from '../../constants/orderBy';
 import { RoleApi } from '../../interfaces';
 import RoleCard from '../../organisms/RoleCard/RoleCard';
+import styles from '../../../user/templates/UserList/UserList.module.css';
+import { darkDangerButton, darkPrimaryButton } from '../../../shared/constants/hopeAdapter';
 
 interface RoleListTemplateProps
 {
@@ -61,17 +63,30 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
     return (
         <section class="section_container">
             <Modal isOpen={isOpen()} onClose={close}>
-                <Modal.Overlay />
-                <Modal.Content>
-                    <Modal.CloseButton />
+                <Modal.Overlay _dark={{ bgColor: 'rgba(0, 0, 0, 0.65)' }}/>
+                <Modal.Content class={styles.modal_content} _dark={{ bgColor: 'neutral.800' }}>
+                    <Modal.CloseButton class={styles.close_button}/>
                     <HStack>
-                        <Modal.Heading><Text message="a_delete_data"/></Modal.Heading>
+                        <Modal.Heading class={'text-neutral-50 text-lg font-bold pb-3'}>
+                            <Text message="a_delete_data"/>
+                        </Modal.Heading>
                     </HStack>
-                    <p><Text message="r_remove"/></p>
-                    <h1>{deleteData?.name}</h1>
-                    <HStack class="modal_footer">
-                        <Button onClick={close}><Text message="a_cancel"/></Button>
-                        <Button colorScheme="danger" onClick={handleModalClick()}><Text message="a_delete"/></Button>
+                    <p class={'text-neutral-50'}><Text message="r_remove"/></p>
+                    <h1 class={'text-neutral-50'}>{deleteData?.name}</h1>
+                    <HStack class="modal_footer pt-4 justify-end">
+                        <Button
+                            onClick={close}
+                            _dark={darkPrimaryButton}
+                        >
+                            <Text message="a_cancel"/>
+                        </Button>
+                        <Button
+                            _dark={darkDangerButton}
+                            colorScheme="danger"
+                            onClick={handleModalClick()}
+                        >
+                            <Text message="a_delete"/>
+                        </Button>
                     </HStack>
                 </Modal.Content>
             </Modal>
@@ -83,7 +98,12 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 
                 <div class="has-permission">
                     <Link href={'/roles/create'}>
-                        <Button leftIcon={<Icon ><IconPlus/></Icon>}><Text message="r_create"/></Button>
+                        <Button
+                            leftIcon={<Icon><IconPlus/></Icon>}
+                            _dark={darkPrimaryButton}
+                        >
+                            <Text message="r_create"/>
+                        </Button>
                     </Link>
                 </div>
             </header>
@@ -96,7 +116,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
 
             <div class="grid_cards_container">
                 <Show when={!props.loading || props.roleList?.length} keyed>
-                    <For each={props.roleList} fallback={<div><Text message="r_no_roles" /></div>}>
+                    <For each={props.roleList} fallback={<span class={'text-neutral-50'}><Text message="r_no_roles" /></span>}>
                         {( role ) =>
                             <RoleCard role={role} onDelete={handleDelete( role )} />
                         }
@@ -105,9 +125,9 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
             </div>
 
             <div class="section_bottom_buttons_container">
-                <Show when={!!props.nextPage}>
+                <Show when={!!props.nextPage} keyed>
                     <Button onClick={props.viewMoreAction()} variant="outlined">
-                        <Show when={!props.loading} fallback={() => <span><Text message="a_loading" />...</span>} keyed>
+                        <Show when={!props.loading} fallback={() => <span class={'text-neutral-50'}><Text message="a_loading" />...</span>} keyed>
                             <Text message="a_view_more"/>
                         </Show>
                     </Button>

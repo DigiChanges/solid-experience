@@ -1,4 +1,4 @@
-import { notificationService } from '@hope-ui/solid';
+import { notificationService } from '../../../features/shared/molecules/Toasts/Toasts';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import { createAlertType } from '../../../features/shared/hooks/createAlert';
 
@@ -21,7 +21,7 @@ export const verifyAccountAction = ( { authRepository, errorAlert, navigate, set
         void await authRepository.verifyYourAccount( { data: searchParams.token } );
 
         notificationService.show( {
-            status: 'success',
+            /* status: 'success', */
             title: t( 'au_verification_successful' ) as string,
         } );
 
@@ -32,7 +32,7 @@ export const verifyAccountAction = ( { authRepository, errorAlert, navigate, set
     {
         const errorMessage = setError( error );
         notificationService.show( {
-            status: 'danger',
+            /* status: 'danger', */
             title: t( 'err_verify_account' ) as string,
             description: t( errorMessage ) as string,
         } );

@@ -19,15 +19,15 @@
     },
     {
       "permissions": [
-        "filesUpdate",
-        "getPermissions",
-        "authSyncPermissions"
+        "authSyncPermissions",
+        "getPermissions"
       ],
-      "documentType": "dni",
-      "country": "AO",
       "enable": false,
-      "birthday": "2023-04-11",
-      "firstName": "Test5",
+      "gender": "O",
+      "country": "AR",
+      "documentType": "dni",
+      "birthday": "2023-04-18",
+      "firstName": "Test",
       "lastName": "Test",
       "documentNumber": "12345678",
       "address": "Test 1",
@@ -35,65 +35,7 @@
       "phone": "123456",
       "password": "123456",
       "passwordConfirmation": "123456",
-      "gender": "O",
-      "id": "uMp5MUW"
-    },
-    {
-      "permissions": [
-        "getPermissions"
-      ],
-      "documentType": "dni",
-      "country": "AQ",
-      "enable": false,
-      "birthday": "2023-04-12",
-      "firstName": "Test2",
-      "lastName": "Test2",
-      "documentNumber": "12345678",
-      "address": "Test 2",
-      "email": "test@test.com",
-      "phone": "123456",
-      "password": "123456",
-      "passwordConfirmation": "123456",
-      "gender": "O",
-      "id": "JvaSr-6"
-    },
-    {
-      "permissions": [
-        "getPermissions"
-      ],
-      "documentType": "dni",
-      "country": "AQ",
-      "enable": false,
-      "birthday": "2023-04-12",
-      "firstName": "Test2",
-      "lastName": "Test2",
-      "documentNumber": "12345678",
-      "address": "Test 2",
-      "email": "test@test.com",
-      "phone": "123456",
-      "password": "123456",
-      "passwordConfirmation": "123456",
-      "gender": "O",
-      "id": "axALIdr"
-    },
-    {
-      "permissions": [
-        "getPermissions"
-      ],
-      "enable": true,
-      "gender": "M",
-      "country": "AQ",
-      "documentType": "dni",
-      "birthday": "2023-04-12",
-      "firstName": "Test2",
-      "lastName": "Test2",
-      "documentNumber": "12345678",
-      "address": "Test 2",
-      "email": "test@test.com",
-      "phone": "123456",
-      "password": "123456",
-      "passwordConfirmation": "123456",
-      "id": "BB5yhIR"
+      "id": "mz0qDFJ"
     }
   ],
   "super-admin-login": {
@@ -169,146 +111,20 @@
         "authSyncPermissions"
       ],
       "enable": true,
-      "name": "Role",
-      "slug": "role",
-      "id": "5db96817-33c8-446d-8050-830c4d88f26d"
+      "name": "Test",
+      "slug": "test",
+      "id": 1
     },
     {
       "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": false,
-      "name": "Void Permissions",
-      "slug": "aaa",
-      "id": "dfdsa"
-    },
-    {
-      "permissions": [
+        "authSyncPermissions",
         "getPermissions",
-        "filesUpload",
-        "filesUpdate"
+        "filesUpload"
       ],
+      "enable": true,
       "name": "Admin",
       "slug": "admin",
-      "enable": true,
-      "id": "FotmTfY"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Aaa",
-      "slug": "aaa",
-      "id": "-CQLwF3"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category2",
-      "id": "HBPe5hmd"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category2",
-      "id": "HBPe5hma"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category2",
-      "id": "HBPe5hm"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category2",
-      "id": "HBPe5hms"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category2",
-      "id": "HBPe5hmwww"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category2",
-      "id": "HBPe5hmewe"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category2",
-      "id": "HBPe5hm1213"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category3",
-      "id": "HBPe5hmaaa"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category3",
-      "id": "HBPe5hmaaa1"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category3",
-      "id": "HBPe5hmaaa2"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category3",
-      "id": "HBPe5hmaaa3"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions"
-      ],
-      "enable": true,
-      "name": "Test",
-      "slug": "category3",
-      "id": "HBPe5hmaaa4"
+      "id": 2
     }
   ],
   "refresh-token": {

@@ -1,4 +1,4 @@
-import { IconButton, Icon } from '@hope-ui/core';
+import { IconButton } from '@hope-ui/core';
 import { Link } from 'solid-app-router';
 import { Component } from 'solid-js';
 import logoNav from '../../../assets/images/dgc_logo.png';
@@ -33,6 +33,8 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     aria-label="View notifications"
                     children={<IconBell/>}
                     borderRadius={'4px'}
+                    _dark={{ border: 'none', bgColor: 'transparent', color: 'primary.200' }}
+                    _hover={{ cursor: 'pointer' }}
                 />
                 <IconButton
                     size={'md'}
@@ -41,6 +43,7 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     aria-label="Open Main Menu"
                     children={ <IconBurger isOpened={!props.isOpen()}/> }
                     borderRadius={'4px'}
+                    _dark={{ border: 'none', bgColor: 'transparent' }}
                 />
             </section>
         </nav>

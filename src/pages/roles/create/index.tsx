@@ -16,13 +16,15 @@ const IndexPage: Component = () =>
 
     usePermission( user, [ permissions ] );
 
-    return <PrivateLayout>
-        <RoleCreate
-            onCreate={createAction( { roleRepository, user: user() } )}
-            permissionsList={permissions()?.data}
-            loading={permissions.loading}
-        />
-    </PrivateLayout>;
+    return (
+        <PrivateLayout>
+            <RoleCreate
+                onCreate={createAction( { roleRepository, user: user() } )}
+                permissionsList={permissions()?.data}
+                loading={permissions.loading}
+            />
+        </PrivateLayout>
+    );
 };
 
 export default IndexPage;

@@ -9,6 +9,7 @@ import { InferType } from 'yup';
 import createAlert from '../../../shared/hooks/createAlert';
 import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
 import userEditPasswordSchema from '../../validations/schemas/userEditPasswordSchema';
+import { darkInput, darkNeutralButton, darkPrimaryButton, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
 interface EditPasswordTemplateProps
 {
@@ -61,10 +62,18 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
             <form ref={form} class="form_password">
                 <div class="field_wrapper">
                     <FormControl isRequired isInvalid={!!errors( 'password' )}>
-                        <FormControlLabel for="password"><Text message="new_password"/></FormControlLabel>
-                        <Input name="password" type="password" placeholder={t( 'a_password' ) as string} />
+                        <FormControlLabel class={'form_label'} for="password">
+                            <Text message="new_password"/>
+                        </FormControlLabel>
+                        <Input
+                            _dark={darkInput}
+                            _placeholder={placeholderInput}
+                            name="password"
+                            type="password"
+                            placeholder={t( 'a_password' ) as string}
+                        />
                         <Show when={errors( 'password' )} keyed>
-                            <FormControlError>
+                            <FormControlError class="error_message_block">
                                 <Text message={errors( 'password' )![0]} />
                             </FormControlError>
                         </Show>
@@ -73,10 +82,19 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
 
                 <div class="field_wrapper">
                     <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
-                        <FormControlLabel for="passwordConfirmation"><Text message="confirm_password"/></FormControlLabel>
-                        <Input name="passwordConfirmation" type="password" placeholder={t( 'a_repeat_password' ) as string} onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
+                        <FormControlLabel class={'form_label'} for="passwordConfirmation">
+                            <Text message="confirm_password"/>
+                        </FormControlLabel>
+                        <Input
+                            _dark={darkInput}
+                            _placeholder={placeholderInput}
+                            name="passwordConfirmation"
+                            type="password"
+                            placeholder={t( 'a_repeat_password' ) as string}
+                            onKeyDown={preventEnterCharacter( [ 'Space' ] )}
+                        />
                         <Show when={errors( 'passwordConfirmation' )} keyed>
-                            <FormControlError>
+                            <FormControlError class="error_message_block">
                                 <Text message={errors( 'passwordConfirmation' )![0]} />
                             </FormControlError>
                         </Show>
@@ -84,12 +102,25 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                 </div>
                 <div class="update_save_buttons_container">
                     <div class="button_full">
-                        <Button class="button_full" as={Link} href="/login" colorScheme="neutral">
+                        <Button
+                            _dark={darkNeutralButton}
+                            class="button_full"
+                            as={Link}
+                            href="/login"
+                            colorScheme="neutral"
+                        >
                             <Text message="a_close" />
                         </Button>
                     </div>
                     <div class="button_full">
-                        <Button class="button_full" type="submit" isDisabled={!isValid()} isLoading={isSubmitting()} loadingText={<Text message="a_submitting"/> as string}>
+                        <Button
+                            _dark={darkPrimaryButton}
+                            class="button_full"
+                            type="submit"
+                            isDisabled={!isValid()}
+                            isLoading={isSubmitting()}
+                            loadingText={<Text message="a_submitting"/> as string}
+                        >
                             <Text message="a_save"/>
                         </Button>
                     </div>

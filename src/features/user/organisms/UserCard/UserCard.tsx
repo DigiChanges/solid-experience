@@ -33,12 +33,13 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                     <div class="has-permission">
                         <Link href={`/users/${props.user.id}/update`}>
                             <IconButton
+                                _dark={{ color: 'success.300', cursor: 'pointer' }}
+                                size={'xs'}
                                 aria-label="Edit"
                                 variant="plain"
                                 colorScheme="success"
-                            >
-                                <IconPencilAlt />
-                            </IconButton>
+                                children={<IconPencilAlt />}
+                            />
                         </Link>
                     </div>
                 </div>
@@ -47,6 +48,8 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                         href={`/users/editPassword/${props.user.id}`}
                     >
                         <IconButton
+                            _dark={{ color: 'warning.300', cursor: 'pointer' }}
+                            size={'xs'}
                             aria-label="Change Password"
                             variant="plain"
                             colorScheme="warning"
@@ -56,6 +59,8 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                 </div>
                 <div data-parent="usersDelete">
                     <IconButton
+                        _dark={{ color: 'danger.300', cursor: 'pointer' }}
+                        size={'xs'}
                         class="has-permission"
                         aria-label="Delete User"
                         variant="plain"

@@ -4,8 +4,6 @@ import { Component } from 'solid-js';
 import IconLanguage from '../../atoms/Icons/Stroke/IconLanguage';
 import { changeLanguage } from './handlers';
 import DropdownMenu from '../shared/molecules/DropdownMenu/DropdownMenu';
-import styles from '../navBar/organisms/Nav.module.css';
-
 
 const LanguageMenu: Component = () =>
 {
@@ -25,6 +23,7 @@ const LanguageMenu: Component = () =>
         <Flex>
             <Center>
                 <IconButton
+                    _dark={{ border: 'none', bgColor: 'transparent' }}
                     size={'md'}
                     aria-label="Change language"
                     borderRadius={'4px'}

@@ -2,8 +2,7 @@ import { createForm } from '@felte/solid';
 import { Button, Icon, Input, CloseButton } from '@hope-ui/core';
 import { useSearchParams } from 'solid-app-router';
 import { Text } from 'solid-i18n';
-import { Component, createEffect, createMemo, createSignal, For } from 'solid-js';
-import IconFilter from '../../../../atoms/Icons/Stroke/IconFilter';
+import { Component, createMemo, createSignal, For } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
 import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
@@ -11,8 +10,8 @@ import { SelectValueOption } from '../../../shared/types/Selects';
 import styles from './Filter.module.css';
 import { Select } from '../../../shared/molecules/Select/Select';
 import { InferType } from 'yup';
-import DropdownMenu from '../../../shared/molecules/DropdownMenu/DropdownMenu';
-import { changeLanguage } from '../../../language/handlers';
+import { FiFilter } from 'solid-icons/fi';
+import { darkInput, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
 type FilterType = {
     field: string;
@@ -72,8 +71,10 @@ const Filter: Component<FilterProps> = ( props ) =>
             <div class={styles.dropdown}>
                 <div>
                     <Button
-                        leftIcon={<Icon><IconFilter/></Icon>}
+                        _dark={darkPrimaryButtonWithBackground}
+                        leftIcon={<FiFilter />}
                         onClick={() => setShowFilter( !showFilter() )}
+                        class={'z-50'}
                     >
                         <Text message="a_filter"/>
                     </Button>
@@ -94,9 +95,22 @@ const Filter: Component<FilterProps> = ( props ) =>
                                         valueProperty={'value'}
                                         labelProperty={'label'}
                                     />
-                                    <p><Text message="a_contains"/>:</p>
-                                    <Input type="text" name="valor" autofocus />
-                                    <Button disabled={!errors()} type="submit" leftIcon={<Icon><IconPlus/></Icon>}><Text message="a_add_filter"/></Button>
+                                    <p class={'text-neutral-50'}><Text message="a_contains"/>:</p>
+                                    <Input
+                                        _dark={darkInput}
+                                        _placeholder={placeholderInput}
+                                        type="text"
+                                        name="valor"
+                                        autofocus
+                                    />
+                                    <Button
+                                        _dark={darkPrimaryButtonWithBackground}
+                                        disabled={!errors()}
+                                        type="submit"
+                                        leftIcon={<Icon><IconPlus/></Icon>}
+                                    >
+                                        <Text message="a_add_filter"/>
+                                    </Button>
                                 </form>
                             </CardContent>
                         </div>
@@ -107,7 +121,12 @@ const Filter: Component<FilterProps> = ( props ) =>
                     {( filter ) => (
                         <div class={styles.badge}>
                             <p><Text message={filter.field}/> <Text message="a_contains"/> {filter.value}</p>
-                            <CloseButton aria-label="remove filter" size="sm" onClick={handleRemoveFilter( filter )} />
+                            <CloseButton
+                                _dark={{ color: 'primary.100', cursor: 'pointer' }}
+                                aria-label="remove filter"
+                                size="sm"
+                                onClick={handleRemoveFilter( filter )}
+                            />
                         </div>
                     )}
                 </For>

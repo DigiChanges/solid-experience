@@ -39,6 +39,8 @@ const RoleCard: Component<RoleCardProps> = ( props ) => (
                                 variant="plain"
                                 children={<IconPencilAlt />}
                                 colorScheme="success"
+                                _dark={{ color: 'success.300', cursor: 'pointer' }}
+                                size={'xs'}
                             />
                         </Link>
                     </div>
@@ -51,6 +53,8 @@ const RoleCard: Component<RoleCardProps> = ( props ) => (
                         children={<IconTrash />}
                         colorScheme="danger"
                         onClick={props.onDelete}
+                        _dark={{ color: 'danger.300', cursor: 'pointer' }}
+                        size={'xs'}
                     />
                 </div>
             </div>

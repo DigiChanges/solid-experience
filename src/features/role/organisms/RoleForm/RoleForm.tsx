@@ -11,6 +11,7 @@ import { RoleApi, RolePayload, RoleResponse } from '../../interfaces';
 import roleSchema from '../../validations/schemas/RoleSchema';
 import { MultiSelect } from '../../../shared/molecules/Select/Select';
 import Switch from '../../../shared/molecules/Switch/Switch';
+import { darkInput, darkNeutralButton, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
 
 enum RequiredPermission {
@@ -78,26 +79,52 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
         <form ref={form} class="form_flex">
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={ !!errors( 'name' ) } >
-                    <FormControlLabel for="name"><Text message="name"/></FormControlLabel>
-                    <Input autofocus name="name" type="text" placeholder={t( 'a_enter_name' ) as string} value={props.roleSelected?.name} />
+                    <FormControlLabel class={'form_label'} for="name">
+                        <Text message="name"/>
+                    </FormControlLabel>
+                    <Input
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
+                        autofocus
+                        name="name"
+                        type="text"
+                        placeholder={t( 'a_enter_name' ) as string}
+                        value={props.roleSelected?.name}
+                    />
                     <Show when={errors( 'name' )} keyed>
-                        <FormControlError><Text message={errors( 'name' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block">
+                            <Text message={errors( 'name' )![0]} />
+                        </FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'slug' )}>
-                    <FormControlLabel for="slug"><Text message="slug"/></FormControlLabel>
-                    <Input name="slug" type="text" placeholder={t( 'a_enter_slug' ) as string} value={props.roleSelected?.slug} onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
+                    <FormControlLabel class={'form_label'} for="slug">
+                        <Text message="slug"/>
+                    </FormControlLabel>
+                    <Input
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
+                        name="slug"
+                        type="text"
+                        placeholder={t( 'a_enter_slug' ) as string}
+                        value={props.roleSelected?.slug}
+                        onKeyDown={preventEnterCharacter( [ 'Space' ] )}
+                    />
                     <Show when={errors( 'slug' )} keyed>
-                        <FormControlError><Text message={errors( 'slug' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block">
+                            <Text message={errors( 'slug' )![0]} />
+                        </FormControlError>
                     </Show>
                 </FormControl>
             </div>
             <div class="field_wrapper">
                 <FormControl id="permissions" isRequired isInvalid={!!errors( 'permissions' )}>
-                    <FormControlLabel for="permissions"><Text message="permissions"/></FormControlLabel>
+                    <FormControlLabel class={'form_label'} for="permissions">
+                        <Text message="permissions"/>
+                    </FormControlLabel>
                     <MultiSelect
                         name={'permissions'}
                         options={props.permissionsList}
@@ -107,38 +134,63 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                         valueProperty={'id'}
                         labelProperty={'name'}
                         groupSelector={'permissions'}
+                        class={'w-full'}
                     />
-                    <FormControlError><Text message={errors( 'permissions' ) && errors( 'permissions' )![0] || ''} /></FormControlError>
+                    <FormControlError class="error_message_block">
+                        <Text message={errors( 'permissions' ) && errors( 'permissions' )![0] || ''} />
+                    </FormControlError>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'enable' )}>
-                    <FormControlLabel><Text message="enable"/></FormControlLabel>
+                    <FormControlLabel class={'form_label'}>
+                        <Text message="enable"/>
+                    </FormControlLabel>
                     <Switch
                         name={'enable'}
                         value={data().enable}
                         onChange={handleSelect( 'enable' )}
                     />
                     <Show when={errors( 'enable' )} keyed>
-                        <FormControlError><Text message={errors( 'enable' )![0] || ''}/></FormControlError>
+                        <FormControlError class="error_message_block">
+                            <Text message={errors( 'enable' )![0] || ''}/>
+                        </FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
             <div class="update_save_buttons_container" data-parent={props.requiredPermission.submit}>
                 <div class="button_full has-permission">
-                    <Button class="button_full" as={Link} href="/roles" colorScheme="neutral">
+                    <Button
+                        _dark={darkNeutralButton}
+                        class="button_full"
+                        as={Link}
+                        href="/roles"
+                        colorScheme="neutral"
+                    >
                         <Text message="a_close" />
                     </Button>
                 </div>
                 <div class="button_full has-permission ">
-                    <Button class="button_full" type="submit" isDisabled={!isValid()} isLoading={isSubmitting()} loadingText={<Text message="a_submitting"/> as string}>
+                    <Button
+                        _dark={darkPrimaryButtonWithBackground}
+                        class="button_full"
+                        type="submit"
+                        isDisabled={!isValid()}
+                        isLoading={isSubmitting()}
+                        loadingText={<Text message="a_submitting"/> as string}
+                    >
                         <Text message="a_save"/>
                     </Button>
                 </div>
                 <div class="button_full fallback">
-                    <Button class="w-full" as={Link} href="/roles">
+                    <Button
+                        _dark={darkNeutralButton}
+                        class="w-full"
+                        as={Link}
+                        href="/roles"
+                    >
                         <Text message="a_close" />
                     </Button>
                 </div>

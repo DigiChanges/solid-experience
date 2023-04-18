@@ -1,9 +1,11 @@
-import { CloseButton } from '@hope-ui/core';
-import { Text, useI18n } from 'solid-i18n';
+import { useI18n } from 'solid-i18n';
 import { Component, createEffect, createSignal, Show } from 'solid-js';
 import styles from './AlertErrors.module.css';
 import { alertFactory } from './alertFactory';
-import { Alert } from '@kobalte/core';
+import Alert from '../Alert/Alert';
+import { BiSolidErrorCircle } from 'solid-icons/bi';
+import { Text } from 'solid-i18n';
+
 
 const handleClose = ( { setErrors }: { setErrors: ( errors: any ) => void} ) => () =>
 {
@@ -34,17 +36,14 @@ const AlertErrors: Component<AlertErrorProps> = ( props ) =>
                     [styles.float]: props?.position === 'float-top',
                 }}
             >
-                <Alert.Root status="danger" variant="left-accent" class={styles.alert}>
-                    {/* <AlertIcon mr="$2_5" /> */}
-                    <div>
-                        {/* <AlertTitle mr="$2_5"> */}<Text message={props.title}/>{/* </AlertTitle> */}
-                        {/* <AlertDescription> */}<Text message={props.description}/>{/* </AlertDescription> */}
-                    </div>
-                    <CloseButton onClick={handleClose( { setErrors } )} position="absolute" right="8px" top="8px" />
-                </Alert.Root>
-
+                <Alert
+                    status={'danger'}
+                    icon={<BiSolidErrorCircle />}
+                    title={<Text message={props.title}/>}
+                    description={<Text message={props.description}/>}
+                    onClick={handleClose( { setErrors } )}
+                />
                 {alertFactory( { errorData: errors(), t } )}
-
             </div>
         </Show>
     );

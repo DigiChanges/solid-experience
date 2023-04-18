@@ -11,11 +11,13 @@
 .section_title {
     font-size: 1.85rem;
     font-weight: bold;
+    color: var(--hope-colors-neutral-50);
 }
 
 .group_field_full_title {
     font-size: 1.25rem;
     line-height: 1.75rem;
+    color: var(--hope-colors-neutral-50);
 }
 
 .group_field_full_info {

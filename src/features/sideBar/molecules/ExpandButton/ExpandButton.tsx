@@ -1,4 +1,4 @@
-import { IconButton } from '@hope-ui/solid';
+import { IconButton } from '@hope-ui/core';
 import { Component } from 'solid-js';
 import IconArrowCircleLeft from '../../../../atoms/Icons/Stroke/IconArrowCircleLeft';
 import styles from './ExpandButton.module.css';
@@ -22,12 +22,11 @@ const ExpandButton: Component<SideBarProps> = ( props ) => (
                 aria-label="Expand Sidebar"
                 onClick={() => props.setExpanded( !props.getExpanded )}
                 class={styles.icon}
-                variant="ghost"
+                variant="plain"
                 classList={{
                     [styles.icon_not_expanded]: !props.getExpanded,
                 }}
                 children={ <IconArrowCircleLeft />}
-                compact
             />
         </div>
     </div>
