@@ -1,0 +1,43 @@
+.info {
+    @apply text-[var(--hope-colors-info-200)] bg-[var(--hope-colors-info-800)];
+}
+
+.warning {
+    @apply text-[var(--hope-colors-warning-200)] bg-[var(--hope-colors-warning-700)];
+}
+
+.success {
+    @apply text-[var(--hope-colors-success-200)] bg-[var(--hope-colors-success-700)];
+}
+
+.danger {
+    @apply text-[var(--hope-colors-danger-100)] bg-[var(--hope-colors-danger-800)];
+}
+
+.solid-danger {
+    @apply text-[var(--hope-colors-neutral-50)] bg-[var(--hope-colors-danger-300)];
+}
+
+.solid-warning {
+    @apply text-[var(--hope-colors-neutral-50)] bg-[var(--hope-colors-warning-300)];
+}
+
+.solid-info {
+    @apply text-[var(--hope-colors-neutral-50)] bg-[var(--hope-colors-info-300)];
+}
+
+.solid-success {
+    @apply text-[var(--hope-colors-neutral-50)] bg-[var(--hope-colors-success-300)];
+}
+
+.subtle {
+    @apply border-none
+}
+
+.left-accent {
+    @apply border-solid border-r-0 border-y-0
+}
+
+.top-accent {
+    @apply border-solid border-b-0 border-x-0
+}

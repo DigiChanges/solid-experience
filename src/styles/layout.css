@@ -1,5 +1,5 @@
 .section_container {
-    padding: 0 2rem;
+    @apply px-8
 }
 
 .section.mid {
@@ -7,7 +7,7 @@
 }
 
 .list_container {
-    margin: 0 2rem;
+    @apply mx-8
 }
 
 .section_header_container {

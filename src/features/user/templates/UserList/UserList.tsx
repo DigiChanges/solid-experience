@@ -13,6 +13,7 @@ import { UserApi } from '../../interfaces';
 import UserCard from '../../organisms/UserCard/UserCard';
 import styles from './UserList.module.css';
 import { darkDangerButton, darkPrimaryButton } from '../../../shared/constants/hopeAdapter';
+import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 
 interface UserListTemplateProps
 {

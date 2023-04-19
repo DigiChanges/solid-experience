@@ -2,8 +2,8 @@ export const darkInput = {
     borderColor: 'neutral.400',
     bgColor: 'transparent',
     color: 'neutral.50',
-    _focus: { shadow: '0 0 0 3px var(--hope-colors-primary-400)', borderColor: 'primary.300 !important' },
-    _invalid: { borderColor: 'danger.600 !important' },
+    _focus: { shadow: '0 0 0 3px var(--hope-colors-primary-300)', borderColor: 'primary.200 !important' },
+    _invalid: { shadow: '0 0 0 3px var(--hope-colors-danger-600) !important', borderColor: 'danger.400 !important' },
     _hover: { borderColor: 'neutral.300' },
 
 };

@@ -49,7 +49,7 @@ const app: I18nLocales = {
     a_enter_organization: 'Ingresar Organización',
     a_enter_organization_slug: 'Ingresar organización',
     a_enter_payment_method: 'Ingrese método de pago',
-    a_enter_permissions: 'Seleccionar Permisos',
+    a_enter_permissions: 'Seleccionar permisos',
     a_enter_phone: 'Ingresar Teléfono',
     a_enter_slug: 'Ingresar Slug',
     a_enter_tax_condition: 'Ingresar condición fiscal',

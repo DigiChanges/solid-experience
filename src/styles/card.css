@@ -1,5 +1,5 @@
 .card_container {
-    min-height: 120px;
+    @apply min-h-[120px]
 }
 
 .card_media_object{
@@ -7,15 +7,15 @@
 }
 
 .card_media_object_title{
-    color: var(--hope-colors-neutral-50);
-    @apply hover:scale-150;
+    @apply hover:scale-150 text-neutral-50;
 }
 
 .card_media_object_link{
     @apply mr-1 focus:outline-none w-6;
 }
+
 .card_media_object_link:hover {
-    color: var(--hope-colors-info-200);
+    @apply text-[var(--hope-colors-info-200)]
 }
 
 .card_third {

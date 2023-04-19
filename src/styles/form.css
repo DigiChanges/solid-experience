@@ -1,10 +1,9 @@
 .form_flex {
-    display: flex;
-    flex-wrap: wrap;
+    @apply flex flex-wrap
 }
 
 .form_flex.column {
-    flex-direction: column;
+    @apply flex-col
 }
 
 .field_wrapper {
@@ -16,11 +15,11 @@
 }
 
 .field_wrapper .small {
-    width: 25%;
+    @apply w-[25%]
 }
 
 .field_wrapper .big {
-    width: 75%;
+    @apply w-[75%]
 }
 
 .error_message_block {
@@ -40,15 +39,17 @@
 }
 
 .update_save_buttons_container.spaced{
-    justify-content: space-between;
+    @apply justify-between
 }
 
 .button_full {
     @apply w-full md:w-auto;
 }
+
 .form_password{
     @apply flex flex-wrap text-sm
 }
+
 .button_login{
     @apply flex items-center justify-center pt-10;
 }

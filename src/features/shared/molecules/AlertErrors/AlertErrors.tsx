@@ -37,6 +37,7 @@ const AlertErrors: Component<AlertErrorProps> = ( props ) =>
                 }}
             >
                 <Alert
+                    variant={'left-accent'}
                     status={'danger'}
                     icon={<BiSolidErrorCircle />}
                     title={<Text message={props.title}/>}

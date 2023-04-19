@@ -3,6 +3,7 @@ import Card from '../../shared/molecules/Card/Card';
 import CardContent from '../../shared/molecules/CardContent/CardContent';
 import styles from './Dashboard.module.css';
 import { Text } from 'solid-i18n';
+import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
 
 const Dashboard: Component = () =>
 {

@@ -171,7 +171,6 @@ module.exports = {
                 fade: 'fadeIn 5s ease-in-in',
             },
             colors: {
-                transparent: 'transparent',
                 primary: {
                     50: '#E1F8FA',
                     100: '#00C2D7',

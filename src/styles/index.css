@@ -1,29 +1,16 @@
+@import url("https://fonts.cdnfonts.com/css/gilroy-bold");
+@tailwind components;
+@tailwind utilities;
+
+.has-permission {
+  display: none;
+}
+
 #root {
   background-color: var(--hope-colors-neutral-900);
-
 }
 
 a {
   text-decoration: inherit;
   color: var(--hope-colors-neutral-50);
-}
-
-.info {
-  background-color: var(--hope-colors-info-800);
-  color: var(--hope-colors-info-200);
-}
-
-.warning {
-  background-color: var(--hope-colors-warning-700);
-  color: var(--hope-colors-warning-200);
-}
-
-.success {
-  background-color: var(--hope-colors-success-700);
-  color: var(--hope-colors-success-200);
-}
-
-.danger {
-  background-color: var(--hope-colors-danger-800);
-  color: var(--hope-colors-danger-100);
 }

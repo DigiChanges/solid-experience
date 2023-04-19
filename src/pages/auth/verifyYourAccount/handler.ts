@@ -1,4 +1,4 @@
-import { notificationService } from '../../../features/shared/molecules/Toasts/Toasts';
+import { notificationService } from '../../../features/shared/molecules/Toast/Toast';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import { createAlertType } from '../../../features/shared/hooks/createAlert';
 

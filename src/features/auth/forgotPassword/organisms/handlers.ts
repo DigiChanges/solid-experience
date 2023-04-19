@@ -1,4 +1,4 @@
-import { notificationService } from '../../../shared/molecules/Toasts/Toasts';
+import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { createAlertType } from '../../../shared/hooks/createAlert';
 import { ForgotPasswordPayload } from '../../interfaces/forgotPassword';
 import AuthRepository from '../../repositories/AuthRepository';

@@ -6,14 +6,14 @@ import { dashRoutes } from './config/dashRoutes';
 import createRefreshToken from './features/auth/refreshToken/hooks/createRefreshToken';
 import GeneralLoader from './features/shared/templates/GeneralLoader';
 import { i18n } from './locales';
-import './assets/css/index.css';
+import './styles/alert.css';
 import './styles/card.css';
-import './styles/form_controls.css';
-import './styles/index.css';
+import './styles/form.css';
 import './styles/layout.css';
 import './styles/modal.css';
-import './styles/toasts.css';
+import './styles/toast.css';
 import './styles/typography.css';
+import './styles/index.css';
 // import CustomError from './pages/error/CustomError';
 
 function App ()

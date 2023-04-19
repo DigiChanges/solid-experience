@@ -1,4 +1,4 @@
-import { notificationService } from '../../features/shared/molecules/Toasts/Toasts';
+import { notificationService } from '../../features/shared/molecules/Toast/Toast';
 import { useI18n } from 'solid-i18n';
 import { Component, createEffect, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
@@ -65,9 +65,23 @@ const IndexPage: Component = () =>
         }
     };
 
+    const show = () =>
+    {
+        notificationService.show( {
+            status: 'danger',
+            title: t( 'err_remove_role' ) as string,
+            description: 'Prueba notification',
+        } );
+    };
+
     return (
         <PrivateLayout>
-            <AlertErrors errorData={errorData()} title="err" description="err_process_role"/>
+            <AlertErrors
+                errorData={errorData()}
+                title="err"
+                description="err_process_role"
+            />
+            <button onclick={show}>Notify</button>
             <RoleList
                 roleList={roleList()}
                 removeAction={removeAction}

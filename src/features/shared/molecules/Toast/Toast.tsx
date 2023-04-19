@@ -1,14 +1,15 @@
 import { Toast, toaster } from '@kobalte/core';
 import IconCross from '../../../../atoms/Icons/Stroke/IconCross';
-import styles from './Toasts.module.css';
+import styles from './Toast.module.css';
 
 interface ToastsProps {
     title: string;
     description?: string;
+    status?: string;
 }
 let id: number;
 export const notificationService = {
-    show: ( { title, description }: ToastsProps ) =>
+    show: ( { title, description, status = 'info' }: ToastsProps ) =>
     {
         id = toaster.show( props => (
             <Toast.Root toastId={props.toastId} class={styles.toast}>
@@ -25,7 +26,7 @@ export const notificationService = {
             </Toast.Root>
         ) );
     },
-    update: ( { title, description }: ToastsProps ) =>
+    update: ( { title, description, status }: ToastsProps ) =>
     {
         toaster.update( id, props => (
             <Toast.Root toastId={props.toastId} class={styles.toast}>

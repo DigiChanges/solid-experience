@@ -12,6 +12,7 @@ const AlertNotFoundEntityError: Component<AlertMetadataErrorsProps> = ( props ) 
 {
     return (
         <Alert
+            variant={'left-accent'}
             status={'danger'}
             icon={<BiSolidErrorCircle />}
             title={<Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err'}/>}
@@ -31,6 +32,7 @@ const AlertEntityWithMetadataFieldAndValueError: Component<AlertMetadataErrorsPr
 
     return (
         <Alert
+            variant={'left-accent'}
             status={'danger'}
             icon={<BiSolidErrorCircle />}
             title={<Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err'}/>}
@@ -51,6 +53,7 @@ const AlertUniqueAttributeError: Component<AlertMetadataErrorsProps> = ( props )
 
     return (
         <Alert
+            variant={'left-accent'}
             status={'danger'}
             icon={<BiSolidErrorCircle />}
             title={<Text message={props.errorData?.metadata?.replace?.name ? props.errorData?.metadata?.replace?.name : 'err' }/>}
@@ -70,6 +73,7 @@ const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
         <For each={props.errorData?.errors}>
             {( error: IErrorResponse ) => (
                 <Alert
+                    variant={'left-accent'}
                     status={'danger'}
                     icon={<BiSolidErrorCircle />}
                     title={<Text message={error.property}/>}
@@ -107,6 +111,7 @@ export const alertFactory = ( data: any ) =>
             {
                 typeof errors[errorKey] === 'function' ? errors[errorKey]() :
                     <Alert
+                        variant={'left-accent'}
                         status={'danger'}
                         icon={<BiSolidErrorCircle />}
                         title={<Text message={'err'}/>}

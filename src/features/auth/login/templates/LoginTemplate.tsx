@@ -1,4 +1,4 @@
-import { notificationService } from '../../../shared/molecules/Toasts/Toasts';
+import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { Link, useNavigate } from 'solid-app-router';
 import { Text as TextI18, useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';

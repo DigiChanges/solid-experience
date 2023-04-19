@@ -1,6 +1,6 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
-import { notificationService } from '../../../../shared/molecules/Toasts/Toasts';
+import { notificationService } from '../../../../shared/molecules/Toast/Toast';
 import { Button, FormControl, FormControlLabel, Input, FormControlError } from '@hope-ui/core';
 import { useNavigate } from 'solid-app-router';
 import { Text, useI18n } from 'solid-i18n';
@@ -9,7 +9,7 @@ import { InferType } from 'yup';
 import createAlert from '../../../../shared/hooks/createAlert';
 import { ForgotPasswordPayload } from '../../../interfaces/forgotPassword';
 import ForgetPasswordSchema from '../../../validations/schemas/ForgetPasswordSchema';
-import { darkInput, placeholderInput, darkNeutralButton, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
+import { darkInput, placeholderInput, darkNeutralButton, darkPrimaryButton, darkPrimaryButtonWithBackground } from '../../../../shared/constants/hopeAdapter';
 
 interface ForgotPasswordFormProps
 {
@@ -84,7 +84,7 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
                     isDisabled={!isValid()}
                     isLoading={isSubmitting()}
                     loadingText={<Text message="a_submitting"/> as string}
-                    _dark={darkPrimaryButton}
+                    _dark={darkPrimaryButtonWithBackground}
                 >
                     <Text message="a_send"/>
                 </Button>
