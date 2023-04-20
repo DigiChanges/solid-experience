@@ -18,6 +18,91 @@
       "id": "O1fzV8l"
     },
     {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
       "permissions": [
         "authSyncPermissions",
         "getPermissions"
@@ -125,6 +210,15 @@
       "name": "Admin",
       "slug": "admin",
       "id": 2
+    },
+    {
+      "permissions": [
+        "getPermissions"
+      ],
+      "enable": false,
+      "name": "Test",
+      "slug": "test",
+      "id": 3
     }
   ],
   "refresh-token": {

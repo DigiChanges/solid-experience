@@ -98,7 +98,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'firstName' )}>
-                    <FormControlLabel class={'form_label'} for="firstName">
+                    <FormControlLabel class={'form_label'} for="firstName" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="first_name"/>
                     </FormControlLabel>
                     <Input
@@ -120,7 +120,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'lastName' )}>
-                    <FormControlLabel class={'form_label'} for="lastName">
+                    <FormControlLabel class={'form_label'} for="lastName" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="last_name"/>
                     </FormControlLabel>
                     <Input
@@ -142,7 +142,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <div class="field_wrapper">
                 <div class="field_justify_between h-[90px]">
                     <FormControl isRequired isInvalid={!!errors( 'documentType' )} class={'w-[25%]'}>
-                        <FormControlLabel class={'form_label'} for="documentType">
+                        <FormControlLabel class={'form_label'} for="documentType" _dark={{ _after: { color: 'danger.300' } }}>
                             <Text message="document_type"/>
                         </FormControlLabel>
                         <Select
@@ -163,7 +163,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </FormControl>
 
                     <FormControl isRequired isInvalid={!!errors( 'documentNumber' )} class="big">
-                        <FormControlLabel class={'form_label'} for="documentNumber">
+                        <FormControlLabel class={'form_label'} for="documentNumber" _dark={{ _after: { color: 'danger.300' } }}>
                             <Text message="document_number"/>
                         </FormControlLabel>
                         <Input
@@ -184,7 +184,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'gender' )}>
-                    <FormControlLabel class={'form_label'} for="gender">
+                    <FormControlLabel class={'form_label'} for="gender" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="gender"/>
                     </FormControlLabel>
                     <Radio
@@ -203,7 +203,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'birthday' )}>
-                    <FormControlLabel class={'form_label'} for="birthday">
+                    <FormControlLabel class={'form_label'} for="birthday" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="birthday"/>
                     </FormControlLabel>
                     <DatePicker
@@ -233,7 +233,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'enable' )}>
-                    <FormControlLabel class={'form_label'}>
+                    <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="enable"/>
                     </FormControlLabel>
                     <Switch
@@ -251,7 +251,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'country' )}>
-                    <FormControlLabel class={'form_label'} for="country">
+                    <FormControlLabel class={'form_label'} for="country" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="country"/>
                     </FormControlLabel>
                     <Select
@@ -274,7 +274,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'address' )}>
-                    <FormControlLabel class={'form_label'} for="address">
+                    <FormControlLabel class={'form_label'} for="address" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="address"/>
                     </FormControlLabel>
                     <Input
@@ -299,7 +299,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'email' )}>
-                    <FormControlLabel class={'form_label'} for="email">
+                    <FormControlLabel class={'form_label'} for="email" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="email"/>
                     </FormControlLabel>
                     <Input
@@ -320,7 +320,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'phone' )}>
-                    <FormControlLabel class={'form_label'} for="phone">
+                    <FormControlLabel class={'form_label'} for="phone" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="phone"/>
                     </FormControlLabel>
                     <Input
@@ -342,7 +342,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             <Show when={!props.userSelected?.id} keyed>
                 <div class="field_wrapper full">
                     <FormControl isRequired isInvalid={!!errors( 'password' )}>
-                        <FormControlLabel class={'form_label'} for="password">
+                        <FormControlLabel class={'form_label'} for="password" _dark={{ _after: { color: 'danger.300' } }}>
                             <Text message="password"/>
                         </FormControlLabel>
                         <Input
@@ -361,7 +361,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 </div>
                 <div class="field_wrapper full">
                     <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
-                        <FormControlLabel class={'form_label'} for="passwordConfirmation">
+                        <FormControlLabel class={'form_label'} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
                             <Text message="confirm_password"/>
                         </FormControlLabel>
                         <Input
@@ -382,7 +382,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl id="permissions" isInvalid={!!errors( 'permissions' )}>
-                    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="permissions">
+                    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="permissions" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="permissions"/>
                     </FormControlLabel>
                     <MultiSelect
@@ -404,7 +404,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl id="roles" isInvalid={!!errors( 'roles' )}>
-                    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="roles">
+                    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="roles" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="roles"/>
                     </FormControlLabel>
                     <MultiSelect

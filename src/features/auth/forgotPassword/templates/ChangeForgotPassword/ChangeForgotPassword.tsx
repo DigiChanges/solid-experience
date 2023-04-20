@@ -26,7 +26,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
     const handleSuccess = () => () =>
     {
         notificationService.show( {
-            /* status: 'success', */
+            status: 'success',
             title: t( 'au_password_updated' ) as string,
         } );
         navigate( '/change-password-success', { replace: true } );
@@ -36,7 +36,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
     {
         const errorMessage = setError( error );
         notificationService.show( {
-            /* status: 'danger', */
+            status: 'danger',
             title: t( 'err_save_password' ) as string,
             description: t( errorMessage ) as string,
         } );
@@ -64,7 +64,9 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
 
                 <div class="field_wrapper" >
                     <FormControl isRequired isInvalid={!!errors( 'password' )}>
-                        <FormControlLabel class={'form_label'} for="password"><Text message="new_password"/></FormControlLabel>
+                        <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }} for="password">
+                            <Text message="new_password"/>
+                        </FormControlLabel>
                         <Input
                             _dark={darkInput}
                             _placeholder={placeholderInput}
@@ -79,7 +81,9 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                 </div>
                 <div class="field_wrapper">
                     <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
-                        <FormControlLabel for="passwordConfirmation"><Text message="confirm_password"/></FormControlLabel>
+                        <FormControlLabel class={'form_label'} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
+                            <Text message="confirm_password"/>
+                        </FormControlLabel>
                         <Input
                             _dark={darkInput}
                             _placeholder={placeholderInput}

@@ -59,7 +59,7 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                 </div>
                 <div data-parent="usersDelete">
                     <IconButton
-                        _dark={{ color: 'danger.300', cursor: 'pointer' }}
+                        _dark={{ color: 'danger.200', cursor: 'pointer' }}
                         size={'xs'}
                         class="has-permission"
                         aria-label="Delete User"

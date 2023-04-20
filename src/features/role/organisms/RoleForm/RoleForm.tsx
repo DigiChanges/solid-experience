@@ -79,7 +79,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
         <form ref={form} class="form_flex">
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={ !!errors( 'name' ) } >
-                    <FormControlLabel class={'form_label'} for="name">
+                    <FormControlLabel class={'form_label'} for="name" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="name"/>
                     </FormControlLabel>
                     <Input
@@ -101,7 +101,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'slug' )}>
-                    <FormControlLabel class={'form_label'} for="slug">
+                    <FormControlLabel class={'form_label'} for="slug" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="slug"/>
                     </FormControlLabel>
                     <Input
@@ -122,7 +122,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
             </div>
             <div class="field_wrapper">
                 <FormControl id="permissions" isRequired isInvalid={!!errors( 'permissions' )}>
-                    <FormControlLabel class={'form_label'} for="permissions">
+                    <FormControlLabel class={'form_label'} for="permissions" _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="permissions"/>
                     </FormControlLabel>
                     <MultiSelect
@@ -144,7 +144,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors( 'enable' )}>
-                    <FormControlLabel class={'form_label'}>
+                    <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>
                         <Text message="enable"/>
                     </FormControlLabel>
                     <Switch

@@ -25,7 +25,7 @@ export const createForgotPasswordAction = ( { errorAlert, navigate, t }: params 
         void await authRepository.getForgotPassword( { data } );
 
         notificationService.show( {
-            /* status: 'success', */
+            status: 'success',
             title: t( 'au_send_email' ) as string,
         } );
         navigate( '/email-sent-successfully', { replace: true } );
@@ -34,7 +34,7 @@ export const createForgotPasswordAction = ( { errorAlert, navigate, t }: params 
     {
         const errorMessage = setError( error );
         notificationService.show( {
-            /* status: 'danger', */
+            status: 'danger',
             title: t( 'err_forgot_password' ) as string,
             description: t( errorMessage ) as string,
         } );

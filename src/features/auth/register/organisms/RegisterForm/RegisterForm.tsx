@@ -32,6 +32,9 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
         isValid,
         setFields,
     } = createForm<InferType<typeof RegisterSchema>>( {
+        initialValues: {
+            permissions: []
+        },
         extend: validator( { schema: RegisterSchema } ),
         onSuccess: props.onSuccess,
         onError: props.onError,
@@ -59,7 +62,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <div class="section mid">
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'firstName' )} >
-                            <FormControlLabel class={'form_label'} for="firstName">
+                            <FormControlLabel class={'form_label'} for="firstName" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="first_name"/>
                             </FormControlLabel>
                             <Input
@@ -79,7 +82,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'lastName' )} >
-                            <FormControlLabel class={'form_label'} for="lastName">
+                            <FormControlLabel class={'form_label'} for="lastName" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="last_name"/>
                             </FormControlLabel>
                             <Input
@@ -105,7 +108,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <div class="section mid">
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'email' )} >
-                            <FormControlLabel class={'form_label'} for="email">
+                            <FormControlLabel class={'form_label'} for="email" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="email"/>
                             </FormControlLabel>
                             <Input
@@ -125,7 +128,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'phone' )} >
-                            <FormControlLabel class={'form_label'} for="phone">
+                            <FormControlLabel class={'form_label'} for="phone" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="phone"/>
                             </FormControlLabel>
                             <Input
@@ -146,7 +149,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <div class="field_wrapper full">
                         <div class="field_justify_between h-[90px]">
                             <FormControl isRequired isInvalid={!!errors( 'documentType' )} class={'w-[25%]'}>
-                                <FormControlLabel class={'form_label'} for="documentType">
+                                <FormControlLabel class={'form_label'} for="documentType" _dark={{ _after: { color: 'danger.300' } }}>
                                     <Text message="document_type"/>
                                 </FormControlLabel>
                                 <Select
@@ -167,7 +170,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             </FormControl>
 
                             <FormControl isRequired isInvalid={!!errors( 'documentNumber' )} class="big">
-                                <FormControlLabel class={'form_label'} for="documentNumber">
+                                <FormControlLabel class={'form_label'} for="documentNumber" _dark={{ _after: { color: 'danger.300' } }}>
                                     <Text message="document_number"/>
                                 </FormControlLabel>
                                 <Input
@@ -188,7 +191,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'gender' )}>
-                            <FormControlLabel class={'form_label'} for="gender">
+                            <FormControlLabel class={'form_label'} for="gender" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="gender"/>
                             </FormControlLabel>
                             <Radio
@@ -207,7 +210,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'birthday' )}>
-                            <FormControlLabel class={'form_label'} for="birthday">
+                            <FormControlLabel class={'form_label'} for="birthday" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="birthday"/>
                             </FormControlLabel>
                             <DatePicker
@@ -237,7 +240,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'country' )}>
-                            <FormControlLabel class={'form_label'} for="country">
+                            <FormControlLabel class={'form_label'} for="country" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="country"/>
                             </FormControlLabel>
                             <Select
@@ -259,7 +262,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     </div>
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'address' )} >
-                            <FormControlLabel class={'form_label'} for="address">
+                            <FormControlLabel class={'form_label'} for="address" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="address"/>
                             </FormControlLabel>
                             <Input
@@ -286,7 +289,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                 <div class="section mid">
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'password' )}>
-                            <FormControlLabel class={'form_label'} for="password">
+                            <FormControlLabel class={'form_label'} for="password" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="password"/>
                             </FormControlLabel>
                             <Input
@@ -306,7 +309,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
 
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
-                            <FormControlLabel class={'form_label'} for="passwordConfirmation">
+                            <FormControlLabel class={'form_label'} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
                                 <Text message="confirm_password"/>
                             </FormControlLabel>
                             <Input

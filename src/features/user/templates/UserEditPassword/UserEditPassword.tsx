@@ -26,7 +26,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
     const handleSuccess = () => () =>
     {
         notificationService.show( {
-            /* status: 'success', */
+            status: 'success',
             title: t( 'au_password_updated' ) as string,
         } );
         navigate( '/users', { replace: true } );
@@ -36,7 +36,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
     {
         const errorMessage = setError( error );
         notificationService.show( {
-            /* status: 'danger', */
+            status: 'danger',
             title: t( 'err_save_password' ) as string,
             description: t( errorMessage ) as string,
         } );
@@ -62,7 +62,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
             <form ref={form} class="form_password">
                 <div class="field_wrapper">
                     <FormControl isRequired isInvalid={!!errors( 'password' )}>
-                        <FormControlLabel class={'form_label'} for="password">
+                        <FormControlLabel class={'form_label'} for="password" _dark={{ _after: { color: 'danger.300' } }}>
                             <Text message="new_password"/>
                         </FormControlLabel>
                         <Input
@@ -82,7 +82,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
 
                 <div class="field_wrapper">
                     <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
-                        <FormControlLabel class={'form_label'} for="passwordConfirmation">
+                        <FormControlLabel class={'form_label'} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
                             <Text message="confirm_password"/>
                         </FormControlLabel>
                         <Input

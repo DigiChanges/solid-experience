@@ -28,7 +28,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
     const handleSuccess = () => () =>
     {
         notificationService.show( {
-            /* status: 'success', */
+            status: 'success',
             title: t( 'r_updated' ) as string,
         } );
         navigate( '/roles', { replace: true } );
@@ -38,7 +38,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
     {
         const errorMessage = setError( error );
         notificationService.show( {
-            /* status: 'danger', */
+            status: 'danger',
             title: t( 'err_save_role' ) as string,
             description: t( errorMessage ) as string,
         } );

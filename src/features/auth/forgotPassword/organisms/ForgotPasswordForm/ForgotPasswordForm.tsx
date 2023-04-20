@@ -9,7 +9,7 @@ import { InferType } from 'yup';
 import createAlert from '../../../../shared/hooks/createAlert';
 import { ForgotPasswordPayload } from '../../../interfaces/forgotPassword';
 import ForgetPasswordSchema from '../../../validations/schemas/ForgetPasswordSchema';
-import { darkInput, placeholderInput, darkNeutralButton, darkPrimaryButton, darkPrimaryButtonWithBackground } from '../../../../shared/constants/hopeAdapter';
+import { darkInput, placeholderInput, darkNeutralButton, darkPrimaryButtonWithBackground } from '../../../../shared/constants/hopeAdapter';
 
 interface ForgotPasswordFormProps
 {
@@ -59,7 +59,9 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
         <form ref={form} class="form_flex column w-[20rem]">
             <h1 class="section_title_opaque"><Text message="a_account_recovery"/></h1>
             <FormControl isRequired={true} isInvalid={!!errors( 'email' )} class="w-full">
-                <FormControlLabel for="email" class={'form_label'}><Text message="email"/></FormControlLabel>
+                <FormControlLabel for="email" class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>
+                    <Text message="email"/>
+                </FormControlLabel>
                 <Input
                     _dark={darkInput}
                     _placeholder={placeholderInput}

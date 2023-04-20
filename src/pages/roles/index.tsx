@@ -43,7 +43,7 @@ const IndexPage: Component = () =>
             void await roleRepository.removeRole( { id, user: user() } );
 
             notificationService.show( {
-                /* status: 'success', */
+                status: 'success',
                 title: t( 'r_removed' ) as string,
             } );
 
@@ -58,20 +58,11 @@ const IndexPage: Component = () =>
         {
             const errorMessage = setError( error );
             notificationService.show( {
-                /* status: 'danger', */
+                status: 'danger',
                 title: t( 'err_remove_role' ) as string,
                 description: t( errorMessage ) as string,
             } );
         }
-    };
-
-    const show = () =>
-    {
-        notificationService.show( {
-            status: 'danger',
-            title: t( 'err_remove_role' ) as string,
-            description: 'Prueba notification',
-        } );
     };
 
     return (
@@ -81,7 +72,6 @@ const IndexPage: Component = () =>
                 title="err"
                 description="err_process_role"
             />
-            <button onclick={show}>Notify</button>
             <RoleList
                 roleList={roleList()}
                 removeAction={removeAction}

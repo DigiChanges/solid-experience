@@ -53,7 +53,7 @@ const RoleCard: Component<RoleCardProps> = ( props ) => (
                         children={<IconTrash />}
                         colorScheme="danger"
                         onClick={props.onDelete}
-                        _dark={{ color: 'danger.300', cursor: 'pointer' }}
+                        _dark={{ color: 'danger.200', cursor: 'pointer' }}
                         size={'xs'}
                     />
                 </div>

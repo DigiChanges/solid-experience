@@ -16,7 +16,7 @@ render( () => (
                     <App />
                 </ApplicationProvider>
             </Router>
-            <Toast.Region>
+            <Toast.Region limit={6}>
                 <Toast.List class="toast__list" />
             </Toast.Region>
         </HopeProvider>

@@ -18,7 +18,7 @@ const UserMessageSuccess: Component<messageSuccessProps> = ( props ) =>
         <section class={styles.container}>
             <div class={styles.second_section_container}>
                 <Alert
-                    class={'flex-col justify-center text-center w-[40vh] h-[25vh]'}
+                    class={'flex-col justify-center text-center !p-10'}
                     status="success"
                     variant={'solid'}
                     icon={<FaSolidCircleCheck />}

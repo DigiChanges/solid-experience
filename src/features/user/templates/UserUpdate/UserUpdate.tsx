@@ -28,7 +28,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
     const handleSuccess = () => () =>
     {
         notificationService.show( {
-            /* status: 'success', */
+            status: 'success',
             title: t( 'u_updated' ) as string,
         } );
         navigate( '/users', { replace: true } );
@@ -38,7 +38,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
     {
         const errorMessage = setError( error );
         notificationService.show( {
-            /* status: 'danger', */
+            status: 'danger',
             title: t( 'err_save_user' ) as string,
             description: t( errorMessage ) as string,
         } );

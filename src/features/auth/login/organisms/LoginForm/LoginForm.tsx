@@ -34,7 +34,9 @@ const LoginForm: Component<LoginFormProps> = props =>
             <h1 class="section_title_opaque"><Text message="a_login"/></h1>
             <form ref={form} class="flex flex-col gap-9 w-[20rem]" >
                 <FormControl isRequired isInvalid={!!errors( 'email' )}>
-                    <FormControlLabel for="email" class={'form_label'}><Text message="email"/></FormControlLabel>
+                    <FormControlLabel for="email" _dark={{ _after: { color: 'danger.300' } }} class={'form_label'}>
+                        <Text message="email"/>
+                    </FormControlLabel>
                     <Input
                         _dark={darkInput}
                         _placeholder={placeholderInput}
@@ -44,12 +46,16 @@ const LoginForm: Component<LoginFormProps> = props =>
                         placeholder={t( 'a_your_email' ) as string}
                     />
                     <Show when={errors( 'email' )} keyed>
-                        <FormControlError class="error_message_block"><Text message={errors( 'email' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block">
+                            <Text message={errors( 'email' )![0]} />
+                        </FormControlError>
                     </Show>
                 </FormControl>
 
                 <FormControl isRequired isInvalid={!!errors( 'password' )}>
-                    <FormControlLabel for="password" class={'form_label'}><Text message="a_password"/></FormControlLabel>
+                    <FormControlLabel for="password" class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>
+                        <Text message="a_password"/>
+                    </FormControlLabel>
                     <Input
                         _dark={darkInput}
                         _placeholder={placeholderInput}
@@ -59,7 +65,9 @@ const LoginForm: Component<LoginFormProps> = props =>
                         placeholder={t( 'a_your_password' ) as string}
                     />
                     <Show when={errors( 'password' )} keyed>
-                        <FormControlError class="error_message_block"><Text message={errors( 'password' )![0]} /></FormControlError>
+                        <FormControlError class="error_message_block">
+                            <Text message={errors( 'password' )![0]} />
+                        </FormControlError>
                     </Show>
                 </FormControl>
 

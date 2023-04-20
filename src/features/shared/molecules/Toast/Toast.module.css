@@ -1,29 +1,14 @@
-.toast__list {
-    --viewport-padding: 16px;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    padding: var(--viewport-padding);
-    gap: 8px;
-    width: 400px;
-    max-width: 100vw;
-    margin: 0;
-    list-style: none;
-    z-index: 9999;
-    outline: none;
-}
 .toast {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    border: 1px solid hsl(240 5% 84%);
+    border: 1px solid var(--hope-colors-neutral-500);
     border-radius: 6px;
     padding: 12px;
-    background-color: white;
+    background-color: var(--hope-colors-neutral-900);
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 .toast[data-opened] {
@@ -44,33 +29,44 @@
 }
 .toast__content {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
+    gap: 10px;
 }
 .toast__close__button {
+    position: absolute;
+    right: 8px;
+    top: 8px;
     flex-shrink: 0;
-    height: 16px;
-    width: 16px;
+    height: auto;
+    width: auto;
     margin-left: auto;
-    color: hsl(240 5% 34%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 4px;
+}
+.toast__close__button:hover {
+    background-color: var(--hope-colors-neutral-700);
 }
 .toast__title {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    color: hsl(240 6% 10%);
+    color: var(--hope-colors-neutral-50);
 }
 .toast__description {
     font-size: 14px;
-    color: hsl(240 5% 26%);
+    color: var(--hope-colors-neutral-100);
 }
 .toast__progress__track {
-    height: 8px;
+    height: 3px;
     width: 100%;
-    background-color: hsl(240 6% 90%);
+    background-color: var(--hope-colors-neutral-500);
     border-radius: 3px;
 }
 .toast__progress__fill {
-    background-color: hsl(200 98% 39%);
+    background-color: var(--hope-colors-primary-300);
     border-radius: 3px;
     height: 100%;
     width: var(--kb-toast-progress-fill-width);

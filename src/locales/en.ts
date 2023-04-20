@@ -243,14 +243,14 @@ const properties: I18nLocales = {
 const roles: I18nLocales = {
     r_assigned: 'Role/s assigned',
     r_create: 'Create Role',
-    r_created: 'Created Role',
+    r_created: 'Role created',
     r_list: 'Role List',
     r_no_roles: 'Without Roles',
     r_remove: 'Are you sure you want to delete this role?',
     r_removed: 'The role was removed',
     r_search: '{count, plural, one {Search role} other {Search roles}}',
     r_update: 'Update Role',
-    r_updated: 'Role Updated',
+    r_updated: 'Role updated',
 };
 
 const user: I18nLocales = {
