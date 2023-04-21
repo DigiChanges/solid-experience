@@ -5,6 +5,7 @@ import NavBar from '../../../navBar/organisms/NavBar';
 import SideBar from '../../../sideBar/organisms/SideBar';
 import styles from './PrivateLayout.module.css';
 import { createDisclosure } from '@hope-ui/core';
+import { Link } from 'solid-app-router';
 
 interface privateTemplateProps {
     children: JSX.Element | JSX.Element[];
@@ -32,7 +33,7 @@ const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
                     {props.children}
                 </main>
                 <Footer class={styles.footer}>
-                    {new Date().getFullYear()} © DigiChanges
+                    {new Date().getFullYear()}{' © '}{<Link target={'_blank'} href={'https://digichanges.com'}>DigiChanges</Link>}
                 </Footer>
             </div>
         </div>

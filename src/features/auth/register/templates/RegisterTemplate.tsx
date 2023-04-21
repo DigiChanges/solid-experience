@@ -42,8 +42,8 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
 
     return (
         <section>
-            <Show when={''}
-                fallback={() => <RegisterSuccess email={props.getEmail()} />}
+            <Show when={!getShowRegisterSuccess()}
+                fallback={() => <RegisterSuccess />}
             >
                 <div
                     classList={{ [styles.class_list_container]: !getShowRegisterSuccess() }}>
