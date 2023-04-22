@@ -1,5 +1,5 @@
 import { useSearchParams } from '@solidjs/router';
-import { createEffect, createMemo } from 'solid-js';
+import { createMemo } from 'solid-js';
 import { PaginationParams, QueryParams } from '../../../services/IHttpAxios';
 import usePagination from './usePagination';
 
@@ -7,9 +7,7 @@ function useQuery ( initialPagination?: PaginationParams )
 {
     const [ searchParams ] = useSearchParams();
     const { page, goToPage, goFirstPage } = usePagination( initialPagination );
-    createEffect(()=> {
-        console.log(searchParams)
-    })
+
     const getURLSearchParams = createMemo<QueryParams>( ( prev ) =>
     {
         const newFilter = new URLSearchParams( searchParams );

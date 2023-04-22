@@ -13,8 +13,8 @@ function usePagination ( initialPagination?: PaginationParams )
             const params = new URLSearchParams( url.search );
 
             const nextPage = {
-                limit: params.get( 'pagination_limit' ),
-                offset: params.get( 'pagination_offset' ),
+                limit: params.get( 'pagination[limit]' ),
+                offset: params.get( 'pagination[offset]' ),
             };
 
             setPage( nextPage );
