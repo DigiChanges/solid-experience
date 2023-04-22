@@ -37,3 +37,11 @@ export const darkDangerButton = {
     _hover: { bgColor: 'danger.300', cursor: 'pointer' },
     borderRadius: '4px',
 };
+
+export const darkTransparentButton = {
+    bgColor: 'transparent',
+    _hover: { bgColor: 'primary.600', cursor: 'pointer', borderColor: 'primary.200', color: 'primary.100', },
+    borderRadius: '4px',
+    borderColor: 'primary.200',
+    color: 'primary.100',
+};

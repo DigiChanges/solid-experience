@@ -19,5 +19,5 @@
 }
 
 .section_bottom_buttons_container {
-    @apply mx-auto h-full flex justify-center items-center mt-8;
+    @apply mx-auto h-full flex justify-center items-center mt-8 gap-2;
 }

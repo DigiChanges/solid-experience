@@ -12,8 +12,7 @@ import { filterBy } from '../../constants/filterBy';
 import { UserApi } from '../../interfaces';
 import UserCard from '../../organisms/UserCard/UserCard';
 import styles from './UserList.module.css';
-import { darkDangerButton, darkPrimaryButton } from '../../../shared/constants/hopeAdapter';
-import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
+import { darkDangerButton, darkPrimaryButton, darkTransparentButton } from '../../../shared/constants/hopeAdapter';
 
 interface UserListTemplateProps
 {
@@ -111,7 +110,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
             <div class="section_bottom_buttons_container">
                 <Show when={!!props.nextPage} keyed>
-                    <Button onClick={props.viewMoreAction()} variant="outlined">
+                    <Button onClick={props.viewMoreAction()} variant="outlined" _dark={darkTransparentButton} >
                         <Show when={!props.loading} keyed fallback={() => <span class={'text-neutral-50'}><Text message="a_loading" />...</span>}>
                             <Text message="a_view_more"/>
                         </Show>
