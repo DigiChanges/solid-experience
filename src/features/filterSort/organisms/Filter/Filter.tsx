@@ -1,6 +1,6 @@
 import { createForm } from '@felte/solid';
 import { Button, Icon, Input, CloseButton } from '@hope-ui/core';
-import { useSearchParams } from 'solid-app-router';
+import { useSearchParams } from '@solidjs/router';
 import { Text } from 'solid-i18n';
 import { Component, createMemo, createSignal, For } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';

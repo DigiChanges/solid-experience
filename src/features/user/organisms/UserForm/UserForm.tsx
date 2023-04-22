@@ -1,7 +1,7 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
-import { Link } from 'solid-app-router';
+import { Link } from '@solidjs/router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';

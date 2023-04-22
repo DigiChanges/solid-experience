@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from 'solid-app-router';
+import { useNavigate, useSearchParams } from '@solidjs/router';
 import { Component, createSignal } from 'solid-js';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import createAlert from '../../../features/shared/hooks/createAlert';

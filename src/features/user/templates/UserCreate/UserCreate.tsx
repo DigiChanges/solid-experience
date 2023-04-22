@@ -1,5 +1,5 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
-import { useNavigate } from 'solid-app-router';
+import { useNavigate } from '@solidjs/router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';

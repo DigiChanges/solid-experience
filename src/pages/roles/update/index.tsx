@@ -1,4 +1,4 @@
-import { useParams } from 'solid-app-router';
+import { useParams } from '@solidjs/router';
 import { Component, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';

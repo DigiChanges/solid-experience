@@ -1,5 +1,5 @@
 import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
-import { Link } from 'solid-app-router';
+import { Link } from '@solidjs/router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, For, Show } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';

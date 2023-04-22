@@ -1,5 +1,5 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
-import { Link, useNavigate } from 'solid-app-router';
+import { Link, useNavigate } from '@solidjs/router';
 import { Text as TextI18, useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logo from '../../../../assets/images/dgc_logo.png';

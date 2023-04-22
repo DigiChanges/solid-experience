@@ -1,5 +1,5 @@
 import { IconButton } from '@hope-ui/core';
-import { Link } from 'solid-app-router';
+import { Link } from '@solidjs/router';
 import { Component } from 'solid-js';
 import logoNav from '../../../assets/images/dgc_logo.png';
 import IconBell from '../../../atoms/Icons/Stroke/IconBell';

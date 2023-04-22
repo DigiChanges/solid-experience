@@ -1,4 +1,4 @@
-import { Link } from 'solid-app-router';
+import { Link } from '@solidjs/router';
 import { Text } from 'solid-i18n';
 import { Component } from 'solid-js';
 import styles from './RegisterSuccess.module.css';

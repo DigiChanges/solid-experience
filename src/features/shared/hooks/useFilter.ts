@@ -1,4 +1,4 @@
-import { useSearchParams } from 'solid-app-router';
+import { useSearchParams } from '@solidjs/router';
 
 export type Filter = {
     search: string;

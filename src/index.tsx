@@ -1,6 +1,6 @@
 import { extendTheme, ColorModeScript, HopeProvider } from '@hope-ui/core';
 import { Toast } from '@kobalte/core';
-import { Router } from 'solid-app-router';
+import { Router } from '@solidjs/router';
 import { MountableElement, render } from 'solid-js/web';
 import App from './App';
 import { ApplicationProvider } from './context/context';

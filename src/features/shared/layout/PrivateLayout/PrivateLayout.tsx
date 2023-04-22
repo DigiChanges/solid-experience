@@ -5,7 +5,7 @@ import NavBar from '../../../navBar/organisms/NavBar';
 import SideBar from '../../../sideBar/organisms/SideBar';
 import styles from './PrivateLayout.module.css';
 import { createDisclosure } from '@hope-ui/core';
-import { Link } from 'solid-app-router';
+import { Link } from '@solidjs/router';
 
 interface privateTemplateProps {
     children: JSX.Element | JSX.Element[];

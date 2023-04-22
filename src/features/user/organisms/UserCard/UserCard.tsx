@@ -1,5 +1,5 @@
 import { IconButton } from '@hope-ui/core';
-import { Link } from 'solid-app-router';
+import { Link } from '@solidjs/router';
 import { Component } from 'solid-js';
 import IconLockOpen from '../../../../atoms/Icons/Stroke/IconLockOpen';
 import IconPencilAlt from '../../../../atoms/Icons/Stroke/IconPencilAlt';

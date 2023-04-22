@@ -1,4 +1,4 @@
-import { useRoutes } from 'solid-app-router';
+import { useRoutes } from '@solidjs/router';
 import { I18nProvider } from 'solid-i18n';
 import { Show, Suspense } from 'solid-js';
 import { dashRoutes } from './config/dashRoutes';

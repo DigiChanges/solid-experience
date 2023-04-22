@@ -43,6 +43,7 @@
     "@felte/validator-yup": "^1.0.9",
     "@hope-ui/core": "1.0.0-next.11",
     "@kobalte/core": "^0.8.2",
+    "@solidjs/router": "^0.8.2",
     "@stitches/core": "^1.2.8",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "axios": "^0.27.2",

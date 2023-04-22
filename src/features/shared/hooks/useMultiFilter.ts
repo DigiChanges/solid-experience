@@ -1,4 +1,4 @@
-import { useSearchParams } from 'solid-app-router';
+import { useSearchParams } from '@solidjs/router';
 
 function useMultiFilter ()
 {
