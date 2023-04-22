@@ -336,7 +336,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     colorScheme="neutral"
                     _dark={darkNeutralButton}
                 >
-                    <Text message="a_close" />
+                    <Text message="a_back" />
                 </Button>
                 <Button
                     _dark={darkPrimaryButton}

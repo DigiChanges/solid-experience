@@ -105,7 +105,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                             colorScheme="neutral"
                             _dark={darkNeutralButton}
                         >
-                            <Text message="a_close" />
+                            <Text message="a_back" />
                         </Button>
                     </div>
                     <div class="button_full">

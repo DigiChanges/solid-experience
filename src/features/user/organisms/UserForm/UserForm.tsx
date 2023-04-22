@@ -442,7 +442,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         href="/users"
                         colorScheme="neutral"
                     >
-                        <Text message="a_close" />
+                        <Text message="a_back" />
                     </Button>
                 </div>
                 <div class="button_full has-permission">
@@ -464,7 +464,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         as={Link}
                         href="/users"
                     >
-                        <Text message="a_close" />
+                        <Text message="a_back" />
                     </Button>
                 </div>
             </div>

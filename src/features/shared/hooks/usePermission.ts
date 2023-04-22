@@ -3,16 +3,16 @@ import showDomElements from '../../../libs/showDomElements';
 
 function usePermission ( user: any, resourceWithLoading?: Resource<any>[] )
 {
-    void showDomElements( user().user.permissions );
+    void showDomElements( user()?.user.permissions );
     const resourcesLoaded = createMemo( () =>
     {
-        if ( Array.isArray( resourceWithLoading ) && user().user.permissions )
+        if ( Array.isArray( resourceWithLoading ) && user()?.user.permissions )
         {
             return resourceWithLoading.every( resource => !resource.loading );
         }
         else
         {
-            return Array.isArray( user().user.permissions );
+            return Array.isArray( user()?.user.permissions );
         }
     } );
 
@@ -20,7 +20,7 @@ function usePermission ( user: any, resourceWithLoading?: Resource<any>[] )
     {
         if ( resourcesLoaded() )
         {
-            showDomElements( user().user.permissions );
+            showDomElements( user()?.user.permissions );
         }
     } );
 }

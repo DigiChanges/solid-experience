@@ -169,7 +169,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                         href="/roles"
                         colorScheme="neutral"
                     >
-                        <Text message="a_close" />
+                        <Text message="a_back" />
                     </Button>
                 </div>
                 <div class="button_full has-permission ">
@@ -191,7 +191,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                         as={Link}
                         href="/roles"
                     >
-                        <Text message="a_close" />
+                        <Text message="a_back" />
                     </Button>
                 </div>
             </div>

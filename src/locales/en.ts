@@ -7,6 +7,7 @@ const app: I18nLocales = {
     a_add: 'Add',
     a_add_filter: 'Add Filter',
     a_autocomplete: 'Autocomplete',
+    a_back: 'Go back',
     a_basic_information: 'Basic Information',
     a_cancel: 'Cancel',
     a_change_password: 'Change Password',

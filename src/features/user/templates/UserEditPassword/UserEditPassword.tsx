@@ -109,7 +109,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                             href="/login"
                             colorScheme="neutral"
                         >
-                            <Text message="a_close" />
+                            <Text message="a_back" />
                         </Button>
                     </div>
                     <div class="button_full">
