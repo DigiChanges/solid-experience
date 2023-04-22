@@ -56,7 +56,7 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
     } );
 
     return (
-        <form ref={form} class="form_flex column w-[20rem]">
+        <form ref={form} class="form_flex column md:w-[20rem]">
             <h1 class="section_title_opaque"><Text message="a_account_recovery"/></h1>
             <FormControl isRequired={true} isInvalid={!!errors( 'email' )} class="w-full">
                 <FormControlLabel for="email" class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>

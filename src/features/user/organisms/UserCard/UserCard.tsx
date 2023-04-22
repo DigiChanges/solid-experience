@@ -25,7 +25,7 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                         {`${props.user.firstName} ${props.user.lastName}`}
                     </Link>
                 </h6>
-                {props.user.email}
+                <p class={'text-ellipsis overflow-hidden whitespace-nowrap'}>{props.user.email}</p>
             </div>
 
             <div class="card_third">

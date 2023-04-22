@@ -3,7 +3,7 @@
 }
 
 .card_media_object{
-    @apply flex-col justify-center content-center ml-3;
+    @apply flex-col justify-center content-center ml-3 w-[80%] md:w-auto;
 }
 
 .card_media_object_title{

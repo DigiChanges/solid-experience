@@ -81,11 +81,12 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                     <Text message="u_list" />
                 </h1>
 
-                <div class="has-permission">
+                <div class="has-permission w-[100%] md:w-auto">
                     <Link href={'/users/create'}>
                         <Button
                             leftIcon={<Icon><IconPlus/></Icon>}
                             _dark={darkPrimaryButton}
+                            class={'w-[100%] md:w-auto'}
                         >
                             <Text message="u_create"/>
                         </Button>

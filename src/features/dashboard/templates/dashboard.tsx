@@ -3,7 +3,6 @@ import Card from '../../shared/molecules/Card/Card';
 import CardContent from '../../shared/molecules/CardContent/CardContent';
 import styles from './Dashboard.module.css';
 import { Text } from 'solid-i18n';
-import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
 
 const Dashboard: Component = () =>
 {
@@ -12,7 +11,7 @@ const Dashboard: Component = () =>
             <Card>
                 <CardContent class={styles.content}>
                     <Text class="text-neutral-50" message="a_dashboard" />
-                    <Text class="text-neutral-50" message="a_dashboard_description" />
+                    <Text class="text-neutral-50 text-center" message="a_dashboard_description" />
                 </CardContent>
             </Card>
         </section>

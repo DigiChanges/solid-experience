@@ -49,7 +49,7 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
                     classList={{ [styles.class_list_container]: !getShowRegisterSuccess() }}>
                     <Card
                         classList={{ [styles.show_register]: !getShowRegisterSuccess() }}>
-                        <div>
+                        <div class={'m-5 md:m-0'}>
                             <div class={styles.logo_container}>
                                 <img class={styles.logo} src={logo} alt="digichanges logo"/>
                             </div>

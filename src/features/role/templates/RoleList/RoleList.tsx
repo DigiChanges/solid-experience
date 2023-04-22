@@ -96,11 +96,12 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                     <Text message="r_list" />
                 </h1>
 
-                <div class="has-permission">
+                <div class="has-permission w-[100%] md:w-auto">
                     <Link href={'/roles/create'}>
                         <Button
                             leftIcon={<Icon><IconPlus/></Icon>}
                             _dark={darkPrimaryButton}
+                            class={'w-[100%] sm:w-[100%]'}
                         >
                             <Text message="r_create"/>
                         </Button>

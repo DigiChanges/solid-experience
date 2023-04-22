@@ -7,7 +7,7 @@
 }
 
 .field_wrapper {
-    @apply w-full md:w-1/2 mb-5 pr-3;
+    @apply w-full md:w-1/2 mb-5 md:pr-3 ;
 }
 
 .field_wrapper.full {

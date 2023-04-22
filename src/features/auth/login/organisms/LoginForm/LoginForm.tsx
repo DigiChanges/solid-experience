@@ -32,7 +32,7 @@ const LoginForm: Component<LoginFormProps> = props =>
     return (
         <>
             <h1 class="section_title_opaque"><Text message="a_login"/></h1>
-            <form ref={form} class="flex flex-col gap-9 w-[20rem]" >
+            <form ref={form} class="flex flex-col gap-9 md:w-[20rem]" >
                 <FormControl isRequired isInvalid={!!errors( 'email' )}>
                     <FormControlLabel for="email" _dark={{ _after: { color: 'danger.300' } }} class={'form_label'}>
                         <Text message="email"/>

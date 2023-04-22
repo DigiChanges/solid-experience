@@ -1,4 +1,5 @@
 export const darkInput = {
+    maxWidth: '100%',
     borderColor: 'neutral.400',
     bgColor: 'transparent',
     color: 'neutral.50',

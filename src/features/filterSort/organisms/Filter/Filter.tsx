@@ -69,12 +69,12 @@ const Filter: Component<FilterProps> = ( props ) =>
     return (
         <>
             <div class={styles.dropdown}>
-                <div>
+                <div class={'w-[100%] md:w-auto'}>
                     <Button
                         _dark={darkPrimaryButtonWithBackground}
                         leftIcon={<FiFilter />}
                         onClick={() => setShowFilter( !showFilter() )}
-                        class={'z-50'}
+                        class={'z-50 w-[100%] md:w-auto'}
                     >
                         <Text message="a_filter"/>
                     </Button>

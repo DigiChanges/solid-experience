@@ -11,7 +11,7 @@
 }
 
 .section_header_container {
-    @apply flex justify-between items-center my-6;
+    @apply flex justify-between my-6 md:flex-row md:items-center md:gap-0 md:mb-6 items-start flex-col gap-[10px] mb-[10px];
 }
 
 .grid_cards_container {
