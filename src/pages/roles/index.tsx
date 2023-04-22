@@ -23,13 +23,7 @@ const IndexPage: Component = () =>
 
     const { page, goToPage, goFirstPage, getURLSearchParams } = useQuery( INIT_STATE.nextPaginationParams );
 
-    const [ roles, { refetch } ] = createResource( () =>
-    {
-        return {
-            user: user(),
-            queryParams: getURLSearchParams(),
-        };
-    }, ( { user, queryParams } ) => roleRepository.getRoles( { user, queryParams } ) );
+    const [ roles, { refetch } ] = createResource( () => ( { user: user(), queryParams: getURLSearchParams() } ), ( { user, queryParams } ) => roleRepository.getRoles( { user, queryParams } ) );
     const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<RoleApi, RoleListResponse>( roles );
 
     usePermission( user, [ roles ] );
