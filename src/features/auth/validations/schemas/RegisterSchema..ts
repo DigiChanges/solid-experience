@@ -1,4 +1,4 @@
-import { ref, string } from 'yup';
+import { array, ref, string } from 'yup';
 import userValidationSchema from '../../../user/validations/schemas/userValidationSchema';
 
 const RegisterSchema = userValidationSchema.shape( {
@@ -8,6 +8,8 @@ const RegisterSchema = userValidationSchema.shape( {
         .required( 'av_required' ),
     passwordConfirmation: string()
         .oneOf( [ ref( 'password' ), null ], 'av_password_match' )
+        .required( 'av_required' ),
+    permissions: array()
         .required( 'av_required' ),
 } );
 

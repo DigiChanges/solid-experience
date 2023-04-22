@@ -1,5 +1,5 @@
 import { Component, Show } from 'solid-js';
-import { Icon } from '@hope-ui/solid';
+import { Icon } from '@hope-ui/core';
 import { Text } from 'solid-i18n';
 import styles from './SideBarItemContent.module.css';
 

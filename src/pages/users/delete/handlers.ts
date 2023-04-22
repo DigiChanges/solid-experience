@@ -1,4 +1,4 @@
-import { notificationService } from '@hope-ui/solid';
+import { notificationService } from '../../../features/shared/molecules/Toast/Toast';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import { LoginApi } from '../../../features/auth/interfaces/login';
 

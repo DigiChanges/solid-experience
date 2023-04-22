@@ -28,7 +28,7 @@ server.put( '/users/assign-role/:userId', assignRoles );
 
 router.render = ( req, res ) =>
 {
-    res.jsonp( {
+    res.json( {
         data: res.locals.data,
     } );
 };

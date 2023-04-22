@@ -1,35 +1,46 @@
-import { IconButton } from '@hope-ui/solid';
-import { Component, createSignal, onCleanup } from 'solid-js';
+import { IconButton } from '@hope-ui/core';
+import { Component, createEffect, createSignal } from 'solid-js';
 import IconArrowCircleLeft from '../../../../atoms/Icons/Stroke/IconArrowCircleLeft';
 import styles from './ButtonScrollUp.module.css';
+import { RoleApi } from '../../../role/interfaces';
+import { UserApi } from '../../../user/interfaces';
 
 interface ButtonGoUpProps {
     onGoUp?: ( e: MouseEvent ) => void;
+    dependencies: RoleApi[] | UserApi[] | undefined;
 }
 
 const handleClick = ( { scrollTop }: { scrollTop: () => void } ) => () => scrollTop();
 
-const ButtonScrollUp: Component<ButtonGoUpProps> = () =>
+const ButtonScrollUp: Component<ButtonGoUpProps> = ( props ) =>
 {
-    const [ getShowScroll, setShowScroll ] = createSignal( false );
+    const [ hideButton, setHideButton ] = createSignal( true );
 
-    function checkScrollTop ()
+    const calculateDocumentHeight = (): boolean =>
     {
-        if ( !getShowScroll() && window.pageYOffset > 300 )
+        const root = document.getElementById( 'root' );
+        if ( props.dependencies )
         {
-            setShowScroll( true );
+            if ( root )
+            {
+                return root.clientHeight < window.innerHeight;
+            }
         }
-        else if ( getShowScroll() && window.pageYOffset <= 300 )
+        else
         {
-            setShowScroll( false );
+            setHideButton( true );
         }
-    }
+    };
 
-    if ( typeof window !== 'undefined' )
+    createEffect( () =>
     {
-        window.addEventListener( 'scroll', checkScrollTop );
-    }
+        setHideButton( calculateDocumentHeight() );
+    } ) ;
 
+    window.onresize = () =>
+    {
+        setHideButton( calculateDocumentHeight() );
+    };
     const scrollTop = () =>
     {
         if ( typeof window !== 'undefined' )
@@ -38,25 +49,13 @@ const ButtonScrollUp: Component<ButtonGoUpProps> = () =>
         }
     };
 
-    onCleanup( () =>
-    {
-        if ( typeof window !== 'undefined' )
-        {
-            window.removeEventListener( 'scroll', checkScrollTop );
-        }
-    } );
-
     return (
         <IconButton
             aria-label="Go top"
             onClick={handleClick( { scrollTop } )}
-            class={styles.button_scroll_up}
-            classList={{
-                flex: getShowScroll(),
-                hidden: !getShowScroll(),
-            }}
-            variant="ghost"
-            icon={<IconArrowCircleLeft />}
+            class={`${styles.button_scroll_up} ${hideButton() && 'hidden'}`}
+            variant="plain"
+            children={<IconArrowCircleLeft />}
         />
     );
 };

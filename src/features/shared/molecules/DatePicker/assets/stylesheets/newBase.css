@@ -1,0 +1,741 @@
+/* common class */
+.theme-dark {
+    --datepicker-colors-text: var(--hope-colors-neutral-100);
+    --datepicker-colors-text-strong: #FFF;
+    --datepicker-colors-border: var(--hope-colors-neutral-400);
+    --datepicker-colors-border-color: var(--hope-colors-primary-300);
+    --datepicker-colors-shadow-color: var(--hope-colors-primary-600);
+    --datepicker-colors-image: invert(1);
+    --datepicker-colors-background: var(--hope-colors-neutral-900);
+    --datepicker-colors-background-color: var(--hope-colors-primary-300);
+}
+
+.theme-light {
+    --datepicker-colors-text: #151718;
+    --datepicker-colors-text-strong: #000;
+    --datepicker-colors-border: #d7dbdf;
+    --datepicker-colors-border-color: '';
+    --datepicker-colors-shadow-color: '';
+    --datepicker-colors-image: invert(0);
+    --datepicker-colors-background: var(--hope-colors-neutral-50);
+    --datepicker-colors-background-color: linear-gradient(91.51deg, rgb(65, 180, 0) 1.52%, rgb(121, 219, 0) 100.83%);
+}
+
+.cur-pointer {
+    cursor: pointer;
+}
+
+.active {
+    background: var(--datepicker-colors-background-color) !important;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #FFFFFF !important;
+    pointer-events: none;
+    border-radius: 0.5rem;
+
+}
+
+.active-bg {
+    background: linear-gradient(91.51deg, #315A98 1.52%, #487CBF 100.83%) !important;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.box-shadow-card {
+    box-shadow: rgb(100 100 111 / 20%) 0rem 0.125rem 0.4375rem 0.0625rem;
+}
+
+.pointer-none {
+    pointer-events: none;
+    font-size: 11px !important;
+}
+
+.v-none {
+    visibility: hidden;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.cust-dis {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.bg-hover-clr {
+    background: #DEF1FF;
+}
+
+.btn-class {
+    border: 1px solid #14191f;
+    background: white;
+    font-weight: 600;
+    font-size: 1rem;
+    height: 2.5rem;
+    text-align: center;
+    margin: 0.5rem 0;
+    border-radius: 0.5rem;
+    letter-spacing: 0.1rem;
+}
+
+.btn-width {
+    width: 7rem;
+}
+
+.jst-center {
+    justify-content: space-evenly !important;
+}
+
+.icon-height {
+    height: 2.3rem;
+}
+
+.cal-initial-view img:nth-child(1){
+    display: none !important;
+}
+
+.calendar {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    color: #232323;
+    margin-top:0 ;
+    width: 100% ;
+    min-width: 0 ;
+}
+
+.cal-initial-view {
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2.3rem;
+    border: 1px solid var(--datepicker-colors-border);
+    border-radius: 4px;
+    padding-left: 12px;
+    margin-bottom: 0;
+    font-weight: 400;
+    background-color: transparent;
+    min-height: 2.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+.cal-initial-view:focus {
+    border-color: var(--datepicker-colors-border-color);
+    box-shadow: 0 0 0 3px #07303B;
+}
+
+.cal-initial-view p {
+    color: var(--datepicker-colors-text-strong);
+}
+
+.arrow-icon {
+    height: 1rem;
+    rotate: -180deg;
+    filter: var(--datepicker-colors-image);
+}
+
+.rotate-arrow-icon {
+    rotate: -90deg;
+}
+
+.cal-parent {
+    max-width: 410px;
+    width: 100%;
+    display: inline-block;
+    min-height: 25rem;
+    background: var(--datepicker-colors-background);
+    border-radius: 0.625rem;
+    padding: 1.5rem;
+    position: absolute;
+    z-index: 1;
+    margin-top: 42px;
+}
+
+@media screen and (max-width: 1080px) {
+    .cal-parent {
+        max-height: 400px;
+        height: auto;
+        width: 280px !important;
+    }
+}
+
+@media screen and (min-width: 745px) {
+
+    .cal-parent {
+        width: auto !important;
+        max-width: 340px;
+    }
+
+    .cal-sub-header-section {
+        margin-bottom: 0!important;
+    }
+
+    .main-container .container-day-view {
+        margin-top: 25px;
+    }
+
+    .main-container .container-day-view .week-list__date {
+        gap: 0.12rem!important;
+    }
+
+    .main-container .container-day-view .week-list .week-list-items {
+        padding: 0.6rem !important;
+    }
+
+    .main-container .container-year-view .container-year-list {
+        width: calc( 136vw / 4 ) !important;
+        max-width: 300px !important;
+    }
+
+    .main-container .container-month-view {
+        width: auto;
+        max-width: calc(100vw / 3);
+    }
+
+    .main-container .container-list {
+        margin: 0.6rem !important;
+    }
+}
+
+@media screen and (min-width: 455px) and (max-width: 740px) {
+    .cal-sub-header-section {
+        margin-bottom: 0!important;
+    }
+
+    .main-container .container-day-view {
+        margin-top: 25px;
+    }
+
+    .main-container .container-day-view .week-list__date {
+        gap: 0.12rem!important;
+    }
+
+    .main-container .container-day-view .week-list .week-list-items {
+        padding: 0.6rem !important;
+    }
+
+    .main-container .container-year-view .container-year-list {
+        width: calc( 100vw / 4 ) !important;
+    }
+
+    .main-container .container-month-view {
+        width: calc(80vw / 3);
+        margin-top: 10px;
+    }
+
+    .main-container .container-list {
+        padding: 0.2rem !important;
+        margin: 0.4rem !important;
+    }
+
+}
+
+@media screen and (min-width: 325px) and (max-width: 455px) {
+    .cal-parent {
+        width: 280px !important;
+    }
+
+    .main-container .container-year-view .container-year-list,
+    .main-container .container-month-view  {
+        width: calc( 200vw / 4 ) !important;
+    }
+
+    .main-container .container-list {
+        margin: 0.5rem !important;
+        padding: 0.1rem !important;
+    }
+
+    .cal-sub-header-section {
+        margin-bottom: 0!important;
+    }
+
+    .main-container .container-day-view .week-list .week-list-items {
+        padding: 0.6rem !important;
+    }
+
+    .main-container .container-day-view .week-list__date {
+        gap: 0.12rem!important;
+    }
+
+    .main-container .container-day-view {
+        margin-top: 25px;
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    .cal-parent {
+        max-height: 400px;
+        height: auto;
+        margin-left: -35px;
+    }
+
+    .main-container .container-year-view .container-year-list,
+    .main-container .container-month-view  {
+        width: calc( 315vw / 5 ) !important;
+    }
+
+    .cal-sub-header-section {
+        margin-bottom: 0!important;
+    }
+
+    .main-container .container-day-view .week-list .week-list-items {
+        padding: 0.2rem !important;
+    }
+
+    .cust-dis {
+        cursor: not-allowed;
+    }
+
+    .main-container .container-list {
+        margin: 0.5rem !important;
+        padding: 0.1rem !important;
+    }
+
+    .main-container .container-day-view {
+        margin-top: 25px;
+    }
+
+    .main-container .container-day-view .week-list__date {
+        gap: 0.9rem!important;
+    }
+}
+
+.cal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cal-header .left-arrow img {
+    height: 1rem;
+    filter: var(--datepicker-colors-image);
+}
+
+
+.cal-header .date-val {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: var(--datepicker-colors-text-strong);
+}
+
+.cal-header .right-arrow img {
+    height: 1rem;
+    rotate: -180deg;
+    filter: var(--datepicker-colors-image);
+}
+
+.cal-sub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.25rem 0;
+}
+
+.cal-sub-header .today-col .today-col-input {
+    border: none;
+    border-bottom: 1px solid #232323;
+    height: 2.5rem;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    font-size: 0.9375rem;
+}
+
+.cal-sub-header .today-col .today-col-input:focus-visible {
+    outline: none;
+}
+
+.cal-sub-header .today-col .today-col-input::placeholder {
+    opacity: 0.3;
+    font-weight: 500;
+    letter-spacing: normal
+}
+
+.cal-sub-header .jump-today {
+    width: 6rem;
+}
+
+.cal-sub-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.1rem;
+    margin: 1.25rem 0;
+}
+
+.cal-sub-header-section button{
+    color: var(--datepicker-colors-text-strong);
+    background-color: transparent;
+    border: 1px solid var(--datepicker-colors-border);
+}
+
+.cal-sub-header-section button:hover{
+    background-color: var(--datepicker-colors-border);
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    letter-spacing: 0.1rem;
+}
+
+.main-container .container-month-view {
+     display: flex;
+     justify-content: space-evenly;
+     flex-wrap: wrap;
+}
+
+.main-container .container-list {
+    padding: 0.75rem;
+    margin: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    width: 65px;
+    text-align: center;
+    color: var(--datepicker-colors-text);
+}
+
+.main-container .container-list:hover {
+    background-color: var(--datepicker-colors-border);
+}
+
+.main-container .container-year-view {
+    display: flex;
+    align-items: center;
+}
+
+.main-container .container-year-view .year-navi__icon {
+    height: 1.2rem;
+    margin: 0.1rem;
+    filter: var(--datepicker-colors-image);
+}
+
+.main-container .container-year-view .year-navi__icon_right {
+    height: 1.2rem;
+    rotate: -180deg;
+    margin: 0.1rem;
+}
+
+.main-container .container-year-view .container-year-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: calc( 100vw / 4 );
+}
+
+@media screen and (min-width: 1024px) {
+    .main-container .container-year-view .container-year-list {
+        width: calc( 80vw / 4 );
+    }
+
+    .main-container .container-list {
+        width: 70px;
+    }
+
+}
+
+.main-container .container-day-view {
+    display: block;
+}
+
+.main-container .container-day-view .week-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.main-container .container-day-view .week-list .week-list-items {
+    padding: 0.7rem;
+    text-transform: uppercase;
+    font-size: small;
+    border-radius: 0.5rem;
+    color: var(--datepicker-colors-text);
+}
+
+.main-container .container-day-view .week-list .week-list-items:hover {
+    background-color: var(--datepicker-colors-border);
+}
+
+.main-container .container-day-view .list-header {
+    font-weight: 600;
+    border: none;
+    margin-bottom: 1.25rem;
+}
+
+.main-container .container-day-view .week-list__date {
+    gap: .6875rem
+}
+
+.main-container .time-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container .time-picker .icon_size {
+    height: 1rem;
+    border-radius: 1.5rem;
+}
+
+.main-container .time-picker .increment-icon {
+    rotate: 90deg;
+}
+
+.main-container .time-picker .decrement-icon {
+    rotate: 270deg;
+}
+
+.main-container .time-picker .time-hours-picker {
+    display: flex;
+    margin: 1.5rem;
+    max-width: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-container .time-picker .time-hours-picker .hour_value {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 3.875rem;
+    font-weight: 600;
+    max-width: 5rem;
+    border: none;
+    border-bottom: 1px solid #232323;
+}
+
+.main-container .time-picker .time-hours-picker .hour_value:focus-visible {
+    outline: none;
+}
+
+.main-container .time-picker .time-hours-picker input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.main-container .time-picker .time-seperator {
+    font-size: 1.875rem;
+    font-weight: 600;
+}
+
+.main-container .time-picker .time-mins-picker {
+    display: flex;
+    margin: 1.5rem;
+    max-width: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-container .time-picker .time-mins-picker .min_value {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 3.875rem;
+    font-weight: 600;
+    max-width: 5rem;
+    border: none;
+    border-bottom: 1px solid #232323;
+}
+
+.main-container .time-picker .time-mins-picker .min_value:focus-visible {
+    outline: none;
+}
+
+.main-container .time-picker .time-mins-picker input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.main-container .time-picker .time-meridiem-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-width: 2rem;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.main-container .time-picker .time-meridiem-container .time-meridiem_selector {
+    text-align: center;
+    margin: 0.35rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: #EFEFEF;
+}
+
+.time-parent {
+    width: 24rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: normal;
+}
+
+.time-parent .update-time {
+    border: 1px solid #335D9B;
+    border-radius: 0.5rem;
+    background: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.875rem 1.25rem;
+    text-align: center;
+    width: 7rem;
+}
+
+.time-parent .time-view {
+    display: flex;
+    align-items: center;
+    border: none;
+    text-align: center;
+    border-radius: 0.5rem;
+}
+
+.time-parent .time-view .time-value {
+    display: flex;
+    align-items: center;
+    letter-spacing: normal;
+    font-weight: 600;
+    margin-left: 1rem;
+    font-size: 1rem;
+}
+
+.time-parent .time-view .time-value .time-value-input {
+    padding: 0.4rem;
+    text-align: center;
+    border-bottom: 0.025rem solid black !important;
+    max-width: 1.25rem;
+}
+
+.time-parent .time-view .time-value .time-value-input:focus-visible {
+    outline: none;
+}
+
+.time-parent .time-view .time-value .time-separator {
+    padding: 0.15rem;
+}
+
+.time-parent .time-view .time-value input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.time-parent .time-view .time-value .time-meridian {
+    display: flex;
+    margin-left: 0.5rem;
+}
+
+.time-parent .time-view .time-value .time-meridian .time-meridian-list {
+    margin: 0.25rem;
+    padding: 0.3rem;
+    background: #EFEFEF;
+    border-radius: 0.5rem;
+}
+
+.register-birthday .cal-parent {
+    border: 0.025rem solid black;
+    min-height: 18.5rem!important;
+    height: 280px!important;
+}
+
+.register-birthday .cal-parent .main-container .container-list {
+    padding: 0.2rem !important;
+}
+
+.register-birthday .cal-parent .cal-sub-header-section {
+    margin-top: 0;
+}
+
+
+.register-birthday .cal-parent .main-container .container-day-view .week-list .week-list-items {
+    padding: 0.6rem !important;
+    padding-bottom: 0.4rem !important;
+}
+
+.register-birthday .cal-parent .main-container .container-day-view {
+    margin-top: 0;
+}
+
+@media screen and (min-width: 455px) and (max-width: 745px) {
+    .register-birthday .cal-parent .main-container .container-day-view .week-list .week-list-items {
+        padding: 0.3rem!important;
+    }
+
+    .register-birthday .cal-parent .main-container .container-month-view {
+        width: calc(135vw / 3);
+        margin-top: 10px;
+    }
+
+    .register-birthday .cal-parent .main-container .container-year-view .container-year-list {
+        width: calc( 200vw / 4 ) !important;
+    }
+
+    .register-birthday .cal-parent .main-container .container-list {
+        margin: 0.3rem !important;
+    }
+}
+
+@media screen and (min-width: 375px) and (max-width: 455px) {
+    .register-birthday .cal-parent {
+        height: auto;
+        min-height: 380px;
+        width: 315px !important;
+        padding: 1rem !important;
+        margin-left: -30px !important;
+    }
+
+    .register-birthday .cal-parent .main-container .container-day-view {
+        margin-top: 15px !important;
+    }
+
+    .register-birthday .cal-parent .main-container .container-month-view {
+        margin-top: 0 !important;
+    }
+
+    .register-birthday .cal-parent .main-container .container-year-view .container-year-list, .main-container .container-month-view {
+        width: calc( 275vw / 4 ) !important;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .register-birthday .cal-parent {
+        height: 100px !important;
+        min-height: 360px;
+        margin-left: -45px !important;
+    }
+
+    .register-birthday .cal-parent .main-container .container-list {
+        margin: 0.4rem!important;
+    }
+
+    .register-birthday .cal-parent .main-container .container-year-view .container-year-list {
+        width: calc( 425vw / 5 ) !important;
+    }
+    .register-birthday .cal-parent .main-container .container-month-view {
+        width: calc( 414vw / 5 ) !important;
+    }
+
+    .register-birthday .cal-parent .main-container .container-day-view .week-list__date {
+        gap: 0.62rem !important;
+    }
+
+    .register-birthday .cal-parent .main-container .container-day-view {
+        margin-top: 10px;
+    }
+
+    .register-birthday .cal-parent .cal-sub-header-section {
+        margin: 0;
+    }
+
+    .register-birthday .cal-parent .main-container .container-day-view .week-list .week-list-items {
+        padding: 0.2rem !important;
+    }
+}
+

@@ -1,40 +1,40 @@
-import { Center, Flex, IconButton, Menu, MenuContent, MenuItem, MenuTrigger } from '@hope-ui/solid';
+import { Center, Flex, IconButton } from '@hope-ui/core';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import IconLanguage from '../../atoms/Icons/Stroke/IconLanguage';
 import { changeLanguage } from './handlers';
-import styles from './LanguageMenu.module.css';
+import DropdownMenu from '../shared/molecules/DropdownMenu/DropdownMenu';
 
 const LanguageMenu: Component = () =>
 {
     const { setLanguage } = useI18n();
+    const items = [
+        {
+            children: <Text message="a_en" />,
+            onSelect: changeLanguage( { language: 'en', setLanguage } ),
+        },
+        {
+            children: <Text message="a_es" />,
+            onSelect: changeLanguage( { language: 'es', setLanguage } ),
+        },
+    ];
 
     return (
         <Flex>
             <Center>
-                <Menu>
-                    <MenuTrigger class={styles.language_menu}>
-                        <IconButton
-                            class={styles.icon}
-                            variant="ghost"
-                            aria-label="Change language"
-                            icon={<IconLanguage />}
-                            compact
+                <IconButton
+                    _dark={{ border: 'none', bgColor: 'transparent' }}
+                    size={'md'}
+                    aria-label="Change language"
+                    borderRadius={'4px'}
+                    children={
+                        <DropdownMenu
+                            items={items}
+                            title={<IconLanguage />}
+                            class={'w-[3rem]'}
                         />
-                    </MenuTrigger>
-                    <MenuContent>
-                        <MenuItem
-                            onSelect={changeLanguage( { language: 'en', setLanguage } )}
-                        >
-                            <Text message="a_en" />
-                        </MenuItem>
-                        <MenuItem
-                            onSelect={changeLanguage( { language: 'es', setLanguage } )}
-                        >
-                            <Text message="a_es" />
-                        </MenuItem>
-                    </MenuContent>
-                </Menu>
+                    }
+                />
             </Center>
         </Flex>
     );

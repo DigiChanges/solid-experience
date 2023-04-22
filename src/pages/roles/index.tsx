@@ -1,4 +1,4 @@
-import { notificationService } from '@hope-ui/solid';
+import { notificationService } from '../../features/shared/molecules/Toast/Toast';
 import { useI18n } from 'solid-i18n';
 import { Component, createEffect, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
@@ -23,7 +23,7 @@ const IndexPage: Component = () =>
 
     const { page, goToPage, goFirstPage, getURLSearchParams } = useQuery( INIT_STATE.nextPaginationParams );
 
-    const [ roles, { refetch } ] = createResource( { user: user(), queryParams: getURLSearchParams() }, roleRepository.getRoles );
+    const [ roles, { refetch } ] = createResource( () => ( { user: user(), queryParams: getURLSearchParams() } ), ( { user, queryParams } ) => roleRepository.getRoles( { user, queryParams } ) );
     const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<RoleApi, RoleListResponse>( roles );
 
     usePermission( user, [ roles ] );
@@ -67,7 +67,11 @@ const IndexPage: Component = () =>
 
     return (
         <PrivateLayout>
-            <AlertErrors errorData={errorData()} title="err" description="err_process_role"/>
+            <AlertErrors
+                errorData={errorData()}
+                title="err"
+                description="err_process_role"
+            />
             <RoleList
                 roleList={roleList()}
                 removeAction={removeAction}

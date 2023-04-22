@@ -1,14 +1,10 @@
-import { Icon, IconButton, Menu, MenuContent, MenuItem, MenuTrigger } from '@hope-ui/solid';
-import { Link } from 'solid-app-router';
-import { Text } from 'solid-i18n';
+import { IconButton } from '@hope-ui/core';
+import { Link } from '@solidjs/router';
 import { Component } from 'solid-js';
 import logoNav from '../../../assets/images/dgc_logo.png';
 import IconBell from '../../../atoms/Icons/Stroke/IconBell';
 import IconBurger from '../../../atoms/Icons/Stroke/IconBurger';
-import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
-import { useApplicationContext } from '../../../context/context';
 import LanguageMenu from '../../language/LanguageMenu';
-import { logout } from './handlers';
 import styles from './Nav.module.css';
 
 interface NavbarTemplateProps {
@@ -16,13 +12,11 @@ interface NavbarTemplateProps {
     onClick?: ( event: MouseEvent ) => void;
     permissionsList?: string[];
     sideBarIsShown: boolean;
-    isOpen?: boolean;
+    isOpen: () => boolean;
 }
 
 const NavBar: Component<NavbarTemplateProps> = props =>
 {
-    const [ user ] = useApplicationContext();
-
     return (
         <nav class={styles.nav}>
             <section class={styles.logo_container}>
@@ -31,28 +25,26 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                 </Link>
                 <Link href="/">DIGICHANGES</Link>
             </section>
-
             <section class={styles.nav_container}>
-
                 <LanguageMenu />
-
                 <IconButton
+                    size={'md'}
                     class={styles.icon_bell}
                     aria-label="View notifications"
-                    icon={<IconBell/>}
-                    variant="ghost"
-                    compact
+                    children={<IconBell/>}
+                    borderRadius={'4px'}
+                    _dark={{ border: 'none', bgColor: 'transparent', color: 'primary.200' }}
+                    _hover={{ cursor: 'pointer' }}
                 />
-
                 <IconButton
+                    size={'md'}
                     class={styles.icon_burger}
-                    onClick={ props.onClick }
+                    onclick={ props.onClick }
                     aria-label="Open Main Menu"
-                    icon={ <IconBurger isOpened={!props.isOpen()}/> }
-                    variant="ghost"
-                    compact
+                    children={ <IconBurger isOpened={!props.isOpen()}/> }
+                    borderRadius={'4px'}
+                    _dark={{ border: 'none', bgColor: 'transparent' }}
                 />
-
             </section>
         </nav>
     );

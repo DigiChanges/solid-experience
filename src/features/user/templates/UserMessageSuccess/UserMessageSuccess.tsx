@@ -1,8 +1,9 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@hope-ui/solid';
-import { Link } from 'solid-app-router';
+import { Link } from '@solidjs/router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component } from 'solid-js';
 import styles from './UserMessageSuccess.module.css';
+import Alert from '../../../shared/molecules/Alert/Alert';
+import { FaSolidCircleCheck } from 'solid-icons/fa';
 
 interface messageSuccessProps{
     title: string;
@@ -17,26 +18,22 @@ const UserMessageSuccess: Component<messageSuccessProps> = ( props ) =>
         <section class={styles.container}>
             <div class={styles.second_section_container}>
                 <Alert
+                    class={'flex-col justify-center text-center !p-10'}
                     status="success"
-                    variant="solid"
-                    flexDirection="column"
-                    justifyContent="center"
-                    textAlign="center"
-                    class={styles.alert_w}
-                >
-                    <AlertIcon boxSize="40px" mr="0" />
-                    <AlertTitle mt="$4" mb="$1" fontSize="$lg">
-                        {t( props.title )}
-                    </AlertTitle>
-                    <AlertDescription maxWidth="$sm">
-                        {t( props.description )}
-                    </AlertDescription>
-                    <div class={styles.link_login}>
-                        <Link href={'/login'}>
-                            <Text message="au_go_to_login"/>
-                        </Link>
-                    </div>
-                </Alert>
+                    variant={'solid'}
+                    icon={<FaSolidCircleCheck />}
+                    title={t( props.title )}
+                    description={
+                        <>
+                            {t( props.description )}
+                            <div class={styles.link_login}>
+                                <Link href={'/login'}>
+                                    <Text message="au_go_to_login"/>
+                                </Link>
+                            </div>
+                        </>
+                    }
+                />
             </div>
         </section>
     );

@@ -1,5 +1,5 @@
 .section_container {
-    padding: 0 2rem;
+    @apply px-8
 }
 
 .section.mid {
@@ -7,11 +7,11 @@
 }
 
 .list_container {
-    margin: 0 2rem;
+    @apply mx-8
 }
 
 .section_header_container {
-    @apply flex justify-between items-center my-6;
+    @apply flex justify-between my-6 md:flex-row md:items-center md:gap-0 md:mb-6 items-start flex-col gap-[10px] mb-[10px];
 }
 
 .grid_cards_container {
@@ -19,5 +19,5 @@
 }
 
 .section_bottom_buttons_container {
-    @apply mx-auto h-full flex justify-center items-center mt-8;
+    @apply mx-auto h-full flex justify-center items-center mt-8 gap-2;
 }

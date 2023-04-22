@@ -1,4 +1,4 @@
-import { useLocation, useMatch, useNavigate } from 'solid-app-router';
+import { useLocation, useMatch, useNavigate } from '@solidjs/router';
 import { createEffect, createResource, createSignal } from 'solid-js';
 import { useApplicationContext } from '../../../../context/context';
 import { CHANGE_FORGOT_PASSWORD_PAGE_PATH, LOGIN_PAGE_PATH, REDIRECT_SIGNED_IN_USERS_PAGES, WHITE_PAGES } from '../../../shared/constants';

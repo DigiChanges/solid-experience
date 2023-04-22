@@ -1,74 +1,65 @@
 import { Component, JSX } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
-import { Icon, Menu, MenuContent, MenuItem, MenuTrigger } from '@hope-ui/solid';
 import styles from './SideBar.module.css';
 import { Text } from 'solid-i18n';
-import {
-    Drawer,
-    DrawerOverlay,
-    DrawerBody,
-    DrawerCloseButton,
-    DrawerContent,
-    DrawerFooter,
-    DrawerHeader
-} from '@hope-ui/solid';
+import { Drawer } from '@hope-ui/core';
 import { logout } from '../../navBar/organisms/handlers';
-import IconChevronDown from '../../../atoms/Icons/Stroke/IconChevronDown';
+import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
+import { FaSolidAngleDown } from 'solid-icons/fa';
 
 interface SideBarProps {
     authUser: any;
     showInMobile?: boolean;
     children?: JSX.Element;
-    onClose: () => void;
+    close: () => void;
     isOpen: () => boolean;
-    onOpen: () => void;
+    open: () => void;
 }
 
 const SideBar: Component<SideBarProps> = ( props ) =>
 {
+    const items = [
+        {
+            children: <Text message="Item 1" />,
+            onSelect: {},
+        },
+        {
+            children: <Text message="Item 2" />,
+            onSelect: {},
+        },
+        {
+            children: <Text message="a_logout" />,
+            onSelect: logout( { user: props.authUser } ),
+        },
+    ];
+
     return (
         <>
-
-
             <Drawer
-                opened={ props.isOpen() }
+                isOpen={ props.isOpen() }
                 placement={'left'}
-                onClose={ props.onClose }
+                onClose={ props.close }
+                size="xs"
             >
-
-                <DrawerOverlay />
-                <DrawerContent class={styles.drawer_content}>
-                    <DrawerCloseButton/>
-                    <DrawerHeader />
-                    <DrawerBody>
-                        <div class={styles.menu}>
-                            <Menu>
-                                <MenuTrigger>
-                                    <span>{props.authUser.user.email ?? ''}</span>
-                                    <Icon><IconChevronDown /></Icon>
-                                </MenuTrigger>
-                                <MenuContent>
-                                    <MenuItem>
-                                Item 1
-                                    </MenuItem>
-                                    <MenuItem>
-                                Item 2
-                                    </MenuItem>
-                                    <MenuItem
-                                        onSelect={logout( { user: props.authUser } )}
-                                    >
-                                        <Text message="a_logout" />
-                                    </MenuItem>
-                                </MenuContent>
-                            </Menu>
+                <Drawer.Overlay _dark={{ bgColor: 'rgba(0, 0, 0, 0.65)' }}/>
+                <Drawer.Content class={styles.drawer_content} _dark={{ bgColor: 'neutral.800' }}>
+                    <Drawer.CloseButton class={styles.close_button}/>
+                    <div>
+                        <div class={'w-auto h-[35px] mx-[1rem] mb-2'}>
+                            <DropdownMenu
+                                items={items}
+                                icon={<FaSolidAngleDown />}
+                                title={<span class={'text-white font-bold'}>{props.authUser.user.email}</span>}
+                                class={'w-[256px]'}
+                            />
                         </div>
                         <DashItems expanded={true} authUser={props.authUser}/>
-                    </DrawerBody>
-                    <DrawerFooter>
+                    </div>
+                    <div class="justify-self-end">
                         <LogoutSideBarItem user={props.authUser} getExpanded={true} sectionSelected=""/>
-                    </DrawerFooter>
-                </DrawerContent>
+                    </div>
+                </Drawer.Content>
             </Drawer>
         </>
     );

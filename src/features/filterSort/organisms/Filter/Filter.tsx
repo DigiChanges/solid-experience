@@ -1,15 +1,17 @@
 import { createForm } from '@felte/solid';
-import { Badge, Button, CloseButton, Icon, Input, Menu, MenuContent, MenuItem, MenuTrigger } from '@hope-ui/solid';
-import { useSearchParams } from 'solid-app-router';
+import { Button, Icon, Input, CloseButton } from '@hope-ui/core';
+import { useSearchParams } from '@solidjs/router';
 import { Text } from 'solid-i18n';
 import { Component, createMemo, createSignal, For } from 'solid-js';
-import IconChevronDown from '../../../../atoms/Icons/Stroke/IconChevronDown';
-import IconFilter from '../../../../atoms/Icons/Stroke/IconFilter';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
 import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
 import { SelectValueOption } from '../../../shared/types/Selects';
 import styles from './Filter.module.css';
+import { Select } from '../../../shared/molecules/Select/Select';
+import { InferType } from 'yup';
+import { FiFilter } from 'solid-icons/fi';
+import { darkInput, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
 type FilterType = {
     field: string;
@@ -25,8 +27,7 @@ const getFieldWithoutFilterArrayText = ( field: string ) => field.replace( 'filt
 const Filter: Component<FilterProps> = ( props ) =>
 {
     const [ searchParams, setSearchParams ] = useSearchParams();
-
-    const [ selectedMenu, setSelectedMenu ] = createSignal( props.filterOptions[0] );
+    const [ selectedMenu, setSelectedMenu ] = createSignal( props.filterOptions[0].value );
     const [ showFilter, setShowFilter ] = createSignal( false );
 
     const getSearchParams = createMemo( () =>
@@ -38,12 +39,10 @@ const Filter: Component<FilterProps> = ( props ) =>
                 value,
             } ) );
         }
-
         return [];
     } );
 
-
-    const handleSelect = ( filterBy: SelectValueOption ) => () =>
+    const handleSelect = ( filterBy: string ) =>
     {
         setSelectedMenu( filterBy );
     };
@@ -56,31 +55,29 @@ const Filter: Component<FilterProps> = ( props ) =>
     const {
         errors,
         form,
-        isValid,
         reset,
         // @ts-ignore
     } = createForm<InferType<typeof roleSchema>>( {
         onSubmit: ( values ) =>
         {
-            setSearchParams( { [`filter[${selectedMenu().value}]`]: values.valor } );
-
+            setSearchParams( { [`filter[${selectedMenu()}]`]: values.valor } );
             setShowFilter( false );
-
             reset();
         },
     } );
+
     return (
         <>
             <div class={styles.dropdown}>
-
-                <div>
+                <div class={'w-[100%] md:w-auto'}>
                     <Button
-                        leftIcon={<Icon><IconFilter/></Icon>}
+                        _dark={darkPrimaryButtonWithBackground}
+                        leftIcon={<FiFilter />}
                         onClick={() => setShowFilter( !showFilter() )}
+                        class={'z-50 w-[100%] md:w-auto'}
                     >
                         <Text message="a_filter"/>
                     </Button>
-
                     <Card
                         class={styles.dropdown_content}
                         classList={{
@@ -90,24 +87,30 @@ const Filter: Component<FilterProps> = ( props ) =>
                         <div class={styles.show}>
                             <CardContent>
                                 <form ref={form} class={styles.form}>
-                                    <Menu>
-                                        <MenuTrigger class={styles.menu_button}>
-                                            {selectedMenu().label}
-                                            <Icon><IconChevronDown /></Icon>
-                                        </MenuTrigger>
-                                        <MenuContent>
-                                            <For each={props.filterOptions}>
-                                                {( filterBy ) => (
-                                                    <MenuItem onSelect={handleSelect( filterBy )}>
-                                                        {( filterBy.label as any )}
-                                                    </MenuItem>
-                                                )}
-                                            </For>
-                                        </MenuContent>
-                                    </Menu>
-                                    <p><Text message="a_contains"/>:</p>
-                                    <Input type="text" name="valor" autofocus />
-                                    <Button disabled={!errors()} type="submit" leftIcon={<Icon><IconPlus/></Icon>}><Text message="a_add_filter"/></Button>
+                                    <Select
+                                        options={props.filterOptions}
+                                        placeholder={'type_id'}
+                                        value={selectedMenu()}
+                                        onChange={( value: string ) => handleSelect( value )}
+                                        valueProperty={'value'}
+                                        labelProperty={'label'}
+                                    />
+                                    <p class={'text-neutral-50'}><Text message="a_contains"/>:</p>
+                                    <Input
+                                        _dark={darkInput}
+                                        _placeholder={placeholderInput}
+                                        type="text"
+                                        name="valor"
+                                        autofocus
+                                    />
+                                    <Button
+                                        _dark={darkPrimaryButtonWithBackground}
+                                        disabled={!errors()}
+                                        type="submit"
+                                        leftIcon={<Icon><IconPlus/></Icon>}
+                                    >
+                                        <Text message="a_add_filter"/>
+                                    </Button>
                                 </form>
                             </CardContent>
                         </div>
@@ -116,15 +119,18 @@ const Filter: Component<FilterProps> = ( props ) =>
 
                 <For each={getSearchParams()}>
                     {( filter ) => (
-                        <Badge colorScheme="primary" class={styles.badge}>
+                        <div class={styles.badge}>
                             <p><Text message={filter.field}/> <Text message="a_contains"/> {filter.value}</p>
-                            <CloseButton aria-label="remove filter" size="sm" onClick={handleRemoveFilter( filter )} />
-                        </Badge>
+                            <CloseButton
+                                _dark={{ color: 'primary.100', cursor: 'pointer' }}
+                                aria-label="remove filter"
+                                size="sm"
+                                onClick={handleRemoveFilter( filter )}
+                            />
+                        </div>
                     )}
                 </For>
-
             </div>
-
         </>
     );
 };

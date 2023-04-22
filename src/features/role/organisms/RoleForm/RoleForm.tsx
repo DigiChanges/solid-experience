@@ -1,33 +1,18 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
-import {
-    Button,
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    Input,
-    Select,
-    SelectContent,
-    SelectIcon,
-    SelectLabel,
-    SelectListbox,
-    SelectOptGroup,
-    SelectOption,
-    SelectOptionIndicator,
-    SelectOptionText,
-    SelectPlaceholder,
-    SelectTrigger,
-    SelectValue,
-    Switch
-} from '@hope-ui/solid';
-import { Link } from 'solid-app-router';
+import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
+import { Link } from '@solidjs/router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, For } from 'solid-js';
+import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { PermissionApi } from '../../../auth/interfaces/permission';
 import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
 import { RoleApi, RolePayload, RoleResponse } from '../../interfaces';
 import roleSchema from '../../validations/schemas/RoleSchema';
+import { MultiSelect } from '../../../shared/molecules/Select/Select';
+import Switch from '../../../shared/molecules/Switch/Switch';
+import { darkInput, darkNeutralButton, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
+
 
 enum RequiredPermission {
     submit='submit'
@@ -49,117 +34,164 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
     const { t } = i18n;
 
     const {
+        data,
         errors,
         form,
         isSubmitting,
         isValid,
         setFields,
-        setTouched,
         // @ts-ignore
     } = createForm<InferType<typeof roleSchema>>( {
-        initialValues: { permissions: props.roleSelected?.permissions || [] },
+        initialValues: {
+            permissions: [],
+            enable: true,
+        },
         extend: validator( { schema: roleSchema } ),
         onSuccess: props.onSuccess,
         onError: props.onError,
         onSubmit: values => props.onSubmit( values as RolePayload ),
     } );
 
-    const handleSelect = ( field: keyof InferType<typeof roleSchema> ) => ( value: string[] ) =>
+    const handleSelect = ( field: keyof InferType<typeof roleSchema> ) => ( value: string[] | boolean ) =>
     {
-        setFields( field, value );
-        setTouched( field, true );
+        setFields( field, value, true );
     };
+
+    const handleMultiSelect = ( field: keyof InferType<typeof roleSchema> ) => ( value: any ) =>
+    {
+        const valuesArray: string[] = Array.from( value );
+        setFields( field, valuesArray, true );
+    };
+
+    onMount( () =>
+    {
+        if ( props.roleSelected )
+        {
+            for ( const key in props.roleSelected )
+            {
+                // @ts-ignore
+                setFields( key, props.roleSelected[key] );
+            }
+        }
+    } );
 
     return (
         <form ref={form} class="form_flex">
             <div class="field_wrapper">
-                <FormControl required invalid={!!errors( 'name' )}>
-                    <FormLabel for="name"><Text message="name"/></FormLabel>
-                    <Input autofocus name="name" type="text" placeholder={t( 'a_enter_name' ) as string} value={props.roleSelected?.name} />
-                    <FormErrorMessage><Text message={errors( 'name' )[0]} /></FormErrorMessage>
+                <FormControl isRequired isInvalid={ !!errors( 'name' ) } >
+                    <FormControlLabel class={'form_label'} for="name" _dark={{ _after: { color: 'danger.300' } }}>
+                        <Text message="name"/>
+                    </FormControlLabel>
+                    <Input
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
+                        autofocus
+                        name="name"
+                        type="text"
+                        placeholder={t( 'a_enter_name' ) as string}
+                        value={props.roleSelected?.name}
+                    />
+                    <Show when={errors( 'name' )} keyed>
+                        <FormControlError class="error_message_block">
+                            <Text message={errors( 'name' )![0]} />
+                        </FormControlError>
+                    </Show>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
-                <FormControl required invalid={!!errors( 'slug' )}>
-                    <FormLabel for="slug"><Text message="slug"/></FormLabel>
-                    <Input name="slug" type="text" placeholder={t( 'a_enter_slug' ) as string} value={props.roleSelected?.slug} onKeyDown={preventEnterCharacter( [ 'Space' ] )}/>
-                    <FormErrorMessage><Text message={errors( 'slug' )[0]} /></FormErrorMessage>
+                <FormControl isRequired isInvalid={!!errors( 'slug' )}>
+                    <FormControlLabel class={'form_label'} for="slug" _dark={{ _after: { color: 'danger.300' } }}>
+                        <Text message="slug"/>
+                    </FormControlLabel>
+                    <Input
+                        _dark={darkInput}
+                        _placeholder={placeholderInput}
+                        name="slug"
+                        type="text"
+                        placeholder={t( 'a_enter_slug' ) as string}
+                        value={props.roleSelected?.slug}
+                        onKeyDown={preventEnterCharacter( [ 'Space' ] )}
+                    />
+                    <Show when={errors( 'slug' )} keyed>
+                        <FormControlError class="error_message_block">
+                            <Text message={errors( 'slug' )![0]} />
+                        </FormControlError>
+                    </Show>
+                </FormControl>
+            </div>
+            <div class="field_wrapper">
+                <FormControl id="permissions" isRequired isInvalid={!!errors( 'permissions' )}>
+                    <FormControlLabel class={'form_label'} for="permissions" _dark={{ _after: { color: 'danger.300' } }}>
+                        <Text message="permissions"/>
+                    </FormControlLabel>
+                    <MultiSelect
+                        name={'permissions'}
+                        options={props.permissionsList}
+                        placeholder={'a_enter_permissions'}
+                        value={data().permissions}
+                        onChange={handleMultiSelect( 'permissions' )}
+                        valueProperty={'id'}
+                        labelProperty={'name'}
+                        groupSelector={'permissions'}
+                        class={'w-full'}
+                    />
+                    <FormControlError class="error_message_block">
+                        <Text message={errors( 'permissions' ) && errors( 'permissions' )![0] || ''} />
+                    </FormControlError>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
-                <FormControl id="permissions" required invalid={!!errors( 'permissions' )}>
-                    <FormLabel for="permissions"><Text message="permissions"/></FormLabel>
-                    <Select multiple
-                        value={props.roleSelected?.permissions}
-                        onChange={handleSelect( 'permissions' )}
-                    >
-                        <SelectTrigger
-                            onBlur={() => setTouched( 'permissions', true )}
-                        >
-                            <SelectPlaceholder>
-                                <Text message="a_enter_permissions"/>
-                            </SelectPlaceholder>
-                            <SelectValue />
-                            <SelectIcon />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectListbox>
-                                <SelectOptGroup>
-                                    <For each={props.permissionsList}>
-                                        {permissionGroup => (
-                                            <>
-                                                <SelectLabel>{permissionGroup.group}</SelectLabel>
-                                                <For each={permissionGroup.permissions}>
-                                                    {permission => (
-                                                        <SelectOption
-                                                            value={permission}
-                                                            rounded="$none"
-                                                            fontSize="$sm"
-                                                            _active={{ bg: '$warning3', color: '$warning11' }}
-                                                            _selected={{ bg: '$warning9', color: 'white' }}
-                                                        >
-                                                            <SelectOptionText _groupSelected={{ fontWeight: '$medium' }}>
-                                                                {permission}
-                                                            </SelectOptionText>
-                                                            <SelectOptionIndicator/>
-                                                        </SelectOption>
-                                                    )}
-                                                </For>
-                                            </>
-                                        )}
-                                    </For>
-                                </SelectOptGroup>
-                            </SelectListbox>
-                        </SelectContent>
-                    </Select>
-                    <FormErrorMessage><Text message={errors( 'permissions' ) && errors( 'permissions' )[0] || 'loading'} /></FormErrorMessage>
-                </FormControl>
-            </div>
-
-            <div class="field_wrapper">
-                <FormControl required invalid={!!errors( 'enable' )}>
-                    <FormLabel><Text message="enable"/></FormLabel>
-                    <Switch class="switch_position" name="enable" defaultChecked={props.roleSelected?.id ? props.roleSelected?.enable : true} />
-                    <FormErrorMessage><Text message={errors( 'enable' )[0]}/></FormErrorMessage>
+                <FormControl isRequired isInvalid={!!errors( 'enable' )}>
+                    <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>
+                        <Text message="enable"/>
+                    </FormControlLabel>
+                    <Switch
+                        name={'enable'}
+                        value={data().enable}
+                        onChange={handleSelect( 'enable' )}
+                    />
+                    <Show when={errors( 'enable' )} keyed>
+                        <FormControlError class="error_message_block">
+                            <Text message={errors( 'enable' )![0] || ''}/>
+                        </FormControlError>
+                    </Show>
                 </FormControl>
             </div>
 
             <div class="update_save_buttons_container" data-parent={props.requiredPermission.submit}>
                 <div class="button_full has-permission">
-                    <Button class="button_full" as={Link} href="/roles" colorScheme="neutral">
-                        <Text message="a_close" />
+                    <Button
+                        _dark={darkNeutralButton}
+                        class="button_full"
+                        as={Link}
+                        href="/roles"
+                        colorScheme="neutral"
+                    >
+                        <Text message="a_back" />
                     </Button>
                 </div>
                 <div class="button_full has-permission ">
-                    <Button class="button_full" type="submit" disabled={!isValid()} loading={isSubmitting()} loadingText={<Text message="a_submitting"/> as string}>
+                    <Button
+                        _dark={darkPrimaryButtonWithBackground}
+                        class="button_full"
+                        type="submit"
+                        isDisabled={!isValid()}
+                        isLoading={isSubmitting()}
+                        loadingText={<Text message="a_submitting"/> as string}
+                    >
                         <Text message="a_save"/>
                     </Button>
                 </div>
                 <div class="button_full fallback">
-                    <Button class="w-full" as={Link} href="/roles">
-                        <Text message="a_close" />
+                    <Button
+                        _dark={darkNeutralButton}
+                        class="w-full"
+                        as={Link}
+                        href="/roles"
+                    >
+                        <Text message="a_back" />
                     </Button>
                 </div>
             </div>

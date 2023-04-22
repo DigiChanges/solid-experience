@@ -8,6 +8,8 @@
     height: 100vh;
     align-items: center;
     justify-content: center;
+    min-width: fit-content;
+    min-height: fit-content;
 }
 .title{
     @apply xs:text-xl md:text-2xl mb-4 pt-10;
@@ -22,10 +24,10 @@
     @apply w-full xs:text-sm md:text-xl flex flex-nowrap font-bold;
 }
 .link_login{
-    @apply w-full md:mt-15 mt-5 md:mr-5 flex flex-wrap justify-center gap-4 underline;
+    @apply w-full mt-5 md:mr-5 flex flex-wrap justify-center gap-4 underline;
 }
 .alert_padding{
-    @apply md:p-10; 
+    @apply md:p-10;
 }
 .alert_description_title{
     @apply xs:text-xl md:text-2xl mb-4 pb-2;
@@ -33,4 +35,3 @@
 .field_justify_between_end{
     @apply flex justify-between items-end;
 }
-

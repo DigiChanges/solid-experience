@@ -1,4 +1,4 @@
-import { useLocation } from 'solid-app-router';
+import { useLocation } from '@solidjs/router';
 import { Component, createSignal, For, Show } from 'solid-js';
 import HasPermission from '../../../../atoms/HasPermission';
 import { dashRoutes } from '../../../../config/dashRoutes';
@@ -24,8 +24,16 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
 
     const onToggled = ( path: string ) =>
     {
-        setShowSubItems( true );
-        setSectionSelected( path );
+        if ( path === sectionSelected() )
+        {
+            setShowSubItems( false );
+            setSectionSelected( '' );
+        }
+        else
+        {
+            setShowSubItems( true );
+            setSectionSelected( path );
+        }
     };
 
     return (

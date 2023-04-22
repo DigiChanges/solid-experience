@@ -1,5 +1,5 @@
-import { notificationService } from '@hope-ui/solid';
-import { Link, useNavigate } from 'solid-app-router';
+import { notificationService } from '../../../shared/molecules/Toast/Toast';
+import { Link, useNavigate } from '@solidjs/router';
 import { Text as TextI18, useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logo from '../../../../assets/images/dgc_logo.png';
@@ -35,7 +35,6 @@ const LoginTemplate: Component = () =>
         const errorMessage = setError( error );
         setIsLoading( false );
         notificationService.show( {
-            status: 'danger',
             title: t( 'err_login' ) as string,
             description: t( errorMessage ) as string,
         } );
@@ -69,7 +68,7 @@ const LoginTemplate: Component = () =>
                             )}
                         >
                             <div class={styles.register}>
-                                <p><TextI18 message="a_do_not_have_account" /></p>
+                                <p class={'text-neutral-50'}><TextI18 message="a_do_not_have_account" /></p>
                                 <Link href="/register">
                                     <strong><TextI18 message="a_sign_up"/></strong>
                                 </Link>

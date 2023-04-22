@@ -1,24 +1,19 @@
-
 .section_title_opaque {
-    color: var(--hope-colors-neutral10);
     @apply mb-2 text-left text-xs uppercase font-extrabold w-full;
 }
 
 .section_title_opaque.border_bottom {
-    border-bottom: 2px solid var(--hope-colors-neutral4);
+    @apply border-b-2 border-neutral-600
 }
 
 .section_title {
-    font-size: 1.85rem;
-    font-weight: bold;
+    @apply text-3xl font-bold text-neutral-50 mb-4 md:mb-0
 }
 
 .group_field_full_title {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    @apply text-xl text-neutral-50
 }
 
 .group_field_full_info {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    @apply text-sm
 }

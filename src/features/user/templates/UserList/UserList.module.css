@@ -1,0 +1,8 @@
+.modal_content {
+    @apply p-5 flex flex-col justify-between
+}
+.close_button {
+    position: absolute;
+    top: var(--hope-space-4);
+    inset-inline-end: var(--hope-space-4);
+}

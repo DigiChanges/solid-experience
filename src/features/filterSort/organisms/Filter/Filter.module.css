@@ -10,14 +10,17 @@
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+  z-index: 100;
 }
 
 .dropdown_content {
+  margin-top: 5px;
   display: none;
   position: absolute;
-  background-color: var(--hope-colors-neutral3);
+  background-color: var(--hope-colors-neutral-700);
   min-width: 160px;
-  z-index: 1;
+  box-shadow: 0 0 20px black;
+  z-index: 40;
 }
 
 .dropdown_content a,
@@ -33,15 +36,16 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 12px 0;
 }
 
 .menu_button {
   padding: 10px;
   font-size: 2rem;
   text-decoration: underline;
-  text-decoration-color: var(--hope-colors-accent10);
-  color: var(--hope-colors-neutral12);
-  background-color: var(--hope-colors-neutral3);
+  text-decoration-color: var(--hope-colors-info-200);
+  color: var(--hope-colors-neutral-50);
+  background-color: var(--hope-colors-neutral-700);
 }
 
 .show {
@@ -51,4 +55,11 @@
 .badge {
   display: flex;
   align-items: center;
+  text-transform: uppercase;
+  gap: 5px;
+  color: var(--hope-colors-primary-100);
+  background-color: var(--hope-colors-primary-600);
+  border-radius: 4px;
+  padding-left: 8px;
+  @apply text-xs font-bold;
 }

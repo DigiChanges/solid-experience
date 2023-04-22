@@ -1,5 +1,5 @@
-import { notificationService } from '@hope-ui/solid';
-import { useNavigate } from 'solid-app-router';
+import { notificationService } from '../../../shared/molecules/Toast/Toast';
+import { useNavigate } from '@solidjs/router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';
@@ -56,7 +56,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
                 </div>
             </header>
 
-            <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
+            <Show when={!props.loading} fallback={() => <GeneralLoader/>} keyed>
                 <UserForm
                     onError={handleError()}
                     onSubmit={props.onUpdate}

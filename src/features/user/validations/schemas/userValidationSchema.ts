@@ -1,4 +1,4 @@
-import { object, string } from 'yup';
+import { boolean, object, string } from 'yup';
 import { IsValidBirthday } from '../../utils/validationCustom';
 
 const userValidationSchema = object( {
@@ -14,7 +14,7 @@ const userValidationSchema = object( {
         .email( 'Invalid email' )
         .required( 'av_required' ),
     gender: string()
-        .oneOf( [ 'male', 'fame', 'other' ], 'av_required' )
+        .oneOf( [ 'M', 'F', 'O' ], 'av_required' )
         .required( 'av_required' ),
     country: string()
         .required( 'av_required' ),
@@ -29,6 +29,7 @@ const userValidationSchema = object( {
         .max( 20, 'av_too_long' )
         .required( 'av_required' ),
     documentType: string()
+        .oneOf( [ 'dni', 'cuil' ], 'av_required' )
         .required( 'av_required' ),
     documentNumber: string()
         .required( 'av_required' ),

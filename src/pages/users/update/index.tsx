@@ -1,4 +1,4 @@
-import { useParams } from 'solid-app-router';
+import { useParams } from '@solidjs/router';
 import { Component, createMemo, createResource } from 'solid-js';
 import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
@@ -22,7 +22,7 @@ const IndexPage: Component = () =>
     const [ permissions ] = createResource( { user: user() }, authRepository.getAllPermissions );
     usePermission( user, [ roles, permissions, userSelected ] );
 
-    const isLoading = createMemo( () => userSelected.loading || permissions.loading || roles.loading || permissions.loading );
+    const isLoading = createMemo( () => userSelected.loading || permissions.loading || roles.loading );
 
     return (
         <PrivateLayout>

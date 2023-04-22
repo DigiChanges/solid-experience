@@ -3,52 +3,124 @@
     {
       "permissions": [],
       "documentType": "dni",
-      "country": "AR",
-      "firstName": "Super",
-      "lastName": "Admin",
-      "documentNumber": "11111111",
-      "gender": "male",
-      "birthday": "1975-12-05",
-      "enable": false,
-      "address": "New America 123",
-      "email": "superadmin@node.com",
-      "phone": "2234456999",
-      "id": "922465bc-db4e-4794-b25c-9311ce124e00"
-    },
-    {
-      "permissions": [
-        "authSyncPermissions",
-        "filesUpload"
-      ],
-      "documentType": "dni",
-      "country": "ES",
-      "firstName": "Johnathanm",
-      "lastName": "Doe",
-      "documentNumber": "21312342",
-      "gender": "male",
-      "birthday": "1990-01-01",
-      "enable": true,
-      "address": "Av Siempre Viva 123",
-      "email": "john-doe@node.com",
-      "phone": "223444455",
-      "id": "922465bc-db4e-4794-b25c-9311ce124e01"
-    },
-    {
-      "permissions": [],
-      "documentType": "dni",
       "country": "DZ",
+      "enable": false,
       "birthday": "1929-02-09",
       "firstName": "Daniels",
       "lastName": "Serpentini",
       "documentNumber": "2323232132143",
-      "enable": false,
       "address": "Susie Brooks12",
       "email": "paolaflorvazquez@gmail.com",
       "phone": "32432432",
       "password": "12345678",
       "passwordConfirmation": "12345678",
-      "gender": "male",
+      "gender": "M",
       "id": "O1fzV8l"
+    },
+    {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
+      "permissions": [],
+      "documentType": "dni",
+      "country": "DZ",
+      "enable": false,
+      "birthday": "1929-02-09",
+      "firstName": "Daniels",
+      "lastName": "Serpentini",
+      "documentNumber": "2323232132143",
+      "address": "Susie Brooks12",
+      "email": "paolaflorvazquez@gmail.com",
+      "phone": "32432432",
+      "password": "12345678",
+      "passwordConfirmation": "12345678",
+      "gender": "M",
+      "id": "O1fzV8l"
+    },
+    {
+      "permissions": [
+        "authSyncPermissions",
+        "getPermissions"
+      ],
+      "enable": false,
+      "gender": "O",
+      "country": "AR",
+      "documentType": "dni",
+      "birthday": "2023-04-18",
+      "firstName": "Test",
+      "lastName": "Test",
+      "documentNumber": "12345678",
+      "address": "Test 1",
+      "email": "test@test.com",
+      "phone": "123456",
+      "password": "123456",
+      "passwordConfirmation": "123456",
+      "id": "mz0qDFJ"
     }
   ],
   "super-admin-login": {
@@ -123,28 +195,30 @@
       "permissions": [
         "authSyncPermissions"
       ],
-      "name": "Role",
-      "slug": "role",
       "enable": true,
-      "id": "5db96817-33c8-446d-8050-830c4d88f26d"
-    },
-    {
-      "permissions": [],
-      "name": "Void Permissions",
-      "slug": "",
-      "enable": true,
-      "id": "dfdsa"
+      "name": "Test",
+      "slug": "test",
+      "id": 1
     },
     {
       "permissions": [
+        "authSyncPermissions",
         "getPermissions",
-        "filesUpload",
-        "filesUpdate"
+        "filesUpload"
       ],
+      "enable": true,
       "name": "Admin",
       "slug": "admin",
-      "enable": true,
-      "id": "FotmTfY"
+      "id": 2
+    },
+    {
+      "permissions": [
+        "getPermissions"
+      ],
+      "enable": false,
+      "name": "Test",
+      "slug": "test",
+      "id": 3
     }
   ],
   "refresh-token": {

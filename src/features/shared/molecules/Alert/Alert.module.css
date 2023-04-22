@@ -1,0 +1,29 @@
+.alert {
+    border-radius: 4px;
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-inline-start: var(--hope-space-4);
+    padding-inline-end: var(--hope-space-4);
+    padding-top: var(--hope-space-3);
+    padding-bottom: var(--hope-space-3);
+    gap: 10px;
+    min-width: fit-content;
+    min-height: fit-content;
+}
+
+.title {
+    font-weight: var(--hope-fontWeights-semibold);
+    font-size: var(--hope-fontSizes-base);
+    line-height: var(--hope-lineHeights-6);
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+}
+.icon svg{
+    width: 100%;
+    height: 100%;
+}

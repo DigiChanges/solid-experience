@@ -1,5 +1,5 @@
-import { Icon } from '@hope-ui/solid';
-import { NavLink } from 'solid-app-router';
+import { Icon } from '@hope-ui/core';
+import { NavLink } from '@solidjs/router';
 import { Component, JSX, Show } from 'solid-js';
 import IconChevronDown from '../../../../atoms/Icons/Stroke/IconChevronDown';
 import IconChevronRight from '../../../../atoms/Icons/Stroke/IconChevronRight';
@@ -34,7 +34,7 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
                         <SideBarItemContent {...props} />
                         <Show when={!props.hideChevron}>
                             <Icon class={styles.side_bar_item_icon}>
-                                <Show when={props.sectionSelected === props.path}
+                                <Show when={props.getShowSubItems}
                                     fallback={<IconChevronRight />}
                                 >
                                     <IconChevronDown />

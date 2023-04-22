@@ -1,4 +1,4 @@
-import { notificationService } from '@hope-ui/solid';
+import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { useI18n } from 'solid-i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';
@@ -43,13 +43,13 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
     return (
         <section>
             <Show when={!getShowRegisterSuccess()}
-                fallback={() => <RegisterSuccess email={props.getEmail()} />}
+                fallback={() => <RegisterSuccess />}
             >
                 <div
                     classList={{ [styles.class_list_container]: !getShowRegisterSuccess() }}>
                     <Card
                         classList={{ [styles.show_register]: !getShowRegisterSuccess() }}>
-                        <div>
+                        <div class={'m-5 md:m-0'}>
                             <div class={styles.logo_container}>
                                 <img class={styles.logo} src={logo} alt="digichanges logo"/>
                             </div>

@@ -1,22 +1,25 @@
-import { HopeProvider, HopeThemeConfig, NotificationsProvider } from '@hope-ui/solid';
-import { Router } from 'solid-app-router';
+import { extendTheme, ColorModeScript, HopeProvider } from '@hope-ui/core';
+import { Toast } from '@kobalte/core';
+import { Router } from '@solidjs/router';
 import { MountableElement, render } from 'solid-js/web';
 import App from './App';
 import { ApplicationProvider } from './context/context';
+import { colors } from './features/shared/constants/colors';
 
-const config: HopeThemeConfig = {
-    initialColorMode: 'dark',
-};
-
+const theme = extendTheme( colors );
 render( () => (
-    <HopeProvider config={config}>
-        <NotificationsProvider>
+    <>
+        <ColorModeScript initialColorMode="dark"/>
+        <HopeProvider initialColorMode="dark" theme={theme}>
             <Router>
                 <ApplicationProvider>
                     <App />
                 </ApplicationProvider>
             </Router>
-        </NotificationsProvider>
-    </HopeProvider>
+            <Toast.Region limit={6}>
+                <Toast.List class="toast__list" />
+            </Toast.Region>
+        </HopeProvider>
+    </>
 ), document.getElementById( 'root' ) as MountableElement
 );

@@ -1,5 +1,5 @@
-import { IconButton } from '@hope-ui/solid';
-import { Link } from 'solid-app-router';
+import { IconButton } from '@hope-ui/core';
+import { Link } from '@solidjs/router';
 import { Component } from 'solid-js';
 import IconLockOpen from '../../../../atoms/Icons/Stroke/IconLockOpen';
 import IconPencilAlt from '../../../../atoms/Icons/Stroke/IconPencilAlt';
@@ -25,7 +25,7 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                         {`${props.user.firstName} ${props.user.lastName}`}
                     </Link>
                 </h6>
-                {props.user.email}
+                <p class={'text-ellipsis overflow-hidden whitespace-nowrap'}>{props.user.email}</p>
             </div>
 
             <div class="card_third">
@@ -33,11 +33,12 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                     <div class="has-permission">
                         <Link href={`/users/${props.user.id}/update`}>
                             <IconButton
+                                _dark={{ color: 'success.300', cursor: 'pointer' }}
+                                size={'xs'}
                                 aria-label="Edit"
-                                variant="ghost"
-                                icon={<IconPencilAlt />}
-                                compact
+                                variant="plain"
                                 colorScheme="success"
+                                children={<IconPencilAlt />}
                             />
                         </Link>
                     </div>
@@ -47,23 +48,25 @@ const UserCard: Component<UserCardProps> = ( props ) => (
                         href={`/users/editPassword/${props.user.id}`}
                     >
                         <IconButton
+                            _dark={{ color: 'warning.300', cursor: 'pointer' }}
+                            size={'xs'}
                             aria-label="Change Password"
-                            variant="ghost"
-                            icon={<IconLockOpen />}
-                            compact
+                            variant="plain"
                             colorScheme="warning"
+                            children={<IconLockOpen />}
                         />
                     </Link>
                 </div>
                 <div data-parent="usersDelete">
                     <IconButton
+                        _dark={{ color: 'danger.200', cursor: 'pointer' }}
+                        size={'xs'}
                         class="has-permission"
                         aria-label="Delete User"
-                        variant="ghost"
-                        icon={<IconTrash />}
-                        compact
+                        variant="plain"
                         colorScheme="danger"
                         onClick={props.onDelete}
+                        children={<IconTrash />}
                     />
                 </div>
             </div>

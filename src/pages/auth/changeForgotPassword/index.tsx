@@ -1,4 +1,4 @@
-import { useSearchParams } from 'solid-app-router';
+import { useSearchParams } from '@solidjs/router';
 import { Component } from 'solid-js';
 import ChangeForgotPassword from '../../../features/auth/forgotPassword/templates/ChangeForgotPassword/ChangeForgotPassword';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
