@@ -84,8 +84,16 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         {
             for ( const key in props.userSelected )
             {
-            // @ts-ignore
-                setFields( key, props.userSelected[key] );
+                if ( key === 'roles' )
+                {
+                    const rolesIds = props.userSelected[key].map( ( role ) => role.id );
+                    setFields( key, rolesIds );
+                }
+                else
+                {
+                    // @ts-ignore
+                    setFields( key, props.userSelected[key] );
+                }
             }
         }
     } );
