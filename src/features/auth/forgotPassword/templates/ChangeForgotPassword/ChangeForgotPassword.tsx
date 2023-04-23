@@ -75,7 +75,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                             placeholder={t( 'a_password' ) as string}
                         />
                         <Show when={errors( 'password' )} keyed>
-                            <FormControlError class="error_message_block"><Text message={errors( 'password' )![0]} /></FormControlError>
+                            <FormControlError class="error_message_block"><Text message={errors( 'password' )?.[0] ?? ''} /></FormControlError>
                         </Show>
                     </FormControl>
                 </div>
@@ -92,7 +92,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                             placeholder={t( 'a_repeat_password' ) as string}
                         />
                         <Show when={errors( 'passwordConfirmation' )} keyed>
-                            <FormControlError class="error_message_block"><Text message={errors( 'passwordConfirmation' )![0]} /></FormControlError>
+                            <FormControlError class="error_message_block"><Text message={errors( 'passwordConfirmation' )?.[0] ?? ''} /></FormControlError>
                         </Show>
                     </FormControl>
                 </div>

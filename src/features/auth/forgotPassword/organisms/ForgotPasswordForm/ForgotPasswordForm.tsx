@@ -70,7 +70,7 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = ( props ) =>
                     placeholder={t( 'a_your_email' ) as string}
                 />
                 <Show when={errors( 'email' )} keyed>
-                    <FormControlError class="error_message_block"><Text message={errors( 'email' )![0]} /></FormControlError>
+                    <FormControlError class="error_message_block"><Text message={errors( 'email' )?.[0] ?? ''} /></FormControlError>
                 </Show>
             </FormControl>
             <div class="update_save_buttons_container spaced">

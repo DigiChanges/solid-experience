@@ -10,8 +10,8 @@ interface IconButtonProps
 
 const IconButtonActive: Component<IconButtonProps> = ( data ): any =>
 {
-    const _iconEnable = data.iconEnable;
-    const _iconDisable = data.iconDisable;
+    const _iconEnable = () => data.iconEnable;
+    const _iconDisable = () => data.iconDisable;
 
     const getIcon = () =>
     {
@@ -21,7 +21,7 @@ const IconButtonActive: Component<IconButtonProps> = ( data ): any =>
     };
 
     return (
-        <div onClick={data.onClick} class={data.isActive ? '' : data.classNameOnActive} role="presentation">
+        <div onClick={() => data.onClick} class={data.isActive ? '' : data.classNameOnActive} role="presentation">
             {getIcon()}
         </div>
     );

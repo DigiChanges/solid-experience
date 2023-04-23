@@ -31,7 +31,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
     const { isOpen, open, close } = createDisclosure();
     let deleteData: UserApi | undefined;
 
-    const handleModalClick = () => () =>
+    const handleModalClick = () =>
     {
         props.removeAction( deleteData?.id );
         close();
@@ -68,7 +68,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                         <Button
                             _dark={darkDangerButton}
                             colorScheme="danger"
-                            onClick={handleModalClick()}
+                            onClick={() => handleModalClick()}
                         >
                             <Text message="a_delete"/>
                         </Button>
@@ -94,7 +94,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                 </div>
             </header>
 
-            <Filter filterOptions={filterOptions()} />
+            <Filter initialFilterOptions={filterOptions()} />
 
             <Show when={props.loading} keyed>
                 <GeneralLoader/>
@@ -112,7 +112,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             <div class="section_bottom_buttons_container">
                 <Show when={!!props.nextPage} keyed>
                     <Button onClick={props.viewMoreAction()} variant="outlined" _dark={darkTransparentButton} >
-                        <Show when={!props.loading} keyed fallback={() => <span class={'text-neutral-50'}><Text message="a_loading" />...</span>}>
+                        <Show when={!props.loading} keyed fallback={<span class={'text-neutral-50'}><Text message="a_loading" />...</span>}>
                             <Text message="a_view_more"/>
                         </Show>
                     </Button>

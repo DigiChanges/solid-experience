@@ -30,7 +30,7 @@ const IndexPage: Component = () =>
 
     createEffect( () => users.error && setError( users.error ) );
 
-    const viewMoreAction = () => () =>
+    const viewMoreAction = () =>
     {
         goToPage( users()?.pagination?.nextUrl );
         setViewMore();
@@ -47,7 +47,7 @@ const IndexPage: Component = () =>
                 userList={userList()}
                 removeAction={removeUserAction( { userRepository, user: user(), setError, refetch, t } )}
                 loading={users.loading}
-                viewMoreAction={viewMoreAction}
+                viewMoreAction={() => viewMoreAction}
                 nextPage={paginationData()?.nextUrl}
             />
         </PrivateLayout>

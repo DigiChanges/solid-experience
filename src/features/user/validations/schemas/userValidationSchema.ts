@@ -1,4 +1,4 @@
-import { boolean, object, string } from 'yup';
+import { object, string } from 'yup';
 import { IsValidBirthday } from '../../utils/validationCustom';
 
 const userValidationSchema = object( {

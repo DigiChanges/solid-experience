@@ -16,7 +16,7 @@ interface SideBarSubItemProps {
 
 const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
 {
-    const IconProps: any = props.icon;
+    const IconProps: any = () => props.icon;
 
     return (
         <Show when={props.showItem} >
@@ -27,7 +27,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                         classList={{ [styles.side_bar_item_sub_item_nav_link_container]: props.equalPath }}
                     >
                         <Show when={props.icon}
-                            fallback={() => <span class={`${styles.side_bar_item_sub_item_nav_link_container_fallback_span}`} />}>
+                            fallback={<span class={`${styles.side_bar_item_sub_item_nav_link_container_fallback_span}`} />}>
                             <Icon>
                                 <IconProps />
                             </Icon>

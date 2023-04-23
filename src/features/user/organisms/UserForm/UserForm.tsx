@@ -17,7 +17,6 @@ import Switch from '../../../shared/molecules/Switch/Switch';
 import DatePicker from '../../../shared/molecules/DatePicker/DatePicker';
 import { darkInput, darkNeutralButton, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
-
 enum RequiredPermission {
     submit='submit'
 }
@@ -39,6 +38,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
     const { t } = i18n;
 
     const userSchema = props.userSelected?.id ? userUpdateValidationSchema : userCreateValidationSchema;
+
     const {
         data,
         errors,
@@ -55,6 +55,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
             gender: '',
             country: '',
             documentType: '',
+            password: '',
         },
         extend: validator( { schema: userSchema } ),
         onSuccess: props.onSuccess,
@@ -120,7 +121,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'firstName' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'firstName' )![0]} />
+                            <Text message={errors( 'firstName' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -141,7 +142,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'lastName' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'lastName' )![0]} />
+                            <Text message={errors( 'lastName' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -165,7 +166,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         />
                         <Show when={errors( 'documentType' )} keyed>
                             <FormControlError class="error_message_block">
-                                <Text message={errors( 'documentType' )![0] || ''} />
+                                <Text message={errors( 'documentType' )?.[0] ?? ''} />
                             </FormControlError>
                         </Show>
                     </FormControl>
@@ -183,7 +184,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         />
                         <Show when={errors( 'documentNumber' )} keyed>
                             <FormControlError class="error_message_block">
-                                <Text message={errors( 'documentNumber' )![0]} />
+                                <Text message={errors( 'documentNumber' )?.[0] ?? ''} />
                             </FormControlError>
                         </Show>
                     </FormControl>
@@ -203,7 +204,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'gender' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'gender' )![0] || ''} />
+                            <Text message={errors( 'gender' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -233,7 +234,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'birthday' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'birthday' )![0]} />
+                            <Text message={errors( 'birthday' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -251,7 +252,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'enable' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'enable' )![0] || ''}/>
+                            <Text message={errors( 'enable' )?.[0] || ''}/>
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -274,7 +275,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'country' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'country' )![0] || ''} />
+                            <Text message={errors( 'country' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -295,7 +296,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'address' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'address' )![0]} />
+                            <Text message={errors( 'address' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -320,7 +321,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'email' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'email' )![0]} />
+                            <Text message={errors( 'email' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -341,7 +342,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'phone' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'phone' )![0]} />
+                            <Text message={errors( 'phone' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -362,7 +363,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         />
                         <Show when={errors( 'password' )} keyed>
                             <FormControlError class="error_message_block">
-                                <Text message={errors( 'password' )![0]} />
+                                <Text message={errors( 'password' )?.[0] ?? ''} />
                             </FormControlError>
                         </Show>
                     </FormControl>
@@ -381,7 +382,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         />
                         <Show when={errors( 'passwordConfirmation' )} keyed>
                             <FormControlError class="error_message_block">
-                                <Text message={errors( 'passwordConfirmation' )![0]} />
+                                <Text message={errors( 'passwordConfirmation' )?.[0] ?? ''} />
                             </FormControlError>
                         </Show>
                     </FormControl>
@@ -405,7 +406,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                         class={'w-full'}
                     />
                     <FormControlError class="error_message_block">
-                        <Text message={errors( 'permissions' ) && errors( 'permissions' )![0] || ''} />
+                        <Text message={errors( 'permissions' ) && errors( 'permissions' )?.[0] || ''} />
                     </FormControlError>
                 </FormControl>
             </div>
@@ -427,7 +428,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'roles' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={ errors( 'roles' )![0] ?? ''} />
+                            <Text message={ errors( 'roles' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -471,4 +472,5 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
         </form>
     );
 };
+
 export default UserForm;

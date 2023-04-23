@@ -19,12 +19,12 @@ interface SideBarItemProps {
 
 const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
 {
-    const IconProps: any = props.icon;
+    const IconProps: any = () => props.icon;
 
     return (
         <>
             <Show when={props.icon}
-                fallback={() => <span class={`${styles.side_bar_item_content_span}`} />} >
+                fallback={<span class={`${styles.side_bar_item_content_span}`} />} >
                 <Icon class={`${styles.side_bar_item_content_icon}`} >
                     <IconProps />
                 </Icon>

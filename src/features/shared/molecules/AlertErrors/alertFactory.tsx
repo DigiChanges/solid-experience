@@ -104,18 +104,18 @@ export const alertFactory = ( data: any ) =>
         'shared.exceptions.notFound': () => <AlertNotFoundEntityError errorData={ data.errorData } />,
     };
 
-    const errorKey: keyof MapErrors = data.errorData.errorCode;
+    const errorKey: () => keyof MapErrors = () => data.errorData.errorCode;
 
     return (
         <>
             {
-                typeof errors[errorKey] === 'function' ? errors[errorKey]() :
+                typeof errors[errorKey()] === 'function' ? errors[errorKey()]() :
                     <Alert
                         variant={'left-accent'}
                         status={'danger'}
                         icon={<BiSolidErrorCircle />}
                         title={<Text message={'err'}/>}
-                        description={<Text message={errorKey as string || 'err_unexpected'}/>}
+                        description={<Text message={errorKey() as string || 'err_unexpected'}/>}
                     />
             }
         </>

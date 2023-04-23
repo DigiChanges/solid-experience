@@ -1,6 +1,7 @@
 import { Component, JSX } from 'solid-js';
 
-interface HasPermissionProps{
+interface HasPermissionProps
+{
     permission: string;
     user: any;
     userPermissions: string[];

@@ -26,7 +26,7 @@ const SideBarItem: Component<SideBarItemProps> = ( props ) => (
     <div class={`${styles.side_bar_item_container}`}>
         <Show when={props.showItem}>
             <Show when={props.isLink}
-                fallback={() =>
+                fallback={
                     <span
                         class={`${styles.side_bar_item_span}`}
                         onClick={props.onClick}

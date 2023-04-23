@@ -19,7 +19,7 @@ type FilterType = {
 };
 
 interface FilterProps{
-    filterOptions: SelectValueOption[];
+    initialFilterOptions: SelectValueOption[];
 }
 
 const getFieldWithoutFilterArrayText = ( field: string ) => field.replace( 'filter[', '' ).replace( ']', '' );
@@ -27,7 +27,7 @@ const getFieldWithoutFilterArrayText = ( field: string ) => field.replace( 'filt
 const Filter: Component<FilterProps> = ( props ) =>
 {
     const [ searchParams, setSearchParams ] = useSearchParams();
-    const [ selectedMenu, setSelectedMenu ] = createSignal( props.filterOptions[0].value );
+    const [ selectedMenu, setSelectedMenu ] = createSignal( props.initialFilterOptions[0].value );
     const [ showFilter, setShowFilter ] = createSignal( false );
 
     const getSearchParams = createMemo( () =>
@@ -88,7 +88,7 @@ const Filter: Component<FilterProps> = ( props ) =>
                             <CardContent>
                                 <form ref={form} class={styles.form}>
                                     <Select
-                                        options={props.filterOptions}
+                                        options={props.initialFilterOptions}
                                         placeholder={'type_id'}
                                         value={selectedMenu()}
                                         onChange={( value: string ) => handleSelect( value )}

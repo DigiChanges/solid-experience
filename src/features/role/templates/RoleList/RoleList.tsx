@@ -1,17 +1,14 @@
 import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
 import { Text, useI18n } from 'solid-i18n';
-import { Component, createMemo, For, Show } from 'solid-js';
+import { Component, For, Show } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
 import { permissions } from '../../../../config/permissions';
 import Filter from '../../../filterSort/organisms/Filter/Filter';
 import useTransformTranslatedOptions from '../../../shared/hooks/useTransformTranslatedOptions';
 import ButtonScrollUp from '../../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
-import { SelectValueOption } from '../../../shared/types/Selects';
-import { SelectTransform } from '../../../shared/utils/SelectTransform';
 import { filterBy } from '../../constants/filterBy';
-import { orderBy } from '../../constants/orderBy';
 import { RoleApi } from '../../interfaces';
 import RoleCard from '../../organisms/RoleCard/RoleCard';
 import styles from '../../../user/templates/UserList/UserList.module.css';
@@ -34,7 +31,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
     const { isOpen, open, close } = createDisclosure();
     let deleteData: RoleApi | undefined;
 
-    const handleModalClick = () => () =>
+    const handleModalClick = () =>
     {
         props.removeAction( deleteData?.id );
         close();
@@ -47,18 +44,6 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
     };
 
     const { filterOptions } = useTransformTranslatedOptions( filterBy, ( item ) => t( item.label ) );
-
-    const filterOptionsWithMemo = createMemo( () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
-        filterBy,
-        ( item ) => <Text message={item.label} /> as string,
-        ( item ) => item.value
-    ) );
-
-    const orderOptionsWithMemo = createMemo( () => SelectTransform.getOptionsObjectArray<SelectValueOption>(
-        orderBy,
-        ( item ) => <Text message={item.label} /> as string,
-        ( item ) => item.value
-    ) );
 
     return (
         <section class="section_container">
@@ -83,7 +68,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                         <Button
                             _dark={darkDangerButton}
                             colorScheme="danger"
-                            onClick={handleModalClick()}
+                            onClick={() => handleModalClick}
                         >
                             <Text message="a_delete"/>
                         </Button>
@@ -109,7 +94,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
                 </div>
             </header>
 
-            <Filter filterOptions={filterOptions()} />
+            <Filter initialFilterOptions={filterOptions()} />
 
             <Show when={props.loading} keyed>
                 <GeneralLoader/>
@@ -128,7 +113,7 @@ const RoleList: Component<RoleListTemplateProps> = ( props ) =>
             <div class="section_bottom_buttons_container">
                 <Show when={!!props.nextPage} keyed>
                     <Button onClick={props.viewMoreAction()} variant="outlined">
-                        <Show when={!props.loading} fallback={() => <span class={'text-neutral-50'}><Text message="a_loading" />...</span>} keyed>
+                        <Show when={!props.loading} fallback={<span class={'text-neutral-50'}><Text message="a_loading" />...</span>} keyed>
                             <Text message="a_view_more"/>
                         </Show>
                     </Button>

@@ -74,7 +74,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                         />
                         <Show when={errors( 'password' )} keyed>
                             <FormControlError class="error_message_block">
-                                <Text message={errors( 'password' )![0]} />
+                                <Text message={errors( 'password' )?.[0] ?? ''} />
                             </FormControlError>
                         </Show>
                     </FormControl>
@@ -95,7 +95,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                         />
                         <Show when={errors( 'passwordConfirmation' )} keyed>
                             <FormControlError class="error_message_block">
-                                <Text message={errors( 'passwordConfirmation' )![0]} />
+                                <Text message={errors( 'passwordConfirmation' )?.[0] ?? ''} />
                             </FormControlError>
                         </Show>
                     </FormControl>

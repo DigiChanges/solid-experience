@@ -13,7 +13,6 @@ import { MultiSelect } from '../../../shared/molecules/Select/Select';
 import Switch from '../../../shared/molecules/Switch/Switch';
 import { darkInput, darkNeutralButton, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
-
 enum RequiredPermission {
     submit='submit'
 }
@@ -93,7 +92,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'name' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'name' )![0]} />
+                            <Text message={errors( 'name' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -115,7 +114,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'slug' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'slug' )![0]} />
+                            <Text message={errors( 'slug' )?.[0] ?? ''} />
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -137,7 +136,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                         class={'w-full'}
                     />
                     <FormControlError class="error_message_block">
-                        <Text message={errors( 'permissions' ) && errors( 'permissions' )![0] || ''} />
+                        <Text message={errors( 'permissions' )?.[0] ?? ''} />
                     </FormControlError>
                 </FormControl>
             </div>
@@ -154,7 +153,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                     />
                     <Show when={errors( 'enable' )} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'enable' )![0] || ''}/>
+                            <Text message={errors( 'enable' )?.[0] ?? ''}/>
                         </FormControlError>
                     </Show>
                 </FormControl>

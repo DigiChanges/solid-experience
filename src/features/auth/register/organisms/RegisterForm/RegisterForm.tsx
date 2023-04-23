@@ -33,7 +33,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
         setFields,
     } = createForm<InferType<typeof RegisterSchema>>( {
         initialValues: {
-            permissions: []
+            permissions: [],
         },
         extend: validator( { schema: RegisterSchema } ),
         onSuccess: props.onSuccess,
@@ -74,7 +74,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             />
                             <Show when={errors( 'firstName' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'firstName' )![0]} />
+                                    <Text message={errors( 'firstName' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -93,7 +93,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                 placeholder={t( 'a_enter_last_name' ) as string} />
                             <Show when={errors( 'lastName' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'lastName' )![0]} />
+                                    <Text message={errors( 'lastName' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -120,7 +120,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             />
                             <Show when={errors( 'email' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'email' )![0]} />
+                                    <Text message={errors( 'email' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -140,7 +140,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             />
                             <Show when={errors( 'phone' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'phone' )![0]} />
+                                    <Text message={errors( 'phone' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -164,7 +164,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                 />
                                 <Show when={errors( 'documentType' )} keyed>
                                     <FormControlError class="error_message_block">
-                                        <Text message={errors( 'documentType' )![0] || ''} />
+                                        <Text message={errors( 'documentType' )?.[0] ?? ''} />
                                     </FormControlError>
                                 </Show>
                             </FormControl>
@@ -182,7 +182,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                                 />
                                 <Show when={errors( 'documentNumber' )} keyed>
                                     <FormControlError class="error_message_block">
-                                        <Text message={errors( 'documentNumber' )![0]} />
+                                        <Text message={errors( 'documentNumber' )?.[0] ?? ''} />
                                     </FormControlError>
                                 </Show>
                             </FormControl>
@@ -202,7 +202,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             />
                             <Show when={errors( 'gender' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'gender' )![0] || ''} />
+                                    <Text message={errors( 'gender' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -232,7 +232,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             />
                             <Show when={errors( 'birthday' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'birthday' )![0]} />
+                                    <Text message={errors( 'birthday' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -255,7 +255,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             />
                             <Show when={errors( 'country' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'country' )![0] || ''} />
+                                    <Text message={errors( 'country' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -274,7 +274,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             />
                             <Show when={errors( 'address' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'address' )![0]} />
+                                    <Text message={errors( 'address' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -301,7 +301,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             />
                             <Show when={errors( 'password' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'password' )![0]} />
+                                    <Text message={errors( 'password' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -321,7 +321,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             />
                             <Show when={errors( 'passwordConfirmation' )} keyed>
                                 <FormControlError class="error_message_block">
-                                    <Text message={errors( 'passwordConfirmation' )![0]} />
+                                    <Text message={errors( 'passwordConfirmation' )?.[0] ?? ''} />
                                 </FormControlError>
                             </Show>
                         </FormControl>
@@ -349,5 +349,5 @@ const RegisterForm: Component<UserUpdateTemplateProps> = ( props ) =>
         </form>
     );
 };
-export default RegisterForm;
 
+export default RegisterForm;

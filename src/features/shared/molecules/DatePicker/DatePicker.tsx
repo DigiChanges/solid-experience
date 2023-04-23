@@ -108,6 +108,7 @@ const DatePicker = (
         } ) );
     } );
 
+    // eslint-disable-next-line solid/reactivity
     createMemo( () =>
     {
         if ( props.calendarResponse )
@@ -182,7 +183,6 @@ const DatePicker = (
         }
     };
 
-    // handles year view range during navigation
     const yearNavigation = ( value: number ) =>
     {
         const offset = yearRangeOffset().offset + ( value );
@@ -255,7 +255,6 @@ const DatePicker = (
             </div>
 
             <div class={`cal-parent ${!isCalendarEnabled() ? 'd-none' : ''} ${props.customizeCalendarBody}`}>
-                {/* Header */}
                 <div class={`cal-header ${props.enableArrowNavigation ? '' : 'jst-center'}`}>
                     {
                         props.enableArrowNavigation ?
@@ -328,7 +327,6 @@ const DatePicker = (
                     </div> : null
                 }
 
-                {/* Calendar View sub-header */}
                 {props.enableCalendarViewType ?
                     <div class="cal-sub-header-section">
                         <For each={viewList}>{( it ) =>
@@ -352,8 +350,7 @@ const DatePicker = (
                         }}</For>
                     </div> : null}
 
-                <div class={'main-container'}>
-                    {/* Month View */}
+                <div class={'main-container'}> {/* Month View */}
                     {activeView() !== 'month' || isTimeViewEnabled() ? null :
                         <div class="container-month-view">
                             <For each={monthList}>{
@@ -464,8 +461,7 @@ const DatePicker = (
                                     {
                                         isActive = moment( it ).isSame( moment( locDate() ).startOf( 'days' ) );
                                     }
-                                    // handles Max date given by user
-                                    if ( props.maxDate )
+                                    if ( props.maxDate ) // handles Max date given by user
                                     {
                                         isDatesDisabled = isDatesDisabled || moment( it ).isSameOrAfter( moment( props.maxDate ).startOf( 'days' ) );
                                     }
