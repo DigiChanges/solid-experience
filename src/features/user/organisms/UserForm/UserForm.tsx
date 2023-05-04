@@ -1,7 +1,7 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
-import { Link } from '@solidjs/router';
+import { useNavigate} from '@solidjs/router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
@@ -36,6 +36,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
 {
     const i18n = useI18n();
     const { t } = i18n;
+    const navigate = useNavigate();
 
     const userSchema = props.userSelected?.id ? userUpdateValidationSchema : userCreateValidationSchema;
 
@@ -355,6 +356,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             <Text message="password"/>
                         </FormControlLabel>
                         <Input
+                             autocomplete="password"
                             _dark={darkInput}
                             _placeholder={placeholderInput}
                             name="password"
@@ -374,6 +376,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                             <Text message="confirm_password"/>
                         </FormControlLabel>
                         <Input
+                             autocomplete="passwordConfirmation"
                             _dark={darkInput}
                             _placeholder={placeholderInput}
                             name="passwordConfirmation"
@@ -439,8 +442,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <Button
                         _dark={darkNeutralButton}
                         class="button_full"
-                        as={Link}
-                        href="/users"
+                        onClick={()=>navigate('/users/list')}
                         colorScheme="neutral"
                     >
                         <Text message="a_back" />
@@ -462,8 +464,7 @@ const UserForm: Component<UserUpdateTemplateProps> = ( props ) =>
                     <Button
                         _dark={darkNeutralButton}
                         class="w-full"
-                        as={Link}
-                        href="/users"
+                        onClick={()=>navigate('/users/list')}
                     >
                         <Text message="a_back" />
                     </Button>

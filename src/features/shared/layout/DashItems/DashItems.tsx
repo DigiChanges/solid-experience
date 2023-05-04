@@ -1,5 +1,5 @@
 import { useLocation } from '@solidjs/router';
-import { Component, createSignal, For, Show } from 'solid-js';
+import { Component, createEffect, createSignal, For, Show } from 'solid-js';
 import HasPermission from '../../../../atoms/HasPermission';
 import { dashRoutes } from '../../../../config/dashRoutes';
 import SideBarItem from '../../../sideBar/molecules/SideBarItem/SideBarItem';
@@ -56,7 +56,6 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
                             isLink={!dashRoute.children}
                             path={ dashRoute.path }
                             expanded={props.expanded}
-                            sectionSelected={sectionSelected()}
                         >
                             <Show when={getShowSubItems() && sectionSelected() === dashRoute.path}>
                                 <For each={dashRoute.children}>

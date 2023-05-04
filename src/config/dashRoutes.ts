@@ -11,7 +11,7 @@ import { permissions } from './permissions';
 
 export const dashRoutes = [
     {
-        path: '/',
+        path: '/init',
         component: lazy( () => import( '../pages/dashboard' ) ),
         name: 'a_home',
         icon: IconHome,
@@ -91,7 +91,7 @@ export const dashRoutes = [
         children:
         [
             {
-                path: '/',
+                path: '/list',
                 component: lazy( () => import( '../pages/users' ) ),
                 name: 'a_list',
                 icon: IconViewList,
@@ -133,7 +133,7 @@ export const dashRoutes = [
         children:
         [
             {
-                path: '/',
+                path: '/list',
                 component: lazy( () => import( '../pages/roles' ) ),
                 name: 'a_list',
                 icon: IconViewList,
