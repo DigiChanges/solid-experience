@@ -155,6 +155,7 @@ const appValidations: I18nLocales = {
     av_required: 'Requerido',
     av_too_long: 'Demasiado Largo!',
     av_too_short: 'Demasiado Corto!',
+    av_invalid_format: 'Formato no válido!',
 };
 
 const entities: I18nLocales = {

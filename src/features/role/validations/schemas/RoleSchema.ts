@@ -3,7 +3,7 @@ import { array, bool, object, string } from 'yup';
 const roleSchema = object( {
     name: string()
         .min( 3, 'av_too_short' )
-        .max( 50, 'av_too_long' )
+        .max( 30, 'av_too_long' )
         .required( 'av_required' ),
     slug: string()
         .min( 3, 'av_too_short' )
