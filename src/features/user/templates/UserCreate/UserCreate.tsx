@@ -31,7 +31,7 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
             status: 'success',
             title: t( 'u_created' ) as string,
         } );
-        navigate( '/users', { replace: true } );
+        navigate( '/users/list', { replace: true } );
     };
 
     const handleError = () => ( error: unknown ) =>

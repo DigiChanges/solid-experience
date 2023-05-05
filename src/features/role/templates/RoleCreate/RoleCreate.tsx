@@ -29,7 +29,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
             status: 'success',
             title: t( 'r_created' ) as string,
         } );
-        navigate( '/roles', { replace: true } );
+        navigate( '/roles/list', { replace: true } );
     };
 
     const handleError = () => ( error: unknown ) =>

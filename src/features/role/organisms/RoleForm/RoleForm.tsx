@@ -1,7 +1,7 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
-import { Link } from '@solidjs/router';
+import { useNavigate} from '@solidjs/router';
 import { Text, useI18n } from 'solid-i18n';
 import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
@@ -31,6 +31,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
 {
     const i18n = useI18n();
     const { t } = i18n;
+    const navigate = useNavigate();
 
     const {
         data,
@@ -164,8 +165,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                     <Button
                         _dark={darkNeutralButton}
                         class="button_full"
-                        as={Link}
-                        href="/roles"
+                        onClick={()=>navigate('/roles/list')}
                         colorScheme="neutral"
                     >
                         <Text message="a_back" />
@@ -187,8 +187,7 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                     <Button
                         _dark={darkNeutralButton}
                         class="w-full"
-                        as={Link}
-                        href="/roles"
+                        onClick={()=>navigate('/roles/list')}
                     >
                         <Text message="a_back" />
                     </Button>

@@ -31,7 +31,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = ( props ) =>
             status: 'success',
             title: t( 'r_updated' ) as string,
         } );
-        navigate( '/roles', { replace: true } );
+        navigate( '/roles/list', { replace: true } );
     };
 
     const handleError = () => ( error: unknown ) =>

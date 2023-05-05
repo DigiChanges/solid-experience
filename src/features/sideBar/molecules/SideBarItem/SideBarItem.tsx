@@ -16,8 +16,8 @@ interface SideBarItemProps {
     showItem: boolean;
     isLink: boolean;
     path: string;
-    expanded: boolean;
-    sectionSelected: string;
+    expanded?: boolean;
+    sectionSelected?: string;
     hideChevron?: boolean;
     children?: JSX.Element;
 }
