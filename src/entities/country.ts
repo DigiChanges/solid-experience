@@ -248,5 +248,5 @@ export const country = [
     { value: 'EH', label: 'Western Sahara' },
     { value: 'YE', label: 'Yemen' },
     { value: 'ZM', label: 'Zambia' },
-    { value: 'ZW', label: 'Zimbabwe' },
+    { value: 'ZW', label: 'Zimbabwe' }
 ];

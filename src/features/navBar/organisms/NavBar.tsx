@@ -9,7 +9,7 @@ import styles from './Nav.module.css';
 
 interface NavbarTemplateProps {
     email?: string;
-    onClick?: ( event: MouseEvent ) => void;
+    onClick?: (event: MouseEvent) => void;
     permissionsList?: string[];
     sideBarIsShown: boolean;
     isOpen: () => boolean;

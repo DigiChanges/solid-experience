@@ -13,7 +13,7 @@ interface UserCardProps {
     onDelete: () => void;
 }
 
-const UserCard: Component<UserCardProps> = ( props ) => (
+const UserCard: Component<UserCardProps> = (props) => (
     <Card>
         <CardContent class="card_container">
 

@@ -6,7 +6,7 @@ interface FooterProps
     children: any;
 }
 
-const Footer: Component<FooterProps> = ( props ) =>
+const Footer: Component<FooterProps> = (props) =>
 {
     return (
         <footer class={props.class}>{props.children}</footer>

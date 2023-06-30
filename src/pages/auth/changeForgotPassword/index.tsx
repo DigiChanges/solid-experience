@@ -7,12 +7,12 @@ import { changeForgotPasswordAction } from './handler';
 const IndexPage: Component = () =>
 {
     const authRepository = new AuthRepository();
-    const [ searchParams ] = useSearchParams();
+    const [searchParams] = useSearchParams();
 
     return (
         <ChangeForgotPassword
             confirmationToken={searchParams.token}
-            onSubmit={changeForgotPasswordAction( { authRepository } )}
+            onSubmit={changeForgotPasswordAction({ authRepository })}
         />
     );
 };

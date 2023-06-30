@@ -8,7 +8,7 @@ type params = {
     user: LoginApi;
 };
 
-export const updateAction = ( { roleRepository, id, user }: params ) => async ( data: RolePayload ) =>
+export const updateAction = ({ roleRepository, id, user }: params) => async(data: RolePayload) =>
 {
-    return roleRepository.updateRole( { id, data, user } );
+    return roleRepository.updateRole({ id, data, user });
 };

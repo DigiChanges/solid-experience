@@ -104,7 +104,7 @@ const app: I18nLocales = {
     a_yes: 'Sí',
     a_your_address: 'Tú dirección',
     a_your_email: 'Tu correo electrónico',
-    a_your_password: 'Tu contraseña',
+    a_your_password: 'Tu contraseña'
 };
 
 const calendar: I18nLocales = {
@@ -129,7 +129,7 @@ const calendar: I18nLocales = {
     a_sep: 'Sep',
     a_oct: 'Oct',
     a_nov: 'Nov',
-    a_dec: 'Dec',
+    a_dec: 'Dec'
 };
 
 const auth: I18nLocales = {
@@ -145,7 +145,7 @@ const auth: I18nLocales = {
     au_send_email: 'Se envio un email',
     au_verification_successful: '¡ Verificación exitosa !',
     au_wait_few_moments: 'Aguarda unos instantes...',
-    au_we_building: 'Estamos construyendo todo lo que necesitas para empezar',
+    au_we_building: 'Estamos construyendo todo lo que necesitas para empezar'
 };
 
 const appValidations: I18nLocales = {
@@ -154,11 +154,11 @@ const appValidations: I18nLocales = {
     av_password_match: 'Las contraseñas deben coincidir',
     av_required: 'Requerido',
     av_too_long: 'Demasiado Largo!',
-    av_too_short: 'Demasiado Corto!',
+    av_too_short: 'Demasiado Corto!'
 };
 
 const entities: I18nLocales = {
-    User: 'Usuario',
+    User: 'Usuario'
 };
 
 const apiKeys: I18nLocales = {
@@ -169,7 +169,7 @@ const apiKeys: I18nLocales = {
     'app.presentation.exceptions.validator': 'Los valores de los campos no son válidos.',
     'auth.domain.exceptions.badCredentials': 'Correo electrónico o contraseña incorrectos.',
     'shared.exceptions.notFound': 'No se encuentra el recurso `{entity}`.',
-    'user.domain.exceptions.unverifiedUser': 'El usuario no ha sido verificado.',
+    'user.domain.exceptions.unverifiedUser': 'El usuario no ha sido verificado.'
 };
 
 const errors: I18nLocales = {
@@ -192,7 +192,7 @@ const errors: I18nLocales = {
     err_server: 'Error del servidor',
     err_unexpected: 'Error inesperado',
     err_view: 'Error al cargar la vista',
-    forbidden: 'Acceso denegado',
+    forbidden: 'Acceso denegado'
 };
 
 const properties: I18nLocales = {
@@ -238,7 +238,7 @@ const properties: I18nLocales = {
     taxes: 'Impuestos',
     type: 'Tipo',
     type_id: 'Tipo',
-    value: 'Valor',
+    value: 'Valor'
 };
 
 const roles: I18nLocales = {
@@ -251,7 +251,7 @@ const roles: I18nLocales = {
     r_removed: 'Se ha eliminado el rol correctamente',
     r_search: '{count, plural, one {Buscar rol} other {Buscar roles}}',
     r_update: 'Editar Rol',
-    r_updated: 'Rol Actualizado',
+    r_updated: 'Rol Actualizado'
 };
 
 const user: I18nLocales = {
@@ -266,7 +266,7 @@ const user: I18nLocales = {
     u_update: 'Editar Usuario',
     u_updated: 'Usuario actualizado',
     u_users: 'Usuarios',
-    u_view: 'Ver Usuario',
+    u_view: 'Ver Usuario'
 };
 
 const es: I18nLocales = {
@@ -279,7 +279,7 @@ const es: I18nLocales = {
     ...errors,
     ...properties,
     ...roles,
-    ...user,
+    ...user
 };
 
 export default es;

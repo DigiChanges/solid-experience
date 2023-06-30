@@ -2,7 +2,7 @@ import { Component } from 'solid-js';
 import Card from '../../shared/molecules/Card/Card';
 import CardContent from '../../shared/molecules/CardContent/CardContent';
 import styles from './Dashboard.module.css';
-import { Text } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 
 const Dashboard: Component = () =>
 {

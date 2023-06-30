@@ -3,7 +3,7 @@ import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { Link, useNavigate } from '@solidjs/router';
-import { Text, useI18n } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { Component, Show } from 'solid-js';
 import { InferType } from 'yup';
 import createAlert from '../../../shared/hooks/createAlert';
@@ -16,86 +16,86 @@ interface EditPasswordTemplateProps
     editPasswordAction?: any;
 }
 
-const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
+const UserEditPassword: Component<EditPasswordTemplateProps> = (props) =>
 {
-    const { t } = useI18n();
+    const [t] = useI18n();
     const navigate = useNavigate();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
 
     const handleSuccess = () => () =>
     {
-        notificationService.show( {
+        notificationService.show({
             status: 'success',
-            title: t( 'au_password_updated' ) as string,
-        } );
-        navigate( '/users', { replace: true } );
+            title: t('au_password_updated') as string
+        });
+        navigate('/users', { replace: true });
     };
 
-    const handleError = () => ( error: unknown ) =>
+    const handleError = () => (error: unknown) =>
     {
-        const errorMessage = setError( error );
-        notificationService.show( {
+        const errorMessage = setError(error);
+        notificationService.show({
             status: 'danger',
-            title: t( 'err_save_password' ) as string,
-            description: t( errorMessage ) as string,
-        } );
-    } ;
+            title: t('err_save_password') as string,
+            description: t(errorMessage) as string
+        });
+    };
 
     const {
         errors,
         form,
         isSubmitting,
-        isValid,
+        isValid
         // @ts-ignore
-    } = createForm<InferType<typeof userEditPasswordSchema>>( {
+    } = createForm<InferType<typeof userEditPasswordSchema>>({
         initialValues: { },
-        extend: validator( { schema: userEditPasswordSchema } ),
+        extend: validator({ schema: userEditPasswordSchema }),
         onSuccess: handleSuccess,
         onError: handleError,
-        onSubmit: values => props.editPasswordAction( values ),
-    } );
+        onSubmit: values => props.editPasswordAction(values)
+    });
 
     return (
         <section class="section_container">
-            <h1 class="section_title"><Text message="a_change_password" /></h1>
+            <h1 class="section_title">{t('a_change_password')}</h1>
             <form ref={form} class="form_password">
                 <div class="field_wrapper">
-                    <FormControl isRequired isInvalid={!!errors( 'password' )}>
+                    <FormControl isRequired isInvalid={!!errors('password')}>
                         <FormControlLabel class={'form_label'} for="password" _dark={{ _after: { color: 'danger.300' } }}>
-                            <Text message="new_password"/>
+                            {t('new_password')}
                         </FormControlLabel>
                         <Input
                             _dark={darkInput}
                             _placeholder={placeholderInput}
                             name="password"
                             type="password"
-                            placeholder={t( 'a_password' ) as string}
+                            placeholder={t('a_password') as string}
                         />
-                        <Show when={errors( 'password' )} keyed>
+                        <Show when={errors('password')} keyed>
                             <FormControlError class="error_message_block">
-                                <Text message={errors( 'password' )?.[0] ?? ''} />
+                                {t(errors('password')?.[0] ?? '')}
                             </FormControlError>
                         </Show>
                     </FormControl>
                 </div>
 
                 <div class="field_wrapper">
-                    <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
+                    <FormControl isRequired isInvalid={!!errors('passwordConfirmation')}>
                         <FormControlLabel class={'form_label'} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
-                            <Text message="confirm_password"/>
+                            {t('confirm_password')}
                         </FormControlLabel>
                         <Input
                             _dark={darkInput}
                             _placeholder={placeholderInput}
                             name="passwordConfirmation"
                             type="password"
-                            placeholder={t( 'a_repeat_password' ) as string}
-                            onKeyDown={preventEnterCharacter( [ 'Space' ] )}
+                            placeholder={t('a_repeat_password') as string}
+                            onKeyDown={preventEnterCharacter(['Space'])}
                         />
-                        <Show when={errors( 'passwordConfirmation' )} keyed>
+                        <Show when={errors('passwordConfirmation')} keyed>
                             <FormControlError class="error_message_block">
-                                <Text message={errors( 'passwordConfirmation' )?.[0] ?? ''} />
+                                {t(errors('passwordConfirmation')?.[0] ?? '')}
                             </FormControlError>
                         </Show>
                     </FormControl>
@@ -109,7 +109,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                             href="/login"
                             colorScheme="neutral"
                         >
-                            <Text message="a_back" />
+                            {t('a_back')}
                         </Button>
                     </div>
                     <div class="button_full">
@@ -119,9 +119,9 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = ( props ) =>
                             type="submit"
                             isDisabled={!isValid()}
                             isLoading={isSubmitting()}
-                            loadingText={<Text message="a_submitting"/> as string}
+                            loadingText={t('a_submitting') as string}
                         >
-                            <Text message="a_save"/>
+                            {t('a_save')}
                         </Button>
                     </div>
                 </div>

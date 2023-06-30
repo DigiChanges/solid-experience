@@ -14,88 +14,88 @@ const { register, login, refreshToken, logout, permissionsGetAll, forgotPassword
 
 class AuthRepository
 {
-    public async signIn ( { data }: PayloadProps<LoginPayload> )
+    public async signIn({ data }: PayloadProps<LoginPayload>)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${login}`,
             method: 'POST',
-            data,
+            data
         };
 
-        return HttpService.request<LoginResponse>( { config } );
+        return HttpService.request<LoginResponse>({ config });
     }
 
-    public async refreshToken ()
+    public async refreshToken()
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${refreshToken}`,
             method: 'POST',
-            data: {},
+            data: {}
         };
 
-        return HttpService.request<LoginResponse>( { config } );
+        return HttpService.request<LoginResponse>({ config });
     }
 
-    public async logout ( { user }: PayloadProps )
+    public async logout({ user }: PayloadProps)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${logout}`,
-            method: 'POST',
+            method: 'POST'
         };
 
-        return HttpService.request<LogoutResponse>( { config, user } );
+        return HttpService.request<LogoutResponse>({ config, user });
     }
 
-    public async getAllPermissions ( { user }: PayloadProps )
+    public async getAllPermissions({ user }: PayloadProps)
     {
         const config: AxiosRequestConfig = {
-            url: `${baseUrl}/${permissionsGetAll}`,
+            url: `${baseUrl}/${permissionsGetAll}`
         };
 
-        return HttpService.request<PermissionListResponse>( { config, user } );
+        return HttpService.request<PermissionListResponse>({ config, user });
     }
 
-    public getForgotPassword = ( { data }: PayloadProps<ForgotPasswordPayload> ) =>
+    public getForgotPassword = ({ data }: PayloadProps<ForgotPasswordPayload>) =>
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${forgotPassword}`,
             method: 'POST',
-            data,
+            data
         };
 
-        return HttpService.request<LoginResponse>( { config } );
+        return HttpService.request<LoginResponse>({ config });
     };
 
-    public async setChangeForgotPassword ( { data }: PayloadProps<ChangeForgotPasswordPayload> )
+    public async setChangeForgotPassword({ data }: PayloadProps<ChangeForgotPasswordPayload>)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${changeForgotPassword}`,
             method: 'POST',
-            data,
+            data
         };
 
-        return HttpService.request<LoginResponse>( { config } );
+        return HttpService.request<LoginResponse>({ config });
     }
 
-    public register ( { data }: PayloadProps<RegisterPayload> )
+    public register({ data }: PayloadProps<RegisterPayload>)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${register}`,
             method: 'POST',
-            data,
+            data
         };
 
-        return HttpServiceWithoutToken.request<RegisterResponse>( { config } );
+        return HttpServiceWithoutToken.request<RegisterResponse>({ config });
     }
 
-    public verifyYourAccount ( { data }: PayloadProps<string> )
+    public verifyYourAccount({ data }: PayloadProps<string>)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${verifyYourAccount}/${data}`,
-            method: 'PUT',
+            method: 'PUT'
         };
 
-        return HttpServiceWithoutToken.request( { config } );
+        return HttpServiceWithoutToken.request({ config });
     }
 }
 

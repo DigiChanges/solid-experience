@@ -12,7 +12,7 @@ export const config = {
             hostname: API_HOSTNAME,
             port: API_PORT,
             baseUrl: `${API_PROTOCOL}://${API_HOSTNAME}:${API_PORT}`,
-            withCredentials: VITE_API_WITH_CREDENTIALS,
+            withCredentials: VITE_API_WITH_CREDENTIALS
         },
         routes: {
             auth: {
@@ -24,7 +24,7 @@ export const config = {
                 forgotPassword: `${BACKEND_BASE_PATH}/auth/forgot-password`,
                 changeForgotPassword: `${BACKEND_BASE_PATH}/auth/change-forgot-password`,
                 register: `${BACKEND_BASE_PATH}/auth/signup`,
-                verifyYourAccount: `${BACKEND_BASE_PATH}/auth/verify-your-account`,
+                verifyYourAccount: `${BACKEND_BASE_PATH}/auth/verify-your-account`
             },
             users: {
                 getAll: `${BACKEND_BASE_PATH}/users`,
@@ -33,15 +33,15 @@ export const config = {
                 update: `${BACKEND_BASE_PATH}/users`,
                 remove: `${BACKEND_BASE_PATH}/users`,
                 editPassword: `${BACKEND_BASE_PATH}/users/change-user-password`,
-                assignRole: `${BACKEND_BASE_PATH}/users/assign-role`,
+                assignRole: `${BACKEND_BASE_PATH}/users/assign-role`
             },
             roles: {
                 getAll: `${BACKEND_BASE_PATH}/roles`,
                 getOne: `${BACKEND_BASE_PATH}/roles`,
                 create: `${BACKEND_BASE_PATH}/roles`,
                 update: `${BACKEND_BASE_PATH}/roles`,
-                remove: `${BACKEND_BASE_PATH}/roles`,
-            },
-        },
-    },
+                remove: `${BACKEND_BASE_PATH}/roles`
+            }
+        }
+    }
 };

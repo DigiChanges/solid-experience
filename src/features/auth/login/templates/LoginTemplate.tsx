@@ -1,6 +1,6 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { Link, useNavigate } from '@solidjs/router';
-import { Text as TextI18, useI18n } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logo from '../../../../assets/images/dgc_logo.png';
 import { useApplicationContext } from '../../../../context/context';
@@ -17,27 +17,27 @@ import styles from './LoginTemplate.module.css';
 const LoginTemplate: Component = () =>
 {
     const navigate = useNavigate();
-    const [ getShowRecoverPassword, setShowRecoverPassword ] = createSignal( false );
-    const [ isLoading, setIsLoading ] = createSignal( false );
+    const [getShowRecoverPassword, setShowRecoverPassword] = createSignal(false);
+    const [isLoading, setIsLoading] = createSignal(false);
 
-    const [ , { addUser } ] = useApplicationContext();
+    const [, { addUser }] = useApplicationContext();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
-    const { t } = useI18n();
+    const [t] = useI18n();
 
     const handleSuccess = () => () =>
     {
-        navigate( '/dashboard', { replace: true } );
+        navigate('/dashboard', { replace: true });
     };
 
-    const handleError = () => ( error: unknown ) =>
+    const handleError = () => (error: unknown) =>
     {
-        const errorMessage = setError( error );
-        setIsLoading( false );
-        notificationService.show( {
-            title: t( 'err_login' ) as string,
-            description: t( errorMessage ) as string,
-        } );
+        const errorMessage = setError(error);
+        setIsLoading(false);
+        notificationService.show({
+            title: t('err_login') as string,
+            description: t(errorMessage) as string
+        });
     };
 
     return (
@@ -62,21 +62,21 @@ const LoginTemplate: Component = () =>
                         <Show when={!getShowRecoverPassword()}
                             fallback={() => (
                                 <ForgotPasswordForm
-                                    onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
-                                    onSubmit={createForgotPasswordAction( { errorAlert, navigate, t } )}
+                                    onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}
+                                    onSubmit={createForgotPasswordAction({ errorAlert, navigate, t })}
                                 />
                             )}
                         >
                             <div class={styles.register}>
-                                <p class={'text-neutral-50'}><TextI18 message="a_do_not_have_account" /></p>
+                                <p class={'text-neutral-50'}>{t('a_do_not_have_account')}</p>
                                 <Link href="/register">
-                                    <strong><TextI18 message="a_sign_up"/></strong>
+                                    <strong>{t('a_sign_up')}</strong>
                                 </Link>
                             </div>
 
                             <LoginForm
-                                onClick={togglePasswordRecovery( { setShowRecoverPassword, getShowRecoverPassword } )}
-                                onSubmit={handleLoginFormSubmit( { addUser, setIsLoading } )}
+                                onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}
+                                onSubmit={handleLoginFormSubmit({ addUser, setIsLoading })}
                                 onError={handleError()}
                                 onSuccess={handleSuccess()}
                             />

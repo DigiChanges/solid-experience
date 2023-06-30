@@ -11,11 +11,11 @@ interface privateTemplateProps {
     children: JSX.Element | JSX.Element[];
 }
 
-const PrivateLayout: Component<privateTemplateProps> = ( props ) =>
+const PrivateLayout: Component<privateTemplateProps> = (props) =>
 {
-    const [ showSidebar ] = createSignal( false );
+    const [showSidebar] = createSignal(false);
     const { isOpen, open, close } = createDisclosure();
-    const [ authUser ] = useApplicationContext();
+    const [authUser] = useApplicationContext();
 
     return (
         <div class={styles.container}>

@@ -5,7 +5,7 @@ type params = {
     authRepository: AuthRepository;
 };
 
-export const changeForgotPasswordAction = ( { authRepository }: params ) => async ( data: ChangeForgotPasswordPayload ) =>
+export const changeForgotPasswordAction = ({ authRepository }: params) => async(data: ChangeForgotPasswordPayload) =>
 {
-    return await authRepository.setChangeForgotPassword( { data } );
+    return await authRepository.setChangeForgotPassword({ data });
 };

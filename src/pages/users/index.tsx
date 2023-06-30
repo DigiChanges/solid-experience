@@ -9,30 +9,30 @@ import usePermission from '../../features/shared/hooks/usePermission';
 import { removeUserAction } from './delete/handlers';
 import createAlert from '../../features/shared/hooks/createAlert';
 import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
-import { useI18n } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { UserApi, UserListResponse } from '../../features/user/interfaces';
 import UserList from '../../features/user/templates/UserList/UserList';
 
 const IndexPage: Component = () =>
 {
-    const { t } = useI18n();
+    const [t] = useI18n();
     const { errorData, setError } = createAlert();
-    const [ user ]: any = useApplicationContext();
+    const [user]: any = useApplicationContext();
     const userRepository = new UserRepository();
 
-    const { goToPage, getURLSearchParams } = useQuery( INIT_STATE.nextPaginationParams );
+    const { goToPage, getURLSearchParams } = useQuery(INIT_STATE.nextPaginationParams);
 
-    const [ users, { refetch } ] = createResource( () => ( { user: user(), queryParams: getURLSearchParams() } ), ( { user, queryParams } ) => userRepository.getUsers( { user, queryParams } ) );
+    const [users, { refetch }] = createResource(() => ({ user: user(), queryParams: getURLSearchParams() }), ({ user, queryParams }) => userRepository.getUsers({ user, queryParams }));
 
-    const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<UserApi, UserListResponse>( users );
+    const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<UserApi, UserListResponse>(users);
 
-    usePermission( user, [ users ] );
+    usePermission(user, [users]);
 
-    createEffect( () => users.error && setError( users.error ) );
+    createEffect(() => users.error && setError(users.error));
 
     const viewMoreAction = () =>
     {
-        goToPage( users()?.pagination?.nextUrl );
+        goToPage(users()?.pagination?.nextUrl);
         setViewMore();
     };
 
@@ -45,7 +45,7 @@ const IndexPage: Component = () =>
             />
             <UserList
                 userList={userList()}
-                removeAction={removeUserAction( { userRepository, user: user(), setError, refetch, t } )}
+                removeAction={removeUserAction({ userRepository, user: user(), setError, refetch, t })}
                 loading={users.loading}
                 viewMoreAction={() => viewMoreAction}
                 nextPage={paginationData()?.nextUrl}

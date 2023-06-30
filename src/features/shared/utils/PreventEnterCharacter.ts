@@ -1,7 +1,7 @@
 
-const preventEnterCharacter = ( keys: string[] ) => ( e: any ) =>
+const preventEnterCharacter = (keys: string[]) => (e: any) =>
 {
-    if ( keys.includes( e.code ) )
+    if (keys.includes(e.code))
     {
         e.preventDefault();
     }

@@ -1,10 +1,10 @@
 import * as Yup from 'yup';
 import { object } from 'yup';
 
-const ForgetPasswordSchema = object( {
+const ForgetPasswordSchema = object({
     email: Yup.string()
-        .email( 'Invalid email' )
-        .required( 'Required' ),
-} );
+        .email('Invalid email')
+        .required('Required')
+});
 
 export default ForgetPasswordSchema;

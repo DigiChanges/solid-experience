@@ -8,14 +8,14 @@ interface HasPermissionProps
     children: JSX.Element | JSX.Element[];
 }
 
-const HasPermission: Component<HasPermissionProps> = ( props ) =>
+const HasPermission: Component<HasPermissionProps> = (props) =>
 {
     const shouldRender = () =>
-        ( props.userPermissions && props.userPermissions.includes( props.permission ) )
+        (props.userPermissions && props.userPermissions.includes(props.permission))
         ||
-        ( props.user.user.isSuperAdmin === true );
+        (props.user.user.isSuperAdmin === true);
 
-    return ( shouldRender() && props.children );
+    return (shouldRender() && props.children);
 };
 
 export default HasPermission;

@@ -1,5 +1,5 @@
 import { Link } from '@solidjs/router';
-import { Text } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 
 const CustomError = () => (
     <div class="grid min-h-screen place-items-center gilroy">
@@ -19,10 +19,10 @@ const CustomError = () => (
                 />
             </svg>
             <h2 class="text-xl text-left mx-1/4 text-main-gray-250 font-extrabold gilroy ">
-                <Text message="err_view"/>
+                {t('err_view')}
             </h2>
             <Link href="/" class="px-10 py-2 dg-main-button">
-                <Text message="a_home" />
+                {t('a_home')}
             </Link>
         </div>
     </div>

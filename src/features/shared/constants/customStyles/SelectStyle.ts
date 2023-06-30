@@ -1,11 +1,11 @@
 
-const SelectStyle = ( theme: any ) =>
+const SelectStyle = (theme: any) =>
 {
     return {
         ...theme,
         borderWidth: 0,
         multiValue: {
-            borderRadius: 100,
+            borderRadius: 100
         },
         colors: {
             ...theme.colors,
@@ -24,8 +24,8 @@ const SelectStyle = ( theme: any ) =>
             neutral30: '#a0aec0',
             neutral90: '#46ff00',
             danger: '#00134b',
-            dangerLight: '#103d00',
-        },
+            dangerLight: '#103d00'
+        }
     };
 };
 

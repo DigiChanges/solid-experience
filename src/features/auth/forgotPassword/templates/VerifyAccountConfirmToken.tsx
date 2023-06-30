@@ -7,12 +7,12 @@ interface VerifyAccountConfirmTokenTemplateProps
     isLoading: boolean;
 }
 
-const VerifyAccountConfirmToken: Component<VerifyAccountConfirmTokenTemplateProps> = ( props ) =>
+const VerifyAccountConfirmToken: Component<VerifyAccountConfirmTokenTemplateProps> = (props) =>
 {
-    createEffect( () =>
+    createEffect(() =>
     {
         props.verifyAccountAction();
-    } );
+    });
 
     return (
         <>

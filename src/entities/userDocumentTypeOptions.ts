@@ -1,5 +1,5 @@
 
 export const userDocumentTypeOptions = [
     { value: 'dni', label: 'DNI' },
-    { value: 'cuil', label: 'CUIL' },
+    { value: 'cuil', label: 'CUIL' }
 ];

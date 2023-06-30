@@ -11,19 +11,19 @@ import { updateAction } from './handlers';
 const IndexPage: Component = () =>
 {
     const { id } = useParams<{ id: string }>();
-    const [ user ]: any = useApplicationContext();
+    const [user]: any = useApplicationContext();
     const roleRepository = new RoleRepository();
     const authRepository = new AuthRepository();
-    const [ role ] = createResource( { id, user: user() }, roleRepository.getOne );
-    const [ permissions ] = createResource( { user: user() }, authRepository.getAllPermissions );
-    usePermission( user, [ role, permissions ] );
+    const [role] = createResource({ id, user: user() }, roleRepository.getOne);
+    const [permissions] = createResource({ user: user() }, authRepository.getAllPermissions);
+    usePermission(user, [role, permissions]);
 
     return (
         <PrivateLayout>
             <RoleUpdate
                 roleSelected={role()?.data}
                 permissionsList={permissions()?.data}
-                onUpdate={updateAction( { roleRepository, id, user: user() } )}
+                onUpdate={updateAction({ roleRepository, id, user: user() })}
                 loading={role.loading || permissions.loading}
             />
         </PrivateLayout>

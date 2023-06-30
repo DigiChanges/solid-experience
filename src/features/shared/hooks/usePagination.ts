@@ -1,27 +1,27 @@
 import { createSignal } from 'solid-js';
 import { PaginationParams } from '../../../services/IHttpAxios';
 
-function usePagination ( initialPagination?: PaginationParams )
+function usePagination(initialPagination?: PaginationParams)
 {
-    const [ page, setPage ] = createSignal( initialPagination );
+    const [page, setPage] = createSignal(initialPagination);
 
-    const goToPage = ( nextUrl?: string ) =>
+    const goToPage = (nextUrl?: string) =>
     {
-        if ( nextUrl )
+        if (nextUrl)
         {
-            const url = new URL( nextUrl );
-            const params = new URLSearchParams( url.search );
+            const url = new URL(nextUrl);
+            const params = new URLSearchParams(url.search);
 
             const nextPage = {
-                limit: params.get( 'pagination[limit]' ),
-                offset: params.get( 'pagination[offset]' ),
+                limit: params.get('pagination[limit]'),
+                offset: params.get('pagination[offset]')
             };
 
-            setPage( nextPage );
+            setPage(nextPage);
         }
     };
 
-    const goFirstPage = () => setPage( initialPagination );
+    const goFirstPage = () => setPage(initialPagination);
 
     return { goToPage, page, goFirstPage };
 }

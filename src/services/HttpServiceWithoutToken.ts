@@ -4,19 +4,19 @@ import { createAxios, getParams, getDefaultOptionsWithoutToken } from './HttpHel
 
 class HttpServiceWithoutToken
 {
-    static async request<T> ( data: IHttpServiceParams )
+    static async request<T>(data: IHttpServiceParams)
     {
         const { config, queryParams } = data;
 
-        const requestDefaultOptions: AxiosRequestConfig = getDefaultOptionsWithoutToken( config );
+        const requestDefaultOptions: AxiosRequestConfig = getDefaultOptionsWithoutToken(config);
         const http: AxiosInstance = createAxios();
-        const params: URLSearchParams = getParams( queryParams );
+        const params: URLSearchParams = getParams(queryParams);
 
-        return ( await http.request<T>( {
+        return (await http.request<T>({
             ...requestDefaultOptions,
-            params,
+            params
         }
-        ) ).data;
+        )).data;
     }
 }
 

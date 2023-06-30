@@ -5,31 +5,31 @@ import { LoginApi } from '../../../features/auth/interfaces/login';
 type params = {
     userRepository: UserRepository;
     user: LoginApi;
-    setError: ( error: undefined ) => string;
-    refetch: ( info?: unknown ) => void;
+    setError: (error: undefined) => string;
+    refetch: (info?: unknown) => void;
     t: any;
 };
 
-export const removeUserAction = ( { userRepository, user, setError, refetch, t }: params ) => async ( id: string ) =>
+export const removeUserAction = ({ userRepository, user, setError, refetch, t }: params) => async(id: string) =>
 {
     try
     {
-        void await userRepository.removeUser( { id, user } );
+        void await userRepository.removeUser({ id, user });
 
-        notificationService.show( {
+        notificationService.show({
             status: 'success',
-            title: t( 'u_removed' ) as string,
-        } );
+            title: t('u_removed') as string
+        });
 
         refetch();
     }
-    catch ( error: any )
+    catch (error: any)
     {
-        const errorMessage = setError( error );
-        notificationService.show( {
+        const errorMessage = setError(error);
+        notificationService.show({
             status: 'danger',
-            title: t( 'err_remove_user' ) as string,
-            description: t( errorMessage ) as string,
-        } );
+            title: t('err_remove_user') as string,
+            description: t(errorMessage) as string
+        });
     }
 };

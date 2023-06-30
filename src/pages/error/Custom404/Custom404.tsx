@@ -1,8 +1,11 @@
 import { Link } from '@solidjs/router';
-import { Text } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 
-const Custom404 = () => (
-    <div class="grid min-h-screen place-items-center gilroy">
+const Custom404 = () =>
+{
+    const [t] = useI18n();
+
+    return (<div class="grid min-h-screen place-items-center gilroy">
         <div class="flex items-center flex-col w-full gap-4">
             <svg
                 class="h-16 w-16 text-main-gray-250"
@@ -19,13 +22,13 @@ const Custom404 = () => (
                 />
             </svg>
             <h2 class="text-xl text-left mx-1/4 text-main-gray-250 font-extrabold gilroy ">
-                <Text message="err_404"/>
+                {t('err_404')}
             </h2>
             <Link href="/" class="px-10 py-2 dg-main-button">
-                <Text message="a_home" />
+                {t('a_home')}
             </Link>
         </div>
-    </div>
-);
+    </div>);
+};
 
 export default Custom404;

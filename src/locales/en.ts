@@ -104,7 +104,7 @@ const app: I18nLocales = {
     a_yes: 'yes',
     a_your_address: 'Your address...',
     a_your_email: 'Your email',
-    a_your_password: 'Your password',
+    a_your_password: 'Your password'
 };
 
 const calendar: I18nLocales = {
@@ -129,7 +129,7 @@ const calendar: I18nLocales = {
     a_sep: 'Sep',
     a_oct: 'Oct',
     a_nov: 'Nov',
-    a_dec: 'Dec',
+    a_dec: 'Dec'
 };
 
 const auth: I18nLocales = {
@@ -145,7 +145,7 @@ const auth: I18nLocales = {
     au_send_email: 'We sent you an email',
     au_verification_successful: '¡ Verification Successful !',
     au_wait_few_moments: 'wait a few moments...',
-    au_we_building: 'We are building everything you need to get started',
+    au_we_building: 'We are building everything you need to get started'
 };
 
 const appValidations: I18nLocales = {
@@ -154,11 +154,11 @@ const appValidations: I18nLocales = {
     av_password_match: 'Passwords must match',
     av_required: 'Required',
     av_too_long: 'Too Long!',
-    av_too_short: 'Too Short!',
+    av_too_short: 'Too Short!'
 };
 
 const entities: I18nLocales = {
-    User: 'User',
+    User: 'User'
 };
 
 const apiKeys: I18nLocales = {
@@ -169,7 +169,7 @@ const apiKeys: I18nLocales = {
     'app.presentation.exceptions.validator': 'Value fields are not valid.',
     'auth.domain.exceptions.badCredentials': 'Email or password incorrect.',
     'shared.exceptions.notFound': 'The resource `{entity}` was not found.',
-    'user.domain.exceptions.unverifiedUser': 'The user is not verified.',
+    'user.domain.exceptions.unverifiedUser': 'The user is not verified.'
 };
 
 const errors: I18nLocales = {
@@ -192,7 +192,7 @@ const errors: I18nLocales = {
     err_server: 'Error at server',
     err_unexpected: 'Error unexpected',
     err_view: 'Error at load view',
-    forbidden: 'Access denied',
+    forbidden: 'Access denied'
 };
 
 const properties: I18nLocales = {
@@ -238,7 +238,7 @@ const properties: I18nLocales = {
     taxes: 'Taxes',
     type: 'Type',
     type_id: 'Type',
-    value: 'Value',
+    value: 'Value'
 };
 
 const roles: I18nLocales = {
@@ -251,7 +251,7 @@ const roles: I18nLocales = {
     r_removed: 'The role was removed',
     r_search: '{count, plural, one {Search role} other {Search roles}}',
     r_update: 'Update Role',
-    r_updated: 'Role updated',
+    r_updated: 'Role updated'
 };
 
 const user: I18nLocales = {
@@ -266,7 +266,7 @@ const user: I18nLocales = {
     u_update: 'Update User',
     u_updated: 'User updated',
     u_users: 'Users',
-    u_view: 'Show User',
+    u_view: 'Show User'
 };
 
 const en: I18nLocales = {
@@ -279,7 +279,7 @@ const en: I18nLocales = {
     ...errors,
     ...properties,
     ...roles,
-    ...user,
+    ...user
 };
 
 export default en;

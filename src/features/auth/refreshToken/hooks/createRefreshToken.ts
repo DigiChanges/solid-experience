@@ -8,49 +8,49 @@ import AuthRepository from '../../repositories/AuthRepository';
 const createRefreshToken = () =>
 {
     const authRepository = new AuthRepository();
-    const [ auth ] = createResource( authRepository.refreshToken );
+    const [auth] = createResource(authRepository.refreshToken);
     const navigate = useNavigate();
     const location = useLocation();
-    const [ user, { addUser } ] = useApplicationContext();
-    const [ loading, setLoading ] = createSignal( true );
+    const [user, { addUser }] = useApplicationContext();
+    const [loading, setLoading] = createSignal(true);
 
-    const setUser = async () =>
+    const setUser = async() =>
     {
-        const userAuth = await assignAllPermissionsToSuperAdminUser( auth()?.data );
-        return addUser( userAuth );
+        const userAuth = await assignAllPermissionsToSuperAdminUser(auth()?.data);
+        return addUser(userAuth);
     };
 
-    const redirect = async () =>
+    const redirect = async() =>
     {
-        if ( auth.error )
+        if (auth.error)
         {
-            const matchLogin = useMatch( () => `${LOGIN_PAGE_PATH}/:tenant` );
-            const matchChangeForgotPassword = useMatch( () => `${CHANGE_FORGOT_PASSWORD_PAGE_PATH}/:token` );
+            const matchLogin = useMatch(() => `${LOGIN_PAGE_PATH}/:tenant`);
+            const matchChangeForgotPassword = useMatch(() => `${CHANGE_FORGOT_PASSWORD_PAGE_PATH}/:token`);
 
-            if ( !( Boolean( matchLogin() ) || Boolean( matchChangeForgotPassword() ) || WHITE_PAGES.includes( location.pathname ) ) )
+            if (!(Boolean(matchLogin()) || Boolean(matchChangeForgotPassword()) || WHITE_PAGES.includes(location.pathname)))
             {
-                navigate( LOGIN_PAGE_PATH, { replace: true } );
+                navigate(LOGIN_PAGE_PATH, { replace: true });
             }
         }
         else
         {
             await setUser();
-            if ( REDIRECT_SIGNED_IN_USERS_PAGES.includes( location.pathname ) )
+            if (REDIRECT_SIGNED_IN_USERS_PAGES.includes(location.pathname))
             {
-                navigate( '/', { replace: true } );
+                navigate('/', { replace: true });
             }
         }
 
-        setLoading( false );
+        setLoading(false);
     };
 
-    createEffect( () =>
+    createEffect(() =>
     {
-        if ( !user() && !auth.loading )
+        if (!user() && !auth.loading)
         {
             redirect();
         }
-    } );
+    });
 
     return { loading };
 };

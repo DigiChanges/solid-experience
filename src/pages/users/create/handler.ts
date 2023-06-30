@@ -7,18 +7,18 @@ type params = {
     user: LoginApi;
 };
 
-export const createAction = ( { userRepository, user }: params ) => async ( data: UserPayload ) =>
+export const createAction = ({ userRepository, user }: params) => async(data: UserPayload) =>
 {
     const rolesSelected = {
-        rolesId: Array.from( data.roles as [] ),
+        rolesId: Array.from(data.roles as [])
     };
 
     delete data.roles;
-    const response = await userRepository.createUser( { data, user } );
+    const response = await userRepository.createUser({ data, user });
 
-    if ( rolesSelected )
+    if (rolesSelected)
     {
         const { id } = response.data;
-        void await userRepository.assignUserRole( { id, data: rolesSelected, user } );
+        void await userRepository.assignUserRole({ id, data: rolesSelected, user });
     }
 };

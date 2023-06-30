@@ -2,7 +2,7 @@ export const INIT_STATE = {
     isLoading: false,
     notification: null,
     nextPaginationParams: { limit: '6', offset: '0' },
-    modalData: null,
+    modalData: null
 };
 
 export const LOGIN_PAGE_PATH = '/login';
@@ -16,9 +16,9 @@ export const REDIRECT_SIGNED_IN_USERS_PAGES = [
     '/change-password-success',
     '/email-sent-successfully',
     '/verify-account-success',
-    '/verify-your-account',
+    '/verify-your-account'
 ];
 
 export const WHITE_PAGES = [
-    ...REDIRECT_SIGNED_IN_USERS_PAGES,
+    ...REDIRECT_SIGNED_IN_USERS_PAGES
 ];

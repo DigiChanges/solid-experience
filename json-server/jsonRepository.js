@@ -1,51 +1,66 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require( 'fs' );
+const fs = require('fs');
 
-function getDbData ( cb )
+function getDbData(cb)
 {
-    fs.readFile( './db.json', 'utf-8', ( err, jsonData ) =>
+    fs.readFile('./db.json', 'utf-8', (err, jsonData) =>
     {
-        if ( err ) { return cb( err ); }
-        const data = JSON.parse( jsonData );
-        cb( null, data );
-    } );
-}
-function saveDbData ( data, cb )
+        if (err)
 {
-    fs.writeFile( './db.json', JSON.stringify( data, null, 2 ), cb );
+ return cb(err);
+}
+        const data = JSON.parse(jsonData);
+        cb(null, data);
+    });
+}
+function saveDbData(data, cb)
+{
+    fs.writeFile('./db.json', JSON.stringify(data, null, 2), cb);
 }
 
 const jsonRepository = {
-    saveRefreshToken ( refreshToken )
+    saveRefreshToken(refreshToken)
     {
-        getDbData( ( err, data ) =>
+        getDbData((err, data) =>
         {
-            if ( err ) { return console.error( 'Error to read db.json' ); }
+            if (err)
+{
+ return console.error('Error to read db.json');
+}
 
             data['refresh-token'] = refreshToken;
 
-            saveDbData( data, ( err ) =>
+            saveDbData(data, (err) =>
             {
-                if ( err ) { return console.error( 'Error to save refresh-token' ); }
-            } );
-        } );
+                if (err)
+{
+ return console.error('Error to save refresh-token');
+}
+            });
+        });
     },
-    removeRefreshToken ( cb )
+    removeRefreshToken(cb)
     {
-        getDbData( ( err, data ) =>
+        getDbData((err, data) =>
         {
             delete data['refresh-token'];
 
-            if ( err ) { return console.error( 'Error to read db.json' ); }
+            if (err)
+{
+ return console.error('Error to read db.json');
+}
 
-            saveDbData( data, ( err ) =>
+            saveDbData(data, (err) =>
             {
-                if ( err ) { return console.error( 'Error to save refresh-token' ); }
+                if (err)
+{
+ return console.error('Error to save refresh-token');
+}
                 cb();
-            } );
-        } );
-    },
+            });
+        });
+    }
 };
 
 module.exports = jsonRepository;

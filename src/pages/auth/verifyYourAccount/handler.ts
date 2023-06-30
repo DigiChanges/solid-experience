@@ -7,37 +7,37 @@ type params = {
     errorAlert: createAlertType;
     navigate: any;
     searchParams: any;
-    setIsLoading: ( isLoading: boolean ) => void;
+    setIsLoading: (isLoading: boolean) => void;
     t: any;
 };
 
-export const verifyAccountAction = ( { authRepository, errorAlert, navigate, setIsLoading, searchParams, t }: params ) => async () =>
+export const verifyAccountAction = ({ authRepository, errorAlert, navigate, setIsLoading, searchParams, t }: params) => async() =>
 {
     const { setError } = errorAlert;
 
     try
     {
-        setIsLoading( true );
-        void await authRepository.verifyYourAccount( { data: searchParams.token } );
+        setIsLoading(true);
+        void await authRepository.verifyYourAccount({ data: searchParams.token });
 
-        notificationService.show( {
+        notificationService.show({
             status: 'success',
-            title: t( 'au_verification_successful' ) as string,
-        } );
+            title: t('au_verification_successful') as string
+        });
 
-        navigate( '/verify-account-success', { replace: true } );
-        setIsLoading( false );
+        navigate('/verify-account-success', { replace: true });
+        setIsLoading(false);
     }
-    catch ( error: any )
+    catch (error: any)
     {
-        const errorMessage = setError( error );
-        notificationService.show( {
+        const errorMessage = setError(error);
+        notificationService.show({
             status: 'danger',
-            title: t( 'err_verify_account' ) as string,
-            description: t( errorMessage ) as string,
-        } );
+            title: t('err_verify_account') as string,
+            description: t(errorMessage) as string
+        });
 
-        setIsLoading( false );
-        navigate( '/login', { replace: true } );
+        setIsLoading(false);
+        navigate('/login', { replace: true });
     }
 };

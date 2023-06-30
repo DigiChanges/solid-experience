@@ -12,22 +12,22 @@ import { updateAction } from './handlers';
 const IndexPage: Component = () =>
 {
     const { id } = useParams<{ id: string }> ();
-    const [ user ]: any = useApplicationContext();
+    const [user]: any = useApplicationContext();
     const authRepository = new AuthRepository();
     const roleRepository = new RoleRepository();
     const userRepository = new UserRepository();
 
-    const [ userSelected ] = createResource( { id, user: user() }, userRepository.getOne );
-    const [ roles ] = createResource( { user: user() }, roleRepository.getRoles );
-    const [ permissions ] = createResource( { user: user() }, authRepository.getAllPermissions );
-    usePermission( user, [ roles, permissions, userSelected ] );
+    const [userSelected] = createResource({ id, user: user() }, userRepository.getOne);
+    const [roles] = createResource({ user: user() }, roleRepository.getRoles);
+    const [permissions] = createResource({ user: user() }, authRepository.getAllPermissions);
+    usePermission(user, [roles, permissions, userSelected]);
 
-    const isLoading = createMemo( () => userSelected.loading || permissions.loading || roles.loading );
+    const isLoading = createMemo(() => userSelected.loading || permissions.loading || roles.loading);
 
     return (
         <PrivateLayout>
             <UserUpdate
-                onUpdate={updateAction( { userRepository, id, user: user() } )}
+                onUpdate={updateAction({ userRepository, id, user: user() })}
                 userSelected={userSelected()?.data}
                 permissionsList={permissions()?.data}
                 rolesList={roles()?.data}

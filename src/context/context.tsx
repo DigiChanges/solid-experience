@@ -8,18 +8,18 @@ interface ApplicationProviderProps
 
 const ApplicationContext = createContext();
 
-export function ApplicationProvider ( props: ApplicationProviderProps )
+export function ApplicationProvider(props: ApplicationProviderProps)
 {
-    const [ authUser, setAuthUser ] = createSignal<LoginApi>();
+    const [authUser, setAuthUser] = createSignal<LoginApi>();
 
     const store = [
         authUser,
         {
-            addUser ( _authUser: LoginApi )
+            addUser(_authUser: LoginApi)
             {
-                setAuthUser( () => _authUser );
-            },
-        },
+                setAuthUser(() => _authUser);
+            }
+        }
     ];
 
     return (
@@ -29,7 +29,7 @@ export function ApplicationProvider ( props: ApplicationProviderProps )
     );
 }
 
-export function useApplicationContext (): any[]
+export function useApplicationContext(): any[]
 {
-    return useContext<any>( ApplicationContext );
+    return useContext<any>(ApplicationContext);
 }

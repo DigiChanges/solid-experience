@@ -1,32 +1,32 @@
 export const weekDays = [
     {
         short: 'a_sun',
-        full: 'Sunday',
+        full: 'Sunday'
     },
     {
         short: 'a_mon',
-        full: 'Monday',
+        full: 'Monday'
     },
     {
         short: 'a_tue',
-        full: 'Tuesday',
+        full: 'Tuesday'
     },
     {
         short: 'a_wed',
-        full: 'Wednesday',
+        full: 'Wednesday'
     },
     {
         short: 'a_thu',
-        full: 'Thursday',
+        full: 'Thursday'
     },
     {
         short: 'a_fri',
-        full: 'Friday',
+        full: 'Friday'
     },
     {
         short: 'a_sat',
-        full: 'Saturday',
-    },
+        full: 'Saturday'
+    }
 ];
 
 export const monthList = [
@@ -41,11 +41,11 @@ export const monthList = [
     { full: 'September', short: 'a_sep', monthIndex: 9 },
     { full: 'October', short: 'a_oct', monthIndex: 10 },
     { full: 'November', short: 'a_nov', monthIndex: 11 },
-    { full: 'December', short: 'a_dec', monthIndex: 12 },
+    { full: 'December', short: 'a_dec', monthIndex: 12 }
 ];
 
 export const viewList = [
     { label: 'a_day', value: 'day' },
     { label: 'a_month', value: 'month' },
-    { label: 'a_year', value: 'year' },
+    { label: 'a_year', value: 'year' }
 ];

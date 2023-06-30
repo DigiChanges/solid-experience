@@ -3,7 +3,7 @@ import UserMessageSuccess from '../../../features/user/templates/UserMessageSucc
 
 const IndexPage: Component = () =>
 {
-    return ( <UserMessageSuccess title={'au_password_updated'} description={'au_can_log_in_data'}/> );
+    return (<UserMessageSuccess title={'au_password_updated'} description={'au_can_log_in_data'}/>);
 };
 
 export default IndexPage;

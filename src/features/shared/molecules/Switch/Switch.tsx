@@ -8,7 +8,7 @@ interface RadioGroupProps extends JSX.HTMLAttributes<HTMLDivElement> {
     value: boolean;
 }
 
-const Switch: Component<RadioGroupProps> = ( props ) =>
+const Switch: Component<RadioGroupProps> = (props) =>
 {
     return (
         <KSwitch.Root

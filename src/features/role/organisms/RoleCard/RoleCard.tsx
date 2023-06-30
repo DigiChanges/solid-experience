@@ -12,7 +12,7 @@ interface RoleCardProps {
     onDelete: () => void;
 }
 
-const RoleCard: Component<RoleCardProps> = ( props ) => (
+const RoleCard: Component<RoleCardProps> = (props) => (
     <Card>
         <CardContent class="card_container">
 

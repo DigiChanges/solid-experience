@@ -3,7 +3,7 @@ import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { notificationService } from '../../../../shared/molecules/Toast/Toast';
 import { Link, useNavigate } from '@solidjs/router';
-import { Text, useI18n } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { Component, Show } from 'solid-js';
 import { InferType } from 'yup';
 import createAlert from '../../../../shared/hooks/createAlert';
@@ -13,86 +13,86 @@ import styles from './ChangeForgotPassword.module.css';
 import { darkInput, darkNeutralButton, darkPrimaryButton, placeholderInput } from '../../../../shared/constants/hopeAdapter';
 
 interface ChangePasswordTemplateProps {
-    onSubmit: ( data: ChangeForgotPasswordPayload ) => void;
+    onSubmit: (data: ChangeForgotPasswordPayload) => void;
     confirmationToken: string;
 }
 
 const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
 {
-    const { t } = useI18n();
+    const [t] = useI18n();
     const navigate = useNavigate();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
     const handleSuccess = () => () =>
     {
-        notificationService.show( {
+        notificationService.show({
             status: 'success',
-            title: t( 'au_password_updated' ) as string,
-        } );
-        navigate( '/change-password-success', { replace: true } );
+            title: t('au_password_updated') as string
+        });
+        navigate('/change-password-success', { replace: true });
     };
 
-    const handleError = () => ( error: unknown ) =>
+    const handleError = () => (error: unknown) =>
     {
-        const errorMessage = setError( error );
-        notificationService.show( {
+        const errorMessage = setError(error);
+        notificationService.show({
             status: 'danger',
-            title: t( 'err_save_password' ) as string,
-            description: t( errorMessage ) as string,
-        } );
-    } ;
+            title: t('err_save_password') as string,
+            description: t(errorMessage) as string
+        });
+    };
 
     const {
         errors,
         form,
         isSubmitting,
-        isValid,
+        isValid
         // @ts-ignore
-    } = createForm<InferType<typeof changeForgotPasswordSchema>>( {
+    } = createForm<InferType<typeof changeForgotPasswordSchema>>({
         initialValues: { confirmationToken: props.confirmationToken },
-        extend: validator( { schema: changeForgotPasswordSchema } ),
+        extend: validator({ schema: changeForgotPasswordSchema }),
         onSuccess: handleSuccess(),
         onError: handleError(),
-        onSubmit: values => props.onSubmit( values as any ),
-    } );
+        onSubmit: values => props.onSubmit(values as any)
+    });
     return (
         <section class={styles.container}>
             <div class={styles.title_container}>
-                <h1 class="section_title"><Text message="a_change_password" /></h1>
+                <h1 class="section_title">{t('a_change_password')}</h1>
             </div>
             <form ref={form} class="form_password">
 
                 <div class="field_wrapper" >
-                    <FormControl isRequired isInvalid={!!errors( 'password' )}>
+                    <FormControl isRequired isInvalid={!!errors('password')}>
                         <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }} for="password">
-                            <Text message="new_password"/>
+                            {t('new_password')}
                         </FormControlLabel>
                         <Input
                             _dark={darkInput}
                             _placeholder={placeholderInput}
                             name="password"
                             type="password"
-                            placeholder={t( 'a_password' ) as string}
+                            placeholder={t('a_password') as string}
                         />
-                        <Show when={errors( 'password' )} keyed>
-                            <FormControlError class="error_message_block"><Text message={errors( 'password' )?.[0] ?? ''} /></FormControlError>
+                        <Show when={errors('password')} keyed>
+                            <FormControlError class="error_message_block">{t(errors('password')?.[0] ?? '')}</FormControlError>
                         </Show>
                     </FormControl>
                 </div>
                 <div class="field_wrapper">
-                    <FormControl isRequired isInvalid={!!errors( 'passwordConfirmation' )}>
+                    <FormControl isRequired isInvalid={!!errors('passwordConfirmation')}>
                         <FormControlLabel class={'form_label'} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
-                            <Text message="confirm_password"/>
+                            {t('confirm_password')}
                         </FormControlLabel>
                         <Input
                             _dark={darkInput}
                             _placeholder={placeholderInput}
                             name="passwordConfirmation"
                             type="password"
-                            placeholder={t( 'a_repeat_password' ) as string}
+                            placeholder={t('a_repeat_password') as string}
                         />
-                        <Show when={errors( 'passwordConfirmation' )} keyed>
-                            <FormControlError class="error_message_block"><Text message={errors( 'passwordConfirmation' )?.[0] ?? ''} /></FormControlError>
+                        <Show when={errors('passwordConfirmation')} keyed>
+                            <FormControlError class="error_message_block">{t(errors('passwordConfirmation')?.[0] ?? '')}</FormControlError>
                         </Show>
                     </FormControl>
                 </div>
@@ -105,7 +105,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                             colorScheme="neutral"
                             _dark={darkNeutralButton}
                         >
-                            <Text message="a_back" />
+                            {t('a_back')}
                         </Button>
                     </div>
                     <div class="button_full">
@@ -115,9 +115,9 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                             type="submit"
                             isDisabled={!isValid()}
                             isLoading={isSubmitting()}
-                            loadingText={<Text message="a_submitting"/> as string}
+                            loadingText={t('a_submitting') as string}
                         >
-                            <Text message="a_save"/>
+                            {t('a_save')}
                         </Button>
                     </div>
                 </div>

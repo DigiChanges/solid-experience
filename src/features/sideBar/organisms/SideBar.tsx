@@ -2,7 +2,7 @@ import { Component, JSX } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
 import styles from './SideBar.module.css';
-import { Text } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { Drawer } from '@hope-ui/core';
 import { logout } from '../../navBar/organisms/handlers';
 import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
@@ -17,21 +17,23 @@ interface SideBarProps {
     open: () => void;
 }
 
-const SideBar: Component<SideBarProps> = ( props ) =>
+const SideBar: Component<SideBarProps> = (props) =>
 {
-    const items = [
-        {
-            children: <Text message="Item 1" />,
-            onSelect: {},
-        },
-        {
-            children: <Text message="Item 2" />,
-            onSelect: {},
-        },
-        {
-            children: <Text message="a_logout" />,
-            onSelect: logout( { user: props.authUser } ),
-        },
+    const [t] = useI18n();
+
+    const items: never[] = [
+        // {
+        //     children: {t('Item 1')},
+        //     onSelect: {},
+        // },
+        // {
+        //     children: {t('Item 2')},
+        //     onSelect: {},
+        // },
+        // {
+        //     children: {t('a_logout') as string},
+        //     onSelect: logout( { user: props.authUser } )
+        // },
     ];
 
     return (
