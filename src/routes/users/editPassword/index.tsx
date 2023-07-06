@@ -1,4 +1,4 @@
-import { useParams } from '@solidjs/router';
+import { useParams } from "solid-start";
 import { Component } from 'solid-js';
 // import { useApplicationContext } from '../../../context/context';
 import UserEditPassword from '../../../features/user/templates/UserEditPassword/UserEditPassword';
