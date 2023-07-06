@@ -1,11 +1,12 @@
 import { notificationService } from '../../../features/shared/molecules/Toast/Toast';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import { createAlertType } from '../../../features/shared/hooks/createAlert';
+import {Navigator} from "@solidjs/router";
 
 type params = {
     authRepository: AuthRepository;
     errorAlert: createAlertType;
-    navigate: any;
+    navigate: Navigator;
     searchParams: any;
     setIsLoading: (isLoading: boolean) => void;
     t: any;
