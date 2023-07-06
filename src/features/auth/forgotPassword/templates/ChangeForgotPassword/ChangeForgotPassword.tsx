@@ -101,7 +101,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                         <Button
                             class="button_full"
                             as={Link}
-                            href="/login"
+                            href="/auth/login"
                             colorScheme="neutral"
                             _dark={darkNeutralButton}
                         >

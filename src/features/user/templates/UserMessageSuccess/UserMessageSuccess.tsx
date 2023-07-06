@@ -12,7 +12,7 @@ interface messageSuccessProps{
 const UserMessageSuccess: Component<messageSuccessProps> = (props) =>
 {
     const i18n = useI18n();
-    const { t } = i18n;
+    // const { t } = i18n;
 
     return (
         <section class={styles.container}>
@@ -22,13 +22,13 @@ const UserMessageSuccess: Component<messageSuccessProps> = (props) =>
                     status="success"
                     variant={'solid'}
                     icon={<FaSolidCircleCheck />}
-                    title={t(props.title)}
+                    // title={t(props.title)}
                     description={
                         <>
-                            {t(props.description)}
+                            {/*{t(props.description)}*/}
                             <div class={styles.link_login}>
-                                <Link href={'/login'}>
-                                    {t('au_go_to_login')}
+                                <Link href={'/auth/login'}>
+                                    {/*{t('au_go_to_login')}*/}
                                 </Link>
                             </div>
                         </>

@@ -15,5 +15,4 @@ const IndexPage: Component = () =>
         />
     </>;
 };
-
 export default IndexPage;

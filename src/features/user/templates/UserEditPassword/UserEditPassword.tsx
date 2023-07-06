@@ -106,7 +106,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = (props) =>
                             _dark={darkNeutralButton}
                             class="button_full"
                             as={Link}
-                            href="/login"
+                            href="/auth/login"
                             colorScheme="neutral"
                         >
                             {t('a_back')}

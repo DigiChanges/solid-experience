@@ -15,7 +15,7 @@ const PrivateLayout: Component<privateTemplateProps> = (props) =>
 {
     const [showSidebar] = createSignal(false);
     const { isOpen, open, close } = createDisclosure();
-    const [authUser] = useApplicationContext();
+    // const [authUser] = useApplicationContext();
 
     return (
         <div class={styles.container}>
@@ -25,9 +25,9 @@ const PrivateLayout: Component<privateTemplateProps> = (props) =>
 
             <div class={styles.main_container}>
 
-                <div class={styles.sidebar_container}>
-                    <SideBar showInMobile={showSidebar()} authUser={authUser()} isOpen={ isOpen } open={ open } close={ close }/>
-                </div>
+                {/*<div class={styles.sidebar_container}>*/}
+                {/*    <SideBar showInMobile={showSidebar()} authUser={authUser()} isOpen={ isOpen } open={ open } close={ close }/>**/}
+                {/*</div>*/}
 
                 <main class={styles.main}>
                     {props.children}

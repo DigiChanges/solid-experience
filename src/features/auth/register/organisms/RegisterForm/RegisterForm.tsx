@@ -331,7 +331,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
             <div class="update_save_buttons_container">
                 <Button
                     as={Link}
-                    href="/users"
+                    href="/auth/login"
                     colorScheme="neutral"
                     _dark={darkNeutralButton}
                 >
