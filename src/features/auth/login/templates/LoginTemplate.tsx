@@ -3,7 +3,6 @@ import { Link, useNavigate } from '@solidjs/router';
 import { useI18n } from '@solid-primitives/i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logo from '../../../../assets/images/dgc_logo.png';
-import {useHandleNavigate} from "../../../../hooks/useHandleNavigate";
 import { useApplicationContext } from '../../../../context/context';
 import createAlert from '../../../shared/hooks/createAlert';
 import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
