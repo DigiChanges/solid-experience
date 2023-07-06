@@ -60,29 +60,28 @@ const LoginTemplate: Component = () =>
                             <img class={styles.logo} src={logo} alt="digichanges logo"/>
                         </div>
 
-                        {/*<Show when={!getShowRecoverPassword()}*/}
-                        {/*    fallback={() => (*/}
-                        {/*        <ForgotPasswordForm*/}
-                        {/*            onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}*/}
-                        {/*            onSubmit={createForgotPasswordAction({ errorAlert, navigate, t })}*/}
-                        {/*        />*/}
-                        {/*    )}*/}
-                        {/*>*/}
-                        {/*    <div class={styles.register}>*/}
-                        {/*        <p class={'text-neutral-50'}>{t('a_do_not_have_account')}</p>*/}
-                        {/*        <Link href="/register">*/}
-                        {/*            <strong>{t('a_sign_up')}</strong>*/}
-                        {/*        </Link>*/}
-                        {/*    </div>*/}
+                        <Show when={!getShowRecoverPassword()}
+                            fallback={() => (
+                                <ForgotPasswordForm
+                                    onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}
+                                    onSubmit={createForgotPasswordAction({ errorAlert, navigate, t })}
+                                />
+                            )}
+                        >
+                            <div class={styles.register}>
+                                <p class={'text-neutral-50'}>{t('a_do_not_have_account')}</p>
+                                <Link href="/register">
+                                    <strong>{t('a_sign_up')}</strong>
+                                </Link>
+                            </div>
 
-                        {/*    <LoginForm*/}
-                        {/*        onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}*/}
-                        {/*        onSubmit={handleLoginFormSubmit({ addUser, setIsLoading })}*/}
-                        {/*        onError={handleError()}*/}
-                        {/*        onSuccess={handleSuccess()}*/}
-                        {/*    />*/}
-                        {/*</Show>*/}
-                        <A href="/register">No tienes una cuenta? Registrate aqui</A>
+                            {/*<LoginForm*/}
+                            {/*    onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}*/}
+                            {/*    onSubmit={handleLoginFormSubmit({ addUser, setIsLoading })}*/}
+                            {/*    onError={handleError()}*/}
+                            {/*    onSuccess={handleSuccess()}*/}
+                            {/*/>*/}
+                        </Show>
                     </div>
                 </Card>
             </section>
