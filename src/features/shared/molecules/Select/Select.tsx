@@ -1,4 +1,4 @@
-import { Component, JSX, For } from 'solid-js';
+import {Component, JSX, For, createEffect, createSignal} from 'solid-js';
 import styles from './Select.module.css';
 import { Select as KSelect, As } from '@kobalte/core';
 import { useI18n } from '@solid-primitives/i18n';
@@ -26,13 +26,22 @@ interface MultiSelectProps extends SelectBase {
     value: any;
 }
 
+interface SelectValue {
+    label: string;
+    value: string;
+}
+
 export const Select: Component<SelectProps> = (props) =>
 {
+    const [ value, setValue ] = createSignal("");
+
+    createEffect(() =>
+    {
+        console.log(value());
+    }, [value()])
     const [t] = useI18n();
-
     return (
-
-        <KSelect.Root
+        <KSelect.Root<any>
             name={props.name}
             class={props.class}
             placeholder={t(props.placeholder)}
@@ -41,8 +50,7 @@ export const Select: Component<SelectProps> = (props) =>
             optionValue={props.valueProperty}
             optionTextValue={props.labelProperty}
             optionGroupChildren={props.groupSelector}
-            onValueChange={(value) => props.onChange(value)}
-            valueComponent={props => props.item.textValue}
+            onChange={(value) => props.onChange(value)}
             itemComponent={props => (
                 <KSelect.Item item={props.item} class={styles.select__item}>
                     <KSelect.ItemLabel>{props.item.textValue}</KSelect.ItemLabel>
@@ -52,9 +60,17 @@ export const Select: Component<SelectProps> = (props) =>
             sectionComponent={props =>
                 <KSelect.Section class={styles.select__section}>{props.section.rawValue.group}</KSelect.Section>
             }
-        >
+             >
             <KSelect.Trigger class={styles.select__trigger}>
-                <KSelect.Value class={styles.select__value} />
+                <KSelect.Value<SelectValue> class={styles.select__value}>
+                    {state =>
+                    {
+                        console.log("soy el state", state.selectedOption().label);
+                        return(
+                            state.selectedOption().label
+                        )
+                    }}
+                </KSelect.Value>
                 <KSelect.Icon class={styles.select__icon}><HiSolidSelector /></KSelect.Icon>
             </KSelect.Trigger>
 
@@ -80,7 +96,7 @@ export const MultiSelect: Component<MultiSelectProps> = (props) =>
             optionValue={props.valueProperty}
             optionTextValue={props.labelProperty}
             optionGroupChildren={props.groupSelector}
-            onValueChange={(value) => props.onChange(value)}
+            onChange={(value) => props.onChange(value)}
             valueComponent={props =>
                 <For each={props.items}>
                     {item =>

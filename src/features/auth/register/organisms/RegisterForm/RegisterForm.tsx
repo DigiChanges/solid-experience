@@ -2,7 +2,7 @@ import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
-import { Component, Show } from 'solid-js';
+import {Component, createEffect, Show} from 'solid-js';
 import { InferType } from 'yup';
 import { country, gender, userDocumentTypeOptions } from '../../../../../entities';
 import RegisterSchema from '../../../validations/schemas/RegisterSchema.';
@@ -40,9 +40,16 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
         onSubmit: values => props.onSubmit(values as any)
     });
 
+    createEffect(() =>
+    {
+        console.log(data());
+        // console.log(isValid());
+    }, [data(), errors()])
+
     const handleSelect = (field: keyof InferType<typeof RegisterSchema>) => (value: string | boolean) =>
     {
-        setFields(field, value, true);
+        setFields(field, "chespirito", true);
+        console.log(data());
     };
 
     const handleDate = (field: keyof InferType<typeof RegisterSchema>, value: any) =>
@@ -82,7 +89,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                     <div class="field_wrapper full">
                         <FormControl isRequired isInvalid={!!errors('lastName')} >
                             <FormControlLabel class={'form_label'} for="lastName" _dark={{ _after: { color: 'danger.300' } }}>
-                                {/* {t('last_name')}*/}
+                                 {t('last_name')}
                             </FormControlLabel>
                             <Input
                                 _dark={darkInput}
@@ -92,7 +99,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 placeholder={t('a_enter_last_name') as string} />
                             <Show when={errors('lastName')} keyed>
                                 <FormControlError class="error_message_block">
-                                    {/* <Text message={errors('lastName')?.[0] ?? ''} />*/}
+                                    {t(errors('lastName')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
                         </FormControl>

@@ -21,7 +21,7 @@ const Radio: Component<RadioGroupProps> = (props) =>
             class={styles.radio__group}
             defaultValue={props.defaultValue}
             value={props.value}
-            onValueChange={(value) => props.onChange(value)}
+            onChange={(value) => props.onChange(value)}
         >
             <div class={styles.radio__group__items}>
                 <For each={props.options}>
