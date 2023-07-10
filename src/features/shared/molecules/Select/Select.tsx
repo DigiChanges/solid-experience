@@ -25,20 +25,10 @@ interface SelectProps extends SelectBase {
 interface MultiSelectProps extends SelectBase {
     value: any;
 }
-
-interface SelectValue {
-    label: string;
-    value: string;
-}
-
 export const Select: Component<SelectProps> = (props) =>
 {
-    const [ value, setValue ] = createSignal("");
+    const [ value, setValue ] = createSignal<string>("");
 
-    createEffect(() =>
-    {
-        console.log(value());
-    }, [value()])
     const [t] = useI18n();
     return (
         <KSelect.Root<any>
@@ -50,7 +40,11 @@ export const Select: Component<SelectProps> = (props) =>
             optionValue={props.valueProperty}
             optionTextValue={props.labelProperty}
             optionGroupChildren={props.groupSelector}
-            onChange={(value) => props.onChange(value)}
+            onChange={(value) =>
+            {
+                setValue(value.label);
+                props.onChange(value.value);
+            }}
             itemComponent={props => (
                 <KSelect.Item item={props.item} class={styles.select__item}>
                     <KSelect.ItemLabel>{props.item.textValue}</KSelect.ItemLabel>
@@ -62,14 +56,8 @@ export const Select: Component<SelectProps> = (props) =>
             }
              >
             <KSelect.Trigger class={styles.select__trigger}>
-                <KSelect.Value<SelectValue> class={styles.select__value}>
-                    {state =>
-                    {
-                        console.log("soy el state", state.selectedOption().label);
-                        return(
-                            state.selectedOption().label
-                        )
-                    }}
+                <KSelect.Value<string> class={styles.select__value}>
+                    {value}
                 </KSelect.Value>
                 <KSelect.Icon class={styles.select__icon}><HiSolidSelector /></KSelect.Icon>
             </KSelect.Trigger>

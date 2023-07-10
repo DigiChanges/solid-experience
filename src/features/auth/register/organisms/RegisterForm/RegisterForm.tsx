@@ -40,16 +40,9 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
         onSubmit: values => props.onSubmit(values as any)
     });
 
-    createEffect(() =>
-    {
-        console.log(data());
-        // console.log(isValid());
-    }, [data(), errors()])
-
     const handleSelect = (field: keyof InferType<typeof RegisterSchema>) => (value: string | boolean) =>
     {
-        setFields(field, "chespirito", true);
-        console.log(data());
+        setFields(field, value, true);
     };
 
     const handleDate = (field: keyof InferType<typeof RegisterSchema>, value: any) =>

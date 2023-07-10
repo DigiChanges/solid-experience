@@ -7,5 +7,8 @@ export default defineConfig({
     ],
     build: {
         target: 'esnext'
-    }
+    },
+    ssr: {
+    noExternal: ["@kobalte/core"]
+  }
 });
