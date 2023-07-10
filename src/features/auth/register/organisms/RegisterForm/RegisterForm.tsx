@@ -50,10 +50,6 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
         setFields(field, value, true);
     };
 
-    createEffect(() => {
-        console.log(data());
-    }, [data()])
-
     return (
         <form ref={form}>
             <h1 class="section_title"> { t('a_create_account') }</h1>
