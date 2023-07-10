@@ -12,75 +12,75 @@ import { permissions } from './permissions';
 export const dashRoutes = [
     {
         path: '/init',
-        component: lazy( () => import( '../pages/dashboard' ) ),
+        component: lazy(() => import('../pages/dashboard')),
         name: 'a_home',
         icon: IconHome,
         showItem: true,
-        permission: 'Dashboard',
+        permission: 'Dashboard'
     },
     {
         path: '/dashboard',
-        component: lazy( () => import( '../pages/dashboard' ) ),
+        component: lazy(() => import('../pages/dashboard')),
         name: 'a_dashboard',
         icon: IconDashboard,
         showItem: true,
-        permission: 'Dashboard',
+        permission: 'Dashboard'
     },
     {
         path: '/login',
-        component: lazy( () => import( '../pages/auth/login' ) ),
+        component: lazy(() => import('../pages/auth/login')),
         name: 'a_login',
         icon: IconHome,
         showItem: false,
-        permission: 'Dashboard',
+        permission: 'Dashboard'
     },
     {
         path: '/change-forgot-password',
-        component: lazy( () => import( '../pages/auth/changeForgotPassword' ) ),
+        component: lazy(() => import('../pages/auth/changeForgotPassword')),
         name: 'a_change_password',
         icon: IconPencilAlt,
         showItem: false,
-        permission: '',
+        permission: ''
     },
     {
         path: '/email-sent-successfully',
-        component: lazy( () => import( '../pages/auth/forgotPasswordEmailSentSuccessfully' ) ),
+        component: lazy(() => import('../pages/auth/forgotPasswordEmailSentSuccessfully')),
         name: 'a_change_password',
         icon: IconPencilAlt,
         showItem: false,
-        permission: '',
+        permission: ''
     },
     {
         path: '/change-password-success',
-        component: lazy( () => import( '../pages/auth/changePasswordSuccess' ) ),
+        component: lazy(() => import('../pages/auth/changePasswordSuccess')),
         name: 'a_change_password',
         icon: IconPencilAlt,
         showItem: false,
-        permission: '',
+        permission: ''
     },
     {
         path: '/register',
-        component: lazy( () => import( '../pages/register' ) ),
+        component: lazy(() => import('../pages/register')),
         name: 'a_register',
         icon: IconHome,
         showItem: false,
-        permission: '',
+        permission: ''
     },
     {
         path: '/verify-account-success',
-        component: lazy( () => import( '../pages/auth/verifyYourAccountSuccess' ) ),
+        component: lazy(() => import('../pages/auth/verifyYourAccountSuccess')),
         name: 'a_verification_success',
         icon: IconUsers,
         showItem: false,
-        permission: '',
+        permission: ''
     },
     {
         path: '/verify-your-account',
-        component: lazy( () => import( '../pages/auth/verifyYourAccount' ) ),
+        component: lazy(() => import('../pages/auth/verifyYourAccount')),
         name: 'a_verify',
         icon: IconUsers,
         showItem: false,
-        permission: '',
+        permission: ''
     },
     {
         path: '/users',
@@ -92,37 +92,37 @@ export const dashRoutes = [
         [
             {
                 path: '/list',
-                component: lazy( () => import( '../pages/users' ) ),
+                component: lazy(() => import('../pages/users')),
                 name: 'a_list',
                 icon: IconViewList,
                 showItem: true,
-                permission: permissions.USERS.LIST,
+                permission: permissions.USERS.LIST
             },
             {
                 path: '/create',
-                component: lazy( () => import( '../pages/users/create' ) ),
+                component: lazy(() => import('../pages/users/create')),
                 name: 'a_create',
                 icon: IconPlus,
                 showItem: true,
-                permission: permissions.USERS.SAVE,
+                permission: permissions.USERS.SAVE
             },
             {
                 path: '/:id/update',
-                component: lazy( () => import( '../pages/users/update' ) ),
+                component: lazy(() => import('../pages/users/update')),
                 name: 'u_update',
                 icon: IconPencilAlt,
                 showItem: false,
-                permission: permissions.USERS.UPDATE,
+                permission: permissions.USERS.UPDATE
             },
             {
                 path: '/editPassword/:id',
-                component: lazy( () => import( '../pages/users/editPassword' ) ),
+                component: lazy(() => import('../pages/users/editPassword')),
                 name: 'a_change_password',
                 icon: IconPencilAlt,
                 showItem: false,
-                permission: 'Dashboard',
-            },
-        ],
+                permission: 'Dashboard'
+            }
+        ]
     },
     {
         path: '/roles',
@@ -134,34 +134,34 @@ export const dashRoutes = [
         [
             {
                 path: '/list',
-                component: lazy( () => import( '../pages/roles' ) ),
+                component: lazy(() => import('../pages/roles')),
                 name: 'a_list',
                 icon: IconViewList,
                 showItem: true,
-                permission: permissions.ROLES.LIST,
+                permission: permissions.ROLES.LIST
             },
             {
                 path: '/create',
-                component: lazy( () => import( '../pages/roles/create' ) ),
+                component: lazy(() => import('../pages/roles/create')),
                 name: 'a_create',
                 icon: IconPlus,
                 showItem: true,
-                permission: permissions.ROLES.SAVE,
+                permission: permissions.ROLES.SAVE
             },
             {
                 path: '/:id/update',
-                component: lazy( () => import( '../pages/roles/update' ) ),
+                component: lazy(() => import('../pages/roles/update')),
                 name: 'r_update',
                 showItem: false,
                 icon: IconPencilAlt,
-                permission: permissions.ROLES.UPDATE,
-            },
-        ],
+                permission: permissions.ROLES.UPDATE
+            }
+        ]
     },
     {
         path: '/*all',
-        component: lazy( () => import( '../pages/error/Custom404/Custom404' ) ),
-    },
+        component: lazy(() => import('../pages/error/Custom404/Custom404'))
+    }
 ];
 
 export const defaultRoute = '/users/list';

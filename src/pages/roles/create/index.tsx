@@ -9,17 +9,17 @@ import { createAction } from './handlers';
 
 const IndexPage: Component = () =>
 {
-    const [ user ]: any = useApplicationContext();
+    const [user]: any = useApplicationContext();
     const roleRepository = new RoleRepository();
     const authRepository = new AuthRepository();
-    const [ permissions ] = createResource( { user: user() }, authRepository.getAllPermissions );
+    const [permissions] = createResource({ user: user() }, authRepository.getAllPermissions);
 
-    usePermission( user, [ permissions ] );
+    usePermission(user, [permissions]);
 
     return (
         <PrivateLayout>
             <RoleCreate
-                onCreate={createAction( { roleRepository, user: user() } )}
+                onCreate={createAction({ roleRepository, user: user() })}
                 permissionsList={permissions()?.data}
                 loading={permissions.loading}
             />

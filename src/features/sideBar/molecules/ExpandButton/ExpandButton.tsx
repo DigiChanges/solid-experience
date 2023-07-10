@@ -8,10 +8,10 @@ interface SideBarProps {
     setExpanded: any;
 }
 
-const ExpandButton: Component<SideBarProps> = ( props ) => (
+const ExpandButton: Component<SideBarProps> = (props) => (
     <div class={styles.container}
         classList={{
-            [styles.not_expanded]: !props.getExpanded,
+            [styles.not_expanded]: !props.getExpanded
         }}
     >
 
@@ -20,11 +20,11 @@ const ExpandButton: Component<SideBarProps> = ( props ) => (
         >
             <IconButton
                 aria-label="Expand Sidebar"
-                onClick={() => props.setExpanded( !props.getExpanded )}
+                onClick={() => props.setExpanded(!props.getExpanded)}
                 class={styles.icon}
                 variant="plain"
                 classList={{
-                    [styles.icon_not_expanded]: !props.getExpanded,
+                    [styles.icon_not_expanded]: !props.getExpanded
                 }}
                 children={ <IconArrowCircleLeft />}
             />

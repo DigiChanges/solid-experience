@@ -1,7 +1,7 @@
 import { createForm } from '@felte/solid';
 import { Button, Icon, Input, CloseButton } from '@hope-ui/core';
 import { useSearchParams } from '@solidjs/router';
-import { Text } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { Component, createMemo, createSignal, For } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
 import Card from '../../../shared/molecules/Card/Card';
@@ -22,49 +22,49 @@ interface FilterProps{
     initialFilterOptions: SelectValueOption[];
 }
 
-const getFieldWithoutFilterArrayText = ( field: string ) => field.replace( 'filter[', '' ).replace( ']', '' );
+const getFieldWithoutFilterArrayText = (field: string) => field.replace('filter[', '').replace(']', '');
 
-const Filter: Component<FilterProps> = ( props ) =>
+const Filter: Component<FilterProps> = (props) =>
 {
-    const [ searchParams, setSearchParams ] = useSearchParams();
-    const [ selectedMenu, setSelectedMenu ] = createSignal( props.initialFilterOptions[0].value );
-    const [ showFilter, setShowFilter ] = createSignal( false );
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [selectedMenu, setSelectedMenu] = createSignal(props.initialFilterOptions[0].value);
+    const [showFilter, setShowFilter] = createSignal(false);
 
-    const getSearchParams = createMemo( () =>
+    const getSearchParams = createMemo(() =>
     {
-        if ( searchParams )
+        if (searchParams)
         {
-            return Object.entries( searchParams ).map( ( [ field, value ] ) => ( {
-                field: getFieldWithoutFilterArrayText( field ),
-                value,
-            } ) );
+            return Object.entries(searchParams).map(([field, value]) => ({
+                field: getFieldWithoutFilterArrayText(field),
+                value
+            }));
         }
         return [];
-    } );
+    });
 
-    const handleSelect = ( filterBy: string ) =>
+    const handleSelect = (filterBy: string) =>
     {
-        setSelectedMenu( filterBy );
+        setSelectedMenu(filterBy);
     };
 
-    const handleRemoveFilter = ( filter: FilterType ) => () =>
+    const handleRemoveFilter = (filter: FilterType) => () =>
     {
-        setSearchParams( { [`filter[${filter.field}]`]: null } );
+        setSearchParams({ [`filter[${filter.field}]`]: null });
     };
 
     const {
         errors,
         form,
-        reset,
+        reset
         // @ts-ignore
-    } = createForm<InferType<typeof roleSchema>>( {
-        onSubmit: ( values ) =>
+    } = createForm<InferType<typeof roleSchema>>({
+        onSubmit: (values) =>
         {
-            setSearchParams( { [`filter[${selectedMenu()}]`]: values.valor } );
-            setShowFilter( false );
+            setSearchParams({ [`filter[${selectedMenu()}]`]: values.valor });
+            setShowFilter(false);
             reset();
-        },
-    } );
+        }
+    });
 
     return (
         <>
@@ -73,15 +73,15 @@ const Filter: Component<FilterProps> = ( props ) =>
                     <Button
                         _dark={darkPrimaryButtonWithBackground}
                         leftIcon={<FiFilter />}
-                        onClick={() => setShowFilter( !showFilter() )}
+                        onClick={() => setShowFilter(!showFilter())}
                         class={'z-50 w-[100%] md:w-auto'}
                     >
-                        <Text message="a_filter"/>
+                        {t('a_filter')}
                     </Button>
                     <Card
                         class={styles.dropdown_content}
                         classList={{
-                            [styles.show]: showFilter(),
+                            [styles.show]: showFilter()
                         }}
                     >
                         <div class={styles.show}>
@@ -91,11 +91,11 @@ const Filter: Component<FilterProps> = ( props ) =>
                                         options={props.initialFilterOptions}
                                         placeholder={'type_id'}
                                         value={selectedMenu()}
-                                        onChange={( value: string ) => handleSelect( value )}
+                                        onChange={(value: string) => handleSelect(value)}
                                         valueProperty={'value'}
                                         labelProperty={'label'}
                                     />
-                                    <p class={'text-neutral-50'}><Text message="a_contains"/>:</p>
+                                    <p class={'text-neutral-50'}>{t('a_contains')}:</p>
                                     <Input
                                         _dark={darkInput}
                                         _placeholder={placeholderInput}
@@ -109,7 +109,7 @@ const Filter: Component<FilterProps> = ( props ) =>
                                         type="submit"
                                         leftIcon={<Icon><IconPlus/></Icon>}
                                     >
-                                        <Text message="a_add_filter"/>
+                                        {t('a_add_filter')}
                                     </Button>
                                 </form>
                             </CardContent>
@@ -118,14 +118,14 @@ const Filter: Component<FilterProps> = ( props ) =>
                 </div>
 
                 <For each={getSearchParams()}>
-                    {( filter ) => (
+                    {(filter) => (
                         <div class={styles.badge}>
-                            <p><Text message={filter.field}/> <Text message="a_contains"/> {filter.value}</p>
+                            <p><Text message={filter.field}/> {t('a_contains')} {filter.value}</p>
                             <CloseButton
                                 _dark={{ color: 'primary.100', cursor: 'pointer' }}
                                 aria-label="remove filter"
                                 size="sm"
-                                onClick={handleRemoveFilter( filter )}
+                                onClick={handleRemoveFilter(filter)}
                             />
                         </div>
                     )}

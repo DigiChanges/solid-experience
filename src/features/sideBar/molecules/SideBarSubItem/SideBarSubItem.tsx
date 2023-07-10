@@ -1,6 +1,6 @@
 import { Component, Show } from 'solid-js';
 import { NavLink } from '@solidjs/router';
-import { Text } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { Icon } from '@hope-ui/core';
 import styles from './SideBarItemSubItem.module.css';
 
@@ -14,7 +14,7 @@ interface SideBarSubItemProps {
     expanded: boolean;
 }
 
-const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
+const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
 {
     const IconProps: any = () => props.icon;
 
@@ -34,7 +34,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = ( props ) =>
                         </Show>
 
                         <div class="block" classList={{
-                            'md:hidden': !props.expanded,
+                            'md:hidden': !props.expanded
                         }}>
                             <span
                                 class={`${styles.side_bar_item_sub_item_nav_link_container_span}`}

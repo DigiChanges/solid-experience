@@ -1,5 +1,5 @@
 import { notificationService } from '../../features/shared/molecules/Toast/Toast';
-import { useI18n } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { Component, createEffect, createResource } from 'solid-js';
 import { useApplicationContext } from '../../context/context';
 import { RoleApi, RoleListResponse } from '../../features/role/interfaces';
@@ -15,53 +15,53 @@ import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors
 
 const IndexPage: Component = () =>
 {
-    const { t } = useI18n();
+    const [t] = useI18n();
     const { errorData, setError } = createAlert();
 
-    const [ user ]: any = useApplicationContext();
+    const [user]: any = useApplicationContext();
     const roleRepository = new RoleRepository();
 
-    const { page, goToPage, goFirstPage, getURLSearchParams } = useQuery( INIT_STATE.nextPaginationParams );
+    const { page, goToPage, goFirstPage, getURLSearchParams } = useQuery(INIT_STATE.nextPaginationParams);
 
-    const [ roles, { refetch } ] = createResource( () => ( { user: user(), queryParams: getURLSearchParams() } ), ( { user, queryParams } ) => roleRepository.getRoles( { user, queryParams } ) );
-    const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<RoleApi, RoleListResponse>( roles );
+    const [roles, { refetch }] = createResource(() => ({ user: user(), queryParams: getURLSearchParams() }), ({ user, queryParams }) => roleRepository.getRoles({ user, queryParams }));
+    const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<RoleApi, RoleListResponse>(roles);
 
-    usePermission( user, [ roles ] );
+    usePermission(user, [roles]);
 
     const viewMoreAction = () => () =>
     {
-        goToPage( roles()?.pagination?.nextUrl );
+        goToPage(roles()?.pagination?.nextUrl);
         setViewMore();
     };
 
-    createEffect( () => roles.error && setError( roles.error ) );
+    createEffect(() => roles.error && setError(roles.error));
 
-    const removeAction = async ( id: string ) =>
+    const removeAction = async(id: string) =>
     {
         try
         {
-            void await roleRepository.removeRole( { id, user: user() } );
+            void await roleRepository.removeRole({ id, user: user() });
 
-            notificationService.show( {
+            notificationService.show({
                 status: 'success',
-                title: t( 'r_removed' ) as string,
-            } );
+                title: t('r_removed') as string
+            });
 
-            if ( page()?.offset === INIT_STATE.nextPaginationParams.offset )
+            if (page()?.offset === INIT_STATE.nextPaginationParams.offset)
             {
                 return refetch();
             }
 
             goFirstPage();
         }
-        catch ( error )
+        catch (error)
         {
-            const errorMessage = setError( error );
-            notificationService.show( {
+            const errorMessage = setError(error);
+            notificationService.show({
                 status: 'danger',
-                title: t( 'err_remove_role' ) as string,
-                description: t( errorMessage ) as string,
-            } );
+                title: t('err_remove_role') as string,
+                description: t(errorMessage) as string
+            });
         }
     };
 

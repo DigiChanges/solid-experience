@@ -10,7 +10,7 @@ interface SideBarItemProps {
     name: string;
     icon?: any;
     isLoading?: boolean;
-    onClick: ( event: MouseEvent ) => void;
+    onClick: (event: MouseEvent) => void;
     getShowSubItems: any;
     routes: any;
     showItem: boolean;
@@ -22,7 +22,7 @@ interface SideBarItemProps {
     children?: JSX.Element;
 }
 
-const SideBarItem: Component<SideBarItemProps> = ( props ) => (
+const SideBarItem: Component<SideBarItemProps> = (props) => (
     <div class={`${styles.side_bar_item_container}`}>
         <Show when={props.showItem}>
             <Show when={props.isLink}

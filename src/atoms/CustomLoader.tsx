@@ -4,7 +4,7 @@ interface CustomLoaderProps {
     class?: string;
 }
 
-const CustomLoader: Component<CustomLoaderProps> = ( props ) => (
+const CustomLoader: Component<CustomLoaderProps> = (props) => (
     <div class={props.class}>
         <svg
             xmlns="http://www.w3.org/2000/svg"

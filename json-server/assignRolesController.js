@@ -1,5 +1,5 @@
 
-const assignRoles = ( req, res ) =>
+const assignRoles = (req, res) =>
 {
     res.send();
 };

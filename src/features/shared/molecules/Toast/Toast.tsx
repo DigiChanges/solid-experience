@@ -13,9 +13,9 @@ interface ToastsProps {
 }
 let id: number;
 export const notificationService = {
-    show: ( { title, description, status = 'info' }: ToastsProps ) =>
+    show: ({ title, description, status = 'info' }: ToastsProps) =>
     {
-        id = toaster.show( props => (
+        id = toaster.show(props => (
             <Toast.Root toastId={props.toastId} class={styles.toast}>
                 <div class={styles.toast__content}>
                     <Show when={status === 'info'} keyed><IoInformationCircleSharp color={'var(--hope-colors-info-200)'} class={'w-[30px] h-[30px]'}/></Show>
@@ -32,11 +32,11 @@ export const notificationService = {
                     <Toast.ProgressFill class={styles.toast__progress__fill} style={{ 'background-color': `var(--hope-colors-${status}-200)` }}/>
                 </Toast.ProgressTrack>
             </Toast.Root>
-        ) );
+        ));
     },
-    update: ( { title, description, status = 'info' }: ToastsProps ) =>
+    update: ({ title, description, status = 'info' }: ToastsProps) =>
     {
-        toaster.update( id, props => (
+        toaster.update(id, props => (
             <Toast.Root toastId={props.toastId} class={styles.toast}>
                 <div class={styles.toast__content}>
                     <Show when={status === 'info'} keyed><IoInformationCircleSharp color={'var(--hope-colors-info-200)'} class={'w-[30px] h-[30px]'}/></Show>
@@ -53,6 +53,6 @@ export const notificationService = {
                     <Toast.ProgressFill class={styles.toast__progress__fill} style={{ 'background-color': `var(--hope-colors-${status}-200)` }}/>
                 </Toast.ProgressTrack>
             </Toast.Root>
-        ) );
-    },
+        ));
+    }
 };

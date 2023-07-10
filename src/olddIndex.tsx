@@ -6,8 +6,8 @@ import App from './App';
 import { ApplicationProvider } from './context/context';
 import { colors } from './features/shared/constants/colors';
 
-const theme = extendTheme( colors );
-render( () => (
+const theme = extendTheme(colors);
+render(() => (
     <>
         <ColorModeScript initialColorMode="dark"/>
         <HopeProvider initialColorMode="dark" theme={theme}>
@@ -21,5 +21,5 @@ render( () => (
             </Toast.Region>
         </HopeProvider>
     </>
-), document.getElementById( 'root' ) as MountableElement
+), document.getElementById('root') as MountableElement
 );

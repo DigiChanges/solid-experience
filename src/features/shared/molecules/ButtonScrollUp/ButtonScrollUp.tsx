@@ -6,53 +6,53 @@ import { RoleApi } from '../../../role/interfaces';
 import { UserApi } from '../../../user/interfaces';
 
 interface ButtonGoUpProps {
-    onGoUp?: ( e: MouseEvent ) => void;
+    onGoUp?: (e: MouseEvent) => void;
     dependencies: RoleApi[] | UserApi[] | undefined;
 }
 
-const handleClick = ( { scrollTop }: { scrollTop: () => void } ) => () => scrollTop();
+const handleClick = ({ scrollTop }: { scrollTop: () => void }) => () => scrollTop();
 
-const ButtonScrollUp: Component<ButtonGoUpProps> = ( props ) =>
+const ButtonScrollUp: Component<ButtonGoUpProps> = (props) =>
 {
-    const [ hideButton, setHideButton ] = createSignal( true );
+    const [hideButton, setHideButton] = createSignal(true);
 
     const calculateDocumentHeight = (): boolean =>
     {
-        const root = document.getElementById( 'root' );
-        if ( props.dependencies )
+        const root = document.getElementById('root');
+        if (props.dependencies)
         {
-            if ( root )
+            if (root)
             {
                 return root.clientHeight < window.innerHeight;
             }
         }
         else
         {
-            setHideButton( true );
+            setHideButton(true);
         }
     };
 
-    createEffect( () =>
+    createEffect(() =>
     {
-        setHideButton( calculateDocumentHeight() );
-    } ) ;
+        setHideButton(calculateDocumentHeight());
+    });
 
     window.onresize = () =>
     {
-        setHideButton( calculateDocumentHeight() );
+        setHideButton(calculateDocumentHeight());
     };
     const scrollTop = () =>
     {
-        if ( typeof window !== 'undefined' )
+        if (typeof window !== 'undefined')
         {
-            window.scrollTo( { top: 0, behavior: 'smooth' } );
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
 
     return (
         <IconButton
             aria-label="Go top"
-            onClick={handleClick( { scrollTop } )}
+            onClick={handleClick({ scrollTop })}
             class={`${styles.button_scroll_up} ${hideButton() && 'hidden'}`}
             variant="plain"
             children={<IconArrowCircleLeft />}

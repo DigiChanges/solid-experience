@@ -7,30 +7,30 @@ export type Filter = {
     sort?: 'asc' | 'desc';
 };
 
-function useFilter ( initialSort: 'asc' | 'desc' = 'asc' )
+function useFilter(initialSort: 'asc' | 'desc' = 'asc')
 {
-    const [ searchParams, setSearchParams ] = useSearchParams<Filter>();
+    const [searchParams, setSearchParams] = useSearchParams<Filter>();
 
-    const setFilter = ( newFilter: Filter ) =>
+    const setFilter = (newFilter: Filter) =>
     {
-        setSearchParams( {
+        setSearchParams({
             search: newFilter.search,
             filterBy: newFilter.filterBy,
             orderBy: newFilter.orderBy,
-            sort: searchParams.sort || initialSort,
-        } );
+            sort: searchParams.sort || initialSort
+        });
     };
 
-    const setSort = ( newSort: 'asc' | 'desc' ) =>
+    const setSort = (newSort: 'asc' | 'desc') =>
     {
-        setSearchParams( { ...searchParams, sort: newSort } );
+        setSearchParams({ ...searchParams, sort: newSort });
     };
 
     const toggleSort = () =>
     {
-        if ( searchParams.orderBy )
+        if (searchParams.orderBy)
         {
-            setSort( searchParams.sort === 'desc' ? 'asc' : 'desc' );
+            setSort(searchParams.sort === 'desc' ? 'asc' : 'desc');
         }
     };
 

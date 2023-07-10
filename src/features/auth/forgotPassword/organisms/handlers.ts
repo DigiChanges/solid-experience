@@ -9,34 +9,34 @@ type params = {
     t: any;
 };
 
-export const createForgotPasswordAction = ( { errorAlert, navigate, t }: params ) => async ( payload: ForgotPasswordPayload ) =>
+export const createForgotPasswordAction = ({ errorAlert, navigate, t }: params) => async(payload: ForgotPasswordPayload) =>
 {
     const { setError } = errorAlert;
     const { email } = payload;
 
     const data: ForgotPasswordPayload = {
-        email,
+        email
     };
 
     const authRepository = new AuthRepository();
 
     try
     {
-        void await authRepository.getForgotPassword( { data } );
+        void await authRepository.getForgotPassword({ data });
 
-        notificationService.show( {
+        notificationService.show({
             status: 'success',
-            title: t( 'au_send_email' ) as string,
-        } );
-        navigate( '/email-sent-successfully', { replace: true } );
+            title: t('au_send_email') as string
+        });
+        navigate('/email-sent-successfully', { replace: true });
     }
-    catch ( error: any )
+    catch (error: any)
     {
-        const errorMessage = setError( error );
-        notificationService.show( {
+        const errorMessage = setError(error);
+        notificationService.show({
             status: 'danger',
-            title: t( 'err_forgot_password' ) as string,
-            description: t( errorMessage ) as string,
-        } );
+            title: t('err_forgot_password') as string,
+            description: t(errorMessage) as string
+        });
     }
 };

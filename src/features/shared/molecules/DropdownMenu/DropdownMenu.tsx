@@ -9,7 +9,7 @@ interface RadioGroupProps extends JSX.HTMLAttributes<HTMLDivElement> {
     class?: string;
 }
 
-const DropdownMenu: Component<RadioGroupProps> = ( props ) =>
+const DropdownMenu: Component<RadioGroupProps> = (props) =>
 {
     return (
         <KDropdownMenu.Root>

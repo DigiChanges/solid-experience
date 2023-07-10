@@ -2,7 +2,7 @@ import { QueryParams } from './IHttpAxios';
 import { config as Config } from '../features/shared/repositories/config';
 import axios, { AxiosRequestConfig } from 'axios';
 
-export function getDefaultOptions ( config: AxiosRequestConfig, token?: string ): AxiosRequestConfig
+export function getDefaultOptions(config: AxiosRequestConfig, token?: string): AxiosRequestConfig
 {
     return {
         method: 'GET',
@@ -10,45 +10,45 @@ export function getDefaultOptions ( config: AxiosRequestConfig, token?: string )
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token ? `Bearer ${token}` : '',
-            ...config.headers,
-        },
+            ...config.headers
+        }
     };
 }
 
-export function getDefaultOptionsWithoutToken ( config: AxiosRequestConfig ): AxiosRequestConfig
+export function getDefaultOptionsWithoutToken(config: AxiosRequestConfig): AxiosRequestConfig
 {
     return {
         method: 'POST',
         ...config,
         headers: {
             'Content-Type': 'application/json',
-            ...config.headers,
-        },
+            ...config.headers
+        }
     };
 }
 
-export function createAxios ()
+export function createAxios()
 {
     const { withCredentials } = Config.apiGateway.server;
 
-    return axios.create( {
-        withCredentials,
-    } );
+    return axios.create({
+        withCredentials
+    });
 }
 
-export function getParams ( queryParams?: QueryParams )
+export function getParams(queryParams?: QueryParams)
 {
-    const params = new URLSearchParams( queryParams?.filter );
+    const params = new URLSearchParams(queryParams?.filter);
 
-    if ( queryParams?.pagination )
+    if (queryParams?.pagination)
     {
-        if ( queryParams?.pagination?.limit )
+        if (queryParams?.pagination?.limit)
         {
-            params.set( 'pagination[limit]', queryParams?.pagination?.limit );
+            params.set('pagination[limit]', queryParams?.pagination?.limit);
         }
-        if ( queryParams?.pagination?.offset )
+        if (queryParams?.pagination?.offset)
         {
-            params.set( 'pagination[offset]', queryParams?.pagination?.offset );
+            params.set('pagination[offset]', queryParams?.pagination?.offset);
         }
     }
 

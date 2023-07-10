@@ -9,12 +9,12 @@ type LogoutSideBarItemProps = {
     sectionSelected: string;
 };
 
-const LogoutSideBarItem: Component<LogoutSideBarItemProps> = ( props ) => (
+const LogoutSideBarItem: Component<LogoutSideBarItemProps> = (props) => (
     <SideBarItem
         name="a_logout"
         icon={IconLogout}
         isLoading={false}
-        onClick={logout( { user: props.user } )}
+        onClick={logout({ user: props.user })}
         getShowSubItems={false}
         routes=""
         showItem={true}

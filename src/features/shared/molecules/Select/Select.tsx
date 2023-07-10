@@ -1,7 +1,7 @@
-import { Component, JSX, For } from 'solid-js';
+import {Component, JSX, For, createEffect, createSignal} from 'solid-js';
 import styles from './Select.module.css';
-import { Select as KSelect, MultiSelect as KMultiSelect, As } from '@kobalte/core';
-import { Text } from 'solid-i18n';
+import { Select as KSelect, As } from '@kobalte/core';
+import { useI18n } from '@solid-primitives/i18n';
 import { HiSolidSelector } from 'solid-icons/hi';
 import { FiCheck } from 'solid-icons/fi';
 import { IoClose } from 'solid-icons/io';
@@ -25,22 +25,26 @@ interface SelectProps extends SelectBase {
 interface MultiSelectProps extends SelectBase {
     value: any;
 }
-
-export const Select: Component<SelectProps> = ( props ) =>
+export const Select: Component<SelectProps> = (props) =>
 {
-    return (
+    const [ value, setValue ] = createSignal<string>("");
 
-        <KSelect.Root
+    const [t] = useI18n();
+    return (
+        <KSelect.Root<any>
             name={props.name}
             class={props.class}
-            placeholder={<Text message={props.placeholder}/>}
+            placeholder={t(props.placeholder)}
             value={props.value}
             options={props.options}
             optionValue={props.valueProperty}
             optionTextValue={props.labelProperty}
             optionGroupChildren={props.groupSelector}
-            onValueChange={( value ) => props.onChange( value )}
-            valueComponent={props => props.item.textValue}
+            onChange={(value) =>
+            {
+                setValue(value.label);
+                props.onChange(value.value);
+            }}
             itemComponent={props => (
                 <KSelect.Item item={props.item} class={styles.select__item}>
                     <KSelect.ItemLabel>{props.item.textValue}</KSelect.ItemLabel>
@@ -50,9 +54,11 @@ export const Select: Component<SelectProps> = ( props ) =>
             sectionComponent={props =>
                 <KSelect.Section class={styles.select__section}>{props.section.rawValue.group}</KSelect.Section>
             }
-        >
+             >
             <KSelect.Trigger class={styles.select__trigger}>
-                <KSelect.Value class={styles.select__value} />
+                <KSelect.Value<string> class={styles.select__value}>
+                    {value}
+                </KSelect.Value>
                 <KSelect.Icon class={styles.select__icon}><HiSolidSelector /></KSelect.Icon>
             </KSelect.Trigger>
 
@@ -65,27 +71,27 @@ export const Select: Component<SelectProps> = ( props ) =>
     );
 };
 
-export const MultiSelect: Component<MultiSelectProps> = ( props ) =>
+export const MultiSelect: Component<MultiSelectProps> = (props) =>
 {
     return (
 
-        <KMultiSelect.Root
+        <KSelect.Root
             name={props.name}
             class={props.class}
-            placeholder={<Text message={props.placeholder}/>}
+            placeholder={props.placeholder}
             value={props.value}
             options={props.options}
             optionValue={props.valueProperty}
             optionTextValue={props.labelProperty}
             optionGroupChildren={props.groupSelector}
-            onValueChange={( value ) => props.onChange( value )}
+            onChange={(value) => props.onChange(value)}
             valueComponent={props =>
                 <For each={props.items}>
                     {item =>
                         <span class={styles.select__value__multiple}>
                             {item.textValue}
                             <button onPointerDown={e => e.stopPropagation()}
-                                onClick={() => props.remove( item )}>
+                                onClick={() => props.remove(item)}>
                                 <IoClose
                                 />
                             </button>
@@ -95,27 +101,27 @@ export const MultiSelect: Component<MultiSelectProps> = ( props ) =>
                 </For>
             }
             itemComponent={props =>
-                <KMultiSelect.Item item={props.item} class={styles.select__item}>
-                    <KMultiSelect.ItemLabel>{props.item.textValue}</KMultiSelect.ItemLabel>
+                <KSelect.Item item={props.item} class={styles.select__item}>
+                    <KSelect.ItemLabel>{props.item.textValue}</KSelect.ItemLabel>
                     <KSelect.ItemIndicator class={styles.select__item__indicator}><FiCheck /></KSelect.ItemIndicator>
-                </KMultiSelect.Item>
+                </KSelect.Item>
             }
             sectionComponent={props =>
-                <KMultiSelect.Section class={styles.select__section}>{props.section.rawValue.group}</KMultiSelect.Section>
+                <KSelect.Section class={styles.select__section}>{props.section.rawValue.group}</KSelect.Section>
             }
         >
-            <KMultiSelect.Trigger class={`${styles.select__trigger} w-full`} asChild>
+            <KSelect.Trigger class={`${styles.select__trigger} w-full`} asChild>
                 <As component={'div'}>
-                    <KMultiSelect.Value class={styles.select__value}/>
+                    <KSelect.Value class={styles.select__value}/>
                     <KSelect.Icon class={styles.select__icon}><HiSolidSelector /></KSelect.Icon>
                 </As>
-            </KMultiSelect.Trigger>
+            </KSelect.Trigger>
 
-            <KMultiSelect.Content class={styles.select__content}>
-                <KMultiSelect.Listbox class={styles.select__listbox}/>
-            </KMultiSelect.Content>
+            <KSelect.Content class={styles.select__content}>
+                <KSelect.Listbox class={styles.select__listbox}/>
+            </KSelect.Content>
 
-        </KMultiSelect.Root>
+        </KSelect.Root>
 
     );
 };

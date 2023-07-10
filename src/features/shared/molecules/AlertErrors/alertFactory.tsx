@@ -1,4 +1,4 @@
-import { Text, useI18n } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { Component, For, JSX, Show } from 'solid-js';
 import { IErrorResponse } from '../../interfaces/response/IErrorResponse';
 import Alert from '../Alert/Alert';
@@ -8,7 +8,7 @@ type AlertMetadataErrorsProps = {
     errorData: any;
 };
 
-const AlertNotFoundEntityError: Component<AlertMetadataErrorsProps> = ( props ) =>
+const AlertNotFoundEntityError: Component<AlertMetadataErrorsProps> = (props) =>
 {
     return (
         <Alert
@@ -26,9 +26,9 @@ const AlertNotFoundEntityError: Component<AlertMetadataErrorsProps> = ( props ) 
     );
 };
 
-const AlertEntityWithMetadataFieldAndValueError: Component<AlertMetadataErrorsProps> = ( props ) =>
+const AlertEntityWithMetadataFieldAndValueError: Component<AlertMetadataErrorsProps> = (props) =>
 {
-    const { t } = useI18n();
+    const [t] = useI18n();
 
     return (
         <Alert
@@ -39,7 +39,7 @@ const AlertEntityWithMetadataFieldAndValueError: Component<AlertMetadataErrorsPr
             description={
                 <Text
                     message={ props.errorData?.errorCode }
-                    field={ t( props.errorData?.metadata?.field ) as string }
+                    field={ t(props.errorData?.metadata?.field) as string }
                     value={ props.errorData?.metadata?.value }
                 />
             }
@@ -47,9 +47,9 @@ const AlertEntityWithMetadataFieldAndValueError: Component<AlertMetadataErrorsPr
     );
 };
 
-const AlertUniqueAttributeError: Component<AlertMetadataErrorsProps> = ( props ) =>
+const AlertUniqueAttributeError: Component<AlertMetadataErrorsProps> = (props) =>
 {
-    const { t } = useI18n();
+    const [t] = useI18n();
 
     return (
         <Alert
@@ -60,18 +60,18 @@ const AlertUniqueAttributeError: Component<AlertMetadataErrorsProps> = ( props )
             description={
                 <Text
                     message={ props.errorData?.errorCode }
-                    field={ t( props.errorData?.metadata?.replace?.name ) as string }
+                    field={ t(props.errorData?.metadata?.replace?.name) as string }
                 />
             }
         />
     );
 };
 
-const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
+const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = (props) =>
 {
     return (
         <For each={props.errorData?.errors}>
-            {( error: IErrorResponse ) => (
+            {(error: IErrorResponse) => (
                 <Alert
                     variant={'left-accent'}
                     status={'danger'}
@@ -79,8 +79,8 @@ const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
                     title={<Text message={error.property}/>}
                     description={
                         <Show when={error.constraints} keyed>
-                            <For each={Object.keys( error.constraints )}>
-                                {( constraint: any ) => (
+                            <For each={Object.keys(error.constraints)}>
+                                {(constraint: any) => (
                                     <p>{error.constraints[constraint]}</p>
                                 )}
                             </For>
@@ -92,7 +92,7 @@ const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = ( props ) =>
     );
 };
 
-export const alertFactory = ( data: any ) =>
+export const alertFactory = (data: any) =>
 {
     type MapErrors = { [key: string]: () => JSX.Element };
 
@@ -101,7 +101,7 @@ export const alertFactory = ( data: any ) =>
         'app.domain.exceptions.uniqueAttribute': () => <AlertUniqueAttributeError errorData={ data.errorData } />,
         'app.presentation.exceptions.duplicateEntity': () => <AlertEntityWithMetadataFieldAndValueError errorData={ data.errorData } />,
         'app.presentation.exceptions.referenceConstraint': () => <AlertEntityWithMetadataFieldAndValueError errorData={ data.errorData } />,
-        'shared.exceptions.notFound': () => <AlertNotFoundEntityError errorData={ data.errorData } />,
+        'shared.exceptions.notFound': () => <AlertNotFoundEntityError errorData={ data.errorData } />
     };
 
     const errorKey: () => keyof MapErrors = () => data.errorData.errorCode;

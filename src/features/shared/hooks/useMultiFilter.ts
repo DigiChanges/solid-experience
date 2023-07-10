@@ -1,18 +1,18 @@
 import { useSearchParams } from '@solidjs/router';
 
-function useMultiFilter ()
+function useMultiFilter()
 {
-    const [ searchParams, setSearchParams ] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
-    const setFilter = ( param: string, value: string ) =>
+    const setFilter = (param: string, value: string) =>
     {
-        setSearchParams( { [param]: value } );
+        setSearchParams({ [param]: value });
     };
 
 
-    const removeParam = ( param: string ) =>
+    const removeParam = (param: string) =>
     {
-        setSearchParams( { [param]: null } );
+        setSearchParams({ [param]: null });
     };
 
     return { filter: searchParams, setFilter, removeParam };

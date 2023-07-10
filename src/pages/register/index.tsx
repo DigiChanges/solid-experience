@@ -6,15 +6,13 @@ import { handleRegisterFormSubmit } from './handlersRegister';
 const IndexPage: Component = () =>
 {
     const authRepository = new AuthRepository();
-    const [ getEmail, setEmail ] = createSignal( '' );
+    const [getEmail, setEmail] = createSignal('');
 
     return <>
         <RegisterTemplate
-            onSubmit={handleRegisterFormSubmit( { authRepository, setEmail } )}
+            onSubmit={handleRegisterFormSubmit({ authRepository, setEmail })}
             getEmail={getEmail}
         />
     </>;
 };
-
 export default IndexPage;
-

@@ -1,11 +1,14 @@
+import solid from 'solid-start/vite';
 import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
 
-export default defineConfig( {
+export default defineConfig({
     plugins: [
-        solidPlugin(),
+        solid()
     ],
     build: {
-        target: 'esnext',
+        target: 'esnext'
     },
-} );
+    ssr: {
+    noExternal: ["@kobalte/core"]
+  }
+});

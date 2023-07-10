@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const jsonRepository = require( './jsonRepository' );
+const jsonRepository = require('./jsonRepository');
 
-module.exports = ( req, res, next ) =>
+module.exports = (req, res, next) =>
 {
-    if ( req.url === '/permissions' && req.method === 'POST' )
+    if (req.url === '/permissions' && req.method === 'POST')
     {
         const permissions = {
             data: [
@@ -12,8 +12,8 @@ module.exports = ( req, res, next ) =>
                     group: 'AUTH',
                     permissions: [
                         'authSyncPermissions',
-                        'getPermissions',
-                    ],
+                        'getPermissions'
+                    ]
                 },
                 {
                     group: 'USERS',
@@ -25,8 +25,8 @@ module.exports = ( req, res, next ) =>
                         'usersDelete',
                         'usersAssignRole',
                         'usersChangeMyPassword',
-                        'usersChangeUserPassword',
-                    ],
+                        'usersChangeUserPassword'
+                    ]
                 },
                 {
                     group: 'ROLES',
@@ -35,16 +35,16 @@ module.exports = ( req, res, next ) =>
                         'rolesUpdate',
                         'rolesShow',
                         'rolesList',
-                        'rolesDelete',
-                    ],
+                        'rolesDelete'
+                    ]
                 },
                 {
                     group: 'OTHERS',
                     permissions: [
-                        'all',
-                    ],
-                },
-            ],
+                        'all'
+                    ]
+                }
+            ]
         };
 
         req.method = 'GET';

@@ -6,9 +6,9 @@ import SideBarItem from '../../../sideBar/molecules/SideBarItem/SideBarItem';
 import SideBarSubItem from '../../../sideBar/molecules/SideBarSubItem/SideBarSubItem';
 import styles from './DashItems.module.css';
 
-const isEqualPath = ( { locationPath, itemPath }: {locationPath: string; itemPath: string} ) =>
+const isEqualPath = ({ locationPath, itemPath }: {locationPath: string; itemPath: string}) =>
 {
-    return locationPath.replace( /\//g, '' ) === itemPath.replace( /\//g, '' );
+    return locationPath.replace(/\//g, '') === itemPath.replace(/\//g, '');
 };
 
 type DashItemsProps = {
@@ -16,30 +16,30 @@ type DashItemsProps = {
     expanded: boolean;
 };
 
-const DashItems: Component<DashItemsProps> = ( props ) =>
+const DashItems: Component<DashItemsProps> = (props) =>
 {
-    const [ getShowSubItems, setShowSubItems ] = createSignal( false );
-    const [ sectionSelected, setSectionSelected ] = createSignal( '' );
+    const [getShowSubItems, setShowSubItems] = createSignal(false);
+    const [sectionSelected, setSectionSelected] = createSignal('');
     const location = useLocation();
 
-    const onToggled = ( path: string ) =>
+    const onToggled = (path: string) =>
     {
-        if ( path === sectionSelected() )
+        if (path === sectionSelected())
         {
-            setShowSubItems( false );
-            setSectionSelected( '' );
+            setShowSubItems(false);
+            setSectionSelected('');
         }
         else
         {
-            setShowSubItems( true );
-            setSectionSelected( path );
+            setShowSubItems(true);
+            setSectionSelected(path);
         }
     };
 
     return (
         <div class={styles.dash_item_container}>
             <For each={dashRoutes}>
-                {( dashRoute: any ) =>
+                {(dashRoute: any) =>
                     <HasPermission
                         permission={dashRoute.permission as string}
                         user={props.authUser}
@@ -49,7 +49,7 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
                             name={dashRoute.name as string}
                             icon={dashRoute.icon}
                             isLoading={true}
-                            onClick={() => ( onToggled( dashRoute.path ) )}
+                            onClick={() => (onToggled(dashRoute.path))}
                             getShowSubItems={getShowSubItems()}
                             routes={dashRoute}
                             showItem={dashRoute.showItem as boolean}
@@ -59,7 +59,7 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
                         >
                             <Show when={getShowSubItems() && sectionSelected() === dashRoute.path}>
                                 <For each={dashRoute.children}>
-                                    {( childrenDashRoute: any ) =>
+                                    {(childrenDashRoute: any) =>
                                         <HasPermission
                                             permission={childrenDashRoute.permission}
                                             user={props.authUser}
@@ -67,15 +67,15 @@ const DashItems: Component<DashItemsProps> = ( props ) =>
                                         >
                                             <SideBarSubItem
                                                 name={childrenDashRoute.name}
-                                                path={sectionSelected().concat( childrenDashRoute.path )}
+                                                path={sectionSelected().concat(childrenDashRoute.path)}
                                                 icon={childrenDashRoute.icon}
                                                 isToggled={true}
                                                 showItem={childrenDashRoute.showItem}
                                                 expanded={props.expanded}
-                                                equalPath={isEqualPath( {
+                                                equalPath={isEqualPath({
                                                     locationPath: location.pathname,
-                                                    itemPath: sectionSelected().concat( childrenDashRoute.path ),
-                                                } )}
+                                                    itemPath: sectionSelected().concat(childrenDashRoute.path)
+                                                })}
                                             />
                                         </HasPermission>
                                     }

@@ -5,10 +5,10 @@ interface IconButtonProps
     iconEnable: any;
     iconDisable: any;
     classNameOnActive: string;
-    onClick?: ( e: MouseEvent ) => void;
+    onClick?: (e: MouseEvent) => void;
 }
 
-const IconButtonActive: Component<IconButtonProps> = ( data ): any =>
+const IconButtonActive: Component<IconButtonProps> = (data): any =>
 {
     const _iconEnable = () => data.iconEnable;
     const _iconDisable = () => data.iconDisable;

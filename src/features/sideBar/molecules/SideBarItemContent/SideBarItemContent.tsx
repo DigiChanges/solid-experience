@@ -1,13 +1,13 @@
 import { Component, Show } from 'solid-js';
 import { Icon } from '@hope-ui/core';
-import { Text } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import styles from './SideBarItemContent.module.css';
 
 interface SideBarItemProps {
     name: string;
     icon?: any;
     isLoading?: boolean;
-    onClick: ( event: MouseEvent ) => void;
+    onClick: (event: MouseEvent) => void;
     getShowSubItems: any;
     routes: any;
     showItem: boolean;
@@ -17,9 +17,10 @@ interface SideBarItemProps {
     sectionSelected: string;
 }
 
-const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
+const SideBarItemContent: Component<SideBarItemProps> = (props) =>
 {
     const IconProps: any = () => props.icon;
+    const [t] = useI18n();
 
     return (
         <>
@@ -30,9 +31,9 @@ const SideBarItemContent: Component<SideBarItemProps> = ( props ) =>
                 </Icon>
             </Show>
             <div class={`${styles.side_bar_item_content_container}`} classList={{
-                [styles.side_bar_item_content_container_expanded]: !props.expanded,
+                [styles.side_bar_item_content_container_expanded]: !props.expanded
             }}>
-                <Text message={props.name} />
+                {t(props.name)}
             </div>
         </>
     );

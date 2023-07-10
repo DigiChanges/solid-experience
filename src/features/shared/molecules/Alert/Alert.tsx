@@ -13,7 +13,7 @@ interface AlertProps {
     class?: string;
 }
 
-const Alert: Component<AlertProps> = ( props ) =>
+const Alert: Component<AlertProps> = (props) =>
 {
     return (
         <KAlert.Root class={`${styles.alert} ${props.class} ${props.variant === 'solid' ? `${props.variant}-${props.status}` : `${props.variant} ${props.status}`}`}>

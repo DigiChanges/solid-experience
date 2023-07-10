@@ -1,6 +1,6 @@
 import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
-import { Text, useI18n } from 'solid-i18n';
+import { useI18n } from '@solid-primitives/i18n';
 import { Component, For, Show } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
 import { permissions } from '../../../../config/permissions';
@@ -23,7 +23,7 @@ interface UserListTemplateProps
     nextPage: string | undefined;
 }
 
-const UserList: Component<UserListTemplateProps> = ( props ) =>
+const UserList: Component<UserListTemplateProps> = (props) =>
 {
     const i18n = useI18n();
     const { t } = i18n;
@@ -33,17 +33,17 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
     const handleModalClick = () =>
     {
-        props.removeAction( deleteData?.id );
+        props.removeAction(deleteData?.id);
         close();
     };
 
-    const handleDelete = ( role: UserApi ) => () =>
+    const handleDelete = (role: UserApi) => () =>
     {
         deleteData = role;
         open();
     };
 
-    const { filterOptions } = useTransformTranslatedOptions( filterBy, ( item ) => t( item.label ) );
+    const { filterOptions } = useTransformTranslatedOptions(filterBy, (item) => t(item.label));
 
     return (
         <section class="section_container">
@@ -53,24 +53,24 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                     <Modal.CloseButton class={styles.close_button}/>
                     <HStack>
                         <Modal.Heading class={'text-neutral-50 text-lg font-bold pb-3'}>
-                            <Text message="a_delete_data"/>
+                            {t('a_delete_data')}
                         </Modal.Heading>
                     </HStack>
-                    <p class={'text-neutral-50'}><Text message="u_remove"/></p>
+                    <p class={'text-neutral-50'}>{t('u_remove')}</p>
                     <h1 class={'text-neutral-50'}>{deleteData?.firstName} {deleteData?.lastName}</h1>
                     <HStack class="modal_footer pt-4 justify-end">
                         <Button
                             onClick={close}
                             _dark={darkPrimaryButton}
                         >
-                            <Text message="a_cancel"/>
+                            {t('a_cancel')}
                         </Button>
                         <Button
                             _dark={darkDangerButton}
                             colorScheme="danger"
                             onClick={() => handleModalClick()}
                         >
-                            <Text message="a_delete"/>
+                            {t('a_delete')}
                         </Button>
                     </HStack>
                 </Modal.Content>
@@ -78,7 +78,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
             <header class="section_header_container" data-parent={permissions.USERS.SAVE}>
                 <h1 class="section_title">
-                    <Text message="u_list" />
+                    {t('u_list')}
                 </h1>
 
                 <div class="has-permission w-[100%] md:w-auto">
@@ -88,7 +88,7 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
                             _dark={darkPrimaryButton}
                             class={'w-[100%] md:w-auto'}
                         >
-                            <Text message="u_create"/>
+                            {t('u_create')}
                         </Button>
                     </Link>
                 </div>
@@ -102,9 +102,9 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
 
             <div class="grid_cards_container">
                 <Show when={!props.loading || props.userList?.length} keyed>
-                    <For each={props.userList} fallback={<span class={'text-neutral-50'}><Text message="u_no_users" /></span>}>
-                        {( user ) =>
-                            <UserCard user={user} onDelete={handleDelete( user )}/>}
+                    <For each={props.userList} fallback={<span class={'text-neutral-50'}>{t('u_no_users')}</span>}>
+                        {(user) =>
+                            <UserCard user={user} onDelete={handleDelete(user)}/>}
                     </For>
                 </Show>
             </div>
@@ -112,8 +112,8 @@ const UserList: Component<UserListTemplateProps> = ( props ) =>
             <div class="section_bottom_buttons_container">
                 <Show when={!!props.nextPage} keyed>
                     <Button onClick={props.viewMoreAction()} variant="outlined" _dark={darkTransparentButton} >
-                        <Show when={!props.loading} keyed fallback={<span class={'text-neutral-50'}><Text message="a_loading" />...</span>}>
-                            <Text message="a_view_more"/>
+                        <Show when={!props.loading} keyed fallback={<span class={'text-neutral-50'}>{t('a_loading')}...</span>}>
+                            {t('a_view_more')}
                         </Show>
                     </Button>
                 </Show>

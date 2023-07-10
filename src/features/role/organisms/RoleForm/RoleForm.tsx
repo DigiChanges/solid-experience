@@ -1,8 +1,8 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
-import { useNavigate} from '@solidjs/router';
-import { Text, useI18n } from 'solid-i18n';
+import { useNavigate } from '@solidjs/router';
+import { useI18n } from '@solid-primitives/i18n';
 import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { PermissionApi } from '../../../auth/interfaces/permission';
@@ -19,18 +19,17 @@ enum RequiredPermission {
 
 interface RoleUpdateTemplateProps
 {
-    onError: ( error: unknown ) => void;
-    onSubmit: ( data: RolePayload ) => Promise<RoleResponse>;
+    onError: (error: unknown) => void;
+    onSubmit: (data: RolePayload) => Promise<RoleResponse>;
     onSuccess: () => void;
     permissionsList?: PermissionApi[];
     roleSelected?: RoleApi | undefined;
     requiredPermission: Record<RequiredPermission, string>;
 }
 
-const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
+const RoleForm: Component<RoleUpdateTemplateProps> = (props) =>
 {
-    const i18n = useI18n();
-    const { t } = i18n;
+    const [t] = useI18n();
     const navigate = useNavigate();
 
     const {
@@ -39,48 +38,48 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
         form,
         isSubmitting,
         isValid,
-        setFields,
+        setFields
         // @ts-ignore
-    } = createForm<InferType<typeof roleSchema>>( {
+    } = createForm<InferType<typeof roleSchema>>({
         initialValues: {
             permissions: [],
-            enable: true,
+            enable: true
         },
-        extend: validator( { schema: roleSchema } ),
+        extend: validator({ schema: roleSchema }),
         onSuccess: props.onSuccess,
         onError: props.onError,
-        onSubmit: values => props.onSubmit( values as RolePayload ),
-    } );
+        onSubmit: values => props.onSubmit(values as RolePayload)
+    });
 
-    const handleSelect = ( field: keyof InferType<typeof roleSchema> ) => ( value: string[] | boolean ) =>
+    const handleSelect = (field: keyof InferType<typeof roleSchema>) => (value: string[] | boolean) =>
     {
-        setFields( field, value, true );
+        setFields(field, value, true);
     };
 
-    const handleMultiSelect = ( field: keyof InferType<typeof roleSchema> ) => ( value: any ) =>
+    const handleMultiSelect = (field: keyof InferType<typeof roleSchema>) => (value: any) =>
     {
-        const valuesArray: string[] = Array.from( value );
-        setFields( field, valuesArray, true );
+        const valuesArray: string[] = Array.from(value);
+        setFields(field, valuesArray, true);
     };
 
-    onMount( () =>
+    onMount(() =>
     {
-        if ( props.roleSelected )
+        if (props.roleSelected)
         {
-            for ( const key in props.roleSelected )
+            for (const key in props.roleSelected)
             {
                 // @ts-ignore
-                setFields( key, props.roleSelected[key] );
+                setFields(key, props.roleSelected[key]);
             }
         }
-    } );
+    });
 
     return (
         <form ref={form} class="form_flex">
             <div class="field_wrapper">
-                <FormControl isRequired isInvalid={ !!errors( 'name' ) } >
+                <FormControl isRequired isInvalid={ !!errors('name') } >
                     <FormControlLabel class={'form_label'} for="name" _dark={{ _after: { color: 'danger.300' } }}>
-                        <Text message="name"/>
+                        {t('name')}
                     </FormControlLabel>
                     <Input
                         _dark={darkInput}
@@ -88,73 +87,73 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                         autofocus
                         name="name"
                         type="text"
-                        placeholder={t( 'a_enter_name' ) as string}
+                        placeholder={t('a_enter_name') as string}
                         value={props.roleSelected?.name}
                     />
-                    <Show when={errors( 'name' )} keyed>
+                    <Show when={errors('name')} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'name' )?.[0] ?? ''} />
+                            {t(errors('name')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
-                <FormControl isRequired isInvalid={!!errors( 'slug' )}>
+                <FormControl isRequired isInvalid={!!errors('slug')}>
                     <FormControlLabel class={'form_label'} for="slug" _dark={{ _after: { color: 'danger.300' } }}>
-                        <Text message="slug"/>
+                        {t('slug')}
                     </FormControlLabel>
                     <Input
                         _dark={darkInput}
                         _placeholder={placeholderInput}
                         name="slug"
                         type="text"
-                        placeholder={t( 'a_enter_slug' ) as string}
+                        placeholder={t('a_enter_slug') as string}
                         value={props.roleSelected?.slug}
-                        onKeyDown={preventEnterCharacter( [ 'Space' ] )}
+                        onKeyDown={preventEnterCharacter(['Space'])}
                     />
-                    <Show when={errors( 'slug' )} keyed>
+                    <Show when={errors('slug')} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'slug' )?.[0] ?? ''} />
+                            {t(errors('slug')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
             </div>
             <div class="field_wrapper">
-                <FormControl id="permissions" isRequired isInvalid={!!errors( 'permissions' )}>
+                <FormControl id="permissions" isRequired isInvalid={!!errors('permissions')}>
                     <FormControlLabel class={'form_label'} for="permissions" _dark={{ _after: { color: 'danger.300' } }}>
-                        <Text message="permissions"/>
+                        {t('permissions')}
                     </FormControlLabel>
                     <MultiSelect
                         name={'permissions'}
                         options={props.permissionsList}
                         placeholder={'a_enter_permissions'}
                         value={data().permissions}
-                        onChange={handleMultiSelect( 'permissions' )}
+                        onChange={handleMultiSelect('permissions')}
                         valueProperty={'id'}
                         labelProperty={'name'}
                         groupSelector={'permissions'}
                         class={'w-full'}
                     />
                     <FormControlError class="error_message_block">
-                        <Text message={errors( 'permissions' )?.[0] ?? ''} />
+                        {t(errors('permissions')?.[0] ?? '')}
                     </FormControlError>
                 </FormControl>
             </div>
 
             <div class="field_wrapper">
-                <FormControl isRequired isInvalid={!!errors( 'enable' )}>
+                <FormControl isRequired isInvalid={!!errors('enable')}>
                     <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>
-                        <Text message="enable"/>
+                        {t('enable')}
                     </FormControlLabel>
                     <Switch
                         name={'enable'}
                         value={data().enable}
-                        onChange={handleSelect( 'enable' )}
+                        onChange={handleSelect('enable')}
                     />
-                    <Show when={errors( 'enable' )} keyed>
+                    <Show when={errors('enable')} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors( 'enable' )?.[0] ?? ''}/>
+                            {t(errors('enable')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -165,10 +164,10 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                     <Button
                         _dark={darkNeutralButton}
                         class="button_full"
-                        onClick={()=>navigate('/roles/list')}
+                        onClick={() => navigate('/roles/list')}
                         colorScheme="neutral"
                     >
-                        <Text message="a_back" />
+                        {t('a_back')}
                     </Button>
                 </div>
                 <div class="button_full has-permission ">
@@ -178,18 +177,18 @@ const RoleForm: Component<RoleUpdateTemplateProps> = ( props ) =>
                         type="submit"
                         isDisabled={!isValid()}
                         isLoading={isSubmitting()}
-                        loadingText={<Text message="a_submitting"/> as string}
+                        loadingText={t('a_submitting') as string}
                     >
-                        <Text message="a_save"/>
+                        {t('a_save')}
                     </Button>
                 </div>
                 <div class="button_full fallback">
                     <Button
                         _dark={darkNeutralButton}
                         class="w-full"
-                        onClick={()=>navigate('/roles/list')}
+                        onClick={() => navigate('/roles/list')}
                     >
-                        <Text message="a_back" />
+                        {t('a_back')}
                     </Button>
                 </div>
             </div>
