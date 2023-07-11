@@ -13,12 +13,12 @@ const userValidationSchema = object({
     email: string()
         .email('Invalid email')
         .required('av_required'),
-    gender: string()
+    genre: string()
         .oneOf(['M', 'F', 'O'], 'av_required')
         .required('av_required'),
     country: string()
         .required('av_required'),
-    birthday: string()
+    birthdate: string()
         .test(
             'is-valid-format',
             'Invalid format',
@@ -27,13 +27,6 @@ const userValidationSchema = object({
         .required('av_required'),
     phone: string()
         .max(20, 'av_too_long')
-        .required('av_required'),
-    documentType: string()
-        .oneOf(['dni', 'cuil'], 'av_required')
-        .required('av_required'),
-    documentNumber: string()
-        .required('av_required'),
-    address: string()
         .required('av_required')
 });
 
