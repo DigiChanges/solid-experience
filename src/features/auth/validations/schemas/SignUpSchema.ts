@@ -1,7 +1,7 @@
 import { object, string } from 'yup';
 
 const signUpSchema = object({
-    email: string()
+    username: string()
         .email('av_email_valid')
         .required('av_required'),
     password: string()
