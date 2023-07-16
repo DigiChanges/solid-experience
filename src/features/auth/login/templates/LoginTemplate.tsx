@@ -61,12 +61,12 @@ const LoginTemplate: Component = () =>
                         </div>
 
                         <Show when={!getShowRecoverPassword()}
-                            fallback={() => (
+                            fallback={
                                 <ForgotPasswordForm
                                     onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}
                                     onSubmit={createForgotPasswordAction({ errorAlert, navigate, t })}
                                 />
-                            )}
+                            }
                         >
                             <div class={styles.register}>
                                 <p class={'text-neutral-50'}>{t('a_do_not_have_account')}</p>
