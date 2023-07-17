@@ -55,7 +55,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                 <h1 class="section_title">{t('r_create')}</h1>
             </header>
 
-            <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
+            <Show when={!props.loading} fallback={<GeneralLoader/>}>
                 <RoleForm
                     onError={handleError()}
                     onSubmit={props.onCreate}
