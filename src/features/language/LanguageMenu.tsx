@@ -7,7 +7,7 @@ import DropdownMenu from '../shared/molecules/DropdownMenu/DropdownMenu';
 
 const LanguageMenu: Component = () =>
 {
-    const { setLanguage } = useI18n();
+    // const { setLanguage } = useI18n();
     // const items = [
     //     {
     //         children: {t('a_en')},
