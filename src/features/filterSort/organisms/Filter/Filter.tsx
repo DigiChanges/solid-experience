@@ -23,6 +23,7 @@ interface FilterProps{
 }
 
 const getFieldWithoutFilterArrayText = (field: string) => field.replace('filter[', '').replace(']', '');
+const [t] = useI18n();
 
 const Filter: Component<FilterProps> = (props) =>
 {
