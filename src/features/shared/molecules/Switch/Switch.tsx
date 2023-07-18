@@ -14,8 +14,8 @@ const Switch: Component<RadioGroupProps> = (props) =>
         <KSwitch.Root
             name={props.name}
             class={styles.switch}
-            isChecked={props.value}
-            onCheckedChange={props.onChange}>
+            checked={props.value}
+            onChange={props.onChange}>
             <KSwitch.Input class={styles.switch__input} />
             <KSwitch.Control class={styles.switch__control}>
                 <KSwitch.Thumb class={styles.switch__thumb}/>

@@ -52,7 +52,7 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
                 <h1 class="section_title">{t('u_create')}</h1>
             </header>
 
-            <Show when={!props.loading} fallback={() => <GeneralLoader/>} keyed>
+            <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>
                 <UserForm
                     onError={handleError()}
                     onSubmit={props.onCreate}
