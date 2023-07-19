@@ -25,8 +25,7 @@ interface UserListTemplateProps
 
 const UserList: Component<UserListTemplateProps> = (props) =>
 {
-    const i18n = useI18n();
-    const { t } = i18n;
+    const [t] = useI18n();
 
     const { isOpen, open, close } = createDisclosure();
     let deleteData: UserApi | undefined;
