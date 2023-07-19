@@ -1,3 +1,4 @@
+import { string } from 'yup';
 import { PermissionApi, GroupedPermission } from '../../auth/interfaces/permission';
 import { SelectValueOption } from '../types/Selects';
 
@@ -13,11 +14,11 @@ export class SelectTransform
         return [];
     }
 
-    static getOptionsObjectArray<T>(items: T[] | undefined, getShowLabel: (item: T) => string, getValue: (item: T) => unknown): SelectValueOption[]
+    static getOptionsObjectArray<T>(items: T[] | undefined, getShowLabel: (item: T) => string, getValue: (item: T) => string | undefined): SelectValueOption[]
     {
         if (items && items.length > 0)
         {
-            return items.map((item) => ({ label: getShowLabel(item), value: getValue(item) }));
+            return items.map((item) => ({ label: getShowLabel(item), value: getValue(item)}));
         }
 
         return [];

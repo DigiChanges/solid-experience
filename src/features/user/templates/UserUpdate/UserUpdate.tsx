@@ -56,7 +56,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
                 </div>
             </header>
 
-            <Show when={!props.loading} fallback={() => <GeneralLoader/>} keyed>
+            <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>
                 <UserForm
                     onError={handleError()}
                     onSubmit={props.onUpdate}

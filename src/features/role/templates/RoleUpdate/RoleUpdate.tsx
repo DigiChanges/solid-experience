@@ -62,7 +62,7 @@ const RoleUpdate: Component<RoleUpdateTemplateProps> = (props) =>
                 </div>
             </header>
 
-            <Show when={!props.loading} fallback={() => <GeneralLoader/>} keyed>
+            <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>
                 <RoleForm
                     onError={handleError()}
                     onSubmit={props.onUpdate}
