@@ -1,12 +1,15 @@
 .pagination-component {
     margin: 1em;
 }
+
 .pagination-button {
     padding: 10px;
 }
+
 .selected-pagination {
     color: rgb(59 130 246 / 0.5);
 }
+
 .disabled-pagination {
     color: #393e46;
 }
