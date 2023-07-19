@@ -7,9 +7,9 @@
 }
 
 .selected-pagination {
-    color: rgb(59 130 246 / 0.5);
+    color: var(--hope-colors-primary-300);
 }
 
 .disabled-pagination {
-    color: #393e46;
+    color: var(--hope-colors-neutral-400);
 }
