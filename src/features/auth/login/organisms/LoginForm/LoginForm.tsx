@@ -29,10 +29,6 @@ const LoginForm: Component<LoginFormProps> = props =>
         onSubmit: async values => props.onSubmit(values)
     });
 
-    createEffect(() => {
-        console.log(isValid())
-    }, [isValid()])
-
     return (
         <>
             <h1 class="section_title_opaque">{t('a_login')}</h1>
