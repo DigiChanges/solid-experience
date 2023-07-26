@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { IHttpServiceParams } from './IHttpAxios';
-import { createAxios, getParams, getDefaultOptions } from './HttpHelper';
+import { createAxios, getParams, getDefaultOptionsWithRefreshToken } from './HttpHelper';
 
 class HttpService
 {
@@ -8,12 +8,12 @@ class HttpService
     {
         const { config, queryParams, user } = data;
 
-        const requestDefaultOptions: AxiosRequestConfig = getDefaultOptions(config, user?.token);
+        const defaultOptionsWithRefreshToken: AxiosRequestConfig = getDefaultOptionsWithRefreshToken(config);
         const http: AxiosInstance = createAxios();
         const params: URLSearchParams = getParams(queryParams);
 
         return (await http.request<T>({
-            ...requestDefaultOptions,
+            ...defaultOptionsWithRefreshToken,
             params
         }
         )).data;

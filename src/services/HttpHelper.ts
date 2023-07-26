@@ -1,6 +1,7 @@
 import { QueryParams } from './IHttpAxios';
 import { config as Config } from '../features/shared/repositories/config';
 import axios, { AxiosRequestConfig } from 'axios';
+import useSessionStorage from "../features/shared/hooks/useSessionStorage";
 
 export function getDefaultOptions(config: AxiosRequestConfig, token?: string): AxiosRequestConfig
 {
@@ -22,6 +23,20 @@ export function getDefaultOptionsWithoutToken(config: AxiosRequestConfig): Axios
         ...config,
         headers: {
             'Content-Type': 'application/json',
+            ...config.headers
+        }
+    };
+}
+
+export function getDefaultOptionsWithRefreshToken(config: AxiosRequestConfig): AxiosRequestConfig
+{
+    const { getSession } = useSessionStorage();
+    return {
+        method: 'POST',
+        ...config,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getSession("refreshToken")}`,
             ...config.headers
         }
     };
