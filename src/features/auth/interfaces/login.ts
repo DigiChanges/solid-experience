@@ -4,13 +4,15 @@ import { IBodyApi } from '../../shared/interfaces/response/IBodyApi';
 export interface LoginApi
 {
     user: Auth;
-    expires: string;
-    token: string;
+    expiresIn: number;
+    refreshExpiresIn: number;
+    refreshToken: string;
+    accessToken: string;
 }
 
 export interface LoginPayload
 {
-    email: string;
+    username: string;
     password: string;
 }
 
