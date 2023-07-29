@@ -7,17 +7,21 @@ const useRefreshSession = () =>
     const { createSession, removeSession } = useSessionStorage();
 
 
-    const refreshToken = () =>
+    const refreshToken = (expires: number) =>
     {
-        setInterval(async() =>
-    {
-        const { data } = await authRepository.refreshToken();
-
-        removeSession('refreshToken');
-        removeSession('accessToken');
-        createSession('refreshToken', data.refreshToken);
-        createSession('accessToken', data.accessToken);
-    }, 180000);
+        const expiresInMilliseconds = expires * 1000;
+        const twentyPercentLess = expiresInMilliseconds * 0.8;
+        setTimeout(() =>
+        {
+            setInterval(async() =>
+            {
+                const { data } = await authRepository.refreshToken();
+                removeSession('refreshToken');
+                removeSession('accessToken');
+                createSession('refreshToken', data.refreshToken);
+                createSession('accessToken', data.accessToken);
+            }, twentyPercentLess);
+        }, twentyPercentLess);
     };
 
     return {

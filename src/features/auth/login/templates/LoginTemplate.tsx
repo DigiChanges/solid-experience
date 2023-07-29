@@ -1,5 +1,3 @@
-import { Link, useNavigate } from '@solidjs/router';
-
 import { Component, createSignal, Show } from 'solid-js';
 import logo from '../../../../assets/images/dgc_logo.png';
 import createAlert from '../../../shared/hooks/createAlert';
@@ -12,6 +10,8 @@ import LoginForm from '../organisms/LoginForm/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 import styles from './LoginTemplate.module.css';
 import useTranslation from '../../../shared/hooks/useTranslation';
+import {useNavigate} from "solid-start";
+import {Link} from "@solidjs/router";
 
 const LoginTemplate: Component = () =>
 {

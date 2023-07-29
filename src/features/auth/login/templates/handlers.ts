@@ -1,10 +1,9 @@
 import assignAllPermissionsToSuperAdminUser from '../../helper/assignAllPermissionsToSuperAdminUser';
-import { LoginApi, LoginPayload } from '../../interfaces/login';
+import { LoginPayload } from '../../interfaces/login';
 import AuthRepository from '../../repositories/AuthRepository';
 import useSessionStorage from '../../../shared/hooks/useSessionStorage';
 import useRefreshSession from '../../../shared/hooks/useRefreshSession';
 import useGetMe from '../hooks/useGetMe';
-import {createEffect, createSignal} from 'solid-js';
 
 export const handleLoginFormSubmit = () => async(data: LoginPayload) =>
 {
@@ -13,13 +12,14 @@ export const handleLoginFormSubmit = () => async(data: LoginPayload) =>
     const { createSession, getSession } = useSessionStorage();
     const response = await authRepository.signIn({ data });
 
-    createSession('accessToken', response.data.accessToken);
-    createSession('refreshToken', response.data.refreshToken);
-
-    const { error, loading, data: dataUser } = useGetMe();
-
-    refreshToken();
-    const userAuth = await assignAllPermissionsToSuperAdminUser(response.data);
+    if (response.data)
+    {
+        createSession('accessToken', response.data.accessToken);
+        createSession('refreshToken', response.data.refreshToken);
+        const { error, loading, data: dataUser } = useGetMe();
+        refreshToken(response.data.expiresIn);
+        const userAuth = await assignAllPermissionsToSuperAdminUser(response.data);
+    }
 };
 
 export const togglePasswordRecovery = ({ setShowRecoverPassword, getShowRecoverPassword }:
