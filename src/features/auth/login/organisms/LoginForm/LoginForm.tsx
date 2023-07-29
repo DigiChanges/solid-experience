@@ -47,7 +47,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                     />
                     <Show when={errors('username')} keyed>
                         <FormControlError class="error_message_block">
-                            {/*<Text message={errors('username')?.[0] ?? '' } />*/}
+                            {t(errors('username')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -66,7 +66,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                     />
                     <Show when={errors('password')} keyed>
                         <FormControlError class="error_message_block">
-                            {/*<Text message={errors('password')?.[0] ?? ''} />*/}
+                           {t(errors('password')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>

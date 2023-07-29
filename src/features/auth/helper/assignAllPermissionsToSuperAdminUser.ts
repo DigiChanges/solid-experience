@@ -12,7 +12,6 @@ const assignAllPermissionsToSuperAdminUser = async(user?: LoginApi) =>
 
         user.user.permissions = PermissionList.getPermissionsToArray(response.data);
     }
-
     return user;
 };
 

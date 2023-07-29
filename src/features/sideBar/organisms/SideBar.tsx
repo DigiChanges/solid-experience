@@ -1,4 +1,4 @@
-import { Component, JSX } from 'solid-js';
+import { Component, createEffect, createSignal, JSX, Show } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
 import styles from './SideBar.module.css';
@@ -7,9 +7,10 @@ import { Drawer } from '@hope-ui/core';
 import { logout } from '../../navBar/organisms/handlers';
 import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
 import { FaSolidAngleDown } from 'solid-icons/fa';
+import useSessionStorage from '../../shared/hooks/useSessionStorage';
+import { LoginApi } from '../../auth/interfaces/login';
 
 interface SideBarProps {
-    authUser: any;
     showInMobile?: boolean;
     children?: JSX.Element;
     close: () => void;
@@ -35,9 +36,18 @@ const SideBar: Component<SideBarProps> = (props) =>
         //     onSelect: logout( { user: props.authUser } )
         // },
     ];
+    const [authUser, setAuthUser] = createSignal<LoginApi>();
+    createEffect(() =>
+    {
+        const data = sessionStorage.getItem('userData');
+        if (data)
+        {
+
+        }
+        });
 
     return (
-        <>
+        <Show when={true}><>
             <Drawer
                 isOpen={ props.isOpen() }
                 placement={'left'}
@@ -52,18 +62,18 @@ const SideBar: Component<SideBarProps> = (props) =>
                             <DropdownMenu
                                 items={items}
                                 icon={<FaSolidAngleDown />}
-                                title={<span class={'text-white font-bold'}>{props.authUser.user.email}</span>}
+                                title={<span class={'text-white font-bold'}>alexis</span>}
                                 class={'w-[256px]'}
                             />
                         </div>
-                        <DashItems expanded={true} authUser={props.authUser}/>
+                        <DashItems expanded={true}/>
                     </div>
                     <div class="justify-self-end">
-                        <LogoutSideBarItem user={props.authUser} getExpanded={true} sectionSelected=""/>
+                        <LogoutSideBarItem user={authUser()} getExpanded={true} sectionSelected=""/>
                     </div>
                 </Drawer.Content>
             </Drawer>
-        </>
+        </></Show>
     );
 };
 

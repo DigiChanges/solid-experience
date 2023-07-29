@@ -1,11 +1,11 @@
 import { Component, createSignal, JSX } from 'solid-js';
-import { useApplicationContext } from '../../../../context/context';
 import Footer from '../../../footer/organisms/Footer';
 import NavBar from '../../../navBar/organisms/NavBar';
 import SideBar from '../../../sideBar/organisms/SideBar';
 import styles from './PrivateLayout.module.css';
 import { createDisclosure } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
+import useSessionStorage from "../../hooks/useSessionStorage";
 
 interface privateTemplateProps {
     children: JSX.Element | JSX.Element[];
@@ -15,7 +15,6 @@ const PrivateLayout: Component<privateTemplateProps> = (props) =>
 {
     const [showSidebar] = createSignal(false);
     const { isOpen, open, close } = createDisclosure();
-    // const [authUser] = useApplicationContext();
 
     return (
         <div class={styles.container}>
@@ -25,9 +24,9 @@ const PrivateLayout: Component<privateTemplateProps> = (props) =>
 
             <div class={styles.main_container}>
 
-                {/*<div class={styles.sidebar_container}>*/}
-                {/*    <SideBar showInMobile={showSidebar()} authUser={authUser()} isOpen={ isOpen } open={ open } close={ close }/>**/}
-                {/*</div>*/}
+                <div class={styles.sidebar_container}>
+                    <SideBar showInMobile={showSidebar()} isOpen={ isOpen } open={ open } close={ close }/>*
+                </div>
 
                 <main class={styles.main}>
                     {props.children}

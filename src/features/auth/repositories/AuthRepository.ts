@@ -10,7 +10,7 @@ import PayloadProps from '../../shared/interfaces/PayloadProps';
 import HttpServiceWithoutToken from '../../../services/HttpServiceWithoutToken';
 
 const { baseUrl } = config.apiGateway.server;
-const { register, login, refreshToken, logout, permissionsGetAll, forgotPassword, changeForgotPassword, verifyYourAccount } = config.apiGateway.routes.auth;
+const { getMe , register, login, refreshToken, logout, permissionsGetAll, forgotPassword, changeForgotPassword, verifyYourAccount } = config.apiGateway.routes.auth;
 
 class AuthRepository
 {
@@ -20,6 +20,16 @@ class AuthRepository
             url: `${baseUrl}/${login}`,
             method: 'POST',
             data
+        };
+
+        return HttpService.request<LoginResponse>({ config });
+    }
+
+    public async getMe()
+    {
+        const config: AxiosRequestConfig = {
+            url: `${baseUrl}/${getMe}`,
+            method: 'GET'
         };
 
         return HttpService.request<LoginResponse>({ config });
