@@ -36,7 +36,7 @@ export function getDefaultOptionsWithRefreshToken(config: AxiosRequestConfig): A
         ...config,
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${getSession("refreshToken")}`,
+            'Authorization': `Bearer ${getSession("accessToken")}`,
             ...config.headers
         }
     };

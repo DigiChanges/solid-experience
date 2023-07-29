@@ -6,6 +6,7 @@ import { useI18n } from '@solid-primitives/i18n';
 
 const Dashboard: Component = () =>
 {
+    const [t] = useI18n();
     return (
         <section class="p-6">
             <Card>

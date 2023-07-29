@@ -12,6 +12,7 @@ const useRefreshSession = () =>
         setInterval(async() =>
     {
         const { data } = await authRepository.refreshToken();
+
         removeSession('refreshToken');
         removeSession('accessToken');
         createSession('refreshToken', data.refreshToken);
