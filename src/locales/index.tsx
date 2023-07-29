@@ -13,7 +13,7 @@ const dict = {
   es
 };
 
-const ctx = createI18nContext(dict, 'es');
+const ctx = createI18nContext(dict, 'en');
 const availableLocales = ['en', 'es'];
 
 const I18nProvider: FlowComponent<II18nParams> = (props) =>
