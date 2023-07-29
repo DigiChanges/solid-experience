@@ -1,6 +1,6 @@
 import { Link, useNavigate } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
-import {Component, createSignal, Show} from 'solid-js';
+
+import { Component, createSignal, Show } from 'solid-js';
 import logo from '../../../../assets/images/dgc_logo.png';
 import createAlert from '../../../shared/hooks/createAlert';
 import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
@@ -11,6 +11,7 @@ import { createForgotPasswordAction } from '../../forgotPassword/organisms/handl
 import LoginForm from '../organisms/LoginForm/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 import styles from './LoginTemplate.module.css';
+import useTranslation from '../../../shared/hooks/useTranslation';
 
 const LoginTemplate: Component = () =>
 {
@@ -19,8 +20,8 @@ const LoginTemplate: Component = () =>
     const [isLoading, setIsLoading] = createSignal(false);
     const errorAlert = createAlert();
     const { setError } = errorAlert;
-    const [t] = useI18n();
-    //
+    const { translate: t } = useTranslation();
+
     const handleSuccess = () => () =>
     {
         navigate('/dashboard', { replace: true });

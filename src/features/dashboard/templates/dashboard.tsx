@@ -2,17 +2,17 @@ import { Component } from 'solid-js';
 import Card from '../../shared/molecules/Card/Card';
 import CardContent from '../../shared/molecules/CardContent/CardContent';
 import styles from './Dashboard.module.css';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../shared/hooks/useTranslation';
 
 const Dashboard: Component = () =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     return (
         <section class="p-6">
             <Card>
                 <CardContent class={styles.content}>
-                    {/*<Text class="text-neutral-50" message="a_dashboard" />*/}
-                    {/*<Text class="text-neutral-50 text-center" message="a_dashboard_description" />*/}
+                    <div class="text-neutral-50">{t('a_dashboard')}</div>
+                    <div class="text-neutral-50 text-center">{t('a_dashboard_description')}</div>
                 </CardContent>
             </Card>
         </section>

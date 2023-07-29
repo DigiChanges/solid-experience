@@ -1,4 +1,4 @@
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, For, JSX, Show } from 'solid-js';
 import { IErrorResponse } from '../../interfaces/response/IErrorResponse';
 import Alert from '../Alert/Alert';
@@ -10,65 +10,53 @@ type AlertMetadataErrorsProps = {
 
 const AlertNotFoundEntityError: Component<AlertMetadataErrorsProps> = (props) =>
 {
+    const { translate: t } = useTranslation();
+
     return (
         <Alert
             variant={'left-accent'}
             status={'danger'}
             icon={<BiSolidErrorCircle />}
-            title={<Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err'}/>}
-            description={
-                <Text
-                    message={ props.errorData?.errorCode }
-                    entity={ props.errorData?.metadata?.entity }
-                />
-            }
+            title={t(props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err')}
+            description={t(props.errorData?.errorCode)}
         />
     );
 };
 
 const AlertEntityWithMetadataFieldAndValueError: Component<AlertMetadataErrorsProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
 
     return (
         <Alert
             variant={'left-accent'}
             status={'danger'}
             icon={<BiSolidErrorCircle />}
-            title={<Text message={props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err'}/>}
-            description={
-                <Text
-                    message={ props.errorData?.errorCode }
-                    field={ t(props.errorData?.metadata?.field) as string }
-                    value={ props.errorData?.metadata?.value }
-                />
-            }
+            title={t(props.errorData?.metadata?.field ? props.errorData?.metadata?.field : 'err')}
+            description={t(props.errorData?.errorCode)}
         />
     );
 };
 
 const AlertUniqueAttributeError: Component<AlertMetadataErrorsProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
 
     return (
         <Alert
             variant={'left-accent'}
             status={'danger'}
             icon={<BiSolidErrorCircle />}
-            title={<Text message={props.errorData?.metadata?.replace?.name ? props.errorData?.metadata?.replace?.name : 'err' }/>}
-            description={
-                <Text
-                    message={ props.errorData?.errorCode }
-                    field={ t(props.errorData?.metadata?.replace?.name) as string }
-                />
-            }
+            title={t(props.errorData?.metadata?.replace?.name ? props.errorData?.metadata?.replace?.name : 'err')}
+            description={t(props.errorData?.errorCode)}
         />
     );
 };
 
 const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = (props) =>
 {
+    const { translate: t } = useTranslation();
+
     return (
         <For each={props.errorData?.errors}>
             {(error: IErrorResponse) => (
@@ -76,7 +64,7 @@ const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = (props) =>
                     variant={'left-accent'}
                     status={'danger'}
                     icon={<BiSolidErrorCircle />}
-                    title={<Text message={error.property}/>}
+                    title={t(error.property)}
                     description={
                         <Show when={error.constraints} keyed>
                             <For each={Object.keys(error.constraints)}>
@@ -94,6 +82,7 @@ const AlertValidatorErrors: Component<AlertMetadataErrorsProps> = (props) =>
 
 export const alertFactory = (data: any) =>
 {
+    const { translate: t } = useTranslation();
     type MapErrors = { [key: string]: () => JSX.Element };
 
     const errors: MapErrors = {
@@ -114,8 +103,8 @@ export const alertFactory = (data: any) =>
                         variant={'left-accent'}
                         status={'danger'}
                         icon={<BiSolidErrorCircle />}
-                        title={<Text message={'err'}/>}
-                        description={<Text message={errorKey() as string || 'err_unexpected'}/>}
+                        title={t('err')}
+                        description={t(errorKey() as string || 'err_unexpected')}
                     />
             }
         </>

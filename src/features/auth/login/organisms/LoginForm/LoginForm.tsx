@@ -1,8 +1,8 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Anchor, Button, FormControl, FormControlError, FormControlLabel, FormControlDescription, HStack, Input } from '@hope-ui/core';
-import { useI18n } from '@solid-primitives/i18n';
-import {Component, createEffect, Show} from 'solid-js';
+import useTranslation from '../../../../shared/hooks/useTranslation';
+import { Component, Show } from 'solid-js';
 import type { InferType } from 'yup';
 import { LoginPayload } from '../../../interfaces/login';
 import signUpSchema from '../../../validations/schemas/SignUpSchema';
@@ -17,7 +17,7 @@ interface LoginFormProps {
 
 const LoginForm: Component<LoginFormProps> = props =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const {
         form,
         errors,
@@ -74,7 +74,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                 <FormControl>
                     <FormControlDescription>
                         <Anchor onClick={props.onClick} >
-                            {/*<Text class={'text-neutral-400 text-sm'} message="au_forgot_password" />*/}
+                            {/* <Text class={'text-neutral-400 text-sm'} message="au_forgot_password" />*/}
                         </Anchor>
                     </FormControlDescription>
                 </FormControl>

@@ -1,18 +1,19 @@
 import { Link } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component } from 'solid-js';
 import styles from './UserMessageSuccess.module.css';
 import Alert from '../../../shared/molecules/Alert/Alert';
 import { FaSolidCircleCheck } from 'solid-icons/fa';
 
-interface messageSuccessProps{
+interface messageSuccessProps
+{
     title: string;
     description: string;
 }
+
 const UserMessageSuccess: Component<messageSuccessProps> = (props) =>
 {
-    const i18n = useI18n();
-    // const { t } = i18n;
+    const { translate: t } = useTranslation();
 
     return (
         <section class={styles.container}>
@@ -22,13 +23,13 @@ const UserMessageSuccess: Component<messageSuccessProps> = (props) =>
                     status="success"
                     variant={'solid'}
                     icon={<FaSolidCircleCheck />}
-                    // title={t(props.title)}
+                    title={t(props.title)}
                     description={
                         <>
-                            {/*{t(props.description)}*/}
+                            {t(props.description)}
                             <div class={styles.link_login}>
                                 <Link href={'/auth/login'}>
-                                    {/*{t('au_go_to_login')}*/}
+                                    {t('au_go_to_login')}
                                 </Link>
                             </div>
                         </>

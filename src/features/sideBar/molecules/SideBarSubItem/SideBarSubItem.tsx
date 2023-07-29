@@ -1,6 +1,6 @@
 import { Component, Show } from 'solid-js';
 import { NavLink } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Icon } from '@hope-ui/core';
 import styles from './SideBarItemSubItem.module.css';
 

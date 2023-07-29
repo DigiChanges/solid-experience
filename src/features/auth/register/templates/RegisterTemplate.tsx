@@ -8,7 +8,7 @@ import styles from './RegisterTemplate.module.css';
 import { RegisterPayload, RegisterResponse } from '../interfaces/createAccount';
 import Card from '../../../shared/molecules/Card/Card';
 import logo from '../../../../assets/images/dgc_logo.png';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 
 interface UserCreateTemplateProps
 {
@@ -18,7 +18,7 @@ interface UserCreateTemplateProps
 
 const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
     const [getShowRegisterSuccess, setShowRegisterSuccess] = createSignal(false);
@@ -36,8 +36,8 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
         const errorMessage = setError(error);
         notificationService.show({
             status: 'danger',
-            title: t('err_create_user') as string,
-            description: t(errorMessage) as string
+            title: t('err_create_user'),
+            description: t(errorMessage)
         });
     };
 

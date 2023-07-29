@@ -2,7 +2,7 @@ import { createEffect, createMemo, createSignal, For, mergeProps } from 'solid-j
 import './assets/stylesheets/newBase.css';
 import moment from 'moment';
 import { monthList, viewList } from './utils/constant';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import arrowIcon from './assets/icons/arrow.svg';
 import clockLogo from './assets/icons/clock.svg';
 import calendarLogo from './assets/icons/calendar.svg';
@@ -11,7 +11,7 @@ import IconCross from '../../../../atoms/Icons/Stroke/IconCross';
 
 const DatePicker = (_props: any) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
 
     const props = mergeProps({
         customizeTogglerCalendarIcon: '',
@@ -403,9 +403,9 @@ const DatePicker = (_props: any) =>
                     {activeView() !== 'year' || isTimeViewEnabled() ? null :
                         <div class="container-year-view">
                             <img src={arrowIcon} class={`${props.customizeYearLeftNavigationArrow} year-navi__icon cur-pointer`} alt="left arrow" onClick={() =>
-{
- yearNavigation(-1);
-}} />
+                            {
+                             yearNavigation(-1);
+                            }} />
 
                             <div class="container-year-list">
                                 {[...Array(12)].map((_1, index) =>
@@ -484,8 +484,8 @@ const DatePicker = (_props: any) =>
                                     }
                                     return (
                                         <div
-                                            class={`week-list-items cur-pointer 
-                                        ${isActive ? `${props.enableDateRangeSelector ? 'active-bg' : 'active '} box-shadow-card` : ''} 
+                                            class={`week-list-items cur-pointer
+                                        ${isActive ? `${props.enableDateRangeSelector ? 'active-bg' : 'active '} box-shadow-card` : ''}
                                         ${props.customizeListView}
                                         ${it < startDate || it > endDate ? 'cust-dis' : ''}
                                         ${it.toString().split(' ')[1] !== moment(headerView().month, 'M').format('MMM') ? 'cust-dis' : ''}

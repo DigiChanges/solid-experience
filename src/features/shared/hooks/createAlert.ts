@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../shared/hooks/useTranslation';
 import { getErrorKeyFunction } from '../../error/utils/errorTransformers';
 
 export type createAlertType = {
@@ -10,7 +10,7 @@ export type createAlertType = {
 function createAlert(): createAlertType
 {
     const [errorData, setErrorData] = createSignal<any>(null);
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
 
     const setError = (error: any) =>
     {

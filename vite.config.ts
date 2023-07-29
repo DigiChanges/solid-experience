@@ -9,6 +9,6 @@ export default defineConfig({
         target: 'esnext'
     },
     ssr: {
-    noExternal: ["@kobalte/core"]
-  }
+        noExternal: ['@kobalte/core']
+    }
 });

@@ -1,6 +1,6 @@
 import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, For, Show } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
 import { permissions } from '../../../../config/permissions';
@@ -25,7 +25,7 @@ interface UserListTemplateProps
 
 const UserList: Component<UserListTemplateProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
 
     const { isOpen, open, close } = createDisclosure();
     let deleteData: UserApi | undefined;

@@ -6,13 +6,16 @@ import { IoInformationCircleSharp, IoAlertCircle } from 'solid-icons/io';
 import { RiSystemAlertFill } from 'solid-icons/ri';
 import { HiSolidCheckCircle } from 'solid-icons/hi';
 
-interface ToastsProps {
+interface ToastsProps
+{
     title: string;
     description?: string;
     status?: string;
 }
 let id: number;
-export const notificationService = {
+
+export const notificationService =
+{
     show: ({ title, description, status = 'info' }: ToastsProps) =>
     {
         id = toaster.show(props => (
