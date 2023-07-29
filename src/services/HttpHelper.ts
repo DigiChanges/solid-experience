@@ -28,6 +28,20 @@ export function getDefaultOptionsWithoutToken(config: AxiosRequestConfig): Axios
     };
 }
 
+export function getDefaultOptionsWithAccessToken(config: AxiosRequestConfig): AxiosRequestConfig
+{
+    const { getSession } = useSessionStorage();
+    return {
+        method: 'POST',
+        ...config,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getSession('accessToken')}`,
+            ...config.headers
+        }
+    };
+}
+
 export function getDefaultOptionsWithRefreshToken(config: AxiosRequestConfig): AxiosRequestConfig
 {
     const { getSession } = useSessionStorage();
@@ -36,7 +50,7 @@ export function getDefaultOptionsWithRefreshToken(config: AxiosRequestConfig): A
         ...config,
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${getSession("accessToken")}`,
+            'Authorization': `Bearer ${getSession('refreshToken')}`,
             ...config.headers
         }
     };

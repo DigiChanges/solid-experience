@@ -43,7 +43,7 @@ class AuthRepository
             data: {}
         };
 
-        return HttpService.request<LoginResponse>({ config });
+        return HttpService.requestWithRefreshToken<LoginResponse>({ config });
     }
 
     public async logout({ user }: PayloadProps)
