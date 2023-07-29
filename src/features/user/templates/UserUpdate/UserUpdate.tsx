@@ -1,6 +1,6 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { useNavigate } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';
 import { PermissionApi } from '../../../auth/interfaces/permission';
@@ -20,7 +20,7 @@ interface UserUpdateTemplateProps {
 
 const UserUpdate: Component<UserUpdateTemplateProps> = props =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const navigate = useNavigate();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
@@ -56,7 +56,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
                 </div>
             </header>
 
-            <Show when={!props.loading} fallback={() => <GeneralLoader/>} keyed>
+            <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>
                 <UserForm
                     onError={handleError()}
                     onSubmit={props.onUpdate}

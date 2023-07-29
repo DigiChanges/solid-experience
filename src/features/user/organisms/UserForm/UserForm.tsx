@@ -2,10 +2,10 @@ import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { useNavigate } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
-import { country, gender, userDocumentTypeOptions } from '../../../../entities';
+import { country, gender } from '../../../../entities';
 import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
 import { UserApi, UserPayload } from '../../interfaces';
@@ -17,7 +17,8 @@ import Switch from '../../../shared/molecules/Switch/Switch';
 import DatePicker from '../../../shared/molecules/DatePicker/DatePicker';
 import { darkInput, darkNeutralButton, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
-enum RequiredPermission {
+enum RequiredPermission
+{
     submit='submit'
 }
 
@@ -34,7 +35,7 @@ interface UserUpdateTemplateProps
 
 const UserForm: Component<UserUpdateTemplateProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const navigate = useNavigate();
 
     const userSchema = props.userSelected?.id ? userUpdateValidationSchema : userCreateValidationSchema;
@@ -149,49 +150,6 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
             </div>
 
             <div class="field_wrapper">
-                <div class="field_justify_between h-[90px]">
-                    <FormControl isRequired isInvalid={!!errors('documentType')} class={'w-[25%]'}>
-                        <FormControlLabel class={'form_label'} for="documentType" _dark={{ _after: { color: 'danger.300' } }}>
-                            {t('document_type')}
-                        </FormControlLabel>
-                        <Select
-                            name={'documentType'}
-                            options={userDocumentTypeOptions}
-                            placeholder={'type_id'}
-                            value={data().documentType}
-                            onChange={handleSelect('documentType')}
-                            valueProperty={'value'}
-                            labelProperty={'label'}
-                            class={'w-full'}
-                        />
-                        <Show when={errors('documentType')} keyed>
-                            <FormControlError class="error_message_block">
-                                {t(errors('documentType')?.[0] ?? '')}
-                            </FormControlError>
-                        </Show>
-                    </FormControl>
-
-                    <FormControl isRequired isInvalid={!!errors('documentNumber')} class="big">
-                        <FormControlLabel class={'form_label'} for="documentNumber" _dark={{ _after: { color: 'danger.300' } }}>
-                            {t('document_number')}
-                        </FormControlLabel>
-                        <Input
-                            _dark={darkInput}
-                            _placeholder={placeholderInput}
-                            name="documentNumber"
-                            type="text"
-                            placeholder={t('a_enter_id_number') as string}
-                        />
-                        <Show when={errors('documentNumber')} keyed>
-                            <FormControlError class="error_message_block">
-                                {t(errors('documentNumber')?.[0] ?? '')}
-                            </FormControlError>
-                        </Show>
-                    </FormControl>
-                </div>
-            </div>
-
-            <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors('gender')}>
                     <FormControlLabel class={'form_label'} for="gender" _dark={{ _after: { color: 'danger.300' } }}>
                         {t('gender')}
@@ -211,9 +169,9 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
             </div>
 
             <div class="field_wrapper">
-                <FormControl isRequired isInvalid={!!errors('birthday')}>
-                    <FormControlLabel class={'form_label'} for="birthday" _dark={{ _after: { color: 'danger.300' } }}>
-                        {t('birthday')}
+                <FormControl isRequired isInvalid={!!errors('birthdate')}>
+                    <FormControlLabel class={'form_label'} for="birthdate" _dark={{ _after: { color: 'danger.300' } }}>
+                        {t('birthdate')}
                     </FormControlLabel>
                     <DatePicker
                         currentDate={ new Date() }
@@ -224,17 +182,17 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                         activeCalendarView={ 'year' }
                         calendarResponse={ (e: any) =>
                         {
-                            handleDate('birthday', e.currentDate?.toISOString().split('T')[0]);
+                            handleDate('birthdate', e.currentDate?.toISOString().split('T')[0]);
                         } }
                         maxDate={ new Date() }
                         minDate={ new Date('1901') }
-                        customizeCalendar={ 'register-birthday' }
-                        name="birthday"
+                        customizeCalendar={ 'register-birthdate' }
+                        name="birthdate"
                         theme="dark"
                     />
-                    <Show when={errors('birthday')} keyed>
+                    <Show when={errors('birthdate')} keyed>
                         <FormControlError class="error_message_block">
-                            {t(errors('birthday')?.[0] ?? '')}
+                            {t(errors('birthdate')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>

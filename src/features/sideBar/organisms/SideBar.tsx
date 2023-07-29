@@ -2,7 +2,7 @@ import { Component, createEffect, createSignal, JSX, Show } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
 import styles from './SideBar.module.css';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../shared/hooks/useTranslation';
 import { Drawer } from '@hope-ui/core';
 import { logout } from '../../navBar/organisms/handlers';
 import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
@@ -20,7 +20,7 @@ interface SideBarProps {
 
 const SideBar: Component<SideBarProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
 
     const items: never[] = [
         // {

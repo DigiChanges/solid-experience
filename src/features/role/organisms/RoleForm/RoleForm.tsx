@@ -2,7 +2,7 @@ import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { useNavigate } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { PermissionApi } from '../../../auth/interfaces/permission';
@@ -29,7 +29,7 @@ interface RoleUpdateTemplateProps
 
 const RoleForm: Component<RoleUpdateTemplateProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const navigate = useNavigate();
 
     const {

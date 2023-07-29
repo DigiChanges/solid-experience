@@ -3,7 +3,7 @@ import styles from './AlertErrors.module.css';
 import { alertFactory } from './alertFactory';
 import Alert from '../Alert/Alert';
 import { BiSolidErrorCircle } from 'solid-icons/bi';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 
 
 const handleClose = ({ setErrors }: { setErrors: (errors: any) => void}) => () =>
@@ -20,7 +20,7 @@ type AlertErrorProps = {
 
 const AlertErrors: Component<AlertErrorProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const [errors, setErrors] = createSignal(null);
 
     createEffect(() =>
@@ -39,8 +39,8 @@ const AlertErrors: Component<AlertErrorProps> = (props) =>
                     variant={'left-accent'}
                     status={'danger'}
                     icon={<BiSolidErrorCircle />}
-                    title={<Text message={props.title}/>}
-                    description={<Text message={props.description}/>}
+                    title={t(props.title)}
+                    description={t(props.description)}
                     onClick={handleClose({ setErrors })}
                 />
                 {alertFactory({ errorData: errors(), t })}

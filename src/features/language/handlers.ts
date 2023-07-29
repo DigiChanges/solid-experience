@@ -1,6 +1,6 @@
 
-export const changeLanguage = ({ language, setLanguage }: { language: string; setLanguage: (value: string) => void }) => () =>
+export const changeLanguage = ({ language, locale }: { language: string; locale: any }) => () =>
 {
     localStorage.setItem('lang', language);
-    setLanguage(language);
+    locale(language);
 };

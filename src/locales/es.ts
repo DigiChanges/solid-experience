@@ -1,6 +1,6 @@
-import { I18nLocales } from 'i18n-mini/lib/types';
 
-const app: I18nLocales = {
+const app: Record<string, string> = {
+    hello: 'Hola {{ name }}, como estás?',
     a_account_created: 'Cuenta creada.',
     a_account_recovery: 'RECUPERACIÓN DE CUENTA',
     a_actions: 'Acciones',
@@ -107,7 +107,7 @@ const app: I18nLocales = {
     a_your_password: 'Tu contraseña'
 };
 
-const calendar: I18nLocales = {
+const calendar: Record<string, string> = {
     a_day: 'Día',
     a_month: 'Més',
     a_year: 'Año',
@@ -132,7 +132,7 @@ const calendar: I18nLocales = {
     a_dec: 'Dec'
 };
 
-const auth: I18nLocales = {
+const auth: Record<string, string> = {
     au_can_log_in_data: 'Ya puedes iniciar sesión con tus datos',
     au_can_log_in_with: 'Podrás iniciar sesión con:',
     au_check_your_box: 'Revisa tu casilla, te enviamos un correo con el link de activación de la cuenta',
@@ -148,7 +148,7 @@ const auth: I18nLocales = {
     au_we_building: 'Estamos construyendo todo lo que necesitas para empezar'
 };
 
-const appValidations: I18nLocales = {
+const appValidations: Record<string, string> = {
     av_email_valid: 'Debe ser un correo electrónico válido',
     av_one_item: 'Debe contener al menos un elemento',
     av_password_match: 'Las contraseñas deben coincidir',
@@ -157,11 +157,11 @@ const appValidations: I18nLocales = {
     av_too_short: 'Demasiado Corto!'
 };
 
-const entities: I18nLocales = {
+const entities: Record<string, string> = {
     User: 'Usuario'
 };
 
-const apiKeys: I18nLocales = {
+const apiKeys: Record<string, string> = {
     'app.domain.exceptions.uniqueAttribute': 'Ya existe un registro con el mismo valor de `{field}`.',
     'app.presentation.exceptions.duplicateEntity': 'Ya existe un registro con {field} {value}.',
     'app.presentation.exceptions.referenceConstraint': 'Otro registro tiene una relación con este {field} {value}.',
@@ -172,7 +172,7 @@ const apiKeys: I18nLocales = {
     'user.domain.exceptions.unverifiedUser': 'El usuario no ha sido verificado.'
 };
 
-const errors: I18nLocales = {
+const errors: Record<string, string> = {
     HTTP_BAD_REQUEST: 'Error en la petición',
     HTTP_FORBIDDEN: 'Acceso denegado',
     HTTP_UNPROCESSABLE_ENTITY: 'El registro no cumple con las reglas de validación',
@@ -195,7 +195,7 @@ const errors: I18nLocales = {
     forbidden: 'Acceso denegado'
 };
 
-const properties: I18nLocales = {
+const properties: Record<string, string> = {
     address: 'Dirección',
     balance: 'Balance',
     birthday: 'Fecha de nacimiento',
@@ -241,7 +241,7 @@ const properties: I18nLocales = {
     value: 'Valor'
 };
 
-const roles: I18nLocales = {
+const roles: Record<string, string> = {
     r_assigned: 'Role/s asignados',
     r_create: 'Crear Rol',
     r_created: 'Rol Creado',
@@ -254,7 +254,7 @@ const roles: I18nLocales = {
     r_updated: 'Rol Actualizado'
 };
 
-const user: I18nLocales = {
+const user: Record<string, string> = {
     u_assigned: 'Usuario/s asignados',
     u_create: 'Crear Usuario',
     u_created: 'Usuario creado',
@@ -269,7 +269,7 @@ const user: I18nLocales = {
     u_view: 'Ver Usuario'
 };
 
-const es: I18nLocales = {
+const es: Record<string, string> = {
     ...calendar,
     ...app,
     ...appValidations,

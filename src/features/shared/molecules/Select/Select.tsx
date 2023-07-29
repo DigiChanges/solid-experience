@@ -1,11 +1,9 @@
-import {Component, JSX, For, createEffect, createSignal} from 'solid-js';
+import { Component, JSX, For, createSignal } from 'solid-js';
 import styles from './Select.module.css';
 import { Select as KSelect, As } from '@kobalte/core';
-import { useI18n } from '@solid-primitives/i18n';
-import { HiSolidSelector } from 'solid-icons/hi';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { FiCheck } from 'solid-icons/fi';
 import { IoClose } from 'solid-icons/io';
-
 
 interface SelectBase extends JSX.HTMLAttributes<HTMLDivElement> {
     name?: string;
@@ -27,9 +25,9 @@ interface MultiSelectProps extends SelectBase {
 }
 export const Select: Component<SelectProps> = (props) =>
 {
-    const [ value, setValue ] = createSignal<string>("");
+    const [value, setValue] = createSignal<string>('');
 
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     return (
         <KSelect.Root<any>
             name={props.name}
@@ -59,7 +57,7 @@ export const Select: Component<SelectProps> = (props) =>
                 <KSelect.Value<string> class={styles.select__value}>
                     {value}
                 </KSelect.Value>
-                <KSelect.Icon class={styles.select__icon}><HiSolidSelector /></KSelect.Icon>
+                <KSelect.Icon class={styles.select__icon} />
             </KSelect.Trigger>
 
             <KSelect.Content class={styles.select__content}>
@@ -113,7 +111,7 @@ export const MultiSelect: Component<MultiSelectProps> = (props) =>
             <KSelect.Trigger class={`${styles.select__trigger} w-full`} asChild>
                 <As component={'div'}>
                     <KSelect.Value class={styles.select__value}/>
-                    <KSelect.Icon class={styles.select__icon}><HiSolidSelector /></KSelect.Icon>
+                    <KSelect.Icon class={styles.select__icon} />
                 </As>
             </KSelect.Trigger>
 
