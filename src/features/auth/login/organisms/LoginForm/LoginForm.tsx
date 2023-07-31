@@ -8,7 +8,8 @@ import { LoginPayload } from '../../../interfaces/login';
 import signUpSchema from '../../../validations/schemas/SignUpSchema';
 import { darkInput, placeholderInput, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
 
-interface LoginFormProps {
+interface LoginFormProps
+{
     onSubmit: (values: LoginPayload) => Promise<void>;
     onError: (error: unknown) => void;
     onSuccess: () => void;
@@ -74,7 +75,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                 <FormControl>
                     <FormControlDescription>
                         <Anchor onClick={props.onClick} >
-                            {/* <Text class={'text-neutral-400 text-sm'} message="au_forgot_password" />*/}
+                             <div class="text-neutral-400 text-sm" >{t('au_forgot_password')}</div>
                         </Anchor>
                     </FormControlDescription>
                 </FormControl>

@@ -7,6 +7,7 @@ import useTranslation from '../../shared/hooks/useTranslation';
 const Dashboard: Component = () =>
 {
     const { translate: t } = useTranslation();
+
     return (
         <section class="p-6">
             <Card>

@@ -36,7 +36,7 @@ export const dashRoutes = [
     },
     {
         path: '/change-forgot-password',
-        component: lazy(() => import('../routes/auth/changeForgotPassword')),
+        component: lazy(() => import('../routes/auth/change-forgot-password')),
         name: 'a_change_password',
         icon: IconPencilAlt,
         showItem: false,
@@ -52,7 +52,7 @@ export const dashRoutes = [
     },
     {
         path: '/change-password-success',
-        component: lazy(() => import('../routes/auth/changePasswordSuccess')),
+        component: lazy(() => import('../routes/auth/change-password-success')),
         name: 'a_change_password',
         icon: IconPencilAlt,
         showItem: false,
