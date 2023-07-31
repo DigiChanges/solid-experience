@@ -56,13 +56,14 @@ class AuthRepository
         return HttpService.request<LogoutResponse>({ config, user });
     }
 
-    public async getAllPermissions({ user }: PayloadProps)
+    public async getAllPermissions()
     {
         const config: AxiosRequestConfig = {
-            url: `${baseUrl}/${permissionsGetAll}`
+            url: `${baseUrl}/${permissionsGetAll}`,
+            method: "GET"
         };
 
-        return HttpService.request<PermissionListResponse>({ config, user });
+        return HttpService.request<PermissionListResponse>({ config });
     }
 
     public getForgotPassword = ({ data }: PayloadProps<ForgotPasswordPayload>) =>

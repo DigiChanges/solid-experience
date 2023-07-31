@@ -15,8 +15,8 @@ interface UserCreateTemplateProps
 {
     permissionsList?: PermissionApi[];
     rolesList?: RoleApi[];
-    onCreate: (data: UserPayload) => Promise<void>;
-    loading: boolean;
+    onCreate?: (data: UserPayload) => Promise<void>;
+    loading?: boolean;
 }
 
 const UserCreate: Component<UserCreateTemplateProps> = props =>
@@ -45,6 +45,11 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
         });
     };
 
+    const onCreate = () =>
+    {
+
+    }
+
     return (
         <section class="section_container">
 
@@ -57,9 +62,9 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
                     onError={handleError()}
                     onSubmit={props.onCreate}
                     onSuccess={handleSuccess()}
-                    permissionsList={props.permissionsList}
-                    requiredPermission={{ submit: permissions.USERS.SAVE }}
-                    rolesList={props.rolesList}
+                    // permissionsList={props.permissionsList}
+                    // requiredPermission={{ submit: permissions.USERS.SAVE }}
+                    // rolesList={props.rolesList}
                 />
             </Show>
 

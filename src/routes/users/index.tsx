@@ -1,5 +1,4 @@
-import { Component, createEffect, createResource } from 'solid-js';
-// import { useApplicationContext } from '../../context/context';
+import { Component, createEffect, createResource, createSignal } from 'solid-js';
 import { INIT_STATE } from '../../features/shared/constants';
 import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import useQuery from '../../features/shared/hooks/useQuery';
@@ -12,23 +11,23 @@ import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors
 import { useI18n } from '@solid-primitives/i18n';
 import { UserApi, UserListResponse } from '../../features/user/interfaces';
 import UserList from '../../features/user/templates/UserList/UserList';
+import useSessionStorage from '../../features/shared/hooks/useSessionStorage';
+import { LoginApi } from '../../features/auth/interfaces/login';
+import useGetUserPagination from '../../features/user/hooks/useGetUserPagination';
 
 const IndexPage: Component = () =>
 {
     const [t] = useI18n();
     const { errorData, setError } = createAlert();
-    // const [user]: any = useApplicationContext();
     const userRepository = new UserRepository();
+    const { loading, userPagination, error } = useGetUserPagination();
+
 
     const { goToPage, getURLSearchParams } = useQuery(INIT_STATE.nextPaginationParams);
-
-    // const [users, { refetch }] = createResource(() => ({ user: user(), queryParams: getURLSearchParams() }), ({ user, queryParams }) => userRepository.getUsers({ user, queryParams }));
-
+    // const [users, { refetch }] = createResource(() => ({ user: user, queryParams: getURLSearchParams() }), ({ user, queryParams }) => userRepository.getUsers({ user, queryParams }));
     // const { resourceList: userList, setViewMore, paginationData } = usePaginatedState<UserApi, UserListResponse>(users);
-
     // usePermission(user, [users]);
-
-   //  createEffect(() => users.error && setError(users.error));
+    //  createEffect(() => users.error && setError(users.error));
 
     const viewMoreAction = () =>
     {
@@ -43,13 +42,13 @@ const IndexPage: Component = () =>
                 title="err"
                 description="err_process_user"
             />
-            {/*<UserList*/}
-            {/*    userList={userList()}*/}
-            {/*    removeAction={removeUserAction({ userRepository, user: user(), setError, refetch, t })}*/}
-            {/*    loading={users.loading}*/}
-            {/*    viewMoreAction={() => viewMoreAction}*/}
-            {/*    nextPage={paginationData()?.nextUrl}*/}
-            {/*/>*/}
+            {userPagination() &&
+                <UserList
+                userList={userPagination()}
+                loading={loading()}
+                viewMoreAction={() => viewMoreAction}
+             />}
+
         </PrivateLayout>
     );
 };

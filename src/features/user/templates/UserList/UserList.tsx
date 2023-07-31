@@ -9,18 +9,18 @@ import useTransformTranslatedOptions from '../../../shared/hooks/useTransformTra
 import ButtonScrollUp from '../../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { filterBy } from '../../constants/filterBy';
-import { UserApi } from '../../interfaces';
+import {UserApi, UserListResponse} from '../../interfaces';
 import UserCard from '../../organisms/UserCard/UserCard';
 import styles from './UserList.module.css';
 import { darkDangerButton, darkPrimaryButton, darkTransparentButton } from '../../../shared/constants/hopeAdapter';
 
 interface UserListTemplateProps
 {
-    userList: UserApi[] | undefined;
-    removeAction: any;
+    userList: UserListResponse | undefined;
+    removeAction?: any;
     loading: boolean;
     viewMoreAction: any;
-    nextPage: string | undefined;
+    nextPage?: string | undefined;
 }
 
 const UserList: Component<UserListTemplateProps> = (props) =>
@@ -30,11 +30,11 @@ const UserList: Component<UserListTemplateProps> = (props) =>
     const { isOpen, open, close } = createDisclosure();
     let deleteData: UserApi | undefined;
 
-    const handleModalClick = () =>
-    {
-        props.removeAction(deleteData?.id);
-        close();
-    };
+    // const handleModalClick = () =>
+    // {
+    //     props.removeAction(deleteData?.id);
+    //     close();
+    // };
 
     const handleDelete = (role: UserApi) => () =>
     {
@@ -67,7 +67,7 @@ const UserList: Component<UserListTemplateProps> = (props) =>
                         <Button
                             _dark={darkDangerButton}
                             colorScheme="danger"
-                            onClick={() => handleModalClick()}
+                            onClick={() => console.log("me clikearon")}
                         >
                             {t('a_delete')}
                         </Button>
@@ -100,8 +100,8 @@ const UserList: Component<UserListTemplateProps> = (props) =>
             </Show>
 
             <div class="grid_cards_container">
-                <Show when={!props.loading || props.userList?.length} keyed>
-                    <For each={props.userList} fallback={<span class={'text-neutral-50'}>{t('u_no_users')}</span>}>
+                <Show when={!props.loading || props.userList?.data.length} keyed>
+                    <For each={props.userList?.data} fallback={<span class={'text-neutral-50'}>{t('u_no_users')}</span>}>
                         {(user) =>
                             <UserCard user={user} onDelete={handleDelete(user)}/>}
                     </For>
@@ -117,7 +117,7 @@ const UserList: Component<UserListTemplateProps> = (props) =>
                     </Button>
                 </Show>
 
-                <ButtonScrollUp dependencies={props.userList}/>
+                <ButtonScrollUp dependencies={props.userList?.data}/>
             </div>
         </section>
     );

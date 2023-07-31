@@ -11,9 +11,8 @@ import { RoleApi } from '../../../role/interfaces';
 import { UserApi, UserPayload } from '../../interfaces';
 import userCreateValidationSchema from '../../validations/schemas/userCreateValidationSchema';
 import userUpdateValidationSchema from '../../validations/schemas/userUpdateValidationSchema';
-import { MultiSelect, Select } from '../../../shared/molecules/Select/Select';
+import { Select } from '../../../shared/molecules/Select/Select';
 import Radio from '../../../shared/molecules/Radio/Radio';
-import Switch from '../../../shared/molecules/Switch/Switch';
 import DatePicker from '../../../shared/molecules/DatePicker/DatePicker';
 import { darkInput, darkNeutralButton, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
@@ -29,7 +28,7 @@ interface UserUpdateTemplateProps
     onSuccess: () => void;
     permissionsList?: PermissionApi[];
     userSelected?: UserApi | undefined;
-    requiredPermission: Record<RequiredPermission, string>;
+    requiredPermission?: Record<RequiredPermission, string>;
     rolesList?: RoleApi[];
 }
 
@@ -50,12 +49,9 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
         // @ts-ignore
     } = createForm<InferType<typeof userSchema>>({
         initialValues: {
-            permissions: [],
-            roles: [],
             enable: true,
             gender: '',
             country: '',
-            documentType: '',
             password: ''
         },
         extend: validator({ schema: userSchema }),
@@ -80,25 +76,25 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
         setFields(field, value, true);
     };
 
-    onMount(() =>
-    {
-        if (props.userSelected)
-        {
-            for (const key in props.userSelected)
-            {
-                if (key === 'roles')
-                {
-                    const rolesIds = props.userSelected[key].map((role) => role.id);
-                    setFields(key, rolesIds);
-                }
-                else
-                {
-                    // @ts-ignore
-                    setFields(key, props.userSelected[key]);
-                }
-            }
-        }
-    });
+    // onMount(() =>
+    // {
+    //     if (props.userSelected)
+    //     {
+    //         for (const key in props.userSelected)
+    //         {
+    //             if (key === 'roles')
+    //             {
+    //                 const rolesIds = props.userSelected[key].map((role) => role.id);
+    //                 setFields(key, rolesIds);
+    //             }
+    //             else
+    //             {
+    //                 // @ts-ignore
+    //                 setFields(key, props.userSelected[key]);
+    //             }
+    //         }
+    //     }
+    // });
 
     return (
         <form ref={form} class="form_flex">
@@ -150,19 +146,19 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
             </div>
 
             <div class="field_wrapper">
-                <FormControl isRequired isInvalid={!!errors('gender')}>
+                <FormControl isRequired isInvalid={!!errors('genre')}>
                     <FormControlLabel class={'form_label'} for="gender" _dark={{ _after: { color: 'danger.300' } }}>
                         {t('gender')}
                     </FormControlLabel>
                     <Radio
                         name={'gender'}
                         options={gender}
-                        value={data().gender}
-                        onChange={handleSelect('gender')}
+                        value={data().genre}
+                        onChange={handleSelect('genre')}
                     />
-                    <Show when={errors('gender')} keyed>
+                    <Show when={errors('genre')} keyed>
                         <FormControlError class="error_message_block">
-                            {t(errors('gender')?.[0] ?? '')}
+                            {t(errors('genre')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -198,23 +194,23 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                 </FormControl>
             </div>
 
-            <div class="field_wrapper">
-                <FormControl isRequired isInvalid={!!errors('enable')}>
-                    <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>
-                        {t('enable')}
-                    </FormControlLabel>
-                    <Switch
-                        name={'enable'}
-                        value={data().enable}
-                        onChange={handleSelect('enable')}
-                    />
-                    <Show when={errors('enable')} keyed>
-                        <FormControlError class="error_message_block">
-                            {t(errors('enable')?.[0] || '')}
-                        </FormControlError>
-                    </Show>
-                </FormControl>
-            </div>
+            {/*<div class="field_wrapper">*/}
+            {/*    <FormControl isRequired isInvalid={!!errors('genre')}>*/}
+            {/*        <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>*/}
+            {/*            {t('enable')}*/}
+            {/*        </FormControlLabel>*/}
+            {/*        <Switch*/}
+            {/*            name={'enable'}*/}
+            {/*            value={data().enable}*/}
+            {/*            onChange={handleSelect('enable')}*/}
+            {/*        />*/}
+            {/*        <Show when={errors('enable')} keyed>*/}
+            {/*            <FormControlError class="error_message_block">*/}
+            {/*                {t(errors('enable')?.[0] || '')}*/}
+            {/*            </FormControlError>*/}
+            {/*        </Show>*/}
+            {/*    </FormControl>*/}
+            {/*</div>*/}
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors('country')}>
@@ -239,27 +235,6 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                 </FormControl>
             </div>
 
-            <div class="field_wrapper">
-                <FormControl isRequired isInvalid={!!errors('address')}>
-                    <FormControlLabel class={'form_label'} for="address" _dark={{ _after: { color: 'danger.300' } }}>
-                        {t('address')}
-                    </FormControlLabel>
-                    <Input
-                        _dark={darkInput}
-                        _placeholder={placeholderInput}
-                        name="address"
-                        type="text"
-                        placeholder={t('a_your_address') as string}
-                        value={props.userSelected?.address}
-                    />
-                    <Show when={errors('address')} keyed>
-                        <FormControlError class="error_message_block">
-                            {t(errors('address')?.[0] ?? '')}
-                        </FormControlError>
-                    </Show>
-                </FormControl>
-            </div>
-
             <h2 class="section_title_opaque border_bottom">
                 {t('a_contact_information')}
             </h2>
@@ -275,7 +250,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                         name="email"
                         type="text"
                         placeholder={t('a_your_email') as string}
-                        value={props.userSelected?.email}
+                        value={props.userSelected?.username}
                     />
                     <Show when={errors('email')} keyed>
                         <FormControlError class="error_message_block">
@@ -349,53 +324,53 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                 </div>
             </Show>
 
-            <div class="field_wrapper">
-                <FormControl id="permissions" isInvalid={!!errors('permissions')}>
-                    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="permissions" _dark={{ _after: { color: 'danger.300' } }}>
-                        {t('permissions')}
-                    </FormControlLabel>
-                    <MultiSelect
-                        name={'permissions'}
-                        options={props.permissionsList}
-                        placeholder={'a_enter_permissions'}
-                        value={data().permissions}
-                        onChange={handleMultiSelect('permissions')}
-                        valueProperty={'id'}
-                        labelProperty={'name'}
-                        groupSelector={'permissions'}
-                        class={'w-full'}
-                    />
-                    <FormControlError class="error_message_block">
-                        {t(errors('permissions') && errors('permissions')?.[0] || '')}
-                    </FormControlError>
-                </FormControl>
-            </div>
+            {/*<div class="field_wrapper">*/}
+            {/*    <FormControl id="permissions" isInvalid={!!errors('permissions')}>*/}
+            {/*        <FormControlLabel _after={{ content: '' }} class={'form_label'} for="permissions" _dark={{ _after: { color: 'danger.300' } }}>*/}
+            {/*            {t('permissions')}*/}
+            {/*        </FormControlLabel>*/}
+            {/*        <MultiSelect*/}
+            {/*            name={'permissions'}*/}
+            {/*            options={props.permissionsList}*/}
+            {/*            placeholder={'a_enter_permissions'}*/}
+            {/*            value={data().permissions}*/}
+            {/*            onChange={handleMultiSelect('permissions')}*/}
+            {/*            valueProperty={'id'}*/}
+            {/*            labelProperty={'name'}*/}
+            {/*            groupSelector={'permissions'}*/}
+            {/*            class={'w-full'}*/}
+            {/*        />*/}
+            {/*        <FormControlError class="error_message_block">*/}
+            {/*            {t(errors('permissions') && errors('permissions')?.[0] || '')}*/}
+            {/*        </FormControlError>*/}
+            {/*    </FormControl>*/}
+            {/*</div>*/}
 
             <div class="field_wrapper">
-                <FormControl id="roles" isInvalid={!!errors('roles')}>
-                    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="roles" _dark={{ _after: { color: 'danger.300' } }}>
-                        {t('roles')}
-                    </FormControlLabel>
-                    <MultiSelect
-                        name={'roles'}
-                        options={props.rolesList}
-                        placeholder={'a_select_roles'}
-                        value={data().roles}
-                        onChange={handleMultiSelect('roles')}
-                        valueProperty={'id'}
-                        labelProperty={'name'}
-                        class={'w-full'}
-                    />
-                    <Show when={errors('roles')} keyed>
-                        <FormControlError class="error_message_block">
-                            {t(errors('roles')?.[0] ?? '')}
-                        </FormControlError>
-                    </Show>
-                </FormControl>
+                {/*<FormControl id="roles" isInvalid={!!errors('roles')}>*/}
+                {/*    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="roles" _dark={{ _after: { color: 'danger.300' } }}>*/}
+                {/*        {t('roles')}*/}
+                {/*    </FormControlLabel>*/}
+                {/*    <MultiSelect*/}
+                {/*        name={'roles'}*/}
+                {/*        options={props.rolesList}*/}
+                {/*        placeholder={'a_select_roles'}*/}
+                {/*        value={data().roles}*/}
+                {/*        onChange={handleMultiSelect('roles')}*/}
+                {/*        valueProperty={'id'}*/}
+                {/*        labelProperty={'name'}*/}
+                {/*        class={'w-full'}*/}
+                {/*    />*/}
+                {/*    <Show when={errors('roles')} keyed>*/}
+                {/*        <FormControlError class="error_message_block">*/}
+                {/*            {t(errors('roles')?.[0] ?? '')}*/}
+                {/*        </FormControlError>*/}
+                {/*    </Show>*/}
+                {/*</FormControl>*/}
             </div>
 
-            <div class="update_save_buttons_container" data-parent={props.requiredPermission.submit}>
-                <div class="button_full has-permission">
+            <div class="update_save_buttons_container">
+                <div class="button_full">
                     <Button
                         _dark={darkNeutralButton}
                         class="button_full"
@@ -405,7 +380,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                         {t('a_back')}
                     </Button>
                 </div>
-                <div class="button_full has-permission">
+                <div class="button_full">
                     <Button
                         _dark={darkPrimaryButtonWithBackground}
                         class="button_full"
@@ -421,7 +396,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                     <Button
                         _dark={darkNeutralButton}
                         class="w-full"
-                        onClick={() => navigate('/users/list')}
+                        onClick={() => navigate('/users')}
                     >
                         {t('a_back')}
                     </Button>
