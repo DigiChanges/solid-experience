@@ -80,7 +80,7 @@ const UserList: Component<UserListTemplateProps> = (props) =>
                     {t('u_list')}
                 </h1>
 
-                <div class="has-permission w-[100%] md:w-auto">
+                <div class="w-[100%] md:w-auto">
                     <Link href={'/users/create'}>
                         <Button
                             leftIcon={<Icon><IconPlus/></Icon>}

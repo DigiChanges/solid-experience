@@ -6,7 +6,7 @@ import Base from '../../shared/interfaces/Base';
 export interface User {
     firstName: string;
     lastName: string;
-    username: string;
+    email: string;
     birthdate: string;
     genre: string;
     phone: string;

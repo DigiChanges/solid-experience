@@ -25,7 +25,7 @@ const PrivateLayout: Component<privateTemplateProps> = (props) =>
             <div class={styles.main_container}>
 
                 <div class={styles.sidebar_container}>
-                    <SideBar showInMobile={showSidebar()} isOpen={ isOpen } open={ open } close={ close }/>*
+                    <SideBar showInMobile={showSidebar()} isOpen={ isOpen } open={ open } close={ close }/>
                 </div>
 
                 <main class={styles.main}>
