@@ -8,6 +8,7 @@ import PrivateLayout from '../../../features/shared/layout/PrivateLayout/Private
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import UserUpdate from '../../../features/user/templates/UserUpdate/UserUpdate';
 import { updateAction } from './handlers';
+import {UserPayload} from "../../../features/user/interfaces";
 
 const IndexPage: Component = () =>
 {
@@ -23,16 +24,19 @@ const IndexPage: Component = () =>
     // usePermission(user, [roles, permissions, userSelected]);
 
     // const isLoading = createMemo(() => userSelected.loading || permissions.loading || roles.loading);
-
+    const updateUser = async(id: number, data: UserPayload) =>
+    {
+        await userRepository.updateUser(id, data);
+    }
     return (
         <PrivateLayout>
-            {/*<UserUpdate*/}
-            {/*    onUpdate={updateAction({ userRepository, id, user: user() })}*/}
-            {/*    userSelected={userSelected()?.data}*/}
-            {/*    permissionsList={permissions()?.data}*/}
-            {/*    rolesList={roles()?.data}*/}
-            {/*    loading={isLoading()}*/}
-            {/*/>*/}
+            <UserUpdate
+                onUpdate={updateAction({ userRepository, id, user: user() })}
+                userSelected={userSelected()?.data}
+                // permissionsList={permissions()?.data}
+                // rolesList={roles()?.data}
+                loading={isLoading()}
+            />
         </PrivateLayout>
     );
 };

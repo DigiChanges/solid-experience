@@ -19,7 +19,7 @@ const UserCard: Component<UserCardProps> = (props) => (
 
             <div class="card_media_object">
                 <h6 class="card_media_object_title" data-parent="usersShow">
-                    <Link class="card_media_object_link has-permission"
+                    <Link class="card_media_object_link"
                         href={`/users/${props.user.id}/update`}
                     >
                         {`${props.user.firstName} ${props.user.lastName}`}
@@ -30,7 +30,7 @@ const UserCard: Component<UserCardProps> = (props) => (
 
             <div class="card_third">
                 <div data-parent="usersUpdate">
-                    <div class="has-permission">
+                    <div>
                         <Link href={`/users/${props.user.id}/update`}>
                             <IconButton
                                 _dark={{ color: 'success.300', cursor: 'pointer' }}
@@ -44,7 +44,7 @@ const UserCard: Component<UserCardProps> = (props) => (
                     </div>
                 </div>
                 <div data-parent="usersChangeUserPassword">
-                    <Link class="has-permission"
+                    <Link
                         href={`/users/editPassword/${props.user.id}`}
                     >
                         <IconButton
@@ -61,7 +61,6 @@ const UserCard: Component<UserCardProps> = (props) => (
                     <IconButton
                         _dark={{ color: 'danger.200', cursor: 'pointer' }}
                         size={'xs'}
-                        class="has-permission"
                         aria-label="Delete User"
                         variant="plain"
                         colorScheme="danger"

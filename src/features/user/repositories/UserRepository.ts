@@ -48,7 +48,18 @@ class UserRepository
         return HttpService.request<UserResponse>({ config, user });
     }
 
-    public updateUser({ id, data, user }: PayloadProps<UserPayload>)
+    // public updateUser({ id, data, user }: PayloadProps<UserPayload>)
+    // {
+    //     const config: AxiosRequestConfig = {
+    //         url: `${baseUrl}/${update}/${id}`,
+    //         method: 'PUT',
+    //         data
+    //     };
+    //
+    //     return HttpService.request<UserResponse>({ config, user });
+    // }
+
+    public updateUser(id: number, data:UserPayload)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${update}/${id}`,
@@ -56,7 +67,7 @@ class UserRepository
             data
         };
 
-        return HttpService.request<UserResponse>({ config, user });
+        return HttpService.request<UserResponse>({ config });
     }
 
     // public createUser({ data, user }: PayloadProps<UserPayload>)
