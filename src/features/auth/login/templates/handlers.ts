@@ -18,7 +18,7 @@ export const handleLoginFormSubmit = () => async(data: LoginPayload) =>
         createSession('refreshToken', response.data.refreshToken);
         const { error, loading, data: dataUser } = useGetMe();
         refreshToken(response.data.expiresIn);
-        const userAuth = await assignAllPermissionsToSuperAdminUser(response.data);
+        // const userAuth = await assignAllPermissionsToSuperAdminUser(response.data);
     }
 };
 

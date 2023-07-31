@@ -17,7 +17,7 @@ interface SideBarSubItemProps {
 const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
 {
     const IconProps: any = () => props.icon;
-
+    console.log(props);
     return (
         <Show when={props.showItem} >
             <div class={`${styles.side_bar_item_sub_item_container}`}>
