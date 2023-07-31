@@ -1,4 +1,3 @@
-import assignAllPermissionsToSuperAdminUser from '../../helper/assignAllPermissionsToSuperAdminUser';
 import { LoginPayload } from '../../interfaces/login';
 import AuthRepository from '../../repositories/AuthRepository';
 import useSessionStorage from '../../../shared/hooks/useSessionStorage';
@@ -18,7 +17,6 @@ export const handleLoginFormSubmit = () => async(data: LoginPayload) =>
         createSession('refreshToken', response.data.refreshToken);
         const { error, loading, data: dataUser } = useGetMe();
         refreshToken(response.data.expiresIn);
-        // const userAuth = await assignAllPermissionsToSuperAdminUser(response.data);
     }
 };
 

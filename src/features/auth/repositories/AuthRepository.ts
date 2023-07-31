@@ -5,12 +5,18 @@ import { ChangeForgotPasswordPayload, ForgotPasswordPayload } from '../interface
 import { LoginPayload, LoginResponse } from '../interfaces/login';
 import { LogoutResponse } from '../interfaces/logout';
 import HttpService from '../../../services/HttpService';
-import { PermissionListResponse } from '../interfaces/permission';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
 import HttpServiceWithoutToken from '../../../services/HttpServiceWithoutToken';
 
 const { baseUrl } = config.apiGateway.server;
-const { getMe , register, login, refreshToken, logout, permissionsGetAll, forgotPassword, changeForgotPassword, verifyYourAccount } = config.apiGateway.routes.auth;
+const { getMe,
+        register,
+        login,
+        refreshToken,
+        logout, permissionsGetAll,
+        forgotPassword,
+        changeForgotPassword,
+        verifyYourAccount } = config.apiGateway.routes.auth;
 
 class AuthRepository
 {
@@ -54,16 +60,6 @@ class AuthRepository
         };
 
         return HttpService.request<LogoutResponse>({ config, user });
-    }
-
-    public async getAllPermissions()
-    {
-        const config: AxiosRequestConfig = {
-            url: `${baseUrl}/${permissionsGetAll}`,
-            method: "GET"
-        };
-
-        return HttpService.request<PermissionListResponse>({ config });
     }
 
     public getForgotPassword = ({ data }: PayloadProps<ForgotPasswordPayload>) =>

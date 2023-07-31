@@ -4,7 +4,8 @@ import useTranslation from '../../../shared/hooks/useTranslation';
 import { Icon } from '@hope-ui/core';
 import styles from './SideBarItemSubItem.module.css';
 
-interface SideBarSubItemProps {
+interface SideBarSubItemProps
+{
     name: string;
     path: string;
     icon?: any;
@@ -17,7 +18,8 @@ interface SideBarSubItemProps {
 const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
 {
     const IconProps: any = () => props.icon;
-    console.log(props);
+    const { translate: t } = useTranslation();
+
     return (
         <Show when={props.showItem} >
             <div class={`${styles.side_bar_item_sub_item_container}`}>
@@ -40,8 +42,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
                                 class={`${styles.side_bar_item_sub_item_nav_link_container_span}`}
                                 classList={{ 'pl-1': props.isToggled } }
                             >
-                                <p>{props.name}</p>
-                                {/*<Text message={props.name} />*/}
+                                <p>{t(props.name)}</p>
                             </span>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ const useTranslation = () =>
 
     return {
         translate: (key: string, params?: Record<string, string>, defaultValue?: string) => t(key, params, defaultValue),
-        locale: (key: string) => (() => locale(key))
+        locale: (key: string) => locale(key)
     };
 };
 
