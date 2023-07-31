@@ -40,7 +40,8 @@ const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
                                 class={`${styles.side_bar_item_sub_item_nav_link_container_span}`}
                                 classList={{ 'pl-1': props.isToggled } }
                             >
-                                <Text message={props.name} />
+                                <p>{props.name}</p>
+                                {/*<Text message={props.name} />*/}
                             </span>
                         </div>
                     </div>

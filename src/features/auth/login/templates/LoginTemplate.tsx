@@ -10,8 +10,8 @@ import LoginForm from '../organisms/LoginForm/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 import styles from './LoginTemplate.module.css';
 import useTranslation from '../../../shared/hooks/useTranslation';
-import {useNavigate} from "solid-start";
-import {Link} from "@solidjs/router";
+import { useNavigate } from 'solid-start';
+import { Link } from '@solidjs/router';
 
 const LoginTemplate: Component = () =>
 {
@@ -74,8 +74,8 @@ const LoginTemplate: Component = () =>
                             <LoginForm
                                 onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}
                                 onSubmit={handleLoginFormSubmit()}
-                                onError={handleError()}
                                 onSuccess={handleSuccess()}
+                                onError={handleError()}
                             />
                         </Show>
                     </div>

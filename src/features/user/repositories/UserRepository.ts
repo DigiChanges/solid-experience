@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { UserPayload, UserListResponse, UserResponse } from '../interfaces';
+import {UserPayload, UserListResponse, UserResponse, UserApi, User} from '../interfaces';
 import { config } from '../../shared/repositories/config';
 import HttpService from '../../../services/HttpService';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
@@ -16,6 +16,16 @@ class UserRepository
         };
 
         return HttpService.request<UserListResponse>({ config, queryParams, user });
+    }
+
+    public getPagination(queryParams: string): Promise<UserListResponse>
+    {
+        const config: AxiosRequestConfig = {
+            url: `${baseUrl}/${getAll}${queryParams}`,
+            method: 'GET'
+        };
+
+        return HttpService.request<UserListResponse>({ config });
     }
 
     public getOne({ id, user }: PayloadProps)
@@ -49,7 +59,18 @@ class UserRepository
         return HttpService.request<UserResponse>({ config, user });
     }
 
-    public createUser({ data, user }: PayloadProps<UserPayload>)
+    // public createUser({ data, user }: PayloadProps<UserPayload>)
+    // {
+    //     const config: AxiosRequestConfig = {
+    //         url: `${baseUrl}/${create}`,
+    //         method: 'POST',
+    //         data
+    //     };
+    //
+    //     return HttpService.request<UserResponse>({ config, user });
+    // }
+
+    public createUser(data: UserPayload)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${create}`,
@@ -57,7 +78,7 @@ class UserRepository
             data
         };
 
-        return HttpService.request<UserResponse>({ config, user });
+        return HttpService.request<UserResponse>({ config });
     }
 
     public removeUser({ id, user }: PayloadProps)
