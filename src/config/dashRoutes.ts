@@ -91,7 +91,7 @@ export const dashRoutes = [
         children:
         [
             {
-                path: '/list',
+                path: '/',
                 component: lazy(() => import('../routes/users')),
                 name: 'a_list',
                 icon: IconViewList,
@@ -164,4 +164,4 @@ export const dashRoutes = [
     }
 ];
 
-export const defaultRoute = '/users/list';
+export const defaultRoute = '/users';

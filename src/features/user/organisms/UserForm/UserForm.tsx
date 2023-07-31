@@ -374,7 +374,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                     <Button
                         _dark={darkNeutralButton}
                         class="button_full"
-                        onClick={() => navigate('/users/list')}
+                        onClick={() => navigate('/users')}
                         colorScheme="neutral"
                     >
                         {t('a_back')}

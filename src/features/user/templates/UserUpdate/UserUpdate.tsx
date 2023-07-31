@@ -31,7 +31,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
             status: 'success',
             title: t('u_updated') as string
         });
-        navigate('/users/list', { replace: true });
+        navigate('/users', { replace: true });
     };
 
     const handleError = () => (error: unknown) =>

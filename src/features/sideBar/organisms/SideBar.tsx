@@ -42,7 +42,7 @@ const SideBar: Component<SideBarProps> = (props) =>
         const data = sessionStorage.getItem('userData');
         if (data)
         {
-
+            setAuthUser(JSON.parse(data));
         }
         });
 
