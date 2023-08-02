@@ -1,4 +1,4 @@
-import { useSearchParams } from '@solidjs/router';
+import { useSearchParams } from 'solid-start';
 import { createMemo } from 'solid-js';
 import { PaginationParams, QueryParams } from '../../../services/IHttpAxios';
 import usePagination from './usePagination';

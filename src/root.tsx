@@ -7,7 +7,7 @@ import { isServer } from 'solid-js/web';
 // import DefaultLayout from './layouts/default';
 import { I18nProvider } from './locales';
 
-import { ApplicationProvider } from './context/context';
+import { ContextProvider } from './context';
 import { colors } from './features/shared/constants/colors';
 import './root.css';
 import './styles/alert.css';
@@ -45,11 +45,13 @@ export default function Root()
         <HopeProvider storageManager={storageManager} initialColorMode="dark" theme={theme}>
           <Suspense>
             <ErrorBoundary>
-              <I18nProvider>
-                <Routes>
-                    <FileRoutes />
-                </Routes>
-              </I18nProvider>
+              <ContextProvider>
+                <I18nProvider>
+                  <Routes>
+                      <FileRoutes />
+                  </Routes>
+                </I18nProvider>
+                </ContextProvider>
             </ErrorBoundary>
           </Suspense>
         </HopeProvider>

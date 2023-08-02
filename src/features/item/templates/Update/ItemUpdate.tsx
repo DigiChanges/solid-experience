@@ -1,23 +1,22 @@
-import { notificationService } from '../../../shared/molecules/Toast/Toast';
-import { useNavigate } from '@solidjs/router';
-import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
-import { permissions } from '../../../../config/permissions';
-import { RoleApi } from '../../../role/interfaces';
-import createAlert from '../../../shared/hooks/createAlert';
-import GeneralLoader from '../../../shared/templates/GeneralLoader';
-import { UserApi, UserPayload } from '../../interfaces';
-import UserForm from '../../organisms/UserForm/UserForm';
+import { useNavigate } from '@solidjs/router';
 
-interface UserUpdateTemplateProps
+import { notificationService } from '../../../shared/molecules/Toast/Toast';
+import useTranslation from '../../../shared/hooks/useTranslation';
+import createAlert from '../../../shared/hooks/createAlert';
+import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
+import GeneralLoader from '../../../shared/templates/GeneralLoader';
+import { ItemApi, ItemPayload, ItemResponse } from '../../interfaces';
+import ItemForm from '../../organisms/ItemForm/ItemForm';
+
+interface ItemUpdateTemplateProps
 {
-    rolesList?: RoleApi[];
-    onUpdate: (data: UserPayload) => Promise<void>;
+    onUpdate: (data: ItemPayload) => Promise<ItemResponse>;
+    itemSelected: ItemApi | undefined;
     loading: boolean;
-    userSelected?: UserApi | undefined;
 }
 
-const UserUpdate: Component<UserUpdateTemplateProps> = props =>
+const ItemUpdate: Component<ItemUpdateTemplateProps> = (props) =>
 {
     const { translate: t } = useTranslation();
     const navigate = useNavigate();
@@ -28,9 +27,9 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
     {
         notificationService.show({
             status: 'success',
-            title: t('u_updated') as string
+            title: t('i_updated') as string
         });
-        navigate('/users', { replace: true });
+        navigate('/items', { replace: true });
     };
 
     const handleError = () => (error: unknown) =>
@@ -38,7 +37,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
         const errorMessage = setError(error);
         notificationService.show({
             status: 'danger',
-            title: t('err_save_user') as string,
+            title: t('err_save_item') as string,
             description: t(errorMessage) as string
         });
     };
@@ -46,27 +45,30 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
     return (
         <section class="section_container">
 
-            <header class="section_header_container" data-parent={permissions.USERS.UPDATE}>
+            <AlertErrors
+                errorData={errorAlert.errorData()}
+                title="err_save"
+                description="err_save_item"
+            />
+
+            <header class="section_header_container">
                 <div class="has-permission">
-                    <h1 class="section_title">{t('u_update')}</h1>
+                    <h1 class="section_title">{t('i_update')}</h1>
                 </div>
                 <div class="fallback">
-                    <h1 class="section_title">{t('User')}</h1>
+                    <h1 class="section_title">{t('item')}</h1>
                 </div>
             </header>
 
             <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>
-                <UserForm
+                <ItemForm
                     onError={handleError()}
                     onSubmit={props.onUpdate}
                     onSuccess={handleSuccess()}
-                    rolesList={props.rolesList}
-                    userSelected={props.userSelected}
+                    itemSelected={props.itemSelected}
                 />
             </Show>
-
         </section>
     );
 };
-
-export default UserUpdate;
+export default ItemUpdate;

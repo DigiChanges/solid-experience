@@ -1,6 +1,5 @@
 
 const app: Record<string, string> = {
-    hello: 'hello {{ name }}, how are you?',
     a_account_created: 'Created Account',
     a_account_recovery: 'ACCOUNT RECOVERY',
     a_actions: 'Actions',
@@ -269,6 +268,19 @@ const user: Record<string, string> = {
     u_view: 'Show User'
 };
 
+const items: Record<string, string> = {
+    i_create: 'Create Item',
+    i_created: 'Item created',
+    i_list: 'Item List',
+    i_no_roles: 'Without Items',
+    i_remove: 'Are you sure you want to delete this item?',
+    i_removed: 'The item was removed',
+    i_search: '{count, plural, one {Search item} other {Search items}}',
+    i_update: 'Update Item',
+    i_items: 'Items',
+    i_updated: 'Item updated'
+};
+
 const en: Record<string, string> = {
     ...calendar,
     ...app,
@@ -279,7 +291,8 @@ const en: Record<string, string> = {
     ...errors,
     ...properties,
     ...roles,
-    ...user
+    ...user,
+    ...items
 };
 
 export default en;

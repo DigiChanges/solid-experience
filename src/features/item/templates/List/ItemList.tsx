@@ -1,32 +1,34 @@
 import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
 import useTranslation from '../../../shared/hooks/useTranslation';
-import { Component, For, Show } from 'solid-js';
+import { Component, createEffect, For, Show } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
+import { permissions } from '../../../../config/permissions';
 import Filter from '../../../filterSort/organisms/Filter/Filter';
 import useTransformTranslatedOptions from '../../../shared/hooks/useTransformTranslatedOptions';
 import ButtonScrollUp from '../../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { filterBy } from '../../constants/filterBy';
-import {UserApi, UserListResponse} from '../../interfaces';
-import UserCard from '../../organisms/UserCard/UserCard';
-import styles from './UserList.module.css';
-import { darkDangerButton, darkPrimaryButton, darkTransparentButton } from '../../../shared/constants/hopeAdapter';
+import { ItemApi, ItemListResponse } from '../../interfaces';
+import ItemCard from '../../organisms/ItemCard/ItemCard';
+import styles from '../../../user/templates/UserList/UserList.module.css';
+import { darkDangerButton, darkPrimaryButton } from '../../../shared/constants/hopeAdapter';
 
-interface UserListTemplateProps
+interface ItemListTemplateProps
 {
-    userList: UserListResponse | undefined;
-    removeAction?: any;
+    itemList: ItemListResponse | undefined;
+    removeAction: any;
     loading: boolean;
-    nextPage?: string | undefined;
+    viewMoreAction: any;
+    nextPage: string | undefined;
 }
 
-const UserList: Component<UserListTemplateProps> = (props) =>
+const ItemList: Component<ItemListTemplateProps> = (props) =>
 {
     const { translate: t } = useTranslation();
 
     const { isOpen, open, close } = createDisclosure();
-    let deleteData: UserApi | undefined;
+    let deleteData: ItemApi | undefined;
 
     const handleModalClick = () =>
     {
@@ -34,9 +36,9 @@ const UserList: Component<UserListTemplateProps> = (props) =>
         close();
     };
 
-    const handleDelete = (role: UserApi) => () =>
+    const handleDelete = (item: ItemApi) => () =>
     {
-        deleteData = role;
+        deleteData = item;
         open();
     };
 
@@ -53,8 +55,8 @@ const UserList: Component<UserListTemplateProps> = (props) =>
                             {t('a_delete_data')}
                         </Modal.Heading>
                     </HStack>
-                    <p class={'text-neutral-50'}>{t('u_remove')}</p>
-                    <h1 class={'text-neutral-50'}>{deleteData?.firstName} {deleteData?.lastName}</h1>
+                    <p class={'text-neutral-50'}>{t('i_remove')}</p>
+                    <h1 class={'text-neutral-50'}>{deleteData?.name}</h1>
                     <HStack class="modal_footer pt-4 justify-end">
                         <Button
                             onClick={close}
@@ -65,7 +67,7 @@ const UserList: Component<UserListTemplateProps> = (props) =>
                         <Button
                             _dark={darkDangerButton}
                             colorScheme="danger"
-                            onClick={() => console.log("me clikearon")}
+                            onClick={() => handleModalClick}
                         >
                             {t('a_delete')}
                         </Button>
@@ -73,19 +75,19 @@ const UserList: Component<UserListTemplateProps> = (props) =>
                 </Modal.Content>
             </Modal>
 
-            <header class="section_header_container">
+            <header class="section_header_container" data-parent={permissions.ROLES.SAVE}>
                 <h1 class="section_title">
-                    {t('u_list')}
+                    {t('i_list')}
                 </h1>
 
                 <div class="w-[100%] md:w-auto">
-                    <Link href={'/users/create'}>
+                    <Link href={'/items/create'}>
                         <Button
                             leftIcon={<Icon><IconPlus/></Icon>}
                             _dark={darkPrimaryButton}
-                            class={'w-[100%] md:w-auto'}
+                            class={'w-[100%] sm:w-[100%]'}
                         >
-                            {t('u_create')}
+                            {t('i_create')}
                         </Button>
                     </Link>
                 </div>
@@ -98,19 +100,28 @@ const UserList: Component<UserListTemplateProps> = (props) =>
             </Show>
 
             <div class="grid_cards_container">
-                <Show when={!props.loading || props.userList?.data.length} keyed>
-                    <For each={props.userList?.data} fallback={<span class={'text-neutral-50'}>{t('u_no_users')}</span>}>
-                        {(user) =>
-                            <UserCard user={user} onDelete={handleDelete(user)}/>}
+                <Show when={!props.loading || props.itemList?.data.length} keyed>
+                    <For each={props.itemList?.data} fallback={<span class={'text-neutral-50'}>{t('r_no_items')}</span>}>
+                        {(item) =>
+                            <ItemCard item={item} onDelete={handleDelete(item)} />
+                        }
                     </For>
                 </Show>
             </div>
 
             <div class="section_bottom_buttons_container">
-                <ButtonScrollUp dependencies={props.userList?.data}/>
+                <Show when={!!props.nextPage} keyed>
+                    <Button onClick={props.viewMoreAction()} variant="outlined">
+                        <Show when={!props.loading} fallback={<span class={'text-neutral-50'}>{t('a_loading')}...</span>} keyed>
+                            {t('a_view_more')}
+                        </Show>
+                    </Button>
+                </Show>
+
+                {/*<ButtonScrollUp dependencies={props.itemList}/>*/}
             </div>
         </section>
     );
 };
 
-export default UserList;
+export default ItemList;

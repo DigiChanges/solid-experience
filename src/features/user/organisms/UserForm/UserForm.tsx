@@ -6,7 +6,6 @@ import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { country, gender } from '../../../../entities';
-import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
 import { UserApi, UserPayload } from '../../interfaces';
 import userCreateValidationSchema from '../../validations/schemas/userCreateValidationSchema';
@@ -26,9 +25,7 @@ interface UserUpdateTemplateProps
     onError: (error: unknown) => void;
     onSubmit: (data: UserPayload) => Promise<void>;
     onSuccess: () => void;
-    permissionsList?: PermissionApi[];
     userSelected?: UserApi | undefined;
-    requiredPermission?: Record<RequiredPermission, string>;
     rolesList?: RoleApi[];
 }
 
@@ -194,7 +191,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                 </FormControl>
             </div>
 
-            {/*<div class="field_wrapper">*/}
+            {/* <div class="field_wrapper">*/}
             {/*    <FormControl isRequired isInvalid={!!errors('genre')}>*/}
             {/*        <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>*/}
             {/*            {t('enable')}*/}
@@ -210,7 +207,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
             {/*            </FormControlError>*/}
             {/*        </Show>*/}
             {/*    </FormControl>*/}
-            {/*</div>*/}
+            {/* </div>*/}
 
             <div class="field_wrapper">
                 <FormControl isRequired isInvalid={!!errors('country')}>
@@ -325,49 +322,27 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
             </Show>
 
             {/*<div class="field_wrapper">*/}
-            {/*    <FormControl id="permissions" isInvalid={!!errors('permissions')}>*/}
-            {/*        <FormControlLabel _after={{ content: '' }} class={'form_label'} for="permissions" _dark={{ _after: { color: 'danger.300' } }}>*/}
-            {/*            {t('permissions')}*/}
+            {/*    <FormControl id="roles" isInvalid={!!errors('roles')}>*/}
+            {/*        <FormControlLabel _after={{ content: '' }} class={'form_label'} for="roles" _dark={{ _after: { color: 'danger.300' } }}>*/}
+            {/*            {t('roles')}*/}
             {/*        </FormControlLabel>*/}
             {/*        <MultiSelect*/}
-            {/*            name={'permissions'}*/}
-            {/*            options={props.permissionsList}*/}
-            {/*            placeholder={'a_enter_permissions'}*/}
-            {/*            value={data().permissions}*/}
-            {/*            onChange={handleMultiSelect('permissions')}*/}
+            {/*            name={'roles'}*/}
+            {/*            options={props.rolesList}*/}
+            {/*            placeholder={'a_select_roles'}*/}
+            {/*            value={data().roles}*/}
+            {/*            onChange={handleMultiSelect('roles')}*/}
             {/*            valueProperty={'id'}*/}
             {/*            labelProperty={'name'}*/}
-            {/*            groupSelector={'permissions'}*/}
             {/*            class={'w-full'}*/}
             {/*        />*/}
-            {/*        <FormControlError class="error_message_block">*/}
-            {/*            {t(errors('permissions') && errors('permissions')?.[0] || '')}*/}
-            {/*        </FormControlError>*/}
+            {/*        <Show when={errors('roles')} keyed>*/}
+            {/*            <FormControlError class="error_message_block">*/}
+            {/*                {t(errors('roles')?.[0] ?? '')}*/}
+            {/*            </FormControlError>*/}
+            {/*        </Show>*/}
             {/*    </FormControl>*/}
             {/*</div>*/}
-
-            <div class="field_wrapper">
-                {/*<FormControl id="roles" isInvalid={!!errors('roles')}>*/}
-                {/*    <FormControlLabel _after={{ content: '' }} class={'form_label'} for="roles" _dark={{ _after: { color: 'danger.300' } }}>*/}
-                {/*        {t('roles')}*/}
-                {/*    </FormControlLabel>*/}
-                {/*    <MultiSelect*/}
-                {/*        name={'roles'}*/}
-                {/*        options={props.rolesList}*/}
-                {/*        placeholder={'a_select_roles'}*/}
-                {/*        value={data().roles}*/}
-                {/*        onChange={handleMultiSelect('roles')}*/}
-                {/*        valueProperty={'id'}*/}
-                {/*        labelProperty={'name'}*/}
-                {/*        class={'w-full'}*/}
-                {/*    />*/}
-                {/*    <Show when={errors('roles')} keyed>*/}
-                {/*        <FormControlError class="error_message_block">*/}
-                {/*            {t(errors('roles')?.[0] ?? '')}*/}
-                {/*        </FormControlError>*/}
-                {/*    </Show>*/}
-                {/*</FormControl>*/}
-            </div>
 
             <div class="update_save_buttons_container">
                 <div class="button_full">

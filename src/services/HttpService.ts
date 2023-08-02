@@ -23,6 +23,7 @@ class HttpService
         }
         )).data;
     }
+
     static async requestWithRefreshToken<T>(data: IHttpServiceParams)
     {
         const { config, queryParams, user } = data;

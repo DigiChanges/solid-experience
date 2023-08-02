@@ -4,13 +4,12 @@ import DashItems from '../../shared/layout/DashItems/DashItems';
 import styles from './SideBar.module.css';
 import useTranslation from '../../shared/hooks/useTranslation';
 import { Drawer } from '@hope-ui/core';
-import { logout } from '../../navBar/organisms/handlers';
 import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
 import { FaSolidAngleDown } from 'solid-icons/fa';
-import useSessionStorage from '../../shared/hooks/useSessionStorage';
 import { LoginApi } from '../../auth/interfaces/login';
 
-interface SideBarProps {
+interface SideBarProps
+{
     showInMobile?: boolean;
     children?: JSX.Element;
     close: () => void;
@@ -21,22 +20,8 @@ interface SideBarProps {
 const SideBar: Component<SideBarProps> = (props) =>
 {
     const { translate: t } = useTranslation();
-
-    const items: never[] = [
-        // {
-        //     children: {t('Item 1')},
-        //     onSelect: {},
-        // },
-        // {
-        //     children: {t('Item 2')},
-        //     onSelect: {},
-        // },
-        // {
-        //     children: {t('a_logout') as string},
-        //     onSelect: logout( { user: props.authUser } )
-        // },
-    ];
     const [authUser, setAuthUser] = createSignal<LoginApi>();
+
     createEffect(() =>
     {
         const data = sessionStorage.getItem('userData');
@@ -44,7 +29,7 @@ const SideBar: Component<SideBarProps> = (props) =>
         {
             setAuthUser(JSON.parse(data));
         }
-        });
+    });
 
     return (
         <Show when={true}><>
@@ -60,7 +45,7 @@ const SideBar: Component<SideBarProps> = (props) =>
                     <div>
                         <div class={'w-auto h-[35px] mx-[1rem] mb-2'}>
                             <DropdownMenu
-                                items={items}
+                                items={[]}
                                 icon={<FaSolidAngleDown />}
                                 title={<span class={'text-white font-bold'}>alexis</span>}
                                 class={'w-[256px]'}

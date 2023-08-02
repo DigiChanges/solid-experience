@@ -12,10 +12,11 @@ import usePaginatedState from '../../features/shared/hooks/usePaginatedState';
 import useQuery from '../../features/shared/hooks/useQuery';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout/PrivateLayout';
 import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
+import useTranslation from '../../features/shared/hooks/useTranslation';
 
 const IndexPage: Component = () =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const { errorData, setError } = createAlert();
 
     // const [user]: any = useApplicationContext();
@@ -25,7 +26,6 @@ const IndexPage: Component = () =>
 
     // const [roles, { refetch }] = createResource(() => ({ user: user(), queryParams: getURLSearchParams() }), ({ user, queryParams }) => roleRepository.getRoles({ user, queryParams }));
     // const { resourceList: roleList, setViewMore, paginationData } = usePaginatedState<RoleApi, RoleListResponse>(roles);
-
     // usePermission(user, [roles]);
 
     const viewMoreAction = () => () =>
@@ -42,10 +42,10 @@ const IndexPage: Component = () =>
         {
             // void await roleRepository.removeRole({ id, user: user() });
 
-            notificationService.show({
-                status: 'success',
-                title: t('r_removed') as string
-            });
+            // notificationService.show({
+            //     status: 'success',
+            //     title: t('r_removed') as string
+            // });
 
             if (page()?.offset === INIT_STATE.nextPaginationParams.offset)
             {

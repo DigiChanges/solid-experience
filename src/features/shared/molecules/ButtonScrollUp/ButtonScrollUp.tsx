@@ -4,10 +4,12 @@ import IconArrowCircleLeft from '../../../../atoms/Icons/Stroke/IconArrowCircleL
 import styles from './ButtonScrollUp.module.css';
 import { RoleApi } from '../../../role/interfaces';
 import { UserApi } from '../../../user/interfaces';
+import { ItemApi } from '../../../item/interfaces';
 
-interface ButtonGoUpProps {
+interface ButtonGoUpProps
+{
     onGoUp?: (e: MouseEvent) => void;
-    dependencies: RoleApi[] | UserApi[] | undefined;
+    dependencies: RoleApi[] | UserApi[] | ItemApi[] | undefined;
 }
 
 const handleClick = ({ scrollTop }: { scrollTop: () => void }) => () => scrollTop();
@@ -16,7 +18,7 @@ const ButtonScrollUp: Component<ButtonGoUpProps> = (props) =>
 {
     const [hideButton, setHideButton] = createSignal(true);
 
-    const calculateDocumentHeight = (): boolean =>
+    const calculateDocumentHeight = (): boolean | undefined =>
     {
         const root = document.getElementById('root');
         if (props.dependencies)
@@ -34,13 +36,16 @@ const ButtonScrollUp: Component<ButtonGoUpProps> = (props) =>
 
     createEffect(() =>
     {
-        setHideButton(calculateDocumentHeight());
+        const a = calculateDocumentHeight();
+        setHideButton(a ?? true);
     });
 
     window.onresize = () =>
     {
-        setHideButton(calculateDocumentHeight());
+        const a = calculateDocumentHeight();
+        setHideButton(a ?? false);
     };
+
     const scrollTop = () =>
     {
         if (typeof window !== 'undefined')
