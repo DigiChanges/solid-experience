@@ -12,6 +12,7 @@ import styles from './LoginTemplate.module.css';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { useNavigate } from 'solid-start';
 import { Link } from '@solidjs/router';
+import { notificationService } from '../../../shared/molecules/Toast/Toast';
 
 const LoginTemplate: Component = () =>
 {
@@ -31,10 +32,10 @@ const LoginTemplate: Component = () =>
     {
         const errorMessage = setError(error);
         setIsLoading(false);
-        // notificationService.show({
-        //     title: t('err_login') as string,
-        //     description: t(errorMessage) as string
-        // });
+        notificationService.show({
+            title: t('err_login') as string,
+            description: t(errorMessage) as string
+        });
     };
 
     return (

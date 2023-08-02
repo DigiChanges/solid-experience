@@ -3,7 +3,8 @@ import type { FlowComponent } from 'solid-js';
 import en from './en';
 import es from './es';
 
-type II18nParams = {
+type II18nParams =
+{
   dict?: Record<string, Record<string, any>>
   locale?: string
 }

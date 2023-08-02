@@ -2,18 +2,14 @@ import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { useNavigate } from '@solidjs/router';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
-import { permissions } from '../../../../config/permissions';
-import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
 import createAlert from '../../../shared/hooks/createAlert';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { UserPayload } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
 
-
 interface UserCreateTemplateProps
 {
-    permissionsList?: PermissionApi[];
     rolesList?: RoleApi[];
     onCreate?: (data: UserPayload) => Promise<void>;
     loading?: boolean;
@@ -45,11 +41,6 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
         });
     };
 
-    const onCreate = () =>
-    {
-
-    }
-
     return (
         <section class="section_container">
 
@@ -62,8 +53,6 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
                     onError={handleError()}
                     onSubmit={props.onCreate}
                     onSuccess={handleSuccess()}
-                    // permissionsList={props.permissionsList}
-                    // requiredPermission={{ submit: permissions.USERS.SAVE }}
                     // rolesList={props.rolesList}
                 />
             </Show>

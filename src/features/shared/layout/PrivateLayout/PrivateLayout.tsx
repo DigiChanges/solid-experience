@@ -5,9 +5,9 @@ import SideBar from '../../../sideBar/organisms/SideBar';
 import styles from './PrivateLayout.module.css';
 import { createDisclosure } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
-import useSessionStorage from '../../hooks/useSessionStorage';
 
-interface privateTemplateProps {
+interface privateTemplateProps
+{
     children: JSX.Element | JSX.Element[];
 }
 

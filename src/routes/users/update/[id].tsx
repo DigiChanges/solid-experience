@@ -1,4 +1,4 @@
-import { useParams } from "solid-start";
+import { useParams } from 'solid-start';
 import { Component, createMemo, createResource } from 'solid-js';
 // import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
@@ -8,7 +8,7 @@ import PrivateLayout from '../../../features/shared/layout/PrivateLayout/Private
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import UserUpdate from '../../../features/user/templates/UserUpdate/UserUpdate';
 import { updateAction } from './handlers';
-import {UserPayload} from "../../../features/user/interfaces";
+import { UserPayload } from '../../../features/user/interfaces';
 
 const IndexPage: Component = () =>
 {
@@ -27,15 +27,16 @@ const IndexPage: Component = () =>
     const updateUser = async(id: number, data: UserPayload) =>
     {
         await userRepository.updateUser(id, data);
-    }
+    };
+
     return (
         <PrivateLayout>
             <UserUpdate
                 onUpdate={updateAction({ userRepository, id, user: user() })}
-                userSelected={userSelected()?.data}
+                // userSelected={userSelected()?.data}
                 // permissionsList={permissions()?.data}
                 // rolesList={roles()?.data}
-                loading={isLoading()}
+                // loading={isLoading()}
             />
         </PrivateLayout>
     );

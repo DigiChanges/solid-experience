@@ -269,6 +269,19 @@ const user: Record<string, string> = {
     u_view: 'Ver Usuario'
 };
 
+const items: Record<string, string> = {
+    i_create: 'Crear Item',
+    i_created: 'Item Creado',
+    i_list: 'Listado de Items',
+    i_no_roles: 'No Items',
+    i_remove: '¿Está seguro que desea eliminar este item?',
+    i_removed: 'Se ha eliminado el item correctamente',
+    i_search: '{count, plural, one {Buscar item} other {Buscar items}}',
+    i_update: 'Editar Item',
+    i_items: 'Items',
+    i_updated: 'Item Actualizado'
+};
+
 const es: Record<string, string> = {
     ...calendar,
     ...app,
@@ -279,7 +292,8 @@ const es: Record<string, string> = {
     ...errors,
     ...properties,
     ...roles,
-    ...user
+    ...user,
+    ...items
 };
 
 export default es;

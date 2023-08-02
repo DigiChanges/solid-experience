@@ -5,8 +5,8 @@ import PrivateLayout from '../../../features/shared/layout/PrivateLayout/Private
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import UserCreate from '../../../features/user/templates/UserCreate/UserCreate';
 import { createAction } from './handler';
-import {UserPayload} from "../../../features/user/interfaces";
-import PayloadProps from "../../../features/shared/interfaces/PayloadProps";
+import { UserPayload } from '../../../features/user/interfaces';
+import PayloadProps from '../../../features/shared/interfaces/PayloadProps';
 
 const IndexPage: Component = () =>
 {
@@ -19,13 +19,12 @@ const IndexPage: Component = () =>
     const createUser = async(data: UserPayload) =>
     {
         await userRepository.createUser(data);
-    }
+    };
 
     return (
         <PrivateLayout>
             <UserCreate
                 onCreate={createUser}
-                // permissionsList={permissions()?.data}
                 // rolesList={roles()?.data}
                 // loading={permissions.loading || roles.loading}
             />

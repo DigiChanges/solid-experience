@@ -42,6 +42,9 @@ export const config = {
                 create: `${BACKEND_BASE_PATH}/roles`,
                 update: `${BACKEND_BASE_PATH}/roles`,
                 remove: `${BACKEND_BASE_PATH}/roles`
+            },
+            items: {
+                base: `${BACKEND_BASE_PATH}/items`
             }
         }
     }

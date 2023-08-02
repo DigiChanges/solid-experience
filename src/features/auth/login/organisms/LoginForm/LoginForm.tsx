@@ -7,10 +7,11 @@ import type { InferType } from 'yup';
 import { LoginPayload } from '../../../interfaces/login';
 import signUpSchema from '../../../validations/schemas/SignUpSchema';
 import { darkInput, placeholderInput, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
+import { useContext } from '../../../../../context';
 
 interface LoginFormProps
 {
-    onSubmit: (values: LoginPayload) => Promise<void>;
+    onSubmit: (values: LoginPayload, setAuth: any) => Promise<void>;
     onError: (error: unknown) => void;
     onSuccess: () => void;
     onClick: (event: MouseEvent) => void;
@@ -18,6 +19,7 @@ interface LoginFormProps
 
 const LoginForm: Component<LoginFormProps> = props =>
 {
+    const context = useContext();
     const { translate: t } = useTranslation();
     const {
         form,
@@ -27,7 +29,7 @@ const LoginForm: Component<LoginFormProps> = props =>
         extend: validator({ schema: signUpSchema }),
         onSuccess: props.onSuccess,
         onError: props.onError,
-        onSubmit: async values => props.onSubmit(values)
+        onSubmit: async values => props.onSubmit(values, context?.setUserData)
     });
 
     return (

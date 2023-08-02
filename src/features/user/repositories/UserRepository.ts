@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import {UserPayload, UserListResponse, UserResponse, UserApi, User} from '../interfaces';
+import { UserPayload, UserListResponse, UserResponse, UserApi, User } from '../interfaces';
 import { config } from '../../shared/repositories/config';
 import HttpService from '../../../services/HttpService';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
@@ -9,13 +9,14 @@ const { getAll, remove, update, create, getOne, editPassword, assignRole } = con
 
 class UserRepository
 {
-    public getUsers({ user, queryParams }: PayloadProps)
+    public getUsers()
     {
         const config: AxiosRequestConfig = {
-            url: `${baseUrl}/${getAll}`
+            url: `${baseUrl}/${getAll}`,
+            method: 'GET'
         };
 
-        return HttpService.request<UserListResponse>({ config, queryParams, user });
+        return HttpService.request<UserListResponse>({ config });
     }
 
     public getPagination(queryParams: string): Promise<UserListResponse>
