@@ -1,11 +1,11 @@
-import { notificationService } from '../../../shared/molecules/Toast/Toast';
+import { notificationService } from '../../shared/molecules/Toast/Toast';
 import { useNavigate } from '@solidjs/router';
-import useTranslation from '../../../shared/hooks/useTranslation';
+import useTranslation from '../../shared/hooks/useTranslation';
 import { Component } from 'solid-js';
-import createAlert from '../../../shared/hooks/createAlert';
-import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
-import { ItemPayload, ItemResponse } from '../../interfaces';
-import ItemForm from '../../organisms/ItemForm/ItemForm';
+import createAlert from '../../shared/hooks/createAlert';
+import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
+import { ItemPayload, ItemResponse } from '../interfaces';
+import ItemForm from '../organisms/ItemForm/ItemForm';
 
 interface ItemCreateTemplateProps
 {

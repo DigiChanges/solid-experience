@@ -2,7 +2,7 @@ import { Component } from 'solid-js';
 import ItemRepository from '../../../features/item/repositories/ItemRepository';
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout/PrivateLayout';
 import { createAction } from './handlers';
-import ItemCreate from '../../../features/item/templates/Create/ItemCreate';
+import ItemCreate from '../../../features/item/templates/ItemCreate';
 
 const IndexPage: Component = () =>
 {

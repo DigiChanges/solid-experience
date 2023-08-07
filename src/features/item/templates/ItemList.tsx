@@ -1,18 +1,18 @@
 import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
-import useTranslation from '../../../shared/hooks/useTranslation';
+import useTranslation from '../../shared/hooks/useTranslation';
 import { Component, createEffect, For, Show } from 'solid-js';
-import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
-import { permissions } from '../../../../config/permissions';
-import Filter from '../../../filterSort/organisms/Filter/Filter';
-import useTransformTranslatedOptions from '../../../shared/hooks/useTransformTranslatedOptions';
-import ButtonScrollUp from '../../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
-import GeneralLoader from '../../../shared/templates/GeneralLoader';
-import { filterBy } from '../../constants/filterBy';
-import { ItemApi, ItemListResponse } from '../../interfaces';
-import ItemCard from '../../organisms/ItemCard/ItemCard';
-import styles from '../../../user/templates/UserList/UserList.module.css';
-import { darkDangerButton, darkPrimaryButton } from '../../../shared/constants/hopeAdapter';
+import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
+import { permissions } from '../../../config/permissions';
+import Filter from '../../filterSort/organisms/Filter/Filter';
+import useTransformTranslatedOptions from '../../shared/hooks/useTransformTranslatedOptions';
+import ButtonScrollUp from '../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
+import GeneralLoader from '../../shared/templates/GeneralLoader';
+import { filterBy } from '../constants/filterBy';
+import { ItemApi, ItemListResponse } from '../interfaces';
+import ItemCard from '../organisms/ItemCard/ItemCard';
+import styles from '../../user/templates/UserList/UserList.module.css';
+import { darkDangerButton, darkPrimaryButton } from '../../shared/constants/hopeAdapter';
 
 interface ItemListTemplateProps
 {

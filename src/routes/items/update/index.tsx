@@ -3,7 +3,7 @@ import { Component, createResource } from 'solid-js';
 import ItemRepository from '../../../features/item/repositories/ItemRepository';
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout/PrivateLayout';
 import { updateAction } from './handlers';
-import ItemUpdate from '../../../features/item/templates/Update/ItemUpdate';
+import ItemUpdate from '../../../features/item/templates/ItemUpdate';
 
 const IndexPage: Component = () =>
 {
