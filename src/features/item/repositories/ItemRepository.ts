@@ -19,16 +19,17 @@ class ItemRepository
         return HttpService.request<ItemListResponse>({ config, queryParams });
     }
 
-    public async getOne({ id, user }: PayloadProps)
+    public async getOne({ id }: PayloadProps)
     {
         const config: AxiosRequestConfig = {
-            url: `${baseUrl}/${base}/${id}`
+            url: `${baseUrl}/${base}/${id}`,
+            method: 'GET'
         };
 
-        return HttpService.request<ItemResponse>({ config, user });
+        return HttpService.request<ItemResponse>({ config });
     }
 
-    public async updateItem({ id, data, user }: PayloadProps<ItemPayload>)
+    public async updateItem({ id, data }: PayloadProps<ItemPayload>)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${base}/${id}`,
@@ -36,10 +37,10 @@ class ItemRepository
             data
         };
 
-        return HttpService.request<ItemResponse>({ config, user });
+        return HttpService.request<ItemResponse>({ config });
     }
 
-    public createItem({ data, user }: PayloadProps<ItemPayload>)
+    public createItem({ data }: PayloadProps<ItemPayload>)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${base}`,
@@ -47,17 +48,17 @@ class ItemRepository
             data
         };
 
-        return HttpService.request<ItemResponse>({ config, user });
+        return HttpService.request<ItemResponse>({ config });
     }
 
-    public removeItem({ id, user }: PayloadProps)
+    public removeItem({ id }: PayloadProps)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${base}/${id}`,
             method: 'DELETE'
         };
 
-        return HttpService.request<ItemResponse>({ config, user });
+        return HttpService.request<ItemResponse>({ config });
     }
 }
 
