@@ -7,7 +7,8 @@ import IconBurger from '../../../atoms/Icons/Stroke/IconBurger';
 import LanguageMenu from '../../language/LanguageMenu';
 import styles from './Nav.module.css';
 
-interface NavbarTemplateProps {
+interface NavbarTemplateProps
+{
     email?: string;
     onClick?: (event: MouseEvent) => void;
     permissionsList?: string[];

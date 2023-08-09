@@ -1,42 +1,31 @@
-import { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { IHttpServiceParams } from './IHttpAxios';
-import {
-    createAxios,
-    getParams,
-    getDefaultOptionsWithAccessToken,
-    getDefaultOptionsWithRefreshToken
-} from './HttpHelper';
+import { IHttpParams } from './IHttpParams';
+import { getDefaultHeaders, getParams } from './HttpHelper';
 
 class HttpService
 {
-    static async request<T>(data: IHttpServiceParams)
+    static async request<T>(params: IHttpParams)
     {
-        const { config, queryParams, user } = data;
+        try
+        {
+            const { url, method, queryParams, data } = params;
 
-        const defaultOptionsWithRefreshToken: AxiosRequestConfig = getDefaultOptionsWithAccessToken(config);
-        const http: AxiosInstance = createAxios();
-        const params: URLSearchParams = getParams(queryParams);
+            const response = await fetch(url, {
+                method,
+                body: data ? JSON.stringify(data) : undefined,
+                ...getDefaultHeaders()
+            });
 
-        return (await http.request<T>({
-            ...defaultOptionsWithRefreshToken,
-            params
+            if (!response.ok)
+            {
+                throw new Error('Request failed.');
+            }
+
+            return await response.json();
         }
-        )).data;
-    }
-
-    static async requestWithRefreshToken<T>(data: IHttpServiceParams)
-    {
-        const { config, queryParams, user } = data;
-
-        const defaultOptionsWithRefreshToken: AxiosRequestConfig = getDefaultOptionsWithRefreshToken(config);
-        const http: AxiosInstance = createAxios();
-        const params: URLSearchParams = getParams(queryParams);
-
-        return (await http.request<T>({
-            ...defaultOptionsWithRefreshToken,
-            params
+        catch (e)
+        {
+            throw new Error('Request failed.');
         }
-        )).data;
     }
 }
 

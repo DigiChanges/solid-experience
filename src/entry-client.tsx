@@ -1,3 +1,3 @@
-import { StartClient, mount } from 'solid-start/entry-client'
+import { StartClient, mount } from 'solid-start/entry-client';
 
-mount(() => <StartClient />, document)
+mount(() => <StartClient />, document);

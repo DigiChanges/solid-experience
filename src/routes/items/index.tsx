@@ -34,11 +34,11 @@ const IndexPage: Component = () =>
 
     const viewMoreAction = () => () =>
     {
-        goToPage(data()?.pagination?.nextUrl);
+        // goToPage(data()?.pagination?.nextUrl);
         // setViewMore();
     };
 
-    createEffect(() => data.error && setError(data.error));
+    // createEffect(() => data.error && setError(data.error));
 
     const removeAction = async(id: string) =>
     {
