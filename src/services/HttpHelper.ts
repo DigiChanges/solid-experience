@@ -1,63 +1,16 @@
-import { QueryParams } from './IHttpAxios';
+import { QueryParams } from './IHttpParams';
 import { config as Config } from '../features/shared/repositories/config';
-import axios, { AxiosRequestConfig } from 'axios';
 
-export function getDefaultOptions(config: AxiosRequestConfig, token?: string): AxiosRequestConfig
+export function getDefaultHeaders(): Record<string, any>
 {
+    const { credentials } = Config.apiGateway.server;
+
     return {
-        method: 'GET',
-        ...config,
+        credentials,
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token ? `Bearer ${token}` : '',
-            ...config.headers
+            'Content-Type': 'application/json'
         }
     };
-}
-
-export function getDefaultOptionsWithoutToken(config: AxiosRequestConfig): AxiosRequestConfig
-{
-    return {
-        method: 'POST',
-        ...config,
-        headers: {
-            'Content-Type': 'application/json',
-            ...config.headers
-        }
-    };
-}
-
-export function getDefaultOptionsWithAccessToken(config: AxiosRequestConfig): AxiosRequestConfig
-{
-    return {
-        method: 'POST',
-        ...config,
-        headers: {
-            'Content-Type': 'application/json',
-            ...config.headers
-        }
-    };
-}
-
-export function getDefaultOptionsWithRefreshToken(config: AxiosRequestConfig): AxiosRequestConfig
-{
-    return {
-        method: 'POST',
-        ...config,
-        headers: {
-            'Content-Type': 'application/json',
-            ...config.headers
-        }
-    };
-}
-
-export function createAxios()
-{
-    const { withCredentials } = Config.apiGateway.server;
-
-    return axios.create({
-        withCredentials
-    });
 }
 
 export function getParams(queryParams?: QueryParams)

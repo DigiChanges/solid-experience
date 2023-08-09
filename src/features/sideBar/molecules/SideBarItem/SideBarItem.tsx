@@ -6,7 +6,8 @@ import IconChevronRight from '../../../../atoms/Icons/Stroke/IconChevronRight';
 import SideBarItemContent from '../SideBarItemContent/SideBarItemContent';
 import styles from './SideBarItem.module.css';
 
-interface SideBarItemProps {
+interface SideBarItemProps
+{
     name: string;
     icon?: any;
     isLoading?: boolean;

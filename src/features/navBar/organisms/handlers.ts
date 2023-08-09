@@ -1,6 +1,6 @@
 import { logoutHelper } from '../../auth/logout/helper';
 
-export const logout = ({ user }: any) => async() =>
+export const logout = () => async() =>
 {
-    await logoutHelper(user);
+    await logoutHelper();
 };
