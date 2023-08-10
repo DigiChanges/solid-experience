@@ -26,19 +26,14 @@ const IndexPage: Component = () =>
     // const items = createRouteData(itemRepository.getItems);
     // const { resourceList: itemList, setViewMore, paginationData } = usePaginatedState<ItemApi, ItemListResponse>(items);
 
-    createEffect(() =>
-    {
-        // console.log('page, goToPage, goFirstPage, getURLSearchParams');
-        // console.log(page(), goToPage(), goFirstPage(), getURLSearchParams());
-    });
 
     const viewMoreAction = () => () =>
     {
-        // goToPage(data()?.pagination?.nextUrl);
+        goToPage(data()?.pagination?.nextUrl);
         // setViewMore();
     };
 
-    // createEffect(() => data.error && setError(data.error));
+    createEffect(() => data.error && setError(data.error));
 
     const removeAction = async(id: string) =>
     {

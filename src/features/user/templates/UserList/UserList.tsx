@@ -15,7 +15,7 @@ import { darkDangerButton, darkPrimaryButton, darkTransparentButton } from '../.
 
 interface UserListTemplateProps
 {
-    userList: UserListResponse | undefined;
+    userList: any
     removeAction?: any;
     loading: boolean;
     nextPage?: string | undefined;

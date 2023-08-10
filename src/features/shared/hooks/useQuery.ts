@@ -7,7 +7,6 @@ function useQuery(initialPagination?: PaginationParams)
 {
     const [searchParams] = useSearchParams();
     const { page, goToPage, goFirstPage } = usePagination(initialPagination);
-
     const getURLSearchParams = createMemo<QueryParams>((prev) =>
     {
         const newFilter = new URLSearchParams(searchParams);

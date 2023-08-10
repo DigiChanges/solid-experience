@@ -16,7 +16,6 @@ function usePagination(initialPagination?: PaginationParams)
                 limit: params.get('pagination[limit]'),
                 offset: params.get('pagination[offset]')
             };
-
             setPage(nextPage);
         }
     };

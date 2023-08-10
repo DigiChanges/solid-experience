@@ -1,4 +1,3 @@
-import { ItemListResponse } from '../../item/interfaces';
 import useQuery from './useQuery';
 import { INIT_STATE } from '../constants';
 // import { createRouteData } from 'solid-start';
@@ -13,5 +12,4 @@ function useList(action: (a: any) => any)
 
 	return { data, page, goToPage, goFirstPage };
 }
-
 export default useList;
