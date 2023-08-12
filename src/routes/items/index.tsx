@@ -10,7 +10,6 @@ import useQuery from '../../features/shared/hooks/useQuery';
 import PrivateLayout from '../../features/shared/layout/PrivateLayout/PrivateLayout';
 import AlertErrors from '../../features/shared/molecules/AlertErrors/AlertErrors';
 import useTranslation from '../../features/shared/hooks/useTranslation';
-import { createRouteData } from 'solid-start';
 import useList from '../../features/shared/hooks/useList';
 
 const IndexPage: Component = () =>
@@ -24,21 +23,14 @@ const IndexPage: Component = () =>
     // const { page, goToPage, goFirstPage, getURLSearchParams } = useQuery(INIT_STATE.nextPaginationParams);
     // const [items, { refetch }] = createResource(() => ({ queryParams: { data: 'nada' } }), ({ queryParams }) => itemRepository.getItems({ queryParams }));
     // const items = createRouteData(itemRepository.getItems);
-    // const { resourceList: itemList, setViewMore, paginationData } = usePaginatedState<ItemApi, ItemListResponse>(items);
-
-    createEffect(() =>
-    {
-        // console.log('page, goToPage, goFirstPage, getURLSearchParams');
-        // console.log(page(), goToPage(), goFirstPage(), getURLSearchParams());
-    });
-
+    const { resourceList: itemList, setViewMore, paginationData } = usePaginatedState<ItemApi, ItemListResponse>(data);
     const viewMoreAction = () => () =>
     {
-        // goToPage(data()?.pagination?.nextUrl);
-        // setViewMore();
+        goToPage(data()?.pagination?.nextUrl);
+        setViewMore();
     };
 
-    // createEffect(() => data.error && setError(data.error));
+    createEffect(() => data.error && setError(data.error));
 
     const removeAction = async(id: string) =>
     {
@@ -69,7 +61,7 @@ const IndexPage: Component = () =>
                 description="err_process_item"
             />
              <ItemList
-                itemList={data()}
+                itemList={itemList()}
                 removeAction={removeAction}
                 loading={data.loading}
                 viewMoreAction={viewMoreAction}

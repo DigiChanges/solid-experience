@@ -9,7 +9,11 @@ class HttpService
         {
             const { url, method, queryParams, data } = params;
 
-            const response = await fetch(url, {
+            const test: URLSearchParams = getParams(queryParams);
+            const urlWithParams = `${url}?${test.toString()}`; // Convierte los parámetros en formato de cadena
+            const finalUrl = urlWithParams.replace(/%5B/g, '[').replace(/%5D/g, ']'); // Reemplaza los códigos ASCII por corchetes
+
+            const response = await fetch(finalUrl, {
                 method,
                 body: data ? JSON.stringify(data) : undefined,
                 ...getDefaultHeaders()
