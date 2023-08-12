@@ -17,6 +17,7 @@ function usePaginatedState<T, U>(resource: Resource<U | undefined>)
         }
 
         // @ts-ignore
+
         if (viewMore && resource()?.data)
         {
             // @ts-ignore

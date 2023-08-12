@@ -16,7 +16,7 @@ import { darkDangerButton, darkPrimaryButton } from '../../shared/constants/hope
 
 interface ItemListTemplateProps
 {
-    itemList: ItemListResponse | undefined;
+    itemList: ItemApi[] | undefined;
     removeAction: any;
     loading: boolean;
     viewMoreAction: any;
@@ -100,8 +100,8 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
             </Show>
 
             <div class="grid_cards_container">
-                <Show when={!props.loading || props.itemList?.data.length} keyed>
-                    <For each={props.itemList?.data} fallback={<span class={'text-neutral-50'}>{t('r_no_items')}</span>}>
+                <Show when={!props.loading || props.itemList?.length} keyed>
+                    <For each={props.itemList} fallback={<span class={'text-neutral-50'}>{t('r_no_items')}</span>}>
                         {(item) =>
                             <ItemCard item={item} onDelete={handleDelete(item)} />
                         }
