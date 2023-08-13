@@ -8,15 +8,14 @@ import { useContext } from '../../../context';
 function useList(action: (a: any) => any)
 {
 	const { page, goToPage, goFirstPage, getURLSearchParams } = useQuery(INIT_STATE.nextPaginationParams);
-	// const data = createResource(() => action({ queryParams: getURLSearchParams }));
-	// const data = createRouteData(() => action({ queryParams: getURLSearchParams }));
+
 	const data = createRouteData(
 		async key =>
 		{
-			const response = action({ queryParams: getURLSearchParams });
+			const response = action({ queryParams: key });
 			return response;
 		},
-		{ key: () => page() }
+		{ key: () => getURLSearchParams() }
 	);
 	// const { resourceList: itemList, setViewMore, paginationData } = usePaginatedState<ItemApi, ItemListResponse>(items);
 

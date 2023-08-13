@@ -22,7 +22,6 @@ const IndexPage: Component = () =>
 
     // const { page, goToPage, goFirstPage, getURLSearchParams } = useQuery(INIT_STATE.nextPaginationParams);
     // const [items, { refetch }] = createResource(() => ({ queryParams: { data: 'nada' } }), ({ queryParams }) => itemRepository.getItems({ queryParams }));
-    // const items = createRouteData(itemRepository.getItems);
     const { resourceList: itemList, setViewMore, paginationData } = usePaginatedState<ItemApi, ItemListResponse>(data);
     const viewMoreAction = () => () =>
     {
