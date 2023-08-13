@@ -15,7 +15,7 @@ class ItemRepository
         const config: IHttpParams = {
             url: `${baseUrl}/${base}`,
             method: 'GET',
-            queryParams: queryParams()
+            queryParams: queryParams
         };
 
         return HttpService.request<ItemListResponse>(config);
