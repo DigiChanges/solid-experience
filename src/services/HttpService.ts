@@ -9,9 +9,9 @@ class HttpService
         {
             const { url, method, queryParams, data } = params;
 
-            const test: URLSearchParams = getParams(queryParams);
-            const urlWithParams = `${url}?${test.toString()}`; // Convierte los parámetros en formato de cadena
-            const finalUrl = urlWithParams.replace(/%5B/g, '[').replace(/%5D/g, ']'); // Reemplaza los códigos ASCII por corchetes
+            const params: URLSearchParams = getParams(queryParams);
+            const urlWithParams = `${url}?${params.toString()}`; // Params to string
+            const finalUrl = urlWithParams.replace(/%5B/g, '[').replace(/%5D/g, ']'); // Reeplace ASCII code to brackets
 
             const response = await fetch(finalUrl, {
                 method,
