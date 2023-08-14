@@ -3,15 +3,15 @@ import { getDefaultHeaders, getParams } from './HttpHelper';
 
 class HttpService
 {
-    static async request<T>(params: IHttpParams)
+    static async request<T>(props: IHttpParams)
     {
         try
         {
-            const { url, method, queryParams, data } = params;
+            const { url, method, queryParams, data } = props;
 
             const params: URLSearchParams = getParams(queryParams);
             const urlWithParams = `${url}?${params.toString()}`; // Params to string
-            const finalUrl = urlWithParams.replace(/%5B/g, '[').replace(/%5D/g, ']'); // Reeplace ASCII code to brackets
+            const finalUrl = urlWithParams.replace(/%5B/g, '[').replace(/%5D/g, ']'); // Replace ASCII code to brackets
 
             const response = await fetch(finalUrl, {
                 method,
