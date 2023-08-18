@@ -1,7 +1,7 @@
 import { Component, For, JSX } from 'solid-js';
 import styles from './Radio.module.css';
 import { RadioGroup as KRadioGroup } from '@kobalte/core';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 
 interface RadioGroupProps extends JSX.HTMLAttributes<HTMLDivElement> {
     name: string;
@@ -13,7 +13,7 @@ interface RadioGroupProps extends JSX.HTMLAttributes<HTMLDivElement> {
 
 const Radio: Component<RadioGroupProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
 
     return (
         <KRadioGroup.Root

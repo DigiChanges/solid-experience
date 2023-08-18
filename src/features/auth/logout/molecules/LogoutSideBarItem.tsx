@@ -4,7 +4,6 @@ import SideBarItem from '../../../sideBar/molecules/SideBarItem/SideBarItem';
 import { logout } from './handlers';
 
 type LogoutSideBarItemProps = {
-    user: any;
     getExpanded: any;
     sectionSelected: string;
 };
@@ -14,7 +13,7 @@ const LogoutSideBarItem: Component<LogoutSideBarItemProps> = (props) => (
         name="a_logout"
         icon={IconLogout}
         isLoading={false}
-        onClick={logout({ user: props.user })}
+        onClick={logout()}
         getShowSubItems={false}
         routes=""
         showItem={true}

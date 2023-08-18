@@ -1,7 +1,7 @@
 import { createForm } from '@felte/solid';
 import { Button, Icon, Input, CloseButton } from '@hope-ui/core';
 import { useSearchParams } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, createMemo, createSignal, For } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
 import Card from '../../../shared/molecules/Card/Card';
@@ -29,6 +29,7 @@ const Filter: Component<FilterProps> = (props) =>
     const [searchParams, setSearchParams] = useSearchParams();
     const [selectedMenu, setSelectedMenu] = createSignal(props.initialFilterOptions[0].value);
     const [showFilter, setShowFilter] = createSignal(false);
+    const { translate: t } = useTranslation();
 
     const getSearchParams = createMemo(() =>
     {
@@ -120,7 +121,7 @@ const Filter: Component<FilterProps> = (props) =>
                 <For each={getSearchParams()}>
                     {(filter) => (
                         <div class={styles.badge}>
-                            <p><Text message={filter.field}/> {t('a_contains')} {filter.value}</p>
+                            <p>{t(filter.field)} {t('a_contains')} {filter.value}</p>
                             <CloseButton
                                 _dark={{ color: 'primary.100', cursor: 'pointer' }}
                                 aria-label="remove filter"

@@ -1,6 +1,6 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { useNavigate } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';
 import { PermissionApi } from '../../../auth/interfaces/permission';
@@ -18,7 +18,7 @@ interface RoleCreateTemplateProps {
 
 const RoleCreate: Component<RoleCreateTemplateProps> = props =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const navigate = useNavigate();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
@@ -55,7 +55,7 @@ const RoleCreate: Component<RoleCreateTemplateProps> = props =>
                 <h1 class="section_title">{t('r_create')}</h1>
             </header>
 
-            <Show when={!props.loading} fallback={() => <GeneralLoader/>}>
+            <Show when={!props.loading} fallback={<GeneralLoader/>}>
                 <RoleForm
                     onError={handleError()}
                     onSubmit={props.onCreate}

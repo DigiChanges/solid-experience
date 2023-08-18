@@ -1,6 +1,6 @@
 import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, For, Show } from 'solid-js';
 import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
 import { permissions } from '../../../../config/permissions';
@@ -25,8 +25,7 @@ interface RoleListTemplateProps
 
 const RoleList: Component<RoleListTemplateProps> = (props) =>
 {
-    const i18n = useI18n();
-    const { t } = i18n;
+    const { translate: t } = useTranslation();
 
     const { isOpen, open, close } = createDisclosure();
     let deleteData: RoleApi | undefined;

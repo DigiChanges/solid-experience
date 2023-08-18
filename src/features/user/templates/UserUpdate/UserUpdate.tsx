@@ -1,17 +1,16 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { useNavigate } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';
-import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
 import createAlert from '../../../shared/hooks/createAlert';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { UserApi, UserPayload } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
 
-interface UserUpdateTemplateProps {
-    permissionsList?: PermissionApi[];
+interface UserUpdateTemplateProps
+{
     rolesList?: RoleApi[];
     onUpdate: (data: UserPayload) => Promise<void>;
     loading: boolean;
@@ -20,7 +19,7 @@ interface UserUpdateTemplateProps {
 
 const UserUpdate: Component<UserUpdateTemplateProps> = props =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const navigate = useNavigate();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
@@ -31,7 +30,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
             status: 'success',
             title: t('u_updated') as string
         });
-        navigate('/users/list', { replace: true });
+        navigate('/users', { replace: true });
     };
 
     const handleError = () => (error: unknown) =>
@@ -56,13 +55,11 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
                 </div>
             </header>
 
-            <Show when={!props.loading} fallback={() => <GeneralLoader/>} keyed>
+            <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>
                 <UserForm
                     onError={handleError()}
                     onSubmit={props.onUpdate}
                     onSuccess={handleSuccess()}
-                    permissionsList={props.permissionsList}
-                    requiredPermission={{ submit: permissions.USERS.UPDATE }}
                     rolesList={props.rolesList}
                     userSelected={props.userSelected}
                 />

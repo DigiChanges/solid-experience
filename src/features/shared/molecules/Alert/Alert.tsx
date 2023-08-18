@@ -3,7 +3,8 @@ import styles from './Alert.module.css';
 import { Alert as KAlert } from '@kobalte/core';
 import { CloseButton } from '@hope-ui/core';
 
-interface AlertProps {
+interface AlertProps
+{
     status: 'danger' | 'success' | 'warning' | 'info';
     variant: 'solid' | 'subtle' | 'left-accent' | 'top-accent';
     icon: JSXElement;

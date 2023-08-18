@@ -9,25 +9,25 @@ const { getAll, remove, update, create, getOne } = config.apiGateway.routes.role
 
 class RoleRepository
 {
-    public async getRoles({ queryParams, user }: PayloadProps)
+    public async getRoles({ queryParams }: PayloadProps)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${getAll}`
         };
 
-        return HttpService.request<RoleListResponse>({ config, queryParams, user });
+        return HttpService.request<RoleListResponse>({ config, queryParams });
     }
 
-    public async getOne({ id, user }: PayloadProps)
+    public async getOne({ id }: PayloadProps)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${getOne}/${id}`
         };
 
-        return HttpService.request<RoleResponse>({ config, user });
+        return HttpService.request<RoleResponse>({ config });
     }
 
-    public async updateRole({ id, data, user }: PayloadProps<RolePayload>)
+    public async updateRole({ id, data }: PayloadProps<RolePayload>)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${update}/${id}`,
@@ -35,10 +35,10 @@ class RoleRepository
             data
         };
 
-        return HttpService.request<RoleResponse>({ config, user });
+        return HttpService.request<RoleResponse>({ config });
     }
 
-    public createRole({ data, user }: PayloadProps<RolePayload>)
+    public createRole({ data }: PayloadProps<RolePayload>)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${create}`,
@@ -46,17 +46,17 @@ class RoleRepository
             data
         };
 
-        return HttpService.request<RoleResponse>({ config, user });
+        return HttpService.request<RoleResponse>({ config });
     }
 
-    public removeRole({ id, user }: PayloadProps)
+    public removeRole({ id }: PayloadProps)
     {
         const config: AxiosRequestConfig = {
             url: `${baseUrl}/${remove}/${id}`,
             method: 'DELETE'
         };
 
-        return HttpService.request<RoleResponse>({ config, user });
+        return HttpService.request<RoleResponse>({ config });
     }
 }
 

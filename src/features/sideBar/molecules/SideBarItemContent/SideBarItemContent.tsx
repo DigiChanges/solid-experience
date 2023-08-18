@@ -1,9 +1,10 @@
 import { Component, Show } from 'solid-js';
 import { Icon } from '@hope-ui/core';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import styles from './SideBarItemContent.module.css';
 
-interface SideBarItemProps {
+interface SideBarItemProps
+{
     name: string;
     icon?: any;
     isLoading?: boolean;
@@ -13,14 +14,14 @@ interface SideBarItemProps {
     showItem: boolean;
     isLink: boolean;
     path: string;
-    expanded: boolean;
-    sectionSelected: string;
+    expanded?: boolean;
+    sectionSelected?: string;
 }
 
 const SideBarItemContent: Component<SideBarItemProps> = (props) =>
 {
     const IconProps: any = () => props.icon;
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
 
     return (
         <>

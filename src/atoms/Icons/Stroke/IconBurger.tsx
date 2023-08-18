@@ -1,11 +1,14 @@
 import styles from './iconBurguer.module.css';
 import { Component } from 'solid-js';
 
-interface IconBurgerProps {
+interface IconBurgerProps
+{
     isOpened: boolean;
+    onClick?: (event: MouseEvent) => void;
 }
+
 const IconBurger: Component<IconBurgerProps> = (props) => (
-    <button class={styles.lineContainer} style={{ outline: 'none', border: 'none' }}>
+    <button onClick={props.onClick} class={styles.lineContainer} style={{ outline: 'none', border: 'none' }}>
         <span class={props.isOpened ? styles.line : `${styles.line} ${styles.line1Closed}`} />
         <span class={props.isOpened ? styles.line : `${styles.line} ${styles.line2Closed}`} />
         <span class={props.isOpened ? `${styles.line} ${styles.line3Opened}` : `${styles.line} ${styles.line3Closed}`} />

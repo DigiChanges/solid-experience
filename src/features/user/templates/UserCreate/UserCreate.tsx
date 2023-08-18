@@ -1,27 +1,23 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { useNavigate } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
-import { permissions } from '../../../../config/permissions';
-import { PermissionApi } from '../../../auth/interfaces/permission';
 import { RoleApi } from '../../../role/interfaces';
 import createAlert from '../../../shared/hooks/createAlert';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { UserPayload } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
 
-
 interface UserCreateTemplateProps
 {
-    permissionsList?: PermissionApi[];
     rolesList?: RoleApi[];
-    onCreate: (data: UserPayload) => Promise<void>;
-    loading: boolean;
+    onCreate?: (data: UserPayload) => Promise<void>;
+    loading?: boolean;
 }
 
 const UserCreate: Component<UserCreateTemplateProps> = props =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const navigate = useNavigate();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
@@ -32,7 +28,7 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
             status: 'success',
             title: t('u_created') as string
         });
-        navigate('/users/list', { replace: true });
+        navigate('/users', { replace: true });
     };
 
     const handleError = () => (error: unknown) =>
@@ -52,14 +48,12 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
                 <h1 class="section_title">{t('u_create')}</h1>
             </header>
 
-            <Show when={!props.loading} fallback={() => <GeneralLoader/>} keyed>
+            <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>
                 <UserForm
                     onError={handleError()}
                     onSubmit={props.onCreate}
                     onSuccess={handleSuccess()}
-                    permissionsList={props.permissionsList}
-                    requiredPermission={{ submit: permissions.USERS.SAVE }}
-                    rolesList={props.rolesList}
+                    // rolesList={props.rolesList}
                 />
             </Show>
 

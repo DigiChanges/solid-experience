@@ -1,6 +1,5 @@
 import { useLocation } from '@solidjs/router';
-import { Component, createEffect, createSignal, For, Show } from 'solid-js';
-import HasPermission from '../../../../atoms/HasPermission';
+import { Component, createSignal, For, Show } from 'solid-js';
 import { dashRoutes } from '../../../../config/dashRoutes';
 import SideBarItem from '../../../sideBar/molecules/SideBarItem/SideBarItem';
 import SideBarSubItem from '../../../sideBar/molecules/SideBarSubItem/SideBarSubItem';
@@ -12,7 +11,6 @@ const isEqualPath = ({ locationPath, itemPath }: {locationPath: string; itemPath
 };
 
 type DashItemsProps = {
-    authUser: any;
     expanded: boolean;
 };
 
@@ -40,11 +38,6 @@ const DashItems: Component<DashItemsProps> = (props) =>
         <div class={styles.dash_item_container}>
             <For each={dashRoutes}>
                 {(dashRoute: any) =>
-                    <HasPermission
-                        permission={dashRoute.permission as string}
-                        user={props.authUser}
-                        userPermissions={props.authUser.user.permissions}
-                    >
                         <SideBarItem
                             name={dashRoute.name as string}
                             icon={dashRoute.icon}
@@ -60,11 +53,6 @@ const DashItems: Component<DashItemsProps> = (props) =>
                             <Show when={getShowSubItems() && sectionSelected() === dashRoute.path}>
                                 <For each={dashRoute.children}>
                                     {(childrenDashRoute: any) =>
-                                        <HasPermission
-                                            permission={childrenDashRoute.permission}
-                                            user={props.authUser}
-                                            userPermissions={props.authUser.user.permissions}
-                                        >
                                             <SideBarSubItem
                                                 name={childrenDashRoute.name}
                                                 path={sectionSelected().concat(childrenDashRoute.path)}
@@ -77,12 +65,10 @@ const DashItems: Component<DashItemsProps> = (props) =>
                                                     itemPath: sectionSelected().concat(childrenDashRoute.path)
                                                 })}
                                             />
-                                        </HasPermission>
                                     }
                                 </For>
                             </Show>
                         </SideBarItem>
-                    </HasPermission>
                 }
             </For>
         </div>

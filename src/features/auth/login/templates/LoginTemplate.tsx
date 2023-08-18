@@ -1,9 +1,5 @@
-import { notificationService } from '../../../shared/molecules/Toast/Toast';
-import { Link, useNavigate } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
 import { Component, createSignal, Show } from 'solid-js';
 import logo from '../../../../assets/images/dgc_logo.png';
-import { useApplicationContext } from '../../../../context/context';
 import createAlert from '../../../shared/hooks/createAlert';
 import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 import Card from '../../../shared/molecules/Card/Card';
@@ -13,20 +9,21 @@ import { createForgotPasswordAction } from '../../forgotPassword/organisms/handl
 import LoginForm from '../organisms/LoginForm/LoginForm';
 import { handleLoginFormSubmit, togglePasswordRecovery } from './handlers';
 import styles from './LoginTemplate.module.css';
-import {A} from "solid-start";
+import useTranslation from '../../../shared/hooks/useTranslation';
+import { useNavigate } from 'solid-start';
+import { Link } from '@solidjs/router';
+import { notificationService } from '../../../shared/molecules/Toast/Toast';
 
 const LoginTemplate: Component = () =>
 {
     const navigate = useNavigate();
     const [getShowRecoverPassword, setShowRecoverPassword] = createSignal(false);
     const [isLoading, setIsLoading] = createSignal(false);
-    //
-    //const [, { addUser }] = useApplicationContext();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
-    const [t] = useI18n();
-    //
-    const handleSuccess = () => () =>
+    const { translate: t } = useTranslation();
+
+    const handleSuccess = () =>
     {
         navigate('/dashboard', { replace: true });
     };
@@ -35,10 +32,10 @@ const LoginTemplate: Component = () =>
     {
         const errorMessage = setError(error);
         setIsLoading(false);
-        // notificationService.show({
-        //     title: t('err_login') as string,
-        //     description: t(errorMessage) as string
-        // });
+        notificationService.show({
+            title: t('err_login') as string,
+            description: t(errorMessage) as string
+        });
     };
 
     return (
@@ -61,7 +58,7 @@ const LoginTemplate: Component = () =>
                         </div>
 
                         <Show when={!getShowRecoverPassword()}
-                            fallback={() => (
+                            fallback={(
                                 <ForgotPasswordForm
                                     onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}
                                     onSubmit={createForgotPasswordAction({ errorAlert, navigate, t })}
@@ -75,12 +72,12 @@ const LoginTemplate: Component = () =>
                                 </Link>
                             </div>
 
-                            {/*<LoginForm*/}
-                            {/*    onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}*/}
-                            {/*    onSubmit={handleLoginFormSubmit({ addUser, setIsLoading })}*/}
-                            {/*    onError={handleError()}*/}
-                            {/*    onSuccess={handleSuccess()}*/}
-                            {/*/>*/}
+                            <LoginForm
+                                onClick={togglePasswordRecovery({ setShowRecoverPassword, getShowRecoverPassword })}
+                                onSubmit={handleLoginFormSubmit()}
+                                onError={handleError()}
+                                onSuccess={handleSuccess}
+                            />
                         </Show>
                     </div>
                 </Card>

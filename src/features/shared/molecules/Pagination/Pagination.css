@@ -1,0 +1,15 @@
+.pagination-component {
+    margin: 1em;
+}
+
+.pagination-button {
+    padding: 10px;
+}
+
+.selected-pagination {
+    color: var(--hope-colors-primary-300);
+}
+
+.disabled-pagination {
+    color: var(--hope-colors-neutral-400);
+}

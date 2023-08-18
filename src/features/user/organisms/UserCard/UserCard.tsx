@@ -8,7 +8,8 @@ import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
 import { UserApi } from '../../interfaces';
 
-interface UserCardProps {
+interface UserCardProps
+{
     user: UserApi;
     onDelete: () => void;
 }
@@ -19,8 +20,8 @@ const UserCard: Component<UserCardProps> = (props) => (
 
             <div class="card_media_object">
                 <h6 class="card_media_object_title" data-parent="usersShow">
-                    <Link class="card_media_object_link has-permission"
-                        href={`/users/${props.user.id}/update`}
+                    <Link class="card_media_object_link"
+                        href={`/users/update/${props.user.id}`}
                     >
                         {`${props.user.firstName} ${props.user.lastName}`}
                     </Link>
@@ -30,8 +31,8 @@ const UserCard: Component<UserCardProps> = (props) => (
 
             <div class="card_third">
                 <div data-parent="usersUpdate">
-                    <div class="has-permission">
-                        <Link href={`/users/${props.user.id}/update`}>
+                    <div>
+                        <Link href={`/users/update/${props.user.id}`}>
                             <IconButton
                                 _dark={{ color: 'success.300', cursor: 'pointer' }}
                                 size={'xs'}
@@ -44,7 +45,7 @@ const UserCard: Component<UserCardProps> = (props) => (
                     </div>
                 </div>
                 <div data-parent="usersChangeUserPassword">
-                    <Link class="has-permission"
+                    <Link
                         href={`/users/editPassword/${props.user.id}`}
                     >
                         <IconButton
@@ -57,11 +58,10 @@ const UserCard: Component<UserCardProps> = (props) => (
                         />
                     </Link>
                 </div>
-                <div data-parent="usersDelete">
+                <div>
                     <IconButton
                         _dark={{ color: 'danger.200', cursor: 'pointer' }}
                         size={'xs'}
-                        class="has-permission"
                         aria-label="Delete User"
                         variant="plain"
                         colorScheme="danger"

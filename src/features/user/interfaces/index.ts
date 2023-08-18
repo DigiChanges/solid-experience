@@ -7,17 +7,11 @@ export interface User {
     firstName: string;
     lastName: string;
     email: string;
-    birthday: string;
-    documentType: string;
-    documentNumber: string;
-    gender: string;
+    birthdate: string;
+    genre: string;
     phone: string;
     country: string;
-    address: string;
-    permissions: string[];
     enable: boolean;
-    isSuperAdmin: boolean;
-    roles: RoleApi[];
 }
 
 export type UserPayload =
@@ -25,26 +19,23 @@ export type UserPayload =
     email: string;
     firstName: string;
     lastName: string;
-    birthday: string;
-    documentType: string;
-    documentNumber: string;
-    gender: string;
+    birthdate: string;
+    genre: string;
     phone: string;
     country: string;
-    address: string;
     password: string;
     passwordConfirmation: string;
-    permissions: string[];
+    permissions?: string[];
     roles?: string[];
     enable?: boolean;
 };
 
 export interface UserApi extends User, Base {}
 
-export type UserResponse = IBodyApi & {
+export type UserResponse = {
     data: UserApi;
 };
 
-export type UserListResponse = IPaginatedBodyApi & {
+export type UserListResponse = {
     data: UserApi[];
 };

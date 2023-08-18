@@ -1,78 +1,111 @@
-import { AxiosRequestConfig } from 'axios';
-import { UserPayload, UserListResponse, UserResponse } from '../interfaces';
+import { UserPayload, UserListResponse, UserResponse, UserApi, User } from '../interfaces';
 import { config } from '../../shared/repositories/config';
 import HttpService from '../../../services/HttpService';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
+import { IHttpParams } from '../../../services/IHttpParams';
 
 const { baseUrl } = config.apiGateway.server;
 const { getAll, remove, update, create, getOne, editPassword, assignRole } = config.apiGateway.routes.users;
 
 class UserRepository
 {
-    public getUsers({ user, queryParams }: PayloadProps)
+    public getUsers()
     {
-        const config: AxiosRequestConfig = {
-            url: `${baseUrl}/${getAll}`
+        const config: IHttpParams = {
+            url: `${baseUrl}/${getAll}`,
+            method: 'GET'
         };
 
-        return HttpService.request<UserListResponse>({ config, queryParams, user });
+        return HttpService.request<UserListResponse>(config);
     }
 
-    public getOne({ id, user }: PayloadProps)
+    public getPagination(queryParams: string): Promise<UserListResponse>
     {
-        const config: AxiosRequestConfig = {
+        const config: any = {
+            url: `${baseUrl}/${getAll}${queryParams}`,
+            method: 'GET'
+        };
+
+        return HttpService.request<UserListResponse>(config);
+    }
+
+    public getOne({ id }: PayloadProps)
+    {
+        const config: any = {
             url: `${baseUrl}/${getOne}/${id}`
         };
 
-        return HttpService.request<UserResponse>({ config, user });
+        return HttpService.request<UserResponse>(config);
     }
 
-    public assignUserRole({ id, data, user }: PayloadProps)
+    public assignUserRole({ id, data }: PayloadProps)
     {
-        const config: AxiosRequestConfig = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${assignRole}/${id}`,
             method: 'PUT',
             data
         };
 
-        return HttpService.request<UserResponse>({ config, user });
+        return HttpService.request<UserResponse>(config);
     }
 
-    public updateUser({ id, data, user }: PayloadProps<UserPayload>)
+    // public updateUser({ id, data, user }: PayloadProps<UserPayload>)
+    // {
+    //     const config: any = {
+    //         url: `${baseUrl}/${update}/${id}`,
+    //         method: 'PUT',
+    //         data
+    //     };
+    //
+    //     return HttpService.request<UserResponse>({ config, user });
+    // }
+
+    public updateUser(id: number, data:UserPayload)
     {
-        const config: AxiosRequestConfig = {
+        const config: any = {
             url: `${baseUrl}/${update}/${id}`,
             method: 'PUT',
             data
         };
 
-        return HttpService.request<UserResponse>({ config, user });
+        return HttpService.request<UserResponse>(config);
     }
 
-    public createUser({ data, user }: PayloadProps<UserPayload>)
+    // public createUser({ data, user }: PayloadProps<UserPayload>)
+    // {
+    //     const config: any = {
+    //         url: `${baseUrl}/${create}`,
+    //         method: 'POST',
+    //         data
+    //     };
+    //
+    //     return HttpService.request<UserResponse>({ config, user });
+    // }
+
+    public createUser(data: UserPayload)
     {
-        const config: AxiosRequestConfig = {
+        const config: any = {
             url: `${baseUrl}/${create}`,
             method: 'POST',
             data
         };
 
-        return HttpService.request<UserResponse>({ config, user });
+        return HttpService.request<UserResponse>(config);
     }
 
-    public removeUser({ id, user }: PayloadProps)
+    public removeUser({ id }: PayloadProps)
     {
-        const config: AxiosRequestConfig = {
+        const config: any = {
             url: `${baseUrl}/${remove}/${id}`,
             method: 'DELETE'
         };
 
-        return HttpService.request<UserResponse>({ config, user });
+        return HttpService.request<UserResponse>(config);
     }
 
-    public editPassword({ id, data, user }: PayloadProps)
+    public editPassword({ id, data }: PayloadProps)
     {
-        const config: AxiosRequestConfig = {
+        const config: any = {
             url: `${baseUrl}/${editPassword}/${id}`,
             method: 'PUT',
             data: {
@@ -81,7 +114,7 @@ class UserRepository
             }
         };
 
-        return HttpService.request({ config, user });
+        return HttpService.request(config);
     }
 }
 

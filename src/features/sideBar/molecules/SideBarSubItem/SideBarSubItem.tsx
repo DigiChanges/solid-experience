@@ -1,10 +1,11 @@
 import { Component, Show } from 'solid-js';
 import { NavLink } from '@solidjs/router';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../shared/hooks/useTranslation';
 import { Icon } from '@hope-ui/core';
 import styles from './SideBarItemSubItem.module.css';
 
-interface SideBarSubItemProps {
+interface SideBarSubItemProps
+{
     name: string;
     path: string;
     icon?: any;
@@ -17,6 +18,7 @@ interface SideBarSubItemProps {
 const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
 {
     const IconProps: any = () => props.icon;
+    const { translate: t } = useTranslation();
 
     return (
         <Show when={props.showItem} >
@@ -40,7 +42,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
                                 class={`${styles.side_bar_item_sub_item_nav_link_container_span}`}
                                 classList={{ 'pl-1': props.isToggled } }
                             >
-                                <Text message={props.name} />
+                                <p>{t(props.name)}</p>
                             </span>
                         </div>
                     </div>

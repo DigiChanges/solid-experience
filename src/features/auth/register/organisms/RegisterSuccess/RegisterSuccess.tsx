@@ -3,12 +3,12 @@ import { Component } from 'solid-js';
 import styles from './RegisterSuccess.module.css';
 import Alert from '../../../../shared/molecules/Alert/Alert';
 import { FaSolidCircleCheck } from 'solid-icons/fa';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../../shared/hooks/useTranslation';
 
 
 const RegisterSuccess: Component = () =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
 
     return (
         <section class={styles.container}>

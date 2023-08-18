@@ -3,12 +3,14 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
     plugins: [
-        solid()
+        solid({
+            ssr: false
+        })
     ],
     build: {
         target: 'esnext'
     },
     ssr: {
-    noExternal: ["@kobalte/core"]
-  }
+        noExternal: ['@kobalte/core']
+    }
 });

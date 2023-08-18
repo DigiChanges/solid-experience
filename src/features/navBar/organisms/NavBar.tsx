@@ -7,7 +7,8 @@ import IconBurger from '../../../atoms/Icons/Stroke/IconBurger';
 import LanguageMenu from '../../language/LanguageMenu';
 import styles from './Nav.module.css';
 
-interface NavbarTemplateProps {
+interface NavbarTemplateProps
+{
     email?: string;
     onClick?: (event: MouseEvent) => void;
     permissionsList?: string[];
@@ -36,15 +37,7 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     _dark={{ border: 'none', bgColor: 'transparent', color: 'primary.200' }}
                     _hover={{ cursor: 'pointer' }}
                 />
-                <IconButton
-                    size={'md'}
-                    class={styles.icon_burger}
-                    onclick={ props.onClick }
-                    aria-label="Open Main Menu"
-                    children={ <IconBurger isOpened={!props.isOpen()}/> }
-                    borderRadius={'4px'}
-                    _dark={{ border: 'none', bgColor: 'transparent' }}
-                />
+                <IconBurger isOpened={!props.isOpen()} onClick={ props.onClick }/>
             </section>
         </nav>
     );

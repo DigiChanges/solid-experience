@@ -1,15 +1,15 @@
-import { Component, JSX } from 'solid-js';
+import { Component, createEffect, createSignal, JSX, Show } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
 import styles from './SideBar.module.css';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../shared/hooks/useTranslation';
 import { Drawer } from '@hope-ui/core';
-import { logout } from '../../navBar/organisms/handlers';
 import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
 import { FaSolidAngleDown } from 'solid-icons/fa';
+import { LoginApi } from '../../auth/interfaces/login';
 
-interface SideBarProps {
-    authUser: any;
+interface SideBarProps
+{
     showInMobile?: boolean;
     children?: JSX.Element;
     close: () => void;
@@ -19,25 +19,20 @@ interface SideBarProps {
 
 const SideBar: Component<SideBarProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
+    const [authUser, setAuthUser] = createSignal<LoginApi>();
 
-    const items: never[] = [
-        // {
-        //     children: {t('Item 1')},
-        //     onSelect: {},
-        // },
-        // {
-        //     children: {t('Item 2')},
-        //     onSelect: {},
-        // },
-        // {
-        //     children: {t('a_logout') as string},
-        //     onSelect: logout( { user: props.authUser } )
-        // },
-    ];
+    createEffect(() =>
+    {
+        const data = sessionStorage.getItem('userData');
+        if (data)
+        {
+            setAuthUser(JSON.parse(data));
+        }
+    });
 
     return (
-        <>
+        <Show when={true}><>
             <Drawer
                 isOpen={ props.isOpen() }
                 placement={'left'}
@@ -50,20 +45,20 @@ const SideBar: Component<SideBarProps> = (props) =>
                     <div>
                         <div class={'w-auto h-[35px] mx-[1rem] mb-2'}>
                             <DropdownMenu
-                                items={items}
+                                items={[]}
                                 icon={<FaSolidAngleDown />}
-                                title={<span class={'text-white font-bold'}>{props.authUser.user.email}</span>}
+                                title={<span class={'text-white font-bold'}>alexis</span>}
                                 class={'w-[256px]'}
                             />
                         </div>
-                        <DashItems expanded={true} authUser={props.authUser}/>
+                        <DashItems expanded={true}/>
                     </div>
                     <div class="justify-self-end">
-                        <LogoutSideBarItem user={props.authUser} getExpanded={true} sectionSelected=""/>
+                        <LogoutSideBarItem getExpanded={true} sectionSelected=""/>
                     </div>
                 </Drawer.Content>
             </Drawer>
-        </>
+        </></Show>
     );
 };
 

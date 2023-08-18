@@ -2,7 +2,7 @@ import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { Link } from '@solidjs/router';
-import {Component, createEffect, Show} from 'solid-js';
+import { Component, createEffect, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { country, gender } from '../../../../../entities';
 import RegisterSchema from '../../../validations/schemas/RegisterSchema.';
@@ -11,7 +11,7 @@ import { Select } from '../../../../shared/molecules/Select/Select';
 import Radio from '../../../../shared/molecules/Radio/Radio';
 import DatePicker from '../../../../shared/molecules/DatePicker/DatePicker';
 import { darkInput, placeholderInput, darkNeutralButton, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../../shared/hooks/useTranslation';
 
 interface UserUpdateTemplateProps
 {
@@ -23,7 +23,7 @@ interface UserUpdateTemplateProps
 
 const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
 {
-    const [t] = useI18n();
+    const { translate: t } = useTranslation();
     const {
         data,
         errors,

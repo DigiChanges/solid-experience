@@ -1,20 +1,16 @@
-import assignAllPermissionsToSuperAdminUser from '../../helper/assignAllPermissionsToSuperAdminUser';
-import { LoginApi, LoginPayload } from '../../interfaces/login';
+import { LoginPayload } from '../../interfaces/login';
 import AuthRepository from '../../repositories/AuthRepository';
 
-type params = {
-    addUser: (data?: LoginApi) => void;
-    setIsLoading: (isLoading: boolean) => void;
-};
-
-export const handleLoginFormSubmit = ({ addUser, setIsLoading }: params) => async(data: LoginPayload) =>
+export const handleLoginFormSubmit = () => async(data: LoginPayload, setUserData: any) =>
 {
     const authRepository = new AuthRepository();
-
-    setIsLoading(true);
     const response = await authRepository.signIn({ data });
-    const userAuth = await assignAllPermissionsToSuperAdminUser(response.data);
-    addUser(userAuth);
+
+    if (response.data)
+    {
+        const userData = await authRepository.getMe();
+        setUserData(userData);
+    }
 };
 
 export const togglePasswordRecovery = ({ setShowRecoverPassword, getShowRecoverPassword }:

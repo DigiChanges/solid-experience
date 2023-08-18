@@ -1,32 +1,33 @@
 import { Component, createResource } from 'solid-js';
-// import { useApplicationContext } from '../../../context/context';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import RoleRepository from '../../../features/role/repositories/RoleRepository';
-// import usePermission from '../../../features/shared/hooks/usePermission';
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout/PrivateLayout';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import UserCreate from '../../../features/user/templates/UserCreate/UserCreate';
 import { createAction } from './handler';
+import { UserPayload } from '../../../features/user/interfaces';
+import PayloadProps from '../../../features/shared/interfaces/PayloadProps';
 
 const IndexPage: Component = () =>
 {
-    // const [user]: any = useApplicationContext();
     const authRepository = new AuthRepository();
     const userRepository = new UserRepository();
     const roleRepository = new RoleRepository();
+    // const [roles] = createResource({ user: user }, roleRepository.getRoles);
+    // const [permissions] = createResource(authRepository.getAllPermissions);
 
-    //const [roles] = createResource({ user: user() }, roleRepository.getRoles);
-    //const [permissions] = createResource({ user: user() }, authRepository.getAllPermissions);
-    //usePermission(user, [roles, permissions]);
+    const createUser = async(data: UserPayload) =>
+    {
+        await userRepository.createUser(data);
+    };
 
     return (
         <PrivateLayout>
-            {/*<UserCreate*/}
-            {/*    onCreate={createAction({ userRepository, user: user() })}*/}
-            {/*    permissionsList={permissions()?.data}*/}
-            {/*    rolesList={roles()?.data}*/}
-            {/*    loading={permissions.loading || roles.loading}*/}
-            {/*/>*/}
+            <UserCreate
+                onCreate={createUser}
+                // rolesList={roles()?.data}
+                // loading={permissions.loading || roles.loading}
+            />
         </PrivateLayout>
     );
 };

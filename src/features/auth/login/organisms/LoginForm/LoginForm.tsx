@@ -1,15 +1,17 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Anchor, Button, FormControl, FormControlError, FormControlLabel, FormControlDescription, HStack, Input } from '@hope-ui/core';
-import { useI18n } from '@solid-primitives/i18n';
+import useTranslation from '../../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import type { InferType } from 'yup';
 import { LoginPayload } from '../../../interfaces/login';
 import signUpSchema from '../../../validations/schemas/SignUpSchema';
 import { darkInput, placeholderInput, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
+import { useContext } from '../../../../../context';
 
-interface LoginFormProps {
-    onSubmit: (values: LoginPayload) => Promise<void>;
+interface LoginFormProps
+{
+    onSubmit: (values: LoginPayload, setAuth: any) => Promise<void>;
     onError: (error: unknown) => void;
     onSuccess: () => void;
     onClick: (event: MouseEvent) => void;
@@ -17,7 +19,8 @@ interface LoginFormProps {
 
 const LoginForm: Component<LoginFormProps> = props =>
 {
-    const [t] = useI18n();
+    const context = useContext();
+    const { translate: t } = useTranslation();
     const {
         form,
         errors,
@@ -26,28 +29,28 @@ const LoginForm: Component<LoginFormProps> = props =>
         extend: validator({ schema: signUpSchema }),
         onSuccess: props.onSuccess,
         onError: props.onError,
-        onSubmit: async values => props.onSubmit(values)
+        onSubmit: async values => props.onSubmit(values, context?.setUserData)
     });
 
     return (
         <>
             <h1 class="section_title_opaque">{t('a_login')}</h1>
             <form ref={form} class="flex flex-col gap-9 md:w-[20rem]" >
-                <FormControl isRequired isInvalid={!!errors('email')}>
-                    <FormControlLabel for="email" _dark={{ _after: { color: 'danger.300' } }} class={'form_label'}>
+                <FormControl isRequired isInvalid={!!errors('username')}>
+                    <FormControlLabel for="username" _dark={{ _after: { color: 'danger.300' } }} class={'form_label'}>
                         {t('email')}
                     </FormControlLabel>
                     <Input
                         _dark={darkInput}
                         _placeholder={placeholderInput}
-                        name="email"
+                        name="username"
                         type="email"
                         autocomplete="username"
                         placeholder={t('a_your_email') as string}
                     />
-                    <Show when={errors('email')} keyed>
+                    <Show when={errors('username')} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors('email')?.[0] ?? '' } />
+                            {t(errors('username')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -66,7 +69,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                     />
                     <Show when={errors('password')} keyed>
                         <FormControlError class="error_message_block">
-                            <Text message={errors('password')?.[0] ?? ''} />
+                           {t(errors('password')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
@@ -74,7 +77,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                 <FormControl>
                     <FormControlDescription>
                         <Anchor onClick={props.onClick} >
-                            <Text class={'text-neutral-400 text-sm'} message="au_forgot_password" />
+                             <div class="text-neutral-400 text-sm" >{t('au_forgot_password')}</div>
                         </Anchor>
                     </FormControlDescription>
                 </FormControl>
