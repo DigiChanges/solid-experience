@@ -20,7 +20,7 @@ const ItemCard: Component<ItemCardProps> = (props) => (
             <div class="card_media_object">
                 <h6 class="card_media_object_title" data-parent="itemsShow">
                     <Link class="card_media_object_link"
-                        href={`/items/${props.item.id}/update`}
+                        href={`/items/update/${props.item.id}`}
                     >
                         {props.item.name}
                     </Link>
