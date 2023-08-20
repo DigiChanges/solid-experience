@@ -24,9 +24,6 @@ const ItemCard: Component<ItemCardProps> = (props) => (
                     >
                         {props.item.name}
                     </Link>
-                    <span class="card_media_object_span fallback">
-                        {props.item.name}
-                    </span>
                 </h6>
                 {props.item.type}
             </div>
@@ -34,7 +31,7 @@ const ItemCard: Component<ItemCardProps> = (props) => (
             <div class="card_third">
                 <div data-parent="itemsUpdate">
                     <div>
-                        <Link href={`/items/${props.item.id}/update`}>
+                        <Link href={`/items/update/${props.item.id}`}>
                             <IconButton
                                 aria-label="Edit"
                                 variant="plain"

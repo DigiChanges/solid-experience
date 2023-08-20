@@ -32,26 +32,27 @@ class ItemRepository
         return HttpService.request<ItemResponse>(config);
     }
 
-    public async getOne({ id }: PayloadProps)
-    {
-        const config: AxiosRequestConfig = {
-            url: `${baseUrl}/${base}/${id}`,
-            method: 'GET'
-        };
-
-        return HttpService.request<ItemResponse>({ config });
-    }
-
     public async updateItem({ id, data }: PayloadProps<ItemPayload>)
     {
-        const config: AxiosRequestConfig = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${base}/${id}`,
             method: 'PUT',
             data
         };
-
-        return HttpService.request<ItemResponse>({ config });
+        return HttpService.request<ItemResponse>(config);
     }
+
+    public async getOne({ id }: PayloadProps)
+    {
+        const config: IHttpParams = {
+            url: `${baseUrl}/${base}/${id}`,
+            method: 'GET'
+        };
+
+        return HttpService.request<ItemResponse>(config);
+    }
+
+
 
 
 
