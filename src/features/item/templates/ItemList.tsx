@@ -80,7 +80,7 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
                     {t('i_list')}
                 </h1>
 
-                <div class="w-[100%] md:w-auto">
+                <div class="w-full md:w-auto">
                     <Link href={'/items/create'}>
                         <Button
                             leftIcon={<Icon><IconPlus/></Icon>}

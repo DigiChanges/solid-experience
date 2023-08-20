@@ -19,7 +19,7 @@ const ItemCard: Component<ItemCardProps> = (props) => (
 
             <div class="card_media_object">
                 <h6 class="card_media_object_title" data-parent="itemsShow">
-                    <Link class="card_media_object_link has-permission"
+                    <Link class="card_media_object_link"
                         href={`/items/${props.item.id}/update`}
                     >
                         {props.item.name}
@@ -33,7 +33,7 @@ const ItemCard: Component<ItemCardProps> = (props) => (
 
             <div class="card_third">
                 <div data-parent="itemsUpdate">
-                    <div class="has-permission">
+                    <div>
                         <Link href={`/items/${props.item.id}/update`}>
                             <IconButton
                                 aria-label="Edit"

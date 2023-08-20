@@ -52,7 +52,7 @@ const ItemUpdate: Component<ItemUpdateTemplateProps> = (props) =>
             />
 
             <header class="section_header_container">
-                <div class="has-permission">
+                <div>
                     <h1 class="section_title">{t('i_update')}</h1>
                 </div>
                 <div class="fallback">
