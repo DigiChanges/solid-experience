@@ -19,22 +19,19 @@ const ItemCard: Component<ItemCardProps> = (props) => (
 
             <div class="card_media_object">
                 <h6 class="card_media_object_title" data-parent="itemsShow">
-                    <Link class="card_media_object_link has-permission"
-                        href={`/items/${props.item.id}/update`}
+                    <Link class="card_media_object_link"
+                        href={`/items/update/${props.item.id}`}
                     >
                         {props.item.name}
                     </Link>
-                    <span class="card_media_object_span fallback">
-                        {props.item.name}
-                    </span>
                 </h6>
                 {props.item.type}
             </div>
 
             <div class="card_third">
                 <div data-parent="itemsUpdate">
-                    <div class="has-permission">
-                        <Link href={`/items/${props.item.id}/update`}>
+                    <div>
+                        <Link href={`/items/update/${props.item.id}`}>
                             <IconButton
                                 aria-label="Edit"
                                 variant="plain"
