@@ -15,10 +15,21 @@ class ItemRepository
         const config: IHttpParams = {
             url: `${baseUrl}/${base}`,
             method: 'GET',
-            queryParams: queryParams
+            queryParams
         };
 
         return HttpService.request<ItemListResponse>(config);
+    }
+
+    public createItem({ data }: PayloadProps<ItemPayload>)
+    {
+        const config: IHttpParams = {
+            url: `${baseUrl}/${base}`,
+            method: 'POST',
+            data
+        };
+
+        return HttpService.request<ItemResponse>(config);
     }
 
     public async getOne({ id }: PayloadProps)
@@ -42,16 +53,7 @@ class ItemRepository
         return HttpService.request<ItemResponse>({ config });
     }
 
-    public createItem({ data }: PayloadProps<ItemPayload>)
-    {
-        const config: AxiosRequestConfig = {
-            url: `${baseUrl}/${base}`,
-            method: 'POST',
-            data
-        };
 
-        return HttpService.request<ItemResponse>({ config });
-    }
 
     public removeItem({ id }: PayloadProps)
     {
