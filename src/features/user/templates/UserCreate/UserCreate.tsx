@@ -53,7 +53,7 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
                     onError={handleError()}
                     onSubmit={props.onCreate}
                     onSuccess={handleSuccess()}
-                    // rolesList={props.rolesList}
+                    rolesList={props.rolesList}
                 />
             </Show>
 

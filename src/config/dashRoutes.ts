@@ -52,32 +52,6 @@ export const dashRoutes = [
         ]
     },
     {
-        path: '/roles',
-        name: 'roles',
-        icon: IconRoles,
-        showItem: true,
-        permission: permissions.ROLES.LIST,
-        children:
-        [
-            {
-                path: '/list',
-                component: lazy(() => import('../routes/roles')),
-                name: 'a_list',
-                icon: IconViewList,
-                showItem: true,
-                permission: permissions.ROLES.LIST
-            },
-            {
-                path: '/create',
-                component: lazy(() => import('../routes/roles/create')),
-                name: 'a_create',
-                icon: IconPlus,
-                showItem: true,
-                permission: permissions.ROLES.SAVE
-            }
-        ]
-    },
-    {
         path: '/items',
         name: 'i_items',
         icon: IconRoles,

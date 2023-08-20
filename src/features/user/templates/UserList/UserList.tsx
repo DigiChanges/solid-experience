@@ -106,7 +106,6 @@ const UserList: Component<UserListTemplateProps> = (props) =>
             {/*    <ButtonScrollUp dependencies={props.userList?.data}/>*/}
             {/* </div>*/}
 
-            <div>HOLLLL</div>
         </section>
     );
 };

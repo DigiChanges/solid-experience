@@ -1,5 +1,4 @@
 import { A } from 'solid-start';
-import Counter from "../components/Counter";
 
 export default function Home()
 {
@@ -8,7 +7,6 @@ export default function Home()
       <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
         Hello world!
       </h1>
-      <Counter />
       <p class="mt-8">
         Visit{' '}
         <a

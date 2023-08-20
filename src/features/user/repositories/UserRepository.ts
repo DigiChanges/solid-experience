@@ -1,18 +1,18 @@
-import { UserPayload, UserListResponse, UserResponse, UserApi, User } from '../interfaces';
+import { UserPayload, UserListResponse, UserResponse } from '../interfaces';
 import { config } from '../../shared/repositories/config';
 import HttpService from '../../../services/HttpService';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
 import { IHttpParams } from '../../../services/IHttpParams';
 
 const { baseUrl } = config.apiGateway.server;
-const { getAll, remove, update, create, getOne, editPassword, assignRole } = config.apiGateway.routes.users;
+const { base, editPassword, assignRole } = config.apiGateway.routes.users;
 
 class UserRepository
 {
     public getUsers()
     {
         const config: IHttpParams = {
-            url: `${baseUrl}/${getAll}`,
+            url: `${baseUrl}/${base}`,
             method: 'GET'
         };
 
@@ -21,8 +21,8 @@ class UserRepository
 
     public getPagination(queryParams: string): Promise<UserListResponse>
     {
-        const config: any = {
-            url: `${baseUrl}/${getAll}${queryParams}`,
+        const config: IHttpParams = {
+            url: `${baseUrl}/${base}${queryParams}`,
             method: 'GET'
         };
 
@@ -31,8 +31,9 @@ class UserRepository
 
     public getOne({ id }: PayloadProps)
     {
-        const config: any = {
-            url: `${baseUrl}/${getOne}/${id}`
+        const config: IHttpParams = {
+            url: `${baseUrl}/${base}/${id}`,
+            method: 'GET'
         };
 
         return HttpService.request<UserResponse>(config);
@@ -51,7 +52,7 @@ class UserRepository
 
     // public updateUser({ id, data, user }: PayloadProps<UserPayload>)
     // {
-    //     const config: any = {
+    //     const config: IHttpParams = {
     //         url: `${baseUrl}/${update}/${id}`,
     //         method: 'PUT',
     //         data
@@ -60,10 +61,10 @@ class UserRepository
     //     return HttpService.request<UserResponse>({ config, user });
     // }
 
-    public updateUser(id: number, data:UserPayload)
+    public updateUser(id: string, data: UserPayload)
     {
-        const config: any = {
-            url: `${baseUrl}/${update}/${id}`,
+        const config: IHttpParams = {
+            url: `${baseUrl}/${base}/${id}`,
             method: 'PUT',
             data
         };
@@ -73,8 +74,8 @@ class UserRepository
 
     // public createUser({ data, user }: PayloadProps<UserPayload>)
     // {
-    //     const config: any = {
-    //         url: `${baseUrl}/${create}`,
+    //     const config: IHttpParams = {
+    //         url: `${baseUrl}/${base}`,
     //         method: 'POST',
     //         data
     //     };
@@ -84,8 +85,8 @@ class UserRepository
 
     public createUser(data: UserPayload)
     {
-        const config: any = {
-            url: `${baseUrl}/${create}`,
+        const config: IHttpParams = {
+            url: `${baseUrl}/${base}`,
             method: 'POST',
             data
         };
@@ -95,8 +96,8 @@ class UserRepository
 
     public removeUser({ id }: PayloadProps)
     {
-        const config: any = {
-            url: `${baseUrl}/${remove}/${id}`,
+        const config: IHttpParams = {
+            url: `${baseUrl}/${base}/${id}`,
             method: 'DELETE'
         };
 
@@ -105,7 +106,7 @@ class UserRepository
 
     public editPassword({ id, data }: PayloadProps)
     {
-        const config: any = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${editPassword}/${id}`,
             method: 'PUT',
             data: {

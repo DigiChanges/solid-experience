@@ -13,18 +13,15 @@ import { UserPayload } from '../../../features/user/interfaces';
 const IndexPage: Component = () =>
 {
     const { id } = useParams<{ id: string }> ();
-    // const [user]: any = useApplicationContext();
-    const authRepository = new AuthRepository();
+
     const roleRepository = new RoleRepository();
     const userRepository = new UserRepository();
 
-    // const [userSelected] = createResource({ id, user: user() }, userRepository.getOne);
-    // const [roles] = createResource({ user: user() }, roleRepository.getRoles);
-    // const [permissions] = createResource({ user: user() }, authRepository.getAllPermissions);
-    // usePermission(user, [roles, permissions, userSelected]);
+    const [userSelected] = createResource({ id }, userRepository.getOne);
+    const [roles] = createResource(roleRepository.getRoles);
+    const isLoading = createMemo(() => userSelected.loading || roles.loading);
 
-    // const isLoading = createMemo(() => userSelected.loading || permissions.loading || roles.loading);
-    const updateUser = async(id: number, data: UserPayload) =>
+    const updateUser = async(id: string, data: UserPayload) =>
     {
         await userRepository.updateUser(id, data);
     };
@@ -32,11 +29,10 @@ const IndexPage: Component = () =>
     return (
         <PrivateLayout>
             <UserUpdate
-                onUpdate={updateAction({ userRepository, id, user: user() })}
-                // userSelected={userSelected()?.data}
-                // permissionsList={permissions()?.data}
-                // rolesList={roles()?.data}
-                // loading={isLoading()}
+                onUpdate={updateAction({ userRepository, id })}
+                userSelected={userSelected()?.data}
+                rolesList={roles()?.data}
+                loading={isLoading()}
             />
         </PrivateLayout>
     );
