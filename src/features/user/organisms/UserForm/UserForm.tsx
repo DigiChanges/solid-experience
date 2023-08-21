@@ -1,7 +1,7 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate } from 'solid-start';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, onMount, Show } from 'solid-js';
 import { InferType } from 'yup';
@@ -15,15 +15,10 @@ import Radio from '../../../shared/molecules/Radio/Radio';
 import DatePicker from '../../../shared/molecules/DatePicker/DatePicker';
 import { darkInput, darkNeutralButton, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
 
-enum RequiredPermission
-{
-    submit='submit'
-}
-
 interface UserUpdateTemplateProps
 {
     onError: (error: unknown) => void;
-    onSubmit: (data: UserPayload) => Promise<void>;
+    onSubmit?: (data: UserPayload) => Promise<void>;
     onSuccess: () => void;
     userSelected?: UserApi | undefined;
     rolesList?: RoleApi[];
@@ -47,14 +42,14 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
     } = createForm<InferType<typeof userSchema>>({
         initialValues: {
             enable: true,
-            gender: '',
+            genre: '',
             country: '',
             password: ''
         },
         extend: validator({ schema: userSchema }),
         onSuccess: props.onSuccess,
         onError: props.onError,
-        onSubmit: values => props.onSubmit(values as UserPayload)
+        onSubmit: values => props.onSubmit ? props.onSubmit(values as UserPayload) : null
     });
 
     const handleSelect = (field: keyof InferType<typeof userSchema>) => (value: string[] | boolean) =>
@@ -110,7 +105,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                         autofocus
                         name="firstName"
                         type="text"
-                        placeholder={t('a_enter_first_name') as string}
+                        placeholder={t('a_enter_first_name')}
                         value={props.userSelected?.firstName}
                     />
                     <Show when={errors('firstName')} keyed>
@@ -131,7 +126,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                         _placeholder={placeholderInput}
                         name="lastName"
                         type="text"
-                        placeholder={t('a_enter_last_name') as string}
+                        placeholder={t('a_enter_last_name')}
                         value={props.userSelected?.lastName}
                     />
                     <Show when={errors('lastName')} keyed>
@@ -246,7 +241,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                         _placeholder={placeholderInput}
                         name="email"
                         type="text"
-                        placeholder={t('a_your_email') as string}
+                        placeholder={t('a_your_email')}
                         value={props.userSelected?.username}
                     />
                     <Show when={errors('email')} keyed>
@@ -267,7 +262,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                         _placeholder={placeholderInput}
                         name="phone"
                         type="text"
-                        placeholder={t('a_enter_phone') as string}
+                        placeholder={t('a_enter_phone')}
                         value={props.userSelected?.phone}
                     />
                     <Show when={errors('phone')} keyed>
@@ -290,7 +285,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                             _placeholder={placeholderInput}
                             name="password"
                             type="password"
-                            placeholder={t('a_your_password') as string}
+                            placeholder={t('a_your_password')}
                         />
                         <Show when={errors('password')} keyed>
                             <FormControlError class="error_message_block">
@@ -310,7 +305,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                             _placeholder={placeholderInput}
                             name="passwordConfirmation"
                             type="password"
-                            placeholder={t('a_repeat_password') as string}
+                            placeholder={t('a_repeat_password')}
                         />
                         <Show when={errors('passwordConfirmation')} keyed>
                             <FormControlError class="error_message_block">
@@ -362,7 +357,7 @@ const UserForm: Component<UserUpdateTemplateProps> = (props) =>
                         type="submit"
                         isDisabled={!isValid()}
                         isLoading={isSubmitting()}
-                        loadingText={t('a_submitting') as string}
+                        loadingText={t('a_submitting')}
                     >
                         {t('a_save')}
                     </Button>

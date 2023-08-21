@@ -1,8 +1,8 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
-import { Link } from '@solidjs/router';
-import { Component, createEffect, Show } from 'solid-js';
+import { A } from 'solid-start';
+import { Component, Show } from 'solid-js';
 import { InferType } from 'yup';
 import { country, gender } from '../../../../../entities';
 import RegisterSchema from '../../../validations/schemas/RegisterSchema.';
@@ -40,7 +40,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
         onSubmit: values => props.onSubmit(values as any)
     });
 
-    const handleSelect = (field: keyof InferType<typeof RegisterSchema>) => (value: string | boolean) =>
+    const handleSelect = (field: keyof InferType<typeof RegisterSchema>) => (value: string | any[]) =>
     {
         setFields(field, value, true);
     };
@@ -268,7 +268,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
 
             <div class="update_save_buttons_container">
                 <Button
-                    as={Link}
+                    as={A}
                     href="/auth/login"
                     colorScheme="neutral"
                     _dark={darkNeutralButton}

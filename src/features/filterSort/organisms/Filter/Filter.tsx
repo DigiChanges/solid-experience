@@ -1,9 +1,9 @@
 import { createForm } from '@felte/solid';
 import { Button, Icon, Input, CloseButton } from '@hope-ui/core';
-import { useSearchParams } from '@solidjs/router';
+import { useSearchParams } from 'solid-start';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, createMemo, createSignal, For } from 'solid-js';
-import IconPlus from '../../../../atoms/Icons/Stroke/IconPlus';
+import IconPlus from '../../../shared/atoms/Icons/Stroke/IconPlus';
 import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
 import { SelectValueOption } from '../../../shared/types/Selects';

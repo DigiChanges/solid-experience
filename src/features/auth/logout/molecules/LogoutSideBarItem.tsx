@@ -1,5 +1,5 @@
 import { Component } from 'solid-js';
-import IconLogout from '../../../../atoms/Icons/Stroke/IconLogout';
+import IconLogout from '../../../shared/atoms/Icons/Stroke/IconLogout';
 import SideBarItem from '../../../sideBar/molecules/SideBarItem/SideBarItem';
 import { logout } from './handlers';
 

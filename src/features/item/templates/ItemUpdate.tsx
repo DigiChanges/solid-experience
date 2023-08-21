@@ -1,5 +1,5 @@
 import { Component, Show } from 'solid-js';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate } from 'solid-start';
 
 import { notificationService } from '../../shared/molecules/Toast/Toast';
 import useTranslation from '../../shared/hooks/useTranslation';

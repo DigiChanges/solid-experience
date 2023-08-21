@@ -1,7 +1,7 @@
 import { Center, Flex, IconButton } from '@hope-ui/core';
 import useTranslation from '../shared/hooks/useTranslation';
 import { Component } from 'solid-js';
-import IconLanguage from '../../atoms/Icons/Stroke/IconLanguage';
+import IconLanguage from '../shared/atoms/Icons/Stroke/IconLanguage';
 import { changeLanguage } from './handlers';
 import DropdownMenu from '../shared/molecules/DropdownMenu/DropdownMenu';
 

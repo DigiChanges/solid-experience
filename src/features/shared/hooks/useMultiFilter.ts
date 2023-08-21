@@ -1,4 +1,4 @@
-import { useSearchParams } from '@solidjs/router';
+import { useSearchParams } from 'solid-start';
 
 function useMultiFilter()
 {
@@ -8,7 +8,6 @@ function useMultiFilter()
     {
         setSearchParams({ [param]: value });
     };
-
 
     const removeParam = (param: string) =>
     {

@@ -1,9 +1,9 @@
 import { IconButton } from '@hope-ui/core';
-import { Link } from '@solidjs/router';
+import { A } from 'solid-start';
 import { Component } from 'solid-js';
-import IconLockOpen from '../../../../atoms/Icons/Stroke/IconLockOpen';
-import IconPencilAlt from '../../../../atoms/Icons/Stroke/IconPencilAlt';
-import IconTrash from '../../../../atoms/Icons/Stroke/IconTrash';
+import IconLockOpen from '../../../shared/atoms/Icons/Stroke/IconLockOpen';
+import IconPencilAlt from '../../../shared/atoms/Icons/Stroke/IconPencilAlt';
+import IconTrash from '../../../shared/atoms/Icons/Stroke/IconTrash';
 import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
 import { UserApi } from '../../interfaces';
@@ -19,20 +19,20 @@ const UserCard: Component<UserCardProps> = (props) => (
         <CardContent class="card_container">
 
             <div class="card_media_object">
-                <h6 class="card_media_object_title" data-parent="usersShow">
-                    <Link class="card_media_object_link"
+                <h6 class="card_media_object_title">
+                    <A class="card_media_object_link"
                         href={`/users/update/${props.user.id}`}
                     >
                         {`${props.user.firstName} ${props.user.lastName}`}
-                    </Link>
+                    </A>
                 </h6>
                 <p class={'text-ellipsis overflow-hidden whitespace-nowrap'}>{props.user.email}</p>
             </div>
 
             <div class="card_third">
-                <div data-parent="usersUpdate">
+                <div>
                     <div>
-                        <Link href={`/users/update/${props.user.id}`}>
+                        <A href={`/users/update/${props.user.id}`}>
                             <IconButton
                                 _dark={{ color: 'success.300', cursor: 'pointer' }}
                                 size={'xs'}
@@ -41,11 +41,11 @@ const UserCard: Component<UserCardProps> = (props) => (
                                 colorScheme="success"
                                 children={<IconPencilAlt />}
                             />
-                        </Link>
+                        </A>
                     </div>
                 </div>
                 <div data-parent="usersChangeUserPassword">
-                    <Link
+                    <A
                         href={`/users/editPassword/${props.user.id}`}
                     >
                         <IconButton
@@ -56,7 +56,7 @@ const UserCard: Component<UserCardProps> = (props) => (
                             colorScheme="warning"
                             children={<IconLockOpen />}
                         />
-                    </Link>
+                    </A>
                 </div>
                 <div>
                     <IconButton

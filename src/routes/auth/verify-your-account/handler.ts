@@ -1,15 +1,14 @@
 import { notificationService } from '../../../features/shared/molecules/Toast/Toast';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import { createAlertType } from '../../../features/shared/hooks/createAlert';
-import {Navigator} from "@solidjs/router";
 
 type params = {
     authRepository: AuthRepository;
     errorAlert: createAlertType;
-    navigate: Navigator;
+    navigate: (path: string, options: { replace: boolean }) => void;
     searchParams: any;
     setIsLoading: (isLoading: boolean) => void;
-    t: any;
+    t: (key: string) => string;
 };
 
 export const verifyAccountAction = ({ authRepository, errorAlert, navigate, setIsLoading, searchParams, t }: params) => async() =>
@@ -23,7 +22,7 @@ export const verifyAccountAction = ({ authRepository, errorAlert, navigate, setI
 
         notificationService.show({
             status: 'success',
-            title: t('au_verification_successful') as string
+            title: t('au_verification_successful')
         });
 
         navigate('/verify-account-success', { replace: true });
@@ -34,8 +33,8 @@ export const verifyAccountAction = ({ authRepository, errorAlert, navigate, setI
         const errorMessage = setError(error);
         notificationService.show({
             status: 'danger',
-            title: t('err_verify_account') as string,
-            description: t(errorMessage) as string
+            title: t('err_verify_account'),
+            description: t(errorMessage)
         });
 
         setIsLoading(false);

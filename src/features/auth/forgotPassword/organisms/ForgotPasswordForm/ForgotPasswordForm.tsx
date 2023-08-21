@@ -2,7 +2,7 @@ import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { notificationService } from '../../../../shared/molecules/Toast/Toast';
 import { Button, FormControl, FormControlLabel, Input, FormControlError } from '@hope-ui/core';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate } from 'solid-start';
 import useTranslation from '../../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import { InferType } from 'yup';

@@ -1,4 +1,4 @@
-import { Link } from '@solidjs/router';
+import { A } from 'solid-start';
 import { Component } from 'solid-js';
 import styles from './RegisterSuccess.module.css';
 import Alert from '../../../../shared/molecules/Alert/Alert';
@@ -22,9 +22,9 @@ const RegisterSuccess: Component = () =>
                     <>
                         t("au_check_your_box")
                         <div class={styles.link_login}>
-                            <Link href={'/login'}>
+                            <A href={'/login'}>
                                 {t('au_go_to_login')}
-                            </Link>
+                            </A>
                         </div>
                     </>
                 }

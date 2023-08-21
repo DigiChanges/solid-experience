@@ -1,5 +1,5 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate } from 'solid-start';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import { RoleApi } from '../../../role/interfaces';
@@ -22,7 +22,7 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
     const errorAlert = createAlert();
     const { setError } = errorAlert;
 
-    const handleSuccess = () => () =>
+    const handleSuccess = () =>
     {
         notificationService.show({
             status: 'success',
@@ -52,7 +52,7 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
                 <UserForm
                     onError={handleError()}
                     onSubmit={props.onCreate}
-                    onSuccess={handleSuccess()}
+                    onSuccess={handleSuccess}
                     rolesList={props.rolesList}
                 />
             </Show>

@@ -1,9 +1,8 @@
-import { AxiosRequestConfig } from 'axios';
 import { ItemListResponse, ItemPayload, ItemResponse } from '../interfaces';
 import { config } from '../../shared/repositories/config';
 import HttpService from '../../../services/HttpService';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
-import {IHttpParams} from "../../../services/IHttpParams";
+import { IHttpParams } from '../../../services/IHttpParams';
 
 const { baseUrl } = config.apiGateway.server;
 const { base } = config.apiGateway.routes.items;
@@ -52,18 +51,14 @@ class ItemRepository
         return HttpService.request<ItemResponse>(config);
     }
 
-
-
-
-
     public removeItem({ id }: PayloadProps)
     {
-        const config: AxiosRequestConfig = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${base}/${id}`,
             method: 'DELETE'
         };
 
-        return HttpService.request<ItemResponse>({ config });
+        return HttpService.request<ItemResponse>(config);
     }
 }
 

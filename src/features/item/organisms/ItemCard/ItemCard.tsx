@@ -1,8 +1,9 @@
 import { IconButton } from '@hope-ui/core';
-import { Link } from '@solidjs/router';
 import { Component } from 'solid-js';
-import IconPencilAlt from '../../../../atoms/Icons/Stroke/IconPencilAlt';
-import IconTrash from '../../../../atoms/Icons/Stroke/IconTrash';
+import { A } from 'solid-start';
+
+import IconPencilAlt from '../../../shared/atoms/Icons/Stroke/IconPencilAlt';
+import IconTrash from '../../../shared/atoms/Icons/Stroke/IconTrash';
 import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
 import { ItemApi } from '../../interfaces';
@@ -18,20 +19,20 @@ const ItemCard: Component<ItemCardProps> = (props) => (
         <CardContent class="card_container">
 
             <div class="card_media_object">
-                <h6 class="card_media_object_title" data-parent="itemsShow">
-                    <Link class="card_media_object_link"
+                <h6 class="card_media_object_title">
+                    <A class="card_media_object_link"
                         href={`/items/update/${props.item.id}`}
                     >
                         {props.item.name}
-                    </Link>
+                    </A>
                 </h6>
                 {props.item.type}
             </div>
 
             <div class="card_third">
-                <div data-parent="itemsUpdate">
+                <div>
                     <div>
-                        <Link href={`/items/update/${props.item.id}`}>
+                        <A href={`/items/update/${props.item.id}`}>
                             <IconButton
                                 aria-label="Edit"
                                 variant="plain"
@@ -40,12 +41,11 @@ const ItemCard: Component<ItemCardProps> = (props) => (
                                 _dark={{ color: 'success.300', cursor: 'pointer' }}
                                 size={'xs'}
                             />
-                        </Link>
+                        </A>
                     </div>
                 </div>
-                <div data-parent="itemsDelete">
+                <div>
                     <IconButton
-                        class="has-permission"
                         aria-label="Delete item"
                         variant="plain"
                         children={<IconTrash />}

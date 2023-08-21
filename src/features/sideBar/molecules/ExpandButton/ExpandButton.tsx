@@ -1,6 +1,6 @@
 import { IconButton } from '@hope-ui/core';
 import { Component } from 'solid-js';
-import IconArrowCircleLeft from '../../../../atoms/Icons/Stroke/IconArrowCircleLeft';
+import IconArrowCircleLeft from '../../../shared/atoms/Icons/Stroke/IconArrowCircleLeft';
 import styles from './ExpandButton.module.css';
 
 interface SideBarProps {

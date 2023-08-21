@@ -1,9 +1,9 @@
 import { IconButton } from '@hope-ui/core';
-import { Link } from '@solidjs/router';
+import { A } from 'solid-start';
 import { Component } from 'solid-js';
 import logoNav from '../../../assets/images/dgc_logo.png';
-import IconBell from '../../../atoms/Icons/Stroke/IconBell';
-import IconBurger from '../../../atoms/Icons/Stroke/IconBurger';
+import IconBell from '../../shared/atoms/Icons/Stroke/IconBell';
+import IconBurger from '../../shared/atoms/Icons/Stroke/IconBurger';
 import LanguageMenu from '../../language/LanguageMenu';
 import styles from './Nav.module.css';
 
@@ -21,10 +21,10 @@ const NavBar: Component<NavbarTemplateProps> = props =>
     return (
         <nav class={styles.nav}>
             <section class={styles.logo_container}>
-                <Link href="/">
+                <A href="/">
                     <img class={styles.logo} src={logoNav} alt="digichanges logo"/>
-                </Link>
-                <Link href="/">DIGICHANGES</Link>
+                </A>
+                <A href="/">DIGICHANGES</A>
             </section>
             <section class={styles.nav_container}>
                 <LanguageMenu />

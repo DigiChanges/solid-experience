@@ -1,15 +1,13 @@
 import { Button, createDisclosure, HStack, Icon, Modal } from '@hope-ui/core';
-import { Link } from '@solidjs/router';
 import useTranslation from '../../shared/hooks/useTranslation';
-import { Component, createEffect, For, Show } from 'solid-js';
-import IconPlus from '../../../atoms/Icons/Stroke/IconPlus';
-import { permissions } from '../../../config/permissions';
+import { Component, For, Show } from 'solid-js';
+import { A } from 'solid-start';
+import IconPlus from '../../shared/atoms/Icons/Stroke/IconPlus';
 import Filter from '../../filterSort/organisms/Filter/Filter';
 import useTransformTranslatedOptions from '../../shared/hooks/useTransformTranslatedOptions';
-import ButtonScrollUp from '../../shared/molecules/ButtonScrollUp/ButtonScrollUp';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { filterBy } from '../constants/filterBy';
-import { ItemApi, ItemListResponse } from '../interfaces';
+import { ItemApi } from '../interfaces';
 import ItemCard from '../organisms/ItemCard/ItemCard';
 import styles from '../../user/templates/UserList/UserList.module.css';
 import { darkDangerButton, darkPrimaryButton } from '../../shared/constants/hopeAdapter';
@@ -20,7 +18,6 @@ interface ItemListTemplateProps
     removeAction: any;
     loading: boolean;
     viewMoreAction: any;
-    nextPage: string | undefined;
 }
 
 const ItemList: Component<ItemListTemplateProps> = (props) =>
@@ -67,7 +64,7 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
                         <Button
                             _dark={darkDangerButton}
                             colorScheme="danger"
-                            onClick={() => handleModalClick}
+                            onClick={handleModalClick}
                         >
                             {t('a_delete')}
                         </Button>
@@ -75,13 +72,13 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
                 </Modal.Content>
             </Modal>
 
-            <header class="section_header_container" data-parent={permissions.ROLES.SAVE}>
+            <header class="section_header_container">
                 <h1 class="section_title">
                     {t('i_list')}
                 </h1>
 
                 <div class="w-full md:w-auto">
-                    <Link href={'/items/create'}>
+                    <A href={'/items/create'}>
                         <Button
                             leftIcon={<Icon><IconPlus/></Icon>}
                             _dark={darkPrimaryButton}
@@ -89,7 +86,7 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
                         >
                             {t('i_create')}
                         </Button>
-                    </Link>
+                    </A>
                 </div>
             </header>
 
@@ -103,22 +100,18 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
                 <Show when={!props.loading || props.itemList?.length} keyed>
                     <For each={props.itemList} fallback={<span class={'text-neutral-50'}>{t('r_no_items')}</span>}>
                         {(item) =>
-                            <ItemCard item={item} onDelete={handleDelete(item)} />
+                            <ItemCard item={item} onDelete={handleDelete(item)}/>
                         }
                     </For>
                 </Show>
             </div>
 
             <div class="section_bottom_buttons_container">
-                <Show when={!!props.nextPage} keyed>
-                    <Button onClick={props.viewMoreAction()} variant="outlined">
-                        <Show when={!props.loading} fallback={<span class={'text-neutral-50'}>{t('a_loading')}...</span>} keyed>
-                            {t('a_view_more')}
-                        </Show>
-                    </Button>
-                </Show>
-
-                {/*<ButtonScrollUp dependencies={props.itemList}/>*/}
+                <Button onClick={props.viewMoreAction()} variant="outlined">
+                    <Show when={!props.loading} fallback={<span class={'text-neutral-50'}>{t('a_loading')}...</span>} keyed>
+                        {t('a_view_more')}
+                    </Show>
+                </Button>
             </div>
         </section>
     );

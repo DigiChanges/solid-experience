@@ -22,6 +22,7 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
     const errorAlert = createAlert();
     const { setError } = errorAlert;
     const [getShowRegisterSuccess, setShowRegisterSuccess] = createSignal(false);
+
     const handleSuccess = () => () =>
     {
         notificationService.show({
@@ -43,7 +44,7 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
 
     return (
         <section>
-            {/*<Show when={!getShowRegisterSuccess()} fallback={() => <RegisterSuccess />}>*/}
+             <Show when={!getShowRegisterSuccess()} fallback={<RegisterSuccess />}>
                 <div
                     classList={{ [styles.class_list_container]: !getShowRegisterSuccess() }}>
                     <Card
@@ -61,7 +62,7 @@ const RegisterTemplate: Component<UserCreateTemplateProps> = props =>
                         </div>
                     </Card>
                 </div>
-            {/*</Show>*/}
+             </Show>
         </section>
     );
 };

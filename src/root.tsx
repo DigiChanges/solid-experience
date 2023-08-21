@@ -1,10 +1,9 @@
 // @refresh reload
 import { Suspense, useContext } from 'solid-js';
-import { Body, Head, Html, FileRoutes, Meta, Scripts, ServerContext, Routes, Title } from 'solid-start';
+import { Body, Head, Html, FileRoutes, Meta, Scripts, ServerContext, Routes, Title, useMatch } from 'solid-start';
 import { ErrorBoundary } from 'solid-start/error-boundary';
 import { extendTheme, ColorModeScript, HopeProvider, cookieStorageManagerSSR, injectCriticalStyle } from '@hope-ui/core';
 import { isServer } from 'solid-js/web';
-// import DefaultLayout from './layouts/default';
 import { I18nProvider } from './locales';
 
 import { ContextProvider } from './context';
@@ -30,6 +29,8 @@ export default function Root()
 
   const theme = extendTheme(colors);
   injectCriticalStyle();
+
+  const match = useMatch(() => '/auth/login');
 
   return (
     <Html lang="en">
