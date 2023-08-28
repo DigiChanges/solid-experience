@@ -15,8 +15,8 @@ const IndexPage: Component = () =>
     const { setError } = createAlert();
 
     const itemRepository = new ItemRepository();
-    const { data, goToPage, refetch } = useList(itemRepository.getItems);
-    const { resourceList: itemList, setViewMore } = usePaginatedState<ItemApi, ItemListResponse>(data);
+    const { data, goToPage } = useList(itemRepository.getItems);
+    const { resourceList: itemList, setResourceList, setViewMore } = usePaginatedState<ItemApi, ItemListResponse>(data);
 
     createEffect(() => data.error && setError(data.error));
 
@@ -31,7 +31,8 @@ const IndexPage: Component = () =>
         try
         {
             void await itemRepository.removeItem({ id });
-            refetch();
+            setResourceList(itemList()?.filter((e) => e.id !== id));
+
             notificationService.show({
                 status: 'success',
                 title: t('i_removed')

@@ -29,7 +29,7 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = (props) =>
         notificationService.show({
             title: t('r_created') as string
         });
-        navigate('/roles/list', { replace: true });
+        navigate('/users', { replace: true });
     };
 
     const handleError = () => (error: unknown) =>

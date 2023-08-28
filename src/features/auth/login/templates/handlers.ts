@@ -1,7 +1,7 @@
 import { LoginPayload } from '../../interfaces/login';
 import AuthRepository from '../../repositories/AuthRepository';
 
-export const handleLoginFormSubmit = () => async(data: LoginPayload, setUserData: any) =>
+export const handleLoginFormSubmit = async(data: LoginPayload, setUserData: any) =>
 {
     const authRepository = new AuthRepository();
     const response = await authRepository.signIn({ data });

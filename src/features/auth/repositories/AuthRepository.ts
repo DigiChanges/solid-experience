@@ -5,6 +5,7 @@ import { LoginPayload, LoginResponse } from '../interfaces/login';
 import { LogoutResponse } from '../interfaces/logout';
 import HttpService from '../../../services/HttpService';
 import PayloadProps from '../../shared/interfaces/PayloadProps';
+import { IHttpParams } from '../../../services/IHttpParams';
 
 const { baseUrl } = config.apiGateway.server;
 const { getMe,
@@ -20,7 +21,7 @@ class AuthRepository
 {
     public async signIn({ data }: PayloadProps<LoginPayload>)
     {
-        const config: any = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${login}`,
             method: 'POST',
             data
@@ -31,7 +32,7 @@ class AuthRepository
 
     public async getMe()
     {
-        const config: any = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${getMe}`,
             method: 'GET'
         };
@@ -41,7 +42,7 @@ class AuthRepository
 
     public async refreshToken()
     {
-        const config: any = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${refreshToken}`,
             method: 'POST',
             data: {}
@@ -52,7 +53,7 @@ class AuthRepository
 
     public async logout()
     {
-        const config: any = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${logout}`,
             method: 'POST'
         };
@@ -62,7 +63,7 @@ class AuthRepository
 
     public getForgotPassword = ({ data }: PayloadProps<ForgotPasswordPayload>) =>
     {
-        const config: any = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${forgotPassword}`,
             method: 'POST',
             data
@@ -73,7 +74,7 @@ class AuthRepository
 
     public async setChangeForgotPassword({ data }: PayloadProps<ChangeForgotPasswordPayload>)
     {
-        const config: any = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${changeForgotPassword}`,
             method: 'POST',
             data
@@ -84,7 +85,7 @@ class AuthRepository
 
     public register({ data }: PayloadProps<RegisterPayload>)
     {
-        const config: any = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${register}`,
             method: 'POST',
             data
@@ -95,7 +96,7 @@ class AuthRepository
 
     public verifyYourAccount({ data }: PayloadProps<string>)
     {
-        const config: any = {
+        const config: IHttpParams = {
             url: `${baseUrl}/${verifyYourAccount}/${data}`,
             method: 'PUT'
         };

@@ -1,12 +1,11 @@
-import { Component, createEffect, createSignal, JSX, Show } from 'solid-js';
+import { Component, JSX, Show } from 'solid-js';
 import LogoutSideBarItem from '../../auth/logout/molecules/LogoutSideBarItem';
 import DashItems from '../../shared/layout/DashItems/DashItems';
 import styles from './SideBar.module.css';
-import useTranslation from '../../shared/hooks/useTranslation';
 import { Drawer } from '@hope-ui/core';
 import DropdownMenu from '../../shared/molecules/DropdownMenu/DropdownMenu';
 import { FaSolidAngleDown } from 'solid-icons/fa';
-import { LoginApi } from '../../auth/interfaces/login';
+import { useContext } from '../../../context';
 
 interface SideBarProps
 {
@@ -19,17 +18,7 @@ interface SideBarProps
 
 const SideBar: Component<SideBarProps> = (props) =>
 {
-    const { translate: t } = useTranslation();
-    const [authUser, setAuthUser] = createSignal<LoginApi>();
-
-    createEffect(() =>
-    {
-        const data = sessionStorage.getItem('userData');
-        if (data)
-        {
-            setAuthUser(JSON.parse(data));
-        }
-    });
+    const context = useContext();
 
     return (
         <Show when={true}><>
@@ -47,7 +36,7 @@ const SideBar: Component<SideBarProps> = (props) =>
                             <DropdownMenu
                                 items={[]}
                                 icon={<FaSolidAngleDown />}
-                                title={<span class={'text-white font-bold'}>alexis</span>}
+                                title={<span class={'text-white font-bold'}>{ context?.userData.email ?? 'user@node.com' }</span>}
                                 class={'w-[256px]'}
                             />
                         </div>

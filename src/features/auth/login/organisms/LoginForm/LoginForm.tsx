@@ -4,10 +4,10 @@ import { Anchor, Button, FormControl, FormControlError, FormControlLabel, FormCo
 import useTranslation from '../../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import type { InferType } from 'yup';
-import { LoginPayload } from '../../../interfaces/login';
 import signUpSchema from '../../../validations/schemas/SignUpSchema';
 import { darkInput, placeholderInput, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
 import { useContext } from '../../../../../context';
+import { LoginPayload } from '../../../interfaces/login';
 
 interface LoginFormProps
 {

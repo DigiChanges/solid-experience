@@ -1,9 +1,7 @@
-import { IBodyApi } from '../../shared/interfaces/response/IBodyApi';
-import { IPaginatedBodyApi } from '../../shared/interfaces/response/IPaginatedBodyApi';
-import { RoleApi } from '../../role/interfaces';
 import Base from '../../shared/interfaces/Base';
 
-export interface User {
+export interface User
+{
     firstName: string;
     lastName: string;
     email: string;
@@ -25,7 +23,6 @@ export type UserPayload =
     country: string;
     password: string;
     passwordConfirmation: string;
-    permissions?: string[];
     roles?: string[];
     enable?: boolean;
 };
