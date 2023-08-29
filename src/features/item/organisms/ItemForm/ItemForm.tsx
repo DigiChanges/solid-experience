@@ -10,6 +10,9 @@ import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
 import { ItemApi, ItemPayload, ItemResponse } from '../../interfaces';
 import itemSchema from '../../validations/schemas/ItemSchema';
 import { darkInput, darkNeutralButton, darkPrimaryButtonWithBackground, placeholderInput } from '../../../shared/constants/hopeAdapter';
+import formStyles from '../../../../styles/form.module.css';
+import indexStyles from '../../../../styles/index.module.css';
+import itemFormStyles from './itemForm.module.css';
 
 interface ItemUpdateTemplateProps
 {
@@ -56,10 +59,10 @@ const ItemForm: Component<ItemUpdateTemplateProps> = (props) =>
     });
 
     return (
-        <form ref={form} class="form_flex">
-            <div class="field_wrapper">
+        <form ref={form} class={formStyles.form_flex}>
+            <div class={formStyles.field_wrapper}>
                 <FormControl isRequired isInvalid={ !!errors('name') } >
-                    <FormControlLabel class={'form_label'} for="name" _dark={{ _after: { color: 'danger.300' } }}>
+                    <FormControlLabel class={formStyles.form_label} for="name" _dark={{ _after: { color: 'danger.300' } }}>
                         {t('name')}
                     </FormControlLabel>
                     <Input
@@ -72,16 +75,16 @@ const ItemForm: Component<ItemUpdateTemplateProps> = (props) =>
                         value={props.itemSelected?.name}
                     />
                     <Show when={errors('name')} keyed>
-                        <FormControlError class="error_message_block">
+                        <FormControlError class={formStyles.error_message_block}>
                             {t(errors('name')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
-            <div class="field_wrapper">
+            <div class={formStyles.field_wrapper}>
                 <FormControl isRequired isInvalid={!!errors('type')}>
-                    <FormControlLabel class={'form_label'} for="type" _dark={{ _after: { color: 'danger.300' } }}>
+                    <FormControlLabel class={formStyles.form_label} for="type" _dark={{ _after: { color: 'danger.300' } }}>
                         {t('type')}
                     </FormControlLabel>
                     <Input
@@ -94,28 +97,28 @@ const ItemForm: Component<ItemUpdateTemplateProps> = (props) =>
                         onKeyDown={preventEnterCharacter(['Space'])}
                     />
                     <Show when={errors('type')} keyed>
-                        <FormControlError class="error_message_block">
+                        <FormControlError class={formStyles.error_message_block}>
                             {t(errors('type')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
             </div>
 
-            <div class="update_save_buttons_container">
-                <div class="button_full has-permission">
+            <div class={formStyles.update_save_buttons_container}>
+                <div class={`${formStyles.button_full} ${indexStyles.hasPermission}`}>
                     <Button
                         _dark={darkNeutralButton}
-                        class="button_full"
+                        class={formStyles.button_full}
                         onClick={() => navigate('/items/list')}
                         colorScheme="neutral"
                     >
                         {t('a_back')}
                     </Button>
                 </div>
-                <div class="button_full">
+                <div class={formStyles.button_full}>
                     <Button
                         _dark={darkPrimaryButtonWithBackground}
-                        class="button_full"
+                        class={formStyles.button_full}
                         type="submit"
                         isDisabled={!isValid()}
                         isLoading={isSubmitting()}
@@ -124,10 +127,10 @@ const ItemForm: Component<ItemUpdateTemplateProps> = (props) =>
                         {t('a_save')}
                     </Button>
                 </div>
-                <div class="button_full fallback">
+                <div class={`${formStyles.button_full} ${formStyles.fallback}`}>
                     <Button
                         _dark={darkNeutralButton}
-                        class="w-full"
+                        class={itemFormStyles.button}
                         onClick={() => navigate('/items')}
                     >
                         {t('a_back')}

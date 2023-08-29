@@ -387,9 +387,9 @@
 }
 
 .main-container .container-month-view {
-     display: flex;
-     justify-content: space-evenly;
-     flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .main-container .container-list {
@@ -738,4 +738,3 @@ input::-webkit-inner-spin-button {
         padding: 0.2rem !important;
     }
 }
-

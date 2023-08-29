@@ -1,39 +1,41 @@
 import { IconButton } from '@hope-ui/core';
+import { Link } from '@solidjs/router';
 import { Component } from 'solid-js';
-import { A } from 'solid-start';
-
-import IconPencilAlt from '../../../shared/atoms/Icons/Stroke/IconPencilAlt';
-import IconTrash from '../../../shared/atoms/Icons/Stroke/IconTrash';
+import IconPencilAlt from '../../../../atoms/Icons/Stroke/IconPencilAlt';
+import IconTrash from '../../../../atoms/Icons/Stroke/IconTrash';
 import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
-import { ItemApi } from '../../interfaces';
+import { RoleApi } from '../../interfaces';
 import cardStyles from '../../../../styles/card.module.css';
+import indexStyles from '../../../../styles/index.module.css';
 
-interface ItemCardProps
-{
-    item: ItemApi;
+interface RoleCardProps {
+    role: RoleApi;
     onDelete: () => void;
 }
 
-const ItemCard: Component<ItemCardProps> = (props) => (
+const RoleCard: Component<RoleCardProps> = (props) => (
     <Card>
         <CardContent class={cardStyles.card_container}>
 
             <div class={cardStyles.card_media_object}>
-                <h6 class={cardStyles.card_media_object_title}>
-                    <A class={cardStyles.card_media_object_link}
-                        href={`/items/update/${props.item.id}`}
+                <h6 class={cardStyles.card_media_object_title} data-parent="rolesShow">
+                    <Link class={`${cardStyles.card_media_object_link} ${indexStyles.hasPermission}`}
+                        href={`/roles/${props.role.id}/update`}
                     >
-                        {props.item.name}
-                    </A>
+                        {props.role.name}
+                    </Link>
+                    <span>
+                        {props.role.name}
+                    </span>
                 </h6>
-                {props.item.type}
+                {props.role.slug}
             </div>
 
             <div class={cardStyles.card_third}>
-                <div>
-                    <div>
-                        <A href={`/items/update/${props.item.id}`}>
+                <div data-parent="rolesUpdate">
+                    <div class={indexStyles.hasPermission}>
+                        <Link href={`/roles/${props.role.id}/update`}>
                             <IconButton
                                 aria-label="Edit"
                                 variant="plain"
@@ -42,12 +44,13 @@ const ItemCard: Component<ItemCardProps> = (props) => (
                                 _dark={{ color: 'success.300', cursor: 'pointer' }}
                                 size={'xs'}
                             />
-                        </A>
+                        </Link>
                     </div>
                 </div>
-                <div>
+                <div data-parent="rolesDelete">
                     <IconButton
-                        aria-label="Delete item"
+                        class={indexStyles.hasPermission}
+                        aria-label="Delete Role"
                         variant="plain"
                         children={<IconTrash />}
                         colorScheme="danger"
@@ -62,4 +65,4 @@ const ItemCard: Component<ItemCardProps> = (props) => (
     </Card>
 );
 
-export default ItemCard;
+export default RoleCard;

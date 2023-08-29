@@ -12,6 +12,10 @@ import Radio from '../../../../shared/molecules/Radio/Radio';
 import DatePicker from '../../../../shared/molecules/DatePicker/DatePicker';
 import { darkInput, placeholderInput, darkNeutralButton, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
 import useTranslation from '../../../../shared/hooks/useTranslation';
+import typoStyles from '../../../../../styles/typography.module.css';
+import formStyles from '../../../../../styles/form.module.css';
+import layoutStyles from '../../../../../styles/layout.module.css';
+import registerStyles from './registerForm.module.css';
 
 interface UserUpdateTemplateProps
 {
@@ -52,16 +56,16 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
 
     return (
         <form ref={form}>
-            <h1 class="section_title"> { t('a_create_account') }</h1>
-            <div class="form_flex">
-                <div class="section mid">
-                    <h3 class="group_field_full_title">{ t('a_basic_information') } </h3>
+            <h1 class={typoStyles.section_title}> { t('a_create_account') }</h1>
+            <div class={formStyles.form_flex}>
+                <div class={`${layoutStyles.section} ${layoutStyles.mid}`}>
+                    <h3 class={typoStyles.group_field_full_title}>{ t('a_basic_information') } </h3>
                 </div>
 
-                <div class="section mid">
-                    <div class="field_wrapper full">
+                <div class={`${layoutStyles.section} ${layoutStyles.mid}`}>
+                    <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
                         <FormControl isRequired isInvalid={!!errors('firstName')} >
-                            <FormControlLabel class={'form_label'} for="firstName" _dark={{ _after: { color: 'danger.300' } }}>
+                            <FormControlLabel class={formStyles.form_label} for="firstName" _dark={{ _after: { color: 'danger.300' } }}>
                                 {t('first_name')}
                             </FormControlLabel>
                             <Input
@@ -72,16 +76,16 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 placeholder={t('a_enter_first_name') as string}
                             />
                             <Show when={errors('firstName')} keyed>
-                                <FormControlError class="error_message_block">
+                                <FormControlError class={formStyles.error_message_block}>
                                     {t(errors('firstName')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
                         </FormControl>
                     </div>
 
-                    <div class="field_wrapper full">
+                    <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
                         <FormControl isRequired isInvalid={!!errors('lastName')} >
-                            <FormControlLabel class={'form_label'} for="lastName" _dark={{ _after: { color: 'danger.300' } }}>
+                            <FormControlLabel class={formStyles.form_label} for="lastName" _dark={{ _after: { color: 'danger.300' } }}>
                                  {t('last_name')}
                             </FormControlLabel>
                             <Input
@@ -91,7 +95,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 type="text"
                                 placeholder={t('a_enter_last_name') as string} />
                             <Show when={errors('lastName')} keyed>
-                                <FormControlError class="error_message_block">
+                                <FormControlError class={formStyles.error_message_block}>
                                     {t(errors('lastName')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
@@ -99,15 +103,15 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                     </div>
                 </div>
 
-                <div class="section mid">
-                    <p class="group_field_full_info">{t('av_email_valid')}</p>
-                    <p class="group_field_full_info">{t('a_used_sign_in')}</p>
+                <div class={`${layoutStyles.section} ${layoutStyles.mid}`}>
+                    <p class={typoStyles.group_field_full_info}>{t('av_email_valid')}</p>
+                    <p class={typoStyles.group_field_full_info}>{t('a_used_sign_in')}</p>
                 </div>
 
-                <div class="section mid">
-                    <div class="field_wrapper full">
+                <div class={`${layoutStyles.section} ${layoutStyles.mid}`}>
+                    <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
                         <FormControl isRequired isInvalid={!!errors('email')} >
-                            <FormControlLabel class={'form_label'} for="email" _dark={{ _after: { color: 'danger.300' } }}>
+                            <FormControlLabel class={formStyles.form_label} for="email" _dark={{ _after: { color: 'danger.300' } }}>
                                 {t('email')}
                             </FormControlLabel>
                             <Input
@@ -118,16 +122,16 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 placeholder={t('a_your_email') as string}
                             />
                             <Show when={errors('email')} keyed>
-                                <FormControlError class="error_message_block">
+                                <FormControlError class={formStyles.error_message_block}>
                                     {t(errors('email')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
                         </FormControl>
                     </div>
 
-                    <div class="field_wrapper full">
+                    <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
                         <FormControl isRequired isInvalid={!!errors('phone')} >
-                            <FormControlLabel class={'form_label'} for="phone" _dark={{ _after: { color: 'danger.300' } }}>
+                            <FormControlLabel class={formStyles.form_label} for="phone" _dark={{ _after: { color: 'danger.300' } }}>
                                 {t('phone')}
                             </FormControlLabel>
                             <Input
@@ -138,16 +142,16 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 placeholder={t('a_enter_phone') as string}
                             />
                             <Show when={errors('phone')} keyed>
-                                <FormControlError class="error_message_block">
+                                <FormControlError class={formStyles.error_message_block}>
                                     {t(errors('phone')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
                         </FormControl>
                     </div>
 
-                    <div class="field_wrapper full">
+                    <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
                         <FormControl isRequired isInvalid={!!errors('genre')}>
-                            <FormControlLabel class={'form_label'} for="genre" _dark={{ _after: { color: 'danger.300' } }}>
+                            <FormControlLabel class={formStyles.form_label} for="genre" _dark={{ _after: { color: 'danger.300' } }}>
                                 {t('gender')}
                             </FormControlLabel>
                             <Radio
@@ -157,16 +161,16 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 onChange={handleSelect('genre')}
                             />
                             <Show when={errors('genre')} keyed>
-                                <FormControlError class="error_message_block">
+                                <FormControlError class={formStyles.error_message_block}>
                                     {t(errors('genre')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
                         </FormControl>
                     </div>
 
-                    <div class="field_wrapper full">
+                    <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
                         <FormControl isRequired isInvalid={!!errors('birthdate')}>
-                            <FormControlLabel class={'form_label'} for="birthdate" _dark={{ _after: { color: 'danger.300' } }}>
+                            <FormControlLabel class={formStyles.form_label} for="birthdate" _dark={{ _after: { color: 'danger.300' } }}>
                                 {t('birthday')}
                             </FormControlLabel>
                             <DatePicker
@@ -187,16 +191,16 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 theme="dark"
                             />
                             <Show when={errors('birthdate')} keyed>
-                                <FormControlError class="error_message_block">
+                                <FormControlError class={formStyles.error_message_block}>
                                     {t(errors('birthdate')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
                         </FormControl>
                     </div>
 
-                    <div class="field_wrapper full">
+                    <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
                         <FormControl isRequired isInvalid={!!errors('country')}>
-                            <FormControlLabel class={'form_label'} for="country" _dark={{ _after: { color: 'danger.300' } }}>
+                            <FormControlLabel class={formStyles.form_label} for="country" _dark={{ _after: { color: 'danger.300' } }}>
                                 {t('country')}
                             </FormControlLabel>
                             <Select
@@ -207,10 +211,10 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 onChange={handleSelect('country')}
                                 valueProperty={'value'}
                                 labelProperty={'label'}
-                                class={'w-full'}
+                                class={registerStyles.selectCountry}
                             />
                             <Show when={errors('country')} keyed>
-                                <FormControlError class="error_message_block">
+                                <FormControlError class={formStyles.error_message_block}>
                                     {t(errors('country')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
@@ -218,15 +222,15 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                     </div>
                 </div>
 
-                <div class="section mid">
-                    <p class="group_field_full_info">{t('a_security')}</p>
-                    <p class="group_field_full_info">{t('a_used_sign_in')}</p>
+                <div class={`${layoutStyles.section} ${layoutStyles.mid}`}>
+                    <p class={typoStyles.group_field_full_info}>{t('a_security')}</p>
+                    <p class={typoStyles.group_field_full_info}>{t('a_used_sign_in')}</p>
                 </div>
 
-                <div class="section mid">
-                    <div class="field_wrapper full">
+                <div class={`${layoutStyles.section} ${layoutStyles.mid}`}>
+                    <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
                         <FormControl isRequired isInvalid={!!errors('password')}>
-                            <FormControlLabel class={'form_label'} for="password" _dark={{ _after: { color: 'danger.300' } }}>
+                            <FormControlLabel class={formStyles.form_label} for="password" _dark={{ _after: { color: 'danger.300' } }}>
                                 {t('password')}
                             </FormControlLabel>
                             <Input
@@ -237,16 +241,16 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 placeholder={t('a_your_password') as string}
                             />
                             <Show when={errors('password')} keyed>
-                                <FormControlError class="error_message_block">
+                                <FormControlError class={formStyles.error_message_block}>
                                     {t(errors('password')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
                         </FormControl>
                     </div>
 
-                    <div class="field_wrapper full">
+                    <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
                         <FormControl isRequired isInvalid={!!errors('passwordConfirmation')}>
-                            <FormControlLabel class={'form_label'} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
+                            <FormControlLabel class={formStyles.form_label} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
                                 {t('confirm_password')}
                             </FormControlLabel>
                             <Input
@@ -257,7 +261,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                                 placeholder={t('a_repeat_password') as string}
                             />
                             <Show when={errors('passwordConfirmation')} keyed>
-                                <FormControlError class="error_message_block">
+                                <FormControlError class={formStyles.error_message_block}>
                                     {t(errors('passwordConfirmation')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
@@ -266,7 +270,7 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                 </div>
             </div>
 
-            <div class="update_save_buttons_container">
+            <div class={formStyles.update_save_buttons_container}>
                 <Button
                     as={A}
                     href="/auth/login"

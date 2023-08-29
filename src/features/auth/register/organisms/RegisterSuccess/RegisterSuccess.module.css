@@ -1,15 +1,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.container{
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    min-width: fit-content;
-    min-height: fit-content;
+.container {
+    @apply ml-auto mr-auto flex h-[100vh] items-center justify-center min-w-fit min-h-fit;
 }
 .title{
     @apply xs:text-xl md:text-2xl mb-4 pt-10;
@@ -34,4 +27,7 @@
 }
 .field_justify_between_end{
     @apply flex justify-between items-end;
+}
+.alert_success {
+    @apply flex-col justify-center text-center !p-10;
 }

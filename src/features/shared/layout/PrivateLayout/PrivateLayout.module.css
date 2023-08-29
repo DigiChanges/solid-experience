@@ -14,8 +14,7 @@
 }
 
 .sidebar_container {
-    width: max-content;
-    @apply grid-in-sidebar absolute lg:relative mt-6 z-10 ml-4;
+    @apply grid-in-sidebar absolute lg:relative mt-6 z-10 ml-4 w-max;
 }
 
 .main {

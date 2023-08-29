@@ -2,15 +2,15 @@
     @apply min-h-[120px]
 }
 
-.card_media_object{
+.card_media_object {
     @apply flex-col justify-center content-center ml-3 w-[80%] md:w-auto;
 }
 
-.card_media_object_title{
+.card_media_object_title {
     @apply hover:scale-150 text-neutral-50;
 }
 
-.card_media_object_link{
+.card_media_object_link {
     @apply mr-1 focus:outline-none w-6;
 }
 

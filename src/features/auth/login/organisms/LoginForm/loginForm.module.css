@@ -1,0 +1,7 @@
+.loginForm {
+    @apply flex flex-col gap-9 md:w-[20rem];
+}
+
+.formControlDescription {
+    @apply text-neutral-400 text-sm;
+}

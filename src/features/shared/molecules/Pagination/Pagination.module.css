@@ -1,0 +1,15 @@
+.pagination_component {
+    @apply m-[1em];
+}
+
+.pagination_button {
+    @apply p-[10px];
+}
+
+.selected_pagination {
+    @apply text-[var(--hope-colors-primary-300)];
+}
+
+.disabled_pagination {
+    @apply text-[var(--hope-colors-neutral-400)];
+}

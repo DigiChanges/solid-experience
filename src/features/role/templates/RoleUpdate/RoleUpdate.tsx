@@ -1,26 +1,27 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
-import { useNavigate } from 'solid-start';
+import { useNavigate } from '@solidjs/router';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';
-import { RoleApi } from '../../../role/interfaces';
+import { PermissionApi } from '../../../auth/interfaces/permission';
 import createAlert from '../../../shared/hooks/createAlert';
+import AlertErrors from '../../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
-import { UserApi, UserPayload } from '../../interfaces';
-import UserForm from '../../organisms/UserForm/UserForm';
+import { RoleApi, RolePayload, RoleResponse } from '../../interfaces';
+import RoleForm from '../../organisms/RoleForm/RoleForm';
 import layoutStyles from '../../../../styles/layout.module.css';
-import typoStyles from '../../../../styles/typography.module.css';
 import indexStyles from '../../../../styles/index.module.css';
+import typoStyles from '../../../../styles/typography.module.css';
 
-interface UserUpdateTemplateProps
+interface RoleUpdateTemplateProps
 {
-    rolesList?: RoleApi[];
-    onUpdate: (data: UserPayload) => Promise<void>;
+    permissionsList?: PermissionApi[];
+    onUpdate: (data: RolePayload) => Promise<RoleResponse>;
+    roleSelected: RoleApi | undefined;
     loading: boolean;
-    userSelected?: UserApi | undefined;
 }
 
-const UserUpdate: Component<UserUpdateTemplateProps> = props =>
+const RoleUpdate: Component<RoleUpdateTemplateProps> = (props) =>
 {
     const { translate: t } = useTranslation();
     const navigate = useNavigate();
@@ -31,9 +32,9 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
     {
         notificationService.show({
             status: 'success',
-            title: t('u_updated') as string
+            title: t('r_updated') as string
         });
-        navigate('/users', { replace: true });
+        navigate('/roles/list', { replace: true });
     };
 
     const handleError = () => (error: unknown) =>
@@ -41,7 +42,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
         const errorMessage = setError(error);
         notificationService.show({
             status: 'danger',
-            title: t('err_save_user') as string,
+            title: t('err_save_role') as string,
             description: t(errorMessage) as string
         });
     };
@@ -49,27 +50,32 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
     return (
         <section class={layoutStyles.section_container}>
 
-            <header class={layoutStyles.section_header_container}>
+            <AlertErrors
+                errorData={errorAlert.errorData()}
+                title="err_save"
+                description="err_save_role"
+            />
+
+            <header class={layoutStyles.section_header_container} data-parent={permissions.ROLES.UPDATE}>
                 <div class={indexStyles.hasPermission}>
-                    <h1 class={typoStyles.section_title}>{t('u_update')}</h1>
+                    <h1 class={typoStyles.section_title}>{t('r_update')}</h1>
                 </div>
-                <div class="fallback">
-                    <h1 class="section_title">{t('User')}</h1>
+                <div>
+                    <h1 class={typoStyles.section_title}>{t('Role')}</h1>
                 </div>
             </header>
 
             <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>
-                <UserForm
+                <RoleForm
                     onError={handleError()}
                     onSubmit={props.onUpdate}
                     onSuccess={handleSuccess()}
-                    rolesList={props.rolesList}
-                    userSelected={props.userSelected}
+                    permissionsList={props.permissionsList}
+                    roleSelected={props.roleSelected}
+                    requiredPermission={{ submit: permissions.ROLES.UPDATE }}
                 />
             </Show>
-
         </section>
     );
 };
-
-export default UserUpdate;
+export default RoleUpdate;

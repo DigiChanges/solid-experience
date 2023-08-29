@@ -1,0 +1,15 @@
+.modal_heading {
+    @apply text-neutral-50 text-lg font-bold pb-3;
+}
+.text {
+    @apply text-neutral-50;
+}
+.h_stack {
+    @apply pt-4 justify-end;
+}
+.width_md {
+    @apply w-[100%] md:w-auto;
+}
+.width_sm {
+    @apply w-[100%] sm:w-[100%];
+}

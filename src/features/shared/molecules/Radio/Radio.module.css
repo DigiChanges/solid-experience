@@ -1,38 +1,23 @@
 .radio__group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-height: var(--hope-sizes-10);
-    align-items: center;
+    @apply flex flex-col gap-[8px] min-h-[var(--hope-sizes-10)] items-center;
 }
 .radio__group__label {
-    color: var(--hope-colors-neutral-100);
-    font-size: 14px;
-    font-weight: 500;
-    user-select: none;
+    @apply text-[var(--hope-colors-neutral-100)] text-[14px] font-medium select-none;
 }
 .radio__group__description {
-    color: var(--hope-colors-neutral-300);
-    font-size: 12px;
-    user-select: none;
+    @apply text-[var(--hope-colors-neutral-300)] text-[12px] select-none;
 }
 .radio__group__error__message {
-    color: hsl(0 72% 51%);
-    font-size: 12px;
-    user-select: none;
+    @apply text-[hsl(0_72%_51%)] text-[12px] select-none;
 }
 .radio__group__items {
-    padding-top: 5px;
-    display: flex;
-    gap: 16px;
-    min-height: var(--hope-sizes-10);
-    align-items: center;
+    @apply pt-[5px] flex gap-[16px] min-h-[var(--hope-sizes-10)] items-center;
 }
 .radio {
-    display: flex;
-    align-items: center;
+    @apply flex items-center;
 }
 .radio__control {
+    @apply flex items-center justify-center h-[20px] w-[20px] rounded-[10px]
     display: flex;
     align-items: center;
     justify-content: center;

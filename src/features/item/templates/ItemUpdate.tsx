@@ -8,6 +8,8 @@ import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
 import GeneralLoader from '../../shared/templates/GeneralLoader';
 import { ItemApi, ItemPayload, ItemResponse } from '../interfaces';
 import ItemForm from '../organisms/ItemForm/ItemForm';
+import layoutStyles from '../../../styles/layout.module.css';
+import typoStyles from '../../../styles/typography.module.css';
 
 interface ItemUpdateTemplateProps
 {
@@ -43,7 +45,7 @@ const ItemUpdate: Component<ItemUpdateTemplateProps> = (props) =>
     };
 
     return (
-        <section class="section_container">
+        <section class={layoutStyles.section_container}>
 
             <AlertErrors
                 errorData={errorAlert.errorData()}
@@ -51,12 +53,12 @@ const ItemUpdate: Component<ItemUpdateTemplateProps> = (props) =>
                 description="err_save_item"
             />
 
-            <header class="section_header_container">
+            <header class={layoutStyles.section_header_container}>
                 <div>
-                    <h1 class="section_title">{t('i_update')}</h1>
+                    <h1 class={typoStyles.section_title}>{t('i_update')}</h1>
                 </div>
-                <div class="fallback">
-                    <h1 class="section_title">{t('item')}</h1>
+                <div>
+                    <h1 class={typoStyles.section_title}>{t('item')}</h1>
                 </div>
             </header>
 

@@ -13,7 +13,7 @@ const RegisterSuccess: Component = () =>
     return (
         <section class={styles.container}>
             <Alert
-                class={'flex-col justify-center text-center !p-10'}
+                class={styles.alert_success}
                 status={'success'}
                 variant={'solid'}
                 icon={<FaSolidCircleCheck />}
