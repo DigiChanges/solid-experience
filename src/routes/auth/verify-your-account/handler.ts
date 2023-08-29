@@ -25,7 +25,7 @@ export const verifyAccountAction = ({ authRepository, errorAlert, navigate, setI
             title: t('au_verification_successful')
         });
 
-        navigate('/verify-account-success', { replace: true });
+        navigate('/auth/verify-account-success', { replace: true });
         setIsLoading(false);
     }
     catch (error: any)
