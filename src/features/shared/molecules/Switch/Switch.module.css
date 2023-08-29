@@ -11,7 +11,7 @@
     @apply border-[var(--hope-colors-primary-100)] bg-[var(--hope-colors-primary-200)];
 }
 .switch__thumb {
-    @apply h-[20px] w-[20px] rounded-[10px] bg-[var(--hope-colors-neutral-900)] transition-transform !delay-[250ms] scale-90;
+    @apply h-[20px] w-[20px] rounded-[10px] bg-[var(--hope-colors-neutral-900)] transition-transform !duration-[250ms] scale-90;
 }
 .switch__thumb[data-checked] {
     @apply translate-x-[calc(100%_-_1px)] scale-90;

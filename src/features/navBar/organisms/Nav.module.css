@@ -27,7 +27,7 @@
 }
 
 .icon_burger {
-    @apply text-[var(--hope-colors-neutral-50)] outline-none border-transparent focus:border-transparent focus:ring-0 cursor-pointer;
+    @apply text-[var(--hope-colors-neutral-50)] outline-none cursor-pointer;
 }
 .icon_burger button{
     @apply cursor-pointer;

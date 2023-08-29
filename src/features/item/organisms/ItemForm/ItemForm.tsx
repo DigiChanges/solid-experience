@@ -127,7 +127,7 @@ const ItemForm: Component<ItemUpdateTemplateProps> = (props) =>
                         {t('a_save')}
                     </Button>
                 </div>
-                <div class={`${formStyles.button_full} ${formStyles.fallback}`}>
+                <div class={formStyles.button_full}>
                     <Button
                         _dark={darkNeutralButton}
                         class={itemFormStyles.button}
