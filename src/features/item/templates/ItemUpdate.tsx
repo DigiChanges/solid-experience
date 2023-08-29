@@ -1,5 +1,5 @@
 import { Component, Show } from 'solid-js';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate } from 'solid-start';
 
 import { notificationService } from '../../shared/molecules/Toast/Toast';
 import useTranslation from '../../shared/hooks/useTranslation';
@@ -52,7 +52,7 @@ const ItemUpdate: Component<ItemUpdateTemplateProps> = (props) =>
             />
 
             <header class="section_header_container">
-                <div class="has-permission">
+                <div>
                     <h1 class="section_title">{t('i_update')}</h1>
                 </div>
                 <div class="fallback">

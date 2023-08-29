@@ -1,4 +1,4 @@
-import { useLocation } from '@solidjs/router';
+import { useLocation } from 'solid-start';
 import { Component, createSignal, For, Show } from 'solid-js';
 import { dashRoutes } from '../../../../config/dashRoutes';
 import SideBarItem from '../../../sideBar/molecules/SideBarItem/SideBarItem';

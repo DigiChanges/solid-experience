@@ -1,9 +1,9 @@
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate } from 'solid-start';
 import { InferType } from 'yup';
-import { Component, onMount, Show } from 'solid-js';
+import {Component, createEffect, onMount, Show} from 'solid-js';
 
 import useTranslation from '../../../shared/hooks/useTranslation';
 import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
@@ -88,7 +88,7 @@ const ItemForm: Component<ItemUpdateTemplateProps> = (props) =>
                         _dark={darkInput}
                         _placeholder={placeholderInput}
                         name="type"
-                        type="text"
+                        type="number"
                         placeholder={t('a_enter_type') as string}
                         value={props.itemSelected?.type}
                         onKeyDown={preventEnterCharacter(['Space'])}

@@ -2,7 +2,7 @@ import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
-import { Link, useNavigate } from '@solidjs/router';
+import { A, useNavigate } from 'solid-start';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import { InferType } from 'yup';
@@ -105,7 +105,7 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = (props) =>
                         <Button
                             _dark={darkNeutralButton}
                             class="button_full"
-                            as={Link}
+                            as={A}
                             href="/auth/login"
                             colorScheme="neutral"
                         >

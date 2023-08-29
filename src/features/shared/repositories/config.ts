@@ -28,20 +28,12 @@ export const config = {
                 verifyYourAccount: `${BACKEND_BASE_PATH}/auth/verify-your-account`
             },
             users: {
-                getAll: `${BACKEND_BASE_PATH}/users`,
-                getOne: `${BACKEND_BASE_PATH}/users`,
-                create: `${BACKEND_BASE_PATH}/users`,
-                update: `${BACKEND_BASE_PATH}/users`,
-                remove: `${BACKEND_BASE_PATH}/users`,
+                base: `${BACKEND_BASE_PATH}/users`,
                 editPassword: `${BACKEND_BASE_PATH}/users/change-user-password`,
                 assignRole: `${BACKEND_BASE_PATH}/users/assign-role`
             },
             roles: {
-                getAll: `${BACKEND_BASE_PATH}/roles`,
-                getOne: `${BACKEND_BASE_PATH}/roles`,
-                create: `${BACKEND_BASE_PATH}/roles`,
-                update: `${BACKEND_BASE_PATH}/roles`,
-                remove: `${BACKEND_BASE_PATH}/roles`
+                base: `${BACKEND_BASE_PATH}/roles`
             },
             items: {
                 base: `${BACKEND_BASE_PATH}/items`

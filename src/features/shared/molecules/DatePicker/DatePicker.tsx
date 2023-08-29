@@ -7,7 +7,7 @@ import arrowIcon from './assets/icons/arrow.svg';
 import clockLogo from './assets/icons/clock.svg';
 import calendarLogo from './assets/icons/calendar.svg';
 import calendarClockLogo from './assets/icons/calendarClock.svg';
-import IconCross from '../../../../atoms/Icons/Stroke/IconCross';
+import IconCross from '../../atoms/Icons/Stroke/IconCross';
 
 const DatePicker = (_props: any) =>
 {

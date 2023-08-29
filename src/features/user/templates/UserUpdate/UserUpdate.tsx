@@ -1,5 +1,5 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate } from 'solid-start';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
 import { permissions } from '../../../../config/permissions';
@@ -46,7 +46,7 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
     return (
         <section class="section_container">
 
-            <header class="section_header_container" data-parent={permissions.USERS.UPDATE}>
+            <header class="section_header_container">
                 <div class="has-permission">
                     <h1 class="section_title">{t('u_update')}</h1>
                 </div>

@@ -1,5 +1,5 @@
 import { notificationService } from '../../shared/molecules/Toast/Toast';
-import { useNavigate } from '@solidjs/router';
+import { useNavigate } from 'solid-start';
 import useTranslation from '../../shared/hooks/useTranslation';
 import { Component } from 'solid-js';
 import createAlert from '../../shared/hooks/createAlert';

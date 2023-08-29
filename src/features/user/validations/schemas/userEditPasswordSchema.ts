@@ -6,7 +6,7 @@ const userEditPasswordSchema = object({
         .max(50, 'av_too_long')
         .required('av_required'),
     passwordConfirmation: string()
-        .oneOf([ref('password'), null], 'av_password_match')
+        .oneOf([ref('password'), ''], 'av_password_match')
         .required('av_required')
 });
 

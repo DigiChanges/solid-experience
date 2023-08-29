@@ -1,8 +1,8 @@
 import { Icon } from '@hope-ui/core';
-import { NavLink } from '@solidjs/router';
+import { A } from 'solid-start';
 import { Component, JSX, Show } from 'solid-js';
-import IconChevronDown from '../../../../atoms/Icons/Stroke/IconChevronDown';
-import IconChevronRight from '../../../../atoms/Icons/Stroke/IconChevronRight';
+import IconChevronDown from '../../../shared/atoms/Icons/Stroke/IconChevronDown';
+import IconChevronRight from '../../../shared/atoms/Icons/Stroke/IconChevronRight';
 import SideBarItemContent from '../SideBarItemContent/SideBarItemContent';
 import styles from './SideBarItem.module.css';
 
@@ -45,12 +45,12 @@ const SideBarItem: Component<SideBarItemProps> = (props) => (
                     </span>
                 }
             >
-                <NavLink
+                <A
                     class={`${styles.side_bar_item_nav_link}`}
                     href={props.path}
                 >
                     <SideBarItemContent {...props} />
-                </NavLink>
+                </A>
             </Show>
         </Show>
         {props.children}

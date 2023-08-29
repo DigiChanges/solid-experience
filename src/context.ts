@@ -1,9 +1,9 @@
 import { createContextProvider } from '@solid-primitives/context';
-import { createSignal } from 'solid-js';
+import { createStore } from 'solid-js/store';
 
 const [ContextProvider, useContext] = createContextProvider(() =>
   {
-    const [userData, setUserData] = createSignal({});
+    const [userData, setUserData] = createStore({ email: '' });
 
     return {
       userData,

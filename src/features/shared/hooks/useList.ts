@@ -1,9 +1,6 @@
-import { ItemListResponse } from '../../item/interfaces';
 import useQuery from './useQuery';
 import { INIT_STATE } from '../constants';
-import { createRouteData } from 'solid-start';
-import { createResource } from 'solid-js';
-import { useContext } from '../../../context';
+import { refetchRouteData, createRouteData } from 'solid-start';
 
 function useList(action: (a: any) => any)
 {
@@ -12,14 +9,17 @@ function useList(action: (a: any) => any)
 	const data = createRouteData(
 		async key =>
 		{
-			const response = action({ queryParams: key });
-			return response;
+			return action({ queryParams: key });
 		},
 		{ key: () => getURLSearchParams() }
 	);
-	// const { resourceList: itemList, setViewMore, paginationData } = usePaginatedState<ItemApi, ItemListResponse>(items);
 
-	return { data, page, goToPage, goFirstPage };
+    const refetch = () =>
+    {
+        refetchRouteData(getURLSearchParams());
+    };
+
+	return { data, page, goToPage, goFirstPage, refetch };
 }
 
 export default useList;

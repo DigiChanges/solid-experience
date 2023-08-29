@@ -1,7 +1,8 @@
 import { Component, Show } from 'solid-js';
-import { NavLink } from '@solidjs/router';
-import useTranslation from '../../../shared/hooks/useTranslation';
+import { A } from 'solid-start';
 import { Icon } from '@hope-ui/core';
+
+import useTranslation from '../../../shared/hooks/useTranslation';
 import styles from './SideBarItemSubItem.module.css';
 
 interface SideBarSubItemProps
@@ -23,7 +24,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
     return (
         <Show when={props.showItem} >
             <div class={`${styles.side_bar_item_sub_item_container}`}>
-                <NavLink href={props.path} class={`${styles.side_bar_item_sub_item_nav_link}`}>
+                <A href={props.path} class={`${styles.side_bar_item_sub_item_nav_link}`}>
                     <div
                         class={`${styles.side_bar_item_sub_item_nav_link_container}`}
                         classList={{ [styles.side_bar_item_sub_item_nav_link_container]: props.equalPath }}
@@ -46,7 +47,7 @@ const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
                             </span>
                         </div>
                     </div>
-                </NavLink>
+                </A>
             </div>
         </Show>
     );

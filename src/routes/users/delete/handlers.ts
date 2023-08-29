@@ -10,11 +10,11 @@ type params = {
     t: any;
 };
 
-export const removeUserAction = ({ userRepository, user, setError, refetch, t }: params) => async(id: string) =>
+export const removeUserAction = ({ userRepository, setError, refetch, t }: params) => async(id: string) =>
 {
     try
     {
-        void await userRepository.removeUser({ id, user });
+        void await userRepository.removeUser({ id });
 
         notificationService.show({
             status: 'success',

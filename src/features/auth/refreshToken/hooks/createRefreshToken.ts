@@ -1,9 +1,8 @@
-import { useLocation, useMatch, useNavigate } from '@solidjs/router';
+import { useLocation, useMatch, useNavigate } from 'solid-start';
 import { createEffect, createResource, createSignal } from 'solid-js';
-import { useApplicationContext } from '../../../../context/context';
 import { CHANGE_FORGOT_PASSWORD_PAGE_PATH, LOGIN_PAGE_PATH, REDIRECT_SIGNED_IN_USERS_PAGES, WHITE_PAGES } from '../../../shared/constants';
-import assignAllPermissionsToSuperAdminUser from '../../helper/assignAllPermissionsToSuperAdminUser';
 import AuthRepository from '../../repositories/AuthRepository';
+import { useContext } from '../../../../context';
 
 const createRefreshToken = () =>
 {
@@ -11,13 +10,12 @@ const createRefreshToken = () =>
     const [auth] = createResource(authRepository.refreshToken);
     const navigate = useNavigate();
     const location = useLocation();
-    const [user, { addUser }] = useApplicationContext();
+    const context = useContext();
     const [loading, setLoading] = createSignal(true);
 
     const setUser = async() =>
     {
-        const userAuth = await assignAllPermissionsToSuperAdminUser(auth()?.data);
-        return addUser(userAuth);
+        return context?.setUserData({});
     };
 
     const redirect = async() =>
@@ -46,7 +44,7 @@ const createRefreshToken = () =>
 
     createEffect(() =>
     {
-        if (!user() && !auth.loading)
+        if (!context?.userData() && !auth.loading)
         {
             redirect();
         }

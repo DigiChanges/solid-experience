@@ -1,6 +1,6 @@
 import { IconButton } from '@hope-ui/core';
 import { Component, createEffect, createSignal } from 'solid-js';
-import IconArrowCircleLeft from '../../../../atoms/Icons/Stroke/IconArrowCircleLeft';
+import IconArrowCircleLeft from '../../atoms/Icons/Stroke/IconArrowCircleLeft';
 import styles from './ButtonScrollUp.module.css';
 import { RoleApi } from '../../../role/interfaces';
 import { UserApi } from '../../../user/interfaces';

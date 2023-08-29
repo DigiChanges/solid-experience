@@ -6,10 +6,10 @@ type params =
     userRepository: UserRepository;
     setError: (error: undefined) => string;
     refetch: (info?: unknown) => void;
-    t: any;
+    t: (path: string) => string;
 };
 
-export const removeUserAction = ({ userRepository, setError, refetch, t }: params) => async(id: string) =>
+export const removeAction = ({ userRepository, setError, refetch, t }: params) => async(id: string) =>
 {
     try
     {

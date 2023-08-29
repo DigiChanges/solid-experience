@@ -1,18 +1,20 @@
+import { Component, Show } from 'solid-js';
 import { createForm } from '@felte/solid';
 import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
-import { notificationService } from '../../../../shared/molecules/Toast/Toast';
-import { Link, useNavigate } from '@solidjs/router';
-import useTranslation from '../../../../shared/hooks/useTranslation';
-import { Component, Show } from 'solid-js';
+import { A, useNavigate } from 'solid-start';
 import { InferType } from 'yup';
+
+import { notificationService } from '../../../../shared/molecules/Toast/Toast';
+import useTranslation from '../../../../shared/hooks/useTranslation';
 import createAlert from '../../../../shared/hooks/createAlert';
 import { ChangeForgotPasswordPayload } from '../../../interfaces/forgotPassword';
 import changeForgotPasswordSchema from '../../../validations/schemas/changeForgotPasswordSchema';
 import styles from './ChangeForgotPassword.module.css';
 import { darkInput, darkNeutralButton, darkPrimaryButton, placeholderInput } from '../../../../shared/constants/hopeAdapter';
 
-interface ChangePasswordTemplateProps {
+interface ChangePasswordTemplateProps
+{
     onSubmit: (data: ChangeForgotPasswordPayload) => void;
     confirmationToken: string;
 }
@@ -23,6 +25,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
     const navigate = useNavigate();
     const errorAlert = createAlert();
     const { setError } = errorAlert;
+
     const handleSuccess = () => () =>
     {
         notificationService.show({
@@ -100,7 +103,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                     <div class="button_full">
                         <Button
                             class="button_full"
-                            as={Link}
+                            as={A}
                             href="/auth/login"
                             colorScheme="neutral"
                             _dark={darkNeutralButton}

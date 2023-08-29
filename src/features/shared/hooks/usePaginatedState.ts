@@ -1,7 +1,13 @@
 import { createEffect, createSignal, Resource } from 'solid-js';
 import { IPaginationApi } from '../interfaces/response/IPaginationApi';
+import { IPaginatedBodyApi } from '../interfaces/response/IPaginatedBodyApi';
 
-function usePaginatedState<T, U>(resource: Resource<U | undefined>)
+interface ListResponse extends IPaginatedBodyApi
+{
+	data: unknown[];
+}
+
+function usePaginatedState<T, U extends ListResponse>(resource: Resource<U>)
 {
     let viewMore = false;
     const [resourceList, setResourceList] = createSignal<T[]>();
@@ -16,31 +22,24 @@ function usePaginatedState<T, U>(resource: Resource<U | undefined>)
             return setResourceList([]);
         }
 
-        // @ts-ignore
+		const response = resource();
 
-        if (viewMore && resource()?.data)
+        if (viewMore && response?.data)
         {
             // @ts-ignore
-            setResourceList((state) => [...state, ...resource().data]);
-            // @ts-ignore
+	        setResourceList((state) => [...state, ...response.data]);
             setPaginationData(resource()?.pagination);
             viewMore = false;
         }
-        // @ts-ignore
-        else if (resource()?.data)
+        else if (response?.data)
         {
             // @ts-ignore
-            setResourceList(() => [...resource().data]);
-            // @ts-ignore
-            setPaginationData(resource()?.pagination);
-        }
-        else
-        {
-            setResourceList([]);
+	        setResourceList(() => [...response.data]);
+            setPaginationData(response?.pagination);
         }
     });
 
-    return { resourceList, setViewMore, paginationData };
+    return { resourceList, setResourceList, setViewMore, paginationData };
 }
 
 export default usePaginatedState;

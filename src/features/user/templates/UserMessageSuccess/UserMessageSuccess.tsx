@@ -1,4 +1,4 @@
-import { Link } from '@solidjs/router';
+import { A } from 'solid-start';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component } from 'solid-js';
 import styles from './UserMessageSuccess.module.css';
@@ -28,9 +28,9 @@ const UserMessageSuccess: Component<messageSuccessProps> = (props) =>
                         <>
                             {t(props.description)}
                             <div class={styles.link_login}>
-                                <Link href={'/auth/login'}>
+                                <A href={'/auth/login'}>
                                     {t('au_go_to_login')}
-                                </Link>
+                                </A>
                             </div>
                         </>
                     }

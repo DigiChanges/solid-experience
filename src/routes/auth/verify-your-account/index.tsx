@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "solid-start";
+import { useNavigate, useSearchParams } from 'solid-start';
 import { Component, createSignal } from 'solid-js';
 import AuthRepository from '../../../features/auth/repositories/AuthRepository';
 import createAlert from '../../../features/shared/hooks/createAlert';
@@ -15,6 +15,7 @@ const verifyYourAccount: Component = () =>
     const navigate = useNavigate();
     const errorAlert = createAlert();
     const [isLoading, setIsLoading] = createSignal(false);
+
     return (
         <VerifyAccountConfirmToken
             isLoading={isLoading()}
