@@ -23,24 +23,24 @@ const SideBarSubItem: Component<SideBarSubItemProps> = (props) =>
 
     return (
         <Show when={props.showItem} >
-            <div class={`${styles.side_bar_item_sub_item_container}`}>
-                <A href={props.path} class={`${styles.side_bar_item_sub_item_nav_link}`}>
+            <div class={styles.side_bar_item_sub_item_container}>
+                <A href={props.path} class={styles.side_bar_item_sub_item_nav_link}>
                     <div
-                        class={`${styles.side_bar_item_sub_item_nav_link_container}`}
+                        class={styles.side_bar_item_sub_item_nav_link_container}
                         classList={{ [styles.side_bar_item_sub_item_nav_link_container]: props.equalPath }}
                     >
                         <Show when={props.icon}
-                            fallback={<span class={`${styles.side_bar_item_sub_item_nav_link_container_fallback_span}`} />}>
+                            fallback={<span class={styles.side_bar_item_sub_item_nav_link_container_fallback_span} />}>
                             <Icon>
                                 <IconProps />
                             </Icon>
                         </Show>
 
-                        <div class="block" classList={{
+                        <div class={styles.__block} classList={{
                             'md:hidden': !props.expanded
                         }}>
                             <span
-                                class={`${styles.side_bar_item_sub_item_nav_link_container_span}`}
+                                class={styles.side_bar_item_sub_item_nav_link_container_span}
                                 classList={{ 'pl-1': props.isToggled } }
                             >
                                 <p>{t(props.name)}</p>

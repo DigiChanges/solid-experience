@@ -17,38 +17,20 @@
     @apply flex items-center;
 }
 .radio__control {
-    @apply flex items-center justify-center h-[20px] w-[20px] rounded-[10px]
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20px;
-    width: 20px;
-    border-radius: 10px;
-    border: 1px solid var(--hope-colors-neutral-300);
-    background-color: var(--hope-colors-neutral-600);
-    margin-right: 5px;
+    @apply flex items-center justify-center h-[20px] w-[20px] rounded-[10px] border-[1px] border-solid border-[var(--hope-colors-neutral-300)] bg-[var(--hope-colors-neutral-600)] mr-[5px];
 }
 .radio__input:focus-visible + .radio__control {
-    outline: 2px solid var(--hope-colors-primary-200);
-    outline-offset: 2px;
+    @apply outline outline-2 outline-[var(--hope-colors-primary-200)] outline-offset-2;
 }
 .radio__control[data-checked] {
-    border-color: var(--hope-colors-primary-200);
-    background-color: var(--hope-colors-primary-200);
+    @apply border-[var(--hope-colors-primary-200)] bg-[var(--hope-colors-primary-200)];
 }
 .radio__control[data-checked][data-invalid] {
-    border-color: hsl(0 72% 51%);
-    background-color: hsl(0 72% 51%);
+    @apply border-[hsl(0_72%_51%)] bg-[hsl(0_72%_51%)];
 }
 .radio__indicator {
-    height: 10px;
-    width: 10px;
-    border-radius: 5px;
-    background-color: var(--hope-colors-neutral-900);
+    @apply h-[10px] w-[10px] rounded-[5px] bg-[var(--hope-colors-neutral-900)];
 }
 .radio__label {
-    margin-left: 6px;
-    color: var(--hope-colors-neutral-100);
-    font-size: 14px;
-    user-select: none;
+    @apply ml-[6px] text-[var(--hope-colors-neutral-100)] text-[14px] select-none;
 }

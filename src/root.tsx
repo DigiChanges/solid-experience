@@ -44,7 +44,7 @@ export default function Root()
 								<FileRoutes />
 							</Routes>
 							<Toast.Region limit={6}>
-								<Toast.List class="toast__list" />
+								<Toast.List />
 							</Toast.Region>
 						</RefreshProvider>
 						</I18nProvider>

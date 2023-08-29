@@ -9,8 +9,8 @@ import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { UserApi, UserPayload } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
 import layoutStyles from '../../../../styles/layout.module.css';
-import typoStyles from '../../../../styles/typography.module.css';
 import indexStyles from '../../../../styles/index.module.css';
+import typoStyles from '../../../../styles/typography.module.css';
 
 interface UserUpdateTemplateProps
 {
@@ -53,8 +53,8 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
                 <div class={indexStyles.hasPermission}>
                     <h1 class={typoStyles.section_title}>{t('u_update')}</h1>
                 </div>
-                <div class="fallback">
-                    <h1 class="section_title">{t('User')}</h1>
+                <div>
+                    <h1 class={typoStyles.section_title}>{t('User')}</h1>
                 </div>
             </header>
 

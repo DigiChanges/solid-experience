@@ -1,13 +1,13 @@
-import { Component } from 'solid-js';
-import { A } from 'solid-start';
-import useTranslation from '../features/shared/hooks/useTranslation';
-import styles from './404.module.css';
+import { Link } from '@solidjs/router';
+import { useI18n } from '@solid-primitives/i18n';
+import {Component} from "solid-js";
+import styles from '../error.module.css';
 
 const IndexPage: Component = () =>
 {
-    const { translate: t } = useTranslation();
+    const [t] = useI18n();
 
-    return (<div class={styles.main_container}>
+    return (<div class={styles.container}>
         <div class={styles.svg_container}>
             <svg
                 class={styles.svg}
@@ -26,9 +26,9 @@ const IndexPage: Component = () =>
             <h2 class={styles.h2}>
                 {t('err_404')}
             </h2>
-            <A href="/" class={styles.a_component}>
+            <Link href="/" class={styles.link}>
                 {t('a_home')}
-            </A>
+            </Link>
         </div>
     </div>);
 };

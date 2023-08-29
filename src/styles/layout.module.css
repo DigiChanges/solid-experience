@@ -1,5 +1,5 @@
 .section_container {
-    @apply px-8
+    @apply px-8;
 }
 
 .section.mid {
@@ -7,7 +7,7 @@
 }
 
 .list_container {
-    @apply mx-8
+    @apply mx-8;
 }
 
 .section_header_container {

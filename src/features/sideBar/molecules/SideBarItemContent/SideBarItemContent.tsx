@@ -26,12 +26,12 @@ const SideBarItemContent: Component<SideBarItemProps> = (props) =>
     return (
         <>
             <Show when={props.icon}
-                fallback={<span class={`${styles.side_bar_item_content_span}`} />} >
-                <Icon class={`${styles.side_bar_item_content_icon}`} >
+                fallback={<span class={styles.side_bar_item_content_span} />} >
+                <Icon class={styles.side_bar_item_content_icon} >
                     <IconProps />
                 </Icon>
             </Show>
-            <div class={`${styles.side_bar_item_content_container}`} classList={{
+            <div class={styles.side_bar_item_content_container} classList={{
                 [styles.side_bar_item_content_container_expanded]: !props.expanded
             }}>
                 {t(props.name)}

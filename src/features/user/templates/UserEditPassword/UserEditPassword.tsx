@@ -10,6 +10,9 @@ import createAlert from '../../../shared/hooks/createAlert';
 import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';
 import userEditPasswordSchema from '../../validations/schemas/userEditPasswordSchema';
 import { darkInput, darkNeutralButton, darkPrimaryButton, placeholderInput } from '../../../shared/constants/hopeAdapter';
+import layoutStyles from '../../../../styles/layout.module.css';
+import typoStyles from '../../../../styles/typography.module.css';
+import formStyles from '../../../../styles/form.module.css';
 
 interface EditPasswordTemplateProps
 {
@@ -57,12 +60,12 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = (props) =>
     });
 
     return (
-        <section class="section_container">
-            <h1 class="section_title">{t('a_change_password')}</h1>
-            <form ref={form} class="form_password">
-                <div class="field_wrapper">
+        <section class={layoutStyles.section_container}>
+            <h1 class={typoStyles.section_title}>{t('a_change_password')}</h1>
+            <form ref={form} class={formStyles.form_password}>
+                <div class={formStyles.field_wrapper}>
                     <FormControl isRequired isInvalid={!!errors('password')}>
-                        <FormControlLabel class={'form_label'} for="password" _dark={{ _after: { color: 'danger.300' } }}>
+                        <FormControlLabel class={formStyles.form_label} for="password" _dark={{ _after: { color: 'danger.300' } }}>
                             {t('new_password')}
                         </FormControlLabel>
                         <Input
@@ -73,16 +76,16 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = (props) =>
                             placeholder={t('a_password') as string}
                         />
                         <Show when={errors('password')} keyed>
-                            <FormControlError class="error_message_block">
+                            <FormControlError class={formStyles.error_message_block}>
                                 {t(errors('password')?.[0] ?? '')}
                             </FormControlError>
                         </Show>
                     </FormControl>
                 </div>
 
-                <div class="field_wrapper">
+                <div class={formStyles.field_wrapper}>
                     <FormControl isRequired isInvalid={!!errors('passwordConfirmation')}>
-                        <FormControlLabel class={'form_label'} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
+                        <FormControlLabel class={formStyles.form_label} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
                             {t('confirm_password')}
                         </FormControlLabel>
                         <Input
@@ -94,17 +97,17 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = (props) =>
                             onKeyDown={preventEnterCharacter(['Space'])}
                         />
                         <Show when={errors('passwordConfirmation')} keyed>
-                            <FormControlError class="error_message_block">
+                            <FormControlError class={formStyles.error_message_block}>
                                 {t(errors('passwordConfirmation')?.[0] ?? '')}
                             </FormControlError>
                         </Show>
                     </FormControl>
                 </div>
-                <div class="update_save_buttons_container">
-                    <div class="button_full">
+                <div class={formStyles.update_save_buttons_container}>
+                    <div class={formStyles.button_full}>
                         <Button
                             _dark={darkNeutralButton}
-                            class="button_full"
+                            class={formStyles.button_full}
                             as={A}
                             href="/auth/login"
                             colorScheme="neutral"
@@ -112,10 +115,10 @@ const UserEditPassword: Component<EditPasswordTemplateProps> = (props) =>
                             {t('a_back')}
                         </Button>
                     </div>
-                    <div class="button_full">
+                    <div class={formStyles.button_full}>
                         <Button
                             _dark={darkPrimaryButton}
-                            class="button_full"
+                            class={formStyles.button_full}
                             type="submit"
                             isDisabled={!isValid()}
                             isLoading={isSubmitting()}

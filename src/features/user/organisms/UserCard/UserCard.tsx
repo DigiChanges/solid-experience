@@ -7,6 +7,8 @@ import IconTrash from '../../../shared/atoms/Icons/Stroke/IconTrash';
 import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
 import { UserApi } from '../../interfaces';
+import cardStyles from '../../../../styles/card.module.css';
+import userCardStyles from './userCard.module.css';
 
 interface UserCardProps
 {
@@ -16,20 +18,20 @@ interface UserCardProps
 
 const UserCard: Component<UserCardProps> = (props) => (
     <Card>
-        <CardContent class="card_container">
+        <CardContent class={cardStyles.card_container}>
 
-            <div class="card_media_object">
-                <h6 class="card_media_object_title">
-                    <A class="card_media_object_link"
+            <div class={cardStyles.card_media_object}>
+                <h6 class={cardStyles.card_media_object_title}>
+                    <A class={cardStyles.card_media_object_link}
                         href={`/users/update/${props.user.id}`}
                     >
                         {`${props.user.firstName} ${props.user.lastName}`}
                     </A>
                 </h6>
-                <p class={'text-ellipsis overflow-hidden whitespace-nowrap'}>{props.user.email}</p>
+                <p class={userCardStyles.user_email}>{props.user.email}</p>
             </div>
 
-            <div class="card_third">
+            <div class={cardStyles.card_third}>
                 <div>
                     <div>
                         <A href={`/users/update/${props.user.id}`}>

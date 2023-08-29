@@ -2,7 +2,20 @@
     @apply p-5 flex flex-col justify-between
 }
 .close_button {
-    position: absolute;
-    top: var(--hope-space-4);
-    inset-inline-end: var(--hope-space-4);
+    @apply absolute top-[var(--hope-space-4)] end-[var(--hope-space-4)];
+}
+.fallback_span {
+    @apply text-neutral-50;
+}
+.modal_heading {
+    @apply text-neutral-50 text-lg font-bold pb-3;
+}
+.text_50 {
+    @apply text-neutral-50;
+}
+.h_stack {
+    @apply modal_footer pt-4 justify-end;
+}
+.w_full_auto {
+    @apply w-[100%] md:w-auto;
 }

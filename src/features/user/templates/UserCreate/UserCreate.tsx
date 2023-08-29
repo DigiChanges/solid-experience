@@ -7,6 +7,8 @@ import createAlert from '../../../shared/hooks/createAlert';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { UserPayload } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
+import layoutStyles from '../../../../styles/layout.module.css';
+import typoStyles from '../../../../styles/typography.module.css';
 
 interface UserCreateTemplateProps
 {
@@ -42,10 +44,10 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
     };
 
     return (
-        <section class="section_container">
+        <section class={layoutStyles.section_container}>
 
-            <header class="section_header_container">
-                <h1 class="section_title">{t('u_create')}</h1>
+            <header class={layoutStyles.section_header_container}>
+                <h1 class={typoStyles.section_title}>{t('u_create')}</h1>
             </header>
 
             <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>

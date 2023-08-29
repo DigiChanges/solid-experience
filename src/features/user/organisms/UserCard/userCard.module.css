@@ -1,0 +1,3 @@
+.user_email {
+    @apply text-ellipsis overflow-hidden whitespace-nowrap;
+}

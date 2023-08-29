@@ -2,14 +2,7 @@
 @tailwind utilities;
 
 .container{
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    min-width: fit-content;
-    min-height: fit-content;
+    @apply mx-auto flex h-[100vh] items-center justify-center min-w-fit min-h-fit;
 }
 .second_section_container{
     @apply p-8 rounded-default py-5
@@ -18,6 +11,8 @@
     @apply w-full mt-5 md:mr-5 flex flex-wrap justify-center gap-4 underline;
 }
 .alert_w{
-    width: 40vh;
-    height: 25vh;
+    @apply w-[40vh] h-[25vh];
+}
+.alert {
+    @apply flex-col justify-center text-center !p-10;
 }

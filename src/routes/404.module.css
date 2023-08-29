@@ -1,0 +1,15 @@
+.main_container {
+    @apply grid min-h-screen place-items-center gilroy;
+}
+.svg_container {
+    @apply flex items-center flex-col w-full gap-4;
+}
+.svg {
+    @apply h-16 w-16 text-main-gray-250;
+}
+.h2 {
+    @apply text-xl text-left mx-1/4 text-main-gray-250 font-extrabold gilroy;
+}
+.a_component {
+    @apply px-10 py-2 dg-main-button;
+}

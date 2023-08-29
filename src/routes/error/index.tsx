@@ -1,13 +1,9 @@
+import { Link } from '@solidjs/router';
 import { Component } from 'solid-js';
-import { A } from 'solid-start';
-import useTranslation from '../features/shared/hooks/useTranslation';
-import styles from './404.module.css';
+import styles from './error.module.css'
 
-const IndexPage: Component = () =>
-{
-    const { translate: t } = useTranslation();
-
-    return (<div class={styles.main_container}>
+const IndexPage: Component  = () => (
+    <div class={styles.container}>
         <div class={styles.svg_container}>
             <svg
                 class={styles.svg}
@@ -23,14 +19,14 @@ const IndexPage: Component = () =>
                     d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
             </svg>
-            <h2 class={styles.h2}>
-                {t('err_404')}
-            </h2>
-            <A href="/" class={styles.a_component}>
-                {t('a_home')}
-            </A>
+            {/*<h2 class="text-xl text-left mx-1/4 text-main-gray-250 font-extrabold gilroy ">*/}
+            {/*    {t('err_view')}*/}
+            {/*</h2>*/}
+            {/*<Link href="/" class="px-10 py-2 dg-main-button">*/}
+            {/*    {t('a_home')}*/}
+            {/*</Link>*/}
         </div>
-    </div>);
-};
+    </div>
+);
 
 export default IndexPage;

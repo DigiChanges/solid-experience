@@ -32,17 +32,17 @@ const SideBar: Component<SideBarProps> = (props) =>
                 <Drawer.Content class={styles.drawer_content} _dark={{ bgColor: 'neutral.800' }}>
                     <Drawer.CloseButton class={styles.close_button}/>
                     <div>
-                        <div class={'w-auto h-[35px] mx-[1rem] mb-2'}>
+                        <div class={styles.menu_container}>
                             <DropdownMenu
                                 items={[]}
                                 icon={<FaSolidAngleDown />}
-                                title={<span class={'text-white font-bold'}>{ context?.userData.email ?? 'user@node.com' }</span>}
-                                class={'w-[256px]'}
+                                title={<span class={styles.menu_text}>{ context?.userData.email ?? 'user@node.com' }</span>}
+                                class={styles.dropdown_menu}
                             />
                         </div>
                         <DashItems expanded={true}/>
                     </div>
-                    <div class="justify-self-end">
+                    <div class={styles.logout_container}>
                         <LogoutSideBarItem getExpanded={true} sectionSelected=""/>
                     </div>
                 </Drawer.Content>
