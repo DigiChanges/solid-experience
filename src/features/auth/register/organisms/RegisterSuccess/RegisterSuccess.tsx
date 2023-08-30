@@ -20,9 +20,9 @@ const RegisterSuccess: Component = () =>
                 title={t('au_we_building')}
                 description={
                     <>
-                        t("au_check_your_box")
+						{t('au_check_your_box')}
                         <div class={styles.link_login}>
-                            <A href={'/login'}>
+                            <A href={'/auth/login'}>
                                 {t('au_go_to_login')}
                             </A>
                         </div>

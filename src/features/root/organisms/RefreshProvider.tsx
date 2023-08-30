@@ -1,4 +1,4 @@
-import { Component, createSignal, Show, onMount, onCleanup, JSX, createEffect } from 'solid-js';
+import { Component, createSignal, Show, onMount, onCleanup, JSX, createEffect, createComputed } from 'solid-js';
 import AuthRepository from '../../auth/repositories/AuthRepository';
 import { createRouteAction, useLocation, useNavigate } from 'solid-start';
 import { useContext as useAppContext } from '../../../context';
@@ -49,7 +49,7 @@ const RefreshProvider: Component<RefreshProviderProps> = (props) =>
 		handleRedirection();
 	});
 
-	createEffect(() =>
+	createComputed(() =>
 	{
 		const toRedirect = props.toRedirect;
 
@@ -64,7 +64,7 @@ const RefreshProvider: Component<RefreshProviderProps> = (props) =>
             });
         }, props.timer) as unknown as number;
 
-    setIntervalId(intervalId);
+        setIntervalId(intervalId);
 	});
 
 	onCleanup(() =>

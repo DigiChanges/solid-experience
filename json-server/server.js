@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const jsonServer = require('json-server');
 const login = require('./login');
@@ -41,5 +40,6 @@ server.use(router);
 
 server.listen(8090, () =>
 {
+    // no-console
     console.log('JSON Server is running on port 8090');
 });

@@ -18,7 +18,7 @@ export class SelectTransform
     {
         if (items && items.length > 0)
         {
-            return items.map((item) => ({ label: getShowLabel(item), value: getValue(item)}));
+            return items.map((item) => ({ label: getShowLabel(item), value: getValue(item) }));
         }
 
         return [];

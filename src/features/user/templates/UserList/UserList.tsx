@@ -1,11 +1,12 @@
-import { Button, createDisclosure, HStack, Modal } from '@hope-ui/core';
-import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, For, Show } from 'solid-js';
+import { A } from 'solid-start';
+import { Button, createDisclosure, HStack, Modal } from '@hope-ui/core';
+
+import useTranslation from '../../../shared/hooks/useTranslation';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { UserApi, UserListResponse } from '../../interfaces';
 import UserCard from '../../organisms/UserCard/UserCard';
 import styles from './UserList.module.css';
-import { A } from 'solid-start';
 import { darkDangerButton, darkPrimaryButton, darkTransparentButton } from '../../../shared/constants/hopeAdapter';
 import layoutStyles from '../../../../styles/layout.module.css';
 import typoStyles from '../../../../styles/typography.module.css';
@@ -31,7 +32,7 @@ const UserList: Component<UserListTemplateProps> = (props) =>
         close();
     };
 
-    const handleDelete = (user: UserApi) => () =>
+    const handleDelete = (user: UserApi) =>
     {
         deleteData = user;
         open();
@@ -89,7 +90,7 @@ const UserList: Component<UserListTemplateProps> = (props) =>
                  <Show when={!props.loading || props.userList?.data.length} keyed>
                      <For each={props?.userList?.data} fallback={<span class={styles.fallback_span}>{t('u_no_users')}</span>}>
                          {(user) =>
-                             <UserCard user={user} onDelete={handleDelete(user)}/>}
+                             <UserCard user={user} onDelete={() => handleDelete(user)}/>}
                      </For>
                  </Show>
               </div>

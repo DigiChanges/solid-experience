@@ -1,4 +1,4 @@
-import { Component, JSX, For, createSignal } from 'solid-js';
+import { Component, JSX, For, createSignal, onMount } from 'solid-js';
 import styles from './Select.module.css';
 import { Select as KSelect, As } from '@kobalte/core';
 import useTranslation from '../../../shared/hooks/useTranslation';
@@ -23,25 +23,41 @@ interface SelectProps extends SelectBase {
 interface MultiSelectProps extends SelectBase {
     value: any;
 }
+
 export const Select: Component<SelectProps> = (props) =>
 {
     const [value, setValue] = createSignal<string>('');
-
     const { translate: t } = useTranslation();
+
+    onMount(() =>
+    {
+        if (props.value)
+        {
+            const item = props.options.find((item: any) => props.value === item[props.valueProperty]);
+
+            setValue(item[props.labelProperty]);
+            props.onChange(item[props.valueProperty]);
+        }
+    });
+
     return (
         <KSelect.Root<any>
+            defaultValue={props.value}
             name={props.name}
             class={props.class}
             placeholder={t(props.placeholder)}
             value={props.value}
-            options={props.options}
+            options={props.options ?? []}
             optionValue={props.valueProperty}
             optionTextValue={props.labelProperty}
             optionGroupChildren={props.groupSelector}
-            onChange={(value) =>
+            onChange={(item) =>
             {
-                setValue(value.label);
-                props.onChange(value.value);
+                if (item)
+                {
+                    setValue(item[props.labelProperty]);
+                    props.onChange(item[props.valueProperty]);
+                }
             }}
             itemComponent={props => (
                 <KSelect.Item item={props.item} class={styles.select__item}>

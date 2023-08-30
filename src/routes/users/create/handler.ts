@@ -1,24 +1,32 @@
 import { UserPayload } from '../../../features/user/interfaces';
 import UserRepository from '../../../features/user/repositories/UserRepository';
-import { LoginApi } from '../../../features/auth/interfaces/login';
+
+type RoleListProps = {
+    id: string,
+    name: string
+}
 
 type params = {
     userRepository: UserRepository;
-    user: LoginApi;
+    rolesList: RoleListProps[];
 };
 
-export const createAction = ({ userRepository }: params) => async(data: UserPayload) =>
+export const createAction = ({ userRepository, rolesList }: params) => async(data: UserPayload) =>
 {
-    const rolesSelected = {
-        rolesId: Array.from(data.roles as [])
-    };
+    const { roles: roleId, ...userData  } = data;
 
-    delete data.roles;
-    const response = await userRepository.createUser(data);
+    const response = await userRepository.createUser(userData);
 
-    if (rolesSelected)
+    if (response)
     {
-        const { id } = response.data;
-        void await userRepository.assignUserRole({ id, data: rolesSelected });
+        const users: { data: any[] } = await userRepository.getUsers();
+        const user = users.data.find((user) => user.email === data.email);
+
+        const roles = rolesList
+            .filter((item) => item.id === roleId)
+            .map((item) => ({ id: item.id, name: item.name }));
+
+        const { id } = user;
+        void await userRepository.assignUserRole({ id, data: { roles } });
     }
 };

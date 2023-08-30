@@ -50,17 +50,6 @@ class UserRepository
         return HttpService.request<UserResponse>(config);
     }
 
-    // public updateUser({ id, data, user }: PayloadProps<UserPayload>)
-    // {
-    //     const config: IHttpParams = {
-    //         url: `${baseUrl}/${update}/${id}`,
-    //         method: 'PUT',
-    //         data
-    //     };
-    //
-    //     return HttpService.request<UserResponse>({ config, user });
-    // }
-
     public updateUser(id: string, data: UserPayload)
     {
         const config: IHttpParams = {
@@ -71,17 +60,6 @@ class UserRepository
 
         return HttpService.request<UserResponse>(config);
     }
-
-    // public createUser({ data, user }: PayloadProps<UserPayload>)
-    // {
-    //     const config: IHttpParams = {
-    //         url: `${baseUrl}/${base}`,
-    //         method: 'POST',
-    //         data
-    //     };
-    //
-    //     return HttpService.request<UserResponse>({ config, user });
-    // }
 
     public createUser(data: UserPayload)
     {

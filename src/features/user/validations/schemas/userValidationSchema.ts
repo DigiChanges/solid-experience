@@ -13,7 +13,7 @@ const userValidationSchema = object({
     email: string()
         .email('Invalid email')
         .required('av_required'),
-    genre: string()
+    gender: string()
         .oneOf(['M', 'F', 'O'], 'av_required')
         .required('av_required'),
     country: string()

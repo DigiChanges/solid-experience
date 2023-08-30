@@ -33,7 +33,7 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
             status: 'success',
             title: t('au_password_updated') as string
         });
-        navigate('/change-password-success', { replace: true });
+        navigate('/auth/change-password-success', { replace: true });
     };
 
     const handleError = () => (error: unknown) =>

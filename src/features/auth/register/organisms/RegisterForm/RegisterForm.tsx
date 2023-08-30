@@ -150,19 +150,19 @@ const RegisterForm: Component<UserUpdateTemplateProps> = (props) =>
                     </div>
 
                     <div class={`${formStyles.field_wrapper} ${formStyles.full}`}>
-                        <FormControl isRequired isInvalid={!!errors('genre')}>
+                        <FormControl isRequired isInvalid={!!errors('gender')}>
                             <FormControlLabel class={formStyles.form_label} for="genre" _dark={{ _after: { color: 'danger.300' } }}>
                                 {t('gender')}
                             </FormControlLabel>
                             <Radio
-                                name={'genre'}
+                                name={'gender'}
                                 options={gender}
-                                value={data().genre}
-                                onChange={handleSelect('genre')}
+                                value={data().gender}
+                                onChange={handleSelect('gender')}
                             />
-                            <Show when={errors('genre')} keyed>
+                            <Show when={errors('gender')} keyed>
                                 <FormControlError class={formStyles.error_message_block}>
-                                    {t(errors('genre')?.[0] ?? '')}
+                                    {t(errors('gender')?.[0] ?? '')}
                                 </FormControlError>
                             </Show>
                         </FormControl>

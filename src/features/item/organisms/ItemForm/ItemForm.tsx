@@ -3,7 +3,7 @@ import { validator } from '@felte/validator-yup';
 import { Button, FormControl, FormControlError, FormControlLabel, Input } from '@hope-ui/core';
 import { useNavigate } from 'solid-start';
 import { InferType } from 'yup';
-import {Component, createEffect, onMount, Show} from 'solid-js';
+import { Component, createEffect, onMount, Show } from 'solid-js';
 
 import useTranslation from '../../../shared/hooks/useTranslation';
 import preventEnterCharacter from '../../../shared/utils/PreventEnterCharacter';

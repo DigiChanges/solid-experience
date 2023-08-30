@@ -5,7 +5,7 @@
     ],
     "plugins": ["solid", "prefer-arrow"],
     "parser": "@typescript-eslint/parser",
-    "ignorePatterns": ["*.mdx", "*.md", "*.rs", "*.toml"],
+    "ignorePatterns": ["*.mdx", "*.md", "*.rs", "*.toml", "dist/*", ".solid/*", "json-server"],
     "rules": {
         "jsx-quotes": [ "error", "prefer-double" ],
         "quotes": ["warn", "single"],

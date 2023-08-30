@@ -7,6 +7,7 @@ class HttpService
     {
         try
         {
+			// eslint-disable-next-line solid/reactivity
             const { url, method, queryParams, data } = props;
 
             const params: URLSearchParams = getParams(queryParams);
@@ -21,14 +22,14 @@ class HttpService
 
             if (!response.ok)
             {
-                throw new Error('Request failed.');
+                throw new Error(`Request failed. ${response.ok}`);
             }
 
             return await response.json();
         }
         catch (e)
         {
-            throw new Error('Request failed.');
+            throw new Error((e as { message: string})?.message);
         }
     }
 }

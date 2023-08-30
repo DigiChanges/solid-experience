@@ -1,33 +1,32 @@
-import { Component, createResource } from 'solid-js';
-import AuthRepository from '../../../features/auth/repositories/AuthRepository';
-import RoleRepository from '../../../features/role/repositories/RoleRepository';
+import { Component, onMount, Show } from 'solid-js';
+
 import PrivateLayout from '../../../features/shared/layout/PrivateLayout/PrivateLayout';
 import UserRepository from '../../../features/user/repositories/UserRepository';
 import UserCreate from '../../../features/user/templates/UserCreate/UserCreate';
 import { createAction } from './handler';
-import { UserPayload } from '../../../features/user/interfaces';
-import PayloadProps from '../../../features/shared/interfaces/PayloadProps';
+import RoleRepository from '../../../features/role/repositories/RoleRepository';
+import { createRouteAction } from 'solid-start';
+import GeneralLoader from '../../../features/shared/atoms/GeneralLoader';
 
 const IndexPage: Component = () =>
 {
-    const authRepository = new AuthRepository();
     const userRepository = new UserRepository();
-    const roleRepository = new RoleRepository();
-    // const [roles] = createResource({ user: user }, roleRepository.getRoles);
-    // const [permissions] = createResource(authRepository.getAllPermissions);
+	const roleRepository = new RoleRepository();
+    const [roles, submit] = createRouteAction(roleRepository.getRoles);
 
-    const createUser = async(data: UserPayload) =>
+    onMount(async() =>
     {
-        await userRepository.createUser(data);
-    };
+        await submit();
+    });
 
     return (
         <PrivateLayout>
-            <UserCreate
-                onCreate={createUser}
-                // rolesList={roles()?.data}
-                // loading={permissions.loading || roles.loading}
-            />
+            <Show when={!roles.pending} fallback={<GeneralLoader/>}>
+                <UserCreate
+                    onCreate={createAction({ userRepository, rolesList: roles.result?.data })}
+                    rolesList={roles.result?.data}
+                />
+            </Show>
         </PrivateLayout>
     );
 };

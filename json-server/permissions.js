@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-var-requires */
 const jsonRepository = require('./jsonRepository');
 
 module.exports = (req, res, next) =>

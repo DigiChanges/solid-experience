@@ -2,7 +2,6 @@ import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { useNavigate } from 'solid-start';
 import useTranslation from '../../../shared/hooks/useTranslation';
 import { Component, Show } from 'solid-js';
-import { permissions } from '../../../../config/permissions';
 import { RoleApi } from '../../../role/interfaces';
 import createAlert from '../../../shared/hooks/createAlert';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';

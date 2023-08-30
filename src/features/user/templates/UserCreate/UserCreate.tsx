@@ -1,10 +1,9 @@
 import { notificationService } from '../../../shared/molecules/Toast/Toast';
 import { useNavigate } from 'solid-start';
 import useTranslation from '../../../shared/hooks/useTranslation';
-import { Component, Show } from 'solid-js';
+import { Component } from 'solid-js';
 import { RoleApi } from '../../../role/interfaces';
 import createAlert from '../../../shared/hooks/createAlert';
-import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { UserPayload } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
 import layoutStyles from '../../../../styles/layout.module.css';
@@ -14,7 +13,6 @@ interface UserCreateTemplateProps
 {
     rolesList?: RoleApi[];
     onCreate?: (data: UserPayload) => Promise<void>;
-    loading?: boolean;
 }
 
 const UserCreate: Component<UserCreateTemplateProps> = props =>
@@ -50,15 +48,12 @@ const UserCreate: Component<UserCreateTemplateProps> = props =>
                 <h1 class={typoStyles.section_title}>{t('u_create')}</h1>
             </header>
 
-            <Show when={!props.loading} fallback={<GeneralLoader/>} keyed>
-                <UserForm
-                    onError={handleError()}
-                    onSubmit={props.onCreate}
-                    onSuccess={handleSuccess}
-                    rolesList={props.rolesList}
-                />
-            </Show>
-
+            <UserForm
+                onError={handleError()}
+                onSubmit={props.onCreate}
+                onSuccess={handleSuccess}
+                rolesList={props.rolesList}
+            />
         </section>
     );
 };

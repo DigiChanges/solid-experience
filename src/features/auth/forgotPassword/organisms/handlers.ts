@@ -28,7 +28,7 @@ export const createForgotPasswordAction = ({ errorAlert, navigate, t }: params) 
             status: 'success',
             title: t('au_send_email') as string
         });
-        navigate('/email-sent-successfully', { replace: true });
+        navigate('/auth/forgot-password-email-sent-successfully', { replace: true });
     }
     catch (error: any)
     {

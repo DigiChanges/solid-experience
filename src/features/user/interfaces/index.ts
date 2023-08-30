@@ -6,7 +6,7 @@ export interface User
     lastName: string;
     email: string;
     birthdate: string;
-    genre: string;
+    gender: string;
     phone: string;
     country: string;
     enable: boolean;
@@ -18,12 +18,12 @@ export type UserPayload =
     firstName: string;
     lastName: string;
     birthdate: string;
-    genre: string;
+    gender: string;
     phone: string;
     country: string;
     password: string;
     passwordConfirmation: string;
-    roles?: string[];
+    roles?: string;
     enable?: boolean;
 };
 

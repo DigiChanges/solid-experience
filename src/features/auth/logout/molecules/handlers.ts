@@ -1,6 +1,10 @@
-import { logoutHelper } from '../helper';
+import AuthRepository from '../../repositories/AuthRepository';
 
-export const logout = () => async() =>
+type LogoutProps = (path: string, options: { replace: boolean }) => void;
+
+export const logout = async(navigate: LogoutProps) =>
 {
-    await logoutHelper();
+	await (new AuthRepository()).logout();
+
+	navigate('/auth/login', { replace: true });
 };

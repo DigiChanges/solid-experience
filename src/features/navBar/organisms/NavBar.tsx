@@ -37,7 +37,7 @@ const NavBar: Component<NavbarTemplateProps> = props =>
                     _dark={{ border: 'none', bgColor: 'transparent', color: 'primary.200' }}
                     _hover={{ cursor: 'pointer' }}
                 />
-                <IconBurger isOpened={!props.isOpen()} onClick={ props.onClick }/>
+                <IconBurger isOpened={!props.isOpen()} onClick={props.onClick}/>
             </section>
         </nav>
     );

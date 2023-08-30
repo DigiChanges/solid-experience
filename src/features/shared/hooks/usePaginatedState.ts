@@ -27,14 +27,14 @@ function usePaginatedState<T, U extends ListResponse>(resource: Resource<U>)
         if (viewMore && response?.data)
         {
             // @ts-ignore
-	        setResourceList((state) => [...state, ...response.data]);
+			setResourceList((state) => [...state, ...response.data]);
             setPaginationData(resource()?.pagination);
             viewMore = false;
         }
         else if (response?.data)
         {
-            // @ts-ignore
-	        setResourceList(() => [...response.data]);
+			// @ts-ignore
+			setResourceList(() => [...response.data]);
             setPaginationData(response?.pagination);
         }
     });
