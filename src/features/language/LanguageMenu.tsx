@@ -4,6 +4,7 @@ import { Component } from 'solid-js';
 import IconLanguage from '../shared/atoms/Icons/Stroke/IconLanguage';
 import { changeLanguage } from './handlers';
 import DropdownMenu from '../shared/molecules/DropdownMenu/DropdownMenu';
+import styles from './languageMenu.module.css';
 
 const LanguageMenu: Component = () =>
 {
@@ -31,7 +32,7 @@ const LanguageMenu: Component = () =>
                     <DropdownMenu
                         items={items}
                         title={<IconLanguage />}
-                        class={'w-[3rem]'}
+                        class={styles.dropdown_menu}
                     />
                 }
             />

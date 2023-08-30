@@ -10,14 +10,7 @@ import { ContextProvider } from './context';
 import RefreshProvider from './features/root/organisms/RefreshProvider';
 
 import { colors } from './features/shared/constants/colors';
-import './root.css';
-import './styles/alert.css';
-import './styles/card.css';
-import './styles/form.css';
-import './styles/layout.css';
-import './styles/modal.css';
-import './styles/typography.css';
-import './styles/index.css';
+import styles from './root.module.css';
 import { Toast } from '@kobalte/core';
 
 export default function Root()
@@ -39,7 +32,7 @@ export default function Root()
 			<Meta name="msapplication-TileColor" content="#00aba9" />
 			<Meta name="description" content="SolidJS Boilerplate" />
 		</Head>
-		<Body class="font-sans">
+		<Body class={styles.body}>
 			<ColorModeScript initialColorMode="dark" storageType={storageManager.type} />
 			<HopeProvider storageManager={storageManager} initialColorMode="dark" theme={theme}>
 			<Suspense>
@@ -51,7 +44,7 @@ export default function Root()
 								<FileRoutes />
 							</Routes>
 							<Toast.Region limit={6}>
-								<Toast.List class="toast__list" />
+								<Toast.List />
 							</Toast.Region>
 						</RefreshProvider>
 						</I18nProvider>

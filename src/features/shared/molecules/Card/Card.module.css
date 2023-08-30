@@ -1,6 +1,3 @@
-
 .container {
-    background-color: var(--hope-colors-neutral-700);
-    border-radius: var(--hope-radii-lg);
-    box-shadow: var(--hope-shadows-lg);
+    @apply bg-[var(--hope-colors-neutral-700)] rounded-[var(--hope-radii-lg)] shadow-[var(--hope-shadows-lg)];
 }

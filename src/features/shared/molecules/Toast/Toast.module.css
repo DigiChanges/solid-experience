@@ -1,15 +1,5 @@
 .toast {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    border: 1px solid var(--hope-colors-neutral-500);
-    border-radius: 6px;
-    padding: 12px;
-    background-color: var(--hope-colors-neutral-900);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    @apply relative flex flex-col items-center content-between gap-[8px] border-solid border-[1px] border-[var(--hope-colors-neutral-500)] rounded-[6px] p-[12px] bg-[var(--hope-colors-neutral-900)] shadow-[0_10px_15px_-3px_rgb(0_0_0_/_0.1),0_4px_6px_-4px_rgb(0_0_0_/_0.1)];
 }
 .toast[data-opened] {
     animation: slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -18,81 +8,56 @@
     animation: hide 100ms ease-in;
 }
 .toast[data-swipe="move"] {
-    transform: translateX(var(--kb-toast-swipe-move-x));
+    @apply translate-x-[var(--kb-toast-swipe-move-x)];
 }
 .toast[data-swipe="cancel"] {
-    transform: translateX(0);
-    transition: transform 200ms ease-out;
+    @apply translate-x-0 transition-transform !duration-[200ms] ease-out;
 }
 .toast[data-swipe="end"] {
     animation: swipeOut 100ms ease-out;
 }
 .toast__content {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
+    @apply flex items-center w-full gap-[10px];
 }
 .toast__close__button {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    flex-shrink: 0;
-    height: auto;
-    width: auto;
-    margin-left: auto;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    padding: 4px;
+    @apply absolute right-[8px] top-[8px] shrink-0 h-auto w-auto ml-auto bg-transparent border-none cursor-pointer rounded-[4px] p-[4px];
 }
 .toast__close__button:hover {
-    background-color: var(--hope-colors-neutral-700);
+    @apply bg-[var(--hope-colors-neutral-700)];
 }
 .toast__title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--hope-colors-neutral-50);
+    @apply text-[14px] font-medium text-[var(--hope-colors-neutral-50)];
 }
 .toast__description {
-    font-size: 14px;
-    color: var(--hope-colors-neutral-100);
+    @apply text-[14px] text-[var(--hope-colors-neutral-100)];
 }
 .toast__progress__track {
-    height: 3px;
-    width: 100%;
-    background-color: var(--hope-colors-neutral-500);
-    border-radius: 3px;
+    @apply h-[3px] w-full bg-[var(--hope-colors-neutral-500)] rounded-[3px];
 }
 .toast__progress__fill {
-    background-color: var(--hope-colors-primary-300);
-    border-radius: 3px;
-    height: 100%;
-    width: var(--kb-toast-progress-fill-width);
-    transition: width 250ms linear;
+    @apply bg-[var(--hope-colors-primary-300)] rounded-[3px] h-full w-[var(--kb-toast-progress-fill-width)] transition-[width] duration-[250ms] ease-linear;
 }
 @keyframes hide {
     from {
-        opacity: 1;
+        @apply opacity-100;
     }
     to {
-        opacity: 0;
+        @apply opacity-0;
     }
 }
 @keyframes slideIn {
     from {
-        transform: translateX(calc(100% + var(--viewport-padding)));
+        @apply translate-x-[calc(100%_+_var(--viewport-padding))];
     }
     to {
-        transform: translateX(0);
+        @apply translate-x-0;
     }
 }
 @keyframes swipeOut {
     from {
-        transform: translateX(var(--kb-toast-swipe-end-x));
+        @apply translate-x-[var(--kb-toast-swipe-end-x)];
     }
     to {
-        transform: translateX(calc(100% + var(--viewport-padding)));
+        @apply translate-x-[calc(100%_+_var(--viewport-padding))];
     }
 }

@@ -10,6 +10,9 @@ import createAlert from '../../../../shared/hooks/createAlert';
 import { ForgotPasswordPayload } from '../../../interfaces/forgotPassword';
 import ForgetPasswordSchema from '../../../validations/schemas/ForgetPasswordSchema';
 import { darkInput, placeholderInput, darkNeutralButton, darkPrimaryButtonWithBackground } from '../../../../shared/constants/hopeAdapter';
+import formPasswordStyles from "./forgotPasswordForm.module.css";
+import typoStyles from "../../../../../styles/typography.module.css";
+import formStyles from "../../../../../styles/form.module.css";
 
 interface ForgotPasswordFormProps
 {
@@ -56,10 +59,10 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = (props) =>
     });
 
     return (
-        <form ref={form} class="form_flex column md:w-[20rem]">
-            <h1 class="section_title_opaque">{t('a_account_recovery')}</h1>
-            <FormControl isRequired={true} isInvalid={!!errors('email')} class="w-full">
-                <FormControlLabel for="email" class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>
+        <form ref={form} class={`${formStyles.form_flex} ${formStyles.column} ${formPasswordStyles.forgotPasswordForm}`}>
+            <h1 class={typoStyles.section_title_opaque}>{t('a_account_recovery')}</h1>
+            <FormControl isRequired={true} isInvalid={!!errors('email')} class={formPasswordStyles.formControl}>
+                <FormControlLabel for="email" class={formStyles.form_label} _dark={{ _after: { color: 'danger.300' } }}>
                     {t('email')}
                 </FormControlLabel>
                 <Input
@@ -70,10 +73,10 @@ const ForgotPasswordForm: Component<ForgotPasswordFormProps> = (props) =>
                     placeholder={t('a_your_email') as string}
                 />
                 <Show when={errors('email')} keyed>
-                    <FormControlError class="error_message_block">{t(errors('email')?.[0] ?? '')}</FormControlError>
+                    <FormControlError class={formStyles.error_message_block}>{t(errors('email')?.[0] ?? '')}</FormControlError>
                 </Show>
             </FormControl>
-            <div class="update_save_buttons_container spaced">
+            <div class={`${formStyles.update_save_buttons_container} ${formStyles.spaced}`}>
                 <Button
                     onClick={props.onClick}
                     colorScheme="neutral"

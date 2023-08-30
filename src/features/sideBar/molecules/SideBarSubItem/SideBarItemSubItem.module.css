@@ -28,3 +28,6 @@
 .side_bar_item_sub_item_nav_link_container_span {
     @apply justify-start md:justify-center pl-2 px-4;
 }
+.__block {
+    @apply block;
+}

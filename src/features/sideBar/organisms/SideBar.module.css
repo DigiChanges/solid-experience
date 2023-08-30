@@ -1,51 +1,52 @@
 .side_nav {
-    height: 100%;
-    padding: 30px 0;
-    display: flex;
-    flex-direction: column;
-    transition: width 100ms ease;
-    width: 250px;
+    @apply h-full py-[30px] px-0 flex flex-col transition-[width] !duration-100 !ease-[ease] w-[250px];
 }
 
-.hidden {
-    display: none;
+.__hidden {
+    @apply hidden;
 }
 
 .logout_container {
-    margin-top: auto;
+    @apply justify-self-end;
+}
+
+.menu_container {
+    @apply w-auto h-[35px] mx-[1rem] mb-2;
 }
 
 .menu{
-    margin: 0 0 16px 16px;
-    color: var(--hope-colors-neutral-50);
-    background-color: var(--hope-colors-neutral-900);
+    @apply mt-0 mr-[16px] mb-0 ml-[16px] text-[var(--hope-colors-neutral-50)] bg-[var(--hope-colors-neutral-900)];
 }
 .menu > button {
-    color: var(--hope-colors-neutral-50);
-    background-color: var(--hope-colors-neutral-900);
+    @apply text-[var(--hope-colors-neutral-50)] bg-[var(--hope-colors-neutral-900)];
 }
 
 .drawer_content {
     @apply px-4 pt-32 pb-8 flex flex-col justify-between
 }
 .close_button {
-    position: absolute;
-    top: var(--hope-space-4);
-    inset-inline-end: var(--hope-space-4);
+    @apply absolute top-[var(--hope-space-4)] end-[var(--hope-space-4)];
+}
+
+.menu_text {
+    @apply text-white font-bold;
+}
+
+.dropdown_menu {
+    @apply w-[256px];
 }
 
 @media screen and (min-width: 1024px) {
     .side_nav {
-        height: calc(100vh - 100px);
-        display: flex;
+        @apply h-[calc(100vh-100px)] flex;
     }
 
     .expanded {
-        position: relative;
+        @apply relative;
     }
 
     .not_expanded {
-        width: 100px;
+        @apply w-[100px];
     }
 }
 

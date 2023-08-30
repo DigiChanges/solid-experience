@@ -1,8 +1,5 @@
-
 .register {
-    padding: 30px 20px;
-    background-color: var(--hope-colors-primary-500);
-    border-radius: var(--hope-radii-lg);
+    @apply py-[30px] px-[20px] bg-[var(--hope-colors-primary-500)] rounded-[var(--hope-radii-lg)];
 }
 .container{
     @apply md:py-10  h-full flex justify-center items-center;
@@ -14,11 +11,8 @@
     @apply md:px-10 xs:px-1 py-4;
 }
 .logo_container {
-    display: flex;
-    justify-content: center;
-    filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.7));
-    margin: 0 auto 20px;
+    @apply flex justify-center drop-shadow-[0_2px_5px_rgba(255,255,255,0.7)] mt-0 mx-auto mb-[20px];
 }
 .logo {
-    max-height: 35px;
+    @apply max-h-[35px];
 }

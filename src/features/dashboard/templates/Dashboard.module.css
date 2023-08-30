@@ -1,4 +1,12 @@
-
 .content {
     @apply flex-col justify-center h-128;
+}
+.dashboardSection {
+    @apply p-6;
+}
+.dashboardDiv {
+    @apply text-neutral-50;
+}
+.dashboardDescription {
+    @apply text-neutral-50 text-center;
 }

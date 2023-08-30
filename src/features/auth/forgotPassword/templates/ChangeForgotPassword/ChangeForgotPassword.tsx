@@ -12,6 +12,7 @@ import { ChangeForgotPasswordPayload } from '../../../interfaces/forgotPassword'
 import changeForgotPasswordSchema from '../../../validations/schemas/changeForgotPasswordSchema';
 import styles from './ChangeForgotPassword.module.css';
 import { darkInput, darkNeutralButton, darkPrimaryButton, placeholderInput } from '../../../../shared/constants/hopeAdapter';
+import style from "../../../../../styles/form.module.css"
 
 interface ChangePasswordTemplateProps
 {
@@ -61,13 +62,13 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
     return (
         <section class={styles.container}>
             <div class={styles.title_container}>
-                <h1 class="section_title">{t('a_change_password')}</h1>
+                <h1 class={style.section_title}>{t('a_change_password')}</h1>
             </div>
-            <form ref={form} class="form_password">
+            <form ref={form} class={style.form_password}>
 
-                <div class="field_wrapper" >
+                <div class={style.field_wrapper} >
                     <FormControl isRequired isInvalid={!!errors('password')}>
-                        <FormControlLabel class={'form_label'} _dark={{ _after: { color: 'danger.300' } }} for="password">
+                        <FormControlLabel class={style.form_label} _dark={{ _after: { color: 'danger.300' } }} for="password">
                             {t('new_password')}
                         </FormControlLabel>
                         <Input
@@ -78,13 +79,13 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                             placeholder={t('a_password') as string}
                         />
                         <Show when={errors('password')} keyed>
-                            <FormControlError class="error_message_block">{t(errors('password')?.[0] ?? '')}</FormControlError>
+                            <FormControlError class={style.error_message_block}>{t(errors('password')?.[0] ?? '')}</FormControlError>
                         </Show>
                     </FormControl>
                 </div>
-                <div class="field_wrapper">
+                <div class={style.field_wrapper}>
                     <FormControl isRequired isInvalid={!!errors('passwordConfirmation')}>
-                        <FormControlLabel class={'form_label'} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
+                        <FormControlLabel class={style.form_label} for="passwordConfirmation" _dark={{ _after: { color: 'danger.300' } }}>
                             {t('confirm_password')}
                         </FormControlLabel>
                         <Input
@@ -95,12 +96,12 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                             placeholder={t('a_repeat_password') as string}
                         />
                         <Show when={errors('passwordConfirmation')} keyed>
-                            <FormControlError class="error_message_block">{t(errors('passwordConfirmation')?.[0] ?? '')}</FormControlError>
+                            <FormControlError class={style.error_message_block}>{t(errors('passwordConfirmation')?.[0] ?? '')}</FormControlError>
                         </Show>
                     </FormControl>
                 </div>
-                <div class="update_save_buttons_container">
-                    <div class="button_full">
+                <div class={style.update_save_buttons_container}>
+                    <div class={style.button_full}>
                         <Button
                             class="button_full"
                             as={A}
@@ -111,10 +112,10 @@ const ChangeForgotPassword: Component<ChangePasswordTemplateProps> = props =>
                             {t('a_back')}
                         </Button>
                     </div>
-                    <div class="button_full">
+                    <div class={style.button_full}>
                         <Button
                             _dark={darkPrimaryButton}
-                            class="button_full"
+                            class={style.button_full}
                             type="submit"
                             isDisabled={!isValid()}
                             isLoading={isSubmitting()}

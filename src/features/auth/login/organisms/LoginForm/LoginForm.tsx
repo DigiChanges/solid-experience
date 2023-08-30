@@ -8,6 +8,9 @@ import signUpSchema from '../../../validations/schemas/SignUpSchema';
 import { darkInput, placeholderInput, darkPrimaryButton } from '../../../../shared/constants/hopeAdapter';
 import { useContext } from '../../../../../context';
 import { LoginPayload } from '../../../interfaces/login';
+import typoStyles from '../../../../../styles/typography.module.css';
+import loginStyles from './loginForm.module.css';
+import formStyles from '../../../../../styles/form.module.css';
 
 interface LoginFormProps
 {
@@ -34,10 +37,10 @@ const LoginForm: Component<LoginFormProps> = props =>
 
     return (
         <>
-            <h1 class="section_title_opaque">{t('a_login')}</h1>
-            <form ref={form} class="flex flex-col gap-9 md:w-[20rem]" >
+            <h1 class={typoStyles.section_title_opaque}>{t('a_login')}</h1>
+            <form ref={form} class={loginStyles.loginForm} >
                 <FormControl isRequired isInvalid={!!errors('username')}>
-                    <FormControlLabel for="username" _dark={{ _after: { color: 'danger.300' } }} class={'form_label'}>
+                    <FormControlLabel for="username" _dark={{ _after: { color: 'danger.300' } }} class={formStyles.form_label}>
                         {t('email')}
                     </FormControlLabel>
                     <Input
@@ -49,14 +52,14 @@ const LoginForm: Component<LoginFormProps> = props =>
                         placeholder={t('a_your_email') as string}
                     />
                     <Show when={errors('username')} keyed>
-                        <FormControlError class="error_message_block">
+                        <FormControlError class={formStyles.error_message_block}>
                             {t(errors('username')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
                 </FormControl>
 
                 <FormControl isRequired isInvalid={!!errors('password')}>
-                    <FormControlLabel for="password" class={'form_label'} _dark={{ _after: { color: 'danger.300' } }}>
+                    <FormControlLabel for="password" class={formStyles.form_label} _dark={{ _after: { color: 'danger.300' } }}>
                         {t('a_password')}
                     </FormControlLabel>
                     <Input
@@ -68,7 +71,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                         placeholder={t('a_your_password') as string}
                     />
                     <Show when={errors('password')} keyed>
-                        <FormControlError class="error_message_block">
+                        <FormControlError class={formStyles.error_message_block}>
                            {t(errors('password')?.[0] ?? '')}
                         </FormControlError>
                     </Show>
@@ -77,7 +80,7 @@ const LoginForm: Component<LoginFormProps> = props =>
                 <FormControl>
                     <FormControlDescription>
                         <Anchor onClick={props.onClick} >
-                             <div class="text-neutral-400 text-sm" >{t('au_forgot_password')}</div>
+                             <div class={loginStyles.formControlDescription} >{t('au_forgot_password')}</div>
                         </Anchor>
                     </FormControlDescription>
                 </FormControl>

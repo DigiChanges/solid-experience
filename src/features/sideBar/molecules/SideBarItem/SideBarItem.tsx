@@ -24,12 +24,12 @@ interface SideBarItemProps
 }
 
 const SideBarItem: Component<SideBarItemProps> = (props) => (
-    <div class={`${styles.side_bar_item_container}`}>
+    <div class={styles.side_bar_item_container}>
         <Show when={props.showItem}>
             <Show when={props.isLink}
                 fallback={
                     <span
-                        class={`${styles.side_bar_item_span}`}
+                        class={styles.side_bar_item_span}
                         onClick={props.onClick}
                     >
                         <SideBarItemContent {...props} />
@@ -46,7 +46,7 @@ const SideBarItem: Component<SideBarItemProps> = (props) => (
                 }
             >
                 <A
-                    class={`${styles.side_bar_item_nav_link}`}
+                    class={styles.side_bar_item_nav_link}
                     href={props.path}
                 >
                     <SideBarItemContent {...props} />

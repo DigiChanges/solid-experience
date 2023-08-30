@@ -1,0 +1,21 @@
+.main_container {
+    @apply h-screen;
+}
+.container {
+    @apply flex w-full justify-center mb-6 h-8;
+}
+.img_container {
+    @apply flex w-full justify-center mb-6 h-8 -mt-4;
+}
+.img {
+    @apply h-8;
+}
+.center_text {
+    @apply text-center;
+}
+.svg {
+    @apply inline mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600;
+}
+.span {
+    @apply sr-only;
+}

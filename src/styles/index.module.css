@@ -1,0 +1,20 @@
+@import url("https://fonts.cdnfonts.com/css/gilroy-bold");
+@tailwind components;
+@tailwind utilities;
+
+.hasPermission {
+  @apply hidden;
+}
+
+#root {
+  @apply bg-[var(--hope-colors-neutral-900)];
+}
+
+a {
+  @apply decoration-[inherit] text-[var(--hope-colors-neutral-50)];
+}
+
+.toast__list {
+  @apply fixed top-0 right-0 flex flex-col p-[var(--viewport-padding)] gap-[8px] w-[500px] max-w-[100vh] m-0 list-none z-[9999] outline-none;
+  --viewport-padding: 16px;
+}

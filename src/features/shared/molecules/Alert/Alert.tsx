@@ -19,7 +19,7 @@ const Alert: Component<AlertProps> = (props) =>
     return (
         <KAlert.Root class={`${styles.alert} ${props.class} ${props.variant === 'solid' ? `${props.variant}-${props.status}` : `${props.variant} ${props.status}`}`}>
             <div class={styles.icon}>{props.icon}</div>
-            <div class={'flex flex-col'}>
+            <div class={styles.text_container}>
                 <span class={styles.title}>{props.title}</span>
                 <span>{props.description}</span>
             </div>

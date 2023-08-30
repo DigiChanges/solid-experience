@@ -1,168 +1,85 @@
 .select__trigger {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: 4px;
-    padding: 8px 10px 8px 16px;
-    font-size: 16px;
-    line-height: 1;
-    min-height: 40px;
-    outline: none;
-    background-color: transparent;
-    border: 1px solid var(--hope-colors-neutral-400);
-    color: hsl(240 4% 16%);
+    @apply inline-flex items-center justify-between w-full rounded-[4px] py-[8px] pr-[10px] pl-[10px] text-[16px] leading-[1] min-h-[40px] outline-none bg-transparent border-[1px] border-solid border-[var(--hope-colors-neutral-400)] text-[hsl(240_4%_16%)] cursor-pointer;
     transition: border-color 250ms, color 250ms;
-    cursor: pointer;
 }
 .select__trigger:hover {
-    border-color: var(--hope-colors-neutral-300);
+    @apply border-[var(--hope-colors-neutral-300)];
 }
 .select__trigger:focus-visible {
-    outline: 2px solid var(--hope-colors-primary-200);
-    outline-offset: 2px;
+    @apply outline outline-[2px] outline-[var(--hope-colors-primary-200)] outline-offset-2;
 }
 .select__trigger[data-invalid] {
-    border-color: var(--hope-colors-danger-600);
+    @apply border-[var(--hope-colors-danger-600)];
 }
 .select__value {
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    color: var(--hope-colors-neutral-50);
-    flex-wrap: wrap;
-    gap: 6px;
+    @apply text-[16px] flex items-center text-ellipsis whitespace-nowrap overflow-hidden text-[var(--hope-colors-neutral-50)] flex-wrap gap-[6px];
 }
 .select__value[data-placeholder-shown], .select__value__multiple[data-placeholder-shown] {
-    color: var(--hope-colors-neutral-300);
+    @apply text-[var(--hope-colors-neutral-300)];
 }
 
 .select__value__multiple {
-    height: 24px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    color: var(--hope-colors-neutral-50);
-    background-color: var(--hope-colors-neutral-600);
-    border-radius: 4px;
-    padding: 0 0 0 8px;
+    @apply h-[24px] text-[14px] flex items-center text-ellipsis whitespace-nowrap overflow-hidden text-[var(--hope-colors-neutral-50)] bg-[var(--hope-colors-neutral-600)] rounded-[4px] py-0 pr-0 pl-[8px];
 }
 
 .select__value__multiple button{
-    padding: 0;
-    background-color: transparent;
-    border: none;
-    width: 24px;
-    height: 100%;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    @apply p-0 bg-transparent border-none w-[24px] h-full rounded-[4px] flex justify-center items-center cursor-pointer;
 }
 
 .select__value__multiple button:hover{
-    background-color: var(--hope-colors-neutral-400);
+    @apply bg-[var(--hope-colors-neutral-400)];
 }
 
 .select__icon {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 20px;
-    flex: 0 0 20px;
-    color: var(--hope-colors-neutral-50);
+    @apply flex items-center h-full w-[20px] flex-[0_0_20px] text-[var(--hope-colors-neutral-50)];
 }
 .select__description {
-    margin-top: 8px;
-    color: var(--hope-colors-neutral-400);
-    font-size: 12px;
-    user-select: none;
+    @apply mt-[8px] text-[var(--hope-colors-neutral-400)] text-[12px] select-none;
 }
 .select__error__message {
-    margin-top: 8px;
-    color: var(--hope-colors-danger-600);
-    font-size: 12px;
-    user-select: none;
+    @apply mt-[8px] text-[var(--hope-colors-danger-600)] text-[12px] select-none;
 }
 .select__content {
-    background-color: var(--hope-colors-neutral-900);
-    border-radius: 4px;
-    border: 1px solid var(--hope-colors-neutral-500);
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    transform-origin: var(--kb-select-content-transform-origin);
+    @apply bg-[var(--hope-colors-neutral-900)] rounded-[4px] border-[1px] border-solid border-[var(--hope-colors-neutral-500)] shadow-[0_4px_6px_-1px_rgb(0_0_0_/_0.1),0_2px_4px_-2px_rgb(0_0_0_/_0.1)] origin-[var(--kb-select-content-transform-origin)] z-[100];
     animation: contentHide 200ms ease-in forwards;
-    z-index: 100;
 }
 .select__content[data-expanded] {
     animation: contentShow 200ms ease-out;
 }
 .select__listbox {
-    overflow-y: auto;
-    max-height: 360px;
-    padding: 6px;
+    @apply overflow-y-auto max-h-[360px] p-[6px];
 }
 .select__item {
-    font-size: 14px;
-    line-height: 1;
-    color: var(--hope-colors-neutral-50);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 32px;
-    padding: 0 8px;
-    position: relative;
-    user-select: none;
-    outline: none;
-    cursor: pointer;
+    @apply text-[14px] leading-[1] text-[var(--hope-colors-neutral-50)] rounded-[4px] flex items-center justify-between h-[32px] py-0 px-[8px] relative select-none outline-none cursor-pointer;
 }
 .select__item[data-disabled] {
-    color: var(--hope-colors-neutral-50);
-    opacity: 0.5;
-    pointer-events: none;
+    @apply text-[var(--hope-colors-neutral-50)] opacity-50 pointer-events-none;
 }
 .select__item[data-highlighted] {
-    outline: none;
-    background-color: var(--hope-colors-primary-300);
-    color: var(--hope-colors-neutral-50);
+    @apply outline-none bg-[var(--hope-colors-primary-300)] text-[var(--hope-colors-neutral-50)];
 }
 .select__section {
-    padding: 8px 0 0 8px;
-    font-size: 12px;
-    line-height: 32px;
-    color: var(--hope-colors-neutral-300);
+    @apply pt-[8px] pr-0 pb-0 pl-[8px] text-[12px] leading-[32px] text-[var(--hope-colors-neutral-300)];
 }
 .select__item__indicator {
-    height: 20px;
-    width: 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    @apply h-[20px] w-[20px] inline-flex items-center content-center;
+}
+.full_w {
+    @apply w-full
 }
 @keyframes contentShow {
     from {
-        opacity: 0;
-        transform: translateY(-8px);
+        @apply opacity-0 translate-y-[-8px];
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+        @apply text-opacity-100 translate-y-0;
     }
 }
 @keyframes contentHide {
     from {
-        opacity: 1;
-        transform: translateY(0);
+        @apply opacity-100 translate-y-0;
     }
     to {
-        opacity: 0;
-        transform: translateY(-8px);
+        @apply opacity-0 translate-y-[-8px];
     }
 }

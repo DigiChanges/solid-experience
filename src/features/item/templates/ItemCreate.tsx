@@ -6,6 +6,8 @@ import createAlert from '../../shared/hooks/createAlert';
 import AlertErrors from '../../shared/molecules/AlertErrors/AlertErrors';
 import { ItemPayload, ItemResponse } from '../interfaces';
 import ItemForm from '../organisms/ItemForm/ItemForm';
+import layoutStyles from '../../../styles/layout.module.css';
+import typoStyles from '../../../styles/typography.module.css';
 
 interface ItemCreateTemplateProps
 {
@@ -39,7 +41,7 @@ const ItemCreate: Component<ItemCreateTemplateProps> = props =>
     };
 
     return (
-        <section class="section_container">
+        <section class={layoutStyles.section_container}>
 
             <AlertErrors
                 errorData={errorAlert.errorData()}
@@ -47,8 +49,8 @@ const ItemCreate: Component<ItemCreateTemplateProps> = props =>
                 description="err_save_item"
             />
 
-            <header class="section_header_container">
-                <h1 class="section_title">{t('i_create')}</h1>
+            <header class={layoutStyles.section_header_container}>
+                <h1 class={typoStyles.section_title}>{t('i_create')}</h1>
             </header>
 
             <ItemForm

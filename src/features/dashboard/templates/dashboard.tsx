@@ -9,11 +9,11 @@ const Dashboard: Component = () =>
     const { translate: t } = useTranslation();
 
     return (
-        <section class="p-6">
+        <section class={styles.dashboardSection}>
             <Card>
                 <CardContent class={styles.content}>
-                    <div class="text-neutral-50">{t('a_dashboard')}</div>
-                    <div class="text-neutral-50 text-center">{t('a_dashboard_description')}</div>
+                    <div class={styles.dashboardDiv}>{t('a_dashboard')}</div>
+                    <div class={styles.dashboardDescription}>{t('a_dashboard_description')}</div>
                 </CardContent>
             </Card>
         </section>

@@ -1,10 +1,9 @@
-
 .container {
     @apply hidden md:flex flex-col md:justify-center w-full md:w-auto px-8 mb-4;
 }
 
 .not_expanded {
-    margin-bottom: 30px;
+    @apply mb-[30px];
 }
 
 .button_container {
@@ -12,11 +11,9 @@
 }
 
 .icon {
-    border-radius: 50%;
-    transition-property: all;
-    transition-duration: 700ms;
+    @apply rounded-[50%] transition-all duration-700;
 }
 
 .icon_not_expanded {
-    transform: rotate(180deg);
+    @apply rotate-180;
 }

@@ -8,6 +8,9 @@ import createAlert from '../../../shared/hooks/createAlert';
 import GeneralLoader from '../../../shared/templates/GeneralLoader';
 import { UserApi, UserPayload } from '../../interfaces';
 import UserForm from '../../organisms/UserForm/UserForm';
+import layoutStyles from '../../../../styles/layout.module.css';
+import indexStyles from '../../../../styles/index.module.css';
+import typoStyles from '../../../../styles/typography.module.css';
 
 interface UserUpdateTemplateProps
 {
@@ -44,14 +47,14 @@ const UserUpdate: Component<UserUpdateTemplateProps> = props =>
     };
 
     return (
-        <section class="section_container">
+        <section class={layoutStyles.section_container}>
 
-            <header class="section_header_container">
-                <div class="has-permission">
-                    <h1 class="section_title">{t('u_update')}</h1>
+            <header class={layoutStyles.section_header_container}>
+                <div class={indexStyles.hasPermission}>
+                    <h1 class={typoStyles.section_title}>{t('u_update')}</h1>
                 </div>
-                <div class="fallback">
-                    <h1 class="section_title">{t('User')}</h1>
+                <div>
+                    <h1 class={typoStyles.section_title}>{t('User')}</h1>
                 </div>
             </header>
 

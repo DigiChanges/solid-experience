@@ -108,7 +108,7 @@ export const MultiSelect: Component<MultiSelectProps> = (props) =>
                 <KSelect.Section class={styles.select__section}>{props.section.rawValue.group}</KSelect.Section>
             }
         >
-            <KSelect.Trigger class={`${styles.select__trigger} w-full`} asChild>
+            <KSelect.Trigger class={`${styles.select__trigger} ${styles.full_w}`} asChild>
                 <As component={'div'}>
                     <KSelect.Value class={styles.select__value}/>
                     <KSelect.Icon class={styles.select__icon} />

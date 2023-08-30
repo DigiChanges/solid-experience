@@ -70,12 +70,12 @@ const Filter: Component<FilterProps> = (props) =>
     return (
         <>
             <div class={styles.dropdown}>
-                <div class={'w-[100%] md:w-auto'}>
+                <div class={styles.dropdown_container}>
                     <Button
                         _dark={darkPrimaryButtonWithBackground}
                         leftIcon={<FiFilter />}
                         onClick={() => setShowFilter(!showFilter())}
-                        class={'z-50 w-[100%] md:w-auto'}
+                        class={styles.button}
                     >
                         {t('a_filter')}
                     </Button>
@@ -96,7 +96,7 @@ const Filter: Component<FilterProps> = (props) =>
                                         valueProperty={'value'}
                                         labelProperty={'label'}
                                     />
-                                    <p class={'text-neutral-50'}>{t('a_contains')}:</p>
+                                    <p class={styles.text}>{t('a_contains')}:</p>
                                     <Input
                                         _dark={darkInput}
                                         _placeholder={placeholderInput}

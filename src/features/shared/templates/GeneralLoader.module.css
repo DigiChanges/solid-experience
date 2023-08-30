@@ -1,23 +1,11 @@
 .preloader {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
+	@apply fixed w-full h-full top-0 box-border z-[99999];
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	z-index: 99999;
 }
 
 .loader {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 50px;
-	height: 50px;
-	margin-left: -25px;
-	margin-top: -25px;
-	background-color: #04815e;
+	@apply absolute top-[50%] left-[50%] w-[50px] h-[50px] ml-[-25px] mt-[-25px] bg-[#04815e];
 	-webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
 	animation: sk-rotateplane 1.2s infinite ease-in-out;
 }

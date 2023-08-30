@@ -11,6 +11,10 @@ import { ItemApi } from '../interfaces';
 import ItemCard from '../organisms/ItemCard/ItemCard';
 import styles from '../../user/templates/UserList/UserList.module.css';
 import { darkDangerButton, darkPrimaryButton } from '../../shared/constants/hopeAdapter';
+import layoutStyles from '../../../styles/layout.module.css';
+import itemListStyles from './itemList.module.css';
+import modalStyles from '../../../styles/modal.module.css';
+import typoStyles from '../../../styles/typography.module.css';
 
 interface ItemListTemplateProps
 {
@@ -42,19 +46,19 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
     const { filterOptions } = useTransformTranslatedOptions(filterBy, (item) => t(item.label));
 
     return (
-        <section class="section_container">
+        <section class={layoutStyles.section_container}>
             <Modal isOpen={isOpen()} onClose={close}>
                 <Modal.Overlay _dark={{ bgColor: 'rgba(0, 0, 0, 0.65)' }}/>
                 <Modal.Content class={styles.modal_content} _dark={{ bgColor: 'neutral.800' }}>
                     <Modal.CloseButton class={styles.close_button}/>
                     <HStack>
-                        <Modal.Heading class={'text-neutral-50 text-lg font-bold pb-3'}>
+                        <Modal.Heading class={itemListStyles.modal_heading}>
                             {t('a_delete_data')}
                         </Modal.Heading>
                     </HStack>
-                    <p class={'text-neutral-50'}>{t('i_remove')}</p>
-                    <h1 class={'text-neutral-50'}>{deleteData?.name}</h1>
-                    <HStack class="modal_footer pt-4 justify-end">
+                    <p class={itemListStyles.text}>{t('i_remove')}</p>
+                    <h1 class={itemListStyles.text}>{deleteData?.name}</h1>
+                    <HStack class={`${modalStyles.modal_footer} ${itemListStyles.h_stack}`}>
                         <Button
                             onClick={close}
                             _dark={darkPrimaryButton}
@@ -72,17 +76,16 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
                 </Modal.Content>
             </Modal>
 
-            <header class="section_header_container">
-                <h1 class="section_title">
+            <header class={layoutStyles.section_header_container}>
+                <h1 class={typoStyles.section_title}>
                     {t('i_list')}
                 </h1>
-
-                <div class="w-full md:w-auto">
+                <div class={itemListStyles.width_md}>
                     <A href={'/items/create'}>
                         <Button
                             leftIcon={<Icon><IconPlus/></Icon>}
                             _dark={darkPrimaryButton}
-                            class={'w-[100%] sm:w-[100%]'}
+                            class={itemListStyles.width_sm}
                         >
                             {t('i_create')}
                         </Button>
@@ -96,9 +99,9 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
                 <GeneralLoader/>
             </Show>
 
-            <div class="grid_cards_container">
+            <div class={layoutStyles.grid_cards_container}>
                 <Show when={!props.loading || props.itemList?.length} keyed>
-                    <For each={props.itemList} fallback={<span class={'text-neutral-50'}>{t('r_no_items')}</span>}>
+                    <For each={props.itemList} fallback={<span class={itemListStyles.text}>{t('r_no_items')}</span>}>
                         {(item) =>
                             <ItemCard item={item} onDelete={handleDelete(item)}/>
                         }
@@ -106,9 +109,9 @@ const ItemList: Component<ItemListTemplateProps> = (props) =>
                 </Show>
             </div>
 
-            <div class="section_bottom_buttons_container">
+            <div class={layoutStyles.section_bottom_buttons_container}>
                 <Button onClick={props.viewMoreAction()} variant="outlined">
-                    <Show when={!props.loading} fallback={<span class={'text-neutral-50'}>{t('a_loading')}...</span>} keyed>
+                    <Show when={!props.loading} fallback={<span class={itemListStyles.text}>{t('a_loading')}...</span>} keyed>
                         {t('a_view_more')}
                     </Show>
                 </Button>

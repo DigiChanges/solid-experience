@@ -7,6 +7,7 @@ import IconTrash from '../../../shared/atoms/Icons/Stroke/IconTrash';
 import Card from '../../../shared/molecules/Card/Card';
 import CardContent from '../../../shared/molecules/CardContent/CardContent';
 import { ItemApi } from '../../interfaces';
+import cardStyles from '../../../../styles/card.module.css';
 
 interface ItemCardProps
 {
@@ -16,11 +17,11 @@ interface ItemCardProps
 
 const ItemCard: Component<ItemCardProps> = (props) => (
     <Card>
-        <CardContent class="card_container">
+        <CardContent class={cardStyles.card_container}>
 
-            <div class="card_media_object">
-                <h6 class="card_media_object_title">
-                    <A class="card_media_object_link"
+            <div class={cardStyles.card_media_object}>
+                <h6 class={cardStyles.card_media_object_title}>
+                    <A class={cardStyles.card_media_object_link}
                         href={`/items/update/${props.item.id}`}
                     >
                         {props.item.name}
@@ -29,7 +30,7 @@ const ItemCard: Component<ItemCardProps> = (props) => (
                 {props.item.type}
             </div>
 
-            <div class="card_third">
+            <div class={cardStyles.card_third}>
                 <div>
                     <div>
                         <A href={`/items/update/${props.item.id}`}>
