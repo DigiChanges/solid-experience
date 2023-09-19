@@ -14,7 +14,7 @@
     @apply text-neutral-50;
 }
 .h_stack {
-    @apply modal_footer pt-4 justify-end;
+    @apply pt-4 justify-end;
 }
 .w_full_auto {
     @apply w-[100%] md:w-auto;
